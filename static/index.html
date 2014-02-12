@@ -6,15 +6,40 @@
 
 <script type="text/javascript">
 
+commands = [];
+cur_command = 0;
+
+function alphalize(str) {
+    
+    function to_alpha(str, p1, offset, string) {
+        return eval("JSON.stringify(" + p1 + ")");
+    }
+    
+    identifier  = /#([a-zA-Z_$][0-9a-zA-Z_$]*)/g;
+    
+    return str.replace(identifier, to_alpha);
+}
+
+
 
 $("document").ready( function(){
     
+    
     $("#command").submit( function(e){
         command = $("#line").val();
+        commands.push(command);
+        cur_command = commands.length;
         $("#history").append("<p class='input'>" + command + "</p>");
+        
         try {
-            result = eval(command);
-            $("#history").append("<p class='result'>" + result + "</p>");
+            if (command[0] == '!') {
+                _ = alphalize(command.slice(1))
+                req = "http://www.wolframalpha.com/input/?i=" + encodeURIComponent(_);
+                window.open(req);
+            } else {
+                _ = eval(command);
+            }
+            $("#history").append("<p class='result'>" + _ + "</p>");
         } catch (e) {
             $("#history").append("<p class='error'>" + e.message + "</p>");
         }
@@ -22,6 +47,20 @@ $("document").ready( function(){
         e.preventDefault();
     });
     
+    $("#line").keyup(function(e){
+        if (e.which == 38) {
+            if(cur_command > 0) {
+                $("#line").val(commands[--cur_command]);
+            }
+        }
+        if (e.which == 40) {
+            if(cur_command < commands.length) {
+                $("#line").val(commands[++cur_command]);
+            }
+        }
+        
+    });
+        
     $("#line").focus();
 });
 
