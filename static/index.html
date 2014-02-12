@@ -1,5 +1,80 @@
 <html>
+<head>
+    
+<title>REPL</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+
+<script type="text/javascript">
+
+
+$("document").ready( function(){
+    
+    $("#command").submit( function(e){
+        command = $("#line").val();
+        $("#history").append("<p class='input'>" + command + "</p>");
+        try {
+            result = eval(command);
+            $("#history").append("<p class='result'>" + result + "</p>");
+        } catch (e) {
+            $("#history").append("<p class='error'>" + e.message + "</p>");
+        }
+        $("#line").val("");
+        e.preventDefault();
+    });
+    
+    $("#line").focus();
+});
+
+</script>
+
+<style type="text/css">
+form {
+    display: inline;
+}
+#line{
+    width: 95%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+#shell {
+    font-family: Helvetica;
+}
+#shell p {
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+#shell p.input:before {
+  content: "> ";
+  color: #1111FF;
+  
+}
+
+#shell p.result {
+    color: #444444;
+}
+
+#shell p.error {
+    color: red;
+}
+
+
+
+</style>
+
+</head>
 <body>
-    Sam Clearman
+
+<div id="shell">
+    <div id="history">
+    </div>
+    <form id="command"><p class="input"><input id="line" type="text" value=""></input></p></form>
+</div>
+
 </body>
 </html>
