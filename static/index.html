@@ -35,14 +35,26 @@ $("document").ready( function(){
         $("#history").append("<p class='input'>" + command + "</p>");
         
         try {
-            if (command[0] == '!') {
-                _ = alphalize(command.slice(1))
-                req = "http://www.wolframalpha.com/input/?i=" + encodeURIComponent(_);
-                window.open(req);
-            } else {
-                _ = eval(command);
+            switch(command) {
+            case "ls":
+                $("#history").append("<p class='result'>" + "about" + "</p>");
+                $("#history").append("<p class='result'>" + "2etris" + "</p>");
+                break;
+            case "about":
+            case "2etris":
+                window.location = window.location.origin + "/" + command + "/";
+                break;
+            default:
+                if (command[0] == '!') {
+                    _ = alphalize(command.slice(1))
+                    req = "http://www.wolframalpha.com/input/?i=" + encodeURIComponent(_);
+                    window.open(req);
+                } else {
+                    _ = eval(command);
+                }
+                $("#history").append("<p class='result'>" + _ + "</p>");
+                break;
             }
-            $("#history").append("<p class='result'>" + _ + "</p>");
         } catch (e) {
             $("#history").append("<p class='error'>" + e.message + "</p>");
         }
