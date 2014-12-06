@@ -69,7 +69,7 @@ function game() {
     tetromino.generate = function(color) {
         shape = eval(JSON.stringify(SHAPES[Math.floor(SHAPES.length * Math.random())]));
         if (color == "black") {
-            var y = 0;
+            var y = -1 * BLOCK_SIZE;
             var v = {x: 0, y: BLOCK_SIZE};
         }
         if (color == "white") {
@@ -345,8 +345,8 @@ function tetromino(shape, x, y, velocity, color) {
     }
     
     var that = this;
-    this.keyDownListener = function(e) { that.handleKeyDown(e);};
-    this.keyUpListener = function(e) { that.handleKeyUp(e,that);};
+    this.keyDownListener = function(e) { e.preventDefault(); that.handleKeyDown(e);};
+    this.keyUpListener = function(e) { e.preventDefault(); that.handleKeyUp(e,that);};
     window.addEventListener("keyup", this.keyUpListener);
     window.addEventListener("keydown", this.keyDownListener);
     
