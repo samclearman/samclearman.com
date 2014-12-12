@@ -15,14 +15,28 @@ function alphalize(str) {
         return eval("JSON.stringify(" + p1 + ")");
     }
     
+    var conversions =
+        {"[": "{",
+         "]": "}"};
+         
     identifier  = /#([a-zA-Z_$][0-9a-zA-Z_$]*)/g;
     
-    return str.replace(identifier, to_alpha);
+    str = str.replace(identifier, to_alpha);
+    
+    for (k in conversions) {
+        var search = k.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        search = RegExp(search, "g");
+        str = str.replace(search,conversions[k]);
+    }
+    
+    return str;
 }
 
 
 
 $("document").ready( function(){
+    
+    var geval = eval;
     
     $(window).focus(function() {
         $("#line").focus();
@@ -56,8 +70,9 @@ $("document").ready( function(){
                     _ = alphalize(command.slice(1))
                     req = "http://www.wolframalpha.com/input/?i=" + encodeURIComponent(_);
                     window.open(req);
+                    _ = "(&alpha;) " + _;
                 } else {
-                    _ = eval(command);
+                    _ = geval(command);
                 }
                 $("#history").append("<p class='result'>" + _ + "</p>");
                 break;
