@@ -10,6 +10,9 @@ var BLOCK_SCORE = 10;
 var LINE_MULTIPLE = 1.1;
 var RUNNING = true;
 
+var SPEED = .5;
+var LINE_BOOST = .05;
+
 var CONTROLS = {white: {rotate: 83, left: 81, right: 69, turbo: 87},
                 black: {rotate: 38, left: 37, right: 39, turbo: 40}};
 
@@ -257,6 +260,7 @@ grid.prototype.freeze = function(piece) {
             this.state.splice(row,1);
             highlight.row(row + hoffset);
             this.scoreboard.multiplier *= LINE_MULTIPLE;
+            SPEED += LINE_BOOST;
             if (pieceType == 0) {
                 hoffset -= 1;
                 testRows = testRows.map(function(row,i,ary){return(row + 1)});
@@ -367,8 +371,8 @@ tetromino.prototype.update = function(delta) {
         tetromino.generate(this.color);
     }
     
-    this.x += this.velocity.x * delta * this.turbo;
-    this.y += this.velocity.y * delta * this.turbo;
+    this.x += this.velocity.x * delta * SPEED * this.turbo;
+    this.y += this.velocity.y * delta * SPEED * this.turbo;
     this.positionBlocks();
     
     if (this.grid().checkCollisions(this)) {
