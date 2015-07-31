@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 35: Paramagnetism and Magnetic Resonance</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "35." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch35" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">35</span>Paramagnetism and Magnetic Resonance</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapter&nbsp;<a href="II_11.html">11</a>, <i>Inside Dielectrics</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch35-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">35–1</span>Quantized magnetic states</h3>
+
+<div id="Ch35-S1-p1" class="para">
+<p class="p">In the last chapter we described how in quantum mechanics the angular
+momentum of a thing does not have an arbitrary direction, but its
+component along a given axis can take on only certain equally spaced,
+discrete values. It is a shocking and peculiar thing. You may think
+that perhaps we should not go into such things until your minds are
+more advanced and ready to accept this kind of an idea. Actually, your
+minds will never become more advanced—in the sense of being able to
+accept such a thing easily. There isn’t any descriptive way of making
+it intelligible that isn’t so subtle and advanced in its own form that
+it is more complicated than the thing you were trying to explain. The
+behavior of matter on a small scale—as we have remarked many
+times—is different from anything that you are used to and is very
+strange indeed. As we proceed with classical physics, it is a good
+idea to try to get a growing acquaintance with the behavior of things
+on a small scale, at first as a kind of experience without any deep
+understanding. Understanding of these matters comes very slowly, if at
+all. Of course, one does get better able to know what is going to
+happen in a quantum-mechanical situation—if that is what
+understanding means—but one never gets a comfortable feeling that
+these quantum-mechanical rules are “natural.” Of course they
+<em class="emph">are</em>, but they are not natural to our own experience at an
+ordinary level. We should explain that the attitude that we are going
+to take with regard to this rule about angular momentum is quite
+different from many of the other things we have talked about. We are
+not going to try to “explain” it, but we must at least <em class="emph">tell</em>
+you what happens; it would be dishonest to describe the magnetic
+properties of materials without mentioning the fact that the classical
+description of magnetism—of angular momentum and magnetic
+moments—is incorrect.
+</p>
+</div>
+
+<div id="Ch35-S1-p2" class="para">
+<p class="p">One of the most shocking and disturbing features about quantum
+mechanics is that if you take the angular momentum along any
+particular axis you find that it is always an integer or half-integer
+times&nbsp;$\hbar$. This is so no matter which axis you take. The
+subtleties involved in that curious fact—that you can take any other
+axis and find that the component for it is also locked to the same set
+of values—we will leave to a later chapter, when you will experience
+the delight of seeing how this apparent paradox is ultimately
+resolved.
+</p>
+</div>
+
+<div id="Ch35-S1-p3" class="para">
+<p class="p">We will now just accept the fact that for every atomic system there is
+a number&nbsp;$j$, called the <em class="emph">spin</em> of the system—which must be an
+integer or a half-integer—and that the component of the angular
+momentum along any particular axis will always have one of the
+following values between $+j\hbar$ and&nbsp;$-j\hbar$:
+\begin{equation}
+\label{Eq:II:35:1}
+J_z=\text{one of}\,
+\left\{
+\begin{array}{@{}l@{}}
+\phantom{-}j\\
+\phantom{-}j-1\\
+\phantom{-}j-2\\
+\phantom{-j}\:\:\vdots\\
+-j+2\\
+-j+1\\
+-j
+\end{array}
+\right\}
+\cdot\hbar.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch35-S1-p4" class="para">
+<p class="p">We have also mentioned that every simple atomic system has a magnetic
+moment which has the same direction as the angular momentum. This is
+true not only for atoms and nuclei but also for the fundamental
+particles. Each fundamental particle has its own characteristic value
+of&nbsp;$j$ and its magnetic moment. (For some particles, both are zero.)
+What we mean by “the magnetic moment” in this statement is that the
+energy of the system in a magnetic field, say in the $z$-direction,
+can be written as&nbsp;$-\mu_zB$ for small magnetic fields. We must have
+the condition that the field should not be too great, otherwise it
+could disturb the internal motions of the system and the energy would
+not be a measure of the magnetic moment that was there before the
+field was turned on. But if the field is sufficiently weak, the field
+changes the energy by the amount
+\begin{equation}
+\label{Eq:II:35:2}
+\Delta U=-\mu_zB,
+\end{equation}
+with the understanding that in this equation we are to replace&nbsp;$\mu_z$
+by
+\begin{equation}
+\label{Eq:II:35:3}
+\mu_z=g\biggl(\frac{q}{2m}\biggr)J_z,
+\end{equation}
+where $J_z$ has one of the values in Eq.&nbsp;(<a href="#mjx-eqn-EqII351">35.1</a>).
+</p>
+</div>
+
+<div id="Ch35-S1-p5" class="para">
+<p class="p">Suppose we take a system with a spin&nbsp;$j=3/2$. Without a magnetic field,
+the system has four different possible states corresponding to the
+different values of&nbsp;$J_z$, all of which have exactly the same energy.
+But the moment we turn on the magnetic field, there is an additional
+energy of interaction which separates these states into four slightly
+different energy levels. The energies of these levels are given by a
+certain energy proportional to&nbsp;$B$, multiplied by&nbsp;$\hbar$ times
+$3/2$,&nbsp;$1/2$, $-1/2$, and&nbsp;$-3/2$—the values of&nbsp;$J_z$. The splitting of
+the energy levels for atomic systems with spins of $1/2$,&nbsp;$1$, and&nbsp;$3/2$
+are shown in the diagrams of Fig.&nbsp;<a href="#Ch35-F1">35-1</a>. (Remember that for
+any arrangement of electrons the magnetic moment is always directed
+opposite to the angular momentum.)
+</p>
+</div>
+
+<div id="Ch35-F1" class="figure">
+<img class="first" src="img/FLP_II/f35-01/f35-01_tc_big_a.svgz"><img class="middle" src="img/FLP_II/f35-01/f35-01_tc_big_b.svgz"><img class="last" src="img/FLP_II/f35-01/f35-01_tc_big_c.svgz">
+<div class="caption"><span class="tag">Fig. 35–1.</span>
+An atomic system with spin&nbsp;$j$ has $(2j+1)$&nbsp;possible energy
+values in a magnetic field&nbsp;$\FigB$. The energy splitting is proportional
+to&nbsp;$B$ for small fields.
+</div>
+</div>
+
+<div id="Ch35-S1-p6" class="para">
+<p class="p">You will notice from the diagrams that the “center of gravity” of the energy
+levels is the same with and without a magnetic field. Also notice that the
+spacings from one level to the next are always equal for a given particle in a
+given magnetic field. We are going to write the energy spacing, for a given
+magnetic field&nbsp;$B$, as&nbsp;$\hbar\omega_p$—which is just a definition
+of&nbsp;$\omega_p$. Using Eqs. (<a href="#mjx-eqn-EqII352">35.2</a>)
+and&nbsp;(<a href="#mjx-eqn-EqII353">35.3</a>), we have
+\begin{equation*}
+\hbar\omega_p=g\,\frac{q}{2m}\,\hbar B
+\end{equation*}
+or
+\begin{equation}
+\label{Eq:II:35:4}
+\phantom{\hbar}\omega_p=g\,\frac{q}{2m}\,B.
+\end{equation}
+
+The quantity&nbsp;$g(q/2m)$ is just the ratio of the magnetic moment to the
+angular momentum—it is a property of the particle.
+Equation&nbsp;(<a href="#mjx-eqn-EqII354">35.4</a>) is the same formula that we got in
+Chapter&nbsp;<a href="II_34.html">34</a> for the angular velocity of precession in a
+magnetic field, for a gyroscope whose angular momentum is&nbsp;$\FLPJ$ and
+whose magnetic moment is&nbsp;$\FLPmu$.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch35-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">35–2</span>The Stern-Gerlach experiment</h3>
+
+<div id="Ch35-F2" class="figure">
+<img src="img/FLP_II/f35-02/f35-02_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 35–2.</span>
+The experiment of Stern and Gerlach.
+</div>
+</div>
+
+<div id="Ch35-S2-p1" class="para">
+<p class="p">The fact that the angular momentum is quantized is such a surprising
+thing that we will talk a little bit about it historically. It was a
+shock from the moment it was discovered (although it was expected
+theoretically). It was first observed in an experiment done in 1922 by
+Stern and
+Gerlach.
+If you wish, you can consider the experiment of
+Stern-Gerlach as a direct justification for a belief in the quantization
+of angular momentum. Stern and
+Gerlach devised an experiment for
+measuring the magnetic moment of individual silver atoms. They produced
+a beam of silver atoms by evaporating silver in a hot oven and letting
+some of them come out through a series of small holes. This beam was
+directed between the pole tips of a special magnet, as shown in
+Fig.&nbsp;<a href="#Ch35-F2">35-2</a>. Their idea was the following. If the silver atom
+has a magnetic moment&nbsp;$\FLPmu$, then in a magnetic field&nbsp;$\FLPB$ it has
+an energy&nbsp;$-\mu_zB$, where $z$ is the direction of the magnetic field.
+In the classical theory, $\mu_z$ would be equal to the magnetic moment
+times the cosine of the angle between the moment and the magnetic field,
+so the extra energy in the field would be
+\begin{equation}
+\label{Eq:II:35:5}
+\Delta U=-\mu B\cos\theta.
+\end{equation}
+Of course, as the atoms come out of the oven, their magnetic moments
+would point in every possible direction, so there would be all values
+of&nbsp;$\theta$. Now if the magnetic field varies very rapidly
+with&nbsp;$z$—if there is a strong field gradient—then the magnetic energy
+will also vary with position, and there will be a force on the
+magnetic moments whose direction will depend on whether
+cosine&nbsp;$\theta$ is positive or negative. The atoms will be pulled up or down
+by a force proportional to the derivative of the magnetic energy; from
+the principle of virtual work,
+\begin{equation}
+\label{Eq:II:35:6}
+F_z=-\ddp{U}{z}=\mu\cos\theta\,\ddp{B}{z}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch35-S2-p2" class="para">
+<p class="p">Stern and Gerlach made their magnet with a very sharp edge on one of
+the pole tips in order to produce a very rapid variation of the magnetic
+field. The beam of silver atoms was directed right along this sharp
+edge, so that the atoms would feel a vertical force in the inhomogeneous
+field. A silver atom with its magnetic moment directed horizontally
+would have no force on it and would go straight past the magnet. An atom
+whose magnetic moment was exactly vertical would have a force pulling it
+up toward the sharp edge of the magnet. An atom whose magnetic moment
+was pointed downward would feel a downward push. Thus, as they left the
+magnet, the atoms would be spread out according to their vertical
+components of magnetic moment. In the classical theory all angles are
+possible, so that when the silver atoms are collected by deposition on a
+glass plate, one should expect a smear of silver along a vertical line.
+The height of the line would be proportional to the magnitude of the
+magnetic moment. The abject failure of classical ideas was completely
+revealed when Stern and
+Gerlach saw what actually
+happened. They found on the glass plate two distinct spots. The silver
+atoms had formed two beams.
+</p>
+</div>
+
+<div id="Ch35-S2-p3" class="para">
+<p class="p">That a beam of atoms whose spins would apparently be randomly oriented
+gets split up into two separate beams is most miraculous. How does the
+magnetic moment <em class="emph">know</em> that it is only allowed to take on certain
+components in the direction of the magnetic field? Well, that was
+really the beginning of the discovery of the quantization of angular
+momentum, and instead of trying to give you a theoretical explanation,
+we will just say that you are stuck with the result of this experiment
+just as the physicists of that day had to accept the result when the
+experiment was done. It is an <em class="emph">experimental fact</em> that the energy
+of an atom in a magnetic field takes on a series of individual
+values. For each of these values the energy is proportional to the
+field strength. So in a region where the field varies, the principle
+of virtual work tells us that the possible magnetic force on the atoms
+will have a set of separate values; the force is different for each
+state, so the beam of atoms is split into a small number of separate
+beams. From a measurement of the deflection of the beams, one can find
+the strength of the magnetic moment.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch35-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">35–3</span>The Rabi molecular-beam method</h3>
+
+<div id="Ch35-S3-p1" class="para">
+<p class="p">We would now like to describe an improved apparatus for the measurement of
+magnetic moments which was developed by I.&nbsp;I. Rabi and his collaborators. In the Stern-Gerlach
+experiment the deflection of atoms is very small, and the measurement of the
+magnetic moment is not very precise. Rabi’s technique permits a fantastic
+precision in the measurement of the magnetic moments. The method is based on the
+fact that the original energy of the atoms in a magnetic field is split up into
+a finite number of energy levels. That the energy of an atom in the magnetic
+field can have only certain discrete energies is really not more surprising than
+the fact that atoms <em class="emph">in general</em> have only certain discrete energy
+levels—something we mentioned often in Volume&nbsp;I. Why should the same thing
+<em class="emph">not</em> hold for atoms in a magnetic field?  It does. But it is the attempt
+to correlate this with the idea of an <em class="emph">oriented magnetic
+moment</em> that brings out some of the strange
+implications of quantum mechanics.
+</p>
+</div>
+
+<div id="Ch35-S3-p2" class="para">
+<p class="p">When an atom has two levels which differ in energy by the amount&nbsp;$\Delta
+U$, it can make a transition from the upper level to the lower level by
+emitting a light quantum of frequency&nbsp;$\omega$, where
+\begin{equation}
+\label{Eq:II:35:7}
+\hbar\omega=\Delta U.
+\end{equation}
+The same thing can happen with atoms in a magnetic field. Only then, the
+energy differences are so small that the frequency does not correspond
+to light, but to microwaves or to radiofrequencies. The transitions from
+the lower energy level to an upper energy level of an atom can also take
+place with the absorption of light or, in the case of atoms in a
+magnetic field, by the absorption of microwave energy. Thus if we have
+an atom in a magnetic field, we can cause transitions from one state to
+another by applying an additional electromagnetic field of the proper
+frequency. In other words, if we have an atom in a strong magnetic field
+and we “tickle” the atom with a weak varying electromagnetic field,
+there will be a certain probability of knocking it to another level if
+the frequency is near to the&nbsp;$\omega$ in Eq.&nbsp;(<a href="#mjx-eqn-EqII357">35.7</a>). For an
+atom in a magnetic field, this frequency is just what we have earlier
+called&nbsp;$\omega_p$ and it is given in terms of the magnetic field by
+Eq.&nbsp;(<a href="#mjx-eqn-EqII354">35.4</a>). If the atom is tickled with the wrong frequency,
+the chance of causing a transition is very small. Thus there is a sharp
+<em class="emph">resonance</em> at&nbsp;$\omega_p$ in the probability of causing a
+transition. By measuring the frequency of this resonance in a known
+magnetic field&nbsp;$B$, we can measure the quantity&nbsp;$g(q/2m)$—and hence
+the $g$-factor—with great precision.
+</p>
+</div>
+
+<div id="Ch35-S3-p3" class="para">
+<p class="p">It is interesting that one comes to the same conclusion from a
+classical point of view. According to the classical picture, when we
+place a small gyroscope with a magnetic moment&nbsp;$\mu$ and an angular
+momentum&nbsp;$J$ in an external magnetic field, the gyroscope will precess
+about an axis parallel to the magnetic field. (See Fig.&nbsp;<a href="#Ch35-F3">35-3</a>.)
+Suppose we ask: How can we change the angle of the classical gyroscope
+with respect to the field—namely, with respect to the $z$-axis? The
+magnetic field produces a torque around a <em class="emph">horizontal</em> axis. Such
+a torque you would think is <em class="emph">trying</em> to line up the magnet with
+the field, but it only causes the precession. If we want to change the
+angle of the gyroscope with respect to the $z$-axis, we must exert a
+torque on it <em class="emph">about the $z$-axis</em>. If we apply a torque which
+goes in the same direction as the precession, the angle of the
+gyroscope will change to give a smaller component of&nbsp;$\FLPJ$ in the
+$z$-direction. In Fig.&nbsp;<a href="#Ch35-F3">35-3</a>, the angle between&nbsp;$\FLPJ$ and the
+$z$-axis would increase. If we try to hinder the precession, $\FLPJ$
+moves toward the vertical.
+</p>
+</div>
+
+<div id="Ch35-F3" class="figure">
+<img src="img/FLP_II/f35-03/f35-03_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 35–3.</span>
+The classical precession of an atom with the magnetic
+moment&nbsp;$\Figmu$ and the angular momentum&nbsp;$\FigJ$.
+</div>
+</div>
+
+<div id="Ch35-S3-p4" class="para">
+<p class="p">For our precessing atom in a uniform magnetic field, how can we apply
+the kind of torque we want? The answer is: with a weak magnetic field
+from the side. You might at first think that the direction of this
+magnetic field would have to rotate with the precession of the magnetic
+moment, so that it was always at right angles to the moment, as
+indicated by the field&nbsp;$B'$ in Fig.&nbsp;<a href="#Ch35-F4">35-4</a>(a). Such a field
+works very well, but an <em class="emph">alternating</em> horizontal field is almost as
+good. If we have a small horizontal field&nbsp;$B'$, which is always in the
+$x$-direction (plus or minus) and which oscillates with the
+frequency&nbsp;$\omega_p$, then on each one-half cycle the torque on the
+magnetic moment reverses, so that it has a cumulative effect which is
+almost as effective as a rotating magnetic field. Classically, then, we
+would expect the component of the magnetic moment along the
+$z$-direction to change if we have a very weak oscillating magnetic
+field at a frequency which is exactly&nbsp;$\omega_p$. Classically, of
+course, $\mu_z$ would change continuously, but in quantum mechanics the
+$z$-component of the magnetic moment cannot adjust continuously. It must
+jump suddenly from one value to another. We have made the comparison
+between the consequences of classical mechanics and quantum mechanics to
+give you some clue as to what might happen classically and how it is
+related to what actually happens in quantum mechanics. You will notice,
+incidentally, that the expected resonant frequency is the same in both
+cases.
+</p>
+</div>
+
+<div id="Ch35-F4" class="figure">
+<img class="first" src="img/FLP_II/f35-04/f35-04_tc_big_a.svgz"><img class="last" src="img/FLP_II/f35-04/f35-04_tc_big_b.svgz">
+<div class="caption"><span class="tag">Fig. 35–4.</span>
+The angle of precession of an atomic magnet can be changed by a
+horizontal magnetic field always at right angles to&nbsp;$\Figmu$, as in&nbsp;(a),
+or by an oscillating field, as in&nbsp;(b).
+</div>
+</div>
+
+<div id="Ch35-S3-p5" class="para">
+<p class="p">One additional remark: From what we have said about quantum mechanics,
+there is no apparent reason why there couldn’t also be transitions at
+the frequency&nbsp;$2\omega_p$. It happens that there isn’t any analog of
+this in the classical case, and also it doesn’t happen in the quantum
+theory either—at least not for the particular method of inducing the
+transitions that we have described. With an oscillating horizontal
+magnetic field, the probability that a frequency&nbsp;$2\omega_p$ would
+cause a jump of two steps at once is zero. It is only at the
+frequency&nbsp;$\omega_p$ that transitions, either upward or downward, are likely to
+occur.
+</p>
+</div>
+
+<div id="Ch35-F5" class="figure">
+<img src="img/FLP_II/f35-05/f35-05_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 35–5.</span>
+The Rabi molecular-beam apparatus.
+</div>
+</div>
+
+<div id="Ch35-S3-p6" class="para">
+<p class="p">Now we are ready to describe Rabi’s method for measuring magnetic
+moments. We will consider here only the operation for atoms with a spin
+of&nbsp;$1/2$. A diagram of the apparatus is shown in Fig.&nbsp;<a href="#Ch35-F5">35-5</a>.
+There is an oven which gives out a stream of neutral atoms which passes
+down a line of three magnets. Magnet&nbsp;$1$ is just like the one in
+Fig.&nbsp;<a href="#Ch35-F2">35-2</a>, and has a field with a strong field
+gradient—say, with $\ddpl{B_z}{z}$&nbsp;positive. If the atoms have a
+magnetic moment, they will be deflected downward if&nbsp;$J_z=+\hbar/2$, or
+upward if&nbsp;$J_z=-\hbar/2$ (since for electrons $\FLPmu$ is directed
+opposite to&nbsp;$\FLPJ$). If we consider only those atoms which can get
+through the slit&nbsp;$S_1$, there are two possible trajectories, as shown.
+Atoms with $J_z=+\hbar/2$ must go along curve&nbsp;$a$ to get through the
+slit, and those with $J_z=-\hbar/2$ must go along curve&nbsp;$b$. Atoms which
+start out from the oven along other paths will not get through the slit.
+</p>
+</div>
+
+<div id="Ch35-S3-p7" class="para">
+<p class="p">Magnet&nbsp;$2$ has a uniform field. There are no forces on the atoms in
+this region, so they go straight through and enter magnet&nbsp;$3$.
+Magnet&nbsp;$3$ is just like magnet&nbsp;$1$ but with the field <em class="emph">inverted</em>, so
+that $\ddpl{B_z}{z}$ has the opposite sign. The atoms with
+$J_z=+\hbar/2$ (we say “with spin up”), that felt a downward push in
+magnet&nbsp;$1$, get an <em class="emph">upward</em> push in magnet&nbsp;$3$; they continue on
+the path&nbsp;$a$ and go through slit&nbsp;$S_2$ to a detector. The atoms with
+$J_z=-\hbar/2$ (“with spin down”) also have opposite forces in
+magnets $1$ and&nbsp;$3$ and go along the path&nbsp;$b$, which also takes them
+through slit&nbsp;$S_2$ to the detector.
+</p>
+</div>
+
+<div id="Ch35-S3-p8" class="para">
+<p class="p">The detector may be made in various ways, depending on the atom being
+measured. For example, for atoms of an alkali metal like sodium, the
+detector can be a thin, hot tungsten wire connected to a sensitive
+current meter. When sodium atoms land on the wire, they are evaporated
+off as Na$^+$ ions, leaving an electron behind. There is a current
+from the wire proportional to the number of sodium atoms arriving per
+second.
+</p>
+</div>
+
+<div id="Ch35-S3-p9" class="para">
+<p class="p">In the gap of magnet&nbsp;$2$ there is a set of coils that produces a small
+horizontal magnetic field&nbsp;$\FLPB'$. The coils are driven with a
+current which oscillates at a variable frequency&nbsp;$\omega$. So between
+the poles of magnet&nbsp;$2$ there is a strong, constant, vertical
+field&nbsp;$\FLPB_0$ and a weak, oscillating, horizontal field&nbsp;$\FLPB'$.
+</p>
+</div>
+
+<div id="Ch35-S3-p10" class="para">
+<p class="p">Suppose now that the frequency&nbsp;$\omega$ of the oscillating field is set
+at&nbsp;$\omega_p$—the “precession” frequency of the atoms in the
+field&nbsp;$\FLPB$. The alternating field will cause some of the atoms passing by
+to make transitions from one&nbsp;$J_z$ to the other. An atom whose spin was
+initially “up” ($J_z=+\hbar/2$) may be flipped “down”
+($J_z=-\hbar/2$). Now this atom has the direction of its magnetic moment
+reversed, so it will feel a <em class="emph">downward</em> force in magnet&nbsp;$3$ and will
+move along the path&nbsp;$a'$, shown in Fig.&nbsp;<a href="#Ch35-F5">35-5</a>. It will no
+longer get through the slit&nbsp;$S_2$ to the detector. Similarly, some of
+the atoms whose spins were initially down ($J_z=-\hbar/2$) will have
+their spins flipped up ($J_z=+\hbar/2$) as they pass through magnet&nbsp;$2$.
+They will then go along the path&nbsp;$b'$ and will not get to the detector.
+</p>
+</div>
+
+<div id="Ch35-S3-p11" class="para">
+<p class="p">If the oscillating field&nbsp;$\FLPB'$ has a frequency appreciably different
+from&nbsp;$\omega_p$, it will not cause any spin flips, and the atoms will
+follow their undisturbed paths to the detector. So you can see that the
+“precession” frequency&nbsp;$\omega_p$ of the atoms in the field&nbsp;$\FLPB_0$
+can be found by varying the frequency&nbsp;$\omega$ of the field&nbsp;$\FLPB'$
+until a decrease is observed in the current of atoms arriving at the
+detector. A decrease in the current will occur when $\omega$ is “in
+resonance” with&nbsp;$\omega_p$. A plot of the detector current as a
+function of&nbsp;$\omega$ might look like the one shown in
+Fig.&nbsp;<a href="#Ch35-F6">35-6</a>. Knowing $\omega_p$, we can obtain the $g$-value
+of the atom.
+</p>
+</div>
+
+<div id="Ch35-F6" class="figure">
+<img src="img/FLP_II/f35-06/f35-06_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 35–6.</span>
+The current of atoms in the beam decreases when&nbsp;$\omega=\omega_p$.
+</div>
+</div>
+
+<div id="Ch35-S3-p12" class="para">
+<p class="p">Such atomic-beam or, as they are usually called, “molecular” beam
+resonance experiments are a beautiful and delicate way of measuring
+the magnetic properties of atomic objects. The resonance
+frequency&nbsp;$\omega_p$ can be determined with great precision—in fact, with a
+greater precision than we can measure the magnetic field&nbsp;$\FLPB_0$,
+which we must know to find&nbsp;$g$.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch35-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">35–4</span>The paramagnetism of bulk materials</h3>
+
+<div id="Ch35-S4-p1" class="para">
+<p class="p">We would like now to describe the phenomenon of the paramagnetism of
+bulk materials. Suppose we have a substance whose atoms have permanent
+magnetic moments, for example a crystal like copper sulfate. In the
+crystal there are copper ions whose inner electron shells have a net
+angular momentum and a net magnetic moment. So the copper ion is an
+object which has a permanent magnetic moment. Let’s say just a word
+about which atoms have magnetic moments and which ones don’t. Any
+atom, like sodium for instance, which has an <em class="emph">odd</em> number of
+electrons, will have a magnetic moment. Sodium has one electron in its
+unfilled shell. This electron gives the atom a spin and a magnetic
+moment. Ordinarily, however, when compounds are formed the extra
+electrons in the outside shell are coupled together with other
+electrons whose spin directions are exactly opposite, so that all the
+angular momenta and magnetic moments of the valence electrons usually
+cancel out. That’s why, in general, molecules do not have a magnetic
+moment. Of course if you have a gas of sodium atoms, there is no such
+cancellation.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> 
+Also, if you have what is
+called in chemistry a “free radical”—an object with an odd number
+of valence electrons—then the bonds are not completely satisfied,
+and there is a net angular momentum.
+</p>
+</div>
+
+<div id="Ch35-S4-p2" class="para">
+<p class="p">In most bulk materials there is a net magnetic moment only if there
+are atoms present whose <em class="emph">inner</em> electron shell is not
+filled. Then there can be a net angular momentum and a magnetic
+moment. Such atoms are found in the “transition element” part of the
+periodic table—for instance, chromium, manganese, iron, nickel,
+cobalt, palladium, and platinum are elements of this kind. Also, all
+of the rare earth elements have unfilled inner shells and permanent
+magnetic moments. There are a couple of other strange things that also
+happen to have magnetic moments, such as liquid oxygen, but we will
+leave it to the chemistry department to explain the reason.
+</p>
+</div>
+
+<div id="Ch35-S4-p3" class="para">
+<p class="p">Now suppose that we have a box full of atoms or molecules with
+permanent moments—say a gas, or a liquid, or a crystal. We would
+like to know what happens if we apply an external magnetic field. With
+<em class="emph">no</em> magnetic field, the atoms are kicked around by the thermal
+motions, and the moments wind up pointing in all directions. But when
+there is a magnetic field, it acts to line up the little magnets; then
+there are more moments lying toward the field than away from it. The
+material is “magnetized.”
+</p>
+</div>
+
+<div id="Ch35-S4-p4" class="para">
+<p class="p">We define the <em class="emph">magnetization</em>&nbsp;$\FLPM$ of a material as the net
+magnetic moment per unit volume, by which we mean the vector sum of
+all the atomic magnetic moments in a unit volume. If there are
+$N$&nbsp;atoms per unit volume and their <em class="emph">average</em> moment is&nbsp;$\av{\FLPmu}$
+then $\FLPM$ can be written as $N$&nbsp;times the average atomic moment:
+\begin{equation}
+\label{Eq:II:35:8}
+\FLPM=N\av{\FLPmu}.
+\end{equation}
+The definition of&nbsp;$\FLPM$ corresponds to the definition of the
+electric polarization&nbsp;$\FLPP$ of Chapter&nbsp;<a href="II_10.html">10</a>.
+</p>
+</div>
+
+<div id="Ch35-S4-p5" class="para">
+<p class="p">The classical theory of paramagnetism is just like the theory of the
+dielectric constant we showed you in Chapter&nbsp;<a href="II_11.html">11</a>. One
+assumes that each of the atoms has a magnetic moment&nbsp;$\FLPmu$, which
+always has the same magnitude but which can point in any direction. In
+a field&nbsp;$\FLPB$, the magnetic energy is&nbsp;$-\FLPmu\cdot\FLPB=-\mu
+B\cos\theta$, where $\theta$ is the angle between the moment and the
+field. From statistical mechanics, the relative probability of having
+any angle is&nbsp;$e^{-\text{energy}/kT}$, so angles near zero are more
+likely than angles near&nbsp;$\pi$. Proceeding exactly as we did in
+Section&nbsp;<a href="II_11.html#Ch11-S3">11-3</a>, we find that for small magnetic fields
+$\FLPM$ is directed parallel to&nbsp;$\FLPB$ and has the magnitude
+\begin{equation}
+\label{Eq:II:35:9}
+M=\frac{N\mu^2B}{3kT}.
+\end{equation}
+[See Eq.&nbsp;(<a href="II_11.html#mjx-eqn-EqII1120">11.20</a>).] This approximate formula is correct
+only for&nbsp;$\mu B/kT$ much less than one.
+</p>
+</div>
+
+<div id="Ch35-S4-p6" class="para">
+<p class="p">We find that the induced magnetization—the magnetic moment per unit
+volume—is proportional to the magnetic field. This is the phenomenon
+of paramagnetism. You will see that the effect is stronger at lower
+temperatures and weaker at higher temperatures. When we put a field on
+a substance, it develops, for small fields, a magnetic moment
+proportional to the field. The ratio of $M$ to&nbsp;$B$ (for small fields)
+is called the magnetic <em class="emph">susceptibility</em>.
+</p>
+</div>
+
+<div id="Ch35-S4-p7" class="para">
+<p class="p">Now we want to look at paramagnetism from the point of view of quantum
+mechanics. We take first the case of an atom with a spin of&nbsp;$1/2$. In
+the absence of a magnetic field the atoms have a certain energy, but
+in a magnetic field there are two possible energies, one for each
+value of&nbsp;$J_z$. For $J_z=+\hbar/2$, the energy is changed by the
+magnetic field by the amount
+\begin{equation}
+\label{Eq:II:35:10}
+\Delta U_1=+g\biggl(\frac{q_e\hbar}{2m}\biggr)\cdot\frac{1}{2}\cdot B.
+\end{equation}
+(The energy shift&nbsp;$\Delta U$ is positive for an atom because the
+electron charge is negative.) For $J_z=-\hbar/2$, the energy is
+changed by the amount
+\begin{equation}
+\label{Eq:II:35:11}
+\Delta U_2=-g\biggl(\frac{q_e\hbar}{2m}\biggr)\cdot\frac{1}{2}\cdot B.
+\end{equation}
+To save writing, let’s set
+\begin{equation}
+\label{Eq:II:35:12}
+\mu_0=g\biggl(\frac{q_e\hbar}{2m}\biggr)\cdot\frac{1}{2};
+\end{equation}
+then
+\begin{equation}
+\label{Eq:II:35:13}
+\Delta U=\pm\mu_0B.
+\end{equation}
+The meaning of $\mu_0$ is clear: $-\mu_0$ is the $z$-component of the
+magnetic moment in the up-spin case, and $+\mu_0$ is the $z$-component
+of the magnetic moment in the down-spin case.
+</p>
+</div>
+
+<div id="Ch35-S4-p8" class="para">
+<p class="p">Now statistical mechanics tells us that the probability that an atom
+is in one state or another is proportional to
+\begin{equation*}
+e^{-(\text{Energy of state})/kT}.
+\end{equation*}
+With no magnetic field the two states have the same energy; so when
+there is equilibrium in a magnetic field, the probabilities are
+proportional to
+\begin{equation}
+\label{Eq:II:35:14}
+e^{-\Delta U/kT}.
+\end{equation}
+The number of atoms per unit volume with spin up is
+\begin{equation}
+\label{Eq:II:35:15}
+N_{\text{up}}=ae^{-\mu_0B/kT},
+\end{equation}
+and the number with spin down is
+\begin{equation}
+\label{Eq:II:35:16}
+N_{\text{down}}=ae^{+\mu_0B/kT}.
+\end{equation}
+The constant&nbsp;$a$ is to be determined so that
+\begin{equation}
+\label{Eq:II:35:17}
+N_{\text{up}}+N_{\text{down}}=N,
+\end{equation}
+the total number of atoms per unit volume. So we get that
+\begin{equation}
+\label{Eq:II:35:18}
+a=\frac{N}{e^{+\mu_0B/kT}+e^{-\mu_0B/kT}}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch35-S4-p9" class="para">
+<p class="p">What we are interested in is the <em class="emph">average</em> magnetic moment along
+the $z$-axis. The atoms with spin up will contribute a moment
+of&nbsp;$-\mu_0$, and those with spin down will have a moment of&nbsp;$+\mu_0$; so
+the average moment is
+\begin{equation}
+\label{Eq:II:35:19}
+\av{\mu} =
+\frac{N_{\text{up}}(-\mu_0)+N_{\text{down}}(+\mu_0)}{N}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch35-S4-p10" class="para">
+<p class="p">The magnetic moment per unit volume&nbsp;$M$ is then $N\av{\mu}$. Using Eqs.
+(<a href="#mjx-eqn-EqII3515">35.15</a>), (<a href="#mjx-eqn-EqII3516">35.16</a>), and&nbsp;(<a href="#mjx-eqn-EqII3517">35.17</a>), we get that
+\begin{equation}
+\label{Eq:II:35:20}
+M=N\mu_0\,
+\frac{e^{+\mu_0B/kT}-e^{-\mu_0B/kT}}{e^{+\mu_0B/kT}+e^{-\mu_0B/kT}}.
+\end{equation}
+This is the quantum-mechanical formula for&nbsp;$M$ for atoms with&nbsp;$j=1/2$.
+Incidentally, this formula can also be written somewhat more concisely in terms
+of the hyperbolic tangent function:
+\begin{equation}
+\label{Eq:II:35:21}
+M=N\mu_0\,\tanh\frac{\mu_0B}{kT}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch35-F7" class="figure">
+<img src="img/FLP_II/f35-07/f35-07_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 35–7.</span>
+The variation of the paramagnetic magnetization with the
+magnetic field strength&nbsp;$B$.
+</div>
+</div>
+
+<div id="Ch35-S4-p11" class="para">
+<p class="p">A plot of&nbsp;$M$ as a function of&nbsp;$B$ is given in Fig.&nbsp;<a href="#Ch35-F7">35-7</a>. When $B$
+gets very large, the hyperbolic tangent approaches&nbsp;$1$, and $M$
+approaches the limiting value&nbsp;$N\mu_0$. So at high fields, the
+magnetization <em class="emph">saturates</em>. We can see why that is; at high enough
+fields the moments are all lined up in the same direction. In other
+words, they are all in the spin-down state, and each atom contributes
+the moment&nbsp;$\mu_0$.
+</p>
+</div>
+
+<div id="Ch35-S4-p12" class="para">
+<p class="p">In most normal cases—say, for typical moments, room temperatures,
+and the fields one can normally get (like $10{,}000$&nbsp;gauss)—the
+ratio&nbsp;$\mu_0B/kT$ is about&nbsp;$0.002$. One must go to very low
+temperatures to see the saturation. For normal temperatures, we can
+usually replace $\tanh x$ by&nbsp;$x$, and write
+\begin{equation}
+\label{Eq:II:35:22}
+M=\frac{N\mu_0^2B}{kT}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch35-S4-p13" class="para">
+<p class="p">Just as we saw in the classical theory, $M$ is proportional to&nbsp;$B$. In
+fact, the formula is almost exactly the same, except that there seems
+to be a factor of&nbsp;$1/3$ missing. But we still need to relate
+the&nbsp;$\mu_0$ in our quantum formula to the $\mu$ that appears in the
+classical result, Eq.&nbsp;(<a href="#mjx-eqn-EqII359">35.9</a>).
+</p>
+</div>
+
+<div id="Ch35-S4-p14" class="para">
+<p class="p">In the classical formula, what appears is&nbsp;$\mu^2=\FLPmu\cdot\FLPmu$,
+the square of the vector magnetic moment, or
+\begin{equation}
+\label{Eq:II:35:23}
+\FLPmu\cdot\FLPmu=\biggl(g\,\frac{q_e}{2m}\biggr)^2\FLPJ\cdot\FLPJ.
+\end{equation}
+We pointed out in the last chapter that you can very likely get the
+right answer from a classical calculation by replacing
+$\FLPJ\cdot\FLPJ$ by&nbsp;$j(j+1)\hbar^2$. In our particular example, we
+have&nbsp;$j=1/2$, so
+\begin{equation*}
+j(j+1)\hbar^2=\tfrac{3}{4}\hbar^2.
+\end{equation*}
+Substituting this for $\FLPJ\cdot\FLPJ$ in Eq.&nbsp;(<a href="#mjx-eqn-EqII3523">35.23</a>),
+we get
+\begin{equation*}
+\FLPmu\cdot\FLPmu=\biggl(g\,\frac{q_e}{2m}\biggr)^2
+\frac{3\hbar^2}{4},
+\end{equation*}
+or in terms of&nbsp;$\mu_0$, defined in Eq.&nbsp;(<a href="#mjx-eqn-EqII3512">35.12</a>), we get
+\begin{equation*}
+\FLPmu\cdot\FLPmu=3\mu_0^2.
+\end{equation*}
+Substituting this for&nbsp;$\mu^2$ in the classical formula,
+Eq.&nbsp;(<a href="#mjx-eqn-EqII359">35.9</a>), does indeed reproduce the correct quantum
+formula, Eq.&nbsp;(<a href="#mjx-eqn-EqII3522">35.22</a>).
+</p>
+</div>
+
+<div id="Ch35-S4-p15" class="para">
+<p class="p">The quantum theory of paramagnetism is easily extended to atoms of any
+spin&nbsp;$j$. The low-field magnetization is
+\begin{equation}
+\label{Eq:II:35:24}
+M=Ng^2\,\frac{j(j+1)}{3}\,\frac{\mu_B^2B}{kT},
+\end{equation}
+where
+\begin{equation}
+\label{Eq:II:35:25}
+\mu_B=\frac{q_e\hbar}{2m}
+\end{equation}
+is a combination of constants with the dimensions of a magnetic moment.
+Most atoms have moments of roughly this size. It is called the
+<em class="emph">Bohr magneton</em>. The spin magnetic moment of the electron
+is almost exactly one Bohr magneton.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch35-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">35–5</span>Cooling by adiabatic demagnetization</h3>
+
+<div id="Ch35-S5-p1" class="para">
+<p class="p">There is a very interesting special application of paramagnetism. At
+very low temperatures it is possible to line up the atomic magnets in
+a strong field.  It is then possible to get down to <em class="emph">extremely</em>
+low temperatures by a process called <em class="emph">adiabatic
+demagnetization</em>. We can take a paramagnetic salt (for example, one
+containing a number of rare-earth atoms like
+praseodymium-ammonium-nitrate), and start by cooling it down with
+liquid helium to one or two degrees absolute in a strong magnetic
+field. Then the factor&nbsp;$\mu B/kT$ is larger than&nbsp;$1$—say more like
+$2$ or&nbsp;$3$. Most of the spins are lined up, and the magnetization is
+nearly saturated. Let’s say, to make it easy, that the field is very
+powerful and the temperature is very low, so that nearly all the atoms
+are lined up. Then you isolate the salt thermally (say, by removing
+the liquid helium and leaving a good vacuum) and turn off the magnetic
+field. The temperature of the salt goes way down.
+</p>
+</div>
+
+<div id="Ch35-S5-p2" class="para">
+<p class="p">Now if you were to turn off the field <em class="emph">suddenly</em>, the jiggling
+and shaking, of the atoms in the crystal lattice would gradually knock
+all the spins out of alignment. Some of them would be up and some
+down. But if there is no field (and disregarding the interactions
+between the atomic magnets, which will make only a slight error), it
+takes no energy to turn over the atomic magnets. They could randomize
+their spins without any energy change and, therefore, without any
+temperature change.
+</p>
+</div>
+
+<div id="Ch35-S5-p3" class="para">
+<p class="p">Suppose, however, that while the atomic magnets are being flipped over
+by the thermal motion there is still some magnetic field present. Then
+it requires some work to flip them over opposite to the
+field—<em class="emph">they must do work against the field</em>. This takes energy
+from the thermal motions and lowers the temperature. So if the strong
+magnetic field is not removed too rapidly, the temperature of the salt
+will decrease—it is cooled by the demagnetization. From the
+quantum-mechanical view, when the field is strong all the atoms are in
+the lowest state, because the odds against any being in the upper
+state are impossibly big. But as the field is lowered, it gets more
+and more likely that thermal fluctuations will knock an atom into the
+upper state. When that happens, the atom absorbs the energy&nbsp;$\Delta
+U=\mu_0B$. So if the field is turned off slowly, the magnetic
+transitions can take energy out of the thermal vibrations of the
+crystal, cooling it off. It is possible in this way to go from a
+temperature of a few degrees absolute down to a temperature of a few
+thousandths of a degree.
+</p>
+</div>
+
+<div id="Ch35-S5-p4" class="para">
+<p class="p">Would you like to make something even colder than that? It turns out
+that Nature has provided a way. We have already mentioned that there
+are also magnetic moments for the atomic nuclei. Our formulas for
+paramagnetism work just as well for nuclei, except that the moments of
+nuclei are roughly a <em class="emph">thousand times smaller</em>. [They are of the
+order of magnitude of&nbsp;$q\hbar/2m_p$, where $m_p$ is the <em class="emph">proton</em>
+mass, so they are smaller by the ratio of the masses of the electron
+and proton.]  With such magnetic moments, even at a temperature
+of&nbsp;$2^\circ$K, the factor&nbsp;$\mu B/kT$ is only a few parts in a
+thousand. But if we use the paramagnetic demagnetization process to
+get down to a temperature of a few thousandths of a degree, $\mu B/kT$
+becomes a number near&nbsp;$1$—at these low temperatures we can begin to
+saturate the nuclear moments. That is good luck, because we can then
+use the adiabatic demagnetization of the <em class="emph">nuclear</em> magnetism to
+reach still lower temperatures. Thus it is possible to do two stages
+of magnetic cooling. First we use adiabatic demagnetization of
+paramagnetic ions to reach a few thousandths of a degree. Then we use
+the cold paramagnetic salt to cool some material which has a strong
+nuclear magnetism. Finally, when we remove the magnetic field from
+this material, its temperature will go down to within a
+<em class="emph">millionth</em> of a degree of absolute zero—if we have done
+everything very carefully.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch35-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">35–6</span>Nuclear magnetic resonance</h3>
+
+<div id="Ch35-S6-p1" class="para">
+<p class="p">We have said that atomic paramagnetism is very small and that nuclear
+magnetism is even a thousand times smaller. Yet it is relatively easy
+to observe the nuclear magnetism by the phenomenon of “nuclear
+magnetic resonance.” Suppose we take a substance like water, in which
+all of the electron spins are exactly balanced so that their net
+magnetic moment is zero. The molecules will still have a very, very
+tiny magnetic moment due to the nuclear magnetic moment of the
+hydrogen nuclei. Suppose we put a small sample of water in a magnetic
+field&nbsp;$\FLPB$. Since the protons (of the hydrogen) have a spin of&nbsp;$1/2$,
+they will have two possible energy states. If the water is in
+thermal equilibrium, there will be slightly more protons in the lower
+energy states—with their moments directed parallel to the
+field. There is a small net magnetic moment per unit volume. Since the
+proton moment is only about one-thousandth of an atomic moment, the
+magnetization which goes as&nbsp;$\mu^2$—using Eq.&nbsp;(<a href="#mjx-eqn-EqII3522">35.22</a>)—is
+only about one-millionth as strong as typical atomic paramagnetism.
+(That’s why we have to pick a material with no atomic magnetism.) If you
+work it out, the difference between the number of protons with spin up
+and with spin down is only one part in&nbsp;$10^8$, so the effect is indeed
+very small! It can still be observed, however, in the following way.
+</p>
+</div>
+
+<div id="Ch35-S6-p2" class="para">
+<p class="p">Suppose we surround the water sample with a small coil that produces a
+small horizontal oscillating magnetic field. If this field oscillates
+at the frequency&nbsp;$\omega_p$, it will induce transitions between the
+two energy states—just as we described for the Rabi experiment in
+Section&nbsp;<a href="II_35.html#Ch35-S3">35-3</a>. When a proton flips from an upper energy
+state to a lower one, it will give up the energy&nbsp;$\mu_zB$ which, as we
+have seen, is equal to&nbsp;$\hbar\omega_p$. If it flips from the lower
+energy state to the upper one, it will <em class="emph">absorb</em> the
+energy&nbsp;$\hbar\omega_p$ from the coil. Since there are slightly more protons
+in the lower state than in the upper one, there will be a net
+<em class="emph">absorption</em> of energy from the coil. Although the effect is very
+small, the slight energy absorption can be seen with a sensitive
+electronic amplifier.
+</p>
+</div>
+
+<div id="Ch35-S6-p3" class="para">
+<p class="p">Just as in the Rabi molecular-beam experiment, the energy absorption
+will be seen only when the oscillating field is in resonance, that is,
+when
+\begin{equation*}
+\omega=\omega_p=g\biggl(\frac{q_e}{2m_p}\biggr)B.
+\end{equation*}
+It is often more convenient to search for the resonance by varying&nbsp;$B$
+while keeping $\omega$ fixed. The energy absorption will evidently
+appear when
+\begin{equation*}
+B=\frac{2m_p}{gq_e}\,\omega.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch35-S6-p4" class="para">
+<p class="p">A typical nuclear magnetic resonance apparatus is shown in
+Fig.&nbsp;<a href="#Ch35-F8">35-8</a>. A high-frequency oscillator drives a small coil
+placed between the poles of a large electromagnet. Two small auxiliary
+coils around the pole tips are driven with a $60$-cycle current so that
+the magnetic field is “wobbled” about its average value by a very
+small amount. As an example, say that the main current of the magnet is
+set to give a field of $5000$&nbsp;gauss, and the auxiliary coils produce a
+variation of $\pm1$&nbsp;gauss about this value. If the oscillator is set at
+$21.2$&nbsp;megacycles per second, it will then be at the proton resonance
+each time the field sweeps through $5000$&nbsp;gauss [using
+Eq.&nbsp;(<a href="II_34.html#mjx-eqn-EqII3413">34.13</a>) with $g=5.58$ for the proton].
+</p>
+</div>
+
+<div id="Ch35-F8" class="figure">
+<img src="img/FLP_II/f35-08/f35-08_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 35–8.</span>
+A nuclear magnetic resonance apparatus.
+</div>
+</div>
+
+<div id="Ch35-S6-p5" class="para">
+<p class="p">The circuit of the oscillator is arranged to give an additional output
+signal proportional to any <em class="emph">change</em> in the power being absorbed
+from the oscillator. This signal is fed to the vertical deflection
+amplifier of an oscilloscope. The horizontal sweep of the oscilloscope
+is triggered once during each cycle of the field-wobbling
+frequency. (More usually, the horizontal deflection is made to follow
+in proportion to the wobbling field.)
+</p>
+</div>
+
+<div id="Ch35-S6-p6" class="para">
+<p class="p">Before the water sample is placed inside the high-frequency coil, the
+power drawn from the oscillator is some value. (It doesn’t change with
+the magnetic field.) When a small bottle of water is placed in the
+coil, however, a signal appears on the oscilloscope, as shown in the
+figure. We see a picture of the power being absorbed by the flipping
+over of the protons!
+</p>
+</div>
+
+<div id="Ch35-S6-p7" class="para">
+<p class="p">In practice, it is difficult to know how to set the main magnet to
+exactly $5000$&nbsp;gauss. What one does is to adjust the main magnet
+current until the resonance signal appears on the oscilloscope. It
+turns out that this is now the most convenient way to make an accurate
+measurement of the strength of a magnetic field. Of course, at some
+time <em class="emph">someone</em> had to measure accurately the magnetic field and
+frequency to determine the $g$-value of the proton. But now that this
+has been done, a proton resonance apparatus like that of the figure
+can be used as a “proton resonance magnetometer.”
+</p>
+</div>
+
+<div id="Ch35-S6-p8" class="para">
+<p class="p">We should say a word about the shape of the signal. If we were to
+wobble the magnetic field very slowly, we would expect to see a normal
+resonance curve.  The energy absorption would read a maximum
+when&nbsp;$\omega_p$ arrived exactly at the oscillator frequency. There would be
+some absorption at nearby frequencies because all the protons are not
+in exactly the same field—and different fields mean slightly
+different resonant frequencies.
+</p>
+</div>
+
+<div id="Ch35-S6-p9" class="para">
+<p class="p">One might wonder, incidentally, whether at the resonance frequency we
+should see any signal at all. Shouldn’t we expect the high-frequency
+field to equalize the populations of the two states—so that there
+should be no signal except when the water is first put in? Not
+exactly, because although we are <em class="emph">trying</em> to equalize the two
+populations, the thermal motions on their part are trying to keep the
+proper ratios for the temperature&nbsp;$T$. If we sit at the resonance, the
+power being absorbed by the nuclei is just what is being lost to the
+thermal motions. There is, however, relatively little “thermal
+contact” between the proton magnetic moments and the atomic
+motions. The protons are relatively isolated down in the center of the
+electron distributions. So in pure water, the resonance signal is, in
+fact, usually too small to be seen. To increase the absorption, it is
+necessary to increase the “thermal contact.” This is usually done by
+adding a little iron oxide to the water. The iron atoms are like small
+magnets; as they jiggle around in their thermal dance, they make tiny
+jiggling magnetic fields at the protons. These varying fields
+“couple” the proton magnets to the atomic vibrations and tend to
+establish thermal equilibrium. It is through this “coupling” that
+protons in the higher energy states can lose their energy so that they
+are again capable of absorbing energy from the oscillator.
+</p>
+</div>
+
+<div id="Ch35-S6-p10" class="para">
+<p class="p">In practice the output signal of a nuclear resonance apparatus does not
+look like a normal resonance curve. It is usually a more complicated
+signal with oscillations—like the one drawn in the figure. Such signal
+shapes appear because of the changing fields. The explanation should be
+given in terms of quantum mechanics, but it can be shown that in such
+experiments the classical ideas of precessing moments always give the
+correct answer. Classically, we would say that when we arrive at
+resonance we start driving a lot of the precessing nuclear magnets
+synchronously. In so doing, we make them precess <em class="emph">together</em>. These
+nuclear magnets, all rotating together, will set up an induced emf in
+the oscillator coil at the frequency&nbsp;$\omega_p$. But because the
+magnetic field is increasing with time, the precession frequency is
+increasing also, and the induced voltage is soon at a frequency a little
+higher than the oscillator frequency. As the induced emf goes
+alternately in phase and out of phase with the oscillator, the
+“absorbed” power goes alternately positive and negative. So on the
+oscilloscope we see the beat note between the proton frequency and the
+oscillator frequency. Because the proton frequencies are not all
+identical (different protons are in slightly different fields) and also
+possibly because of the disturbance from the iron oxide in the water,
+the freely precessing moments soon get out of phase, and the beat signal
+disappears.
+</p>
+</div>
+
+<div id="Ch35-S6-p11" class="para">
+<p class="p">These phenomena of magnetic resonance have been put to use in many
+ways as tools for finding out new things about matter—especially in
+chemistry and nuclear physics. It goes without saying that the
+numerical values of the magnetic moments of nuclei tell us something
+about their structure. In chemistry, much has been learned from the
+structure (or shape) of the resonances. Because of magnetic fields
+produced by nearby nuclei, the exact position of a nuclear resonance
+is shifted somewhat, depending on the environment in which any
+particular nucleus finds itself. Measuring these shifts helps
+determine which atoms are near which other ones and helps to elucidate
+the details of the structure of molecules. Equally important is the
+electron spin resonance of free radicals. Although not present to any
+very large extent in equilibrium, such radicals are often intermediate
+states of chemical reactions. A measurement of an electron spin
+resonance is a delicate test for the presence of free radicals and is
+often the key to understanding the mechanism of certain chemical
+reactions.
+</p>
+</div>
+
+</div> <!--end of last section -->
+
+<ol id="footnotes">
+<li class="footnote">
+	<a name="footnote_1"></a>
+	Ordinary Na vapor is mostly monatomic, although there are also some 
+	molecules of Na$_2$.
+	<a href="#footnote_source_1">↩</a>
+</li>
+</ol>
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

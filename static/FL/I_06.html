@@ -1,0 +1,1352 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 6: Probability</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "6." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch6" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">6</span>Probability</h2>
+<div id="Ch6-p1" class="para">
+<p class="p">“The true logic of this world is in the calculus of probabilities.”<br>&emsp;&emsp;&emsp;—James&nbsp;Clerk&nbsp;Maxwell</p>
+</div>
+<div id="Ch6-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">6–1</span>Chance and likelihood</h3>
+<div id="Ch6-S1-p1" class="para">
+<p class="p">“Chance” is a word which is in common use in everyday
+living. The radio reports speaking of tomorrow’s weather may say:
+“There is a sixty percent chance of rain.” You might say: “There is a
+small chance that I shall live to be one hundred years old.” Scientists
+also use the word chance. A seismologist may be interested in the
+question: “What is the chance that there will be an earthquake of a
+certain size in Southern California next year?” A physicist might ask
+the question: “What is the chance that a particular geiger counter will
+register twenty counts in the next ten seconds?” A politician or
+statesman might be interested in the question: “What is the chance that
+there will be a nuclear war within the next ten years?” You may be
+interested in the chance that you will learn something from this
+chapter.</p>
+</div>
+<div id="Ch6-S1-p2" class="para">
+<p class="p">By <em class="emph">chance</em>, we mean something like a guess. Why do we make
+guesses? We make guesses when we wish to make a judgment but have
+incomplete information or uncertain knowledge. We want to make a guess
+as to what things are, or what things are likely to happen. Often we
+wish to make a guess because we have to make a decision. For example:
+Shall I take my raincoat with me tomorrow? For what earth movement
+should I design a new building? Shall I build myself a fallout shelter?
+Shall I change my stand in international negotiations? Shall I go to
+class today?</p>
+</div>
+<div id="Ch6-S1-p3" class="para">
+<p class="p">Sometimes we make guesses because we wish, with our limited knowledge,
+to say as much as we <em class="emph">can</em> about some situation. Really, any
+generalization is in the nature of a guess. Any physical theory is a
+kind of guesswork. There are good guesses and there are bad guesses. The
+theory of probability is a system for making better guesses. The
+language of probability allows us to speak quantitatively about some
+situation which may be highly variable, but which does have some
+consistent average behavior.</p>
+</div>
+<div id="Ch6-S1-p4" class="para">
+<p class="p">Let us consider the flipping of a coin. If the toss—and the coin—are
+“honest,” we have no way of knowing what to expect for the outcome of
+any particular toss. Yet we would feel that in a large number of tosses
+there should be about equal numbers of heads and tails. We say: “The
+probability that a toss will land heads is $0.5$.”</p>
+</div>
+<div id="Ch6-S1-p5" class="para">
+<p class="p">We speak of probability only for observations that we contemplate being
+made in the future. <em class="emph">By the “probability” of a particular outcome
+of an observation we mean our estimate for the most likely fraction of a
+number of repeated observations that will yield that particular
+outcome</em>. If we imagine repeating an observation—such as looking at a
+freshly tossed coin—$N$ times, and if we call $N_A$ <em class="emph">our
+estimate</em> of the most likely number of our observations that will give
+some specified result $A$, say the result “heads,” then by $P(A)$, the
+probability of observing $A$, we mean
+\begin{equation}
+\label{Eq:I:6:1}
+P(A)=N_A/N.
+\end{equation}</p>
+</div>
+<div id="Ch6-S1-p6" class="para">
+<p class="p">Our definition requires several comments. First of all, we may speak of
+a probability of something happening only if the occurrence is a
+possible outcome of some <em class="emph">repeatable</em> observation. It is not clear
+that it would make any sense to ask: “What is the probability that
+there is a ghost in that house?”</p>
+</div>
+<div id="Ch6-S1-p7" class="para">
+<p class="p">You may object that no situation is <em class="emph">exactly</em> repeatable. That is
+right. Every different observation must at least be at a different time
+or place. All we can say is that the “repeated” observations should,
+for our intended purposes, <em class="emph">appear to be equivalent</em>. We should
+assume, at least, that each observation was made from an equivalently
+prepared situation, and especially with the same degree of ignorance at
+the start. (If we sneak a look at an opponent’s hand in a card game, our
+estimate of our chances of winning are different than if we do not!)</p>
+</div>
+<div id="Ch6-S1-p8" class="para">
+<p class="p">We should emphasize that $N$ and $N_A$ in Eq. (<a href="#mjx-eqn-EqI61">6.1</a>) are
+<em class="emph">not</em> intended to represent numbers based on actual observations.
+$N_A$ is our best <em class="emph">estimate</em> of what <em class="emph">would</em> occur in $N$
+<em class="emph">imagined</em> observations. Probability depends, therefore, on our
+knowledge and on our ability to make estimates. In effect, on our common
+sense!  Fortunately, there is a certain amount of agreement in the
+common sense of many things, so that different people will make the same
+estimate. Probabilities need not, however, be “absolute” numbers.
+Since they depend on our ignorance, they may become different if our
+knowledge changes.</p>
+</div>
+<div id="Ch6-S1-p9" class="para">
+<p class="p">You may have noticed another rather “subjective” aspect of our
+definition of probability. We have referred to $N_A$ as “our estimate
+of the most likely number …” We do not mean that we expect to
+observe <em class="emph">exactly</em> $N_A$, but that we expect a number
+<em class="emph">near</em> $N_A$, and that the number $N_A$ is <em class="emph">more likely</em> than
+any other number in the vicinity. If we toss a coin, say, $30$ times, we
+should expect that the number of heads would not be very likely to be
+exactly $15$, but rather only some number near to $15$, say $12$, $13$,
+$14$, $15$, $16$, or $17$. However, if we <em class="emph">must</em> choose, we would
+decide that $15$ heads is <em class="emph">more likely</em> than any other number. We
+would write $P(\text{heads})=0.5$.</p>
+</div>
+<div id="Ch6-S1-p10" class="para">
+<p class="p">Why did we choose $15$ as more likely than any other number? We must
+have argued with ourselves in the following manner: If the most likely
+number of heads is $N_H$ in a total number of tosses $N$, then the most
+likely number of tails $N_T$ is $(N-N_H)$. (We are assuming that every
+toss gives <em class="emph">either</em> heads <em class="emph">or</em> tails, and no “other”
+result!) But if the coin is “honest,” there is no preference for heads
+or tails. Until we have some reason to think the coin (or toss) is
+dishonest, we must give equal likelihoods for heads and tails. So we
+must set $N_T=N_H$. It follows that $N_T=$ $N_H=$ $N/2$, or $P(H)=$ $P(T)=$ $0.5$.</p>
+</div>
+<div id="Ch6-S1-p11" class="para">
+<p class="p">We can generalize our reasoning to <em class="emph">any</em> situation in which there
+are $m$ different but “equivalent” (that is, equally likely) possible
+results of an observation. If an observation can yield $m$ different
+results, and we have reason to believe that any one of them is as likely
+as any other, then the probability of a <em class="emph">particular</em> outcome $A$
+is $P(A)=1/m$.</p>
+</div>
+<div id="Ch6-S1-p12" class="para">
+<p class="p">If there are seven different-colored balls in an opaque box and we pick
+one out “at random” (that is, without looking), the probability of
+getting a ball of a particular color is $\tfrac{1}{7}$. The probability
+that a “blind draw” from a shuffled deck of $52$ cards will show the
+ten of hearts is $\tfrac{1}{52}$. The probability of throwing a
+double-one with dice is $\tfrac{1}{36}$.</p>
+</div>
+
+<center><hr class="sep"></center>
+
+<div id="Ch6-S1-p13" class="para">
+<p class="p"><span class="text small">In Chapter <a href="I_05.html">5</a> we described the size of a nucleus in terms of
+its apparent area, or “cross section.” When we did so we were really
+talking about probabilities. When we shoot a high-energy particle at a
+thin slab of material, there is some chance that it will pass right
+through and some chance that it will hit a nucleus. (Since the nucleus
+is so small that we cannot <em class="emph">see</em> it, we cannot aim right at a
+nucleus. We must “shoot blind.”) If there are $n$ atoms in our slab
+and the nucleus of each atom has a cross-sectional area $\sigma$, then
+the total area “shadowed” by the nuclei is $n\sigma$. In a large
+number $N$ of random shots, we expect that the number of hits $N_C$ of
+<em class="emph">some</em> nucleus will be in the ratio to $N$ as the shadowed area is
+to the total area of the slab:
+\begin{equation}
+\label{Eq:I:6:2}
+N_C/N=n\sigma/A.
+\end{equation}
+We may say, therefore, that the <em class="emph">probability</em> that any one
+projectile particle will suffer a collision in passing through the slab
+is
+\begin{equation}
+\label{Eq:I:6:3}
+P_C=\frac{n}{A}\,\sigma,
+\end{equation}
+where $n/A$ is the number of atoms per unit area in our slab.
+</span></p>
+</div>
+</div>
+<div id="Ch6-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">6–2</span>Fluctuations</h3>
+<div id="Ch6-F1" class="figure">
+<img src="img/FLP_I/f06-01/f06-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–1.</span>Observed sequences of heads and tails in three games of
+30 tosses each.
+</div>
+</div>
+<div id="Ch6-S2-p1" class="para">
+<p class="p">We would like now to use our ideas about probability to consider in some
+greater detail the question: “How many heads do I really <em class="emph">expect</em>
+to get if I toss a coin $N$ times?” Before answering the question,
+however, let us look at what does happen in such an “experiment.”
+Figure <a href="#Ch6-F1">6–1</a> shows the results obtained in the first three
+“runs” of such an experiment in which $N=30$. The sequences of
+“heads” and “tails” are shown just as they were obtained. The first
+game gave $11$ heads; the second also $11$; the third $16$. In three
+trials we did not once get $15$ heads. Should we begin to suspect the
+coin? Or were we wrong in thinking that the most likely number of
+“heads” in such a game is $15$? Ninety-seven more runs were made to
+obtain a total of $100$ experiments of $30$ tosses each. The results of
+the experiments are given in Table <a href="#Ch6-T1">6–1</a>.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a></p>
+</div>
+
+
+
+
+<div id="Ch6-T1" class="table">
+<div class="caption">
+<span class="tag">Table 6–1</span>Number of heads in successive trials of 30 tosses of a coin.
+</div>
+<table class="tabular" style="min-width:18em;">
+<tr class="tr">
+<td class="td t">11</td>
+<td class="td t">16</td>
+<td class="td t">17</td>
+<td class="td t">15</td>
+<td class="td t">17</td>
+<td class="td t">16</td>
+<td class="td t">19</td>
+<td class="td t">18</td>
+<td class="td t">15</td>
+<td class="td t">13</td>
+
+<td class="td" style="text-align:left; width:7em;" rowspan="10" align="left">
+<div class="curly_brace"><img src="img/right_curly_brace.svgz"></div>
+<span class="text small v_centered" style="">100 trials</span></td>
+
+</tr>
+<tr class="tr">
+<td class="td">11</td>
+<td class="td">17</td>
+<td class="td">17</td>
+<td class="td">12</td>
+<td class="td">20</td>
+<td class="td">23</td>
+<td class="td">11</td>
+<td class="td">16</td>
+<td class="td">17</td>
+<td class="td">14</td>
+</tr>
+<tr class="tr">
+<td class="td">16</td>
+<td class="td">12</td>
+<td class="td">15</td>
+<td class="td">10</td>
+<td class="td">18</td>
+<td class="td">17</td>
+<td class="td">13</td>
+<td class="td">15</td>
+<td class="td">14</td>
+<td class="td">15</td>
+</tr>
+<tr class="tr">
+<td class="td">16</td>
+<td class="td">12</td>
+<td class="td">11</td>
+<td class="td">22</td>
+<td class="td">12</td>
+<td class="td">20</td>
+<td class="td">12</td>
+<td class="td">15</td>
+<td class="td">16</td>
+<td class="td">12</td>
+</tr>
+<tr class="tr">
+<td class="td">16</td>
+<td class="td">10</td>
+<td class="td">15</td>
+<td class="td">13</td>
+<td class="td">14</td>
+<td class="td">16</td>
+<td class="td">15</td>
+<td class="td">16</td>
+<td class="td">13</td>
+<td class="td">18</td>
+</tr>
+<tr class="tr">
+<td class="td">14</td>
+<td class="td">14</td>
+<td class="td">13</td>
+<td class="td">16</td>
+<td class="td">15</td>
+<td class="td">19</td>
+<td class="td">21</td>
+<td class="td">14</td>
+<td class="td">12</td>
+<td class="td">15</td>
+</tr>
+<tr class="tr">
+<td class="td">16</td>
+<td class="td">11</td>
+<td class="td">16</td>
+<td class="td">14</td>
+<td class="td">17</td>
+<td class="td">14</td>
+<td class="td">11</td>
+<td class="td">16</td>
+<td class="td">17</td>
+<td class="td">16</td>
+</tr>
+<tr class="tr">
+<td class="td">19</td>
+<td class="td">15</td>
+<td class="td">14</td>
+<td class="td">12</td>
+<td class="td">18</td>
+<td class="td">15</td>
+<td class="td">14</td>
+<td class="td">21</td>
+<td class="td">11</td>
+<td class="td">16</td>
+</tr>
+<tr class="tr">
+<td class="td">17</td>
+<td class="td">17</td>
+<td class="td">12</td>
+<td class="td">13</td>
+<td class="td">14</td>
+<td class="td">17</td>
+<td class="td">&nbsp9</td>
+<td class="td">13</td>
+<td class="td">19</td>
+<td class="td">13</td>
+</tr>
+<tr class="tr">
+<td class="td b">14</td>
+<td class="td b">12</td>
+<td class="td b">15</td>
+<td class="td b">17</td>
+<td class="td b">14</td>
+<td class="td b">10</td>
+<td class="td b">17</td>
+<td class="td b">17</td>
+<td class="td b">12</td>
+<td class="td b">11</td>
+</tr>
+</table>
+</div>
+
+
+
+
+
+<div id="Ch6-S2-p2" class="para">
+<p class="p">Looking at the numbers in Table <a href="#Ch6-T1">6–1</a>, we see that most of the
+results are “near” $15$, in that they are between $12$ and $18$. We
+can get a better feeling for the details of these results if we plot a
+graph of the <em class="emph">distribution</em> of the results. We count the number of
+games in which a score of $k$ was obtained, and plot this number for
+each $k$. Such a graph is shown in Fig. <a href="#Ch6-F2">6–2</a>. A score of
+$15$ heads was obtained in $13$ games. A score of $14$ heads was also
+obtained $13$ times. Scores of $16$ and $17$ were each obtained
+<em class="emph">more</em> than $13$ times. Are we to conclude that there is some bias
+toward heads? Was our “best estimate” not good enough?  Should we
+conclude now that the “most likely” score for a run of $30$ tosses is
+really $16$ heads? But wait! In all the games taken together, there were
+$3000$ tosses. And the total number of heads obtained was $1493$. The
+fraction of tosses that gave heads is $0.498$, very nearly, but slightly
+<em class="emph">less</em> than half. We should certainly <em class="emph">not</em> assume that the
+probability of throwing heads is greater than $0.5$!  The fact that one
+<em class="emph">particular</em> set of observations gave $16$ heads most often, is a
+<em class="emph">fluctuation</em>. We still expect that the <em class="emph">most likely</em> number
+of heads is $15$.</p>
+</div>
+<div id="Ch6-F2" class="figure">
+<img src="img/FLP_I/f06-02/f06-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–2.</span>Summary of the results of 100 games of 30 tosses each. The
+vertical bars show the number of games in which a score of $k$ heads was
+obtained. The dashed curve shows the expected numbers of games with the
+score $k$ obtained by a probability computation.
+</div>
+</div>
+<div id="Ch6-S2-p3" class="para">
+<p class="p">We may ask the question: “What <em class="emph">is</em> the probability that a game of
+$30$ tosses will yield $15$ heads—or $16$, or any other number?” We
+have said that in a game of one toss, the probability of obtaining
+<em class="emph">one</em> head is $0.5$, and the probability of obtaining no head
+is $0.5$. In a game of two tosses there are <em class="emph">four</em> possible
+outcomes: $HH$, $HT$, $TH$, $TT$. Since each of these sequences is
+equally likely, we conclude that (a) the probability of a score of two
+heads is $\tfrac{1}{4}$, (b) the probability of a score of one head
+is $\tfrac{2}{4}$, (c) the probability of a zero score
+is $\tfrac{1}{4}$. There are <em class="emph">two</em> ways of obtaining one head, but
+only one of obtaining either zero or two heads.
+</p>
+</div>
+<div id="Ch6-S2-p4" class="para">
+<p class="p">Consider now a game of $3$ tosses. The third toss is equally likely to
+be heads or tails. There is only one way to obtain $3$ heads: we
+<em class="emph">must</em> have obtained $2$ heads on the first two tosses, and then
+heads on the last. There are, however, <em class="emph">three</em> ways of obtaining
+$2$ heads. We could throw tails after having thrown two heads (one way)
+or we could throw heads after throwing only one head in the first two
+tosses (two ways). So for scores of $3$-$H$, $2$-$H$, $1$-$H$, $0$-$H$
+we have that the number of equally likely ways is $1$, $3$, $3$, $1$,
+with a total of $8$ different possible sequences. The probabilities are
+$\tfrac{1}{8}$, $\tfrac{3}{8}$, $\tfrac{3}{8}$, $\tfrac{1}{8}$.</p>
+</div>
+<div id="Ch6-F3" class="figure">
+<img src="img/FLP_I/f06-03/f06-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–3.</span>A diagram for showing the number of ways a score of 0, 1,
+2, or 3 heads can be obtained in a game of 3 tosses.
+</div>
+</div>
+<div id="Ch6-F4" class="figure">
+<img src="img/FLP_I/f06-04/f06-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–4.</span>A diagram like that of Fig. <a href="#Ch6-F3">6–3</a>, for a game of 6 tosses.
+</div>
+</div>
+<div id="Ch6-S2-p5" class="para">
+<p class="p">The argument we have been making can be summarized by a diagram like
+that in Fig. <a href="#Ch6-F3">6–3</a>. It is clear how the diagram should be
+continued for games with a larger number of tosses.
+Figure <a href="#Ch6-F4">6–4</a> shows such a diagram for a game of $6$ tosses.
+The number of “ways” to any point on the diagram is just the number of
+different “paths” (sequences of heads and tails) which can be taken
+from the starting point. The vertical position gives us the total number
+of heads thrown. The set of numbers which appears in such a diagram is
+known as <em class="emph">Pascal’s triangle</em>. The numbers are also known as
+the <em class="emph">binomial coefficients</em>, because they also appear in the
+expansion of $(a+b)^n$. If we call $n$ the number of tosses and $k$ the
+number of heads thrown, then the numbers in the diagram are usually
+designated by the symbol $\tbinom{n}{k}$. We may remark in passing that
+the binomial coefficients can also be computed from
+\begin{equation}
+\label{Eq:I:6:4}
+\binom{n}{k}=\frac{n!}{k!(n-k)!},
+\end{equation}
+where $n!$, called “$n$-factorial,” represents the
+product $(n)(n-1)(n-2)\dotsm(3)(2)(1)$.</p>
+</div>
+<div id="Ch6-S2-p6" class="para">
+<p class="p">We are now ready to compute the probability $P(k,n)$ of throwing
+$k$ heads in $n$ tosses, using our definition Eq. (<a href="#mjx-eqn-EqI61">6.1</a>). The
+total number of possible sequences is $2^n$ (since there are
+$2$ outcomes for each toss), and the number of ways of obtaining
+$k$ heads is $\tbinom{n}{k}$, all equally likely, so we have
+\begin{equation}
+\label{Eq:I:6:5}
+P(k,n)=\frac{\tbinom{n}{k}}{2^n}.
+\end{equation}</p>
+</div>
+<div id="Ch6-S2-p7" class="para">
+<p class="p">Since $P(k,n)$ is the fraction of games which we expect to yield
+$k$ heads, then in $100$ games we should expect to find $k$ heads
+$100\cdot P(k,n)$ times. The dashed curve in Fig. <a href="#Ch6-F2">6–2</a> passes
+through the points computed from $100\cdot P(k,30)$. We see that we
+<em class="emph">expect</em> to obtain a score of $15$ heads in $14$ or $15$ games,
+whereas this score was observed in $13$ games. We <em class="emph">expect</em> a score
+of $16$ in $13$ or $14$ games, but we obtained that score in $16$ games.
+Such fluctuations are “part of the game.”</p>
+</div>
+<div id="Ch6-S2-p8" class="para">
+<p class="p">The method we have just used can be applied to the most general
+situation in which there are only two possible outcomes of a single
+observation. Let us designate the two outcomes by $W$ (for “win”)
+and $L$ (for “lose”). In the general case, the probability of $W$
+or $L$ in a single event need not be equal. Let $p$ be the probability
+of obtaining the result $W$. Then $q$, the probability of $L$, is
+necessarily $(1-p)$. In a set of $n$ trials, the probability $P(k,n)$
+that $W$ will be obtained $k$ times is
+\begin{equation}
+\label{Eq:I:6:6}
+P(k,n)=\tbinom{n}{k}p^kq^{n-k}.
+\end{equation}
+This probability function is called the <em class="emph">Bernoulli</em> or, also, the
+<em class="emph">binomial</em> probability.
+</p>
+</div>
+</div>
+<div id="Ch6-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">6–3</span>The random walk</h3>
+<div id="Ch6-S3-p1" class="para">
+<p class="p">There is another interesting problem in which the idea of probability is
+required. It is the problem of the “random walk.” In its simplest
+version, we imagine a “game” in which a “player” starts at the
+point $x=0$ and at each “move” is required to take a step
+<em class="emph">either</em> forward (toward $+x$) <em class="emph">or</em> backward (toward $-x$).
+The choice is to be made <em class="emph">randomly</em>, determined, for example, by
+the toss of a coin. How shall we describe the resulting motion? In its
+general form the problem is related to the motion of atoms (or other
+particles) in a gas—called Brownian
+motion—and also to the combination of
+errors in measurements. You will see that the random-walk problem is
+closely related to the coin-tossing problem we have already discussed.
+</p>
+</div>
+<div id="Ch6-S3-p2" class="para">
+<p class="p">First, let us look at a few examples of a random walk. We may
+characterize the walker’s progress by the net distance $D_N$ traveled in
+$N$ steps. We show in the graph of Fig. <a href="#Ch6-F5">6–5</a> three examples
+of the path of a random walker. (We have used for the random sequence of
+choices the results of the coin tosses shown in Fig. <a href="#Ch6-F1">6–1</a>.)</p>
+</div>
+<div id="Ch6-F5" class="figure">
+<img src="img/FLP_I/f06-05/f06-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–5.</span>The progress made in a random walk. The horizontal
+coordinate $N$ is the total number of steps taken; the vertical
+coordinate $D_N$ is the net distance moved from the starting position.
+</div>
+</div>
+<div id="Ch6-S3-p3" class="para">
+<p class="p">What can we say about such a motion? We might first ask: “How far does
+he get on the average?” We must <em class="emph">expect</em> that his average progress
+will be zero, since he is equally likely to go either forward or
+backward. But we have the feeling that as $N$ increases, he is more
+likely to have strayed farther from the starting point. We might,
+therefore, ask what is his average distance travelled in <em class="emph">absolute
+value</em>, that is, what is the average of $\abs{D}$. It
+is, however, more convenient to deal with another measure of
+“progress,” the square of the distance: $D^2$ is positive for either
+positive or negative motion, and is therefore a reasonable
+<em class="emph">measure</em> of such random wandering.</p>
+</div>
+<div id="Ch6-S3-p4" class="para">
+<p class="p">We can show that the expected value of $D_N^2$ is just $N$, the number
+of steps taken. By “expected value” we mean the probable value (our
+best guess), which we can think of as the <em class="emph">expected</em> average
+behavior in <em class="emph">many repeated</em> sequences. We represent such an
+expected value by $\expval{D_N^2}$, and may refer to it also as the
+“mean square distance.”  After one step,
+$D^2$ is always $+1$, so we have certainly $\expval{D_1^2}=1$. (All
+distances will be measured in terms of a unit of one step. We shall not
+continue to write the units of distance.)
+</p>
+</div>
+<div id="Ch6-S3-p5" class="para">
+<p class="p">The expected value of $D_N^2$ for $N&gt;1$ can be obtained from $D_{N-1}$.
+If, after $(N-1)$ steps, we have $D_{N-1}$, then after $N$ steps we have
+$D_N=D_{N-1}+1$ <em class="emph">or</em> $D_N=D_{N-1}-1$. For the squares,
+\begin{equation}
+\label{Eq:I:6:7}
+
+D_N^2=
+\begin{cases}
+D_{N-1}^2+2D_{N-1}+1,\\[2ex]
+\kern{3.7em}\textit{or}\\[2ex]
+D_{N-1}^2-2D_{N-1}+1.
+\end{cases}
+\end{equation}
+In a number of independent sequences, we expect to obtain each value
+one-half of the time, so our average expectation is just the average of
+the two possible values. The expected value of $D_N^2$ is then
+$D_{N-1}^2+1$. <em class="emph">In general</em>, we should <em class="emph">expect</em>
+for $D_{N-1}^2$ its “expected value” $\expval{D_{N-1}^2}$ (by
+definition!). So
+\begin{equation}
+\label{Eq:I:6:8}
+\expval{D_N^2}=\expval{D_{N-1}^2}+1.
+\end{equation}</p>
+</div>
+<div id="Ch6-S3-p6" class="para">
+<p class="p">We have already shown that $\expval{D_1^2}=1$; it follows then that
+\begin{equation}
+\label{Eq:I:6:9}
+\expval{D_N^2}=N,
+\end{equation}
+a particularly simple result!</p>
+</div>
+<div id="Ch6-S3-p7" class="para">
+<p class="p">If we wish a number like a distance, rather than a distance squared, to
+represent the “progress made away from the origin” in a random walk,
+we can use the “root-mean-square distance” $D_{\text{rms}}$:
+\begin{equation}
+\label{Eq:I:6:10}
+D_{\text{rms}}=\sqrt{\expval{D^2}}=\sqrt{N}.
+\end{equation}
+</p>
+</div>
+<div id="Ch6-S3-p8" class="para">
+<p class="p">We have pointed out that the random walk is closely similar in its
+mathematics to the coin-tossing game we considered at the beginning of
+the chapter. If we imagine the direction of each step to be in
+correspondence with the appearance of heads or tails in a coin toss,
+then $D$ is just $N_H-N_T$, the difference in the number of heads and
+tails. Since $N_H+N_T=N$, the total number of steps (and tosses), we
+have $D=2N_H-N$. We have derived earlier an expression for the expected
+distribution of $N_H$ (also called $k$) and obtained the result of
+Eq. (<a href="#mjx-eqn-EqI65">6.5</a>). Since $N$ is just a constant, we have the
+corresponding distribution for $D$. (Since for every head more than
+$N/2$ there is a tail “missing,” we have the factor of $2$ between
+$N_H$ and $D$.)  The graph of Fig. <a href="#Ch6-F2">6–2</a> represents the
+distribution of distances we might get in $30$ random steps (where
+$k=15$ is to be read $D=0$; $k=16$, $D=2$; etc.).</p>
+</div>
+<div id="Ch6-S3-p9" class="para">
+<p class="p">The variation of $N_H$ from its expected value $N/2$ is
+\begin{equation}
+\label{Eq:I:6:11}
+N_H-\frac{N}{2}=\frac{D}{2}.
+\end{equation}
+The rms deviation is
+\begin{equation}
+\label{Eq:I:6:12}
+\biggl(N_H-\frac{N}{2}\biggr)_{\text{rms}}=\tfrac{1}{2}\sqrt{N}.
+\end{equation}</p>
+</div>
+<div id="Ch6-S3-p10" class="para">
+<p class="p">According to our result for $D_{\text{rms}}$, we expect that the
+“typical” distance in $30$ steps ought to be $\sqrt{30}=5.5$, or a
+typical $k$ should be about $5.5/2=2.8$ units from $15$. We see that the
+“width” of the curve in Fig. <a href="#Ch6-F2">6–2</a>, measured from the
+center, is just about $3$ units, in agreement with this result.</p>
+</div>
+<div id="Ch6-S3-p11" class="para">
+<p class="p">We are now in a position to consider a question we have avoided until
+now. How shall we tell whether a coin is “honest” or “loaded”? We
+can give now at least a partial answer. For an honest coin, we expect
+the fraction of the times heads appears to be $0.5$, that is,
+\begin{equation}
+\label{Eq:I:6:13}
+\frac{\expval{N_H}}{N}=0.5.
+\end{equation}
+We <em class="emph">also</em> expect an actual $N_H$ to deviate from $N/2$ by about
+$\sqrt{N}/2$, or the <em class="emph">fraction</em> to deviate by
+\begin{equation*}
+\frac{1}{N}\,\frac{\sqrt{N}}{2}=\frac{1}{2\sqrt{N}}.
+\end{equation*}
+The larger $N$ is, the closer we <em class="emph">expect</em> the fraction $N_H/N$ to
+be to one-half.</p>
+</div>
+<div id="Ch6-F6" class="figure">
+<img src="img/FLP_I/f06-06/f06-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–6.</span>The fraction of the tosses that gave heads in a particular
+sequence of $N$ tosses of a penny.
+</div>
+</div>
+<div id="Ch6-S3-p12" class="para">
+<p class="p">In Fig. <a href="#Ch6-F6">6–6</a> we have plotted the fraction $N_H/N$ for the
+coin tosses reported earlier in this chapter. We see the tendency for
+the fraction of heads to approach $0.5$ for large $N$. Unfortunately,
+for any given run or combination of runs there is no <em class="emph">guarantee</em>
+that the observed deviation will be even <em class="emph">near</em> the <em class="emph">expected</em>
+deviation. There is always the finite chance that a large
+fluctuation—a long string of heads or tails—will give an arbitrarily
+large deviation. All we can say is that <em class="emph">if</em> the deviation is near
+the expected $1/2\sqrt{N}$ (say within a factor of $2$ or $3$), we have
+no reason to suspect the honesty of the coin. If it is much larger, we
+may be suspicious, but cannot prove, that the coin is loaded (or that
+the tosser is clever!).</p>
+</div>
+<div id="Ch6-S3-p13" class="para">
+<p class="p">We have also not considered how we should treat the case of a “coin”
+or some similar “chancy” object (say a stone that always lands in
+either of two positions) that we have good reason to believe
+<em class="emph">should</em> have a different probability for heads and tails. We have
+defined $P(H)=\expval{N_H}/N$. How shall we know what to <em class="emph">expect</em>
+for $N_H$? In some cases, the best we can do is to observe the number of
+heads obtained in large numbers of tosses. For want of anything better,
+we must set $\expval{N_H}=N_H(\text{observed})$. (How could we expect
+anything else?) We must understand, however, that in such a case a
+different experiment, or a different observer, might conclude that
+$P(H)$ was different. We would <em class="emph">expect</em>, however, that the various
+answers should agree within the deviation $1/2\sqrt{N}$ [if $P(H)$ is
+near one-half]. An experimental physicist usually says that an
+“experimentally determined” probability has an “error,” and writes
+\begin{equation}
+\label{Eq:I:6:14}
+P(H)=\frac{N_H}{N}\pm\frac{1}{2\sqrt{N}}.
+\end{equation}
+There is an implication in such an expression that there <em class="emph">is</em> a
+“true” or “correct” probability which <em class="emph">could</em> be computed if we
+knew enough, and that the observation may be in “error” due to a
+fluctuation. There is, however, no way to make such thinking logically
+consistent. It is probably better to realize that the probability
+concept is in a sense subjective, that it is always based on uncertain
+knowledge, and that its quantitative evaluation is subject to change as
+we obtain more information.</p>
+</div>
+</div>
+<div id="Ch6-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">6–4</span>A probability distribution</h3>
+<div id="Ch6-S4-p1" class="para">
+<p class="p">Let us return now to the random walk and consider a modification of it.
+Suppose that in addition to a random choice of the <em class="emph">direction</em> ($+$
+or $-$) of each step, the <em class="emph">length</em> of each step also varied in some
+unpredictable way, the only condition being that <em class="emph">on the average</em>
+the step length was one unit. This case is more representative of
+something like the thermal motion of a molecule in a gas. If we call the
+length of a step $S$, then $S$ may have any value at all, but most often
+will be “near” $1$. To be specific, we shall let $\expval{S^2}=1$ or,
+equivalently, $S_{\text{rms}}=1$. Our derivation for $\expval{D^2}$
+would proceed as before except that Eq. (<a href="#mjx-eqn-EqI68">6.8</a>) would be
+changed now to read
+\begin{equation}
+\label{Eq:I:6:15}
+\expval{D_N^2}=\expval{D_{N-1}^2}+\expval{S^2}=\expval{D_{N-1}^2}+1.
+\end{equation}
+We have, as before, that
+\begin{equation}
+\label{Eq:I:6:16}
+\expval{D_N^2}=N.
+\end{equation}</p>
+</div>
+<div id="Ch6-S4-p2" class="para">
+<p class="p">What would we expect now for the distribution of distances $D$? What is,
+for example, the probability that $D=0$ after $30$ steps? The answer is
+zero! The probability is zero that $D$ will be <em class="emph">any particular</em>
+value, since there is no chance at all that the sum of the backward
+steps (of varying lengths) would exactly equal the sum of forward steps.
+We cannot plot a graph like that of Fig. <a href="#Ch6-F2">6–2</a>.</p>
+</div>
+<div id="Ch6-S4-p3" class="para">
+<p class="p">We can, however, obtain a representation similar to that of
+Fig. <a href="#Ch6-F2">6–2</a>, if we ask, not what is the probability of
+obtaining $D$ exactly equal to $0$, $1$, or $2$, but instead what is the
+probability of obtaining $D$ <em class="emph">near</em> $0$, $1$, or $2$. Let us
+define $P(x,\Delta x)$ as the probability that $D$ will lie in the
+interval $\Delta x$ located at $x$ (say from $x$ to $x+\Delta x$). We
+expect that for small $\Delta x$ the chance of $D$ landing in the
+interval is proportional to $\Delta x$, the width of the interval. So we
+can write
+\begin{equation}
+\label{Eq:I:6:17}
+P(x,\Delta x)=p(x)\,\Delta x.
+\end{equation}
+The function $p(x)$ is called the <em class="emph">probability
+density</em>.</p>
+</div>
+<div id="Ch6-S4-p4" class="para">
+<p class="p">The form of $p(x)$ will depend on $N$, the number of steps taken, and
+also on the distribution of individual step lengths. We cannot
+demonstrate the proofs here, but for large $N$, $p(x)$ is the
+<em class="emph">same</em> for all reasonable distributions in individual step lengths,
+and depends only on $N$. We plot $p(x)$ for three values of $N$ in
+Fig. <a href="#Ch6-F7">6–7</a>. You will notice that the “half-widths” (typical
+spread from $x=0$) of these curves is $\sqrt{N}$, as we have shown it
+should be.</p>
+</div>
+<div id="Ch6-F7" class="figure">
+<img src="img/FLP_I/f06-07/f06-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–7.</span>The probability density for ending up at the distance $D$ from
+the starting place in a random walk of $N$ steps. ($D$ is measured in
+units of the rms step length.)
+</div>
+</div>
+<div id="Ch6-S4-p5" class="para">
+<p class="p">You may notice also that the value of $p(x)$ near zero is inversely
+proportional to $\sqrt{N}$. This comes about because the curves are all
+of a similar shape and their areas under the curves must all be equal.
+Since $p(x)\,\Delta x$ is the probability of finding $D$ in $\Delta x$
+when $\Delta x$ is small, we can determine the chance of finding $D$
+<em class="emph">somewhere</em> inside an arbitrary interval from $x_1$ to $x_2$, by
+cutting the interval in a number of small increments $\Delta x$ and
+evaluating the sum of the terms $p(x)\,\Delta x$ for each increment. The
+probability that $D$ lands somewhere between $x_1$ and $x_2$, which we
+may write $P(x_1 &lt; D &lt; x_2)$, is equal to the shaded area in
+Fig. <a href="#Ch6-F8">6–8</a>. The smaller we take the increments $\Delta x$, the
+more correct is our result. We can write, therefore,
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:6:18}
+P(x_1 &lt; D &lt; x_2)=\sum p(x)\,\Delta x=\int_{x_1}^{x_2}p(x)\,dx.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+P(x_1 &lt; D &lt; x_2)=\sum p(x)\Delta x\\[1ex]
+=\int_{x_1}^{x_2}p(x)\,dx.
+\end{gathered}
+\label{Eq:I:6:18}
+\end{equation}
+
+</span>
+</p>
+</div>
+<div id="Ch6-F8" class="figure">
+<img src="img/FLP_I/f06-08/f06-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–8.</span>The probability that the distance $D$ traveled in a random walk
+is between $x_1$ and $x_2$ is the area under the curve of $p(x)$ from
+$x_1$ to $x_2$.
+</div>
+</div>
+<div id="Ch6-S4-p6" class="para">
+<p class="p">The area under the whole curve is the probability that $D$ lands
+somewhere (that is, has <em class="emph">some</em> value between $x=-\infty$
+and $x=+\infty$). That probability is surely $1$. We must have that
+\begin{equation}
+\label{Eq:I:6:19}
+\int_{-\infty}^{+\infty}p(x)\,dx=1.
+\end{equation}
+Since the curves in Fig. <a href="#Ch6-F7">6–7</a> get wider in proportion
+to $\sqrt{N}$, their heights must be proportional to $1/\sqrt{N}$ to
+maintain the total area equal to $1$.</p>
+</div>
+<div id="Ch6-S4-p7" class="para">
+<p class="p">The probability density function we have been
+describing is one that is encountered most commonly. It is known as the
+<em class="emph">normal</em> or <em class="emph">gaussian</em> probability density. It has the mathematical form
+\begin{equation}
+\label{Eq:I:6:20}
+p(x)=\frac{1}{\sigma\sqrt{2\pi}}\,e^{-x^2/2\sigma^2},
+\end{equation}
+where $\sigma$ is called the <em class="emph">standard deviation</em> and is given, in our case, by $\sigma=\sqrt{N}$ or, if the
+rms step size is different from $1$, by $\sigma=\sqrt{N}S_{\text{rms}}$.</p>
+</div>
+<div id="Ch6-S4-p8" class="para">
+<p class="p">We remarked earlier that the motion of a molecule, or of any particle,
+in a gas is like a random walk. Suppose we open a bottle of an organic
+compound and let some of its vapor escape into the air. If there are air
+currents, so that the air is circulating, the currents will also carry
+the vapor with them. But even in <em class="emph">perfectly still air</em>, the vapor
+will gradually spread out—will diffuse—until it has penetrated
+throughout the room. We might detect it by its color or odor. The
+individual molecules of the organic vapor spread out in still air
+because of the molecular motions caused by collisions with other
+molecules. If we know the average “step” size, and the number of steps
+taken per second, we can find the probability that one, or several,
+molecules will be found at some distance from their starting point after
+any particular passage of time. As time passes, more steps are taken and
+the gas spreads out as in the successive curves of Fig. <a href="#Ch6-F7">6–7</a>.
+In a later chapter, we shall find out how the step sizes and step
+frequencies are related to the temperature and pressure of a gas.</p>
+</div>
+<div id="Ch6-S4-p9" class="para">
+<p class="p">Earlier, we said that the pressure of a gas is due to the molecules
+bouncing against the walls of the container. When we come later to make
+a more quantitative description, we will wish to know how fast the
+molecules are going when they bounce, since the impact they make will
+depend on that speed. We cannot, however, speak of <em class="emph">the</em> speed of
+the molecules. It is necessary to use a probability description. A
+molecule may have any speed, but some speeds are more likely than
+others. We describe what is going on by saying that the probability that
+any particular molecule will have a speed between $v$ and $v+\Delta v$
+is $p(v)\,\Delta v$, where $p(v)$, a probability density, is a given
+function of the speed $v$. We shall see later how
+Maxwell, using common sense
+and the ideas of probability, was able to find a mathematical expression
+for $p(v)$. The form<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>  of the
+function $p(v)$ is shown in Fig. <a href="#Ch6-F9">6–9</a>. Velocities may have
+any value, but are most likely to be near the most probable value $v_p$.</p>
+</div>
+<div id="Ch6-F9" class="figure">
+<img src="img/FLP_I/f06-09/f06-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–9.</span>The distribution of velocities of the molecules in a gas.
+</div>
+</div>
+<div id="Ch6-S4-p10" class="para">
+<p class="p">We often think of the curve of Fig. <a href="#Ch6-F9">6–9</a> in a somewhat
+different way. If we consider the molecules in a typical container (with
+a volume of, say, one liter), then there are a very large number $N$ of
+molecules present ($N\approx10^{22}$). Since $p(v)\,\Delta v$
+is the probability that <em class="emph">one</em> molecule will have its velocity
+in $\Delta v$, by our definition of probability we mean that the
+<em class="emph">expected</em> number $\expval{\Delta N}$ to be found with a velocity
+in the interval $\Delta v$ is given by
+\begin{equation}
+\label{Eq:I:6:21}
+\expval{\Delta N}=N\,p(v)\,\Delta v.
+\end{equation}
+We call $N\,p(v)$ the “distribution in velocity.” The area under the
+curve between two velocities $v_1$ and $v_2$, for example the shaded
+area in Fig. <a href="#Ch6-F9">6–9</a>, represents [for the curve $N\,p(v)$] the
+expected number of molecules with velocities between $v_1$ and $v_2$.
+Since with a gas we are usually dealing with large numbers of molecules,
+we expect the deviations from the expected numbers to be small
+(like $1/\sqrt{N}$), so we often neglect to say the “expected” number,
+and say instead: “The number of molecules with velocities between $v_1$
+and $v_2$ <em class="emph">is</em> the area under the curve.” We should remember,
+however, that such statements are always about <em class="emph">probable</em> numbers.</p>
+</div>
+</div>
+<div id="Ch6-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">6–5</span>The uncertainty principle</h3>
+<div id="Ch6-S5-p1" class="para">
+<p class="p">The ideas of probability are certainly useful in describing the behavior
+of the $10^{22}$ or so molecules in a sample of a gas, for it is clearly
+impractical even to attempt to write down the position or velocity of
+each molecule. When probability was first applied to such problems, it
+was considered to be a <em class="emph">convenience</em>—a way of dealing with very
+complex situations. We now believe that the ideas of probability are
+<em class="emph">essential</em> to a description of atomic happenings. According to
+quantum mechanics, the mathematical theory of
+particles, there is always some uncertainty in the <em class="emph">specification</em>
+of positions and velocities. We can, at best, say that there is a
+certain probability that any particle will have a position near some
+coordinate $x$.</p>
+</div>
+<div id="Ch6-S5-p2" class="para">
+<p class="p">We can give a probability density $p_1(x)$, such that $p_1(x)\,\Delta x$
+is the probability that the particle will be found between $x$
+and $x+\Delta x$. If the particle is reasonably well localized, say
+near $x_0$, the function $p_1(x)$ might be given by the graph of
+Fig. <a href="#Ch6-F10">6–10</a>(a). Similarly, we must specify the velocity of the
+particle by means of a probability density $p_2(v)$,
+with $p_2(v)\,\Delta v$ the probability that the velocity will be found
+between $v$ and $v+\Delta v$.</p>
+</div>
+<div id="Ch6-F10" class="figure">
+<img class="first" src="img/FLP_I/f06-10/f06-10_tc_big_a.svgz"><img class="last" src="img/FLP_I/f06-10/f06-10_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 6–10.</span>Probability densities for observation of the position and
+velocity of a particle.
+</div>
+</div>
+<div id="Ch6-S5-p3" class="para">
+<p class="p">It is one of the fundamental results of quantum mechanics that the two functions $p_1(x)$ and $p_2(v)$ cannot be chosen
+independently and, in particular, cannot both be made arbitrarily
+narrow. If we call the typical “width” of the $p_1(x)$ curve $[\Delta
+x]$, and that of the $p_2(v)$ curve $[\Delta v]$ (as shown in the
+figure), nature demands that the <em class="emph">product</em> of the two widths be at
+least as big as the number $\hbar/2m$, where $m$ is the mass of the
+particle. We may write this basic relationship as
+\begin{equation}
+\label{Eq:I:6:22}
+[\Delta x]\cdot[\Delta v]\geq\hbar/2m.
+\end{equation}
+This equation is a statement of the <em class="emph">Heisenberg uncertainty
+principle</em> that we mentioned earlier.</p>
+</div>
+<div id="Ch6-S5-p4" class="para">
+<p class="p">Since the right-hand side of Eq. (<a href="#mjx-eqn-EqI622">6.22</a>) is a constant, this
+equation says that if we try to “pin down” a particle by forcing it to
+be at a particular place, it ends up by having a high speed. Or if we
+try to force it to go very slowly, or at a precise velocity, it
+“spreads out” so that we do not know very well just where it is.
+Particles behave in a funny way!
+</p>
+</div>
+<div id="Ch6-S5-p5" class="para">
+<p class="p">The uncertainty principle describes an inherent fuzziness that must
+exist in any attempt to describe nature. Our most precise description of
+nature <em class="emph">must</em> be in terms of <em class="emph">probabilities</em>. There are some
+people who do not like this way of describing nature. They feel somehow
+that if they could only tell what is <em class="emph">really</em> going on with a
+particle, they could know its speed and position simultaneously. In the
+early days of the development of quantum mechanics, Einstein was quite
+worried about this problem. He used to shake his head and say, “But,
+surely God does not throw dice in determining how electrons should go!”
+He worried about that problem for a long time and he probably never
+really reconciled himself to the fact that this is the best description
+of nature that one can give. There are still one or two physicists who
+are working on the problem who have an intuitive conviction that it is
+possible somehow to describe the world in a different way and that all
+of this uncertainty about the way things are can be removed. No one has
+yet been successful.
+</p>
+</div>
+<div id="Ch6-S5-p6" class="para">
+<p class="p">The necessary uncertainty in our specification of the position of a
+particle becomes most important when we wish to describe the structure
+of atoms. In the hydrogen atom, which has a nucleus of one proton with
+one electron outside of the nucleus, the uncertainty in the position of
+the electron is as large as the atom itself! We cannot, therefore,
+properly speak of the electron moving in some “orbit” around the
+proton. The most we can say is that there is a certain
+<em class="emph">chance</em> $p(r)\,\Delta V$, of observing the electron in an element
+of volume $\Delta V$ at the distance $r$ from the proton. The
+probability density $p(r)$ is given by quantum mechanics. For an undisturbed hydrogen atom $p(r)=Ae^{-2r/a}$. The
+number $a$ is the “typical” radius, where the function is decreasing
+rapidly. Since there is a small probability of finding the electron at
+distances from the nucleus much greater than $a$, we may think of $a$ as
+“the radius of the atom,” about $10^{-10}$ meter.
+</p>
+</div>
+<div id="Ch6-F11" class="figure">
+<img src="img/FLP_I/f06-11/f06-11_small.jpg"><div class="caption">
+<span class="tag">Fig. 6–11.</span>A way of visualizing a hydrogen atom. The density (whiteness)
+of the cloud represents the probability density for observing the
+electron.
+</div>
+</div>
+<div id="Ch6-S5-p7" class="para">
+<p class="p">We can form an image of the hydrogen atom by imagining a “cloud” whose
+density is proportional to the probability density for observing the
+electron. A sample of such a cloud is shown in Fig. <a href="#Ch6-F11">6–11</a>.
+Thus our best “picture” of a hydrogen atom is a nucleus surrounded by
+an “electron cloud” (although we <em class="emph">really</em>
+mean a “probability cloud”). The electron is there somewhere, but
+nature permits us to know only the <i>chance</i> of finding it at any
+particular place.</p>
+</div>
+<div id="Ch6-S5-p8" class="para">
+<p class="p">In its efforts to learn as much as possible about nature, modern physics
+has found that certain things can never be “known” with certainty.
+Much of our knowledge must always remain uncertain. The <em class="emph">most</em> we
+can know is in terms of probabilities.</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  After the
+first three games, the experiment was actually done by shaking
+$30$ pennies violently in a box and then counting the number of heads
+that showed.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  Maxwell’s expression is
+$p(v)=Cv^2e^{-av^2}$, where $a$ is a constant related to the temperature
+and $C$ is chosen so that the total probability is one.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 45: Illustrations of Thermodynamics</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "45." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch45" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">45</span>Illustrations of Thermodynamics</h2>
+<div id="Ch45-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">45–1</span>Internal energy</h3>
+<div id="Ch45-S1-p1" class="para">
+<p class="p">Thermodynamics is a rather difficult and complex subject
+when we come to apply it, and it is not appropriate for us to go very
+far into the applications in this course. The subject is of very great
+importance, of course, to engineers and chemists, and those who are
+interested in the subject can learn about the applications in physical
+chemistry or in engineering thermodynamics. There are also good equation
+reference books, such as Zemansky’s <em class="emph">Heat and Thermodynamics</em>,
+where one can learn more about the subject. In the Encyclopedia
+Britannica, fourteenth edition, one can find excellent articles on
+thermodynamics and thermochemistry, and in the article on chemistry, the
+sections on physical chemistry, vaporization, liquefication of gases,
+and so on.</p>
+</div>
+<div id="Ch45-S1-p2" class="para">
+<p class="p">The subject of thermodynamics is complicated because there are so many
+different ways of describing the same thing. If we wish to describe
+the behavior of a gas, we can say that the pressure depends on the
+temperature and on the volume, or we can say that the volume depends
+on the temperature and the pressure. Or with respect to the internal
+energy $U$, we might say that it depends on the temperature and
+volume, if those are the variables we have chosen—but we might also
+say that it depends on the temperature and the pressure, or the
+pressure and the volume, and so on. In the last chapter we discussed
+another function of temperature and volume, called the entropy $S$,
+and we can of course construct as many other functions of these
+variables as we like: $U - TS$ is a function of temperature and
+volume. So we have a large number of different quantities which can be
+functions of many different combinations of variables.</p>
+</div>
+<div id="Ch45-S1-p3" class="para">
+<p class="p">To keep the subject simple in this chapter, we shall decide at the
+start to use <em class="emph">temperature</em> and <em class="emph">volume</em> as the independent
+variables. Chemists use temperature and pressure, because they are
+easier to measure and control in chemical experiments, but we shall
+use temperature and volume throughout this chapter, except in one
+place where we shall see how to make the transformation into the
+chemists’ system of variables.</p>
+</div>
+<div id="Ch45-S1-p4" class="para">
+<p class="p">We shall first, then, consider only one system of independent
+variables: temperature and volume. Secondly, we shall discuss only two
+dependent functions: the internal energy and the pressure. All the
+other functions can be derived from these, so it is not necessary to
+discuss them. With these limitations, thermodynamics is still a fairly
+difficult subject, but it is not quite so impossible!</p>
+</div>
+<div id="Ch45-S1-p5" class="para">
+<p class="p">First we shall review some mathematics. If a quantity is a function of
+two variables, the idea of the derivative of the quantity requires a
+little more careful thought than for the case where there is only one
+variable. What do we mean by the derivative of the pressure with
+respect to the temperature? The pressure change accompanying a change
+in the temperature depends partly, of course, on what happens to the
+<em class="emph">volume</em> while $T$ is changing. We must specify the change in $V$
+before the concept of a derivative with respect to $T$ has a precise
+meaning. We might ask, for example, for the rate of change of $P$ with
+respect to $T$ if $V$ is held constant. This ratio is just the
+ordinary derivative that we usually write as $dP/dT$. We customarily
+use a special symbol, $\ddpl{P}{T}$, to remind us that $P$ depends on
+another variable $V$ as well as on $T$, and that this other variable
+is held constant. We shall not only use the symbol $\partial$ to call
+attention to the fact that the other variable is held constant, but we
+shall also write the variable that is held constant as a subscript,
+$(\ddpl{P}{T})_V$. Since we have only two independent variables, this
+notation is redundant, but it will help us keep our wits about us in
+the thermodynamic jungle of partial derivatives.</p>
+</div>
+<div id="Ch45-S1-p6" class="para">
+<p class="p">Let us suppose that the function $f(x,y)$ depends on the two
+independent variables $x$ and $y$. By $(\ddpl{f}{x})_y$ we mean simply
+the ordinary derivative, obtained in the usual way, if we treat $y$ as
+a constant:
+\begin{equation*}
+\biggl(\ddp{f}{x}\biggr)_y =
+\operatorname*{limit}_{\Delta x \to 0}
+\frac{f(x + \Delta x,y) - f(x,y)}{\Delta x}.
+\end{equation*}
+Similarly, we define
+\begin{equation*}
+\biggl(\ddp{f}{y}\biggr)_x =
+\operatorname*{limit}_{\Delta y \to 0}
+\frac{f(x, y + \Delta y) - f(x,y)}{\Delta y}.
+\end{equation*}
+For example, if $f(x,y) = x^2 + yx$, then $(\ddpl{f}{x})_y = 2x + y$,
+and $(\ddpl{f}{y})_x = x$. We can extend this idea to higher
+derivatives: $\partial^2f/\partial y^2$ or $\partial^2f/\partial
+y\partial x$. The latter symbol indicates that we first differentiate
+$f$ with respect to $x$, treating $y$ as a constant, then
+differentiate the result with respect to $y$, treating $x$ as a
+constant. The actual order of differentiation is immaterial:
+$\partial^2f/\partial x\partial y = \partial^2f/\partial y\partial x$.</p>
+</div>
+<div id="Ch45-S1-p7" class="para">
+<p class="p">We will need to compute the change $\Delta f$ in $f(x,y)$ when $x$
+changes to $x + \Delta x$ <em class="emph">and</em> $y$ changes to $y + \Delta y$. We
+assume throughout the following that $\Delta x$ and $\Delta y$ are
+infinitesimally small:
+<span class="eq-wide">
+\begin{align}
+\Delta f &= f(x + \Delta x, y + \Delta y) - f(x,y)\notag\\[2.5ex]
+&= \underbrace{f(x + \Delta x, y + \Delta y) - f(x,y + \Delta y)}
++
+\underbrace{f(x,y + \Delta y) -
+f(x,y)}\notag\\[.5ex]
+\label{Eq:I:45:1}
+&= 
+\kern{5em}\displaystyle{\Delta x\biggl(\ddp{f}{x}\biggr)_y}
+\kern{5em}+
+\kern{2.2em}\displaystyle{\Delta y\biggl(\ddp{f}{y}\biggr)_x}
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{alignat}{2}
+\Delta f &=\phantom{+}f(x + \Delta x, y + \Delta y) &-& \;\; f(x,y)&&\notag\\[2.5ex]
+&=\phantom{+}f(x + \Delta x, y + \Delta y) &-& \;\; f(x,y + \Delta y)&&\notag\\[1ex]
+&\phantom{=}+ f(x,y + \Delta y) &-& \;\; f(x,y)&&\notag\\[2.5ex]
+\label{Eq:I:45:1}
+&=\Delta x\biggl(\ddp{f}{x}\biggr)_y\!+\Delta y\biggl(\ddp{f}{y}&\biggr)_x&
+\end{alignat}
+</span>
+The last equation is the fundamental relation that expresses $\Delta
+f$ in terms of $\Delta x$ and $\Delta y$.</p>
+</div>
+<div id="Ch45-S1-p8" class="para">
+<p class="p">As an example of the use of this relation, let us calculate the change
+in the internal energy $U(T,V)$ when the temperature changes from $T$
+to $T + \Delta T$ and the volume changes from $V$ to $V + \Delta
+V$. Using Eq. (<a href="#mjx-eqn-EqI451">45.1</a>), we write
+\begin{equation}
+\label{Eq:I:45:2}
+\Delta U = \Delta T\biggl(\ddp{U}{T}\biggr)_V +
+\Delta V\biggl(\ddp{U}{V}\biggr)_T.
+\end{equation}
+In our last chapter we found another expression for the change $\Delta
+U$ in the internal energy when a quantity of heat $\Delta Q$ was added
+to the gas:
+\begin{equation}
+\label{Eq:I:45:3}
+\Delta U = \Delta Q - P\,\Delta V.
+\end{equation}
+In comparing Eqs. (<a href="#mjx-eqn-EqI452">45.2</a>) and (<a href="#mjx-eqn-EqI453">45.3</a>) one might at
+first be inclined to think that $P = -(\ddpl{U}{V})_T$, but this is not correct.
+To obtain the correct relation, let us first suppose that we add a quantity of
+heat $\Delta Q$ to the gas while keeping the volume constant, so that $\Delta V
+= 0$. With $\Delta V = 0$, Eq. (<a href="#mjx-eqn-EqI453">45.3</a>) tells us that $\Delta U =
+\Delta Q$, and Eq. (<a href="#mjx-eqn-EqI452">45.2</a>) tells us that $\Delta U
+=(\ddpl{U}{T})_V\,\Delta T$, so that $(\ddpl{U}{T})_V = \Delta Q/\Delta T$. The
+ratio $\Delta Q/\Delta T$, the amount of heat one must put into a substance in
+order to change its temperature by one degree with the volume held constant, is
+called the <em class="emph">specific heat at constant volume</em> and is
+designated by the symbol $C_V$. By this argument we have shown that
+\begin{equation}
+\label{Eq:I:45:4}
+\biggl(\ddp{U}{T}\biggr)_V = C_V.
+\end{equation}</p>
+</div>
+<div id="Ch45-S1-p9" class="para">
+<p class="p">Now let us again add a quantity of heat $\Delta Q$ to the gas, but this
+time we will hold $T$ constant and allow the volume to change by $\Delta
+V$. The analysis in this case is more complex, but we can calculate
+$\Delta U$ by the argument of Carnot, making use of the
+Carnot cycle we introduced in the last chapter.</p>
+</div>
+<div id="Ch45-F1" class="figure">
+<img src="img/FLP_I/f45-01/f45-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 45–1.</span>Pressure-volume diagram for a Carnot cycle. The curves marked
+$T$ and $T - \Delta T$ are isothermal lines; the steeper curves are
+adiabatic lines. $\Delta V$ is the volume change as heat $\Delta Q$
+is added to the gas at constant temperature $T$. $\Delta P$ is the
+pressure change at constant volume as the gas temperature is changed
+from $T$ to $T - \Delta T$.
+</div>
+</div>
+<div id="Ch45-S1-p10" class="para">
+<p class="p">The pressure-volume diagram for the Carnot cycle is shown in
+Fig. <a href="#Ch45-F1">45–1</a>. As we have already shown, the total amount of
+work done by the gas in a reversible cycle is $\Delta Q(\Delta T/T)$,
+where $\Delta Q$ is the amount of heat energy added to the gas as it
+expands isothermally at temperature $T$ from volume $V$ to $V + \Delta
+V$, and $T - \Delta T$ is the final temperature reached by the gas as it
+expands adiabatically on the second leg of the cycle. Now we will show
+that this work done is also given by the shaded area in
+Fig. <a href="#Ch45-F1">45–1</a>. In any circumstances, the work done by the gas
+is $\int P\,dV$, and is positive when the gas expands and negative when the
+gas is compressed. If we plot $P$ vs. $V$, the variation of $P$
+and $V$ is represented by a curve which gives the value of $P$ corresponding
+to a particular value of $V$. As the volume changes from one value to
+another, the work done by the gas, the integral $\int P\,dV$, is the
+area under the curve connecting the initial and final values of $V$.
+When we apply this idea to the Carnot cycle, we see that as we go around
+the cycle, paying attention to the sign of the work done by the gas, the
+net work done by the gas is just the shaded area in
+Fig. <a href="#Ch45-F1">45–1</a>.</p>
+</div>
+<div id="Ch45-S1-p11" class="para">
+<p class="p">Now we want to evaluate the shaded area geometrically. The cycle we
+have used in Fig. <a href="#Ch45-F1">45–1</a> differs from that used in the
+previous chapter in that we now suppose that $\Delta T$ and $\Delta Q$
+are infinitesimally small. We are working between adiabatic lines and
+isothermal lines that are very close together, and the figure
+described by the heavy lines in Fig. <a href="#Ch45-F1">45–1</a> will approach
+a parallelogram as the increments $\Delta T$ and $\Delta Q$ approach
+zero. The area of this parallelogram is just $\Delta V\,\Delta P$,
+where $\Delta V$ is the change in volume as energy $\Delta Q$ is added
+to the gas at constant temperature, and $\Delta P$ is the change in
+pressure as the temperature changes by $\Delta T$ at constant
+volume. One can easily show that the shaded area in
+Fig. <a href="#Ch45-F1">45–1</a> is given by $\Delta V\,\Delta P$ by recognizing
+that the shaded area is equal to the area enclosed by the dotted lines
+in Fig. <a href="#Ch45-F2">45–2</a>, which in turn differs from the rectangle
+bounded by $\Delta P$ and $\Delta V$ only by the addition and
+subtraction of the equal triangular areas in Fig. <a href="#Ch45-F2">45–2</a>.</p>
+</div>
+<div id="Ch45-F2" class="figure">
+<img src="img/FLP_I/f45-02/f45-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 45–2.</span>Shaded area${}={}$area enclosed by dashed lines${}={}$area of
+rectangle${}= \Delta P\,\Delta V$.
+</div>
+</div>
+<div id="Ch45-S1-p12" class="para">
+<p class="p">Now let us summarize the results of the arguments we have developed so
+far:
+<span class="eq-wide">
+\begin{equation}
+\left.\!
+\begin{array}{l}
+\displaystyle\qquad\text{Work done by the gas} = \text{shaded area} = \Delta V\,\Delta P = \Delta Q\biggl(\frac{\Delta T}{T}\biggr)\\
+\text{or}\\[1ex]
+\displaystyle\qquad\frac{\Delta T}{T}\cdot(\text{heat needed to change $V$ by $\Delta V$})_{\text{constant $T$}}\\[1.5ex]
+\displaystyle\quad = \Delta V\cdot(\text{change in $P$ when $T$ changes by $\Delta T$})_{\text{constant $V$}}\\[2ex]
+\text{or}\\[.5ex]
+\displaystyle\qquad\frac{1}{\Delta V}\cdot(\text{heat needed to change $V$ by $\Delta V$})_T = T(\ddpl{P}{T})_V.
+\end{array}\!\right\}
+\label{Eq:I:45:5}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\left.\!
+\begin{array}{l}
+\quad\begin{gathered}
+\displaystyle\text{Work done by the gas} = \text{shaded area}\\[1ex]
+= \Delta V\,\Delta P = \Delta Q\biggl(\frac{\Delta T}{T}\biggr)
+\end{gathered}\\[-2ex]
+\text{or}\\[1ex]
+\displaystyle\quad\frac{\Delta T}{T}\cdot
+\begin{pmatrix}
+\text{heat needed}\\[-.5ex]
+\text{to change $V$}\\[-.5ex]
+\text{by $\Delta V$}
+\end{pmatrix}_{\text{constant $T$}}\\[2ex] % ebook remove
+% ebook insert: \end{pmatrix}_{\text{constant $T$}}\\[5ex]
+\displaystyle\quad = \Delta V\cdot
+\begin{pmatrix}
+\text{change in $P$}\\[-.5ex]
+\text{when $T$ changes}\\[-.5ex]
+\text{by $\Delta T$}
+\end{pmatrix}_{\text{constant $V$}}\\[.5ex]
+\text{or}\\[.5ex]
+\displaystyle\quad\frac{1}{\Delta V}\cdot
+\begin{pmatrix}
+\text{heat needed}\\[-.5ex]
+\text{to change $V$}\\[-.5ex]
+\text{by $\Delta V$}
+\end{pmatrix}_T \kern{-1.5ex}= T\biggl(\ddp{P}{T}\biggr)_V.
+\end{array}\!\right\}
+\label{Eq:I:45:5}
+\end{equation}
+</span>
+Equation (<a href="#mjx-eqn-EqI455">45.5</a>) expresses the essential result of
+Carnot’s argument. The whole of
+thermodynamics can be deduced from Eq. (<a href="#mjx-eqn-EqI455">45.5</a>) and the First
+Law, which is stated in Eq. (<a href="#mjx-eqn-EqI453">45.3</a>).
+Equation (<a href="#mjx-eqn-EqI455">45.5</a>) is essentially the Second Law, although it
+was originally deduced by
+Carnot
+in a slightly different form, since he did not use our
+definition of temperature.</p>
+</div>
+<div id="Ch45-S1-p13" class="para">
+<p class="p">Now we can proceed to calculate $(\ddpl{U}{V})_T$. By how much would
+the internal energy $U$ change if we changed the volume by $\Delta V$?
+First, $U$ changes because heat is put in, and second, $U$ changes
+because work is done. The heat put in is
+\begin{equation*}
+\Delta Q = T\biggl(\ddp{P}{T}\biggr)_V\Delta V,
+\end{equation*}
+according to Eq. (<a href="#mjx-eqn-EqI455">45.5</a>), and the work done on the
+substance is $-P\,\Delta V$. Therefore the change $\Delta U$ in
+internal energy has two pieces:
+\begin{equation}
+\label{Eq:I:45:6}
+\Delta U = T\biggl(\ddp{P}{T}\biggr)_V\Delta V - P\,\Delta V.
+\end{equation}
+Dividing both sides by $\Delta V$, we find for the rate of change
+of $U$ with $V$ at constant $T$
+\begin{equation}
+\label{Eq:I:45:7}
+\biggl(\ddp{U}{V}\biggr)_T = T\biggl(\ddp{P}{T}\biggr)_V - P.
+\end{equation}
+In our thermodynamics, in which $T$ and $V$ are the only variables and $P$
+and $U$ are the only functions, Eqs. (<a href="#mjx-eqn-EqI453">45.3</a>)
+and (<a href="#mjx-eqn-EqI457">45.7</a>) are the basic equations from which all the results of the
+subject can be deduced.</p>
+</div>
+</div>
+<div id="Ch45-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">45–2</span>Applications</h3>
+<div id="Ch45-S2-p1" class="para">
+<p class="p">Now let us discuss the meaning of Eq. (<a href="#mjx-eqn-EqI457">45.7</a>) and see why it
+answers the questions which we proposed in our last chapter. We
+considered the following problem: in kinetic theory it is obvious that
+an increase in temperature leads to an increase in pressure, because of
+the bombardments of the atoms on a piston. For the same physical reason,
+when we let the piston move back, heat is taken out of the gas and, in
+order to keep the temperature constant, heat will have to be put back
+in. The gas cools when it expands, and the pressure rises when it is
+heated. There must be some connection between these two phenomena, and
+this connection is given explicitly in Eq. (<a href="#mjx-eqn-EqI457">45.7</a>). If we
+hold the volume fixed and increase the temperature, the pressure rises
+at a rate $(\ddpl{P}{T})_V$. Related to that fact is this: if we
+increase the volume, the gas will cool unless we pour some heat in to
+maintain the temperature constant, and $(\ddpl{U}{V})_T$ tells us the
+amount of heat needed to maintain the temperature.
+Equation (<a href="#mjx-eqn-EqI457">45.7</a>) expresses the fundamental interrelationship
+between these two effects. That is what we promised we would find when
+we came to the laws of thermodynamics. Without knowing the internal
+mechanism of the gas, and knowing only that we cannot make perpetual
+motion of the second type, we can deduce the relationship between the
+amount of heat needed to maintain a constant temperature when the gas
+expands, and the pressure change when the gas is heated at constant
+volume!</p>
+</div>
+<div id="Ch45-S2-p2" class="para">
+<p class="p">Now that we have the result we wanted for a gas, let us consider the
+rubber band. When we stretch a rubber band, we find that its
+temperature rises, and when we heat a rubber band, we find that it
+pulls itself in. What is the equation that gives the same relation for
+a rubber band as Eq. (<a href="#mjx-eqn-EqI453">45.3</a>) gives for gas? For a rubber
+band the situation will be something like this: when heat $\Delta Q$
+is put in, the internal energy is changed by $\Delta U$ and some work
+is done. The only difference will be that the work done by the rubber
+band is $-F\,\Delta L$ instead of $P\,\Delta V$, where $F$ is the
+force on the band, and $L$ is the length of the band. The force $F$ is
+a function of temperature and of length of the band. Replacing
+$P\,\Delta V$ in Eq. (<a href="#mjx-eqn-EqI453">45.3</a>) by $-F\,\Delta L$, we get
+\begin{equation}
+\label{Eq:I:45:8}
+\Delta U = \Delta Q + F\,\Delta L.
+\end{equation}
+Comparing Eqs. (<a href="#mjx-eqn-EqI453">45.3</a>) and (<a href="#mjx-eqn-EqI458">45.8</a>), we see that the
+rubber band equation is obtained by a mere substitution of one letter for
+another. Furthermore, if we substitute $L$ for $V$, and $-F$ for $P$, all of our
+discussion of the Carnot cycle applies to the rubber band. We can
+immediately deduce, for instance, that the heat $\Delta Q$ needed to change the
+length by $\Delta L$ is given by the analog to Eq. (<a href="#mjx-eqn-EqI455">45.5</a>): $\Delta Q
+= -T(\ddpl{F}{T})_L\,\Delta L$. This equation tells us that if we keep the
+length of a rubber band fixed and heat the band, we can calculate how much the
+force will increase in terms of the heat needed to keep the temperature constant
+when the band is relaxed a little bit. So we see that the same equation applies
+to both gas and a rubber band. In fact, if one can write $\Delta U = \Delta Q +
+A\,\Delta B$, where $A$ and $B$ represent different quantities, force and
+length, pressure and volume, etc., one can apply the results obtained for a gas
+by substituting $A$ and $B$ for $-P$ and $V$. For example, consider the electric
+potential difference, or “voltage,” $E$ in a battery and the charge $\Delta Z$
+that moves through the battery. We know that the work done in a reversible
+electric cell, like a storage battery, is $E\,\Delta Z$. (Since we include no
+$P\,\Delta V$ term in the work, we require that our battery maintain a constant
+volume.) Let us see what thermodynamics can tell us about the performance of a
+battery. If we substitute $E$ for $P$ and $Z$ for $V$ in Eq. (<a href="#mjx-eqn-EqI456">45.6</a>),
+we obtain
+\begin{equation}
+\label{Eq:I:45:9}
+\frac{\Delta U}{\Delta Z} = T\biggl(\ddp{E}{T}\biggr)_Z - E.
+\end{equation}
+Equation (<a href="#mjx-eqn-EqI459">45.9</a>) says that the internal energy $U$ is
+changed when a charge $\Delta Z$ moves through the cell. Why
+is $\Delta U/\Delta Z$ not simply the voltage $E$ of the battery? (The
+answer is that a real battery gets warm when charge moves through the
+cell. The internal energy of the battery is changed, first, because
+the battery did some work on the outside circuit, and second, because
+the battery is heated.) The remarkable thing is that the second part
+can again be expressed in terms of the way in which the battery
+voltage changes with temperature. Incidentally, when the charge moves
+through the cell, chemical reactions occur, and Eq. (<a href="#mjx-eqn-EqI459">45.9</a>)
+suggests a nifty way of measuring the amount of energy required to
+produce a chemical reaction. All we need to do is construct a cell that
+works on the reaction, measure the voltage, and measure how much the
+voltage changes with temperature when we draw no charge from the
+battery!</p>
+</div>
+<div id="Ch45-S2-p3" class="para">
+<p class="p">Now we have assumed that the volume of the battery can be maintained
+constant, since we have omitted the $P\,\Delta V$ term when we set the
+work done by the battery equal to $E\,\Delta Z$. It turns out that it
+is technically quite difficult to keep the volume constant. It is much
+easier to keep the cell at constant atmospheric pressure. For that
+reason, the chemists do not like any of the equations we have written
+above: they prefer equations which describe performance under constant
+<em class="emph">pressure</em>. We chose at the beginning of this chapter to use $V$
+and $T$ as independent variables. The chemists prefer $P$ and $T$, and
+we will now consider how the results we have obtained so far can be
+transformed into the chemists’ system of variables. Remember that in
+the following treatment confusion can easily set in because we are
+shifting gears from $T$ and $V$ to $T$ and $P$.</p>
+</div>
+<div id="Ch45-S2-p4" class="para">
+<p class="p">We started in Eq. (<a href="#mjx-eqn-EqI453">45.3</a>) with $\Delta U = \Delta Q -
+P\,\Delta V$; $P\,\Delta V$ may be replaced by $E\,\Delta Z$
+or $A\,\Delta B$. If we could somehow replace the last term, $P\,\Delta
+V$, by $V\,\Delta P$, then we would have interchanged $V$ and $P$, and
+the chemists would be happy. Well, a clever man noticed that the
+differential of the product $PV$ is $d(PV) = P\,dV + V\,dP$, and if he
+added this equality to Eq. (<a href="#mjx-eqn-EqI453">45.3</a>), he obtained
+\begin{alignat*}{2}
+\Delta(PV) &\,= P\,\Delta V &&+ V\,\Delta P\\[.65ex]
+\Delta U &\,= \Delta Q &&- P\,\Delta V\\
+\hline
+\Delta(U + PV) &\,= \Delta Q &&+ V\,\Delta P
+\end{alignat*}
+In order that the result look like Eq. (<a href="#mjx-eqn-EqI453">45.3</a>), we define
+$U + PV$ to be something new, called the
+<em class="emph">enthalpy</em>, $H$, and we write $\Delta H = \Delta Q
++ V\,\Delta P$.</p>
+</div>
+<div id="Ch45-S2-p5" class="para">
+<p class="p">Now we are ready to transform our results into chemists’ language with
+the following rules: $U \to H$, $P \to -V$, $V \to P$. For example, the
+fundamental relationship that chemists would use instead of
+Eq. (<a href="#mjx-eqn-EqI457">45.7</a>) is
+\begin{equation*}
+\biggl(\ddp{H}{P}\biggr)_T = -T\biggl(\ddp{V}{T}\biggr)_P + V.
+\end{equation*}
+It should now be clear how one transforms to the chemists’ variables
+$T$ and $P$. We now go back to our original variables: for the
+remainder of this chapter, $T$ and $V$ are the independent variables.</p>
+</div>
+<div id="Ch45-S2-p6" class="para">
+<p class="p">Now let us apply the results we have obtained to a number of physical
+situations. Consider first the ideal gas. From kinetic theory we know
+that the internal energy of a gas depends only on the motion of the
+molecules and the number of molecules. The internal energy depends
+on $T$, but not on $V$. If we change $V$, but keep $T$ constant, $U$ is
+not changed. Therefore $(\ddpl{U}{V})_T = 0$, and Eq. (<a href="#mjx-eqn-EqI457">45.7</a>)
+tells us that for an ideal gas
+\begin{equation}
+\label{Eq:I:45:10}
+T\biggl(\ddp{P}{T}\biggr)_V - P = 0.
+\end{equation}
+Equation (<a href="#mjx-eqn-EqI4510">45.10</a>) is a differential equation that can tell
+us something about $P$. We take account of the partial derivatives in
+the following way: Since the partial derivative is at constant $V$, we
+will replace the partial derivative by an ordinary derivative and
+write explicitly, to remind us, “constant $V$.”
+Equation (<a href="#mjx-eqn-EqI4510">45.10</a>) then becomes
+\begin{equation}
+\label{Eq:I:45:11}
+T\,\frac{\Delta P}{\Delta T} - P = 0;\quad
+\text{const $V$},
+\end{equation}
+which we can integrate to get
+\begin{alignat}{2}
+\ln P &\;= \ln T + \text{const};\quad
+&&\text{const $V$},\notag\\[1ex]
+\label{Eq:I:45:12}
+P &\;= \text{const}\times T;\quad
+&&\text{const $V$}.
+\end{alignat}
+We know that for an ideal gas the pressure per mole is equal to
+\begin{equation}
+\label{Eq:I:45:13}
+P = \frac{RT}{V},
+\end{equation}
+which is consistent with (<a href="#mjx-eqn-EqI4512">45.12</a>), since $V$ and $R$ are
+constants. Why did we bother to go through this calculation if we
+already knew the results? Because we have been using <em class="emph">two
+independent definitions of temperature!</em> At one stage we assumed that
+the kinetic energy of the molecules was proportional to the
+temperature, an assumption that defines one scale of temperature which
+we will call the ideal gas scale. The $T$ in Eq. (<a href="#mjx-eqn-EqI4513">45.13</a>)
+is based on the gas scale. We also call temperatures measured on the
+gas scale <em class="emph">kinetic</em> temperatures. Later, we defined the
+temperature in a second way which was completely independent of any
+substance. From arguments based on the Second Law we defined what we
+might call the “grand thermodynamic absolute temperature” $T$,
+the $T$ that appears in Eq. (<a href="#mjx-eqn-EqI4512">45.12</a>). What we proved here is
+that the pressure of an ideal gas (defined as one for which the
+internal energy does not depend on the volume) is proportional to the
+grand thermodynamic absolute temperature. We also know that the
+pressure is proportional to the temperature measured on the gas
+scale. Therefore we can deduce that the kinetic temperature is
+proportional to the “grand thermodynamic absolute temperature.” That
+means, of course, that if we were sensible we could make two scales
+agree. In this instance, at least, the two scales <em class="emph">have</em> been
+chosen so that they coincide; the proportionality constant has been
+chosen to be $1$. Most of the time man chooses trouble for himself,
+but in this case he made them equal!</p>
+</div>
+</div>
+<div id="Ch45-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">45–3</span>The Clausius-Clapeyron equation</h3>
+<div id="Ch45-S3-p1" class="para">
+<p class="p">The vaporization of a liquid is another application of the results we
+have derived. Suppose we have some liquid in a cylinder, such that we
+can compress it by pushing on the piston, and we ask ourselves, “If
+we keep the temperature constant, how does the pressure vary with
+volume?” In other words, we want to draw an isothermal line on the
+$P$-$V$ diagram. The substance in the cylinder is not the ideal gas
+that we considered earlier; now it may be in the liquid or the vapor
+phase, or both may be present. If we apply sufficient pressure, the
+substance will condense to a liquid. Now if we squeeze still harder,
+the volume changes very little, and our isothermal line rises rapidly
+with decreasing volume, as shown at the left in Fig. <a href="#Ch45-F3">45–3</a>.</p>
+</div>
+<div id="Ch45-F3" class="figure">
+<img src="img/FLP_I/f45-03/f45-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 45–3.</span>Isothermal lines for a condensable vapor
+compressed in a cylinder. At the left, the substance is in the liquid phase.
+At the right, the substance is vaporized. In the center, both liquid and
+vapor are present in the cylinder.
+</div>
+</div>
+<div id="Ch45-S3-p2" class="para">
+<p class="p">If we increase the volume by pulling the piston out, the pressure
+drops until we reach the point at which the liquid starts to boil, and
+then vapor starts to form. If we pull the piston out farther, all that
+happens is that more liquid vaporizes. When there is part liquid and
+part vapor in the cylinder, the two phases are in equilibrium—liquid
+is evaporating and vapor is condensing at the same rate. If we make
+more room for the vapor, more vapor is needed to maintain the
+pressure, so a little more liquid evaporates, but the pressure remains
+constant. On the flat part of the curve in Fig. <a href="#Ch45-F3">45–3</a> the
+pressure does not change, and the value of the pressure here is called
+the <em class="emph">vapor pressure at temperature $T$</em>. As we continue to
+increase the volume, there comes a time when there is no more liquid
+to evaporate. At this juncture, if we expand the volume further, the
+pressure will fall as for an ordinary gas, as shown at the right of
+the $P$-$V$ diagram. The lower curve in Fig. <a href="#Ch45-F3">45–3</a> is the
+isothermal line at a slightly lower temperature $T - \Delta T$. The
+pressure in the liquid phase is slightly reduced because liquid
+expands with an increase in temperature (for most substances, but not
+for water near the freezing point) and, of course, the vapor pressure
+is lower at the lower temperature.</p>
+</div>
+<div id="Ch45-F4" class="figure">
+<img src="img/FLP_I/f45-04/f45-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 45–4.</span>Pressure-volume diagram for a Carnot cycle with a condensable
+vapor in the cylinder. At the left, the substance is in the liquid
+state. A quantity of heat $L$ is added at temperature $T$ to
+vaporize the liquid. The vapor expands adiabatically as $T$ changes
+to $T - \Delta T$.
+</div>
+</div>
+<div id="Ch45-S3-p3" class="para">
+<p class="p">We will now make a cycle out of the two isothermal lines by connecting
+them (say by adiabatic lines) at both ends of the upper flat section, as
+shown in Fig. <a href="#Ch45-F4">45–4</a>. We are going to use the argument of
+Carnot, which tells us that the
+heat added to the substance in changing it from a liquid to a vapor is
+related to the work done by the substance as it goes around the cycle.
+Let us call $L$ the heat needed to vaporize the substance in the
+cylinder. As in the argument immediately preceding
+Eq. (<a href="#mjx-eqn-EqI455">45.5</a>), we know that $L(\Delta T/T) = {}$work done by the
+substance. As before, the work done by the substance is the shaded area,
+which is approximately $\Delta P(V_G - V_L)$, where $\Delta P$ is the
+difference in vapor pressure at the two temperatures $T$ and $T - \Delta
+T$, $V_G$ is the volume of the gas, and $V_L$ is the volume of the
+liquid, both volumes measured at the vapor pressure at temperature $T$.
+Setting these two expressions for the area equal, we get $L\,\Delta T/T
+= \Delta P(V_G - V_L)$, or
+\begin{equation}
+\label{Eq:I:45:14}
+\frac{L}{T(V_G - V_L)} = (\ddpl{P_{\text{vap}}}{T}).
+\end{equation}
+Equation (<a href="#mjx-eqn-EqI4514">45.14</a>) gives the relationship between the rate of
+change of vapor pressure with temperature and the amount of heat
+required to evaporate the liquid. This relationship was deduced by
+Carnot, but it is called the
+Clausius-Clapeyron equation.</p>
+</div>
+<div id="Ch45-S3-p4" class="para">
+<p class="p">Now let us compare Eq. (<a href="#mjx-eqn-EqI4514">45.14</a>) with the results deduced
+from kinetic theory. Usually $V_G$ is very much larger than $V_L$. So
+$V_G - V_L \approx V_G = RT/P$ per mole. If we further assume that $L$
+is a constant, independent of temperature—not a very good
+approximation—then we would have $\ddpl{P}{T} = L/(RT^2/P)$. The
+solution of this differential equation is
+\begin{equation}
+\label{Eq:I:45:15}
+P = \text{const}\,e^{-L/RT}.
+\end{equation}
+Let us compare this with the pressure variation with temperature that
+we deduced earlier from kinetic theory. Kinetic theory indicated the
+possibility, at least roughly, that the number of molecules per unit volume of vapor
+above a liquid would be
+\begin{equation}
+\label{Eq:I:45:16}
+n = \biggl(\frac{1}{V_a}\biggr)e^{-(U_G - U_L)/RT},
+\end{equation}
+where $U_G - U_L$ is the internal energy per mole in the gas minus the
+internal energy per mole in the liquid, i.e., the energy needed to
+vaporize a mole of liquid. Equation (<a href="#mjx-eqn-EqI4515">45.15</a>) from
+thermodynamics and Eq. (<a href="#mjx-eqn-EqI4516">45.16</a>) from kinetic theory are very
+closely related because the pressure is $nkT$, but they are not exactly
+the same. However, they will turn out to be exactly the same if we
+assume $U_G - U_L = \text{const}$, instead of $L = \text{const}$. If we
+assume $U_G - U_L = \text{const}$, independent of temperature, then the
+argument leading to Eq. (<a href="#mjx-eqn-EqI4515">45.15</a>) will produce
+Eq. (<a href="#mjx-eqn-EqI4516">45.16</a>). Since the pressure is constant while the volume
+is changing, the change in internal energy $U_G-U_L$ is equal to the
+heat $L$ put in minus the work done $P(V_G-V_L)$,
+so $L=(U_G+PV_G)-(U_L+PV_L)$.</p>
+</div>
+<div id="Ch45-S3-p5" class="para">
+<p class="p">This comparison shows the advantages and disadvantages of thermodynamics over
+kinetic theory: First of all, Eq. (<a href="#mjx-eqn-EqI4514">45.14</a>) obtained by thermodynamics
+is exact, while Eq. (<a href="#mjx-eqn-EqI4516">45.16</a>) can only be approximated, for instance,
+if $U$ is nearly constant, and if the model is right. Second, we may not
+understand correctly how the gas goes into the liquid; nevertheless,
+Eq. (<a href="#mjx-eqn-EqI4514">45.14</a>) is right, while (<a href="#mjx-eqn-EqI4516">45.16</a>) is only approximate.
+Third, although our treatment applies to a gas condensing into a liquid, the
+argument is true for any other change of state. For instance, the
+solid-to-liquid transition has the same kind of curve as that shown in
+Figs. <a href="#Ch45-F3">45–3</a> and <a href="#Ch45-F4">45–4</a>. Introducing the latent heat
+for melting, $M$/mole, the formula analogous to Eq. (<a href="#mjx-eqn-EqI4514">45.14</a>) then
+is $(\ddpl{P_{\text{melt}}}{T})_V = M/[T(V_{\text{liq}} - V_{\text{solid}})]$.
+Although we may not understand the kinetic theory of the melting process, we
+nevertheless have a correct equation. However, when we <em class="emph">can</em> understand the
+kinetic theory, we have another advantage. Equation (<a href="#mjx-eqn-EqI4514">45.14</a>) is only a
+differential relationship, and we have no way of obtaining the constants of
+integration. In the kinetic theory we can obtain the constants also if we have a
+good model that describes the phenomenon completely. So there are advantages and
+disadvantages to each. When knowledge is weak and the situation is complicated,
+thermodynamic relations are really the most powerful. When the situation is very
+simple and a theoretical analysis can be made, then it is better to try to get
+more information from theoretical analysis.</p>
+</div>
+<div id="Ch45-S3-p6" class="para">
+<p class="p">One more example: blackbody radiation. We have discussed a box
+containing radiation and nothing else. We have talked about the
+equilibrium between the oscillator and the radiation. We also found
+that the photons hitting the wall of the box would exert the
+pressure $P$, and we found $PV = U/3$, where $U$ is the total energy of all the
+photons and $V$ is the volume of the box. If we substitute $U = 3PV$
+in the basic Eq. (<a href="#mjx-eqn-EqI457">45.7</a>), we find<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a>
+\begin{equation}
+\label{Eq:I:45:17}
+\biggl(\ddp{U}{V}\biggr)_T = 3P =
+T\biggl(\ddp{P}{T}\biggr)_V - P.
+\end{equation}
+Since the volume of our box is constant, we can replace
+$(\ddpl{P}{T})_V$ by $dP/dT$ to obtain an ordinary differential equation
+we can integrate: $\ln P = 4\ln T + \text{const}$, or $P =
+\text{const}\times T^4$. The pressure of radiation varies as the fourth
+power of the temperature, and the total energy density of the radiation,
+$U/V = 3P$, also varies as $T^4$. It is usual to write $U/V =
+(4\sigma/c)T^4$, where $c$ is the speed of light and $\sigma$ is called
+the <em class="emph">Stefan-Boltzmann constant</em>.
+It is not possible to get $\sigma$ from thermodynamics alone. Here is a
+good example of its power, and its limitations. To know that $U/V$ goes
+as $T^4$ is a great deal, but to know how big $U/V$ actually is at any
+temperature requires that we go into the kind of detail that only a
+complete theory can supply. For blackbody radiation we have such a
+theory and we can derive an expression for the constant $\sigma$ in the
+following manner.</p>
+</div>
+<div id="Ch45-S3-p7" class="para">
+<p class="p">Let $I(\omega)\,d\omega$ be the intensity distribution, the energy
+flow through $1$ m² in one second with frequency between $\omega$
+and $\omega + d\omega$. The energy density
+distribution${}={}$energy/volume${}= I(\omega)\,d\omega/c$ is
+\begin{align*}
+\frac{U}{V}  &= \text{total energy density}\\
+ &= \int_{\omega = 0}^\infty\text{energy density between $\omega$ and
+$\omega + d\omega$}\\[1.5ex]
+ &= \int_0^\infty \frac{I(\omega)\,d\omega}{c}.
+\end{align*}
+From our earlier discussions, we know that
+\begin{equation*}
+I(\omega) = \frac{\hbar\omega^3}{\pi^2c^2(e^{\hbar\omega/kT} - 1)}.
+\end{equation*}
+Substituting this expression for $I(\omega)$ in our equation for $U/V$, we get
+\begin{equation*}
+\frac{U}{V} = \frac{1}{\pi^2c^3}\int_0^\infty
+\frac{\hbar\omega^3\,d\omega}{e^{\hbar\omega/kT} - 1}.
+\end{equation*}
+If we substitute $x = \hbar\omega/kT$, the expression becomes
+\begin{equation*}
+\frac{U}{V} = \frac{(kT)^4}{\hbar^3\pi^2c^3}\int_0^\infty
+\frac{x^3\,dx}{e^x - 1}.
+\end{equation*}
+This integral is just some number that we can get, approximately, by
+drawing a curve and taking the area by counting squares. It is
+roughly $6.5$. The mathematicians among us can show that the integral is
+exactly $\pi^4/15$.<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+Comparing this expression with $U/V = (4\sigma/c)T^4$, we find
+\begin{equation*}
+\sigma = \frac{k^4\pi^2}{60\hbar^3c^2} =
+5.67\times10^{-8}\,\frac{\text{watts}}
+{(\text{meter})^2(\text{degree})^4}.
+\end{equation*}</p>
+</div>
+<div id="Ch45-S3-p8" class="para">
+<p class="p">If we make a small hole in our box, how much energy will flow per
+second through the hole of unit area? To go from energy density to
+energy flow, we multiply the energy density $U/V$ by $c$. We also
+multiply by $\tfrac{1}{4}$, which arises as follows: first, a factor
+of $\tfrac{1}{2}$, because only the energy which is flowing <em class="emph">out</em>
+escapes; and second, another factor $\tfrac{1}{2}$, because energy
+which approaches the hole at an angle to the normal is less effective
+in getting through the hole by a cosine factor. The average value of
+the cosine is $\tfrac{1}{2}$. It is clear now why we write $U/V
+=(4\sigma/c)T^4$: so that we can ultimately say that the flux from a
+small hole is $\sigma T^4$ per unit area.</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  In this case
+$(\ddpl{P}{V})_T=0$, because in order to keep the oscillator in
+equilibrium at a given temperature, the radiation in the neighborhood of
+the oscillator has to be the same, regardless of the volume of the box.
+The total quantity of photons inside the box must therefore be
+proportional to its volume, so the internal energy per unit volume, and
+thus the pressure, depends only on the temperature.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  Since $(e^x - 1)^{-1} = e^{-x} + e^{-2x}
++ \dotsb$, the integral is
+\begin{equation*}
+\sum_{n=1}^\infty\int_0^\infty e^{-nx}x^3\,dx.
+\end{equation*}
+But $\int_0^\infty e^{-nx}\,dx = 1/n$, and differentiating with
+respect to $n$ three times gives $\int_0^\infty x^3e^{-nx}\,dx =
+6/n^4$, so the integral is $6(1 + \tfrac{1}{16} + \tfrac{1}{81} +
+\dotsb)$ and a good estimate comes from adding the first few terms. In
+Chapter <a href="I_50.html">50</a> we will find a way to show that the sum of the
+reciprocal fourth powers of the integers is, in fact, $\pi^4/90$.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

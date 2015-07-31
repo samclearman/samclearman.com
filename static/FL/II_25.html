@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 25: Electrodynamics in Relativistic Notation</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "25." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch25" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">25</span>Electrodynamics in Relativistic Notation</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref" rowspan=4>
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapter&nbsp;<a href="I_15.html">15</a>, Vol.&nbsp;I, <i>The Special Theory of Relativity</i>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Chapter&nbsp;<a href="I_16.html">16</a>, Vol.&nbsp;I, <i>Relativistic Energy and Momentum</i>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Chapter&nbsp;<a href="I_17.html">17</a>, Vol.&nbsp;I, <i>Space-Time</i>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Chapter&nbsp;<a href="II_13.html">13</a>, Vol.&nbsp;II, <i> Magnetostatics</i>
+		</td>
+	</tr>
+</table>
+<div align="center">
+<table class="ref" style="border:3px solid black; width: 35%" cellspacing="5">
+	<tr>
+		<td class="center">
+		<font style="font-size:120%">In this chapter: $c = 1$</font>		
+		</td>
+	</tr>
+</table>
+</div>
+
+<div id="Ch25-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">25–1</span>Four-vectors</h3>
+
+<div id="Ch25-S1-p1" class="para">
+<p class="p">We now discuss the application of the special theory of relativity to
+electrodynamics. Since we have already studied the special theory of
+relativity in Chapters <a href="I_15.html">15</a> through&nbsp;<a href="I_17.html">17</a> of
+Vol.&nbsp;I, we will just review quickly the basic ideas.
+</p>
+</div>
+
+<div id="Ch25-S1-p2" class="para">
+<p class="p">It is found experimentally that the laws of physics are unchanged if
+we move with uniform velocity. You can’t tell if you are inside a
+spaceship moving with uniform velocity in a straight line, unless you
+look outside the spaceship, or at least make an observation having to
+do with the world outside. Any true law of physics we write down must
+be arranged so that this fact of nature is built in.
+</p>
+</div>
+
+<div id="Ch25-S1-p3" class="para">
+<p class="p">The relationship between the space and time of two systems of
+coordinates, one, $S'$, in uniform motion in the $x$-direction with
+speed&nbsp;$v$ relative to the other, $S$, is given by the <em class="emph">Lorentz transformation:</em>
+\begin{equation}
+\label{Eq:II:25:1}
+\begin{alignedat}{2}
+t'&=\frac{t-vx}{\sqrt{1-v^2}},&\quad y'&=y,\\[1ex]
+x'&=\frac{x-vt}{\sqrt{1-v^2}},&\quad z'&=z.
+\end{alignedat}
+\end{equation}
+The laws of physics must be such that after a Lorentz transformation,
+the new form of the laws looks just like the old form. This is just
+like the principle that the laws of physics don’t depend on the
+<em class="emph">orientation</em> of our coordinate system. In Chapter&nbsp;<a href="I_11.html">11</a>
+of Vol.&nbsp;I, we saw that the way to describe mathematically the
+invariance of physics with respect to rotations was to write our
+equations in terms of <em class="emph">vectors</em>.
+</p>
+</div>
+
+<div id="Ch25-S1-p4" class="para">
+<p class="p">For example, if we have two vectors
+\begin{equation*}
+\FLPA=(A_x,A_y,A_z)\quad\text{and}\quad
+\FLPB=(B_x,B_y,B_z),
+\end{equation*}
+we found that the combination
+\begin{equation*}
+\FLPA\cdot\FLPB=A_xB_x+A_yB_y+A_zB_z
+\end{equation*}
+was not changed if we transformed to a rotated coordinate system. So
+we know that if we have a scalar product like&nbsp;$\FLPA\cdot\FLPB$ on
+both sides of an equation, the equation will have exactly the same
+form in all rotated coordinate systems. We also discovered an operator
+(see Chapter&nbsp;<a href="II_02.html">2</a>),
+\begin{equation*}
+\FLPnabla=\biggl(\ddp{}{x},\ddp{}{y},\ddp{}{z}\biggr),
+\end{equation*}
+which, when applied to a scalar function, gave three quantities which
+transform just like a vector. With this operator we defined the
+gradient, and in combination with other vectors, the divergence and
+the Laplacian. Finally we discovered that by taking sums of certain
+products of pairs of the components of two vectors we could get three
+new quantities which behaved like a new vector. We called it the
+<em class="emph">cross product</em> of two vectors. Using the cross product with our
+operator&nbsp;$\FLPnabla$ we then defined the curl of a vector.
+</p>
+</div>
+
+<div id="Ch25-S1-p5" class="para">
+<p class="p">Since we will be referring back to what we have done in vector
+analysis, we have put in Table&nbsp;<a href="#Ch25-T1">25–1</a> a summary of all the
+important vector operations in three dimensions that we have used in
+the past. The point is that it must be possible to write the equations
+of physics so that both sides transform the same way under
+rotations. If one side is a vector, the other side must also be a
+vector, and both sides will change together in exactly the same way if
+we rotate our coordinate system. Similarly, if one side is a scalar,
+the other side must also be a scalar, so that neither side changes
+when we rotate coordinates, and so on.
+</p>
+</div>
+
+<div id="Ch25-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 25–1</span>The important quantities and operations of vector analysis in three dimensions
+</div>
+<div align="center">
+<table class="framed" style="width: 35%">
+	<tr>
+		<td class="left">
+		Definition of a<br>&nbsp;&nbsp;&nbsp; vector</td>
+		<td class="left" style="vertical-align: bottom">
+		$\FLPA=(A_x,A_y,A_z)$</td>
+	</tr>
+	<tr>
+		<td class="left">
+		Scalar product</td>
+		<td class="left">
+		$\FLPA\cdot\FLPB$</td>
+	</tr>
+	<tr>
+		<td class="left">
+		Differential vector<br>&nbsp;&nbsp;&nbsp; operator<br></td>
+		<td class="left" style="vertical-align: bottom">
+		$\FLPnabla$</td>
+	</tr>
+	<tr>
+		<td class="left">
+		Gradient</td>
+		<td class="left">
+		$\FLPgrad{\phi}$</td>
+	</tr>
+	<tr>
+		<td class="left">
+		Divergence</td>
+		<td class="left">
+		$\FLPdiv{\FLPA}$</td>
+	</tr>
+	<tr>
+		<td class="left">
+		Laplacian</td>
+		<td class="left">
+		$\FLPnabla\cdot\FLPnabla=\nabla^2$</td>
+	</tr>
+	<tr>
+		<td class="left">
+		Cross product</td>
+		<td class="left">
+		$\FLPA\times\FLPB$</td>
+	</tr>
+	<tr>
+		<td class="left">
+		Curl</td>
+		<td class="left">
+		$\FLPcurl{\FLPA}$</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch25-S1-p6" class="para">
+<p class="p">Now in the case of special relativity, time and space are inextricably
+mixed, and we must do the analogous things for four dimensions. We
+want our equations to remain the same not only for rotations, but also
+for <em class="emph">any</em> inertial frame. That means that our equations should be
+invariant under the Lorentz transformation of
+equations&nbsp;(<a href="#mjx-eqn-EqII251">25.1</a>). The purpose of this chapter is to show you
+how that can be done. Before we get started, however, we want to do
+something that makes our work a lot easier (and saves some confusion).
+And that is to choose our units of length and time so that the speed of
+light&nbsp;$c$ is equal to&nbsp;$1$. You can think of it as taking our unit of
+time to be <em class="emph">the time that it takes light to go one meter</em> (which is
+about $3\times10^{-9}$&nbsp;sec). We can even call this time unit “one
+meter.”  Using this unit, all of our equations will show more clearly
+the space-time symmetry. Also, all the&nbsp;$c$’s will disappear from our
+relativistic equations. (If this bothers you, you can always put
+the&nbsp;$c$’s back into any equation by replacing every $t$ by&nbsp;$ct$, or, in
+general, by sticking in a&nbsp;$c$ wherever it is needed to make the
+dimensions of the equations come out right.) With this groundwork we are
+ready to begin. Our program is to do in the four dimensions of
+space-time all of the things we did with vectors for three dimensions.
+It is really quite a simple game; we just work by analogy. The only real
+complications is the notation (we’ve already used up the vector symbol
+for three dimensions) and one slight twist of signs.
+</p>
+</div>
+
+<div id="Ch25-S1-p7" class="para">
+<p class="p">First, by analogy with vectors in three dimensions, we define a
+<em class="emph">four-vector</em> as a set of the four quantities $a_t$,&nbsp;$a_x$,
+$a_y$, and&nbsp;$a_z$, which transform like $t$,&nbsp;$x$, $y$, and&nbsp;$z$ when we
+change to a moving coordinate system. There are several different
+notations people use for a four-vector; we will write&nbsp;$a_\mu$, by
+which we mean the group of four numbers&nbsp;$(a_t,a_x,a_y,a_z)$—in other
+words, the subscript&nbsp;$\mu$ can take on the four “values” $t$,&nbsp;$x$,
+$y$,&nbsp;$z$. It will also be convenient, at times, to indicate the three
+space components by a three-vector, like this:&nbsp;$a_\mu=(a_t,\FLPa)$.
+</p>
+</div>
+
+<div id="Ch25-S1-p8" class="para">
+<p class="p">We have already encountered one four-vector, which consists of the
+energy and momentum of a particle (Chapter&nbsp;<a href="I_17.html">17</a>, Vol.&nbsp;I): In
+our new notation we write
+\begin{equation}
+\label{Eq:II:25:2}
+p_\mu=(E,\FLPp),
+\end{equation}
+which means that the four-vector&nbsp;$p_\mu$ is made up of the energy&nbsp;$E$
+and the three components of the three-vector&nbsp;$\FLPp$ of a particle.
+</p>
+</div>
+
+<div id="Ch25-S1-p9" class="para">
+<p class="p">It looks as though the game is really very simple—for each
+three-vector in physics all we have to do is find what the remaining
+component should be, and we have a four-vector. To see that this is
+not the case, consider the velocity vector with components
+\begin{equation*}
+v_x=\ddt{x}{t},\quad
+v_y=\ddt{y}{t},\quad
+v_z=\ddt{z}{t}.
+\end{equation*}
+The question is: What is the time component? Instinct should give the
+right answer. Since four-vectors are like $t$,&nbsp;$x$, $y$,&nbsp;$z$, we would
+guess that the time component is
+\begin{equation*}
+v_t=\ddt{t}{t}=1.
+\end{equation*}
+<em class="emph">This is wrong</em>. The reason is that the&nbsp;$t$ in each denominator
+is not an invariant when we make a Lorentz transformation. The
+numerators have the right behavior to make a four-vector, but the&nbsp;$dt$
+in the denominator spoils things; it is unsymmetric and is not the
+same in two different systems.
+</p>
+</div>
+
+<div id="Ch25-S1-p10" class="para">
+<p class="p">It turns out that the four “velocity” components which we have
+written down will become the components of a four-vector if we just
+divide by&nbsp;$\sqrt{1-v^2}$. We can see that that is true because if we
+start with the momentum four-vector
+\begin{equation}
+\label{Eq:II:25:3}
+p_\mu=(E,\FLPp)=\biggl(
+\frac{m_0}{\sqrt{1-v^2}},
+\frac{m_0\FLPv}{\sqrt{1-v^2}}
+\biggr),
+\end{equation}
+and divide it by the rest mass&nbsp;$m_0$, which is an invariant scalar in
+<i>four dimensions</i>, we have
+\begin{equation}
+\label{Eq:II:25:4}
+\frac{p_\mu}{m_0}=\biggl(
+\frac{1}{\sqrt{1-v^2}},
+\frac{\FLPv}{\sqrt{1-v^2}}
+\biggr),
+\end{equation}
+which must still be a four-vector. (Dividing by an <em class="emph">invariant scalar</em>
+doesn’t change the transformation properties.) So we can
+<em class="emph">define</em> the “<em class="emph">velocity four-vector</em>”&nbsp;$u_\mu$ by
+\begin{equation}
+\label{Eq:II:25:5}
+\begin{alignedat}{2}
+u_t&=\frac{1}{\sqrt{1-v^2}},&\quad
+u_y&=\frac{v_y}{\sqrt{1-v^2}},\\[1ex]
+u_x&=\frac{v_x}{\sqrt{1-v^2}},&\quad
+u_z&=\frac{v_z}{\sqrt{1-v^2}},
+\end{alignedat}
+\end{equation}
+The four-velocity is a useful quantity; we can, for instance, write
+\begin{equation}
+\label{Eq:II:25:6}
+p_\mu=m_0u_\mu.
+\end{equation}
+This is the typical sort of form an equation which is relativistically
+correct must have; each side is a four-vector. (The right-hand side is
+an invariant times a four-vector, which is still a four-vector.)
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch25-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">25–2</span>The scalar product</h3>
+
+<div id="Ch25-S2-p1" class="para">
+<p class="p">It is an accident of life, if you wish, that under coordinate
+rotations the distance of a point from the origin does not
+change. This means mathematically that&nbsp;$r^2=x^2+y^2+z^2$ is an
+invariant. In other words, after a rotation&nbsp;$r'^2=r^2$, or
+\begin{equation*}
+x'^2+y'^2+z'^2=x^2+y^2+z^2.
+\end{equation*}
+Now the question is: Is there a similar quantity which is invariant
+under the Lorentz transformation? There is. From Eq.&nbsp;(<a href="#mjx-eqn-EqII251">25.1</a>)
+you can see that
+\begin{equation*}
+t'^2-x'^2=t^2-x^2.
+\end{equation*}
+That is pretty nice, except that it depends on a particular choice of
+the $x$-direction. We can fix that up by subtracting $y^2$
+and&nbsp;$z^2$. Then any Lorentz transformation <em class="emph">plus</em> a rotation will
+leave the quantity unchanged. So the quantity which is analogous
+to&nbsp;$r^2$ for three dimensions, in four dimensions is
+\begin{equation*}
+t^2-x^2-y^2-z^2.
+\end{equation*}
+It is an invariant under what is called the “complete Lorentz
+group”—which means for transformation of both translations at
+constant velocity <em class="emph">and</em> rotations.
+</p>
+</div>
+
+<div id="Ch25-S2-p2" class="para">
+<p class="p">Now since this invariance is an algebraic matter depending only on the
+transformation rules of Eq.&nbsp;(<a href="#mjx-eqn-EqII251">25.1</a>)—plus rotations—it
+is true for any four-vector (by definition they all transform the
+same). So for a four-vector&nbsp;$a_\mu$ we have that
+\begin{equation*}
+a_t'^2-a_x'^2-a_y'^2-a_z'^2=a_t^2-a_x^2-a_y^2-a_z^2.
+\end{equation*}
+We will call this quantity the square of “the length” of the
+four-vector&nbsp;$a_\mu$. (Sometimes people change the sign of all the
+terms and call the length&nbsp;$a_x^2+a_y^2+a_z^2-a_t^2$, so you’ll have to
+watch out.)
+</p>
+</div>
+
+<div id="Ch25-S2-p3" class="para">
+<p class="p">Now if we have <em class="emph">two</em> vectors $a_\mu$ and&nbsp;$b_\mu$ their
+corresponding components transform in the same way, so the combination
+\begin{equation*}
+a_tb_t-a_xb_x-a_yb_y-a_zb_z
+\end{equation*}
+is also an invariant (scalar) quantity. (We have in fact already proved
+this in Chapter&nbsp;<a href="I_17.html">17</a> of Vol.&nbsp;I.) Clearly this expression is
+quite analogous to the dot product for vectors. We will, in fact, call
+it the <em class="emph">dot product</em> or
+<em class="emph">scalar product</em> of two four-vectors. It would seem logical to
+write it as&nbsp;$a_\mu\cdot b_\mu$, so it would look like a dot product.
+But, unhappily, it’s not done that way; it is usually written without
+the dot. So we will follow the convention and write the dot product
+simply as&nbsp;$a_\mu b_\mu$. So, <em class="emph">by definition</em>,
+\begin{equation}
+\label{Eq:II:25:7}
+a_\mu b_\mu=a_tb_t-a_xb_x-a_yb_y-a_zb_z.
+\end{equation}
+Whenever you see two identical subscripts together (we will
+occasionally have to use&nbsp;$\nu$ or some other letter instead of&nbsp;$\mu$)
+it means that you are to take the four products and sum,
+<em class="emph">remembering the minus sign</em> for the products of the space
+components. With this convention the invariance of the scalar product
+under a Lorentz transformation can be written as
+\begin{equation*}
+a_\mu'b_\mu'=a_\mu b_\mu.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch25-S2-p4" class="para">
+<p class="p">Since the last three terms in&nbsp;(<a href="#mjx-eqn-EqII257">25.7</a>) are just the scalar
+dot product in three dimensions, it is often more convenient to write
+\begin{equation*}
+a_\mu b_\mu=a_tb_t-\FLPa\cdot\FLPb.
+\end{equation*}
+It is also obvious that the four-dimensional length we described above
+can be written as&nbsp;$a_\mu a_\mu$:
+\begin{equation}
+\label{Eq:II:25:8}
+a_\mu a_\mu=a_t^2-a_x^2-a_y^2-a_z^2=
+a_t^2-\FLPa\cdot\FLPa.
+\end{equation}
+It will also be convenient to sometimes write this quantity
+as&nbsp;$a_\mu^2$:
+\begin{equation*}
+a_\mu^2\equiv a_\mu a_\mu.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch25-S2-p5" class="para">
+<p class="p">We will now give you an illustration of the usefulness of four-vector
+dot products. Antiprotons ($\overline{\text{P}}$) are produced in
+large accelerators by the reaction
+\begin{equation*}
+\text{P}+\text{P}\to
+\text{P}+\text{P}+\text{P}+\overline{\text{P}}.
+\end{equation*}
+That is, an energetic proton collides with a proton at rest (for
+example, in a hydrogen target placed in the beam), and if the incident
+proton has enough energy, a proton-antiproton pair may be produced, in
+addition to the two original protons.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> The question is: How much energy must be given to the
+incident proton to make this reaction energetically possible?
+</p>
+</div>
+
+<div id="Ch25-F1" class="figure">
+<img src="img/FLP_II/f25-01/f25-01_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 25–1.</span>
+	The reaction $\text{P}+\text{P}\to3\text{P}+\overline{\text{P}}$ viewed in the
+	laboratory and CM systems. The incident proton is supposed to have
+	just barely enough energy to make the reaction go. Protons are
+	denoted by solid circles; antiprotons by open circles.
+</div>
+</div>
+
+<div id="Ch25-S2-p6" class="para">
+<p class="p">The easiest way to get the answer is to consider what the reaction looks
+like in the center-of-mass (CM) system (see Fig.&nbsp;<a href="#Ch25-F1">25–1</a>).
+We’ll call the incident proton&nbsp;$a$ and its four-momentum&nbsp;$p_\mu^a$.
+Similarly, we’ll call the target proton&nbsp;$b$ and its
+four-momentum&nbsp;$p_\mu^b$. If the incident proton has <em class="emph">just barely</em>
+enough energy to make the reaction go, the final state—the situation
+after the collision—will consist of a glob containing three protons
+and an antiproton at rest in the CM system. If the incident energy were
+slightly higher, the final state particles would have some kinetic
+energy and be moving apart; if the incident energy were slightly lower,
+there would not be enough energy to make the four particles.
+</p>
+</div>
+
+<div id="Ch25-S2-p7" class="para">
+<p class="p">If we call&nbsp;$p_\mu^c$ the total four-momentum of the whole glob in the
+final state, conservation of energy and momentum tells us that
+\begin{equation*}
+\FLPp^a+\FLPp^b=\FLPp^c,
+\end{equation*}
+and
+\begin{equation*}
+E^a+E^b=E^c.
+\end{equation*}
+Combining these two equations, we can write that
+\begin{equation}
+\label{Eq:II:25:9}
+p_\mu^a+p_\mu^b=p_\mu^c.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch25-S2-p8" class="para">
+<p class="p">Now the important thing is that this is an equation among
+four-vectors, and is, therefore, true in any inertial frame. We can
+use this fact to simplify our calculations. We start by taking the
+“length” of each side of Eq.&nbsp;(<a href="#mjx-eqn-EqII259">25.9</a>); they are, of
+course, also equal. We get
+\begin{equation}
+\label{Eq:II:25:10}
+(p_\mu^a+p_\mu^b)(p_\mu^a+p_\mu^b)=
+p_\mu^cp_\mu^c.
+\end{equation}
+Since $p_\mu^cp_\mu^c$ is invariant, we can evaluate it in any
+coordinate system. In the CM system, the time component of&nbsp;$p_\mu^c$
+is the rest energy of four protons, namely&nbsp;$4M$, and the space
+part&nbsp;$\FLPp$ is zero; so&nbsp;$p_\mu^c=(4M,\FLPzeroi)$. We have used the fact
+that the rest mass of an antiproton equals the rest mass of a proton,
+and we have called this common mass&nbsp;$M$.
+</p>
+</div>
+
+<div id="Ch25-S2-p9" class="para">
+<p class="p">Thus, Eq.&nbsp;(<a href="#mjx-eqn-EqII2510">25.10</a>) becomes
+\begin{equation}
+\label{Eq:II:25:11}
+p_\mu^ap_\mu^a+2p_\mu^ap_\mu^b+p_\mu^bp_\mu^b=16M^2.
+\end{equation}
+Now $p_\mu^ap_\mu^a$ and&nbsp;$p_\mu^bp_\mu^b$ are very easy, since the
+“length” of the momentum four-vector of any particle is just the
+mass of the particle squared:
+\begin{equation*}
+p_\mu p_\mu=E^2-\FLPp^2=M^2.
+\end{equation*}
+This can be shown by direct calculation or, more cleverly, by noting
+that for a particle <em class="emph">at rest</em>&nbsp;$p_\mu=(M,\FLPzeroi)$, so&nbsp;$p_\mu
+p_\mu=M^2$. But since it is an invariant, it is equal to&nbsp;$M^2$ in
+<em class="emph">any</em> frame. Using these results in Eq.&nbsp;(<a href="#mjx-eqn-EqII2511">25.11</a>), we
+have
+\begin{equation*}
+2p_\mu^ap_\mu^b=14M^2
+\end{equation*}
+or
+\begin{equation}
+\label{Eq:II:25:12}
+p_\mu^ap_\mu^b=7M^2.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch25-S2-p10" class="para">
+<p class="p">Now we can also evaluate&nbsp;$p_\mu^ap_\mu^b={p_\mu^a}'{p_\mu^b}'$ in the
+laboratory system. The four-vector&nbsp;${p_\mu^a}'$ can be
+written&nbsp;$({E^a}',{\FLPp^a}')$, while&nbsp;${p_\mu^b}'=(M,\FLPzeroi)$, since it
+describes a proton at rest. Thus, ${p_\mu^a}'{p_\mu^b}'$ must also be
+equal to&nbsp;$M{E^a}'$; and since we know the scalar product is an
+invariant this must be numerically the same as what we found
+in&nbsp;(<a href="#mjx-eqn-EqII2512">25.12</a>). So we have that
+\begin{equation*}
+{E^a}'=7M,
+\end{equation*}
+which is the result we were after. The <em class="emph">total</em> energy of the
+initial proton must be at least&nbsp;$7M$ (about $6.6$&nbsp;GeV since
+$M=938$&nbsp;MeV) or, subtracting the rest mass&nbsp;$M$, the <em class="emph">kinetic</em> energy must
+be at least&nbsp;$6M$ (about $5.6$&nbsp;GeV). The Bevatron accelerator at
+Berkeley was designed to give about $6.2$&nbsp;GeV of kinetic energy to the
+protons it accelerates, in order to be able to make antiprotons.
+</p>
+</div>
+
+<div id="Ch25-S2-p11" class="para">
+<p class="p">Since scalar products are invariant, they are always interesting to
+evaluate. What about the “length” of the four-velocity&nbsp;$u_\mu
+u_\mu$?
+\begin{equation*}
+u_\mu u_\mu=u_t^2-\FLPu^2=\frac{1}{1-v^2}-\frac{v^2}{1-v^2}=1.
+\end{equation*}
+Thus, $u_\mu$ is the <em class="emph">unit four-vector</em>.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch25-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">25–3</span>The four-dimensional gradient</h3>
+
+<div id="Ch25-S3-p1" class="para">
+<p class="p">The next thing that we have to discuss is the four-dimensional analog
+of the gradient. We recall (Chapter&nbsp;<a href="I_14.html">14</a>, Vol.&nbsp;I) that
+the three differential operators $\ddpl{}{x}$, $\ddpl{}{y}$,&nbsp;$\ddpl{}{z}$
+transform like a three-vector and are called the
+gradient. The same scheme ought to work in four dimensions; that is,
+we might guess that the four-dimensional gradient should
+be&nbsp;$(\ddpl{}{t},\ddpl{}{x},\ddpl{}{y},\ddpl{}{z})$. <em class="emph">This is wrong</em>.
+</p>
+</div>
+
+<div id="Ch25-S3-p2" class="para">
+<p class="p">To see the error, consider a scalar function&nbsp;$\phi$ which depends only
+on $x$ and&nbsp;$t$. The change in&nbsp;$\phi$, if we make a small
+change&nbsp;$\Delta t$ in&nbsp;$t$ while holding&nbsp;$x$ constant, is
+\begin{equation}
+\label{Eq:II:25:13}
+\Delta\phi=\ddp{\phi}{t}\,\Delta t.
+\end{equation}
+On the other hand, according to a moving observer,
+\begin{equation*}
+\Delta\phi=\ddp{\phi}{x'}\,\Delta x'+\ddp{\phi}{t'}\,\Delta t'.
+\end{equation*}
+We can express $\Delta x'$ and&nbsp;$\Delta t'$ in terms of&nbsp;$\Delta t$ by
+using Eq.&nbsp;(<a href="#mjx-eqn-EqII251">25.1</a>). Remembering that we are holding&nbsp;$x$
+constant, so that&nbsp;$\Delta x=0$, we write
+\begin{equation*}
+\Delta x'=-\frac{v}{\sqrt{1-v^2}}\,\Delta t;\quad
+\Delta t'=\frac{\Delta t}{\sqrt{1-v^2}}.
+\end{equation*}
+Thus,
+\begin{align*}
+\Delta\phi&=\ddp{\phi}{x'}\Biggl(
+-\frac{v}{\sqrt{1-v^2}}\,\Delta t
+\Biggr)+\ddp{\phi}{t'}\Biggl(
+\frac{\Delta t}{\sqrt{1-v^2}}
+\Biggr)\\[1.5ex]
+&=\biggl(
+\ddp{\phi}{t'}-v\,\ddp{\phi}{x'}
+\biggr)\frac{\Delta t}{\sqrt{1-v^2}}.
+\end{align*}
+Comparing this result with Eq.&nbsp;(<a href="#mjx-eqn-EqII2513">25.13</a>), we learn that
+\begin{equation}
+\label{Eq:II:25:14}
+\ddp{\phi}{t}=\frac{1}{\sqrt{1-v^2}}\biggl(
+\ddp{\phi}{t'}-v\,\ddp{\phi}{x'}
+\biggr).
+\end{equation}
+A similar calculation gives
+\begin{equation}
+\label{Eq:II:25:15}
+\ddp{\phi}{x}=\frac{1}{\sqrt{1-v^2}}\biggl(
+\ddp{\phi}{x'}-v\,\ddp{\phi}{t'}
+\biggr).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch25-S3-p3" class="para">
+<p class="p">Now we can see that the gradient is rather strange. The formulas for
+$x$ and&nbsp;$t$ in terms of $x'$ and&nbsp;$t'$ [obtained by solving
+Eq.&nbsp;(<a href="#mjx-eqn-EqII251">25.1</a>)] are:
+\begin{equation*}
+t=\frac{t'+vx'}{\sqrt{1-v^2}},\quad
+x=\frac{x'+vt'}{\sqrt{1-v^2}}.
+\end{equation*}
+This is the way a four-vector <em class="emph">must</em> transform. But Eqs. (<a href="#mjx-eqn-EqII2514">25.14</a>) and&nbsp;(<a href="#mjx-eqn-EqII2515">25.15</a>) have a couple of signs wrong!
+</p>
+</div>
+
+<div id="Ch25-S3-p4" class="para">
+<p class="p">The answer is that instead of the <em class="emph">incorrect</em>
+$(\ddpl{}{t},\FLPnabla)$, we must <em class="emph">define</em> the
+<em class="emph">four-dimensional gradient</em> operator, which we will
+call&nbsp;$\fournabla$, by
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:25:16}
+\fournabla=\biggl(\ddp{}{t},-\FLPnabla\biggr)=
+\biggl(
+\ddp{}{t},-\ddp{}{x},-\ddp{}{y},-\ddp{}{z}
+\biggr).
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:II:25:16}
+\fournabla&=\biggl(\ddp{}{t},-\FLPnabla\biggr)\\[1ex]
+&=\biggl(\ddp{}{t},-\ddp{}{x},-\ddp{}{y},-\ddp{}{z}\biggr).\notag
+\end{align}
+</span>
+With this definition, the sign difficulties encountered above go away,
+and&nbsp;$\fournabla$ behaves as a four-vector should. (It’s rather awkward
+to have those minus signs, but that’s the way the world is.) Of
+course, what it means to say that $\fournabla$ “behaves like a
+four-vector” is simply that the four-gradient of a scalar is a
+four-vector. If $\phi$ is a true scalar invariant field (Lorentz
+invariant) then $\fournabla\phi$ is a four-vector field.
+</p>
+</div>
+
+<div id="Ch25-S3-p5" class="para">
+<p class="p">All right, now that we have vectors, gradients, and dot products, the
+next thing is to look for an invariant which is analogous to the
+divergence of three-dimensional vector analysis. Clearly, the analog
+is to form the expression&nbsp;$\fournabla b_\mu$, where&nbsp;$b_\mu$ is a
+four-vector field whose components are functions of space and time.
+We <em class="emph">define</em> the <em class="emph">divergence</em>
+of the four-vector&nbsp;$b_\mu=(b_t,\FLPb)$ as the dot product of
+$\fournabla$ and&nbsp;$b_\mu$:
+<span class="eq-wide">
+\begin{equation}
+\begin{aligned}
+\fournabla b_\mu&=\ddp{}{t}\,b_t-
+\biggl(-\ddp{}{x}\biggr)b_x-
+\biggl(-\ddp{}{y}\biggr)b_y-
+\biggl(-\ddp{}{z}\biggr)b_z\\[1ex]
+&=\ddp{}{t}\,b_t+\FLPdiv{\FLPb},
+\end{aligned}
+\label{Eq:II:25:17}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\fournabla b_\mu=\notag\\[1.5ex]
+\ddp{}{t}b_t\!-\!
+\biggl(\!-\ddp{}{x}\!\biggr)b_x\!-\!
+\biggl(\!-\ddp{}{y}\!\biggr)b_y\!-\!
+\biggl(\!-\ddp{}{z}\!\biggr)b_z=\notag\\[1.25ex]
+\label{Eq:II:25:17}
+\ddp{}{t}\,b_t+\FLPdiv{\FLPb},
+\end{gather}
+</span>
+where $\FLPdiv{\FLPb}$ is the ordinary three-divergence of the
+three-vector&nbsp;$\FLPb$. Note that one has to be careful with the signs.
+Some of the minus signs come from the definition of the scalar product,
+Eq.&nbsp;(<a href="#mjx-eqn-EqII257">25.7</a>); the others are required because the space
+components of&nbsp;$\fournabla$ are&nbsp;$-\ddpl{}{x}$, etc., as in
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2516">25.16</a>). The divergence as defined
+by&nbsp;(<a href="#mjx-eqn-EqII2517">25.17</a>) is an invariant and gives the same answer in all
+coordinate systems which differ by a Lorentz transformation.
+</p>
+</div>
+
+<div id="Ch25-S3-p6" class="para">
+<p class="p">Let’s look at a physical example in which the four-divergence shows
+up. We can use it to solve the problem of the fields around a moving
+wire. We have already seen (Section&nbsp;<a href="II_13.html#Ch13-S7">13-7</a>) that the
+electric charge density&nbsp;$\rho$ and the current density&nbsp;$\FLPj$ form a
+four-vector&nbsp;$j_\mu=(\rho,\FLPj)$. If an uncharged wire carries the
+current&nbsp;$j_x$, then in a frame moving past it with velocity&nbsp;$v$
+(along&nbsp;$x$), the wire will have the charge and current density [obtained from
+the Lorentz transformation Eqs.&nbsp;(<a href="#mjx-eqn-EqII251">25.1</a>)] as follows:
+\begin{equation*}
+\rho'=\frac{-vj_x}{\sqrt{1-v^2}},\quad
+j_x'=\frac{j_x}{\sqrt{1-v^2}}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch25-S3-p7" class="para">
+<p class="p">These are just what we found in Chapter&nbsp;<a href="II_13.html">13</a>. We can then use
+these sources in Maxwell’s equations in <em class="emph">the moving system</em> to find the fields.
+</p>
+</div>
+
+<div id="Ch25-S3-p8" class="para">
+<p class="p">The charge conservation law, Section&nbsp;<a href="II_13.html#Ch13-S2">13-2</a>, also takes on
+a simple form in the four-vector notation. Consider the four
+divergence of&nbsp;$j_\mu$:
+\begin{equation}
+\label{Eq:II:25:18}
+\fournabla j_\mu=\ddp{\rho}{t}+\FLPdiv{\FLPj}.
+\end{equation}
+The law of the conservation of charge says that the outflow of current
+per unit volume must equal the negative rate of increase of charge
+density. In other words, that
+\begin{equation*}
+\FLPdiv{\FLPj}=-\ddp{\rho}{t}.
+\end{equation*}
+Putting this into Eq.&nbsp;(<a href="#mjx-eqn-EqII2518">25.18</a>), the law of conservation
+of charge takes on the simple form
+\begin{equation}
+\label{Eq:II:25:19}
+\fournabla j_\mu=0.
+\end{equation}
+Since $\fournabla j_\mu$ is an invariant scalar, if it is zero in one
+frame it is zero in all frames. We have the result that if charge is
+conserved in one coordinate system, it is conserved in all coordinate
+systems moving with uniform velocity.
+</p>
+</div>
+
+<div id="Ch25-S3-p9" class="para">
+<p class="p">As our last example we want to consider the scalar product of the
+gradient operator&nbsp;$\fournabla$ with itself. In three dimensions, such
+a product gives the Laplacian
+\begin{equation*}
+\nabla^2=\FLPdiv{\FLPnabla}=
+\frac{\partial^2}{\partial x^2}+
+\frac{\partial^2}{\partial y^2}+
+\frac{\partial^2}{\partial z^2}.
+\end{equation*}
+What do we get in four dimensions? That’s easy. Following our rules
+for dot products and gradients, we get
+<span class="eq-wide">
+\begin{align*}
+\fournabla\fournabla&=\ddp{}{t}\,\ddp{}{t}-
+\biggl(-\ddp{}{x}\biggr)\biggl(-\ddp{}{x}\biggr)-
+\biggl(-\ddp{}{y}\biggr)\biggl(-\ddp{}{y}\biggr)-
+\biggl(-\ddp{}{z}\biggr)\biggl(-\ddp{}{z}\biggr)\\[1ex]
+&=\frac{\partial^2}{\partial t^2}-\nabla^2.
+\end{align*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+\fournabla\fournabla=\ddp{}{t}\,\ddp{}{t}&-\biggl(-\ddp{}{x}\biggr)\biggl(-\ddp{}{x}\biggr)\\
+&-\biggl(-\ddp{}{y}\biggr)\biggl(-\ddp{}{y}\biggr)\\
+&-\biggl(-\ddp{}{z}\biggr)\biggl(-\ddp{}{z}\biggr)\\
+=\,\frac{\partial^2}{\partial t^2}\;\;&-\;\;\nabla^2.
+\end{align*}
+</span>
+This operator, which is the analog of the three-dimensional Laplacian,
+is called the <em class="emph">D’Alembertian</em> and has a special
+notation:
+\begin{equation}
+\label{Eq:II:25:20}
+\Box^2=\fournabla\fournabla=\frac{\partial^2}{\partial t^2}-\nabla^2.
+\end{equation}
+From its definition it is an invariant scalar operator; if it operates
+on a four-vector field, it produces a new four-vector field. (Some
+people define the D’Alembertian with the opposite sign to
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2520">25.20</a>), so you will have to be careful when reading the
+literature.)
+</p>
+</div>
+
+<div id="Ch25-S3-p10" class="para">
+<p class="p">We have now found four-dimensional equivalents of most of the
+three-dimensional quantities we had listed in
+Table&nbsp;<a href="#Ch25-T1">25–1</a>. (We do not yet have the equivalents of the
+cross product and the curl operation; we won’t get to them until the
+next chapter.) It may help you remember how they go if we put all the
+important definitions and results together in one place, so we have made
+such a summary in Table&nbsp;<a href="#Ch25-T2">25–2</a>.
+</p>
+</div>
+
+<div id="Ch25-T2" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 25–2</span>The important quantities of vector analysis in three and four dimensions.
+</div>
+<div align="center">
+<table class="framed" style="width: 75%" height="248">
+	<tr>
+		<td class="center" height="35">
+		</td>
+		<td class="center" height="35">
+		Three dimensions
+		</td>
+		<td class="center" height="35">
+		&nbsp;</td>
+		<td class="center" height="35">
+		Four dimensions
+		</td>
+	</tr>
+	<tr>
+		<td class="left" height="35">
+		Vector 
+		</td>
+		<td class="left" height="35">
+		$\phantom{\FLPnabla\cdot\,}\FLPA=(A_x,A_y,A_z)$ 
+		</td>
+		<td class="left" height="35">
+		&nbsp;</td>
+		<td class="left" height="35">
+		$\phantom{b_\mu}a_\mu=(a_t,a_x,a_y,a_z)=(a_t,\FLPa)$
+		</td>
+	</tr>
+	<tr>
+		<td class="left" height="35">
+		Scalar product
+		</td>
+		<td class="left" height="35">
+		$\FLPA\cdot\FLPB=A_xB_x+A_yB_y+A_zB_z$
+		</td>
+		<td class="left" height="35">
+		&nbsp;</td>
+		<td class="left" height="35">
+		$a_\mu b_\mu=a_tb_t-a_xb_x-a_yb_y-a_zb_z=a_tb_t-\FLPa\cdot\FLPb$
+		</td>
+	</tr>
+	<tr>
+		<td class="left" height="35">
+		Vector operator		
+		</td>
+		<td class="left" height="35">
+		$\phantom{\FLPA\cdot\,}\FLPnabla=(\ddpl{}{x},\ddpl{}{y},\ddpl{}{z})$
+		</td>
+		<td class="left" height="35">		
+		&nbsp;</td>
+		<td class="left" height="35">		
+		$\kern{8pt}\fournabla=(\ddpl{}{t},-\ddpl{}{x},-\ddpl{}{y},-\ddpl{}{z})=(\ddpl{}{t},-\FLPnabla)$
+		</td>
+	</tr>
+	<tr>
+		<td class="left" height="36">
+		Gradient
+		</td>
+		<td class="left" height="36">
+		$\phantom{\;\cdot\;}\FLPgrad{\psi}=\displaystyle\biggl(
+		\ddp{\psi}{x},\ddp{\psi}{y},\ddp{\psi}{z}\biggr)$ 
+		</td>
+		<td class="left" height="36">
+		&nbsp;</td>
+		<td class="left" height="36">
+		$\phantom{\;}\fournabla\varphi=\displaystyle\biggl( \ddp{\varphi}{t},-\ddp{\varphi}{x},-\ddp{\varphi}{y},-\ddp{\varphi}{z} 
+		\biggr)=\biggl(\ddp{\varphi}{t},-\FLPgrad{\varphi}\biggr)$
+		</td>
+	</tr>
+	<tr>
+		<td class="left" height="36">
+		Divergence
+		</td>
+		<td class="left" height="36">
+		$\FLPdiv{\FLPA}=\displaystyle\ddp{A_x}{x}+\ddp{A_y}{y}+\ddp{A_z}{z}$
+		</td>
+		<td class="left" height="36">
+		&nbsp;</td>
+		<td class="left" height="36">
+		$\fournabla a_\mu=\displaystyle\ddp{a_t}{t}+\ddp{a_x}{x}+\ddp{a_y}{y}+\ddp{a_z}{z}= 
+		\ddp{a_t}{t}+\FLPdiv{\FLPa}$
+		</td>
+	</tr>
+	<tr>
+		<td class="left" height="36">
+		Laplacian and<br>D’Alembertian
+		</td>
+		<td class="left" height="36">
+		$\FLPdiv{\FLPgrad}=\displaystyle\frac{\partial^2}{\partial x^2}+
+		\frac{\partial^2}{\partial y^2}+
+		\frac{\partial^2}{\partial z^2}=\nabla^2$
+		</td>
+		<td class="left" height="36">
+		&nbsp;</td>
+		<td class="left" height="36">
+		$\fournabla\fournabla=\displaystyle\frac{\partial^2}{\partial t^2}- \frac{\partial^2}{\partial 
+		x^2}- \frac{\partial^2}{\partial y^2}- \frac{\partial^2}{\partial z^2}= 
+		\frac{\partial^2}{\partial t^2}-\nabla^2=\Box^2$
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch25-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">25–4</span>Electrodynamics in four-dimensional notation</h3>
+
+<div id="Ch25-S4-p1" class="para">
+<p class="p">We have already encountered the D’Alembertian operator, without giving
+it that name, in Section&nbsp;<a href="II_18.html#Ch18-S6">18-6</a>; the differential
+equations we found there for the potentials can be written in the new
+notations as:
+\begin{equation}
+\label{Eq:II:25:21}
+\Box^2\phi=\frac{\rho}{\epsO},\quad
+\Box^2\FLPA=\frac{\FLPj}{\epsO}.
+\end{equation}
+The four quantities on the right-hand side of the two equations
+in&nbsp;(<a href="#mjx-eqn-EqII2521">25.21</a>) are $\rho$,&nbsp;$j_x$, $j_y$,&nbsp;$j_z$ divided
+by&nbsp;$\epsO$, which is a universal constant which will be the same in all
+coordinate systems if the same unit of charge is used in all frames. So
+the four quantities $\rho/\epsO$,&nbsp;$j_x/\epsO$, $j_y/\epsO$,&nbsp;$j_z/\epsO$
+also transform as a four-vector. We can write them as&nbsp;$j_\mu/\epsO$. The
+D’Alembertian doesn’t change when the coordinate system is changed, so
+the quantities $\phi$,&nbsp;$A_x$, $A_y$,&nbsp;$A_z$ <em class="emph">must also transform</em>
+like a four-vector—which means that they <em class="emph">are</em> the components of
+a four-vector. In short,
+\begin{equation*}
+A_\mu=(\phi,\FLPA)
+\end{equation*}
+is a four-vector. What we call the scalar and vector potentials are
+really different aspects of the same physical thing. They belong
+together. And if they are kept together the relativistic invariance of
+the world is obvious. We call&nbsp;$A_\mu$ the
+<em class="emph">four-potential</em>.
+</p>
+</div>
+
+<div id="Ch25-S4-p2" class="para">
+<p class="p">In the four-vector notation Eqs.&nbsp;(<a href="#mjx-eqn-EqII2521">25.21</a>) become simply
+\begin{equation}
+\label{Eq:II:25:22}
+\Box^2A_\mu=\frac{j_\mu}{\epsO},
+\end{equation}
+The physics of this equation is just the same as Maxwell’s
+equations. But there is some pleasure
+in being able to rewrite them in an elegant form. The pretty form is
+also meaningful; it shows directly the invariance of electrodynamics
+under the Lorentz transformation.
+</p>
+</div>
+
+<div id="Ch25-S4-p3" class="para">
+<p class="p">Remember that Eqs.&nbsp;(<a href="#mjx-eqn-EqII2521">25.21</a>) could be deduced from
+Maxwell’s equations only if we
+imposed the gauge condition
+\begin{equation}
+\label{Eq:II:25:23}
+\ddp{\phi}{t}+\FLPdiv{\FLPA}=0,
+\end{equation}
+which just says&nbsp;$\fournabla A_\mu=0$; the gauge condition says that the
+divergence of the four-vector&nbsp;$A_\mu$ is zero. This condition is called
+the <em class="emph">Lorenz condition</em>. It is very
+convenient because it is an invariant condition and therefore
+Maxwell’s equations stay in
+the form of Eq.&nbsp;(<a href="#mjx-eqn-EqII2522">25.22</a>) for all frames.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch25-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">25–5</span>The four-potential of a moving charge</h3>
+
+<div id="Ch25-S5-p1" class="para">
+<p class="p">Although it is implicit in what we have already said, let us write
+down the transformation laws which give $\phi$ and&nbsp;$\FLPA$ in a moving
+system in terms of $\phi$ and&nbsp;$\FLPA$ in a stationary system. Since
+$A_\mu=(\phi,\FLPA)$ is a four-vector, the equations must look just
+like Eqs.&nbsp;(<a href="#mjx-eqn-EqII251">25.1</a>), except that&nbsp;$t$ is replaced
+by&nbsp;$\phi$, and $\FLPx$ is replaced by&nbsp;$\FLPA$. Thus,
+\begin{equation}
+\label{Eq:II:25:24}
+\begin{alignedat}{2}
+\phi'&=\frac{\phi-vA_x}{\sqrt{1-v^2}},&\quad
+A_y'&=A_y,\\[1ex]
+A_x'&=\frac{A_x-v\phi}{\sqrt{1-v^2}},&\quad
+A_z'&=A_z.
+\end{alignedat}
+\end{equation}
+This assumes that the primed coordinate system is moving with
+speed&nbsp;$v$ in the positive $x$-direction, as measured in the unprimed
+coordinate system.
+</p>
+</div>
+
+<div id="Ch25-F2" class="figure">
+<img src="img/FLP_II/f25-02/f25-02_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 25–2.</span>
+The frame&nbsp;$S'$ moves with velocity&nbsp;$\Figv$ (in the
+  $x$-direction) with respect to&nbsp;$S$. A charge at rest at the origin
+  of&nbsp;$S'$ is at&nbsp;$x=vt$ in&nbsp;$S$. The potentials at&nbsp;$P$ can be computed
+  in either frame.
+</div>
+</div>
+
+<div id="Ch25-S5-p2" class="para">
+<p class="p">We will consider one example of the usefulness of the idea of the
+four-potential. What are the vector and scalar potentials of a
+charge&nbsp;$q$ moving with speed&nbsp;$v$ along the $x$-axis? The problem is easy in a
+coordinate system moving with the charge, since in this system the
+charge is standing still. Let’s say that the charge is at the origin
+of the $S'$-frame, as shown in Fig.&nbsp;<a href="#Ch25-F2">25–2</a>. The scalar
+potential in the moving system is then given by
+\begin{equation}
+\label{Eq:II:25:25}
+\phi'=\frac{q}{4\pi\epsO r'},
+\end{equation}
+$r'$ being the distance from&nbsp;$q$ to the field point, as measured in
+the moving system. The vector potential&nbsp;$\FLPA'$ is, of course, zero.
+</p>
+</div>
+
+<div id="Ch25-S5-p3" class="para">
+<p class="p">Now it is straightforward to find $\phi$ and&nbsp;$\FLPA$, the potentials
+as measured in the stationary coordinates. The inverse relations to
+Eqs.&nbsp;(<a href="#mjx-eqn-EqII2524">25.24</a>) are
+\begin{equation}
+\label{Eq:II:25:26}
+\begin{alignedat}{2}
+\phi&=\frac{\phi'+vA_x'}{\sqrt{1-v^2}},&\quad
+A_y&=A_y',\\[1.5ex]
+A_x&=\frac{A_x'+v\phi'}{\sqrt{1-v^2}},&\quad
+A_z&=A_z'.
+\end{alignedat}
+\end{equation}
+Using the $\phi'$ given by Eq.&nbsp;(<a href="#mjx-eqn-EqII2525">25.25</a>), and
+$\FLPA'=\FLPzero$, we get
+\begin{align*}
+\phi&=\frac{q}{4\pi\epsO}\,\frac{1}{r'\sqrt{1-v^2}}\\[.5ex]
+&=\frac{q}{4\pi\epsO}\,
+\frac{1}{\sqrt{1-v^2}\sqrt{x'^2+y'^2+z'^2}}.
+\end{align*}
+This gives us the scalar potential&nbsp;$\phi$ we would see in&nbsp;$S$, but,
+unfortunately, expressed in terms of the $S'$&nbsp;coordinates. We can get
+things in terms of $t$,&nbsp;$x$, $y$,&nbsp;$z$ by substituting for $t'$,&nbsp;$x'$,
+$y'$, and&nbsp;$z'$, using&nbsp;(<a href="#mjx-eqn-EqII251">25.1</a>). We get
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:25:27}
+\phi=\frac{q}{4\pi\epsO}\,
+\frac{1}{\sqrt{1-v^2}}\,
+\frac{1}{\sqrt{[(x-vt)/\sqrt{1-v^2}]^2+y^2+z^2}}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:II:25:27}
+\phi=\frac{q}{4\pi\epsO}\,
+&\frac{1}{\sqrt{1-v^2}}\;\times\\[-1ex]
+&\frac{1}{\sqrt{[(x-vt)/\sqrt{1-v^2}]^2+y^2+z^2}}.\notag
+\end{align}
+</span>
+Following the same procedure for the components of&nbsp;$\FLPA$, you can
+show that
+\begin{equation}
+\label{Eq:II:25:28}
+\FLPA=\FLPv\phi.
+\end{equation}
+These are the same formulas we derived by a different method in
+Chapter&nbsp;<a href="II_21.html">21</a>.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch25-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">25–6</span>The invariance of the equations of electrodynamics</h3>
+
+<div id="Ch25-S6-p1" class="para">
+<p class="p">We have found that the potentials $\phi$ and&nbsp;$\FLPA$ taken together
+form a four-vector which we call&nbsp;$A_\mu$, and that the wave
+equations—the full equations which determine the&nbsp;$A_\mu$ in terms of
+the&nbsp;$j_\mu$—can be written as in Eq.&nbsp;(<a href="#mjx-eqn-EqII2522">25.22</a>). This
+equation, together with the conservation of charge,
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2519">25.19</a>), gives us the fundamental law of the
+electromagnetic field:
+\begin{equation}
+\label{Eq:II:25:29}
+\Box^2A_\mu=\frac{1}{\epsO}\,j_\mu,\quad
+\fournabla j_\mu=0.
+\end{equation}
+There, in one tiny space on the page, are all of the Maxwell
+equations—beautiful and simple. Did we learn anything from writing
+the equations this way, besides that they are beautiful and simple? In
+the first place, is it anything different from what we had before when
+we wrote everything out in all the various components? Can we from this
+equation deduce something that could not be deduced from the wave
+equations for the potentials in terms of the charges and currents? The
+answer is definitely no. The only thing we have been doing is changing
+the names of things—using a new notation. We have written a square
+symbol to represent the derivatives, but it still means nothing more nor
+less than the second derivative with respect to&nbsp;$t$, minus the second
+derivative with respect to&nbsp;$x$, minus the second derivative with respect
+to&nbsp;$y$, minus the second derivative with respect to&nbsp;$z$. And the&nbsp;$\mu$
+means that we have four equations, one each for $\mu=t$,&nbsp;$x$, $y$,
+or&nbsp;$z$. What then is the significance of the fact that the equations can
+be written in this simple form? From the point of view of deducing
+anything directly, it doesn’t mean anything. Perhaps, though, the
+simplicity of the equations means that nature also has a certain
+simplicity.
+</p>
+</div>
+
+<div id="Ch25-S6-p2" class="para">
+<p class="p">Let us show you something interesting that we have recently
+discovered: <em class="emph">All of the laws of physics can be contained in one
+equation</em>. That equation is
+\begin{equation}
+\label{Eq:II:25:30}
+\mathsf{U}=0.
+\end{equation}
+What a simple equation! Of course, it is necessary to know what the
+symbol means. $\mathsf{U}$ is a physical quantity which we will call the
+“unworldliness” of the situation. And we have a
+formula for it. Here is how you calculate the
+unworldliness. You take all of the known physical
+laws and write them in a special form. For example, suppose you take the
+law of mechanics, $\FLPF=m\FLPa$, and rewrite it
+as&nbsp;$\FLPF-m\FLPa=\FLPzero$. Then you can call&nbsp;$(\FLPF-m\FLPa)$—which
+should, of course, be zero—the “mismatch” of mechanics. Next, you
+take the <em class="emph">square</em> of this mismatch and call it&nbsp;$\mathsf{U}_1$,
+which can be called the “unworldliness of
+mechanical effects.” In other words, you take
+\begin{equation}
+\label{Eq:II:25:31}
+\mathsf{U}_1=(\FLPF-m\FLPa)^2.
+\end{equation}
+Now you write another physical law, say, $\FLPdiv{\FLPE}=\rho/\epsO$
+and define
+\begin{equation*}
+\mathsf{U}_2=\biggl(\FLPdiv{\FLPE}-\frac{\rho}{\epsO}\biggr)^2,
+\end{equation*}
+which you might call “the gaussian unworldliness of electricity.”
+You continue to write&nbsp;$\mathsf{U}_3$, $\mathsf{U}_4$, and so on—one
+for every physical law there is.
+</p>
+</div>
+
+<div id="Ch25-S6-p3" class="para">
+<p class="p">Finally you call the <em class="emph">total</em> unworldliness&nbsp;$\mathsf{U}$ of the
+world the sum of the various unworldlinesses&nbsp;$\mathsf{U}_i$ from all
+the subphenomena that are involved; that is,
+$\mathsf{U}=\sum\mathsf{U}_i$. Then the great “law of nature” is
+\begin{equation}
+\label{Eq:II:25:32}
+\boxed{\mathsf{U}=0.}
+\end{equation}
+This “law” means, of course, that the sum of the squares of all the
+individual mismatches is zero, and the only way the sum of a lot of
+squares can be zero is for each one of the terms to be zero.
+</p>
+</div>
+
+<div id="Ch25-S6-p4" class="para">
+<p class="p">So the “beautifully simple” law in Eq.&nbsp;(<a href="#mjx-eqn-EqII2532">25.32</a>) is
+equivalent to the whole series of equations that you originally wrote
+down. It is therefore absolutely obvious that a simple notation that
+just hides the complexity in the definitions of symbols is not real
+simplicity. <em class="emph">It is just a trick</em>. The beauty that appears in
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2532">25.32</a>)—just from the fact that several equations
+are hidden within it—is no more than a trick. When you unwrap the
+whole thing, you get back where you were before.
+</p>
+</div>
+
+<div id="Ch25-S6-p5" class="para">
+<p class="p">However, there <em class="emph">is</em> more to the simplicity of the laws of
+electromagnetism written in the form of Eq.&nbsp;(<a href="#mjx-eqn-EqII2529">25.29</a>). It
+means more, just as a theory of vector analysis means more. The fact
+that the electromagnetic equations can be written in a very particular
+notation <em class="emph">which was designed</em> for the four-dimensional geometry
+of the Lorentz transformations—in other words, as a vector equation
+in the four-space—means that it is invariant under the Lorentz
+transformations. It is because the Maxwell equations are invariant under those
+transformations that they can be written in a beautiful form.
+</p>
+</div>
+
+<div id="Ch25-S6-p6" class="para">
+<p class="p">It is no accident that the equations of electrodynamics can be written
+in the beautifully elegant form of Eq.&nbsp;(<a href="#mjx-eqn-EqII2529">25.29</a>). The theory
+of relativity was developed <em class="emph">because it was found experimentally</em>
+that the phenomena predicted by Maxwell’s
+equations were the same in all
+inertial systems. And it was precisely by studying the transformation
+properties of Maxwell’s equations that Lorentz
+discovered his transformation as the one which left the equations
+invariant.
+</p>
+</div>
+
+<div id="Ch25-S6-p7" class="para">
+<p class="p">There is, however, another reason for writing our equations this way. It
+has been discovered—after Einstein guessed that it might be so—that <em class="emph">all</em> of the laws
+of physics are invariant under the Lorentz transformation. That is the
+principle of relativity. Therefore, if we invent a notation which shows
+immediately when a law is written down whether it is invariant or not,
+we can be sure that in trying to make new theories we will write only
+equations which are consistent with the principle of relativity.
+</p>
+</div>
+
+<div id="Ch25-S6-p8" class="para">
+<p class="p">The fact that the Maxwell equations are simple in this
+particular notation is not a miracle, because the notation was invented
+with them in mind. But the interesting physical thing is that
+<em class="emph">every law</em> of physics—the propagation of meson waves or the
+behavior of neutrinos in beta decay, and so forth—must have this same
+invariance under the same transformation. Then when you are moving at a
+uniform velocity in a spaceship, all of the laws of nature transform
+together in such a way that no new phenomenon will show up. It is
+because the principle of relativity is a fact of nature that in the
+notation of four-dimensional vectors the equations of the world will
+look simple.
+</p>
+</div>
+
+</div> <!--end of last section -->
+
+<ol id="footnotes">
+<li class="footnote">
+	<a name="footnote_1"></a>
+	You may well ask: Why not consider the reactions
+	\begin{equation*}
+	\text{P}+\text{P}\to
+	\text{P}+\text{P}+\overline{\text{P}},
+	\end{equation*}
+	or even
+	\begin{equation*}
+	\text{P}+\text{P}\to
+	\text{P}+\overline{\text{P}}
+	\end{equation*}
+	which clearly require less energy? The answer is that a principle
+	called <em class="emph">conservation of baryons</em> tells us the quantity “number
+	of protons minus number of antiprotons” cannot change. This quantity
+	is&nbsp;$2$ on the left side of our reaction. Therefore, if we want an
+	antiproton on the right side, we must have also <em class="emph">three</em> protons
+	(or other baryons).
+	<a href="#footnote_source_1">↩</a>
+</li>
+</ol>
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

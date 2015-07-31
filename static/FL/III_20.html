@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 20: Operators</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "20." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dagger", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch20" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">20</span>Operators</h2>
+<div id="Ch20-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">20–1</span>Operations and operators</h3>
+<div id="Ch20-S1-p1" class="para">
+<p class="p">All the things we have done so far in quantum mechanics could be
+handled with ordinary algebra, although we did from time to time show
+you some special ways of writing quantum-mechanical quantities and
+equations. We would like now to talk some more about some interesting
+and useful mathematical ways of describing quantum-mechanical
+things. There are many ways of approaching the subject of quantum
+mechanics, and most books use a different approach from the one we
+have taken. As you go on to read other books you might not see right
+away the connections of what you will find in them to what we have
+been doing. Although we will also be able to get a few useful results,
+the main purpose of this chapter is to tell you about some of the
+different ways of writing the same physics. Knowing them you should be
+able to understand better what other people are saying. When people
+were first working out classical mechanics they always wrote all the
+equations in terms of $x$-, $y$-, and $z$-components. Then someone
+came along and pointed out that all of the writing could be made much
+simpler by inventing the vector notation. It’s true that when you come
+down to figuring something out you often have to convert the vectors
+back to their components. But it’s generally much easier to see what’s
+going on when you work with vectors and also easier to do many of the
+calculations. In quantum mechanics we were able to write many things
+in a simpler way by using the idea of the “state vector.” The state
+vector $\ket{\psi}$ has, of course, nothing to do with geometric
+vectors in three dimensions but is an abstract symbol that
+<em class="emph">stands for a physical state</em>, identified by the “label,” or
+“name,” $\psi$. The idea is useful because the laws of quantum
+mechanics can be written as algebraic equations in terms of these
+symbols. For instance, our fundamental law that any state can be made
+up from a linear combination of base states is written as
+\begin{equation}
+\label{Eq:III:20:1}
+\ket{\psi}=\sum_iC_i\,\ket{i},
+\end{equation}
+where the $C_i$ are a set of ordinary (complex) numbers—the
+amplitudes $C_i=\braket{i}{\psi}$—while $\ket{1}$, $\ket{2}$,
+$\ket{3}$, and so on, stand for the base states in some base, or
+<em class="emph">representation</em>.</p>
+</div>
+
+<div id="Ch20-S1-p2" class="para">
+<p class="p">If you take some physical state and do something to it—like rotating
+it, or like waiting for the time $\Delta t$—you get a different
+state. We say, “performing an operation on a state produces a new
+state.” We can express the same idea by an equation:
+\begin{equation}
+\label{Eq:III:20:2}
+\ket{\phi}=\Aop\,\ket{\psi}.
+\end{equation}
+An operation on a state produces another state. The
+<em class="emph">operator</em> $\Aop$ stands for some particular operation. When this
+operation is performed on any state, say $\ket{\psi}$, it produces some
+other state $\ket{\phi}$.</p>
+</div>
+
+<div id="Ch20-S1-p3" class="para">
+<p class="p">What does Eq. (<a href="#mjx-eqn-EqIII202">20.2</a>) mean? We <em class="emph">define</em> it this
+way. If you multiply the equation by $\bra{i}$ and expand $\ket{\psi}$
+according to Eq. (<a href="#mjx-eqn-EqIII201">20.1</a>), you get
+\begin{equation}
+\label{Eq:III:20:3}
+\braket{i}{\phi}=\sum_j\bracket{i}{\Aop}{j}\braket{j}{\psi}.
+\end{equation}
+(The states $\ket{j}$ are from the same set as $\ket{i}$.) This is now
+just an algebraic equation. The numbers $\braket{i}{\phi}$ give the
+amount of each base state you will find in $\ket{\phi}$, and it is
+given in terms of a linear superposition of the
+amplitudes $\braket{j}{\psi}$ that you find $\ket{\psi}$ in each base state. The
+numbers $\bracket{i}{\Aop}{j}$ are just the coefficients which tell
+how much of $\braket{j}{\psi}$ goes into each sum. The operator $\Aop$
+is described numerically by the set of numbers, or “matrix,”
+\begin{equation}
+\label{Eq:III:20:4}
+A_{ij}\equiv\bracket{i}{\Aop}{j}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch20-S1-p4" class="para">
+<p class="p">So Eq. (<a href="#mjx-eqn-EqIII202">20.2</a>) is a high-class way of writing
+Eq. (<a href="#mjx-eqn-EqIII203">20.3</a>). Actually it is a little more than that;
+something more is implied. In Eq. (<a href="#mjx-eqn-EqIII202">20.2</a>) we do not make
+any reference to a set of base states. Equation (<a href="#mjx-eqn-EqIII203">20.3</a>) is
+an image of Eq. (<a href="#mjx-eqn-EqIII202">20.2</a>) in terms of some set of base
+states. But, as you know, you may use any set you wish. And this idea is
+implied in Eq. (<a href="#mjx-eqn-EqIII202">20.2</a>). The operator way of writing avoids
+making any particular choice. Of course, when you want to get definite
+you have to choose <em class="emph">some</em> set. When you make your choice, you use
+Eq. (<a href="#mjx-eqn-EqIII203">20.3</a>). So the <em class="emph">operator</em>
+equation (<a href="#mjx-eqn-EqIII202">20.2</a>) is a more abstract way of writing the
+<em class="emph">algebraic</em> equation (<a href="#mjx-eqn-EqIII203">20.3</a>). It’s similar to the
+difference between writing
+\begin{equation*}
+\FLPc=\FLPa\times\FLPb
+\end{equation*}
+instead of
+\begin{aligned}
+c_x&=a_yb_z-a_zb_y,\\[.5ex]
+c_y&=a_zb_x-a_xb_z,\\[.5ex]
+c_z&=a_xb_y-a_yb_x.
+\end{aligned}
+The first way is much handier. When you want <em class="emph">results</em>, however,
+you will eventually have to give the components with respect to some
+set of axes. Similarly, if you want to be able to say what you really
+mean by $\Aop$, you will have to be ready to give the matrix $A_{ij}$
+in terms of <em class="emph">some</em> set of base states. So long as you have in
+mind some set $\ket{i}$, Eq. <a href="#mjx-eqn-EqIII202">20.2</a> means just the same
+as Eq. <a href="#mjx-eqn-EqIII203">20.3</a>. (You should remember also that once you
+know a matrix for one particular set of base states you can always
+calculate the corresponding matrix that goes with any other base. You
+can transform the matrix from one “representation” to another.)	
+</p>
+</div>
+
+<div id="Ch20-S1-p5" class="para">
+<p class="p">The operator equation in <a href="#mjx-eqn-EqIII202">20.2</a> also allows a new way of
+thinking. If we imagine some operator $\Aop$, we can use it with any
+state $\ket{\psi}$ to create a new state $\Aop\,\ket{\psi}$. Sometimes
+a “state” we get this way may be very peculiar—it may not
+represent any <em class="emph">physical</em> situation we are likely to encounter in
+nature. (For instance, we may get a state that is not normalized to
+represent one electron.) In other words, we may at times get
+“states” that are mathematically artificial. Such artificial
+“states” may still be useful, perhaps as the mid-point of some
+calculation.
+</p>
+</div>
+
+<div id="Ch20-S1-p6" class="para">
+<p class="p">We have already shown you many examples of quantum-mechanical
+operators. We have had the rotation operator $\Rop_y(\theta)$ which
+takes a state $\ket{\psi}$ and produces a new state, which is the old
+state as seen in a rotated coordinate system. We have had the parity
+(or inversion) operator $\Pop$, which makes a new state by reversing
+all coordinates. We have had the operators $\sigmaop_x$, $\sigmaop_y$,
+and $\sigmaop_z$ for spin one-half particles.
+</p>
+</div>
+
+<div id="Ch20-S1-p7" class="para">
+<p class="p">The operator $\Jop_z$ was defined in Chapter <a href="III_17.html">17</a> in terms
+of the rotation operator for a small angle $\epsilon$.
+\begin{equation}
+\label{Eq:III:20:5}
+\Rop_z(\epsilon)=1+\frac{i}{\hbar}\,\epsilon\,\Jop_z.
+\end{equation}
+This just means, of course, that
+\begin{equation}
+\label{Eq:III:20:6}
+\Rop_z(\epsilon)\,\ket{\psi}=\ket{\psi}+
+\frac{i}{\hbar}\,\epsilon\,\Jop_z\,\ket{\psi}.
+\end{equation}
+In this example, $\Jop_z\,\ket{\psi}$ is $\hbar/i\epsilon$ times the
+state you get if you rotate $\ket{\psi}$ by the small angle $\epsilon$
+and then subtract the original state. It represents a “state” which
+is the <em class="emph">difference</em> of two states.
+</p>
+</div>
+
+<div id="Ch20-S1-p8" class="para">
+<p class="p">One more example. We had an operator $\pop_x$—called the momentum
+operator ($x$-component) defined in an equation
+like <a href="#mjx-eqn-EqIII206">20.6</a>. If $\Dop_x(L)$ is the operator which displaces
+a state along $x$ by the distance $L$, then $\pop_x$ is defined by
+\begin{equation}
+\label{Eq:III:20:7}
+\Dop_x(\delta)=1+\frac{i}{\hbar}\,\delta\pop_x,
+\end{equation}
+where $\delta$ is a small displacement. Displacing the
+state $\ket{\psi}$ along $x$ by a small distance $\delta$ gives a new
+state $\ket{\psi'}$.  We are saying that this new state is the old state
+plus a small new piece
+\begin{equation*}
+\frac{i}{\hbar}\,\delta\pop_x\,\ket{\psi}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch20-S1-p9" class="para">
+<p class="p">The operators we are talking about work on a state vector
+like $\ket{\psi}$, which is an abstract description of a physical
+situation. They are quite different from <em class="emph">algebraic</em>
+operators which work on mathematical functions. For instance, $d/dx$ is an
+“operator” that works on $f(x)$ by changing it to a new
+function $f'(x)=df/dx$. Another example is the algebraic
+operator $\nabla^2$. You can see why the same word is used in both
+cases, but you should keep in mind that the two kinds of operators are
+different. A quantum-mechanical operator $\Aop$ does <em class="emph">not</em> work on
+an algebraic function, but on a state vector like $\ket{\psi}$. Both
+kinds of operators are used in quantum mechanics and often in similar
+kinds of equations, as you will see a little later. When you are first
+learning the subject it is well to keep the distinction always in mind.
+Later on, when you are more familiar with the subject, you will find
+that it is less important to keep any sharp distinction between the two
+kinds of operators. You will, indeed, find that most books generally use
+the same notation for both!
+</p>
+</div>
+
+
+<div id="Ch20-S1-p10" class="para">
+<p class="p">We’ll go on now and look at some useful things you can do with
+operators. But first, one special remark. Suppose we have an
+operator $\Aop$ whose matrix in some base
+is $A_{ij}\equiv\bracket{i}{\Aop}{j}$. The amplitude that the
+state $\Aop\,\ket{\psi}$ is also in some other state $\ket{\phi}$
+is $\bracket{\phi}{\Aop}{\psi}$. Is there some meaning to the complex
+conjugate of this amplitude? You should be able to show that
+\begin{equation}
+\label{Eq:III:20:8}
+\bracket{\phi}{\Aop}{\psi}\cconj=\bracket{\psi}{\Aop\adj}{\phi},
+\end{equation}
+where $\Aop\adj$ (read “A dagger”) is an operator whose matrix
+elements are
+\begin{equation}
+\label{Eq:III:20:9}
+A_{ij}\adj=(A_{ji})\cconj.
+\end{equation}
+To get the $i,j$ element of $A\adj$ you go to the $j,i$ element
+of $\Aop$ (the indexes are reversed) and take its complex conjugate. The
+amplitude that the state $\Aop\adj\,\ket{\phi}$ is in $\ket{\psi}$ is
+the complex conjugate of the amplitude that $\Aop\,\ket{\psi}$ is
+in $\ket{\phi}$. The operator $\Aop\adj$ is called the
+“Hermitian adjoint” of $\Aop$.
+Many important operators of quantum mechanics have the special property
+that when you take the Hermitian adjoint, you get the same operator
+back. If $\Bop$ is such an operator, then
+\begin{equation*}
+\Bop\adj=\Bop,
+\end{equation*}
+and it is called a “self-adjoint” or “Hermitian,” operator.
+</p>
+</div>
+</div>
+
+
+<div id="Ch20-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">20–2</span>Average energies</h3>
+
+
+<div id="Ch20-S2-p1" class="para">
+<p class="p">So far we have reminded you mainly of what you already know. Now we
+would like to discuss a new question. How would you find the
+<em class="emph">average</em> energy of a system—say, an atom? If an atom is in a
+particular state of definite energy and you measure the energy, you
+will find a certain energy $E$. If you keep repeating the measurement
+on each one of a whole series of atoms which are all selected to be in
+the same state, all the measurements will give $E$, and the
+“average” of your measurements will, of course, be just $E$.
+</p>
+</div>
+
+<div id="Ch20-S2-p2" class="para">
+<p class="p">Now, however, what happens if you make the measurement on some
+state $\ket{\psi}$ which is <em class="emph">not</em> a stationary state? Since the system
+does not have a definite energy, one measurement would give one
+energy, the same measurement on another atom in the same state would
+give a different energy, and so on. What would you get for the average
+of a whole series of energy measurements?
+</p>
+</div>
+
+<div id="Ch20-S2-p3" class="para">
+<p class="p">We can answer the question by projecting the state $\ket{\psi}$ onto
+the set of states of definite energy. To remind you that this is a
+special base set, we’ll call the states $\ket{\eta_i}$. Each of the
+states $\ket{\eta_i}$ has a definite energy $E_i$. In this
+representation,
+\begin{equation}
+\label{Eq:III:20:10}
+\ket{\psi}=\sum_iC_i\,\ket{\eta_i}.
+\end{equation}
+When you make an energy measurement and get some number $E_i$, you
+have found that the system was in the state $\eta_i$. But you may get
+a different number for each measurement. Sometimes you will get $E_1$,
+sometimes $E_2$, sometimes $E_3$, and so on. The <em class="emph">probability</em>
+that you observe the energy $E_1$ is just the probability of finding
+the system in the state $\ket{\eta_1}$, which is, of course, just the
+absolute square of the amplitude $C_1=\braket{\eta_1}{\psi}$. The
+probability of finding each of the possible energies $E_i$ is
+\begin{equation}
+\label{Eq:III:20:11}
+P_i=\abs{C_i}^2.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch20-S2-p4" class="para">
+<p class="p">How are these probabilities related to the mean value of a whole
+sequence of energy measurements? Let’s imagine that we get a series of
+measurements like this: $E_1$, $E_7$, $E_{11}$, $E_9$, $E_1$,
+$E_{10}$, $E_7$, $E_2$, $E_3$, $E_9$, $E_6$, $E_4$, and so on. We
+continue for, say, a thousand measurements. When we are finished we
+add all the energies and divide by one thousand. That’s what we mean
+by the average. There’s also a short-cut to adding all the
+numbers. You can count up how many times you get $E_1$, say that
+is $N_1$, and then count up the number of times you get $E_2$, call
+that $N_2$, and so on. The sum of all the energies is certainly just
+\begin{equation*}
+N_1E_1+N_2E_2+N_3E_3+\dotsb{}=\sum_iN_iE_i.
+\end{equation*}
+The average energy is this sum divided by the total number of
+measurements which is just the sum of all the $N_i$'s, which we can
+call $N$;
+\begin{equation}
+\label{Eq:III:20:12}
+E_{\text{av}}=\frac{\sum_iN_iE_i}{N}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch20-S2-p5" class="para">
+<p class="p">We are almost there. What we <em class="emph">mean</em> by the probability of
+something happening is just the number of times we expect it to happen
+divided by the total number of tries. The ratio $N_i/N$ should—for
+large $N$—be very near to $P_i$, the probability of finding the
+state $\ket{\eta_i}$, although it will not be exactly $P_i$ because of
+the statistical fluctuations. Let’s write the predicted (or
+“expected”) average energy as $\av{E}$; then we can say that
+\begin{equation}
+\label{Eq:III:20:13}
+\av{E}=\sum_iP_iE_i.
+\end{equation}
+The same arguments apply for any measurement. The average value of a
+measured quantity $A$ should be equal to
+\begin{equation*}
+\av{A}=\sum_iP_iA_i,
+\end{equation*}
+where $A_i$ are the various possible values of the observed quantity,
+and $P_i$ is the probability of getting that value.
+</p>
+</div>
+
+<div id="Ch20-S2-p6" class="para">
+<p class="p">Let’s go back to our quantum-mechanical state $\ket{\psi}$. It’s
+average energy is
+\begin{equation}
+\label{Eq:III:20:14}
+\av{E}=\sum_i\abs{C_i}^2E_i=\sum_iC_i\cconj C_iE_i.
+\end{equation}
+Now watch this trickery! First, we write the sum as
+\begin{equation}
+\label{Eq:III:20:15}
+\sum_i\braket{\psi}{\eta_i}E_i\braket{\eta_i}{\psi}.
+\end{equation}
+Next we treat the left-hand $\bra{\psi}$ as a common “factor.” We
+can take this factor out of the sum, and write it as
+\begin{equation*}
+\bra{\psi}\,\biggl\{\sum_i\ket{\eta_i}E_i\braket{\eta_i}{\psi}\biggr\}.
+\end{equation*}
+This expression has the form
+\begin{equation*}
+\braket{\psi}{\phi},
+\end{equation*}
+where $\ket{\phi}$ is some “cooked-up” state defined by
+\begin{equation}
+\label{Eq:III:20:16}
+\ket{\phi}=\sum_i\ket{\eta_i}E_i\braket{\eta_i}{\psi}.
+\end{equation}
+It is, in other words, the state you get if you take each base
+state $\ket{\eta_i}$ in the amount $E_i\braket{\eta_i}{\psi}$.
+</p>
+</div>
+
+<div id="Ch20-S2-p7" class="para">
+<p class="p">Now remember what we mean by the states $\ket{\eta_i}$. They are
+supposed to be the stationary states—by which we mean that for each
+one,
+\begin{equation*}
+\Hop\,\ket{\eta_i}=E_i\,\ket{\eta_i}.
+\end{equation*}
+Since $E_i$ is just a number, the right-hand side is the same
+as $\ket{\eta_i}E_i$, and the sum in Eq. <a href="#mjx-eqn-EqIII2016">20.16</a> is the
+same as
+\begin{equation*}
+\sum_i\Hop\,\ket{\eta_i}\braket{\eta_i}{\psi}.
+\end{equation*}
+Now $i$ appears only in the famous combination that contracts to
+unity, so
+\begin{equation*}
+\sum_i\Hop\,\ket{\eta_i}\braket{\eta_i}{\psi}=
+\Hop\sum_i\ket{\eta_i}\braket{\eta_i}{\psi}=\Hop\,\ket{\psi}.
+\end{equation*}
+Magic! Equation <a href="#mjx-eqn-EqIII2016">20.16</a> is the same as
+\begin{equation}
+\label{Eq:III:20:17}
+\ket{\phi}=\Hop\,\ket{\psi}.
+\end{equation}
+The average energy of the state $\ket{\psi}$ can be written very
+prettily as
+\begin{equation}
+\label{Eq:III:20:18}
+\av{E}=\bracket{\psi}{\Hop}{\psi}.
+\end{equation}
+To get the average energy you operate on $\ket{\psi}$ with $\Hop$, and
+then multiply by $\bra{\psi}$. A simple result.
+</p>
+</div>
+
+<div id="Ch20-S2-p8" class="para">
+<p class="p">Our new formula for the average energy is not only pretty. It is also
+useful, because now we don’t need to say anything about any particular
+set of base states. We don’t even have to know all of the possible
+energy levels. When we go to calculate, we’ll need to describe our
+state in terms of <em class="emph">some</em> set of base states, but if we know the
+Hamiltonian matrix $H_{ij}$ for <em class="emph">that</em> set we can get the average
+energy. Equation <a href="#mjx-eqn-EqIII2018">20.18</a> says that for <em class="emph">any</em> set of
+base states $\ket{i}$, the average energy can be calculated from
+\begin{equation}
+\label{Eq:III:20:19}
+\av{E}=\sum_{ij}\braket{\psi}{i}\bracket{i}{\Hop}{j}\braket{j}{\psi},
+\end{equation}
+where the amplitudes $\bracket{i}{\Hop}{j}$ are just the elements of
+the matrix $H_{ij}$.
+</p>
+</div>
+
+<div id="Ch20-S2-p9" class="para">
+<p class="p">Let’s check this result for the special case that the states $\ket{i}$
+are the definite energy states. For them,
+$\Hop\,\ket{j}=E_j\,\ket{j}$,
+so $\bracket{i}{\Hop}{j}=E_j\,\delta_{ij}$ and
+\begin{equation*}
+\av{E}=\sum_{ij}\braket{\psi}{i}E_j\delta_{ij}\braket{j}{\psi}=
+\sum_iE_i\braket{\psi}{i}\braket{i}{\psi},
+\end{equation*}
+which is right.
+</p>
+</div>
+
+<div id="Ch20-S2-p10" class="para">
+<p class="p">Equation <a href="#mjx-eqn-EqIII2019">20.19</a> can, incidentally, be extended to other
+physical measurements which you can express as an operator. For
+instance, $\Lop_z$ is the operator of the $z$-component of the angular
+momentum $\FLPL$. The average of the $z$-component for the
+state $\ket{\psi}$ is
+\begin{equation*}
+\av{L_z}=\bracket{\psi}{\Lop_z}{\psi}.
+\end{equation*}
+One way to prove it is to think of some situation in which the energy
+is proportional to the angular momentum. Then all the arguments go
+through in the same way.
+</p>
+</div>
+
+<div id="Ch20-S2-p11" class="para">
+<p class="p">In summary, if a physical observable $A$ is related to a suitable
+quantum-mechanical operator $\Aop$, the average value of $A$ for the
+state $\ket{\psi}$ is given by
+\begin{equation}
+\label{Eq:III:20:20}
+\av{A}=\bracket{\psi}{\Aop}{\psi}.
+\end{equation}
+By this we mean that
+\begin{equation}
+\label{Eq:III:20:21}
+\av{A}=\braket{\psi}{\phi},
+\end{equation}
+with
+\begin{equation}
+\label{Eq:III:20:22}
+\ket{\phi}=\Aop\,\ket{\psi}.
+\end{equation}
+</p>
+</div>
+</div>
+
+<div id="Ch20-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">20–3</span>The average energy of an atom</h3>
+
+<div id="Ch20-S3-p1" class="para">
+<p class="p">Suppose we want the average energy of an atom in a state described by
+a wave function $\psi(\FLPr)$; How do we find it? Let’s first think of
+a one-dimensional situation with a state $\ket{\psi}$ defined by the
+amplitude $\braket{x}{\psi}=\psi(x)$. We are asking for the special
+case of Eq. <a href="#mjx-eqn-EqIII2019">20.19</a> applied to the coordinate
+representation. Following our usual procedure, we replace the states
+$\ket{i}$ and $\ket{j}$ by $\ket{x}$ and $\ket{x'}$, and change the
+sums to integrals. We get
+\begin{equation}
+\label{Eq:III:20:23}
+\av{E}=\!\int\!\!\!\int\braket{\psi}{x}\bracket{x}{\Hop}{x'}
+\braket{x'}{\psi}\,dx\,dx'\!.
+\end{equation}
+This integral can, if we wish, be written in the following way:
+\begin{equation}\label{Eq:III:20:24}
+\int\braket{\psi}{x}\braket{x}{\phi}\,dx,
+\end{equation}
+with
+\begin{equation}
+\label{Eq:III:20:25}
+\braket{x}{\phi}=\int\bracket{x}{\Hop}{x'}\braket{x'}{\psi}\,dx'.
+\end{equation}
+The integral over $x'$ in <a href="#mjx-eqn-EqIII2025">20.25</a> is the same one we had
+in Chapter <a href="III_16.html">16</a>—see Eq. <a href="III_16.html#mjx-eqn-EqIII1650">16.50</a> and
+Eq. <a href="III_16.html#mjx-eqn-EqIII1652">16.52</a>—and is equal to
+\begin{equation*}
+-\frac{\hbar^2}{2m}\,\frac{d^2}{dx^2}\,\psi(x)+V(x)\psi(x).
+\end{equation*}
+We can therefore write
+\begin{equation}
+\label{Eq:III:20:26}
+\braket{x}{\phi}=\biggl\{\!
+-\frac{\hbar^2}{2m}\,\frac{d^2}{dx^2}+V(x)\biggr\}\psi(x).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch20-S3-p2" class="para">
+<p class="p">Remember that $\braket{\psi}{x}=$ $\braket{x}{\psi}\cconj=$ $\psi\cconj(x)$;
+using this equality, the average energy in Eq. <a href="#mjx-eqn-EqIII2023">20.23</a>
+can be written as
+\begin{equation}
+\label{Eq:III:20:27}
+\av{E}=\!\int\!\psi\cconj(x)\biggl\{\!
+-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}\!+\!V(x)\!\biggr\}\psi(x)\,dx.
+\end{equation}
+Given a wave function $\psi(x)$, you can get the average energy by
+doing this integral. You can begin to see how we can go back and forth
+from the state-vector ideas to the wave-function ideas.
+</p>
+</div>
+
+<div id="Ch20-S3-p3" class="para">
+<p class="p">The quantity in the braces of Eq. <a href="#mjx-eqn-EqIII2027">20.27</a> is an
+<em class="emph">algebraic</em> operator.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> We will write it as $\Hcalop$
+\begin{equation*}
+\Hcalop=-\frac{\hbar^2}{2m}\,\frac{d^2}{dx^2}+V(x).
+\end{equation*}
+With this notation Eq. <a href="#mjx-eqn-EqIII2023">20.23</a> becomes
+\begin{equation}
+\label{Eq:III:20:28}
+\av{E}=\int\psi\cconj(x)\Hcalop\psi(x)\,dx.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch20-S3-p4" class="para">
+<p class="p">The algebraic operator $\Hcalop$ defined here is, of course, not
+identical to the quantum-mechanical operator $\Hop$. The new operator
+works on a function of position $\psi(x)=\braket{x}{\psi}$ to give a
+new function of $x$, $\phi(x)=\braket{x}{\phi}$; while $\Hop$ operates
+on a state vector $\ket{\psi}$ to give another state
+vector $\ket{\phi}$, without implying the coordinate representation or any
+particular representation at all. Nor is $\Hcalop$ strictly the same
+as $\Hop$ even in the coordinate representation. If we choose to work
+in the coordinate representation, we would interpret $\Hop$ in terms
+of a matrix $\bracket{x}{\Hop}{x'}$ which depends somehow on the two
+“indices” $x$ and $x'$; that is, we expect—according to
+Eq. <a href="#mjx-eqn-EqIII2025">20.25</a>—that $\braket{x}{\phi}$ is related to all the
+amplitudes $\braket{x}{\psi}$ by an integration. On the other hand, we
+find that $\Hcalop$ is a differential operator. We have already worked
+out in Section <a href="III_16.html#Ch16-S5">16–5</a> the connection
+between $\bracket{x}{\Hop}{x'}$ and the algebraic operator $\Hcalop$.
+</p>
+</div>
+
+<div id="Ch20-S3-p5" class="para">
+<p class="p">We should make one qualification on our results. We have been assuming
+that the amplitude $\psi(x)=\braket{x}{\psi}$ is normalized. By this
+we mean that the scale has been chosen so that
+\begin{equation*}
+\int\abs{\psi(x)}^2\,dx=1;
+\end{equation*}
+so the probability of finding the electron <em class="emph">somewhere</em> is
+unity. If you should choose to work with a $\psi(x)$ which is not
+normalized you should write
+\begin{equation}
+\label{Eq:III:20:29}
+\av{E}=\frac{\int\psi\cconj(x)\Hcalop\psi(x)\,dx}
+{\int\psi\cconj(x)\psi(x)\,dx}.
+\end{equation}
+It’s the same thing.
+</p>
+</div>
+
+<div id="Ch20-S3-p6" class="para">
+<p class="p">Notice the similarity in form between Eq. <a href="#mjx-eqn-EqIII2028">20.28</a> and
+Eq. <a href="#mjx-eqn-EqIII2018">20.18</a>. These two ways of writing the same result
+appear often when you work with the $x$-representation. You can go
+from the first form to the second with any $\Aop$ which is a
+<em class="emph">local</em> operator, where a local operator is one which in the
+integral
+\begin{equation*}
+\int\bracket{x}{\Aop}{x'}\braket{x'}{\psi}\,dx'
+\end{equation*}
+can be written as $\Acalop\psi(x)$, where $\Acalop$ is a differential
+algebraic operator. There are, however, operators for which this is
+not true. For them you must work with the basic equations in
+<a href="#mjx-eqn-EqIII2021">20.21</a> and <a href="#mjx-eqn-EqIII2022">20.22</a>.
+</p>
+</div>
+
+<div id="Ch20-S3-p7" class="para">
+<p class="p">You can easily extend the derivation to three dimensions. The result
+is that<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+\begin{equation}
+\label{Eq:III:20:30}
+\av{E}=\int\psi\cconj(\FLPr)\Hcalop\psi(\FLPr)\,dV,
+\end{equation}
+with
+\begin{equation}
+\label{Eq:III:20:31}
+\Hcalop=-\frac{\hbar^2}{2m}\,\nabla^2+V(\FLPr),
+\end{equation}
+and with the understanding that
+\begin{equation}
+\label{Eq:III:20:32}
+\int\abs{\psi}^2\,dV=1.
+\end{equation}
+The same equations can be extended to systems with several electrons
+in a fairly obvious way, but we won’t bother to write down the
+results.
+</p>
+</div>
+
+<div id="Ch20-S3-p8" class="para">
+<p class="p">With Eq. <a href="#mjx-eqn-EqIII2030">20.30</a> we can calculate the average
+energy of an atomic state even without knowing its energy levels. All we
+need is the wave function. It’s an important law. We’ll tell you about
+one interesting application. Suppose you want to know the ground-state
+energy of some system—say the helium atom, but it’s too hard to solve
+Schrödinger’s equation for the wave function, because there are too many
+variables. Suppose, however, that you take a guess at the wave
+function—pick any function you like—and calculate the average
+energy. That is, you use Eq. <a href="#mjx-eqn-EqIII2029">20.29</a>—generalized to three
+dimensions-to find what the average energy would be if the atom were
+really in the state described by this wave function. This energy will
+certainly be higher than the ground-state energy which is the
+lowest possible energy the atom can have.<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a>
+Now pick another function and
+calculate its average energy. If it is lower than your first choice
+you are getting closer to the true ground-state energy. If you keep on
+trying all sorts of artificial states you will be able to get lower
+and lower energies, which come closer and closer to the ground-state
+energy. If you are clever, you will try some functions which have a
+few adjustable parameters. When you calculate the energy it will be
+expressed in terms of these parameters. By varying the parameters to
+give the lowest possible energy, you are trying out a whole class of
+functions at once. Eventually you will find that it is harder and
+harder to get lower energies and you will begin to be convinced that
+you are fairly close to the lowest possible energy. The helium atom
+has been solved in just this way—not by solving a differential
+equation, but by making up a special function with a lot of adjustable
+parameters which are eventually chosen to give the lowest possible
+value for the average energy.
+</p>
+</div>
+</div>
+
+<div id="Ch20-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">20–4</span>The position operator</h3>
+
+<div id="Ch20-S4-p1" class="para">
+<p class="p">What is the average value of the position of an electron in an atom?
+For any particular state $\ket{\psi}$ what is the average value of the
+coordinate $x$? We’ll work in one dimension and let you extend the
+ideas to three dimensions or to systems with more than one particle:
+We have a state described by $\psi(x)$, and we keep measuring $x$ over
+and over again. What is the average? It is
+\begin{equation*}
+\int xP(x)\,dx,
+\end{equation*}
+where $P(x)\,dx$ is the probability of finding the electron in a
+little element $dx$ at $x$. Suppose the probability density $P(x)$
+varies with $x$ as shown in Fig. <a href="#Ch20-F1">20–1</a>. 
+The electron is most likely
+to be found near the peak of the curve. The average value of $x$ is
+also somewhere near the peak. It is, in fact, just the center of
+gravity of the area under the curve.
+</p>
+</div>
+
+<div id="Ch20-F1" class="figure">
+<img src="img/FLP_III/f20-01/f20-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–1.</span>A curve of probability density representing a localized
+particle.
+</div>
+</div>
+
+<div id="Ch20-S4-p2" class="para">
+<p class="p">We have seen earlier that $P(x)$ is
+just $\abs{\psi(x)}^2=\psi\cconj(x)\psi(x)$, so we can write the average
+of $x$ as
+\begin{equation}
+\label{Eq:III:20:33}
+\av{x}=\int\psi\cconj(x)x\psi(x)\,dx.
+\end{equation}
+</p>
+</div>
+<div id="Ch20-S4-p3" class="para">
+<p class="p">Our equation for $\av{x}$ has the same form as Eq. (<a href="#mjx-eqn-EqIII2028">20.28</a>).
+For the average energy, the energy operator $\Hcalop$ appears between
+the two $\psi$’s, for the average position there is just $x$. (If you
+wish you can consider $x$ to be the algebraic operator “multiply
+by $x$.”) We can carry the parallelism still further, expressing the
+average position in a form which corresponds to
+Eq. (<a href="#mjx-eqn-EqIII2018">20.18</a>). Suppose we just write
+\begin{equation}
+\label{Eq:III:20:34}
+\av{x}=\braket{\psi}{\alpha}
+\end{equation}
+with
+\begin{equation}
+\label{Eq:III:20:35}
+\ket{\alpha}=\xop\,\ket{\psi},
+\end{equation}
+and then see if we can find the operator $\xop$ which generates the
+state $\ket{\alpha}$, which will make Eq. (<a href="#mjx-eqn-EqIII2034">20.34</a>) agree
+with Eq. (<a href="#mjx-eqn-EqIII2033">20.33</a>). That is, we must find
+a $\ket{\alpha}$, so that
+\begin{equation}
+\label{Eq:III:20:36}
+\braket{\psi}{\alpha}=\av{x}=
+\int\braket{\psi}{x}x\braket{x}{\psi}\,dx.
+\end{equation}
+First, let’s expand $\braket{\psi}{\alpha}$ in the
+$x$-representation. It is
+\begin{equation}
+\label{Eq:III:20:37}
+\braket{\psi}{\alpha}=\int\braket{\psi}{x}\braket{x}{\alpha}\,dx.
+\end{equation}
+Now compare the integrals in the last two equations. You see that in
+the $x$-representation
+\begin{equation}
+\label{Eq:III:20:38}
+\braket{x}{\alpha}=x\braket{x}{\psi}.
+\end{equation}
+Operating on $\ket{\psi}$ with $\xop$ to get $\ket{\alpha}$ is
+equivalent to multiplying $\psi(x)=\braket{x}{\psi}$ by $x$ to
+get $\alpha(x)=\braket{x}{\alpha}$. We have a definition of $\xop$ in the
+coordinate representation.<a name="footnote_source_4" href="#footnote_4"><sup class="mark">4</sup></a></p>
+</div>
+
+<div id="Ch20-S4-p4" class="para">
+<p class="p">[We have not bothered to try to get the $x$-representation of the
+matrix of the operator $\xop$. If you are ambitious you can try to
+show that
+\begin{equation}
+\label{Eq:III:20:39}
+\bracket{x}{\xop}{x'}=x\,\delta(x-x').
+\end{equation}
+
+You can then work out the amusing result that
+\begin{equation}
+\label{Eq:III:20:40}
+\xop\,\ket{x}=x\,\ket{x}.
+\end{equation}
+
+The operator $\xop$ has the interesting property that when it works on
+the base states $\ket{x}$ it is equivalent to multiplying by $x$.]</p>
+</div>
+<div id="Ch20-S4-p5" class="para">
+<p class="p">Do you want to know the average value of $x^2$? It is
+\begin{equation}
+\label{Eq:III:20:41}
+\av{x^2}=\int\psi\cconj(x)x^2\psi(x)\,dx.
+\end{equation}
+
+Or, if you prefer you can write
+\begin{equation}
+\av{x^2}=\braket{\psi}{\alpha'}\notag
+\end{equation}
+
+with
+\begin{equation}
+\label{Eq:III:20:42}
+\ket{\alpha'}=\xop^2\,\ket{\psi}.
+\end{equation}
+By $\xop^2$ we mean $\xop\xop$—the two operators are used one after
+the other. With the second form you can calculate $\av{x^2}$, using
+any representation (base-states) you wish. If you want the average
+of $x^n$, or of any polynomial in $x$, you can see how to get it.</p>
+</div>
+</div>
+
+<div id="Ch20-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">20–5</span>The momentum operator</h3>
+<div id="Ch20-S5-p1" class="para">
+<p class="p">Now we would like to calculate the mean <em class="emph">momentum</em> of an
+electron—again, we’ll stick to one dimension. Let $P(p)\,dp$ be the
+probability that a measurement will give a momentum between $p$
+and $p+dp$. Then
+\begin{equation}
+\label{Eq:III:20:43}
+\av{p}=\int p\,P(p)\,dp.
+\end{equation}
+Now we let $\braket{p}{\psi}$ be the amplitude that the
+state $\ket{\psi}$ is in a definite momentum state $\ket{p}$. This is the
+same amplitude we called $\braket{\mom p}{\psi}$ in
+Section <a href="III_16.html#Ch16-S3">16–3</a> and is a function of $p$ just
+as $\braket{x}{\psi}$ is a function of $x$. There we chose to normalize the
+amplitude so that
+\begin{equation}
+\label{Eq:III:20:44}
+P(p)=\frac{1}{2\pi\hbar}\,\abs{\braket{p}{\psi}}^2.
+\end{equation}
+We have, then,
+\begin{equation}
+\label{Eq:III:20:45}
+\av{p}=\int\braket{\psi}{p}p\braket{p}{\psi}\,\frac{dp}{2\pi\hbar}.
+\end{equation}
+The form is quite similar to what we had for $\av{x}$.
+</p>
+</div>
+
+
+<div id="Ch20-S5-p2" class="para">
+<p class="p">If we want, we can play exactly the same game we did
+with $\av{x}$. First, we can write the integral above as
+\begin{equation}
+\label{Eq:III:20:46}
+\int\braket{\psi}{p}\braket{p}{\beta}\,\frac{dp}{2\pi\hbar}.
+\end{equation}
+You should now recognize this equation as just the expanded form of
+the amplitude $\braket{\psi}{\beta}$—expanded in terms of the base
+states of definite momentum. From Eq. (<a href="#mjx-eqn-EqIII2045">20.45</a>) the
+state $\ket{\beta}$ is defined <em class="emph">in the momentum representation</em> by
+\begin{equation}
+\label{Eq:III:20:47}
+\braket{p}{\beta}=p\braket{p}{\psi}
+\end{equation}
+That is, we can now write
+\begin{equation}
+\label{Eq:III:20:48}
+\av{p}=\braket{\psi}{\beta}
+\end{equation}
+with
+\begin{equation}
+\label{Eq:III:20:49}
+\ket{\beta}=\pop\,\ket{\psi},
+\end{equation}
+where the operator $\pop$ is defined in terms of the
+$p$-representation by Eq. (<a href="#mjx-eqn-EqIII2047">20.47</a>
+</p>
+</div>
+
+<div id="Ch20-S5-p3" class="para">
+<p class="p">[Again, you can if you wish show that the matrix form of $\pop$ is
+\begin{equation}
+\label{Eq:III:20:50}
+\bracket{p}{\pop}{p'}=p\,\delta(p-p'),
+\end{equation}
+
+and that
+\begin{equation}
+\label{Eq:III:20:51}
+\pop\,\ket{p}=p\,\ket{p}.
+\end{equation}
+It works out the same as for $x$.]</p>
+</div>
+<div id="Ch20-S5-p4" class="para">
+<p class="p">Now comes an interesting question. We can write $\av{p}$, as we have done in
+Eqs. (<a href="#mjx-eqn-EqIII2045">20.45</a>) and (<a href="#mjx-eqn-EqIII2048">20.48</a>), and we know the
+meaning of the operator $\pop$ <em class="emph">in the momentum representation</em>. But how
+should we interpret $\pop$ in the <em class="emph">coordinate</em> representation? That is what
+we will need to know if we have some wave function $\psi(x)$, and we want to
+compute its average momentum. Let’s make clear what we mean. If we start by
+saying that $\av{p}$ is given by Eq. (<a href="#mjx-eqn-EqIII2048">20.48</a>), we can expand that
+equation in terms of the $p$-representation to get back to
+Eq. (<a href="#mjx-eqn-EqIII2046">20.46</a>). If we are given the $p$-description of the
+state—namely the amplitude $\braket{p}{\psi}$, which is an algebraic function
+of the momentum $p$—we can get $\braket{p}{\beta}$ from
+Eq. (<a href="#mjx-eqn-EqIII2047">20.47</a>) and proceed to evaluate the integral. The question now
+is: What do we do if we are given a description of the state in the
+$x$-representation, namely the wave function $\psi(x)=\braket{x}{\psi}$?</p>
+</div>
+<div id="Ch20-S5-p5" class="para">
+<p class="p">Well, let’s start by expanding Eq. (<a href="#mjx-eqn-EqIII2048">20.48</a>) in the
+$x$-representation. It is
+\begin{equation}
+\label{Eq:III:20:52}
+\av{p}=\int\braket{\psi}{x}\braket{x}{\beta}\,dx.
+\end{equation}
+
+Now, however, we need to know what the state $\ket{\beta}$ is in the
+$x$-representation. If we can find it, we can carry out the
+integral. So our problem is to find the
+function $\beta(x)=\braket{x}{\beta}$.</p>
+</div>
+<div id="Ch20-S5-p6" class="para">
+<p class="p">We can find it in the following way. In Section <a href="III_16.html#Ch16-S3">16–3</a> we
+saw how $\braket{p}{\beta}$ was related
+to $\braket{x}{\beta}$. According to Eq. (<a href="III_16.html#mjx-eqn-EqIII1624">16.24</a>),
+\begin{equation}
+\label{Eq:III:20:53}
+\braket{p}{\beta}=\int e^{-ipx/\hbar}\braket{x}{\beta}\,dx.
+\end{equation}
+
+If we know $\braket{p}{\beta}$ we can solve this equation
+for $\braket{x}{\beta}$. What we want, of course, is to express the result
+somehow in terms of $\psi(x)=\braket{x}{\psi}$, which we are assuming
+to be known. Suppose we start with Eq. (<a href="#mjx-eqn-EqIII2047">20.47</a>) and
+again use Eq. (<a href="III_16.html#mjx-eqn-EqIII1624">16.24</a>) to write
+\begin{equation}
+\label{Eq:III:20:54}
+\braket{p}{\beta}=p\braket{p}{\psi}=
+p\int e^{-ipx/\hbar}\psi(x)\,dx.
+\end{equation}
+
+Since the integral is over $x$ we can put the $p$ inside the integral
+and write
+\begin{equation}
+\label{Eq:III:20:55}
+\braket{p}{\beta}=\int e^{-ipx/\hbar}p\psi(x)\,dx.
+\end{equation}
+
+Compare this with (<a href="#mjx-eqn-EqIII2053">20.53</a>). You would say that
+$\braket{x}{\beta}$ is equal to $p\psi(x)$. No, No! The wave
+function $\braket{x}{\beta}=\beta(x)$ can depend only on $x$—not
+on $p$. That’s the whole problem.</p>
+</div>
+<div id="Ch20-S5-p7" class="para">
+<p class="p">However, some ingenious fellow discovered that the integral
+in (<a href="#mjx-eqn-EqIII2055">20.55</a>) could be integrated by parts. The derivative
+of $e^{-ipx/\hbar}$ with respect to $x$ is $(-i/\hbar)pe^{-ipx/\hbar}$, so
+the integral in (<a href="#mjx-eqn-EqIII2055">20.55</a>) is equivalent to
+\begin{equation*}
+-\frac{\hbar}{i}\int\ddt{}{x}\,(e^{-ipx/\hbar})\psi(x)\,dx.
+\end{equation*}
+
+If we integrate by parts, it becomes
+\begin{equation*}
+-\frac{\hbar}{i}\bigl[e^{-ipx/\hbar}\psi(x)\bigr]_{-\infty}^{+\infty}+
+\frac{\hbar}{i}\int e^{-ipx/\hbar}\ddt{\psi}{x}\,dx.
+\end{equation*}
+
+So long as we are considering bound states, so that $\psi(x)$ goes to
+zero at $x=\pm\infty$, the bracket is zero and we have
+\begin{equation}
+\label{Eq:III:20:56}
+\braket{p}{\beta}=\frac{\hbar}{i}\int e^{-ipx/\hbar}\ddt{\psi}{x}\,dx.
+\end{equation}
+
+<em class="emph">Now</em> compare this result with Eq. (<a href="#mjx-eqn-EqIII2053">20.53</a>). You
+see that
+\begin{equation}
+\label{Eq:III:20:57}
+\braket{x}{\beta}=\frac{\hbar}{i}\,\ddt{}{x}\,\psi(x).
+\end{equation}
+
+We have the necessary piece to be able to complete
+Eq. (<a href="#mjx-eqn-EqIII2052">20.52</a>). The answer is
+\begin{equation}
+\label{Eq:III:20:58}
+\av{p}=\!\int\!\psi\cconj(x)\,\frac{\hbar}{i}\,\ddt{}{x}\,\psi(x)\,dx.
+\end{equation}
+
+We have found how Eq. (<a href="#mjx-eqn-EqIII2048">20.48</a>) looks in the coordinate
+representation.</p>
+</div>
+<div id="Ch20-S5-p8" class="para">
+<p class="p">Now you should begin to see an interesting pattern developing. When we
+asked for the average energy of the state $\ket{\psi}$ we said it was
+\begin{equation*}
+\av{E}=\braket{\psi}{\phi},
+\text{ with }
+\ket{\phi}=\Hop\,\ket{\psi}.
+\end{equation*}
+
+The same thing is written in the coordinate world as
+\begin{equation*}
+\av{E}=\!\int\!\psi\cconj(x)\phi(x)\,dx,
+\text{ with }
+\phi(x)=\Hcalop\psi(x).
+\end{equation*}
+
+Here $\Hcalop$ is an <em class="emph">algebraic</em> operator which works on a
+function of $x$. When we asked about the average value of $x$, we
+found that it could also be written
+\begin{equation*}
+\av{x}=\braket{\psi}{\alpha},
+\text{ with }
+\ket{\alpha}=\xop\,\ket{\psi}.
+\end{equation*}
+
+In the coordinate world the corresponding equations are
+\begin{equation*}
+\av{x}=\!\int\!\psi\cconj(x)\alpha(x)\,dx,
+\text{ with }
+\alpha(x)=x\psi(x).
+\end{equation*}
+
+When we asked about the average value of $p$, we wrote
+\begin{equation*}
+\av{p}=\braket{\psi}{\beta},
+\text{ with }
+\ket{\beta}=\pop\,\ket{\psi}.
+\end{equation*}
+
+In the coordinate world the equivalent equations were
+\begin{equation*}
+\av{p}=\!\int\!\psi\cconj(x)\beta(x)\,dx,
+\text{ with }
+\beta(x)=\frac{\hbar}{i}\,\ddt{}{x}\,\psi(x).
+\end{equation*}
+
+In each of our three examples we start with the state $\ket{\psi}$ and
+produce another (hypothetical) state by a <em class="emph">quantum-mechanical</em>
+operator. In the coordinate representation we generate the
+corresponding wave function by operating on the wave
+function $\psi(x)$ with an <em class="emph">algebraic</em> operator. There are the following
+one-to-one correspondences (for one-dimensional problems):
+\begin{equation}
+\label{Eq:III:20:59}
+\begin{aligned}
+\Hop&\to\Hcalop=-\frac{\hbar^2}{2m}\,\frac{d^2}{dx^2}+V(x),\\[1pt]
+\xop&\to x,\\[1pt]
+\pop_x&\to\Pcalop_x=\frac{\hbar}{i}\,\ddp{}{x}.
+\end{aligned}
+\end{equation}
+In this list, we have introduced the symbol $\Pcalop_x$ for the
+algebraic operator $(\hbar/i)\ddpl{}{x}$:
+\begin{equation}
+\label{Eq:III:20:60}
+\Pcalop_x=\frac{\hbar}{i}\,\ddp{}{x},
+\end{equation}
+
+and we have inserted the $x$ subscript on $\Pcalop$ to remind you that
+we have been working only with the $x$-component of momentum.</p>
+</div>
+<div id="Ch20-S5-p9" class="para">
+<p class="p">You can easily extend the results to three dimensions. For the other
+components of the momentum,
+\begin{align*}
+\pop_y&\to\Pcalop_y=\frac{\hbar}{i}\,\ddp{}{y},\\[1ex]
+\pop_z&\to\Pcalop_z=\frac{\hbar}{i}\,\ddp{}{z}.
+\end{align*}
+
+If you want, you can even think of an operator of the <em class="emph">vector</em>
+momentum and write
+\begin{equation*}
+\pvecop\to\Pcalvecop=\frac{\hbar}{i}\biggl(
+\FLPe_x\,\ddp{}{x}+\FLPe_y\,\ddp{}{y}+\FLPe_z\,\ddp{}{z}\biggr),
+\end{equation*}
+
+where $\FLPe_x$, $\FLPe_y$, and $\FLPe_z$ are the unit vectors in the
+three directions. It looks even more elegant if we write
+\begin{equation}
+\label{Eq:III:20:61}
+\pvecop\to\Pcalvecop=\frac{\hbar}{i}\,\FLPnabla.
+\end{equation}
+</p>
+</div>
+<div id="Ch20-S5-p10" class="para">
+<p class="p">Our general result is that for at least some quantum-mechanical
+operators, there are corresponding algebraic operators in the
+coordinate representation. We summarize our results so far—extended
+to three dimensions—in Table <a href="#Ch20-T1">20–1</a>. For each operator
+we have the two equivalent forms:<a name="footnote_source_5" href="#footnote_5"><sup class="mark">5</sup></a>
+\begin{equation}
+\label{Eq:III:20:62}
+\ket{\phi}=\Aop\,\ket{\psi}
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:III:20:63}
+\phi(\FLPr)=\Acalop\psi(\FLPr).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch20-T1" class="table" >
+<div class="caption ltx_centering">
+<span class="tag">Table 20–1</span>
+</div>
+<div align="center">
+<table border="1" style="max-width:25em">
+	<tr>
+		<td class="l t center">
+		<i>Physical Quantity</i></td>
+		<td class="l t center">
+		<i>Operator</i></td>
+		<td class="l t r center">
+		<i>Coordinate Form</i></td>
+	</tr>
+	<tr>
+		<td class="l tt center">
+		Energy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="l tt center">
+		$\Hop\\$</td>
+		<td class="l tt r center">
+		$\Hcalop=-\dfrac{\hbar^2}{2m}\,\nabla^2+V(\FLPr)\\$</td>
+	</tr>
+	<tr>
+		<td class="l center">
+		Position&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="l center">
+		$\xop$</td>
+		<td class="l r center">
+		$x\quad\quad\quad\quad\quad$</td>
+	</tr>
+	<tr>
+		<td class="l center">
+		&nbsp;</td>
+		<td class="l center">
+		$\yop$</td>
+		<td class="l r center">
+		$y\quad\quad\quad\quad\quad$</td>
+	</tr>
+	<tr>
+		<td class="l center">
+		$\\$</td>
+		<td class="l center">
+		$\zop\\$</td>
+		<td class="l r center">
+		$z\quad\quad\quad\quad\quad\\$</td>
+	</tr>
+	<tr>
+		<td class="l center">
+		Momentum</td>
+		<td class="l center">
+		$\pop_x$</td>
+		<td class="l r center">
+		$\Pcalop_x=\dfrac{\hbar}{i}\,\dfrac{\partial}{\partial x}\quad\quad\quad\quad\quad\quad$</td>
+	</tr>
+	<tr>
+		<td class="l center">
+		&nbsp;</td>
+		<td class="l center">
+		$\pop_y$</td>
+		<td class="l r center">
+		$\Pcalop_y=\dfrac{\hbar}{i}\,\dfrac{\partial}{\partial y}\quad\quad\quad\quad\quad\quad$</td>
+	</tr>
+	<tr>
+		<td class="l b center">
+		&nbsp;</td>
+		<td class="l b center">
+		$\pop_z\\$</td>
+		<td class="l b r center">
+		$\Pcalop_z=\dfrac{\hbar}{i}\,\dfrac{\partial}{\partial z}\quad\quad\quad\quad\quad\quad\\$</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch20-S5-p11" class="para">
+<p class="p">We will now give a few illustrations of the use of these ideas. The
+first one is just to point out the relation between $\Pcalop$
+and $\Hcalop$. If we use $\Pcalop_x$ twice, we get
+\begin{equation*}
+\Pcalop_x\Pcalop_x=-\hbar^2\,\frac{\partial^2}{\partial x^2}.
+\end{equation*}
+
+This means that we can write the equality
+\begin{equation*}
+\Hcalop=\frac{1}{2m}\,\{
+\Pcalop_x\Pcalop_x+\Pcalop_y\Pcalop_y+\Pcalop_z\Pcalop_z\}
++V(\FLPr).
+\end{equation*}
+
+Or, using the vector notation,
+\begin{equation}
+\label{Eq:III:20:64}
+\Hcalop=\frac{1}{2m}\,\Pcalvecop\cdot\Pcalvecop+V(\FLPr).
+\end{equation}
+
+(In an algebraic operator, any term without the operator
+symbol ($\op{\enspace}$) means just a straight multiplication.) This equation
+is nice because it’s easy to remember if you haven’t forgotten your
+classical physics. Everyone knows that the energy is
+(nonrelativistically) just the kinetic energy $p^2/2m$ plus the
+potential energy, and $\Hcalop$ is the operator of the total energy.</p>
+</div>
+<div id="Ch20-S5-p12" class="para">
+<p class="p">This result has impressed people so much that they try to teach
+students all about classical physics before quantum mechanics. (We
+think differently!) But such parallels are often misleading. For one
+thing, when you have operators, the <em class="emph">order</em> of various factors is
+important; but that is not true for the factors in a classical
+equation.</p>
+</div>
+<div id="Ch20-S5-p13" class="para">
+<p class="p">In Chapter <a href="III_17.html">17</a> we defined an operator $\pop_x$ in terms
+of the displacement operator $\Dop_x$ by [see Eq. (<a href="III_17.html#mjx-eqn-EqIII1727">17.27</a>)]
+\begin{equation}
+\label{Eq:III:20:65}
+\ket{\psi'}=\Dop_x(\delta)\,\ket{\psi}=
+\biggl(1+\frac{i}{\hbar}\,\pop_x\delta\biggr)\ket{\psi}.
+\end{equation}
+
+where $\delta$ is a <em class="emph">small</em> displacement. We should show you that
+this is equivalent to our new definition. According to what we have
+just worked out, this equation should mean the same as
+\begin{equation*}
+\psi'(x)=\psi(x)+\ddp{\psi}{x}\,\delta.
+\end{equation*}
+
+But the right-hand side is just the Taylor expansion
+of $\psi(x+\delta)$, which is certainly what you get if you displace the
+state to the left by $\delta$ (or shift the coordinates to the right
+by the same amount). Our two definitions of $\pop$ agree!</p>
+</div>
+<div id="Ch20-S5-p14" class="para">
+<p class="p">Let’s use this fact to show something else. Suppose we have a bunch of
+particles which we label $1$, $2$, $3$, …, in some complicated
+system. (To keep things simple we’ll stick to one dimension.) The wave
+function describing the state is a function of all the coordinates
+$x_1$, $x_2$, $x_3$, … We can write it
+as $\psi(x_1,x_2,x_3,\dotsc)$. Now displace the system (to the left)
+by $\delta$. The new wave function
+\begin{equation*}
+\psi'(x_1,x_2,x_3,\dotsc)=\psi(x_1+\delta,x_2+\delta,x_3+\delta,\dotsc)
+\end{equation*}
+
+can be written as
+\begin{align}
+\enspace\psi'(x_1&,x_2,x_3,\dotsc)=\,\psi(x_1,x_2,x_3,\dotsc)\notag\\[1ex]
+\label{Eq:III:20:66}
+&+\,\biggl\{\delta\,\ddp{\psi}{x_1}+\delta\,\ddp{\psi}{x_2}+
+\delta\,\ddp{\psi}{x_3}+\dotsb\biggr\}.\enspace
+\end{align}
+
+According to Eq. (<a href="#mjx-eqn-EqIII2065">20.65</a>) the operator of the momentum
+of the state $\ket{\psi}$ (let’s call it the <em class="emph">total</em> momentum) is
+equal to
+\begin{equation*}
+\Pcalop_{\text{total}}=\frac{\hbar}{i}\,\biggl\{
+\ddp{}{x_1}+\ddp{}{x_2}+\ddp{}{x_3}+\dotsb\biggr\}.
+\end{equation*}
+
+But this is just the same as
+\begin{equation}
+\label{Eq:III:20:67}
+\Pcalop_{\text{total}}=\Pcalop_{x_1}+\Pcalop_{x_2}+\Pcalop_{x_3}+\dotsb.
+\end{equation}
+
+The operators of momentum obey the rule that the total momentum is the
+sum of the momenta of all the parts. Everything holds together nicely,
+and many of the things we have been saying are consistent with each
+other.</p>
+</div>
+</div>
+
+<div id="Ch20-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">20–6</span>Angular momentum</h3>
+<div id="Ch20-S6-p1" class="para">
+<p class="p">Let’s for fun look at another operation—the operation of orbital
+angular momentum. In Chapter <a href="III_17.html">17</a> we defined an
+operator $\Jop_z$ in terms of $\Rop_z(\phi)$, the operator of a rotation by the
+angle $\phi$ about the $z$-axis. We consider here a system described
+simply by a single wave function $\psi(\FLPr)$, which is a function of
+coordinates only, and does not take into account the fact that the
+electron may have its spin either up or down. That is, we want for the
+moment to disregard <em class="emph">intrinsic</em> angular momentum and think about
+only the <em class="emph">orbital</em> part. To keep the distinction clear, we’ll
+call the orbital operator $\Lop_z$, and define it in terms of the
+operator of a rotation by an infinitesimal angle $\epsilon$ by
+\begin{equation*}
+\Rop_z(\epsilon)\,\ket{\psi}=
+\biggl(1+\frac{i}{\hbar}\,\epsilon\,\Lop_z\biggr)\ket{\psi}.
+\end{equation*}
+
+(Remember, this definition applies only to a state $\ket{\psi}$ which
+has no internal spin variables, but depends only on the
+coordinates $\FLPr=x,y,z$.) If we look at the state $\ket{\psi}$ in a new
+coordinate system, rotated about the $z$-axis by the small
+angle $\epsilon$, we see a new state
+\begin{equation*}
+\ket{\psi'}=\Rop_z(\epsilon)\,\ket{\psi}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch20-F2" class="figure">
+<img src="img/FLP_III/f20-02/f20-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–2.</span>Rotation of the axes around the $z$-axis by the small
+angle $\epsilon$.
+</div>
+</div>
+
+<div id="Ch20-S6-p2" class="para">
+<p class="p">If we choose to describe the state $\ket{\psi}$ in the coordinate
+representation—that is, by its wave function $\psi(\FLPr)$, we would
+expect to be able to write
+\begin{equation}
+\label{Eq:III:20:68}
+\psi'(\FLPr)=
+\biggl(1+\frac{i}{\hbar}\,\epsilon\,\Lcalop_z\biggr)\psi(\FLPr).
+\end{equation}
+What is $\Lcalop_z$? Well, a point $P$ at $x$ and $y$ in the <em class="emph">new</em>
+coordinate system (really $x'$ and $y'$, but we will drop the primes)
+was formerly at $x-\epsilon y$ and $y+\epsilon x$, as you can see from
+Fig. <a href="#Ch20-F2">20–2</a>. Since the amplitude for the electron to be at $P$ isn’t
+changed by the rotation of the coordinates we can write
+<span class="eq-wide">
+\begin{equation*}
+\psi'(x,y,z)=\psi(x-\epsilon y,y+\epsilon x,z)=
+\psi(x,y,z)-\epsilon y\,\ddp{\psi}{x}+
+\epsilon x\,\ddp{\psi}{y}
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+\psi'(x,y,z)&=\psi(x-\epsilon y,y+\epsilon x,z)\\[1ex]
+&=\psi(x,y,z)-\epsilon y\,\ddp{\psi}{x}+
+\epsilon x\,\ddp{\psi}{y}
+\end{align*}
+</span>
+(remembering that $\epsilon$ is a small angle). This means that
+\begin{equation}
+\label{Eq:III:20:69}
+\Lcalop_z=\frac{\hbar}{i}\biggl(x\,\ddp{}{y}-y\,\ddp{}{x}\biggr).
+\end{equation}
+That’s our answer. But notice. It is equivalent to
+\begin{equation}
+\label{Eq:III:20:70}
+\Lcalop_z=x\Pcalop_y-y\Pcalop_x.
+\end{equation}
+Returning to our quantum-mechanical operators, we can write
+\begin{equation}
+\label{Eq:III:20:71}
+\Lop_z=x\pop_y-y\pop_x.
+\end{equation}
+This formula is easy to remember because it looks like the familiar
+formula of classical mechanics; it is the $z$-component of
+\begin{equation}
+\label{Eq:III:20:72}
+\FLPL=\FLPr\times\FLPp.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch20-S6-p3" class="para">
+<p class="p">One of the fun parts of this operator business is that many classical
+equations get carried over into a quantum-mechanical form. Which ones
+don’t? There had better be some that don’t come out right, because if
+everything did, then there would be nothing different about quantum
+mechanics. There would be no new physics. Here is one equation which
+is different. In classical physics
+\begin{equation*}
+xp_x-p_xx=0.
+\end{equation*}
+What is it in quantum mechanics?
+\begin{equation*}
+\xop\pop_x-\pop_x\xop=?
+\end{equation*}
+Let’s work it out in the $x$-representation. So that we’ll know what
+we are doing we put in some wave function $\psi(x)$. We have
+\begin{equation*}
+x\Pcalop_x\psi(x)-\Pcalop_xx\psi(x),
+\end{equation*}
+or
+\begin{equation*}
+x\,\frac{\hbar}{i}\,\ddp{}{x}\,\psi(x)-
+\frac{\hbar}{i}\,\ddp{}{x}\,x\psi(x).
+\end{equation*}
+Remember now that the derivatives operate on everything to the
+right. We get
+\begin{equation}
+\label{Eq:III:20:73}
+x\,\frac{\hbar}{i}\,\ddp{\psi}{x}-
+\frac{\hbar}{i}\,\psi(x)-
+\frac{\hbar}{i}\,x\,\ddp{\psi}{x}=-\frac{\hbar}{i}\,\psi(x).
+\end{equation}
+The answer is <em class="emph">not</em> zero. The whole operation is equivalent
+simply to multiplication by $-\hbar/i$:
+\begin{equation}
+\label{Eq:III:20:74}
+\xop\pop_x-\pop_x\xop=-\frac{\hbar}{i}.
+\end{equation}
+If Planck’s constant were zero,
+the classical and quantum results would be the same, and there would be
+no quantum mechanics to learn!
+</p>
+</div>
+
+<div id="Ch20-S6-p4" class="para">
+<p class="p">Incidentally, if any two operators $\Aop$ and $\Bop$, when taken
+together like this:
+\begin{equation*}
+\Aop\Bop-\Bop\Aop,
+\end{equation*}
+do <em class="emph">not</em> give zero, we say that “the operators do not commute.”
+And an equation such as (<a href="#mjx-eqn-EqIII2074">20.74</a>) is called a “commutation
+rule.” You can see that the commutation rule
+for $p_x$ and $y$ is
+\begin{equation*}
+\pop_x\yop-\yop\pop_x=0.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch20-S6-p5" class="para">
+<p class="p">There is another very important commutation rule that has to do with
+angular momenta. It is
+\begin{equation}
+\label{Eq:III:20:75}
+\Lop_x\Lop_y-\Lop_y\Lop_x=i\hbar\Lop_z.
+\end{equation}
+You can get some practice with $\xop$ and $\pop$ operators by proving
+it for yourself.</p>
+</div>
+
+<div id="Ch20-S6-p6" class="para">
+<p class="p">It is interesting to notice that operators which do not commute can
+also occur in classical physics. We have already seen this when we
+have talked about rotation in space. If you rotate something, such as
+a book, by $90^\circ$ around $x$ and then $90^\circ$ around $y$, you
+get something different from rotating first by $90^\circ$ around $y$
+and then by $90^\circ$ around $x$. It is, in fact, just this property
+of space that is responsible for Eq. (<a href="#mjx-eqn-EqIII2075">20.75</a>).</p>
+</div>
+</div>
+
+<div id="Ch20-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">20–7</span>The change of averages with time</h3>
+
+<div id="Ch20-S7-p1" class="para">
+<p class="p">Now we want to show you something else. How do averages change with
+time? Suppose for the moment that we have an operator $\Aop$, which
+does not itself have time in it in any obvious way. We mean an
+operator like $\xop$ or $\pop$. (We exclude things like, say, the
+operator of some external potential that was being varied with time,
+such as $V(x,t)$.)  Now suppose we calculate $\av{A}$, in some
+state $\ket{\psi}$, which is
+\begin{equation}
+\label{Eq:III:20:76}
+\av{A}=\bracket{\psi}{\Aop}{\psi}.
+\end{equation}
+How will $\av{A}$, depend on time? Why should it? One reason might be
+that the operator itself depended explicitly on time—for instance,
+if it had to do with a time-varying potential like $V(x,t)$. But even
+if the operator does not depend on $t$, say, for example, the
+operator $\Aop=\xop$, the corresponding average may depend on time. Certainly
+the average position of a particle could be moving. How does such a
+motion come out of Eq. (<a href="#mjx-eqn-EqIII2076">20.76</a>) if $\Aop$ has no time
+dependence? Well, the state $\ket{\psi}$ might be changing with
+time. For nonstationary states we have often shown a time dependence
+explicitly by writing a state as $\ket{\psi(t)}$. We want to show that
+the rate of change of $\av{A}$, is given by a new operator we will
+call $\Adotop$. Remember that $\Aop$ is an operator, so that putting a
+dot over the $A$ does not here mean taking the time derivative, but is
+just a way of writing a <em class="emph">new</em> operator $\Adotop$ which is defined
+by
+\begin{equation}
+\label{Eq:III:20:77}
+\ddt{}{t}\,\av{A}=\bracket{\psi}{\Adotop}{\psi}.
+\end{equation}
+Our problem is to find the operator $\Adotop$.
+</p>
+</div>
+
+<div id="Ch20-S7-p2" class="para">
+<p class="p">First, we know that the rate of change of a state is given by the
+Hamiltonian. Specifically,
+\begin{equation}
+\label{Eq:III:20:78}
+i\hbar\,\ddt{}{t}\,\ket{\psi(t)}=\Hop\,\ket{\psi(t)}.
+\end{equation}
+This is just the abstract way of writing our original definition of
+the Hamiltonian:
+\begin{equation}
+\label{Eq:III:20:79}
+i\hbar\,\ddt{C_i}{t}=\sum_jH_{ij}C_j.
+\end{equation}
+If we take the complex conjugate of Eq. (<a href="#mjx-eqn-EqIII2078">20.78</a>), it is
+equivalent to
+\begin{equation}
+\label{Eq:III:20:80}
+-i\hbar\,\ddt{}{t}\,\bra{\psi(t)}=\bra{\psi(t)}\,\Hop.
+\end{equation}
+Next, see what happens if we take the derivatives with respect to $t$
+of Eq. (<a href="#mjx-eqn-EqIII2076">20.76</a>). Since each $\psi$ depends on $t$, we
+have
+
+\begin{equation}
+\label{Eq:III:20:81}
+\ddt{}{t}\av{A}=\!\biggl(\!\ddt{}{t}\bra{\psi}\!\biggr)\Aop\ket{\psi}\!+\!
+\bra{\psi}\Aop\biggl(\!\ddt{}{t}\ket{\psi}\!\biggr).
+\end{equation}
+
+
+Finally, using the two equations in (<a href="#mjx-eqn-EqIII2078">20.78</a>)
+and (<a href="#mjx-eqn-EqIII2080">20.80</a>) to replace the derivatives, we get
+\begin{equation*}
+\ddt{}{t}\,\av{A}=\frac{i}{\hbar}\,\{
+\bracket{\psi}{\Hop\Aop}{\psi}-
+\bracket{\psi}{\Aop\Hop}{\psi}\}.
+\end{equation*}
+This equation is the same as
+\begin{equation*}
+\ddt{}{t}\,\av{A}=\frac{i}{\hbar}\,
+\bracket{\psi}{\Hop\Aop-\Aop\Hop}{\psi}.
+\end{equation*}
+Comparing this equation with Eq. (<a href="#mjx-eqn-EqIII2077">20.77</a>), you see that
+\begin{equation}
+\label{Eq:III:20:82}
+\Adotop=\frac{i}{\hbar}\,(\Hop\Aop-\Aop\Hop).
+\end{equation}
+That is our interesting proposition, and it is true for any operator $\Aop$.
+</p>
+</div>
+
+<div id="Ch20-S7-p3" class="para">
+<p class="p">Incidentally, if the operator $\Aop$ should <em class="emph">itself</em> be time
+dependent, we would have had
+\begin{equation}
+\label{Eq:III:20:83}
+\Adotop=\frac{i}{\hbar}\,(\Hop\Aop-\Aop\Hop)
++\ddp{\Aop}{t}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch20-S7-p4" class="para">
+<p class="p">Let us try out Eq. (<a href="#mjx-eqn-EqIII2082">20.82</a>) on some example to see
+whether it really makes sense. For instance, what operator corresponds
+to $\xdotop$? We say it should be
+\begin{equation}
+\label{Eq:III:20:84}
+\xdotop=\frac{i}{\hbar}\,(\Hop\xop-\xop\Hop).
+\end{equation}
+What is this? One way to find out is to work it through in the
+coordinate representation using the algebraic operator for $\Hcalop$.
+In this representation the commutator is
+<span class="eq-wide">
+\begin{equation*}
+\Hcalop x-x\Hcalop=\biggl\{-\frac{\hbar^2}{2m}\,\frac{d^2}{dx^2}+
+V(x)\biggr\}x-x\biggl\{-\frac{\hbar^2}{2m}\,\frac{d^2}{dx^2}+
+V(x)\biggr\}.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+\Hcalop x&-x\Hcalop\,=\\[1.5ex]
+\!\biggl\{\!-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}\!+\!
+V(x)\!\biggr\}x&-x\biggl\{\!-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}\!+\!
+V(x)\!\biggr\}.
+\end{align*}
+</span>
+If you operate with this or any wave function $\psi(x)$ and work out
+all of the derivatives where you can, you end up after a little work
+with
+\begin{equation}
+-\frac{\hbar^2}{m}\,\ddt{\psi}{x}.\notag
+\end{equation}
+But this is just the same as
+\begin{equation}
+-i\,\frac{\hbar}{m}\,\Pcalop_x\psi,\notag
+\end{equation}
+so we find that
+\begin{equation}
+\label{Eq:III:20:85}
+\Hop\xop-\xop\Hop=-i\,\frac{\hbar}{m}\,\pop_x
+\end{equation}
+or that
+\begin{equation}
+\label{Eq:III:20:86}
+\xdotop=\frac{\pop_x}{m}.
+\end{equation}
+A pretty result. It means that if the mean value of $x$ is changing
+with time the drift of the center of gravity is the same as the mean
+momentum divided by $m$. Exactly like classical mechanics.
+</p>
+</div>
+
+<div id="Ch20-S7-p5" class="para">
+<p class="p">Another example. What is the rate of change of the average momentum of
+a state? Same game. Its operator is
+\begin{equation}
+\label{Eq:III:20:87}
+\pdotop=\frac{i}{\hbar}\,(\Hop\pop-\pop\Hop).
+\end{equation}
+Again you can work it out in the $x$ representation. Remember that
+$\pop$ becomes $d/dx$, and this means that you will be taking the
+derivative of the potential energy $V$ (in the $\Hcalop$)—but only
+in the second term. It turns out that it is the only term which does
+not cancel, and you find that
+\begin{equation}
+\Hcalop\Pcalop-\Pcalop\Hcalop=i\hbar\,\ddt{V}{x}\notag
+\end{equation}
+or that
+\begin{equation}
+\label{Eq:III:20:88}
+\pdotop=-\ddt{V}{x}.
+\end{equation}
+Again the classical result. The right-hand side is the force, so we
+have derived Newton’s law! But remember—these are the laws for the
+<em class="emph">operators</em> which give the <em class="emph">average</em> quantities. They do not
+describe what goes on in detail inside an atom.
+</p>
+</div>
+
+<div id="Ch20-S7-p6" class="para">
+<p class="p">Quantum mechanics has the essential difference that $\pop\xop$ is not
+equal to $\xop\pop$. They differ by a little bit—by the small
+number $i\hbar$. But the whole wondrous complications of interference, waves,
+and all, result from the little fact that $\xop\pop-\pop\xop$ is not
+quite zero.
+</p>
+</div>
+
+<div id="Ch20-S7-p7" class="para">
+<p class="p">The history of this idea is also interesting. Within a period of a few
+months in 1926, Heisenberg and
+Schrödinger
+independently found
+correct laws to describe atomic mechanics.
+Schrödinger
+invented his wave function $\psi(x)$ and found his
+equation.
+Heisenberg, on the
+other hand, found that nature could be described by classical
+equations, except that $xp-px$ should be equal to $i\hbar$, which he
+could make happen by defining them in terms of special kinds of
+matrices. In our language he was using the energy-representation, with
+its matrices. Both Heisenberg’s
+matrix
+algebra and
+Schrödinger’s differential equation
+explained the hydrogen atom. A few months later
+Schrödinger was able to show
+that the two theories were equivalent—as we have seen here. But the
+two different mathematical forms of quantum mechanics were discovered
+independently.
+</p>
+</div>
+
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+The “operator” $V(x)$ means “multiply by $V(x)$.
+  <a href="#footnote_source_1">↩</a>
+ </li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+We write $dV$ for the element of volume. It
+is, of course, just $dx\,dy\,dz$, and the integral goes from $-\infty$
+to $+\infty$ in all three coordinates. 
+  <a href="#footnote_source_2">↩</a>
+ </li>
+<li class="footnote">
+  <a name="footnote_3"></a>
+You can also look
+at it this way. Any function (that is, state) you choose can be
+written as a linear combination of the base states which are definite
+energy states. Since in this combination there is a mixture of higher
+energy states in with the lowest energy state, the average energy will
+be higher than the ground-state energy.
+  <a href="#footnote_source_3">↩</a>
+ </li>
+<li class="footnote">
+  <a name="footnote_4"></a>
+  Equation (<a href="#mjx-eqn-EqIII2038">20.38</a>) does
+<em class="emph">not</em> mean that $\ket{\alpha}=x\,\ket{\psi}$. You cannot “factor
+out” the $\bra{x}$, because the multiplier $x$ in front
+of $\braket{x}{\psi}$ is a number which is different for each
+state $\bra{x}$. It is the value of the coordinate of the electron in the
+state $\ket{x}$. See Eq. (<a href="#mjx-eqn-EqIII2040">20.40</a>).
+  <a href="#footnote_source_4">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_5"></a>
+  In many books the same
+symbol is used for $\Aop$ and $\Acalop$, because they both stand for
+the same physics, and because it is convenient not to have to write
+different kinds of letters. You can usually tell which one is intended
+by the context.
+  <a href="#footnote_source_5">↩</a>
+</li>
+</ol>
+</div>
+
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div>
+</div>   
+</body>
+</html>

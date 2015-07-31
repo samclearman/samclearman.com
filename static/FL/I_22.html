@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 22: Algebra</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "22." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch22" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">22</span>Algebra</h2>
+<div id="Ch22-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">22–1</span>Addition and multiplication</h3>
+<div id="Ch22-S1-p1" class="para">
+<p class="p">In our study of oscillating systems we shall have occasion
+to use one of the most remarkable, almost astounding, formulas in all of
+mathematics. From the physicist’s point of view we could bring forth
+this formula in two minutes or so, and be done with it. But science is
+as much for intellectual enjoyment as for practical utility, so instead
+of just spending a few minutes on this amazing jewel, we shall surround
+the jewel by its proper setting in the grand design of that branch of
+mathematics which is called elementary algebra.</p>
+</div>
+<div id="Ch22-S1-p2" class="para">
+<p class="p">Now you may ask, “What is mathematics doing in a physics lecture?”
+We have several possible excuses: first, of course, mathematics is an
+important tool, but that would only excuse us for giving the formula
+in two minutes. On the other hand, in theoretical physics we discover
+that all our laws can be written in mathematical form; and that this
+has a certain simplicity and beauty about it. So, ultimately, in order
+to understand nature it may be necessary to have a deeper
+understanding of mathematical relationships. But the real reason is
+that the subject is enjoyable, and although we humans cut nature up in
+different ways, and we have different courses in different
+departments, such compartmentalization is really artificial, and we
+should take our intellectual pleasures where we find them.</p>
+</div>
+<div id="Ch22-S1-p3" class="para">
+<p class="p">Another reason for looking more carefully at algebra now, even though
+most of us studied algebra in high school, is that that was the first
+time we studied it; all the equations were unfamiliar, and it was hard
+work, just as physics is now. Every so often it is a great pleasure to
+look back to see what territory has been covered, and what the great
+map or plan of the whole thing is. Perhaps some day somebody in the
+Mathematics Department will present a lecture on mechanics in such a
+way as to show what it was we were trying to learn in the physics
+course!</p>
+</div>
+<div id="Ch22-S1-p4" class="para">
+<p class="p">The subject of algebra will not be developed from the point of view of
+a mathematician, exactly, because the mathematicians are mainly
+interested in how various mathematical facts are demonstrated, and how
+many assumptions are absolutely required, and what is not
+required. They are not so interested in the result of what they
+prove. For example, we may find the Pythagorean theorem quite
+interesting, that the sum of the squares of the sides of a right
+triangle is equal to the square of the hypotenuse; that is an
+interesting fact, a curiously simple thing, which may be appreciated
+without discussing the question of how to prove it, or what axioms are
+required. So, in the same spirit, we shall describe qualitatively, if
+we may put it that way, the system of elementary algebra. We say
+<em class="emph">elementary</em> algebra because there is a branch of mathematics
+called <em class="emph">modern</em> algebra in which some of the rules such as $ab =
+ba$, are abandoned, and it is still called algebra, but we shall not
+discuss that.</p>
+</div>
+<div id="Ch22-S1-p5" class="para">
+<p class="p">To discuss this subject we start in the middle. We suppose that we
+already know what integers are, what zero is, and what it means to
+increase a number by one unit. You may say, “That is not in the
+middle!” But it is the middle from a mathematical standpoint, because
+we could go even further back and describe the theory of sets in order
+to <em class="emph">derive</em> some of these properties of integers. But we are not
+going in that direction, the direction of mathematical philosophy and
+mathematical logic, but rather in the other direction, from the
+assumption that we know what integers are and we know how to count.</p>
+</div>
+<div id="Ch22-S1-p6" class="para">
+<p class="p">If we start with a certain number $a$, an integer, and we count
+successively one unit $b$ times, the number we arrive at we call
+$a+b$, and that defines <em class="emph">addition</em> of integers.</p>
+</div>
+<div id="Ch22-S1-p7" class="para">
+<p class="p">Once we have defined addition, then we can consider this: if we start
+with nothing and add $a$ to it, $b$ times in succession, we call the
+result <em class="emph">multiplication</em> of integers; we call it $b$ <em class="emph">times</em> $a$.</p>
+</div>
+<div id="Ch22-S1-p8" class="para">
+<p class="p">Now we can also have a <em class="emph">succession of multiplications:</em> if we
+start with $1$ and multiply by $a$, $b$ times in succession, we call
+that <em class="emph">raising to a power:</em> $a^b$.</p>
+</div>
+<div id="Ch22-S1-p9" class="para">
+<p class="p">Now as a consequence of these definitions it can be easily shown that
+all of the following relationships are true:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:22:1}
+\begin{alignedat}{4}
+&(\text{a})&\quad
+&a+b=b+a&\quad\quad
+&(\text{b})&\quad
+&a+(b+c)=(a+b)+c\\
+&(\text{c})&\quad
+&ab=ba&\quad\quad
+&(\text{d})&\quad
+&a(b+c)=ab+ac\\
+&(\text{e})&\quad
+&(ab)c=a(bc)&\quad\quad
+&(\text{f})&\quad
+&(ab)^c=a^cb^c\\
+&(\text{g})&\quad
+&a^ba^c=a^{(b+c)}&\quad\quad
+&(\text{h})&\quad
+&(a^b)^c=a^{(bc)}\\
+&(\text{i})&\quad
+&a+0=a&\quad\quad
+&(\text{j})&\quad
+&a\cdot 1=a\\
+&(\text{k})&\quad
+&a^1=a
+\end{alignedat}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\label{Eq:I:22:1}
+\begin{alignedat}{4}
+&(\text{a})&\quad&a+b=b+a\\
+&(\text{b})&\quad&a+(b+c)=(a+b)+c\\
+&(\text{c})&\quad&ab=ba\\
+&(\text{d})&\quad&a(b+c)=ab+ac\\
+&(\text{e})&\quad&(ab)c=a(bc)\\
+&(\text{f})&\quad&(ab)^c=a^cb^c\\
+&(\text{g})&\quad&a^ba^c=a^{(b+c)}\\
+&(\text{h})&\quad&(a^b)^c=a^{(bc)}\\
+&(\text{i})&\quad&a+0=a\\
+&(\text{j})&\quad&a\cdot 1=a\\
+&(\text{k})&\quad&a^1=a
+\end{alignedat}
+\end{equation}
+</span>
+These results are well known and we shall not belabor the point, we
+merely list them. Of course, $1$ and $0$ have special properties; for
+example, $a + 0$ is $a$, $a$ times $1= a$, and $a$ to the first power
+is $a$.</p>
+</div>
+<div id="Ch22-S1-p10" class="para">
+<p class="p">In this discussion we must also assume a few other properties like
+continuity and ordering, which are very hard to define; we will let
+the rigorous theory do it. Furthermore, it is definitely true that we
+have written down too many “rules”; some of them may be deducible
+from the others, but we shall not worry about such matters.</p>
+</div>
+</div>
+<div id="Ch22-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">22–2</span>The inverse operations</h3>
+<div id="Ch22-S2-p1" class="para">
+<p class="p">In addition to the direct operations of addition, multiplication, and
+raising to a power, we have also the <em class="emph">inverse</em> operations, which
+are defined as follows. Let us assume that $a$ and $c$ are given, and
+that we wish to find what values of $b$ satisfy such equations as $a +
+b = c$, $ab = c$, $b^a = c$. If $a + b= c$, $b$ is defined as $c - a$,
+which is called <em class="emph">subtraction</em>. The operation called division is
+also clear: if $ab = c$, then $b = c/a$ defines division—a solution
+of the equation $ab = c$ “backwards.” Now if we have a power $b^a =
+c$ and we ask ourselves, “What is $b$?,” it is called the
+$a$th <em class="emph">root</em> of $c$: $b = \sqrt[a]{c}$. For instance, if we ask
+ourselves the following question, “What integer, raised to the third
+power, equals $8$?,” then the answer is called the <em class="emph">cube root</em>
+of $8$; it is $2$. Because $b^a$ and $a^b$ are not equal, there are
+<em class="emph">two</em> inverse problems associated with powers, and the other
+inverse problem would be, “To what power must we raise $2$ to
+get $8$?”  This is called taking the <em class="emph">logarithm</em>. If
+$a^b = c$, we
+write $b = \log_ac$. The fact that it has a cumbersome notation
+relative to the others does not mean that it is any less elementary,
+at least applied to integers, than the other processes. Although
+logarithms come late in an algebra class, in practice they
+are, of
+course, just as simple as roots; they are just a different kind of
+solution of an algebraic equation. The direct and inverse operations
+are summarized as follows:
+\begin{equation}
+\label{Eq:I:22:2}
+\begin{alignedat}{5}
+&(\text{a})&&\quad
+\text{addition}&&\quad
+&&(\text{a}')&&\quad
+\text{subtraction}\\
+& &&\quad a+b=c&&\quad
+&& &&\quad b=c-a\\
+&(\text{b})&&\quad
+\text{multiplication}&&\quad
+&&(\text{b}')&&\quad
+\text{division}\\
+& &&\quad ab=c&&\quad
+&& &&\quad b=c/a\\
+&(\text{c})&&\quad
+\text{power}&&\quad
+&&(\text{c}')&&\quad
+\text{root}\\
+& &&\quad b^a=c&&\quad
+&& &&\quad b=\sqrt[a]{c}\\
+&(\text{d})&&\quad
+\text{power}&&\quad
+&&(\text{d}')&&\quad
+\text{logarithm}\\
+& &&\quad a^b=c&&\quad
+&& &&\quad b=\log_ac\\
+\end{alignedat}
+\end{equation}
+</p>
+</div>
+<div id="Ch22-S2-p2" class="para">
+<p class="p">Now here is the idea. These relationships, or rules, are correct for
+integers, since they follow from the definitions of addition,
+multiplication, and raising to a power. <em class="emph">We are going to discuss
+whether or not we can broaden the class of objects which $a$, $b$,
+and $c$ represent so that they will obey these same rules</em>, although the
+processes for $a + b$, and so on, will not be definable in terms of
+the direct action of adding $1$, for instance, or successive
+multiplications by integers.</p>
+</div>
+</div>
+<div id="Ch22-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">22–3</span>Abstraction and generalization</h3>
+<div id="Ch22-S3-p1" class="para">
+<p class="p">When we try to solve simple algebraic equations using all these
+definitions, we soon discover some insoluble problems, such as the
+following. Suppose that we try to solve the equation $b = 3 - 5$. That
+means, according to our definition of subtraction, that we must find a
+number which, when added to $5$, gives $3$. And of course there
+<em class="emph">is</em> no such number, because we consider only positive integers;
+this is an insoluble problem. However, the plan, the great idea, is
+this: <em class="emph">abstraction and generalization</em>. From the whole structure
+of algebra, rules plus integers, we abstract the original definitions
+of addition and multiplication, but we leave the rules (<a href="#mjx-eqn-EqI221">22.1</a>)
+and (<a href="#mjx-eqn-EqI222">22.2</a>), and assume these to be true <em class="emph">in general</em> on
+a wider class of numbers, even though they are originally derived on a
+smaller class. Thus, rather than using integers symbolically to define
+the rules, we use the rules as the definition of the symbols, which then
+represent a more general kind of number. As an example, by working with
+the rules alone we can show that $3 - 5 = 0 - 2$. In fact we can show
+that one can make <em class="emph">all</em> subtractions, provided we define a whole
+set of new numbers: $0 - 1$, $0 - 2$, $0 - 3$, $0 - 4$, and so on,
+called the <em class="emph">negative integers</em>. Then we may use all the other
+rules, like $a(b + c) = ab + ac$ and so forth, to find what the rules
+are for multiplying negative numbers, and we will discover, in fact,
+that all of the rules can be maintained with negative as well as
+positive integers.</p>
+</div>
+<div id="Ch22-S3-p2" class="para">
+<p class="p">So we have increased the range of objects over which the rules work,
+but the meaning of the symbols is different.</p>
+</div>
+<div id="Ch22-S3-p3" class="para">
+<p class="p">One cannot say, for instance, that $-2$ times $5$ really means to
+add $5$ together successively $-2$ times. That means nothing. But
+nevertheless everything will work out all right according to the
+rules.</p>
+</div>
+<div id="Ch22-S3-p4" class="para">
+<p class="p">An interesting problem comes up in taking powers. Suppose that we wish
+to discover what $a^{(3-5)}$ means. We know only that $3 - 5$ is a
+solution of the problem, $(3 - 5) + 5 = 3$. Knowing that, we know that
+$a^{(3-5)}a^5 = a^3$. Therefore $a^{(3-5)} = a^3/a^5$, by the
+definition of division. With a little more work, this can be reduced
+to $1/a^2$. So we find that the negative powers are the reciprocals of
+the positive powers, but $1/a^2$ is a meaningless symbol, because if
+$a$ is a positive or negative integer, the square of it is greater
+than $1$, and we do not yet know what we mean by $1$ divided by a
+number greater than $1$!</p>
+</div>
+<div id="Ch22-S3-p5" class="para">
+<p class="p">Onward! The great plan is to continue the process of generalization;
+whenever we find another problem that we cannot solve we extend our
+realm of numbers. Consider division: we cannot find a number which is
+an integer, even a negative integer, which is equal to the result of
+dividing $3$ by $5$. But if we suppose that all fractional numbers
+also satisfy the rules, then we can talk about multiplying and adding
+fractions, and everything works as well as it did before.</p>
+</div>
+<div id="Ch22-S3-p6" class="para">
+<p class="p">Take another example of powers: what is $a^{3/5}$? We know only that
+$(3/5)5 = 3$, since that was the definition of $3/5$. So we know also
+that $(a^{(3/5)})^5 =$ $a^{(3/5)(5)}=$ $a^3$, because this is one of the
+rules. Then by the definition of roots we find that $a^{(3/5)} =
+\sqrt[5]{a^3}$.</p>
+</div>
+<div id="Ch22-S3-p7" class="para">
+<p class="p">In this way, then, we can define what we mean by putting fractions in
+the various symbols, by using the rules themselves to help us
+determine the definition—it is not arbitrary. It is a remarkable
+fact that all the rules still work for positive and negative integers,
+as well as for fractions!</p>
+</div>
+<div id="Ch22-S3-p8" class="para">
+<p class="p">We go on in the process of generalization. Are there any other
+equations we cannot solve? Yes, there are. For example, it is
+impossible to solve this equation: $b =$ $2^{1/2} =$ $\sqrt{2}$. It is
+impossible to find a number which is rational (a fraction) whose
+square is equal to $2$. It is very easy for us in modern days to
+answer this question. We know the decimal system, and so we have no
+difficulty in appreciating the meaning of an unending decimal as a
+type of approximation to the square root of $2$. Historically, this
+idea presented great difficulty to the Greeks. To really define
+<em class="emph">precisely</em> what is meant here requires that we add some
+substance of continuity and ordering, and it is, in fact, quite the
+most difficult step in the processes of generalization just at this
+point. It was made, formally and rigorously, by
+Dedekind. However, without
+worrying about the mathematical rigor of the thing, it is quite easy to
+understand that what we mean is that we are going to find a whole
+sequence of approximate fractions, perfect fractions (because any
+decimal, when stopped somewhere, is of course rational), which just
+keeps on going, getting closer and closer to the desired result. That is
+good enough for what we wish to discuss, and it permits us to involve
+ourselves in irrational numbers, and to calculate things like the square
+root of $2$ to any accuracy that we desire, with enough work.</p>
+</div>
+</div>
+<div id="Ch22-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">22–4</span>Approximating irrational numbers</h3>
+<div id="Ch22-S4-p1" class="para">
+<p class="p">The next problem comes with what happens with the irrational
+powers. Suppose that we want to define, for instance,
+$10^{\sqrt{2}}$. In principle, the answer is simple enough. If we
+approximate the square root of $2$ to a certain number of decimal
+places, then the power is rational, and we can take the approximate
+root, using the above method, and get an <em class="emph">approximation</em>
+to $10^{\sqrt{2}}$. Then we may run it up a few more decimal places (it
+is again rational), take the appropriate root, this time a much higher
+root because there is a much bigger denominator in the fraction, and
+get a better approximation. Of course we are going to get some
+enormously high roots involved here, and the work is quite
+difficult. How can we cope with this problem?</p>
+</div>
+<div id="Ch22-S4-p2" class="para">
+<p class="p">In the computations of square roots, cube roots, and other small
+roots, there is an arithmetical process available by which we can get
+one decimal place after another. But the amount of labor needed to
+calculate irrational powers and the logarithms that go with them (the
+inverse problem) is so great that there is no simple arithmetical
+process we can use. Therefore tables have been built up which permit
+us to calculate these powers, and these are called the tables of
+logarithms, or the tables of powers, depending on which way the table
+is set up. It is merely a question of saving time; if we must raise
+some number to an irrational power, we can look it up rather than
+having to compute it. Of course, such a computation is just a
+technical problem, but it is an interesting one, and of great
+historical value. In the first place, not only do we have the problem
+of solving $x=10^{\sqrt{2}}$, but we also have the problem of solving
+$10^x = 2$, or $x = \log_{10} 2$. This is not a problem where we have
+to define a new kind of number for the result, it is merely a
+computational problem. The answer is simply an irrational number, an
+unending decimal, not a new kind of a number.</p>
+</div>
+<div id="Ch22-S4-p3" class="para">
+<p class="p">Let us now discuss the problem of calculating solutions of such
+equations. The general idea is really very simple. If we could
+calculate $10^1$, and $10^{4/10}$, and $10^{1/100}$, and $10^{4/1000}$
+and so on, and multiply them all together, we would get
+$10^{1.414\dots}$ or $10^{\sqrt{2}}$, and that is the general idea on
+which things work. But instead of calculating $10^{1/10}$ and so on,
+we shall calculate $10^{1/2}$, $10^{1/4}$, and so on. Before we start,
+we should explain why we make so much work with $10$, instead of some
+other number. Of course, we realize that logarithm tables are of great
+practical utility, quite aside from the mathematical problem of taking
+roots, since with any base at all,
+\begin{equation}
+\label{Eq:I:22:3}
+\log_b(ac)=\log_ba+\log_bc.
+\end{equation}
+We are all familiar with the fact that one can use this fact in a
+practical way to multiply numbers if we have a table of
+logarithms. The only question is, with what base $b$ shall we compute?
+It makes no difference what base is used; we can use the same
+principle all the time, and if we are using logarithms to any
+particular base, we can find logarithms to any other base merely by a
+change in scale, a multiplying factor. If we multiply
+Eq. (<a href="#mjx-eqn-EqI223">22.3</a>) by $61$, it is just as true, and if we had a table
+of logs with a base $b$, and somebody else multiplied all of our table
+by $61$, there would be no essential difference. Suppose that we know
+the logarithms of all the numbers to the base $b$. In other words, we
+can solve the equation $b^a = c$ for any $c$ because we have a table.
+The problem is to find the logarithm of the same number $c$ to some
+other base, let us say the base $x$. We would like to solve $x^{a'} =
+c$. It is easy to do, because we can always write $x = b^t$, which
+defines $t$, knowing $x$ and $b$. As a matter of fact, $t = \log_b x$.
+Then if we put that in and solve for $a'$, we see that $(b^t)^{a'} =
+b^{a't} = c$. In other words, $ta'$ is the logarithm of $c$ in base $b$.
+Thus $a' = a/t$. Thus logs to base $x$ are just $1/t$, which is a
+constant, times the logs to the base, $b$. Therefore any log table is
+equivalent to any other log table if we multiply by a constant, and the
+constant is $1/\log_b x$. This permits us to choose a particular base,
+and for convenience we take the base $10$. (The question may arise as to
+whether there is any natural base, any base in which things are somehow
+simpler, and we shall try to find an answer to that later. At the moment
+we shall just use the base $10$.)</p>
+</div>
+
+<div id="Ch22-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 22–1</span>Successive Square Roots of Ten
+</div>
+<table class="tabular ltx_centering">
+<tr class="tr">
+<td class="td l r t" style="text-align:center;" align="center">
+<span class="rule" style="width:0.0pt;height:12.9pt;background:black;display:inline-block;"></span><span class="text small">Power $s$</span>
+</td>
+<td class="td r t" style="text-align:center;" align="center"><span class="text small">$1024\,s$</span></td>
+<td class="td r t" style="text-align:center;" align="center"><span class="text small">$10^s$</span></td>
+<td class="td r t" style="text-align:center;" align="center"><span class="text small">$(10^s-1)/s$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r tt" style="text-align:center;" align="center">
+<span class="rule" style="width:0.0pt;height:12.9pt;background:black;display:inline-block;"></span><span class="text small">$1\phantom{/1024}$</span>
+</td>
+<td class="td r tt" style="text-align:center;" align="center"><span class="text small">$1024$</span></td>
+<td class="td r tt" style="text-align:center;" align="center"><span class="text small">$10.00000\hphantom{00}$</span></td>
+<td class="td r tt" style="text-align:center;" align="center"><span class="text small">$9.00\hphantom{00^{000}}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$1/2\phantom{000}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}512$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}3.16228\hphantom{00}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$4.32\hphantom{00^{000}}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$1/4\phantom{000}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}256$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}1.77828\hphantom{00}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$3.113\hphantom{0^{000}}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$1/8\phantom{000}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}128$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}1.33352\hphantom{00}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$2.668\hphantom{0^{000}}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$1/16\phantom{00}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{10}64$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}1.15478\hphantom{00}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$2.476\hphantom{0^{000}}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$1/32\phantom{00}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{10}32$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}1.074607\hphantom{0}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$2.3874\hphantom{^{000}}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$1/64\phantom{00}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{10}16$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}1.036633\hphantom{0}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$2.3445\hphantom{^{000}}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$1/128\phantom{0}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{100}8$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}1.018152\hphantom{0}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$2.3234^{211}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$1/256\phantom{0}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{100}4$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}1.0090350$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$2.3130^{104}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$1/512\phantom{0}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{100}2$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}1.0045073$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$2.3077^{\phantom{1}53}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$1/1024$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{100}1$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{1}1.0022511$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$2.3051^{\phantom{1}26}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"></td>
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">
+<span class="text small" style="width:0.0pt;">$\Big\downarrow$</span><span class="text small">$^{\phantom{0}26}$</span>
+</td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$\Delta/1024$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small" style="width:0.0pt;text-align:right;">$\Delta$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$1+0.0022486\Delta$</span></td>
+<td class="td r" style="text-align:center;" align="center">
+<span class="text small" style="width:0.0pt;text-align:right;">$\longleftarrow$</span><span class="text small">$2.3025\hphantom{^{000}}$</span>
+</td>
+</tr>
+<tr class="tr">
+<td class="td b l r" style="text-align:center;" align="center"><span class="text small">$(\Delta\to 0)$</span></td>
+<td class="td b r"></td>
+<td class="td b r"></td>
+<td class="td b r"></td>
+</tr>
+</table>
+</div>
+
+<div id="Ch22-S4-p4" class="para">
+<p class="p">Now let us see how to calculate logarithms. We begin by computing
+successive square roots of $10$, by cut and try. The results are shown
+in Table <a href="#Ch22-T1">22–1</a>. The powers of $10$ are given in the first
+column, and the result, $10^s$, is given in the third column. Thus
+$10^1 = 10$. The one-half power of $10$ we can easily work out,
+because that is the square root of $10$, and there is a known, simple
+process for taking square roots of any number.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> Using this process, we find
+the first square root to be $3.16228$. What good is that? It already
+tells us something, it tells us how to take $10^{0.5}$, so we now know
+at least <em class="emph">one</em> logarithm, if we happen to need the logarithm
+of $3.16228$, we know the answer is close to $0.50000$. But we must do a
+little bit better than that; we clearly need more information. So we
+take the square root again, and find $10^{1/4}$, which
+is $1.77828$. Now we have the logarithm of more numbers than we had
+before, $1.250$ is the logarithm of $17.78$ and, incidentally, if it
+happens that somebody asks for $10^{0.75}$, we can get it, because
+that is $10^{(0.5+0.25)}$; it is therefore the product of the second
+and third numbers. If we can get enough numbers in column $s$ to be
+able to make up almost any number, then by multiplying the proper
+things in column 3, we can get $10$ to any power; that is the plan. So
+we evaluate ten successive square roots of $10$, and that is the main
+work which is involved in the calculations.</p>
+</div>
+<div id="Ch22-S4-p5" class="para">
+<p class="p">Why don’t we keep on going for more and more accuracy? Because we
+begin to notice something. When we raise $10$ to a very small power,
+we get $1$ plus a small amount. The reason for this is clear, because
+we are going to have to take the $1000$th power of $10^{1/1000}$ to
+get back to $10$, so we had better not start with too big a number; it
+has to be close to $1$. What we notice is that the small numbers that
+are added to $1$ begin to look as though we are merely dividing by $2$
+each time; we see $1815$ becomes $903$, then $450$, $225$; so it is
+clear that, to an excellent approximation, if we take another root, we
+shall get $1.00112$ something, and rather than actually <em class="emph">take</em>
+all the square roots, we <em class="emph">guess</em> at the ultimate limit. When we
+take a small fraction $\Delta/1024$ as $\Delta$ approaches zero,
+what will the answer be? Of course it will be some number close
+to $1+0.0022511\,\Delta$. Not exactly $1+0.0022511\,\Delta$, however—we
+can get a better value by the following trick: we subtract the $1$,
+and then divide by the power $s$. This ought to correct all the
+excesses to the same value. We see that they are very closely
+equal. At the top of the table they are not equal, but as they come
+down, they get closer and closer to a constant value. What is the
+value? Again we look to see how the series is going, how it has
+changed with $s$. It changed by $211$, by $104$, by $53$, by
+$26$. These changes are obviously half of each other, very closely, as
+we go down. Therefore, if we kept going, the changes would be
+$13$, $7$, $3$, $2$ and $1$, more or less, or a total of $26$. Thus we have
+only $26$ more to go, and so we find that the true number
+is $2.3025$. (Actually, we shall later see that the <em class="emph">exact</em> number
+should be $2.3026$, but to keep it realistic, we shall not alter
+anything in the arithmetic.) From this table we can now calculate any
+power of $10$, by compounding the power out of $1024$ths.</p>
+</div>
+<div id="Ch22-S4-p6" class="para">
+<p class="p">Let us now actually calculate a logarithm, because the process we
+shall use is where logarithm tables actually come from. The procedure
+is shown in Table <a href="#Ch22-T2">22–2</a>, and the numerical values are shown
+in Table <a href="#Ch22-T1">22–1</a> (columns 2 and 3).</p>
+</div>
+
+<div id="Ch22-T2" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 22–2</span>Calculation of a logarithm: $\boldsymbol{\log_{10} 2}$
+</div>
+<table class="tabular ltx_centering" style="align:center">
+<tr>
+<td></td>
+<td style="text-align:left;"><span class="text small">$2 \div 1.77828 = 1.124682$</span></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left;"><span class="text small">$1.124682 \div 1.074607 = 1.046598,\text{
+etc.}$</span></td>
+</tr>
+<tr>
+<td style="text-align:right;"><span class="text small">$\therefore\,$</span></td>
+<td style="text-align:left;"><span class="text small">$2=(1.77828)(1.074607)(1.036633)(1.0090350)(1.000573)$</span></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left;"><span class="text small">$\phantom{2}=10^{\biggl[\dfrac{1}{1024}\mbox{(256+32+16+4+0.254)}\biggr]}=10^{\biggl[\dfrac{308.254}{1024}\biggr]}$</span></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left;"><span class="text small">$\phantom{2}=10^{0.30103}\phantom{(256+32+16+4+0.}\biggl(\dfrac{573}{2249}=0.254\biggr)$</span></td>
+</tr>
+<tr>
+<td style="text-align:right;"><span class="text small">$\therefore\,$</span></td>
+<td style="text-align:left;"><span class="text small">$\log_{10}2=0.30103$</span></td>
+</tr>
+</table>
+</div>
+
+
+<div id="Ch22-S4-p7" class="para">
+<p class="p">Suppose we want the logarithm of $2$. That is, we want to know to what
+power we must raise $10$ to get $2$. Can we raise $10$ to the
+$1/2$ power?  No; that is too big. In other words, we can see that the
+answer is going to be bigger than $1/4$, and less than $1/2$. Let us
+take the factor $10^{1/4}$ out; we divide $2$ by $1.778\dots$, and get
+$1.124\dots$, and so on, and now we know that we have taken away
+$0.250000$ from the logarithm. The number $1.124\dots$, is now the
+number whose logarithm we need. When we are finished we shall add back
+the $1/4$, or $256/1024$. Now we look in the table for the next number
+just below $1.124\dots$, and that is $1.074607$. We therefore divide
+by $1.074607$ and get $1.046598$. From that we discover that $2$ can
+be made up of a product of numbers that are in Table <a href="#Ch22-T1">22–1</a>,
+as follows:
+<span class="eq-wide">
+\begin{equation*}
+2 = (1.77828)(1.074607)(1.036633)(1.0090350)(1.000573).
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{gather*}
+2 = (1.77828)(1.074607)(1.036633)\;\times\\
+(1.0090350)(1.000573).
+\end{gather*}
+</span>
+
+
+
+There was one factor $(1.000573)$ left over, naturally, which is
+beyond the range of our table. To get the logarithm of this factor, we
+use our result that $10^{\Delta/1024} \approx 1+ 2.3025
+\Delta/1024$. We find $\Delta= 0.254$. Therefore our answer is $10$ to
+the following power: $(256 + 32 + 16 + 4 + 0.254)/1024$. Adding those
+together, we get $308.254/1024$. Dividing, we get $0.30103$, so we
+know that the $\log_{10} 2 = 0.30103$, which happens to be right
+to $5$ figures!</p>
+</div>
+<div id="Ch22-S4-p8" class="para">
+<p class="p">This is how logarithms were originally computed by Mr. Briggs of Halifax, in 1620. He said, “I computed successively
+$54$ square roots of $10$.” We know he really computed only the first $27$,
+because the rest of them can be obtained by this trick with $\Delta$. His work
+involved calculating the square root of $10$ twenty-seven times, which is not
+much more than the ten times we did; however, it was more work because he
+calculated to sixteen decimal places, and then reduced his answer to fourteen
+when he published it, so that there were no rounding errors. He made tables of
+logarithms to fourteen decimal places by this method, which is quite tedious.
+But all logarithm tables for three hundred years were borrowed from
+Mr. Briggs’ tables by reducing the number
+of decimal places. Only in modern times, with the WPA and computing machines,
+have new tables been independently computed. There are much more efficient
+methods of computing logarithms today, using certain series expansions.
+</p>
+</div>
+<div id="Ch22-S4-p9" class="para">
+<p class="p">In the above process, we discovered something rather interesting, and
+that is that for very small powers $\epsilon$ we can calculate
+$10^\epsilon$ easily; we have discovered that $10^\epsilon = 1+
+2.3025\epsilon$, by sheer numerical analysis. Of course this also
+means that $10^{n/2.3025} = 1+ n$ if $n$ is very small. Now logarithms
+to any other base are merely multiples of logarithms to the
+base $10$. The base $10$ was used only because we have $10$ fingers, and
+the arithmetic of it is easy, but if we ask for a mathematically
+natural base, one that has nothing to do with the number of fingers on
+human beings, we might try to change our scale of logarithms in some
+convenient and natural manner, and the method which people have chosen
+is to redefine the logarithms by multiplying all the logarithms to the
+base $10$ by $2.3025\dots$ This then corresponds to using some other
+base, and this is called the <em class="emph">natural</em> base, or base $e$. Note
+that $\log_e (1 + n) \approx n$, or $e^n \approx 1+ n$ as $n\to0$.</p>
+</div>
+<div id="Ch22-S4-p10" class="para">
+<p class="p">It is easy enough to find out what $e$ is: $e = 10^{1/2.3025}$
+or $10^{0.434294\dots}$, an irrational power. Our table of the successive
+square roots of $10$ can be used to compute, not just logarithms, but
+also $10$ to any power, so let us use it to calculate this natural
+base $e$. For convenience we transform $0.434294\dots$ into
+$444.73/1024$. Now, $444.73$ is $256 + 128 + 32 + 16 + 8 + 4 +
+0.73$. Therefore $e$, since it is an exponent of a sum, will be a
+product of the numbers
+<span class="eq-wide">
+\begin{equation*}
+(1.77828)\!(1.33352)\!(1.074607)\!(1.036633)\!(1.018152)\!
+(1.009035)\!(1.001643) = 2.7184.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+(1.&77828)\!(1.33352)\!(1.074607)\!(1.036633)\;\times\\
+&(1.018152)\!(1.009035)\!(1.001643)= 2.7184.
+\end{align*}
+</span>
+(The only problem is the last one, which is $0.73$, and which is not
+in the table, but we know that if $\Delta$ is small enough, the answer
+is $1 + 2.3025\,\Delta$.) When we multiply all these together, we get
+$2.7184$ (it should be $2.7183$, but it is good enough). The use of
+such tables, then, is the way in which irrational powers and the
+logarithms of irrational numbers are all calculated. That takes care
+of the irrationals.</p>
+</div>
+</div>
+<div id="Ch22-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">22–5</span>Complex numbers</h3>
+<div id="Ch22-S5-p1" class="para">
+<p class="p">Now it turns out that after all that work we <em class="emph">still</em> cannot solve
+every equation!  For instance, what is the square root of $-1$?
+Suppose we have to find $x^2 =-1$.  The square of no rational, of no
+irrational, of <em class="emph">nothing</em> that we have discovered so far, is equal
+to $-1$. So we again have to generalize our numbers to a still wider
+class. Let us suppose that a specific solution of $x^2 =-1$ is called
+something, we shall call it $i$; $i$ has the property, by definition,
+that its square is $-1$. That is about all we are going to say about
+it; of course, there is more than one root of the equation $x^2
+=-1$. Someone could write $i$, but another could say, “No, I prefer
+$-i$. My $i$ is minus your $i$.” It <i>is</i> just as good a solution, and
+since the only definition that $i$ has is that $i^2=-1$, it must be
+true that any equation we can write is equally true if the sign of $i$
+is changed everywhere. This is called taking the <em class="emph">complex
+conjugate</em>. Now we are going to make up numbers by adding
+successive $i$’s, and multiplying $i$’s by numbers, and adding other numbers,
+and
+so on, according to all of our rules. In this way we find that numbers
+can all be written in the form $p + iq$, where $p$ and $q$ are what we
+call <em class="emph">real</em> numbers, i.e., the numbers we have been defining up
+until now. The number $i$ is called the <em class="emph">unit imaginary</em> number.
+Any real multiple of $i$ is called <em class="emph">pure imaginary</em>. The most
+general number, $a$, is of the form $p+iq$ and is called a
+<em class="emph">complex number</em>. Things do not get any worse if, for instance,
+we multiply two such numbers, let us say $(r + is)(p + iq)$. Then,
+using the rules, we get
+\begin{align}
+(r + is)(p + iq) &= rp + r(iq) + (is)p + (is)(iq)\notag\\[1ex]
+&= rp + i(rq) + i(sp) + (ii)(sq)\notag\\[1ex]
+\label{Eq:I:22:4}
+&= (rp - sq) + i(rq + sp),
+\end{align}
+since $ii =$ $i^2 =$ $-1$. Therefore all the numbers that now belong in
+the rules (<a href="#mjx-eqn-EqI221">22.1</a>) have this mathematical form.</p>
+</div>
+<div id="Ch22-S5-p2" class="para">
+<p class="p">Now you say, “This can go on forever! We have defined powers of
+imaginaries and all the rest, and when we are all finished, somebody
+else will come along with another equation which cannot be solved,
+like $x^6 + 3x^2 =-2$. Then we have to generalize all over again!”
+But it turns out that <em class="emph">with this one more invention</em>, just the
+square root of $-1$, <em class="emph">every algebraic equation can be solved!</em>
+This is a fantastic fact, which we must leave to the Mathematics
+Department to prove. The proofs are very beautiful and very
+interesting, but certainly not self-evident. In fact, the most obvious
+supposition is that we are going to have to invent again and again and
+again. But the greatest miracle of all is that we do not. This is the
+last invention. After this invention of complex numbers, we find that
+the rules still work with complex numbers, and we are finished
+inventing new things. We can find the complex power of any complex
+number, we can solve any equation that is written algebraically, in
+terms of a finite number of those symbols. We do not find any new
+numbers. The square root of $i$, for instance, has a definite result,
+it is not something new; and $i^i$ is something. We will discuss that
+now.</p>
+</div>
+<div id="Ch22-S5-p3" class="para">
+<p class="p">We have already discussed multiplication, and addition is also easy;
+if we add two complex numbers, $(p + iq) + (r + is)$, the answer is
+$(p + r) + i(q + s)$. Now we can add and multiply complex numbers. But
+the real problem, of course, is to compute <em class="emph">complex powers of
+complex numbers</em>. It turns out that the problem is actually no more
+difficult than computing complex powers of real numbers. So let us
+concentrate now on the problem of calculating $10$ to a complex power,
+not just an irrational power, but $10^{(r+is)}$. Of course, we must at
+all times use our rules (<a href="#mjx-eqn-EqI221">22.1</a>) and (<a href="#mjx-eqn-EqI222">22.2</a>). Thus
+\begin{equation}
+\label{Eq:I:22:5}
+10^{(r+is)}=10^r10^{is}.
+\end{equation}
+But $10^r$ we already know how to compute, and we can always multiply
+anything by anything else; therefore the problem is to compute only
+$10^{is}$. Let us call it some complex number, $x + iy$. Problem:
+given $s$, find $x$, find $y$. Now if
+\begin{equation*}
+10^{is}=x+iy,
+\end{equation*}
+then the complex conjugate of this equation must also be true, so that
+\begin{equation*}
+10^{-is}=x-iy.
+\end{equation*}
+(Thus we see that we can deduce a number of things without actually
+computing anything, by using our rules.) We deduce another interesting
+thing by multiplying these together:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:22:6}
+10^{is}10^{-is}=10^0=1=(x+iy)(x-iy)=x^2+y^2.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+\label{Eq:I:22:6}
+10^{is}10^{-is}=10^0=1\\
+=(x+iy)(x-iy)=x^2+y^2.
+\end{gathered}
+\end{equation}
+</span>
+Thus if we find $x$, we have $y$ also.</p>
+</div>
+<div id="Ch22-S5-p4" class="para">
+<p class="p">Now the problem is <em class="emph">how</em> to compute $10$ to an imaginary
+power. What guide is there? We may work over our rules until we can go
+no further, but here is a reasonable guide: if we can compute it for
+any particular $s$, we can get it for all the rest. If we know
+$10^{is}$ for any one $s$ and then we want it for twice that $s$, we
+can square the number, and so on. But how can we find $10^{is}$ for
+even one special value of $s$? To do so we shall make one additional
+assumption, which is not quite in the category of all the other rules,
+but which leads to reasonable results and permits us to make progress:
+when the power is small, we shall suppose that the “law”
+$10^\epsilon = 1+ 2.3025\epsilon$ is right, as $\epsilon$ gets very
+small, not only for real $\epsilon$, <em class="emph">but for complex $\epsilon$
+as well</em>. Therefore, we begin with the supposition that this law is
+true in general, and that tells us that $10^{is} = 1+ 2.3025\cdot is$,
+for $s\to0$. So we assume that if $s$ is very small, say one part
+in $1024$, we have a rather good approximation to $10^{is}$.</p>
+</div>
+<div id="Ch22-S5-p5" class="para">
+<p class="p">Now we make a table by which we can compute <em class="emph">all</em> the imaginary
+powers of $10$, that is, compute $x$ and $y$. It is done as
+follows. The first power we start with is the $1/1024$ power, which we
+presume is very nearly $1+ 2.3025i/1024$. Thus we start with
+\begin{equation}
+\label{Eq:I:22:7}
+10^{i/1024}=1.00000+0.0022486i,
+\end{equation}
+and if we keep multiplying the number by itself, we can get to a
+higher imaginary power. In fact, we may just reverse the procedure we
+used in making our logarithm table, and calculate the square, $4$th
+power, $8$th power, etc., of (<a href="#mjx-eqn-EqI227">22.7</a>), and thus build up the
+values shown in Table <a href="#Ch22-T3">22–3</a>. We notice an interesting
+thing, that the $x$ numbers are positive at first, but then swing
+negative. We shall look into that a little bit more in a moment. But
+first we may be curious to find for what number $s$ the real part
+of $10^{is}$ is <em class="emph">zero</em>. The $y$-value would be $1$, and so we would
+have $10^{is} = 1i$, or $is = \log_{10} i$. As an example of how to use
+this table, just as we calculated $\log_{10} 2$ before, let us now use
+Table <a href="#Ch22-T3">22–3</a> to find $\log_{10} i$.</p>
+</div>
+
+<div id="Ch22-T3" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 22–3</span>Successive Squares of
+<span class="text bold small">$\boldsymbol{10^{i/1024} = 1 + 0.0022486i}$</span>
+</div>
+<table class="tabular ltx_centering">
+<tr class="tr">
+<td class="td l r t" style="text-align:center;" align="center">
+<span class="rule" style="width:0.0pt;height:12.9pt;background:black;display:inline-block;"></span><span class="text small">Power $is$</span>
+</td>
+<td class="td r t" style="text-align:center;" align="center"><span class="text small">$1024s$</span></td>
+<td class="td r t" style="text-align:center;" align="center"><span class="text small">$10^{is}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r tt" style="text-align:center;" align="center">
+<span class="rule" style="width:0.0pt;height:12.9pt;background:black;display:inline-block;"></span><span class="text small">$i/1024$</span>
+</td>
+<td class="td r tt" style="text-align:center;" align="center"><span class="text small">$\phantom{000}1$</span></td>
+<td class="td r tt" style="text-align:center;" align="center"><span class="text small">$\phantom{-}1.00000 + 0.00225i$*</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$i/512\phantom{0}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{000}2$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}1.00000 + 0.00450i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$i/256\phantom{0}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{000}4$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.99996 + 0.00900i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$i/128\phantom{0}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{000}8$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.99984 + 0.01800i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$i/64\phantom{00}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{00}16$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.99936 + 0.03599i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$i/32\phantom{00}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{00}32$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.99742 + 0.07193i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$i/16\phantom{00}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{00}64$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.98967 + 0.14349i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$i/8\phantom{000}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{0}128$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.95885 + 0.28402i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$i/4\phantom{000}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{0}256$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.83872 + 0.54467i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$i/2\phantom{000}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{0}512$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.40679 + 0.91365i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$i/1\phantom{000}$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$1024$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$-0.66928 + 0.74332i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td b l r"></td>
+<td class="td b r" style="text-align:left;" colspan="2" align="left">
+<span class="rule" style="width:0.0pt;height:11.381102pt;background:black;display:inline-block;"></span><span class="text small">* Should be $0.0022486i$</span>
+</td>
+</tr>
+</table>
+</div>
+
+<div id="Ch22-S5-p6" class="para">
+<p class="p">Which of the numbers in Table <a href="#Ch22-T3">22–3</a> do we have to multiply
+together to get a pure imaginary result? After a little trial and
+error, we discover that to reduce $x$ the most, it is best to multiply
+“$512$” by “$128$.” This gives $0.13056 + 0.99159i$. Then we
+discover that we should multiply this by a number whose imaginary part
+is about equal to the size of the real part we are trying to
+remove. Thus we choose “$64$” whose $y$-value is $0.14349$, since
+that is closest to $0.13056$. This then gives $-0.01308 +
+1.00008i$. Now we have overshot, and must <em class="emph">divide</em> by $0.99996 +
+0.00900i$. How do we do that? By changing the sign of $i$ and
+multiplying by $0.99996 - 0.00900i$ (which works if $x^2 + y^2 =
+1$). Continuing in this way, we find that the entire power to which
+$10$ must be raised to give $i$ is $i(512 + 128 + 64 - 4 - 2 +
+0.20)/1024$, or $698.20i/1024$. If we raise $10$ to that power, we can
+get $i$. Therefore $\log_{10} i = 0.68184i$.</p>
+</div>
+
+</div>
+<div id="Ch22-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">22–6</span>Imaginary exponents</h3>
+
+
+<div id="Ch22-T4" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 22–4</span>Successive Powers of
+<span class="text bold small">$\boldsymbol{10^{i/8}}$</span>
+</div>
+<table class="tabular ltx_centering">
+<tr class="tr">
+<td class="td l r t" style="text-align:center;" align="center">
+<span class="rule" style="width:0.0pt;height:12.9pt;background:black;display:inline-block;"></span><span class="text small">$p=\text{power}\cdot8/i$</span>
+</td>
+<td class="td r t" style="text-align:center;" align="center"><span class="text small">$10^{ip/8}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r tt" style="text-align:center;" align="center">
+<span class="rule" style="width:0.0pt;height:12.9pt;background:black;display:inline-block;"></span><span class="text small">$\phantom{0}0$</span>
+</td>
+<td class="td r tt" style="text-align:center;" align="center"><span class="text small">$\phantom{-}1.00000+0.00000i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$\phantom{0}1$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.95882+0.28402i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$\phantom{0}2$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.83867+0.54465i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$\phantom{0}3$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.64944+0.76042i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$\phantom{0}4$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.40672+0.91356i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$\phantom{0}5$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$\phantom{-}0.13050+0.99146i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$\phantom{0}6$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$-0.15647+0.98770i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$\phantom{0}7$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$-0.43055+0.90260i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$\phantom{0}8$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$-0.66917+0.74315i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$\phantom{0}9$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$-0.85268+0.52249i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$10$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$-0.96596+0.25880i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$11$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$-0.99969-0.02620i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$12$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$-0.95104-0.30905i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$14$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$-0.62928-0.77717i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$16$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$-0.10447-0.99453i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$18$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$+0.45454-0.89098i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$20$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$+0.86648-0.49967i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:center;" align="center"><span class="text small">$22$</span></td>
+<td class="td r" style="text-align:center;" align="center"><span class="text small">$+0.99884+0.05287i$</span></td>
+</tr>
+<tr class="tr">
+<td class="td b l r" style="text-align:center;" align="center"><span class="text small">$24$</span></td>
+<td class="td b r" style="text-align:center;" align="center"><span class="text small">$+0.80890+0.58836i$</span></td>
+</tr>
+</table>
+</div>
+
+<div id="Ch22-S6-p1" class="para">
+<p class="p">To further investigate the subject of taking complex imaginary powers,
+let us look at the powers of $10$ taking <em class="emph">successive powers</em>, not
+doubling the power each time, in order to follow Table <a href="#Ch22-T3">22–3</a>
+further and to see what happens to those minus signs. This is shown in
+Table <a href="#Ch22-T4">22–4</a>, in which we take $10^{i/8}$, and just keep
+multiplying it. We see that $x$ decreases, passes through zero, swings
+almost to $-1$ (if we could get in between $p = 10$ and $p = 11$ it
+would obviously swing to $-1$), and swings back. The $y$-value is going
+back and forth too.</p>
+</div>
+<div id="Ch22-F1" class="figure">
+<img src="img/FLP_I/f22-01/f22-01_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 22–1</span>
+</div>
+</div>
+<div id="Ch22-S6-p2" class="para">
+<p class="p">In Fig. <a href="#Ch22-F1">22–1</a> the dots represent the numbers that appear
+in Table <a href="#Ch22-T4">22–4</a>, and the lines are just drawn to help you
+visually. So we see that the numbers $x$ and $y$ oscillate; $10^{is}$
+<em class="emph">repeats itself</em>, it is a <em class="emph">periodic</em> thing, and as such, it
+is easy enough to explain, because if a certain power is $i$, then the
+fourth power of that would be $i^2$ <em class="emph">squared</em>. It would be $+1$
+again, and therefore, since $10^{0.68i}$ is equal to $i$, by taking
+the fourth power we discover that $10^{2.72i}$ is equal to $+1$.
+Therefore, if we wanted $10^{3.00i}$, for instance, we could write it
+as $10^{2.72i}$ times $10^{0.28i}$. In other words, it has a period,
+it repeats. Of course, we recognize what the curves look like! They
+look like the sine and cosine, and we shall call them, for a while,
+the algebraic sine and algebraic cosine. However, instead of using the
+base $10$, we shall put them into our natural base, which only changes
+the horizontal scale; so we denote $2.3025s$ by $t$, and write
+$10^{is} = e^{it}$, where $t$ is a real number. Now $e^{it} = x + iy$,
+and we shall write this as the algebraic cosine of $t$ plus $i$ times
+the algebraic sine of $t$. Thus
+\begin{equation}
+\label{Eq:I:22:8}
+e^{it}=\operatorname{\underline{\cos}}t+
+i\operatorname{\underline{\sin}}t.
+\end{equation}
+What are the properties of $\operatorname{\underline{\cos}} t$
+and $\operatorname{\underline{\sin}} t$? First, we know, for instance,
+that $x^2 + y^2$ must be $1$; we have proved that before, and it is
+just as true for base $e$ as for base $10$. Therefore
+$\operatorname{\underline{\cos}}^2 t+
+\operatorname{\underline{\sin}}^2 t= 1$. We also know that, for small
+$t$, $e^{it} = 1+it$, and therefore $\operatorname{\underline{\cos}}
+t$ is nearly $1$, and $\operatorname{\underline{\sin}} t$ is nearly
+$t$, and so it goes, that <em class="emph">all of the various properties of these
+remarkable functions</em>, which come from taking imaginary powers,
+<em class="emph">are the same as the sine and cosine of trigonometry</em>.</p>
+</div>
+<div id="Ch22-S6-p3" class="para">
+<p class="p">Is the period the same? Let us find out. $e$ to what power is equal
+to $i$? What is the logarithm of $i$ to the base $e$? We worked it out
+before, in the base $10$ it was $0.68184i$, but when we change our
+logarithmic scale to $e$, we have to multiply by $2.3025$, and if we
+do that it comes out $1.570$. So this will be called “algebraic
+$\pi/2$.”  But, we see, it differs from the regular $\pi/2$ by only
+one place in the last point, and that, of course, is the result of
+errors in our arithmetic! So we have created two new functions in a
+purely algebraic manner, the cosine and the sine, which belong to
+algebra, and only to algebra. We wake up at the end to discover the
+very functions that are natural to geometry. So there is a connection,
+ultimately, between algebra and geometry.</p>
+</div>
+<div id="Ch22-S6-p4" class="para">
+<p class="p">We summarize with this, the most remarkable formula in mathematics:
+\begin{equation}
+\label{Eq:I:22:9}
+e^{i\theta}=\cos\theta+i\sin\theta.
+\end{equation}
+This is our jewel.</p>
+</div>
+<div id="Ch22-S6-p5" class="para">
+<p class="p">We may relate the geometry to the algebra by representing complex
+numbers in a plane; the horizontal position of a point is $x$, the
+vertical position of a point is $y$ (Fig. <a href="#Ch22-F2">22–2</a>). We
+represent every complex number, $x+iy$. Then if the radial distance to
+this point is called $r$ and the angle is called $\theta$, the
+algebraic law is that $x+iy$ is written in the form $re^{i\theta}$,
+where the geometrical relationships between $x$, $y$, $r$,
+and $\theta$ are as shown. This, then, is the unification of algebra and
+geometry.</p>
+</div>
+<div id="Ch22-F2" class="figure">
+<img src="img/FLP_I/f22-02/f22-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 22–2.</span>$x + iy = re^{i\theta}$.
+</div>
+</div>
+<div id="Ch22-S6-p6" class="para">
+<p class="p">When we began this chapter, armed only with the basic notions of
+integers and counting, we had little idea of the power of the
+processes of abstraction and generalization. Using the set of
+algebraic “laws,” or properties of numbers, Eq. (<a href="#mjx-eqn-EqI221">22.1</a>),
+and the definitions of inverse operations (<a href="#mjx-eqn-EqI222">22.2</a>), we have
+been able here, ourselves, to manufacture not only numbers but useful
+things like tables of logarithms, powers, and trigonometric functions
+(for these are what the imaginary powers of real numbers are), all
+merely by extracting ten successive square roots of ten!</p>
+</div>
+</div>
+<ol id="footnotes"><li class="footnote">
+  <a name="footnote_1"></a>
+  There is a
+definite arithmetic procedure, but the easiest way to find the square
+root of any number $N$ is to choose some $a$ fairly close, find $N/a$,
+average $a' = \tfrac{1}{2}[a + (N/a)]$, and use this average $a'$ for
+the next choice for $a$. The convergence is very rapid—the number of
+significant figures doubles each time.
+  <a href="#footnote_source_1">↩</a>
+</li></ol>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

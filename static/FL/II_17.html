@@ -1,0 +1,1753 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 17: The Laws of Induction</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "17." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch17" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">17</span>The Laws of Induction</h2>
+<div id="Ch17-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">17–1</span>The physics of induction</h3>
+<div id="Ch17-S1-p1" class="para">
+<p class="p">In the last chapter we described many phenomena which show that the
+effects of induction are quite complicated and interesting. Now we
+want to discuss the fundamental principles which govern these
+effects. We have already defined the emf in a conducting circuit as
+the total accumulated force on the charges throughout the length of
+the loop. More specifically, it is the tangential component of the
+force per unit charge, integrated along the wire once around the
+circuit. This quantity is equal, therefore, to the total work done on
+a single charge that travels once around the circuit.</p>
+</div>
+<div id="Ch17-S1-p2" class="para">
+<p class="p">We have also given the “flux rule,” which says that
+the emf is equal to the rate at which the magnetic flux through such a
+conducting circuit is changing. Let’s see if we can understand why that
+might be. First, we’ll consider a case in which the flux changes because
+a circuit is moved in a steady field.</p>
+</div>
+<div id="Ch17-F1" class="figure">
+<img src="img/FLP_II/f17-01/f17-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 17–1.</span>An emf is induced in a loop if the flux is changed by varying
+the area of the circuit.
+</div>
+</div>
+<div id="Ch17-S1-p3" class="para">
+<p class="p">In Fig. <a href="#Ch17-F1">17–1</a> we show a simple loop of wire whose
+dimensions can be changed. The loop has two parts, a fixed U-shaped
+part (a) and a movable crossbar (b) that can slide along the two legs
+of the U. There is always a complete circuit, but its area is
+variable. Suppose we now place the loop in a uniform magnetic field
+with the plane of the U perpendicular to the field. According to the
+rule, when the crossbar is moved there should be in the loop an emf
+that is proportional to the rate of change of the flux through the
+loop. This emf will cause a current in the loop. We will assume that
+there is enough resistance in the wire that the currents are
+small. Then we can neglect any magnetic field from this current.</p>
+</div>
+<div id="Ch17-S1-p4" class="para">
+<p class="p">The flux through the loop is $wLB$, so the “flux rule” would give
+for the emf—which we write as $\emf$—
+\begin{equation*}
+\emf=wB\,\ddt{L}{t}=wBv,
+\end{equation*}
+
+where $v$ is the speed of translation of the crossbar.</p>
+</div>
+<div id="Ch17-S1-p5" class="para">
+<p class="p">Now we should be able to understand this result from the magnetic
+$\FLPv\times\FLPB$ forces on the charges in the moving crossbar. These
+charges will feel a force, tangential to the wire, equal to $vB$ per
+unit charge. It is constant along the length $w$ of the crossbar and
+zero elsewhere, so the integral is
+\begin{equation*}
+\emf=wvB,
+\end{equation*}
+
+which is the same result we got from the rate of change of the flux.</p>
+</div>
+<div id="Ch17-S1-p6" class="para">
+<p class="p">The argument just given can be extended to any case where there is a
+fixed magnetic field and the wires are moved. One can prove, in
+general, that for any circuit whose parts move in a fixed magnetic
+field the emf is the time derivative of the flux, regardless of the
+shape of the circuit.</p>
+</div>
+<div id="Ch17-S1-p7" class="para">
+<p class="p">On the other hand, what happens if the loop is stationary and the
+magnetic field is changed? We cannot deduce the answer to this
+question from the same argument. It was
+Faraday’s discovery—from
+experiment—that the “flux rule” is still correct no matter why the
+flux changes. The force on electric charges is given in complete
+generality by $\FLPF=q(\FLPE+\FLPv\times\FLPB)$; there are no new
+special “forces due to changing magnetic fields.” Any forces on
+charges at rest in a stationary wire come from the
+$\FLPE$ term. Faraday’s
+observations led to the discovery that electric and
+magnetic fields are related by a new law: in a region where the
+magnetic field is changing with time, electric fields are
+generated. It is this electric field which drives the electrons around
+the wire—and so is responsible for the emf in a stationary circuit
+when there is a changing magnetic flux.</p>
+</div>
+<div id="Ch17-S1-p8" class="para">
+<p class="p">The general law for the electric field associated with a changing
+magnetic field is
+\begin{equation}
+\label{Eq:II:17:1}
+\FLPcurl{\FLPE}=-\ddp{\FLPB}{t}.
+\end{equation}
+
+We will call this Faraday’s law. It was discovered
+by Faraday but was first
+written in differential form by Maxwell, as one of his equations. Let’s see how this equation gives
+the “flux rule” for circuits.
+</p>
+</div>
+<div id="Ch17-S1-p9" class="para">
+<p class="p">Using Stokes’ theorem, this law can be written in integral form as
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:17:2}
+\oint_\Gamma\FLPE\cdot d\FLPs=
+\int_S(\FLPcurl{\FLPE})\cdot\FLPn\,da=
+-\int_S\ddp{\FLPB}{t}\cdot\FLPn\,da,
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+\oint_\Gamma\FLPE\cdot d\FLPs &=
+\int_S(\FLPcurl{\FLPE})\cdot\FLPn\,da\\[1ex]
+&= -\int_S\ddp{\FLPB}{t}\cdot\FLPn\,da,
+\end{aligned}
+\label{Eq:II:17:2}
+\end{equation}
+</span>
+where, as usual, $\Gamma$ is any closed curve and $S$ is any surface
+bounded by it. Here, remember, $\Gamma$ is a <em class="emph">mathematical</em> curve
+fixed in space, and $S$ is a fixed surface. Then the time derivative
+can be taken outside the integral and we have
+\begin{equation}
+\label{Eq:II:17:3}
+\begin{aligned}
+\oint_\Gamma\FLPE\cdot d\FLPs& =-\ddt{}{t}\int_S\FLPB\cdot\FLPn\,da \\[1ex]
+&=-\ddt{}{t}(\text{flux through $S$}).
+\end{aligned}
+\end{equation}
+
+Applying this relation to a curve $\Gamma$ that follows a <em class="emph">fixed</em>
+circuit of conductor, we get the “flux rule” once again. The
+integral on the left is the emf, and that on the right is the negative
+rate of change of the flux linked by the circuit. So
+Eq. (<a href="#mjx-eqn-EqII171">17.1</a>) applied to a fixed circuit is equivalent to the
+“flux rule.”</p>
+</div>
+<div id="Ch17-S1-p10" class="para">
+<p class="p">So the “flux rule”—that the emf in a circuit is equal to the rate
+of change of the magnetic flux through the circuit—applies whether
+the flux changes because the field changes or because the circuit
+moves (or both). The two possibilities—“circuit moves” or “field
+changes”—are not distinguished in the statement of the rule. Yet in
+our explanation of the rule we have used two completely distinct laws
+for the two cases—$\FLPv\times\FLPB$ for “circuit moves” and
+$\FLPcurl{\FLPE}=-\ddpl{\FLPB}{t}$ for “field changes.”</p>
+</div>
+<div id="Ch17-S1-p11" class="para">
+<p class="p">We know of no other place in physics where such a simple and accurate
+general principle requires for its real understanding an analysis in
+terms of <em class="emph">two different phenomena</em>. Usually such a beautiful
+generalization is found to stem from a single deep underlying
+principle. Nevertheless, in this case there does not appear to be any
+such profound implication. We have to understand the “rule” as the
+combined effects of two quite separate phenomena.
+</p>
+</div>
+<div id="Ch17-S1-p12" class="para">
+<p class="p">We must look at the “flux rule” in the following way. In general,
+the force per unit charge is $\FLPF/q=\FLPE+\FLPv\times\FLPB$. In
+moving wires there is the force from the second term. Also, there is
+an $\FLPE$-field if there is somewhere a changing magnetic field. They
+are independent effects, but the emf around the loop of wire is always
+equal to the rate of change of magnetic flux through it.</p>
+</div>
+</div>
+<div id="Ch17-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">17–2</span>Exceptions to the “flux rule”</h3>
+<div id="Ch17-S2-p1" class="para">
+<p class="p">We will now give some examples, due in part to
+Faraday, which show the
+importance of keeping clearly in mind the distinction between the two
+effects responsible for induced emf’s. Our examples involve situations
+to which the “flux rule” cannot be applied—either because there is
+no wire at all or because the <em class="emph">path</em> taken by induced currents
+moves about within an extended volume of a conductor.</p>
+</div>
+<div id="Ch17-S2-p2" class="para">
+<p class="p">We begin by making an important point: The part of the emf that comes
+from the $\FLPE$-field does not depend on the existence of a physical
+wire (as does the $\FLPv\times\FLPB$ part). The $\FLPE$-field can
+exist in free space, and its line integral around any imaginary line
+fixed in space is the rate of change of the flux of $\FLPB$ through
+that line. (Note that this is quite unlike the $\FLPE$-field produced
+by static charges, for in that case the line integral of $\FLPE$
+around a closed loop is always zero.)</p>
+</div>
+<div id="Ch17-F2" class="figure">
+<img src="img/FLP_II/f17-02/f17-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 17–2.</span>When the disc rotates there is an emf from
+$\Figv\times\FigB$, but with no change in the linked flux.
+</div>
+</div>
+<div id="Ch17-S2-p3" class="para">
+<p class="p">Now we will describe a situation in which the flux through a circuit
+does not change, but there is nevertheless an emf.
+Figure <a href="#Ch17-F2">17–2</a> shows a conducting disc which can be rotated on
+a fixed axis in the presence of a magnetic field. One contact is made to
+the shaft and another rubs on the outer periphery of the disc. A circuit
+is completed through a galvanometer. As the disc rotates, the
+“circuit,” in the sense of the place in space where the currents are,
+is always the same. But the part of the “circuit” in the disc is in
+material which is moving. Although the flux through the “circuit” is
+constant, there is still an emf, as can be observed by the deflection of
+the galvanometer. Clearly, here is a case where the
+$\FLPv\times\FLPB$ force in the moving disc gives rise to an emf which cannot be
+equated to
+a change of flux.</p>
+</div>
+<div id="Ch17-F3" class="figure">
+<img src="img/FLP_II/f17-03/f17-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 17–3.</span>When the plates are rocked in a uniform magnetic field, there
+can be a large change in the flux linkage without the generation of
+an emf.
+</div>
+</div>
+<div id="Ch17-S2-p4" class="para">
+<p class="p">Now we consider, as an opposite example, a somewhat unusual situation
+in which the flux through a “circuit” (again in the sense of the
+place where the current is) changes but where there is <em class="emph">no</em>
+emf. Imagine two metal plates with slightly curved edges, as shown in
+Fig. <a href="#Ch17-F3">17–3</a>, placed in a uniform magnetic field
+perpendicular to their surfaces. Each plate is connected to one of the
+terminals of a galvanometer, as shown. The plates make contact at one
+point $P$, so there is a complete circuit. If the plates are now
+rocked through a small angle, the point of contact will move to $P'$.
+If we imagine the “circuit” to be completed through the plates
+on the dotted line shown in the figure, the magnetic flux through this
+circuit changes by a large amount as the plates are rocked back and
+forth. Yet the rocking can be done with small motions, so that
+$\FLPv\times\FLPB$ is very small and there is practically no emf. The
+“flux rule” does not work in this case. It must be applied to
+circuits in which the <em class="emph">material</em> of the circuit remains the
+same. When the material of the circuit is changing, we must return to
+the basic laws. The <em class="emph">correct</em> physics is always given by the two
+basic laws
+\begin{align*}
+&\FLPF=q(\FLPE+\FLPv\times\FLPB),\\[1ex]
+&\FLPcurl{\FLPE}=-\ddp{\FLPB}{t}.
+\end{align*}
+</p>
+</div>
+</div>
+<div id="Ch17-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">17–3</span>Particle acceleration by an induced electric field; the betatron</h3>
+<div id="Ch17-S3-p1" class="para">
+<p class="p">We have said that the electromotive force generated by a changing
+magnetic field can exist even without conductors; that is, there can
+be magnetic induction without wires. We may still imagine an
+electromotive force around an arbitrary mathematical curve in
+space. It is defined as the tangential component of $\FLPE$ integrated
+around the curve. Faraday’s law says that this line
+integral is equal to minus the rate of change of the magnetic flux through the
+closed curve, Eq. (<a href="#mjx-eqn-EqII173">17.3</a>).
+</p>
+</div>
+<div id="Ch17-F4" class="figure">
+<img class="first" src="img/FLP_II/f17-04/f17-04_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_II/f17-04/f17-04_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 17–4.</span>An electron accelerating in an axially symmetric,
+increasing magnetic field.
+</div>
+</div>
+<div id="Ch17-S3-p2" class="para">
+<p class="p">As an example of the effect of such an induced electric field, we want
+now to consider the motion of an electron in a changing magnetic
+field. We imagine a magnetic field which, everywhere on a plane,
+points in a vertical direction, as shown in Fig. <a href="#Ch17-F4">17–4</a>. The
+magnetic field is produced by an electromagnet, but we will not worry
+about the details. For our example we will imagine that the magnetic
+field is symmetric about some axis, i.e., that the strength of the
+magnetic field will depend only on the distance from the axis. The
+magnetic field is also varying with time. We now imagine an electron
+that is moving in this field on a path that is a circle of constant
+radius with its center at the axis of the field. (We will see later how
+this motion can be arranged.) Because of the changing magnetic field,
+there will be an electric field $\FLPE$ tangential to the electron’s
+orbit which will drive it around the circle. Because of the symmetry,
+this electric field will have the same value everywhere on the circle.
+If the electron’s orbit has the radius $r$, the line integral of $\FLPE$
+around the orbit is equal to minus the rate of change of the magnetic flux
+through the circle. The line integral of $\FLPE$ is just its magnitude
+times the circumference of the circle, $2\pi r$. The magnetic flux must,
+in general, be obtained from an integral. For the moment, we let
+$B_{\text{av}}$ represent the average magnetic field in the interior of
+the circle; then the flux is this average magnetic field times the area
+of the circle. We will have
+\begin{equation*}
+2\pi rE=\ddt{}{t}(B_{\text{av}}\cdot\pi r^2).
+\end{equation*}
+</p>
+</div>
+<div id="Ch17-S3-p3" class="para">
+<p class="p">Since we are assuming $r$ is constant, $E$ is proportional to the time
+derivative of the average field:
+\begin{equation}
+\label{Eq:II:17:4}
+E=\frac{r}{2}\,\ddt{B_{\text{av}}}{t}.
+\end{equation}
+
+The electron will feel the electric force $q\FLPE$ and will be
+accelerated by it. Remembering that the relativistically correct
+equation of motion is that the rate of change of the momentum is
+proportional to the force, we have
+\begin{equation}
+\label{Eq:II:17:5}
+qE=\ddt{p}{t}.
+\end{equation}
+</p>
+</div>
+<div id="Ch17-S3-p4" class="para">
+<p class="p">For the circular orbit we have assumed, the electric force on the electron is
+always in the direction of its motion, so its total momentum will be increasing
+at the rate given by Eq. (<a href="#mjx-eqn-EqII175">17.5</a>). Combining Eqs.
+(<a href="#mjx-eqn-EqII175">17.5</a>) and (<a href="#mjx-eqn-EqII174">17.4</a>), we may relate the rate of change of
+momentum to the change of the average magnetic field:
+\begin{equation}
+\label{Eq:II:17:6}
+\ddt{p}{t}=\frac{qr}{2}\,\ddt{B_{\text{av}}}{t}.
+\end{equation}
+
+Integrating with respect to $t$, we find for the electron’s momentum
+\begin{equation}
+\label{Eq:II:17:7}
+p=p_0+\frac{qr}{2}\,\Delta B_{\text{av}},
+\end{equation}
+
+where $p_0$ is the momentum with which the electrons start out, and
+$\Delta B_{\text{av}}$, is the subsequent change in $B_{\text{av}}$.
+The operation of a
+<em class="emph">betatron</em>—a machine for accelerating electrons
+to high energies—is based on this idea.</p>
+</div>
+<div id="Ch17-S3-p5" class="para">
+<p class="p">To see how the betatron operates in detail, we must
+now examine how the electron can be constrained to move on a
+circle. We have discussed in Chapter <a href="I_11.html">11</a> of Vol. I the
+principle involved. If we arrange that there is a magnetic field $\FLPB$
+at the orbit of the electron, there will be a transverse
+force $q\FLPv\times\FLPB$ which, for a suitably chosen $\FLPB$, can cause
+the electron to keep moving on its assumed orbit. In the
+betatron this transverse force causes the electron to
+move in a circular orbit of constant radius. We can find out what the
+magnetic field at the orbit must be by using again the relativistic
+equation of motion, but this time, for the transverse component of the
+force. In the betatron (see Fig. <a href="#Ch17-F4">17–4</a>),
+$\FLPB$ is at right angles to $\FLPv$, so the transverse force is $qvB$.
+Thus the force is equal to the rate of change of the transverse
+component $p_t$ of the momentum:
+\begin{equation}
+\label{Eq:II:17:8}
+qvB=\ddt{p_t}{t}.
+\end{equation}
+When a particle is moving in a <em class="emph">circle</em>, the rate of change of
+its transverse momentum is equal to the magnitude of the total
+momentum times $\omega$, the angular velocity of rotation (following
+the arguments of Chapter <a href="I_11.html">11</a>, Vol. I):
+\begin{equation}
+\label{Eq:II:17:9}
+\ddt{p_t}{t}=\omega p,
+\end{equation}
+where, since the motion is circular,
+\begin{equation}
+\label{Eq:II:17:10}
+\omega=\frac{v}{r}.
+\end{equation}
+Setting the magnetic force equal to the transverse acceleration, we have
+\begin{equation}
+\label{Eq:II:17:11}
+qvB_{\text{orbit}}=p\,\frac{v}{r},
+\end{equation}
+where $B_{\text{orbit}}$ is the field at the radius $r$.</p>
+</div>
+<div id="Ch17-S3-p6" class="para">
+<p class="p">
+As the betatron operates, the momentum of the electron
+grows in proportion to $B_{\text{av}}$, according to
+Eq. (<a href="#mjx-eqn-EqII177">17.7</a>), and if the electron is to continue to move in
+its proper circle, Eq. (<a href="#mjx-eqn-EqII1711">17.11</a>) must continue to hold as the
+momentum of the electron increases. The value of $B_{\text{orbit}}$ must
+increase in proportion to the momentum $p$. Comparing
+Eq. (<a href="#mjx-eqn-EqII1711">17.11</a>) with Eq. (<a href="#mjx-eqn-EqII177">17.7</a>), which determines
+$p$, we see that the following relation must hold between
+$B_{\text{av}}$, the average magnetic field <em class="emph">inside</em> the orbit at
+the radius $r$, and the magnetic field $B_{\text{orbit}}$ at the orbit:
+\begin{equation}
+\label{Eq:II:17:12}
+\Delta B_{\text{av}}=2\,\Delta B_{\text{orbit}}.
+\end{equation}
+The correct operation of a betatron requires that the
+average magnetic field inside the orbit increases at twice the rate of
+the magnetic field at the orbit itself. In these circumstances, as the
+energy of the particle is increased by the induced electric field the
+magnetic field at the orbit increases at just the rate required to
+keep the particle moving in a circle.</p>
+</div>
+<div id="Ch17-S3-p7" class="para">
+<p class="p">
+The betatron is used to accelerate electrons to
+energies of tens of millions of volts, or even to hundreds of millions
+of volts. However, it becomes impractical for the acceleration of
+electrons to energies much higher than a few hundred million volts for
+several reasons. One of them is the practical difficulty of attaining
+the required high average value for the magnetic field inside the
+orbit. Another is that Eq. (<a href="#mjx-eqn-EqII176">17.6</a>) is no longer correct
+at very high energies because it does not include the loss of energy
+from the particle due to its radiation of electromagnetic energy (the
+so-called synchrotron radiation\index{Synchrotron radiation} discussed
+in Chapter <a href="I_36.html">36</a>, Vol. I). For these reasons, the
+acceleration of electrons to the highest energies&mdash;to many billions
+of electron volts&mdash;is accomplished by means of a different kind of
+machine, called a <em class="emph">synchrotron</em>.</p>
+</div>
+</div>
+<div id="Ch17-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">17–4</span>A paradox</h3>
+<div id="Ch17-S4-p1" class="para">
+<p class="p">
+We would now like to describe for you an apparent paradox. A paradox
+is a situation which gives one answer when analyzed one way, and a
+different answer when analyzed another way, so that we are left in
+somewhat of a quandary as to actually what should happen. Of course,
+in physics there are never any real paradoxes because there is only
+one correct answer; at least we believe that nature will act in only
+one way (and that is the <em class="emph">right way</em>, naturally). So in physics a
+paradox is only a confusion in our own understanding. Here is our
+paradox.</p>
+</div>
+<div id="Ch17-F5" class="figure">
+<img src="img/FLP_II/f17-05/f17-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 17–5.</span>Will the disc rotate if the current $I$ is stopped?</div>
+</div>
+<div id="Ch17-S4-p2" class="para">
+<p class="p">Imagine that we construct a device like that shown in
+Fig. <a href="#Ch17-F5">17–5</a>. There is a thin, circular plastic disc supported
+on a concentric shaft with excellent bearings, so that it is quite free
+to rotate. On the disc is a coil of wire in the form of a short solenoid
+concentric with the axis of rotation. This solenoid carries a steady
+current $I$ provided by a small battery, also mounted on the disc. Near
+the edge of the disc and spaced uniformly around its circumference are a
+number of small metal spheres insulated from each other and from the
+solenoid by the plastic material of the disc. Each of these small
+conducting spheres is charged with the same electrostatic charge $Q$.
+Everything is quite stationary, and the disc is at rest. Suppose now
+that by some accident—or by prearrangement—the current in the
+solenoid is interrupted, without, however, any intervention from the
+outside. So long as the current continued, there was a magnetic flux
+through the solenoid more or less parallel to the axis of the disc. When
+the current is interrupted, this flux must go to zero. There will,
+therefore, be an electric field induced which will circulate around in
+circles centered at the axis. The charged spheres on the perimeter of
+the disc will all experience an electric field tangential to the
+perimeter of the disc. This electric force is in the same sense for all
+the charges and so will result in a net torque on the disc. From these
+arguments we would expect that as the current in the solenoid
+disappears, the disc would begin to rotate. If we knew the moment of
+inertia of the disc, the current in the solenoid, and the charges on the
+small spheres, we could compute the resulting angular velocity.</p>
+</div>
+<div id="Ch17-S4-p3" class="para">
+<p class="p">But we could also make a different argument. Using the principle of
+the conservation of angular momentum, we could say that the angular
+momentum of the disc with all its equipment is initially zero, and so
+the angular momentum of the assembly should remain zero. There should
+be no rotation when the current is stopped. Which argument is correct?
+Will the disc rotate or will it not? We will leave this question for
+you to think about.</p>
+</div>
+<div id="Ch17-S4-p4" class="para">
+<p class="p">We should warn you that the correct answer does not depend on any
+nonessential feature, such as the asymmetric position of a battery,
+for example. In fact, you can imagine an ideal situation such as the
+following: The solenoid is made of superconducting wire through which
+there is a current. After the disc has been carefully placed at rest,
+the temperature of the solenoid is allowed to rise slowly When the
+temperature of the wire reaches the transition temperature between
+superconductivity and normal conductivity, the current in the solenoid
+will be brought to zero by the resistance of the wire. The flux will,
+as before, fall to zero, and there will be an electric field around
+the axis. We should also warn you that the solution is not easy, nor
+is it a trick. When you figure it out, you will have discovered an
+important principle of electromagnetism.</p>
+</div>
+</div>
+<div id="Ch17-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">17–5</span>Alternating-current generator</h3>
+<div id="Ch17-S5-p1" class="para">
+<p class="p">In the remainder of this chapter we apply the principles of
+Section <a href="#Ch17-S1">17–1</a> to analyze a number of the phenomena
+discussed in Chapter <a href="II_16.html">16</a>. We first look in more detail at
+the alternating-current generator. Such a generator consists basically
+of a coil of wire rotating in a uniform magnetic field. The same result
+can also be achieved by a fixed coil in a magnetic field whose direction
+rotates in the manner described in the last chapter. We will consider
+only the former case. Suppose we have a circular coil of wire which can
+be turned on an axis along one of its diameters. Let this coil be
+located in a uniform magnetic field perpendicular to the axis of
+rotation, as in Fig. <a href="#Ch17-F6">17–6</a>. We also imagine that the two
+ends of the coil are brought to external connections through some kind
+of sliding contacts.</p>
+</div>
+<div id="Ch17-F6" class="figure">
+<img src="img/FLP_II/f17-06/f17-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 17–6.</span>A coil of wire rotating in a uniform magnetic field—the
+basic idea of the <span class="text smallcaps">ac</span> generator.</div>
+</div>
+<div id="Ch17-S5-p2" class="para">
+<p class="p">Due to the rotation of the coil, the magnetic flux through it will be
+changing. The circuit of the coil will therefore have an emf in
+it. Let $S$ be the area of the coil and $\theta$ the angle between the
+magnetic field and the normal to the plane of the coil.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> The flux through the coil is
+then
+\begin{equation}
+\label{Eq:II:17:13}
+BS\cos\theta.
+\end{equation}
+
+If the coil is rotating at the uniform angular velocity $\omega$,
+$\theta$ varies with time as $\theta=\omega t$.</p>
+</div>
+<div id="Ch17-S5-p3" class="para">
+<p class="p">Each turn of the coil will have an emf equal to the rate of change of
+this flux. If the coil has $N$ turns of wire the total emf will be
+$N$ times larger, so
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:17:14}
+\emf=-N\,\ddt{}{t}(BS\cos\omega t)=NBS\omega\sin\omega t.
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{align}
+\emf&=-N\,\ddt{}{t}(BS\cos\omega t)\notag\\[1ex]
+\label{Eq:II:17:14}
+&=NBS\omega\sin\omega t.
+\end{align}
+
+
+</span>
+</p>
+</div>
+<div id="Ch17-S5-p4" class="para">
+<p class="p">If we bring the wires from the generator to a point some distance from
+the rotating coil, where the magnetic field is zero, or at least is
+not varying with time, the curl of $\FLPE$ in this region will be zero
+and we can define an electric potential. In fact, if there is no
+current being drawn from the generator, the potential difference $V$
+between the two wires will be equal to the emf in the rotating
+coil. That is,
+\begin{equation*}
+V=NBS\omega\sin\omega t=V_0\sin\omega t.
+\end{equation*}
+
+The potential difference between the wires varies as $\sin\omega
+t$. Such a varying potential difference is called an alternating
+voltage.
+</p>
+</div>
+<div id="Ch17-S5-p5" class="para">
+<p class="p">Since there is an electric field between the wires, they must be
+electrically charged. It is clear that the emf of the generator has
+pushed some excess charges out to the wire until the electric field
+from them is strong enough to exactly counterbalance the induction
+force. Seen from outside the generator, the two wires appear as though
+they had been electrostatically charged to the potential difference $V$,
+and as though the charge was being changed with time to give an
+alternating potential difference. There is also another difference
+from an electrostatic situation. If we connect the generator to an
+external circuit that permits passage of a current, we find that the
+emf does not permit the wires to be discharged but continues to
+provide charge to the wires as current is drawn from them, attempting
+to keep the wires always at the same potential difference. If, in
+fact, the generator is connected in a circuit whose total resistance
+is $R$, the current through the circuit will be proportional to the
+emf of the generator and inversely proportional to $R$. Since the emf
+has a sinusoidal time variation, so also does the current. There is an
+alternating current
+\begin{equation*}
+I=\frac{\emf}{R}=\frac{V_0}{R}\sin\omega t.
+\end{equation*}
+
+The schematic diagram of such a circuit is shown in
+Fig. <a href="#Ch17-F7">17–7</a>.</p>
+</div>
+<div id="Ch17-F7" class="figure">
+<img src="img/FLP_II/f17-07/f17-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 17–7.</span>A circuit with an <span class="text smallcaps">ac</span> generator and a resistance.</div>
+</div>
+<div id="Ch17-S5-p6" class="para">
+<p class="p">We can also see that the emf determines how much energy is supplied by
+the generator. Each charge in the wire is receiving energy at the
+rate $\FLPF\cdot\FLPv$, where $\FLPF$ is the force on the charge and
+$\FLPv$ is its velocity. Now let the number of moving charges per unit
+length of the wire be $n$; then the power being delivered into any
+element $ds$ of the wire is
+\begin{equation*}
+\FLPF\cdot\FLPv n\,ds.
+\end{equation*}
+
+For a wire, $\FLPv$ is always along $d\FLPs$, so we can rewrite the
+power as
+\begin{equation*}
+nv\FLPF\cdot d\FLPs.
+\end{equation*}
+
+The total power being delivered to the complete circuit is the
+integral of this expression around the complete loop:
+\begin{equation}
+\label{Eq:II:17:15}
+\text{Power}=\oint nv\FLPF\cdot d\FLPs.
+\end{equation}
+
+Now remember that $qnv$ is the current $I$, and that the emf is
+defined as the integral of $F/q$ around the circuit. We get the result
+\begin{equation}
+\label{Eq:II:17:16}
+\text{Power from a generator}=\emf I.
+\end{equation}
+</p>
+</div>
+<div id="Ch17-S5-p7" class="para">
+<p class="p">When there is a current in the coil of the generator, there will also
+be mechanical forces on it. In fact, we know that the torque on the
+coil is proportional to its magnetic moment, to the magnetic field
+strength $B$, and to the sine of the angle between. The magnetic
+moment is the current in the coil times its area. Therefore the torque
+is
+\begin{equation}
+\label{Eq:II:17:17}
+\tau=NISB\sin\theta.
+\end{equation}
+
+The rate at which mechanical work must be done to keep the coil
+rotating is the angular velocity $\omega$ times the torque:
+\begin{equation}
+\label{Eq:II:17:18}
+\ddt{W}{t}=\omega\tau=\omega NISB\sin\theta.
+\end{equation}
+
+Comparing this equation with Eq. (<a href="#mjx-eqn-EqII1714">17.14</a>), we see that
+the rate of mechanical work required to rotate the coil against the
+magnetic forces is just equal to $\emf I$, the rate at which
+electrical energy is delivered by the emf of the generator. All of the
+mechanical energy used up in the generator appears as electrical
+energy in the circuit.</p>
+</div>
+<div id="Ch17-S5-p8" class="para">
+<p class="p">As another example of the currents and forces due to an induced emf,
+let’s analyze what happens in the setup described in
+Section <a href="#Ch17-S1">17–1</a>, and shown in Fig. <a href="#Ch17-F1">17–1</a>. There
+are two parallel wires and a sliding crossbar located in a uniform
+magnetic field perpendicular to the plane of the parallel wires. Now
+let’s assume that the “bottom” of the U (the left side in the figure)
+is made of wires of high resistance, while the two side wires are made
+of a good conductor like copper—then we don’t need to worry about the
+change of the circuit resistance as the crossbar is moved. As before,
+the emf in the circuit is
+\begin{equation}
+\label{Eq:II:17:19}
+\emf=vBw.
+\end{equation}
+
+The current in the circuit is proportional to this emf and inversely
+proportional to the resistance of the circuit:
+\begin{equation}
+\label{Eq:II:17:20}
+I=\frac{\emf}{R}=\frac{vBw}{R}.
+\end{equation}
+</p>
+</div>
+<div id="Ch17-S5-p9" class="para">
+<p class="p">Because of this current there will be a magnetic force on the crossbar
+that is proportional to its length, to the current in it, and to the
+magnetic field, such that
+\begin{equation}
+\label{Eq:II:17:21}
+F=BIw.
+\end{equation}
+
+Taking $I$ from Eq. (<a href="#mjx-eqn-EqII1720">17.20</a>), we have for the force
+\begin{equation}
+\label{Eq:II:17:22}
+F=\frac{B^2w^2}{R}\,v.
+\end{equation}
+
+We see that the force is proportional to the velocity of the
+crossbar. The direction of the force, as you can easily see, is
+opposite to its velocity. Such a “velocity-proportional” force,
+which is like the force of viscosity, is found whenever induced
+currents are produced by moving conductors in a magnetic field. The
+examples of eddy currents we gave in the last chapter also produced
+forces on the conductors proportional to the velocity of the
+conductor, even though such situations, in general, give a complicated
+distribution of currents which is difficult to analyze.</p>
+</div>
+<div id="Ch17-S5-p10" class="para">
+<p class="p">It is often convenient in the design of mechanical systems to have
+damping forces which are proportional to the velocity. Eddy-current
+forces provide one of the most convenient ways of getting such a
+velocity-dependent force. An example of the application of such a
+force is found in the conventional domestic wattmeter. In the
+wattmeter there is a thin aluminum disc that rotates between the poles
+of a permanent magnet. This disc is driven by a small electric motor
+whose torque is proportional to the power being consumed in the
+electrical circuit of the house. Because of the eddy-current forces in
+the disc, there is a resistive force proportional to the velocity. In
+equilibrium, the velocity is therefore proportional to the rate of
+consumption of electrical energy. By means of a counter attached to
+the rotating disc, a record is kept of the number of revolutions it
+makes. This count is an indication of the total energy consumption,
+i.e., the number of watthours used.</p>
+</div>
+<div id="Ch17-S5-p11" class="para">
+<p class="p">We may also point out that Eq. (<a href="#mjx-eqn-EqII1722">17.22</a>) shows that the
+force from induced currents—that is, any eddy-current force—is
+inversely proportional to the resistance. The force will be larger,
+the better the conductivity of the material. The reason, of course, is
+that an emf produces more current if the resistance is low, and the
+stronger currents represent greater mechanical forces.</p>
+</div>
+<div id="Ch17-S5-p12" class="para">
+<p class="p">We can also see from our formulas how mechanical energy is converted
+into electrical energy. As before, the electrical energy supplied to
+the resistance of the circuit is the product $\emf I$. The rate at
+which work is done in moving the conducting crossbar is the force on
+the bar times its velocity. Using Eq. (<a href="#mjx-eqn-EqII1721">17.21</a>) for the
+force, the rate of doing work is
+\begin{equation*}
+\ddt{W}{t}=\frac{v^2B^2w^2}{R}.
+\end{equation*}
+
+We see that this is indeed equal to the product $\emf I$ we would get from
+Eqs. (<a href="#mjx-eqn-EqII1719">17.19</a>) and (<a href="#mjx-eqn-EqII1720">17.20</a>). Again the mechanical
+work appears as electrical energy.</p>
+</div>
+</div>
+<div id="Ch17-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">17–6</span>Mutual inductance</h3>
+<div id="Ch17-S6-p1" class="para">
+<p class="p">We now want to consider a situation in which there are fixed coils of
+wire but changing magnetic fields. When we described the production of
+magnetic fields by currents, we considered only the case of steady
+currents. But so long as the currents are changed slowly, the magnetic
+field will at each instant be nearly the same as the magnetic field of
+a steady current. We will assume in the discussion of this section
+that the currents are always varying sufficiently slowly that this is
+true.</p>
+</div>
+<div id="Ch17-F8" class="figure">
+<img src="img/FLP_II/f17-08/f17-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 17–8.</span>A current in coil $1$ produces a magnetic field through coil $2$.
+</div>
+</div>
+<div id="Ch17-S6-p2" class="para">
+<p class="p">In Fig. <a href="#Ch17-F8">17–8</a> is shown an arrangement of two coils which
+demonstrates the basic effects responsible for the operation of a
+transformer. Coil $1$ consists of a conducting wire wound in the form
+of a long solenoid. Around this coil—and insulated from it—is
+wound coil $2$, consisting of a few turns of wire. If now a current is
+passed through coil $1$, we know that a magnetic field will appear
+inside it. This magnetic field also passes through coil $2$. As the
+current in coil $1$ is varied, the magnetic flux will also vary, and
+there will be an induced emf in coil $2$. We will now calculate this
+induced emf.</p>
+</div>
+<div id="Ch17-S6-p3" class="para">
+<p class="p">We have seen in Section <a href="II_13.html#Ch13-S5">13–5</a> that the magnetic field
+inside a long solenoid is uniform and has the magnitude
+\begin{equation}
+\label{Eq:II:17:23}
+B=\frac{1}{\epsO c^2}\,\frac{N_1I_1}{l},
+\end{equation}
+
+where $N_1$ is the number of turns in coil $1$, $I_1$ is the current
+through it, and $l$ is its length. Let’s say that the cross-sectional
+area of coil $1$ is $S$; then the flux of $\FLPB$ is its magnitude
+times $S$. If coil $2$ has $N_2$ turns, this flux links the coil
+$N_2$ times. Therefore the emf in coil $2$ is given by
+\begin{equation}
+\label{Eq:II:17:24}
+\emf_2=-N_2S\,\ddt{B}{t}.
+\end{equation}
+
+The only quantity in Eq. (<a href="#mjx-eqn-EqII1723">17.23</a>) which varies with time
+is $I_1$. The emf is therefore given by
+\begin{equation}
+\label{Eq:II:17:25}
+\emf_2=-\frac{N_1N_2S}{\epsO c^2l}\,\ddt{I_1}{t}.
+\end{equation}
+</p>
+</div>
+<div id="Ch17-S6-p4" class="para">
+<p class="p">We see that the emf in coil $2$ is proportional to the rate of change
+of the current in coil $1$. The constant of proportionality, which is
+basically a geometric factor of the two coils, is called the
+<em class="emph">mutual inductance</em>, and is usually designated
+$\mutualInd_{21}$. Equation (<a href="#mjx-eqn-EqII1725">17.25</a>) is then written
+\begin{equation}
+\label{Eq:II:17:26}
+\emf_2=\mutualInd_{21}\,\ddt{I_1}{t}.
+\end{equation}
+</p>
+</div>
+<div id="Ch17-S6-p5" class="para">
+<p class="p">Suppose now that we were to pass a current through coil $2$ and ask
+about the emf in coil $1$. We would compute the magnetic field, which
+is everywhere proportional to the current $I_2$. The flux linkage
+through coil $1$ would depend on the geometry, but would be
+proportional to the current $I_2$. The emf in coil $1$ would,
+therefore, again be proportional to $dI_2/dt$: We can write
+\begin{equation}
+\label{Eq:II:17:27}
+\emf_1=\mutualInd_{12}\,\ddt{I_2}{t}.
+\end{equation}
+
+The computation of $\mutualInd_{12}$ would be more difficult than the
+computation we have just done for $\mutualInd_{21}$. We will not carry
+through that computation now, because we will show later in this
+chapter that $\mutualInd_{12}$ is necessarily equal
+to $\mutualInd_{21}$.</p>
+</div>
+<div id="Ch17-S6-p6" class="para">
+<p class="p">Since for <em class="emph">any</em> coil its field is proportional to its current,
+the same kind of result would be obtained for any two coils of
+wire. The equations (<a href="#mjx-eqn-EqII1726">17.26</a>) and (<a href="#mjx-eqn-EqII1727">17.27</a>) would
+have the same form; only the constants $\mutualInd_{21}$
+and $\mutualInd_{12}$ would be different. Their values would depend on the
+shapes of the coils and their relative positions.</p>
+</div>
+<div id="Ch17-F9" class="figure">
+<img src="img/FLP_II/f17-09/f17-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 17–9.</span>Any two coils have a mutual inductance $\mutualInd$
+proportional to the integral of $d\Figs_1\cdot d\Figs_2/r_{12}$.</div>
+</div>
+<div id="Ch17-S6-p7" class="para">
+<p class="p">Suppose that we wish to find the mutual inductance between any two
+arbitrary coils—for example, those shown in Fig. <a href="#Ch17-F9">17–9</a>. We
+know that the general expression for the emf in coil $1$ can be written
+as
+\begin{equation*}
+\emf_1=-\ddt{}{t}\int_{(1)}\FLPB\cdot\FLPn\,da,
+\end{equation*}
+
+where $\FLPB$ is the magnetic field and the integral is to be taken
+over a surface bounded by circuit $1$. We have seen in
+Section <a href="II_14.html#Ch14-S1">14–1</a> that such a surface integral of $\FLPB$ can
+be related to a line integral of the vector potential. In particular,
+\begin{equation*}
+\int_{(1)}\FLPB\cdot\FLPn\,da=\oint_{(1)}\FLPA\cdot d\FLPs_1,
+\end{equation*}
+
+where $\FLPA$ represents the vector potential and $d\FLPs_1$ is an
+element of circuit $1$. The line integral is to be taken around
+circuit $1$. The emf in coil $1$ can therefore be written as
+\begin{equation}
+\label{Eq:II:17:28}
+\emf_1=-\ddt{}{t}\oint_{(1)}\FLPA\cdot d\FLPs_1.
+\end{equation}
+</p>
+</div>
+<div id="Ch17-S6-p8" class="para">
+<p class="p">Now let’s assume that the vector potential at circuit $1$ comes from
+currents in circuit $2$. Then it can be written as a line integral
+around circuit $2$:
+\begin{equation}
+\label{Eq:II:17:29}
+\FLPA=\frac{1}{4\pi\epsO c^2}\oint_{(2)}\frac{I_2\,d\FLPs_2}{r_{12}},
+\end{equation}
+
+where $I_2$ is the current in circuit $2$, and $r_{12}$ is the distance from the
+element of the circuit $d\FLPs_2$ to the point on circuit $1$ at which we are
+evaluating the vector potential. (See Fig. <a href="#Ch17-F9">17–9</a>.) Combining
+Eqs. (<a href="#mjx-eqn-EqII1728">17.28</a>) and (<a href="#mjx-eqn-EqII1729">17.29</a>), we can express the emf
+in circuit $1$ as a double line integral:
+\begin{equation*}
+\emf_1=-\frac{1}{4\pi\epsO c^2}\,\ddt{}{t}\oint_{(1)}\oint_{(2)}
+\frac{I_2\,d\FLPs_2}{r_{12}}\cdot d\FLPs_1.
+\end{equation*}
+
+In this equation the integrals are all taken with respect to
+stationary circuits. The only variable quantity is the current $I_2$,
+which does not depend on the variables of integration. We may
+therefore take it out of the integrals. The emf can then be written as
+\begin{equation*}
+\emf_1=\mutualInd_{12}\,\ddt{I_2}{t},
+\end{equation*}
+
+where the coefficient $\mutualInd_{12}$ is
+\begin{equation}
+\label{Eq:II:17:30}
+\mutualInd_{12}=-\frac{1}{4\pi\epsO c^2}\oint_{(1)}\oint_{(2)}
+\frac{d\FLPs_2\cdot d\FLPs_1}{r_{12}}.
+\end{equation}
+
+We see from this integral that $\mutualInd_{12}$ depends only on the
+circuit geometry. It depends on a kind of average separation of the
+two circuits, with the average weighted most for parallel segments of
+the two coils. Our equation can be used for calculating the mutual
+inductance of any two circuits of arbitrary shape. Also, it shows that
+the integral for $\mutualInd_{12}$ is identical to the integral
+for $\mutualInd_{21}$. We have therefore shown that the two coefficients are
+identical. For a system with only two coils, the coefficients
+$\mutualInd_{12}$ and $\mutualInd_{21}$ are often represented by the
+symbol $\mutualInd$ without subscripts, called simply the <em class="emph">mutual
+inductance</em>:
+\begin{equation*}
+\mutualInd_{12}=\mutualInd_{21}=\mutualInd.
+\end{equation*}
+</p>
+</div>
+</div>
+<div id="Ch17-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">17–7</span>Self-inductance</h3>
+<div id="Ch17-S7-p1" class="para">
+<p class="p">In discussing the induced electromotive forces in the two coils of Figs.
+<a href="#Ch17-F8">17–8</a> or <a href="#Ch17-F9">17–9</a>, we have considered only the case in
+which there was a current in one coil or the other. If there are currents in the
+two coils simultaneously, the magnetic flux linking either coil will be the sum
+of the two fluxes which would exist separately, because the law of superposition
+applies for magnetic fields. The emf in either coil will therefore be
+proportional not only to the change of the current in the other coil, but also
+to the change in the current of the coil itself. Thus the total emf in coil $2$
+should be written<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+\begin{equation}
+\label{Eq:II:17:31}
+\emf_2=\mutualInd_{21}\,\ddt{I_1}{t}+\mutualInd_{22}\,\ddt{I_2}{t}.
+\end{equation}
+
+Similarly, the emf in coil $1$ will depend not only on the changing
+current in coil $2$, but also on the changing current in itself:
+\begin{equation}
+\label{Eq:II:17:32}
+\emf_1=\mutualInd_{12}\,\ddt{I_2}{t}+\mutualInd_{11}\,\ddt{I_1}{t}.
+\end{equation}
+
+The coefficients $\mutualInd_{22}$ and $\mutualInd_{11}$ are always negative
+numbers. It is usual to write
+\begin{equation}
+\label{Eq:II:17:33}
+\mutualInd_{11}=-\selfInd_1,\quad \mutualInd_{22}=-\selfInd_2,
+\end{equation}
+
+where $\selfInd_1$ and $\selfInd_2$ are called the <em class="emph">self-inductances</em>
+of the two coils.</p>
+</div>
+<div id="Ch17-S7-p2" class="para">
+<p class="p">The self-induced emf will, of course, exist even if we have only one
+coil. Any coil by itself will have a self-inductance $\selfInd$. The emf
+will be proportional to the rate of change of the current in it. For a
+single coil, it is usual to adopt the convention that the emf and the
+current are considered positive if they are in the same
+direction. With this convention, we may write for the emf of a single
+coil
+\begin{equation}
+\label{Eq:II:17:34}
+\emf=-\selfInd\,\ddt{I}{t}.
+\end{equation}
+
+The negative sign indicates that the emf opposes the change in
+current—it is often called a “back emf.”</p>
+</div>
+<div id="Ch17-S7-p3" class="para">
+<p class="p">Since any coil has a self-inductance which opposes the change in
+current, the current in the coil has a kind of inertia. In fact, if we
+wish to change the current in a coil we must overcome this inertia by
+connecting the coil to some external voltage source such as a battery
+or a generator, as shown in the schematic diagram of
+Fig. <a href="#Ch17-F10">17–10</a>(a). In such a circuit, the current $I$ depends
+on the voltage $\voltage$ according to the relation
+\begin{equation}
+\label{Eq:II:17:35}
+\voltage=\selfInd\,\ddt{I}{t}.
+\end{equation}
+</p>
+</div>
+<div id="Ch17-F10" class="figure">
+<img class="first" src="img/FLP_II/f17-10/f17-10_tc_big_a.svgz"><img class="last" src="img/FLP_II/f17-10/f17-10_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 17–10.</span>(a) A circuit with a voltage source and an inductance. (b) An analogous mechanical system.</div>
+</div>
+<div id="Ch17-S7-p4" class="para">
+<p class="p">This equation has the same form as Newton’s law of motion for a
+particle in one dimension. We can therefore study it by the principle
+that “the same equations have the same solutions.” Thus, if we make
+the externally applied voltage $\voltage$ correspond to an externally
+applied force $F$, and the current $I$ in a coil correspond to the
+velocity $v$ of a particle, the inductance $\selfInd$ of the coil
+corresponds to the mass $m$ of the particle.<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a> See
+Fig. <a href="#Ch17-F10">17–10</a>(b). We can make the following table of
+corresponding quantities.</p>
+<table class="tabular centering">
+<thead class="thead"><tr class="tr">
+<th class="td" style="text-align:center;" align="center"><em class="emph">Particle</em></th>
+<th class="td" style="text-align:center;" align="center"><em class="emph">Coil</em></th>
+</tr></thead>
+<tbody class="tbody">
+<tr class="tr">
+<td class="td" style="text-align:center;" align="center">$F$ (force)</td>
+<td class="td" style="text-align:center;" align="center">$\voltage$ (potential difference)</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:center;" align="center">$v$ (velocity)</td>
+<td class="td" style="text-align:center;" align="center">$I$ (current)</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:center;" align="center">$x$ (displacement)</td>
+<td class="td" style="text-align:center;" align="center">$q$ (charge)</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:center;" align="center">$\displaystyle F=m\,\ddt{v}{t}$</td>
+<td class="td" style="text-align:center;" align="center">$\displaystyle \voltage=\selfInd\,\ddt{I}{t}$</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:center;" align="center">$mv$ (momentum)</td>
+<td class="td" style="text-align:center;" align="center">$\selfInd I$</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:center;" align="center">$\tfrac{1}{2}mv^2$ (kinetic energy)</td>
+<td class="td" style="text-align:center;" align="center">$\tfrac{1}{2}\selfInd I^2$ (magnetic
+energy)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="Ch17-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">17–8</span>Inductance and magnetic energy</h3>
+<div id="Ch17-S8-p1" class="para">
+<p class="p">Continuing with the analogy of the preceding section, we would expect
+that corresponding to the mechanical momentum $p=mv$, whose rate of
+change is the applied force, there should be an analogous quantity
+equal to $\selfInd I$, whose rate of change is $\voltage$. We have no right,
+of course, to say that $\selfInd I$ is the real momentum of the circuit;
+in fact, it isn’t. The whole circuit may be standing still and have no
+momentum. It is only that $\selfInd I$ is analogous to the momentum $mv$
+in the sense of satisfying corresponding equations. In the same way,
+to the kinetic energy $\tfrac{1}{2}mv^2$, there corresponds an
+analogous quantity $\tfrac{1}{2}\selfInd I^2$. But there we have a
+surprise. This $\tfrac{1}{2}\selfInd I^2$ is really the energy in the
+electrical case also. This is because the rate of doing work on the
+inductance is $\voltage I$, and in the mechanical system it is $Fv$, the
+corresponding quantity. Therefore, in the case of the energy, the
+quantities not only correspond mathematically, but also have the same
+physical meaning as well.</p>
+</div>
+<div id="Ch17-S8-p2" class="para">
+<p class="p">We may see this in more detail as follows. As we found in
+Eq. (<a href="#mjx-eqn-EqII1716">17.16</a>), the rate of electrical work by induced forces
+is the product of the electromotive force and the current:
+\begin{equation*}
+\ddt{W}{t}=\emf I.
+\end{equation*}
+
+Replacing $\emf$ by its expression in terms of the current from
+Eq. (<a href="#mjx-eqn-EqII1734">17.34</a>), we have
+\begin{equation}
+\label{Eq:II:17:36}
+\ddt{W}{t}=-\selfInd I\,\ddt{I}{t}.
+\end{equation}
+
+Integrating this equation, we find that the energy required from an
+external source to overcome the emf in the self-inductance while
+building up the current<a name="footnote_source_4" href="#footnote_4"><sup class="mark">4</sup></a> (which must equal the energy stored,
+$U$) is
+\begin{equation}
+\label{Eq:II:17:37}
+-W=U=\tfrac{1}{2}\selfInd I^2.
+\end{equation}
+
+Therefore the energy stored in an inductance is $\tfrac{1}{2}\selfInd
+I^2$.</p>
+</div>
+<div id="Ch17-S8-p3" class="para">
+<p class="p">Applying the same arguments to a pair of coils such as those in Figs.
+<a href="#Ch17-F8">17–8</a> or <a href="#Ch17-F9">17–9</a>, we can show that the total electrical
+energy of the system is given by
+\begin{equation}
+\label{Eq:II:17:38}
+U=\tfrac{1}{2}\selfInd_1I_1^2+\tfrac{1}{2}\selfInd_2I_2^2+\mutualInd I_1I_2.
+\end{equation}
+
+For, starting with $I=0$ in both coils, we could first turn on the
+current $I_1$ in coil $1$, with $I_2=0$. The work done is
+just $\tfrac{1}{2}\selfInd_1I_1^2$. But now, on turning up $I_2$, we not
+only do the work $\tfrac{1}{2}\selfInd_2I_2^2$ against the emf in
+circuit $2$, but also an additional amount $\mutualInd I_1I_2$, which
+is the integral of the emf [$\mutualInd(dI_2/dt)$] in circuit $1$
+times the now <em class="emph">constant</em> current $I_1$ in that circuit.</p>
+</div>
+<div id="Ch17-S8-p4" class="para">
+<p class="p">Suppose we now wish to find the force between any two coils carrying
+the currents $I_1$ and $I_2$. We might at first expect that we could
+use the principle of virtual work, by taking the change in the energy
+of Eq. (<a href="#mjx-eqn-EqII1738">17.38</a>). We must remember, of course, that as we
+change the relative positions of the coils the only quantity which
+varies is the mutual inductance $\mutualInd$. We might then write the
+equation of virtual work as
+\begin{equation*}
+-F\,\Delta x=\Delta U=I_1I_2\,\Delta\mutualInd\quad(\text{wrong}).
+\end{equation*}
+
+But this equation is wrong because, as we have seen earlier, it
+includes only the change in the energy of the two coils and not the
+change in the energy of the sources which are maintaining the currents
+$I_1$ and $I_2$ at their constant values. We can now understand that
+these sources must supply energy against the induced emf’s in the
+coils as they are moved. If we wish to apply the principle of virtual
+work correctly, we must also include these energies. As we have seen,
+however, we may take a short cut and use the principle of virtual work
+by remembering that the total energy is the negative of what we have
+called $U_{\text{mech}}$, the “mechanical energy.” We can therefore
+write for the force
+\begin{equation}
+\label{Eq:II:17:39}
+-F\,\Delta x=\Delta U_{\text{mech}}=-\Delta U.
+\end{equation}
+
+The force between two coils is then given by
+\begin{equation*}
+F\,\Delta x=I_1I_2\,\Delta\mutualInd.
+\end{equation*}
+</p>
+</div>
+<div id="Ch17-S8-p5" class="para">
+<p class="p">Equation (<a href="#mjx-eqn-EqII1738">17.38</a>) for the energy of a system of two coils
+can be used to show that an interesting inequality exists between
+mutual inductance $\mutualInd$ and the self-inductances $\selfInd_1$
+and $\selfInd_2$ of the two coils. It is clear that the energy of two coils
+must be positive. If we begin with zero currents in the coils and
+increase these currents to some values, we have been adding energy to
+the system. If not, the currents would spontaneously increase with
+release of energy to the rest of the world—an unlikely thing to
+happen! Now our energy equation, Eq. (<a href="#mjx-eqn-EqII1738">17.38</a>), can
+equally well be written in the following form:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:17:40}
+U=\frac{1}{2}\,\selfInd_1\biggl(I_1+\frac{\mutualInd}{\selfInd_1}\,I_2\biggr)^2+
+\frac{1}{2}\biggl(\selfInd_2-\frac{\mutualInd^2}{\selfInd_1}\biggr)I_2^2.
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{align}
+U=\;\;\frac{1}{2}\,\selfInd_1&\biggl(I_1+\frac{\mutualInd}{\selfInd_1}\,I_2\biggr)^2\notag\\[.75ex]
+\label{Eq:II:17:40}
++\;\frac{1}{2}&\biggl(\selfInd_2-\frac{\mutualInd^2}{\selfInd_1}\biggr)I_2^2.
+\end{align}
+
+</span>
+
+
+That is just an algebraic transformation. This quantity must always be
+positive for any values of $I_1$ and $I_2$. In particular, it must be
+positive if $I_2$ should happen to have the special value
+\begin{equation}
+\label{Eq:II:17:41}
+I_2=-\frac{\selfInd_1}{\mutualInd}\,I_1.
+\end{equation}
+
+But with this current for $I_2$, the first term in
+Eq. (<a href="#mjx-eqn-EqII1740">17.40</a>) is zero. If the energy is to be positive, the
+last term in (<a href="#mjx-eqn-EqII1740">17.40</a>) must be greater than zero. We have the
+requirement that
+\begin{equation*}
+\selfInd_1\selfInd_2&gt;\mutualInd^2.
+\end{equation*}
+
+We have thus proved the general result that the magnitude of the
+mutual inductance $\mutualInd$ of any two coils is necessarily less than or
+equal to the geometric mean of the two self-inductances. ($\mutualInd$
+itself may be positive or negative, depending on the sign conventions
+for the currents $I_1$ and $I_2$.)
+\begin{equation}
+\label{Eq:II:17:42}
+\abs{\mutualInd}&lt;\sqrt{\selfInd_1\selfInd_2}.
+\end{equation}
+</p>
+</div>
+<div id="Ch17-S8-p6" class="para">
+<p class="p">The relation between $\mutualInd$ and the self-inductances is usually
+written as
+\begin{equation}
+\label{Eq:II:17:43}
+\mutualInd=k\sqrt{\selfInd_1\selfInd_2}.
+\end{equation}
+
+The constant $k$ is called the coefficient of
+coupling.
+If most of the flux from one coil links the other coil, the coefficient
+of coupling is near one; we say the coils are “tightly coupled.” If
+the coils are far apart or otherwise arranged so that there is very
+little mutual flux linkage, the coefficient of coupling is near zero and
+the mutual inductance is very small.</p>
+</div>
+<div id="Ch17-S8-p7" class="para">
+<p class="p">For calculating the mutual inductance of two coils, we have given in
+Eq. (<a href="#mjx-eqn-EqII1730">17.30</a>) a formula which is a double line integral
+around the two circuits. We might think that the same formula could be
+used to get the self-inductance of a single coil by carrying out both
+line integrals around the same coil. This, however, will not work, because
+the denominator $r_{12}$ of the integrand will go to zero when the two
+line elements $d\FLPs_1$ and $d\FLPs_2$ are at the same point on the
+coil.  The self-inductance obtained from this formula is
+infinite. The reason is that this formula is an approximation that is
+valid only when the cross sections of the wires of the two circuits
+are small compared with the distance from one circuit to the
+other. Clearly, this approximation doesn’t hold for a single coil. It
+is, in fact, true that the inductance of a single coil tends
+logarithmically to infinity as the diameter of its wire is made
+smaller and smaller.</p>
+</div>
+<div id="Ch17-S8-p8" class="para">
+<p class="p">We must, then, look for a different way of calculating the
+self-inductance of a single coil. It is necessary to take into account
+the distribution of the currents within the wires because the size of
+the wire is an important parameter. We should therefore ask not what
+is the inductance of a “circuit,” but what is the inductance of a
+<em class="emph">distribution</em> of conductors. Perhaps the easiest way to find
+this inductance is to make use of the magnetic energy. We found
+earlier, in Section <a href="II_15.html#Ch15-S3">15–3</a>, an expression for the magnetic
+energy of a distribution of stationary currents:
+\begin{equation}
+\label{Eq:II:17:44}
+U=\tfrac{1}{2}\int\FLPj\cdot\FLPA\,dV.
+\end{equation}
+
+If we know the distribution of current density $\FLPj$, we can compute
+the vector potential $\FLPA$ and then evaluate the integral of
+Eq. (<a href="#mjx-eqn-EqII1744">17.44</a>) to get the energy. This energy is equal to the
+magnetic energy of the self-inductance, $\tfrac{1}{2}\selfInd I^2$.
+Equating the two gives us a formula for the inductance:
+\begin{equation}
+\label{Eq:II:17:45}
+\selfInd=\frac{1}{I^2}\int\FLPj\cdot\FLPA\,dV.
+\end{equation}
+
+We expect, of course, that the inductance is a number depending only
+on the geometry of the circuit and not on the current $I$ in the
+circuit. The formula of Eq. (<a href="#mjx-eqn-EqII1745">17.45</a>) will indeed give
+such a result, because the integral in this equation is proportional
+to the square of the current—the current appears once
+through $\FLPj$ and again through the vector potential $\FLPA$. The integral
+divided by $I^2$ will depend on the geometry of the circuit but not on
+the current $I$.</p>
+</div>
+<div id="Ch17-S8-p9" class="para">
+<p class="p">Equation (<a href="#mjx-eqn-EqII1744">17.44</a>) for the energy of a current distribution
+can be put in a quite different form which is sometimes more
+convenient for calculation. Also, as we will see later, it is a form
+that is important because it is more generally valid. In the energy
+equation, Eq. (<a href="#mjx-eqn-EqII1744">17.44</a>), both $\FLPA$ and $\FLPj$ can be
+related to $\FLPB$, so we can hope to express the energy in terms of
+the magnetic field—just as we were able to relate the electrostatic
+energy to the electric field. We begin by replacing $\FLPj$ by $\epsO
+c^2\FLPcurl{\FLPB}$. We cannot replace $\FLPA$ so easily, since
+$\FLPB=\FLPcurl{\FLPA}$ cannot be reversed to give $\FLPA$ in terms
+of $\FLPB$. Anyway, we can write
+\begin{equation}
+\label{Eq:II:17:46}
+U=\frac{\epsO c^2}{2}\int(\FLPcurl{\FLPB})\cdot\FLPA\,dV.
+\end{equation}
+</p>
+</div>
+<div id="Ch17-S8-p10" class="para">
+<p class="p">The interesting thing is that—with some restrictions—this integral
+can be written as
+\begin{equation}
+\label{Eq:II:17:47}
+U=\frac{\epsO c^2}{2}\int\FLPB\cdot(\FLPcurl{\FLPA})\,dV.
+\end{equation}
+
+To see this, we write out in detail a typical term. Suppose that we
+take the term $(\FLPcurl{\FLPB})_zA_z$ which occurs in the integral of
+Eq. (<a href="#mjx-eqn-EqII1746">17.46</a>). Writing out the components, we get
+\begin{equation*}
+\int\biggl(\ddp{B_y}{x}-\ddp{B_x}{y}\biggr)A_z\,dx\,dy\,dz.
+\end{equation*}
+
+(There are, of course, two more integrals of the same kind.) We now
+integrate the first term with respect to $x$—integrating by
+parts. That is, we can say
+\begin{equation*}
+\int\ddp{B_y}{x}\,A_z\,dx=B_yA_z-\int B_y\,\ddp{A_z}{x}\,dx.
+\end{equation*}
+
+Now suppose that our system—meaning the sources and fields—is
+finite, so that as we go to large distances all fields go to
+zero. Then if the integrals are carried out over all space, evaluating
+the term $B_yA_z$ at the limits will give zero. We have left only the
+term with $B_y(\ddpl{A_z}{x})$, which is evidently one part
+of $B_y(\FLPcurl{\FLPA})_y$ and, therefore,
+of $\FLPB\cdot(\FLPcurl{\FLPA})$. If you work out the other five terms,
+you will see that Eq. (<a href="#mjx-eqn-EqII1747">17.47</a>) is indeed equivalent to
+Eq. (<a href="#mjx-eqn-EqII1746">17.46</a>).</p>
+</div>
+<div id="Ch17-S8-p11" class="para">
+<p class="p">But now we can replace $(\FLPcurl{\FLPA})$ by $\FLPB$, to get
+\begin{equation}
+\label{Eq:II:17:48}
+U=\frac{\epsO c^2}{2}\int\FLPB\cdot\FLPB\,dV.
+\end{equation}
+
+We have expressed the energy of a magnetostatic situation in terms of
+the magnetic field only. The expression corresponds closely to the
+formula we found for the electrostatic energy:
+\begin{equation}
+\label{Eq:II:17:49}
+U=\frac{\epsO}{2}\int\FLPE\cdot\FLPE\,dV.
+\end{equation}
+</p>
+</div>
+<div id="Ch17-S8-p12" class="para">
+<p class="p">One reason for emphasizing these two energy formulas is that sometimes
+they are more convenient to use. More important, it turns out that for
+dynamic fields (when $\FLPE$ and $\FLPB$ are changing with time) the
+two expressions (<a href="#mjx-eqn-EqII1748">17.48</a>) and (<a href="#mjx-eqn-EqII1749">17.49</a>) remain
+true, whereas the other formulas we have given for electric or
+magnetic energies are no longer correct—they hold only for static
+fields.</p>
+</div>
+<div id="Ch17-S8-p13" class="para">
+<p class="p">If we know the magnetic field $\FLPB$ of a single coil, we can find
+the self-inductance by equating the energy
+expression (<a href="#mjx-eqn-EqII1748">17.48</a>) to $\tfrac{1}{2}\selfInd I^2$. Let’s see
+how this works by finding the self-inductance of a long solenoid. We
+have seen earlier that the magnetic field inside a solenoid is uniform
+and $\FLPB$ outside is zero. The magnitude of the field inside is
+$B=nI/\epsO c^2$, where $n$ is the number of turns per unit length in
+the winding and $I$ is the current. If the radius of the coil is $r$ and
+its length is $L$ (we take $L$ very long, so that we can neglect end
+effects, i.e., $L\gg r$), the volume inside is $\pi r^2L$. The magnetic
+energy is therefore
+\begin{equation*}
+U=\frac{\epsO c^2}{2}\,B^2\cdot(\text{Vol})=\frac{n^2I^2}{2\epsO c^2}\,
+\pi r^2L,
+\end{equation*}
+
+which is equal to $\tfrac{1}{2}\selfInd I^2$. Or,
+\begin{equation}
+\label{Eq:II:17:50}
+\selfInd=\frac{\pi r^2n^2}{\epsO c^2}\,L.
+\end{equation}
+</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  Now
+that we are using the letter $A$ for the vector potential, we prefer
+to let $S$ stand for a surface area.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  The sign of $\mutualInd_{12}$ and $\mutualInd_{21}$
+in Eqs. (<a href="#mjx-eqn-EqII1731">17.31</a>) and (<a href="#mjx-eqn-EqII1732">17.32</a>) depends on the
+arbitrary choices for the sense of a positive current in the two coils.
+  <a href="#footnote_source_2">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_3"></a>
+  This is,
+incidentally, <em class="emph">not</em> the <em class="emph">only</em> way a correspondence can be set
+up between mechanical and electrical quantities.
+  <a href="#footnote_source_3">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_4"></a>
+  We are neglecting any energy loss to
+heat from the current in the resistance of the coil. Such losses
+require additional energy from the source but do not change the energy
+which goes into the inductance.
+  <a href="#footnote_source_4">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

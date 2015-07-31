@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 26: Optics: The Principle of Least Time</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "26." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+    <div class="content">
+        <div class="document">
+            <div id="Ch26" class="chapter">
+                <h2 class="title chapter-title">
+                    <span class="tag">26</span>Optics: The Principle of Least Time</h2>
+                <div id="Ch26-S1" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">26–1</span>Light</h3>
+                    <div id="Ch26-S1-p1" class="para">
+                        <p class="p">This is the first of a number of chapters on the subject of
+                        <em class="emph">electromagnetic radiation</em>. Light, with which we
+                        see, is only one small part of a vast spectrum of the same kind of
+                        thing, the various parts of this spectrum being distinguished by
+                        different values of a certain quantity which varies. This variable
+                        quantity could be called the “wavelength.” As it
+                        varies in the visible spectrum, the light apparently changes color from
+                        red to violet. If we explore the spectrum systematically, from long
+                        wavelengths toward shorter ones, we would begin with what are usually
+                        called <em class="emph">radiowaves</em>. Radiowaves are technically available in a wide
+                        range of wavelengths, some even longer than those used in regular
+                        broadcasts; regular broadcasts have wavelengths corresponding to about
+                        $500$ meters. Then there are the so-called “short waves,” i.e., radar
+                        waves, millimeter waves, and so on. There are no actual boundaries
+                        between one range of wavelengths and another, because nature did not
+                        present us with sharp edges. The number associated with a given name for
+                        the waves are only approximate and, of course, so are the names we give
+                        to the different ranges.</p>
+                    </div>
+                    <div id="Ch26-S1-p2" class="para">
+                        <p class="p">Then, a long way down through the millimeter waves, we come to what we
+                        call the <em class="emph">infrared</em>, and thence to the visible
+                        spectrum. Then going in the other direction, we get into a region which
+                        is called the <em class="emph">ultraviolet</em>. Where the ultraviolet
+                        stops, the x-rays begin, but we
+                        cannot define precisely where this is; it is roughly at $10^{-8}$ m, or
+                        $10^{-2}$ $\mu$m. These are “soft” x-rays; then there are ordinary
+                        x-rays and very hard x-rays; then $\gamma$-rays, and so on, for smaller
+                        and smaller values of this dimension called the wavelength.
+                        </p>
+                    </div>
+                    <div id="Ch26-S1-p3" class="para">
+                        <p class="p">Within this vast range of wavelengths, there are three or more regions
+                        of approximation which are especially interesting. In one of these, a
+                        condition exists in which the wavelengths involved are very small
+                        compared with the dimensions of the equipment available for their
+                        study; furthermore, the photon energies, using the quantum theory, are
+                        small compared with the energy sensitivity of the equipment. Under
+                        these conditions we can make a rough first approximation by a method
+                        called <em class="emph">geometrical optics</em>. If, on the other hand, the
+                        wavelengths are comparable to the dimensions of the equipment, which is
+                        difficult to arrange with visible light but easier with radiowaves, and
+                        if the photon energies are still negligibly small, then a very useful
+                        approximation can be made by studying the behavior of the waves, still
+                        disregarding the quantum mechanics. This method is based on the
+                        <em class="emph">classical theory of electromagnetic radiation</em>, which will be
+                        discussed in a later chapter. Next, if we go to very short wavelengths,
+                        where we can disregard the wave character but the photons have a very
+                        <em class="emph">large</em> energy compared with the sensitivity of our equipment,
+                        things get simple again. This is the simple <em class="emph">photon</em> picture, which
+                        we will describe only very roughly. The complete picture, which unifies
+                        the whole thing into one model, will not be available to us for a long
+                        time.</p>
+                    </div>
+                    <div id="Ch26-S1-p4" class="para">
+                        <p class="p">In this chapter our discussion is limited to the geometrical optics
+                        region, in which we forget about the wavelength and the photon
+                        character of the light, which will all be explained in due time. We do
+                        not even bother to say what the light <em class="emph">is</em>, but just find out
+                        <em class="emph">how it behaves</em> on a large scale compared with the dimensions of
+                        interest. All this must be said in order to emphasize the fact that
+                        what we are going to talk about is only a very crude approximation;
+                        this is one of the chapters that we shall have to “unlearn”
+                        again. But we shall very quickly unlearn it, because we shall almost
+                        immediately go on to a more accurate method.</p>
+                    </div>
+                    <div id="Ch26-S1-p5" class="para">
+                        <p class="p">Although geometrical optics is just an approximation, it is of very
+                        great importance technically and of great interest historically. We
+                        shall present this subject more historically than some of the others
+                        in order to give some idea of the development of a physical theory or
+                        physical idea.</p>
+                    </div>
+                    <div id="Ch26-S1-p6" class="para">
+                        <p class="p">First, light is, of course, familiar to everybody, and has been
+                        familiar since time immemorial. Now one problem is, by what process do
+                        we <em class="emph">see</em> light? There have been many theories, but it finally
+                        settled down to one, which is that there is something which enters the
+                        eye—which bounces off objects into the eye. We have heard that idea
+                        so long that we accept it, and it is almost impossible for us to
+                        realize that very intelligent men have proposed contrary
+                        theories—that something comes out of the eye and feels for the
+                        object, for example. Some other important observations are that, as
+                        light goes from one place to another, it goes in <em class="emph">straight
+                            lines</em>, if there is nothing in the way, and that the rays do not seem
+                        to interfere with one another. That is, light is crisscrossing in all
+                        directions in the room, but the light that is passing across our line
+                        of vision does not affect the light that comes to us from some
+                        object. This was once a most powerful argument against the corpuscular
+                        theory; it was used by Huygens.
+                        If light were like a lot of arrows shooting along, how could other
+                        arrows go through them so easily? Such philosophical arguments are not
+                        of much weight. One could always say that light is made up of arrows
+                        which go through each other!</p>
+                    </div>
+                </div>
+                <div id="Ch26-S2" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">26–2</span>Reflection and refraction</h3>
+                    <div id="Ch26-F1" class="figure">
+                        <img src="img/FLP_I/f26-01/f26-01_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–1.</span>The angle of incidence is equal to the angle of reflection.
+                        </div>
+                    </div>
+                    <div id="Ch26-S2-p1" class="para">
+                        <p class="p">The discussion above gives enough of the basic <em class="emph">idea</em> of
+                        geometrical optics—now we have to go a little further into the
+                        quantitative features. Thus far we have light going only in straight
+                        lines between two points; now let us study the behavior of light when
+                        it hits various materials. The simplest object is a mirror, and the
+                        law for a mirror is that when the light hits the mirror, it does not
+                        continue in a straight line, but bounces off the mirror into a new
+                        straight line, which changes when we change the inclination of the
+                        mirror. The question for the ancients was, what is the relation
+                        between the two angles involved? This is a very simple relation,
+                        discovered long ago. The light striking a mirror travels in such a way
+                        that the two angles, between each beam and the mirror, are equal. For
+                        some reason it is customary to measure the angles from the normal to
+                        the mirror surface. Thus the so-called law of reflection is
+                        \begin{equation}
+                        \label{Eq:I:26:1}
+                        \theta_i=\theta_r.
+                        \end{equation}
+                        </p>
+                    </div>
+                    <div id="Ch26-S2-p2" class="para">
+                        <p class="p">That is a simple enough proposition, but a more difficult problem is
+                        encountered when light goes from one medium into another, for example
+                        from air into water; here also, we see that it does not go in a
+                        straight line. In the water the ray is at an inclination to its path
+                        in the air; if we change the angle $\theta_i$ so that it comes down
+                        more nearly vertically, then the angle of “breakage” is not as
+                        great. But if we tilt the beam of light at quite an angle, then the
+                        deviation angle is very large.  The question is, what is the relation
+                        of one angle to the other? This also puzzled the ancients for a long
+                        time, and here they never found the answer! It is, however, one of the
+                        few places in all of Greek physics that one may find any experimental
+                        results listed. Claudius
+                        Ptolemy
+                        made a list of the angle in water for each of a number of
+                        different angles in air. Table <a href="#Ch26-T1">26–1</a> shows the angles in the
+                        air, in degrees, and the corresponding angle as measured in the water.
+                        (Ordinarily it is said that Greek scientists never did any experiments.
+                        But it would be impossible to obtain this table of values without
+                        knowing the right law, except by experiment. It should be noted,
+                        however, that these do not represent independent careful measurements
+                        for each angle but only some numbers interpolated from a few
+                        measurements, for they all fit perfectly on a parabola.)</p>
+                    </div>
+                    <div id="Ch26-F2" class="figure">
+                        <img src="img/FLP_I/f26-02/f26-02_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–2.</span>A light ray is refracted when it passes from one medium into
+                            another.
+                        </div>
+                    </div>
+                    
+                                                           
+                                     <div id="Ch26-T1" class="table">
+                                        <div class="caption  ltx_centering">
+                                            <span class="tag">Table 26–1</span>
+                                        </div>
+                                        <table class="tabular  ltx_centering">
+                                            <tr class="tr">
+                                                <td class="td center"><span>Angle in air</span></td>
+                                                <td class="td center"><span>Angle in water</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$10^\circ$</span></td>
+                                                <td class="td center"><span>$\phantom{1}8^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$20^\circ$</span></td>
+                                                <td class="td center"><span>$15$-$1/2^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$30^\circ$</span></td>
+                                                <td class="td center"><span>$22$-$1/2^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$40^\circ$</span></td>
+                                                <td class="td center"><span>$29^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$50^\circ$</span></td>
+                                                <td class="td center"><span>$35^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$60^\circ$</span></td>
+                                                <td class="td center"><span>$40$-$1/2^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$70^\circ$</span></td>
+                                                <td class="td center"><span>$45$-$1/2^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$80^\circ$</span></td>
+                                                <td class="td center"><span>$50^\circ$</span></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+                    <div id="Ch26-S2-p3" class="para">
+                        <p class="p">This, then, is one of the important steps in the development of
+                        physical law: first we observe an effect, then we measure it and list
+                        it in a table; then we try to find the <em class="emph">rule</em> by which one thing
+                        can be connected with another. The above numerical table was made in
+                        140 <span class="text smallcaps">a.d.</span>, but it was not until 1621 that someone finally
+                        found the rule connecting the two angles! The rule, found by
+                        Willebrord Snell, a Dutch
+                        mathematician, is as follows: if $\theta_i$ is the angle in air and
+                        $\theta_r$ is the angle in the water, then it turns out that the sine
+                        of $\theta_i$ is equal to some constant multiple of the sine of $\theta_r$:
+                        \begin{equation}
+                        \label{Eq:I:26:2}
+                        \sin\theta_i=n\sin\theta_r.
+                        \end{equation}
+                        For water the number $n$ is approximately $1.33$.
+                        Equation (<a href="#mjx-eqn-EqI262">26.2</a>) is called <em class="emph">Snell’s
+                            law;</em> it permits us to <em class="emph">predict</em> how the
+                        light is going to bend when it goes from air into water.
+                        Table <a href="#Ch26-T2">26–2</a> shows the angles in air and in water according to
+                        Snell’s law. Note the remarkable agreement with
+                        Ptolemy’s list.</p>
+                    </div>
+                    
+                                 <div id="Ch26-T2" class="table">
+                                        <div class="caption  ltx_centering">
+                                            <span class="tag">Table 26–2</span>
+                                        </div>
+                                        <table class="tabular  ltx_centering">
+                                            <tr class="tr">
+                                                <td class="td center"><span>Angle in air</span></td>
+                                                <td class="td center"><span>Angle in water</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$10^\circ$</span></td>
+                                                <td class="td center"><span>$\phantom{1}7$-$1/2^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$20^\circ$</span></td>
+                                                <td class="td center"><span>$15^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$30^\circ$</span></td>
+                                                <td class="td center"><span>$22^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$40^\circ$</span></td>
+                                                <td class="td center"><span>$29^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$50^\circ$</span></td>
+                                                <td class="td center"><span>$35^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$60^\circ$</span></td>
+                                                <td class="td center"><span>$40$-$1/2^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$70^\circ$</span></td>
+                                                <td class="td center"><span>$45^\circ$</span></td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td class="td center"><span>$80^\circ$</span></td>
+                                                <td class="td center"><span>$48^\circ$</span></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                
+                </div>
+                <div id="Ch26-S3" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">26–3</span>Fermat’s principle of least time</h3>
+                    <div id="Ch26-S3-p1" class="para">
+                        <p class="p">Now in the further development of science, we want more than just a
+                        formula. First we have an observation, then we have numbers that we
+                        measure, then we have a law which summarizes all the numbers. But the
+                        real <em class="emph">glory</em> of science is that <em class="emph">we can find a way of
+                            thinking</em> such that the law is <em class="emph">evident</em>.</p>
+                    </div>
+                    <div id="Ch26-S3-p2" class="para">
+                        <p class="p">The first way of thinking that made the law about the behavior of
+                        light evident was discovered by
+                        Fermat
+                        in about 1650, and it is called <em class="emph">the principle of least
+                            time</em>, or <em class="emph">Fermat’s principle</em>. His idea
+                        is this: that out of all possible paths that it might take to get from
+                        one point to another, light takes the path which requires the
+                        <em class="emph">shortest time</em>.</p>
+                    </div>
+                    <div id="Ch26-S3-p3" class="para">
+                        <p class="p">Let us first show that this is true for the case of the mirror, that
+                        this simple principle contains both the law
+                        of straight-line propagation and the law for the mirror. So, we are
+                        growing in our understanding! Let us try to find the solution to the
+                        following problem. In Fig. <a href="#Ch26-F3">26–3</a> are shown two points,
+                        $A$ and $B$, and a plane mirror, $MM'$. What is the way to get from
+                        $A$ to $B$ in the shortest time?  The answer is to go straight from
+                        $A$ to $B$<span class="text italic">!</span> But if we add the extra rule that the light has
+                        to <em class="emph">strike the mirror</em> and come back in the shortest time, the
+                        answer is not so easy. One way would be to go as quickly as possible
+                        to the mirror and then go to $B$, on the path $ADB$. Of course, we
+                        then have a long path $DB$. If we move over a little to the right,
+                        to $E$, we slightly increase the first distance, but we greatly
+                        <em class="emph">decrease</em> the second one, and so the total path length, and
+                        therefore the travel time, is less. How can we find the point $C$ for
+                        which the time is the shortest? We can find it very nicely by a
+                        geometrical trick.</p>
+                    </div>
+                    <div id="Ch26-F3" class="figure">
+                        <img src="img/FLP_I/f26-03/f26-03_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–3.</span>Illustration of the principle of least time.
+                        </div>
+                    </div>
+                    <div id="Ch26-S3-p4" class="para">
+                        <p class="p">We construct on the other side of $MM'$ an artificial point $B'$,
+                        which is the same distance below the plane $MM'$ as the point $B$ is
+                        above the plane. Then we draw the line $EB'$. Now because $BFM$ is a
+                        right angle and $BF = FB'$, $EB$ is equal to $EB'$. Therefore the sum
+                        of the two distances, $AE + EB$, which is proportional to the time it
+                        will take if the light travels with constant velocity, is also the sum
+                        of the two lengths $AE + EB'$. Therefore the problem becomes, when is
+                        the sum of these two lengths the least? The answer is easy: when the
+                        line goes through point $C$ as a <em class="emph">straight line</em> from $A$
+                        to $B'$! In other words, we have to find the point where we go toward the
+                        artificial point, and that will be the correct one. Now if $ACB'$ is a
+                        straight line, then angle $BCF$ is equal to angle $B'CF$ and thence to
+                        angle $ACM$. Thus the statement that the angle of
+                        incidence equals
+                        the angle of reflection is equivalent to the
+                        statement that the light goes to the mirror in such a way that it comes
+                        back to the point $B$ in the <em class="emph">least possible time</em>. Originally, the
+                        statement was made by Hero of Alexandria that the light travels in such
+                        a way that it goes to the mirror and to the other point in the shortest
+                        possible <em class="emph">distance</em>, so it is not a modern theory. It was this that
+                        inspired Fermat to suggest to
+                        himself that perhaps refraction operated on a similar basis. But for
+                        refraction, light obviously does not use the path of shortest
+                        <em class="emph">distance</em>, so Fermat tried
+                        the idea that it takes the shortest <em class="emph">time</em>.</p>
+                    </div>
+                    <div id="Ch26-S3-p5" class="para">
+                        <p class="p">Before we go on to analyze refraction, we should make one more remark
+                        about the mirror. If we have a source of light at the point $B$ and it
+                        sends light toward the mirror, then we see that the light which goes
+                        to $A$ from the point $B$ comes to $A$ in exactly the same manner as
+                        it would have come to $A$ if there were an object at $B'$, and
+                        <em class="emph">no</em> mirror. Now of course the eye detects only the light which
+                        enters it physically, so if we have an object at $B$ and a mirror
+                        which makes the light come into the eye in exactly the same manner as
+                        it would have come into the eye if the object were at $B'$, then the
+                        eye-brain system interprets that, assuming it does not know too much,
+                        as <em class="emph">being</em> an object at $B'$. So the illusion that there is an
+                        object behind the mirror is merely due to the fact that the light
+                        which is entering the eye is entering in exactly the same manner,
+                        physically, as it would have entered had there <em class="emph">been</em> an object
+                        back there (except for the dirt on the mirror, and our knowledge of
+                        the existence of the mirror, and so on, which is corrected in the
+                        brain).</p>
+                    </div>
+                    <div id="Ch26-S3-p6" class="para">
+                        <p class="p">Now let us demonstrate that the principle of
+                        least time will give Snell’s law of
+                        refraction. We must, however, make an assumption about the speed of
+                        light in water. We shall assume that the speed of light in water is
+                        lower than the speed of light in air by a certain factor, $n$.
+                        </p>
+                    </div>
+                    <div id="Ch26-F4" class="figure">
+                        <img src="img/FLP_I/f26-04/f26-04_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–4.</span>Illustration of Fermat’s principle for refraction.
+                        </div>
+                    </div>
+                    <div id="Ch26-F5" class="figure">
+                        <img src="img/FLP_I/f26-05/f26-05_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–5.</span>The minimum time corresponds to point $C$, but nearby points
+                            correspond to nearly the same time.
+                        </div>
+                    </div>
+                    <div id="Ch26-S3-p7" class="para">
+                        <p class="p">In Fig. <a href="#Ch26-F4">26–4</a>, our problem is again to go from $A$ to $B$
+                        in <em class="emph">the shortest time</em>. To illustrate that the best thing to do
+                        is not just to go in a straight line, let us imagine that a beautiful
+                        girl has fallen out of a boat, and she is screaming for help in the
+                        water at point $B$. The line marked $x$ is the shoreline. We are at
+                        point $A$ on land, and we see the accident, and we can run and can
+                        also swim. But we can run faster than we can swim. What do we do? Do
+                        we go in a straight line? (Yes, no doubt!) However, by using a little
+                        more intelligence we would realize that it would be advantageous to
+                        travel a little greater distance on land in order to decrease the
+                        distance in the water, because we go so much slower in the
+                        water. (Following this line of reasoning out, we would say the right
+                        thing to do is to <em class="emph">compute</em> very carefully what should be done!)
+                        At any rate, let us try to show that the final solution to the problem
+                        is the path $ACB$, and that this path takes the shortest time of all
+                        possible ones. If it is the shortest path, that means that if we take
+                        any other, it will be longer. So, if we were to plot the time it takes
+                        against the position of point $X$, we would get a curve something like
+                        that shown in Fig. <a href="#Ch26-F5">26–5</a>, where point $C$ corresponds to
+                        the shortest of all possible times. This means that if we move the
+                        point $X$ to points <em class="emph">near</em> $C$, in the first approximation there
+                        is essentially <em class="emph">no change</em> in time because the slope is zero at
+                        the bottom of the curve. So our way of finding the law will be to
+                        consider that we move the place by a very small amount, and to demand
+                        that there be essentially no change in time. (Of course there is an
+                        infinitesimal change of a <em class="emph">second</em> order; we ought to have a
+                        positive increase for displacements in either direction from $C$.) So
+                        we consider a nearby point $X$ and we calculate how long it would take
+                        to go from $A$ to $B$ by the two paths, and compare the new path with
+                        the old path. It is very easy to do. We want the difference, of
+                        course, to be nearly zero if the distance $XC$ is short. First, look
+                        at the path on land. If we draw a perpendicular $XE$, we see that this
+                        path is shortened by the amount $EC$. Let us say we gain by not having
+                        to go that extra distance. On the other hand, in the water, by drawing
+                        a corresponding perpendicular, $CF$, we find that we have to go the
+                        extra distance $XF$, and that is what we lose. Or, in <em class="emph">time</em>, we
+                        gain the time it would have taken to go the distance $EC$, but we lose
+                        the time it would have taken to go the distance $XF$. Those times must
+                        be equal since, in the first approximation, there is to be no change
+                        in time. But supposing that in the water the speed is $1/n$ times as
+                        fast as in air, then we must have
+                        \begin{equation}
+                        \label{Eq:I:26:3}
+                        EC=n\cdot XF.
+                        \end{equation}
+                        Therefore we see that when we have the right point, $X\!C\sin E\!X\!C =
+                        n\cdot X\!C\sin X\!C\!F$ or, cancelling the common hypotenuse length $XC$
+                        and noting that
+                        <span class="eq-wide">
+                        \begin{equation*}
+                        EXC=ECN=\theta_i
+                        \,\text{ and }\,
+                        XCF\approx BCN'=\theta_r\;
+                        (\text{when $X$ is near $C$}),
+                        \end{equation*}
+                        </span>
+                        <span class="eq-narrow">
+                        \begin{gather*}
+                        EXC=ECN=\theta_i
+                        \,\text{ and }\,
+                        XCF\approx BCN'=\theta_r\\
+                        (\text{when $X$ is near $C$}),
+                        \end{gather*}
+                       </span>
+                        we have
+                        \begin{equation}
+                        \label{Eq:I:26:4}
+                        \sin\theta_i=n\sin\theta_r.
+                        \end{equation}
+                        So we see that to get from one point to another in the least time when
+                        the ratio of speeds is $n$, the light should enter at such an angle
+                        that the ratio of the sines of the angles $\theta_i$ and $\theta_r$ is
+                        the ratio of the speeds in the two media.</p>
+                    </div>
+                </div>
+                <div id="Ch26-S4" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">26–4</span>Applications of Fermat’s principle</h3>
+                    <div id="Ch26-S4-p1" class="para">
+                        <p class="p">Now let us consider some of the interesting consequences of the
+                        principle of least time. First is the
+                        principle of reciprocity. If to go from $A$
+                        to $B$ we have found the path of the least time, then to go in the
+                        opposite direction (assuming that light goes at the same speed in any
+                        direction), the shortest time will be the same path, and therefore, if
+                        light can be sent one way, it can be sent the other way.
+                        </p>
+                    </div>
+                    <div id="Ch26-F6" class="figure">
+                        <img src="img/FLP_I/f26-06/f26-06_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–6.</span>A beam of light is offset as it passes through a transparent
+                            block.
+                        </div>
+                    </div>
+                    <div id="Ch26-S4-p2" class="para">
+                        <p class="p">An example of interest is a glass block with plane parallel faces, set
+                        at an angle to a light beam. Light, in going through the block from a
+                        point $A$ to a point $B$ (Fig. <a href="#Ch26-F6">26–6</a>) does not go through
+                        in a straight line, but instead it decreases the time in the block by
+                        making the angle in the block less inclined, although it loses a
+                        little bit in the air. The beam is simply displaced parallel to itself
+                        because the angles in and out are the same.</p>
+                    </div>
+                    <div id="Ch26-F7" class="figure">
+                        <img src="img/FLP_I/f26-07/f26-07_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–7.</span>Near the horizon, the apparent sun is higher than the true
+                            sun by about $1/2$ degree.
+                        </div>
+                    </div>
+                    <div id="Ch26-S4-p3" class="para">
+                        <p class="p">A third interesting phenomenon is the fact that when we see the sun
+                        setting, it is already below the horizon! It does not <em class="emph">look</em> as
+                        though it is below the horizon, but it is (Fig. <a href="#Ch26-F7">26–7</a>). The
+                        earth’s atmosphere is thin at the top and dense at the bottom. Light
+                        travels more slowly in air than it does in a vacuum, and so the light of
+                        the sun can get to point $S$ beyond the horizon more quickly if, instead
+                        of just going in a straight line, it avoids the dense regions where it
+                        goes slowly by getting through them at a steeper tilt. When it appears
+                        to go below the horizon, it is actually already well below the horizon.
+                        Another example of this phenomenon is the mirage that one often sees
+                        while driving on hot roads. One sees “water” on the road, but when he
+                        gets there, it is as dry as the desert! The phenomenon is the following.
+                        What we are really seeing is the sky light “reflected” on the road:
+                        light from the sky, heading for the road, can end up in the eye, as
+                        shown in Fig. <a href="#Ch26-F8">26–8</a>. Why? The air is very hot just above
+                        the road but it is cooler up higher. Hotter air is more expanded than
+                        cooler air and is thinner, and this decreases the speed of light less.
+                        That is to say, light goes faster in the hot region than in the cool
+                        region. Therefore, instead of the light deciding to come in the
+                        straightforward way, it also has a least-time path by which it goes into
+                        the region where it goes faster for awhile, in order to save time. So,
+                        it can go in a curve.</p>
+                    </div>
+                    <div id="Ch26-F8" class="figure">
+                        <img src="img/FLP_I/f26-08/f26-08_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–8.</span>A mirage.
+                        </div>
+                    </div>
+                    <div id="Ch26-S4-p4" class="para">
+                        <p class="p">As another important example of the principle of least time, suppose that we would like to arrange a
+                        situation where we have all the light that comes out of one point,
+                        $P$, collected back together at another point, $P'$
+                        (Fig. <a href="#Ch26-F9">26–9</a>). That means, of course, that the light can go in
+                        a straight line from $P$ to $P'$. That is all right. But how can we
+                        arrange that not only does it go straight, but also so that the light
+                        starting out from $P$ toward $Q$ also ends up at $P'$? We want to bring
+                        all the light back to what we call a <em class="emph">focus</em>. How? If the light
+                        always takes the path of least time, then certainly it should not want
+                        to go over all these other paths. The only way that the light can be
+                        perfectly satisfied to take several adjacent paths is to make those
+                        times <em class="emph">exactly equal!</em>  Otherwise, it would select the one of least
+                        time. Therefore the problem of making a focusing system is merely to
+                        arrange a device so that it takes the same time for the light to go on
+                        <em class="emph">all</em> the different paths!</p>
+                    </div>
+                    <div id="Ch26-F9" class="figure">
+                        <img src="img/FLP_I/f26-09/f26-09_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–9.</span>An optical “black box.”
+                        </div>
+                    </div>
+                    <div id="Ch26-S4-p5" class="para">
+                        <p class="p">This is easy to do. Suppose that we had a piece of glass in which
+                        light goes slower than it does in the air (Fig. <a href="#Ch26-F10">26–10</a>). Now
+                        consider a ray which goes in air in the path $PQP'$. That is a longer
+                        path than from $P$ directly to $P'$ and no doubt takes a longer time.
+                        But if we were to insert a piece of glass of just the right thickness
+                        (we shall later figure out how thick) it might exactly compensate the
+                        excess time that it would take the light to go at an angle! In those
+                        circumstances we can arrange that the time the light takes to go
+                        straight through is the same as the time it takes to go in the
+                        path $PQP'$. Likewise, if we take a ray $PRR'P'$ which is partly inclined, it
+                        is not quite as long as $PQP'$, and we do not have to compensate as much
+                        as for the straight one, but we do have to compensate somewhat. We end
+                        up with a piece of glass that looks like Fig. <a href="#Ch26-F10">26–10</a>. With
+                        this shape, all the light which comes from $P$ will go to $P'$. This, of
+                        course, is well known to us, and we call such a device a converging
+                        <em class="emph">lens</em>. In the next chapter we shall actually calculate what shape
+                        the lens has to have to make a perfect focus.</p>
+                    </div>
+                    <div id="Ch26-F10" class="figure">
+                        <img src="img/FLP_I/f26-10/f26-10_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–10.</span>A focusing optical system.
+                        </div>
+                    </div>
+                    <div id="Ch26-S4-p6" class="para">
+                        <p class="p">Take another example: suppose we wish to arrange some mirrors so that
+                        the light from $P$ always goes to $P'$ (Fig. <a href="#Ch26-F11">26–11</a>). On
+                        any path, it goes to some mirror and comes back, and all times must be
+                        equal. Here the light always travels in air, so the time and the
+                        distance are proportional. Therefore the statement that all the times
+                        are the same is the same as the statement that the total distance is
+                        the same. Thus the sum of the two distances $r_1$ and $r_2$ must be a
+                        constant. An <em class="emph">ellipse</em> is that curve which has the property that
+                        the sum of the distances from two points is a constant for every point
+                        on the ellipse; thus we can be sure that the light from one focus will
+                        come to the other.</p>
+                    </div>
+                    <div id="Ch26-F11" class="figure">
+                        <img src="img/FLP_I/f26-11/f26-11_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–11.</span>An ellipsoidal mirror.
+                        </div>
+                    </div>
+                    <div id="Ch26-S4-p7" class="para">
+                        <p class="p">The same principle works for gathering the light of a star. The great
+                        $200$-inch Palomar telescope is built on the following
+                        principle. Imagine a star billions of miles away; we would like to
+                        cause all the light that comes in to come to a focus. Of course we
+                        cannot draw the rays that go all the way up to the star, but we still
+                        want to check whether the times are equal. Of course we know that when
+                        the various rays have arrived at some plane $KK'$, perpendicular to
+                        the rays, all the times in this plane are equal
+                        (Fig. <a href="#Ch26-F12">26–12</a>). The rays must then come down to the mirror and
+                        proceed toward $P'$ in equal times. That is, we must find a curve which
+                        has the property that the sum of the distances $XX' + X'P'$ is a
+                        constant, no matter where $X$ is chosen. An easy way to find it is to
+                        extend the length of the line $XX'$ down to a plane $LL'$. Now if we
+                        arrange our curve so that $A'A'' = A'P'$, $B'B'' = B'P'$, $C'C'' =
+                        C'P'$, and so on, we will have our curve, because then of course, $AA' +
+                        A'P' = AA' + A'A''$ will be constant. Thus our curve is the locus of all
+                        points equidistant from a line and a point. Such a curve is called a
+                        <em class="emph">parabola</em>; the mirror is made in the shape of a parabola.</p>
+                    </div>
+                    <div id="Ch26-F12" class="figure">
+                        <img src="img/FLP_I/f26-12/f26-12_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–12.</span>A paraboloidal mirror.
+                        </div>
+                    </div>
+                    <div id="Ch26-S4-p8" class="para">
+                        <p class="p">The above examples illustrate the principle upon which such optical
+                        devices can be designed. The exact curves can be calculated using the
+                        principle that, to focus perfectly, the travel times must be exactly
+                        equal for all light rays, as well as being less than for any other
+                        nearby path.</p>
+                    </div>
+                    <div id="Ch26-S4-p9" class="para">
+                        <p class="p">We shall discuss these focusing optical devices further in the next
+                        chapter; let us now discuss the further development of the
+                        theory. When a new theoretical principle is developed, such as the
+                        principle of least time, our first
+                        inclination might be to say, “Well, that is very pretty; it is
+                        delightful; but the question is, does it help at all in understanding
+                        the physics?” Someone may say, “Yes, look at how many things we can
+                        now understand!” Another says, “Very well, but I can understand
+                        mirrors, too. I need a curve such that every tangent plane makes equal
+                        angles with the two rays. I can figure out a lens, too, because every
+                        ray that comes to it is bent through an angle given by Snell’s
+                        law.” Evidently the statement of least time
+                        and the statement that angles are equal on reflection, and that the
+                        sines of the angles are proportional on refraction, are the same. So is
+                        it merely a philosophical question, or one of beauty?  There can be
+                        arguments on both sides.
+                        </p>
+                    </div>
+                    <div id="Ch26-S4-p10" class="para">
+                        <p class="p">However, the importance of a powerful principle is that <em class="emph">it
+                            predicts new things</em>.</p>
+                    </div>
+                    <div id="Ch26-S4-p11" class="para">
+                        <p class="p">It is easy to show that there are a number of new things predicted by
+                        Fermat’s principle. First, suppose that
+                        there are <em class="emph">three</em> media, glass, water, and air, and we perform a
+                        refraction experiment and measure the index $n$ for one medium against
+                        another. Let us call $n_{12}$ the index of air ($1$) against water
+                        ($2$); $n_{13}$ the index of air ($1$) against glass ($3$). If we
+                        measured water against glass, we should find another index, which we
+                        shall call $n_{23}$. But there is no <em class="emph">a priori</em> reason why there
+                        should be any connection between $n_{12}$, $n_{13}$, and $n_{23}$. On
+                        the other hand, according to the idea of least time, there <em class="emph">is</em> a
+                        definite relationship. The index $n_{12}$ is the ratio of two things,
+                        the speed in air to the speed in water; $n_{13}$ is the ratio of the
+                        speed in air to the speed in glass; $n_{23}$ is the ratio of the speed
+                        in water to the speed in glass. Therefore we cancel out the air, and
+                        get
+                        \begin{equation}
+                        \label{Eq:I:26:5}
+                        n_{23}=\frac{v_2}{v_3}=\frac{v_1/v_3}{v_1/v_2}=\frac{n_{13}}{n_{12}}.
+                        \end{equation}
+                        In other words, we <em class="emph">predict</em> that the index for a new pair of
+                        materials can be obtained from the indexes of the individual
+                        materials, both against air or against vacuum. So if we measure the
+                        speed of light in all materials, and from this get a single number for
+                        each material, namely its index relative to vacuum, called $n_i$
+                        ($n_1$ is the speed in vacuum relative to the speed in air, etc.),
+                        then our formula is easy. The index for any two materials $i$ and $j$
+                        is
+                        \begin{equation}
+                        \label{Eq:I:26:6}
+                        n_{ij}=\frac{v_i}{v_j}=\frac{n_j}{n_i}.
+                        \end{equation}
+                        Using only Snell’s law, there is no
+                        basis for a prediction of this kind.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> But of course this prediction
+                        works. The relation (<a href="#mjx-eqn-EqI265">26.5</a>) was known very early, and was a
+                        very strong argument for the principle of
+                        least time.
+                        </p>
+                    </div>
+                    <div id="Ch26-S4-p14" class="para">
+                        <p class="p">Another argument for the principle of least
+                        time, another prediction, is that if we <em class="emph">measure</em> the speed of
+                        light in water, it will be lower than in air. This is a prediction of
+                        a completely different type. It is a brilliant prediction, because all
+                        we have so far measured are <em class="emph">angles</em>; here we have a theoretical
+                        prediction which is quite different from the observations from which
+                        Fermat deduced the idea of least time. It
+                        turns out, in fact, that the speed in water <em class="emph">is</em> slower than the
+                        speed in air, by just the proportion that is needed to get the right
+                        index!
+                        </p>
+                    </div>
+                </div>
+                <div id="Ch26-S5" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">26–5</span>A more precise statement of Fermat’s principle</h3>
+                    <div id="Ch26-S5-p1" class="para">
+                        <p class="p">Actually, we must make the statement of the principle of least time a little more accurately. It was not stated
+                        correctly above. It is <em class="emph">incorrectly</em> called the
+                        principle of least time and we have gone
+                        along with the incorrect description for convenience, but we must now
+                        see what the correct statement is. Suppose we had a mirror as in
+                        Fig. <a href="#Ch26-F3">26–3</a>. What makes the light think it has to go to
+                        the mirror?  The path of <em class="emph">least</em> time is clearly $AB$. So some
+                        people might say, “Sometimes it is a maximum time.” It is <em class="emph">not</em>
+                        a maximum time, because certainly a curved path would take a still
+                        longer time!  The correct statement is the following: a ray going in a
+                        certain particular path has the property that if we make a small
+                        change (say a one percent shift) in the ray in any manner whatever,
+                        say in the location at which it comes to the mirror, or the shape of
+                        the curve, or anything, there will be <em class="emph">no</em> first-order change in
+                        the time; there will be only a <em class="emph">second</em>-order change in the
+                        time. In other words, the principle is that
+                        light takes a path such that there are many other paths nearby which
+                        take almost exactly the <em class="emph">same</em> time.
+                        </p>
+                    </div>
+                    <div id="Ch26-S5-p2" class="para">
+                        <p class="p">The following is another difficulty with the principle of least time, and one which people who do not like this
+                        kind of a theory could never stomach. With Snell’s theory we can
+                        “understand” light. Light goes along, it sees a surface, it bends
+                        because it does something at the surface. The idea of causality, that
+                        it goes from one point to another, and another, and so on, is easy to
+                        understand. But the principle of least time
+                        is a completely different philosophical principle about the way nature
+                        works. Instead of saying it is a causal thing, that when we do one
+                        thing, something else happens, and so on, it says this: we set up the
+                        situation, and <em class="emph">light</em> decides which is the shortest time, or the
+                        extreme one, and chooses that path. But <em class="emph">what</em> does it do,
+                        <em class="emph">how</em> does it find out? Does it <em class="emph">smell</em> the nearby paths,
+                        and check them against each other? The answer is, yes, it does, in a
+                        way. That is the feature which is, of course, not known in geometrical
+                        optics, and which is involved in the idea of <em class="emph">wavelength</em>; the
+                        wavelength tells us approximately how far away the light must
+                        “smell” the path in order to check it. It is hard to demonstrate
+                        this fact on a large scale with light, because the wavelengths are so
+                        terribly short. But with radiowaves, say $3$-cm waves, the distances
+                        over which the radiowaves are checking are larger. If we have a source
+                        of radiowaves, a detector, and a slit, as in Fig. <a href="#Ch26-F13">26–13</a>,
+                        the rays of course go from $S$ to $D$ because it is a straight line,
+                        and if we close down the slit it is all right—they still go. But now
+                        if we move the detector aside to $D'$, the waves will not go through
+                        the wide slit from $S$ to $D'$, because they check several paths
+                        nearby, and say, “No, my friend, those all correspond to different
+                        times.”  On the other hand, if we <em class="emph">prevent</em> the radiation from
+                        checking the paths by closing the slit down to a very narrow crack,
+                        then there is but one path available, and the radiation takes it! With
+                        a narrow slit, more radiation reaches $D'$ than reaches it with a wide
+                        slit!</p>
+                    </div>
+                    <div id="Ch26-F13" class="figure">
+                        <img src="img/FLP_I/f26-13/f26-13_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–13.</span>The passage of radiowaves through a narrow slit.
+                        </div>
+                    </div>
+                    <div id="Ch26-S5-p3" class="para">
+                        <p class="p">One can do the same thing with light, but it is hard to demonstrate on
+                        a large scale. The effect can be seen under the following simple
+                        conditions. Find a small, bright light, say an unfrosted bulb in a
+                        street light far away or the reflection of the sun in a curved
+                        automobile bumper. Then put two fingers in front of one eye, so as to
+                        look through the crack, and squeeze the light to zero very gently. You
+                        will see that the image of the light, which was a little dot before,
+                        becomes quite elongated, and even stretches into a long line. The
+                        reason is that the fingers are very close together, and the light
+                        which is supposed to come in a straight line is spread out at an
+                        angle, so that when it comes into the eye it comes in from several
+                        directions. Also you will notice, if you are very careful, side
+                        maxima, a lot of fringes along the edges too. Furthermore, the whole
+                        thing is colored. All of this will be explained in due time, but for
+                        the present it is a demonstration that light does not always go in
+                        straight lines, and it is one that is very easily performed.</p>
+                    </div>
+                </div>
+                <div id="Ch26-S6" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">26–6</span>How it works</h3>
+                    <div id="Ch26-S6-p1" class="para">
+                        <p class="p">Finally, we give a very crude view of what actually happens, how the
+                        whole thing really works, from what we now believe is the correct,
+                        quantum-dynamically accurate viewpoint, but of course only
+                        qualitatively described. In following the light from $A$ to $B$ in
+                        Fig. <a href="#Ch26-F3">26–3</a>, we find that the light does not seem to be in
+                        the form of waves at all. Instead the rays seem to be made up of
+                        photons, and they actually produce clicks in a photon counter, if we
+                        are using one. The brightness of the light is proportional to the
+                        average number of photons that come in per second, and what we
+                        calculate is the <em class="emph">chance</em> that a photon gets from $A$ to $B$, say
+                        by hitting the mirror. The <em class="emph">law</em> for that chance is the following
+                        very strange one. Take any path and find the time for that path; then
+                        make a complex number, or draw a little complex vector, $\rho
+                        e^{i\theta}$, <em class="emph">whose angle $\theta$ is proportional to the
+                            time</em>. The number of turns per second is the frequency of the
+                        light. Now take another path; it has, for instance, a different time,
+                        so the vector for it is turned through a different angle—the angle
+                        being always proportional to the time. Take <em class="emph">all</em> the available
+                        paths and add on a little vector for each one; then the answer is that
+                        the chance of arrival of the photon is proportional to the square of
+                        the length of the final vector, from the beginning to the end!</p>
+                    </div>
+                    <div id="Ch26-F14" class="figure">
+                        <img src="img/FLP_I/f26-14/f26-14_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 26–14.</span>The summation of probability amplitudes for many neighboring
+                            paths.
+                        </div>
+                    </div>
+                    <div id="Ch26-S6-p2" class="para">
+                        <p class="p">Now let us show how this implies the principle of least time for a mirror. We consider all rays, all
+                        possible paths $ADB$, $AEB$, $ACB$, etc., in Fig. <a href="#Ch26-F3">26–3</a>. The
+                        path $ADB$ makes a certain small contribution, but the next path, $AEB$,
+                        takes a quite different time, so its angle $\theta$ is quite different.
+                        Let us say that point $C$ corresponds to minimum time, where if we
+                        change the paths the times do not change. So for awhile the times do
+                        change, and then they begin to change less and less as we get near
+                        point $C$ (Fig. <a href="#Ch26-F14">26–14</a>). So the arrows which we have to add are
+                        coming almost exactly at the same angle for awhile near $C$, and then
+                        gradually the time begins to increase again, and the phases go around
+                        the other way, and so on. Eventually, we have quite a tight knot. The
+                        total probability is the distance from one end to the other, squared.
+                        <em class="emph">Almost all of that accumulated probability occurs in the region
+                            where all the arrows are in the same direction</em> (or in the same phase).
+                        All the contributions from the paths which have very <em class="emph">different</em>
+                        times as we change the path, cancel themselves out by pointing in
+                        different directions. That is why, if we hide the extreme parts of the
+                        mirror, it still reflects almost exactly the same, because all we did
+                        was to take out a piece of the diagram inside the spiral ends, and that
+                        makes only a very small change in the light. So this is the relationship
+                        between the ultimate picture of photons with a probability of arrival
+                        depending on an accumulation of arrows, and the principle of least time.
+                        </p>
+                    </div>
+                </div>
+                <ol id="footnotes"><li class="footnote">
+                    <a name="footnote_1"></a>
+                    Although it can be deduced
+                    if the additional assumption is made that adding a layer of one
+                    substance to the surface of another does not change the eventual angle
+                    of refraction in the latter material.
+                    <a href="#footnote_source_1">↩</a>
+                </li></ol>
+            </div>
+            <footer>
+                <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+                    Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+            </footer>
+        </div>
+    </div>
+    
+</div>    
+</body>
+</html>

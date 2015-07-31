@@ -1,0 +1,1532 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 8: Electrostatic Energy</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "8." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch8" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">8</span>Electrostatic Energy</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref" rowspan=2>
+		<i>Review:</i> 
+		</td>
+		<td>Chapter&nbsp;<a href="I_04.html">4</a>, Vol.&nbsp;I, <i>Conservation of Energy</i>
+		</td>
+	</tr>
+	<tr>
+		<td>Chapters&nbsp;<a href="I_13.html">13</a>, and <a href="I_14.html">14</a> Vol.&nbsp;I, 
+		<i>Work and Potential Energy</i> 
+	    </td>
+	</tr>
+</table>
+
+<div id="Ch8-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">8–1</span>The electrostatic energy of charges. A uniform sphere</h3>
+<div id="Ch8-S1-p1" class="para">
+<p class="p">In the study of mechanics, one of the most interesting and useful
+discoveries was the law of the conservation of energy. The expressions
+for the kinetic and potential energies of a mechanical system helped
+us to discover connections between the states of a system at two
+different times without having to look into the details of what was
+occurring in between. We wish now to consider the energy of
+electrostatic systems. In electricity also the principle of the
+conservation of energy will be useful for discovering a number of
+interesting things.</p>
+</div>
+<div id="Ch8-S1-p2" class="para">
+<p class="p">The law of the energy of interaction in electrostatics is very simple;
+we have, in fact, already discussed it. Suppose we have two charges
+$q_1$ and $q_2$ separated by the distance $r_{12}$. There is some
+energy in the system, because a certain amount of work was required to
+bring the charges together. We have already calculated the work done
+in bringing two charges together from a large distance. It is
+\begin{equation}
+\label{Eq:II:8:1}
+\frac{q_1q_2}{4\pi\epsO r_{12}}.
+\end{equation}
+
+We also know, from the principle of superposition, that if we have
+many charges present, the total force on any charge is the sum of the
+forces from the others. It follows, therefore, that the total energy
+of a system of a number of charges is the sum of terms due to the
+mutual interaction of each pair of charges. If $q_i$ and $q_j$ are any
+two of the charges and $r_{ij}$ is the distance between them
+(Fig. <a href="#Ch8-F1">8–1</a>), the energy of that particular pair is
+\begin{equation}
+\label{Eq:II:8:2}
+\frac{q_iq_j}{4\pi\epsO r_{ij}}.
+\end{equation}
+
+The total electrostatic energy $U$ is the sum of the energies of all
+possible pairs of charges:
+\begin{equation}
+\label{Eq:II:8:3}
+U=\underset{\text{all pairs}}{\sum}
+\frac{q_iq_j}{4\pi\epsO r_{ij}}.
+\end{equation}
+
+If we have a distribution of charge specified by a charge
+density $\rho$, the sum of Eq. (<a href="#mjx-eqn-EqII83">8.3</a>) is, of course, to be
+replaced by an integral.</p>
+</div>
+<div id="Ch8-F1" class="figure">
+<img src="img/FLP_II/f08-01/f08-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 8–1.</span>The electrostatic energy of a system of particles is the sum
+of the electrostatic energy of each pair.
+</div>
+</div>
+<div id="Ch8-S1-p3" class="para">
+<p class="p">We shall concern ourselves with two aspects of this energy. One is the
+<em class="emph">application</em> of the concept of energy to electrostatic problems;
+the other is the <em class="emph">evaluation</em> of the energy in different
+ways. Sometimes it is easier to compute the work done for some special
+case than to evaluate the sum in Eq. (<a href="#mjx-eqn-EqII83">8.3</a>), or the
+corresponding integral. As an example, let us calculate the energy
+required to assemble a sphere of charge with a uniform charge
+density. The energy is just the work done in gathering the charges
+together from infinity.</p>
+</div>
+<div id="Ch8-F2" class="figure">
+<img src="img/FLP_II/f08-02/f08-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 8–2.</span>The energy of a uniform sphere of charge can be computed by
+imagining that it is assembled from successive spherical shells.
+</div>
+</div>
+<div id="Ch8-S1-p4" class="para">
+<p class="p">Imagine that we assemble the sphere by building up a succession of
+thin spherical layers of infinitesimal thickness. At each stage of the
+process, we gather a small amount of charge and put it in a thin layer
+from $r$ to $r+dr$. We continue the process until we arrive at the
+final radius $a$ (Fig. <a href="#Ch8-F2">8–2</a>). If $Q_r$ is the charge of
+the sphere when it has been built up to the radius $r$, the work done
+in bringing a charge $dQ$ to it is
+\begin{equation}
+\label{Eq:II:8:4}
+dU=\frac{Q_r\,dQ}{4\pi\epsO r}.
+\end{equation}
+
+If the density of charge in the sphere is $\rho$, the charge $Q_r$ is
+\begin{equation}
+Q_r=\rho\cdot\frac{4}{3}\,\pi r^3,\notag
+\end{equation}
+
+and the charge $dQ$ is
+\begin{equation}
+dQ=\rho\cdot4\pi r^2\,dr.\notag
+\end{equation}
+
+Equation (<a href="#mjx-eqn-EqII84">8.4</a>) becomes
+\begin{equation}
+\label{Eq:II:8:5}
+dU=\frac{4\pi\rho^2r^4\,dr}{3\epsO}.
+\end{equation}
+
+The total energy required to assemble the sphere is the integral of $dU$
+from $r=0$ to $r=a$, or
+\begin{equation}
+\label{Eq:II:8:6}
+U=\frac{4\pi\rho^2a^5}{15\epsO}.
+\end{equation}
+
+Or if we wish to express the result in terms of the total charge $Q$
+of the sphere,
+\begin{equation}
+\label{Eq:II:8:7}
+U=\frac{3}{5}\,\frac{Q^2}{4\pi\epsO a}.
+\end{equation}
+
+The energy is proportional to the square of the total charge and
+inversely proportional to the radius.
+We can also interpret Eq. (<a href="#mjx-eqn-EqII87">8.7</a>) as saying that the average
+of $(1/r_{ij})$ for all pairs of points in the sphere is $6/5a$.</p>
+</div>
+</div>
+<div id="Ch8-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">8–2</span>The energy of a condenser. Forces on charged conductors</h3>
+<div id="Ch8-S2-p1" class="para">
+<p class="p">We consider now the energy required to charge a condenser. If the
+charge $Q$ has been taken from one of the conductors of a condenser
+and placed on the other, the potential difference between them is
+\begin{equation}
+\label{Eq:II:8:8}
+V=\frac{Q}{C},
+\end{equation}
+
+where $C$ is the capacity of the
+condenser.
+How much work is done in charging the condenser?
+Proceeding as for the sphere, we imagine that the condenser has been
+charged by transferring charge from one plate to the other in small
+increments $dQ$. The work required to transfer the charge $dQ$ is
+\begin{equation*}
+dU=VdQ.
+\end{equation*}
+
+Taking $V$ from Eq. (<a href="#mjx-eqn-EqII88">8.8</a>), we write
+\begin{equation*}
+dU=\frac{Q\,dQ}{C}.
+\end{equation*}
+
+Or integrating from zero charge to the final charge $Q$, we have
+\begin{equation}
+\label{Eq:II:8:9}
+U=\frac{1}{2}\,\frac{Q^2}{C}.
+\end{equation}
+
+This energy can also be written as
+\begin{equation}
+\label{Eq:II:8:10}
+U=\tfrac{1}{2}CV^2.
+\end{equation}
+
+Recalling that the capacity of a conducting sphere (relative to
+infinity) is
+\begin{equation*}
+C_{\text{sphere}}=4\pi\epsO a,
+\end{equation*}
+
+we can immediately get from Eq. (<a href="#mjx-eqn-EqII89">8.9</a>) the energy of a
+charged sphere,
+\begin{equation}
+\label{Eq:II:8:11}
+U=\frac{1}{2}\,\frac{Q^2}{4\pi\epsO a}.
+\end{equation}
+
+This, of course, is also the energy of a thin <em class="emph">spherical shell</em>
+of total charge $Q$ and is just $5/6$ of the energy of a
+<em class="emph">uniformly charged</em> sphere, Eq. (<a href="#mjx-eqn-EqII87">8.7</a>).</p>
+</div>
+<div id="Ch8-S2-p2" class="para">
+<p class="p">We now consider applications of the idea of electrostatic
+energy. Consider the following questions: What is the force between
+the plates of a condenser? Or what is the torque about some axis of a
+charged conductor in the presence of another with opposite charge?
+Such questions are easily answered by using our result
+Eq. (<a href="#mjx-eqn-EqII89">8.9</a>) for electrostatic energy of a condenser, together
+with the principle of virtual work (Chapters
+<a href="I_04.html">4</a>, <a href="I_13.html">13</a>, and <a href="I_14.html">14</a> of Vol. I).</p>
+</div>
+<div id="Ch8-S2-p3" class="para">
+<p class="p">Let’s use this method for determining the force between the plates of a
+parallel-plate condenser. If we imagine that the spacing of the plates is
+increased by the small amount $\Delta z$, then the mechanical work done
+from the outside in moving the plates would be
+\begin{equation}
+\label{Eq:II:8:12}
+\Delta W=F\,\Delta z,
+\end{equation}
+
+where $F$ is the force between the plates. This work must be equal to
+the change in the electrostatic energy of the condenser.</p>
+</div>
+<div id="Ch8-S2-p4" class="para">
+<p class="p">By Eq. (<a href="#mjx-eqn-EqII89">8.9</a>), the energy of the condenser was originally
+\begin{equation*}
+U=\frac{1}{2}\,\frac{Q^2}{C}.
+\end{equation*}
+
+The change in energy (if we do not let the charge change) is
+\begin{equation}
+\label{Eq:II:8:13}
+\Delta U=\frac{1}{2}\,Q^2\,\Delta\biggl(\frac{1}{C}\biggr).
+\end{equation}
+
+Equating (<a href="#mjx-eqn-EqII812">8.12</a>) and (<a href="#mjx-eqn-EqII813">8.13</a>), we have
+\begin{equation}
+\label{Eq:II:8:14}
+F\,\Delta z=\frac{Q^2}{2}\,\Delta\biggl(\frac{1}{C}\biggr).
+\end{equation}
+
+This can also be written as
+\begin{equation}
+\label{Eq:II:8:15}
+F\,\Delta z=-\frac{Q^2}{2C^2}\,\Delta C.
+\end{equation}
+
+The force, of course, results from the attraction of the charges on
+the plates, but we see that we do not have to worry in detail about
+how they are distributed; everything we need is taken care of in the
+capacity $C$.</p>
+</div>
+<div id="Ch8-S2-p5" class="para">
+<p class="p">It is easy to see how the idea is extended to conductors of any shape,
+and for other components of the force. In Eq. (<a href="#mjx-eqn-EqII814">8.14</a>), we
+replace $F$ by the component we are looking for, and we
+replace $\Delta z$ by a small displacement in the corresponding direction. Or
+if we have an electrode with a pivot and we want to know the
+torque $\tau$, we write the virtual work as
+\begin{equation*}
+\Delta W=\tau\,\Delta\theta,
+\end{equation*}
+
+where $\Delta\theta$ is a small angular displacement. Of course,
+$\Delta(1/ C)$ must be the change in $1/C$ which corresponds
+to $\Delta\theta$. We could, in this way, find the torque on the movable
+plates in a variable condenser of the type shown in
+Fig. <a href="#Ch8-F3">8–3</a>.</p>
+</div>
+<div id="Ch8-F3" class="figure">
+<img src="img/FLP_II/f08-03/f08-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 8–3.</span>What is the torque on a variable capacitor?
+</div>
+</div>
+<div id="Ch8-S2-p6" class="para">
+<p class="p">Returning to the special case of a parallel-plate condenser, we can
+use the formula we derived in Chapter <a href="II_06.html">6</a> for the
+capacity:
+\begin{equation}
+\label{Eq:II:8:16}
+\frac{1}{C}=\frac{d}{\epsO A},
+\end{equation}
+
+where $A$ is the area of each plate. If we increase the separation
+by $\Delta z$,
+\begin{equation*}
+\Delta\biggl(\frac{1}{C}\biggr)=\frac{\Delta z}{\epsO A}.
+\end{equation*}
+
+From Eq. (<a href="#mjx-eqn-EqII814">8.14</a>) we get that the force between the plates
+is
+\begin{equation}
+\label{Eq:II:8:17}
+F=\frac{Q^2}{2\epsO A}.
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S2-p7" class="para">
+<p class="p">Let’s look at Eq. (<a href="#mjx-eqn-EqII817">8.17</a>) a little more closely and see
+if we can tell how the force arises. If for the charge on one plate we
+write
+\begin{equation*}
+Q=\sigma A,
+\end{equation*}
+
+Eq. (<a href="#mjx-eqn-EqII817">8.17</a>) can be rewritten as
+\begin{equation*}
+F=\frac{1}{2}\,Q\,\frac{\sigma}{\epsO}.
+\end{equation*}
+
+Or, since the electric field between the plates is
+\begin{equation}
+E_0=\frac{\sigma}{\epsO},\notag
+\end{equation}
+
+then
+\begin{equation}
+\label{Eq:II:8:18}
+F=\tfrac{1}{2}QE_0.
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S2-p8" class="para">
+<p class="p">One would immediately guess that the force acting on one plate is the
+charge $Q$ on the plate times the field acting on the charge. But we
+have a surprising factor of one-half. The reason is that $E_0$ is not
+the field <em class="emph">at</em> the charges. If we imagine that the charge at the
+surface of the plate occupies a thin layer, as indicated in
+Fig. <a href="#Ch8-F4">8–4</a>, the field will vary from zero at the inner
+boundary of the layer to $E_0$ in the space outside of the plate. The
+average field acting on the surface charges is $E_0/2$. That is why the
+factor one-half is in Eq. (<a href="#mjx-eqn-EqII818">8.18</a>).</p>
+</div>
+<div id="Ch8-F4" class="figure">
+<img src="img/FLP_II/f08-04/f08-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 8–4.</span>The field at the surface of a conductor varies from zero
+to $E_0=\sigma/\epsO$, as one passes through the layer of surface
+charge.
+</div>
+</div>
+<div id="Ch8-S2-p9" class="para">
+<p class="p">You should notice that in computing the virtual work we have assumed
+that the charge on the condenser was constant—that it was not
+electrically connected to other objects, and so the total charge could
+not change.</p>
+</div>
+<div id="Ch8-S2-p10" class="para">
+<p class="p">Suppose we had imagined that the condenser was held at a constant
+potential difference as we made the virtual displacement. Then we
+should have taken
+\begin{equation*}
+U=\tfrac{1}{2}CV^2
+\end{equation*}
+
+and in place of Eq. (<a href="#mjx-eqn-EqII815">8.15</a>) we would have had
+\begin{equation*}
+F\Delta z=\tfrac{1}{2}V^2\,\Delta C,
+\end{equation*}
+
+which gives a force equal in magnitude to the one in
+Eq. (<a href="#mjx-eqn-EqII815">8.15</a>) (because $V=Q/C$), but with the opposite sign!
+Surely the force between the condenser plates doesn’t reverse in sign as
+we disconnect it from its charging source. Also, we know that two plates
+with opposite electrical charges must attract. The principle of virtual
+work has been incorrectly applied in the second case—we have not taken
+into account the virtual work done on the charging source. That is, to
+keep the potential constant at $V$ as the capacity changes, a charge
+$V\,\Delta C$ must be supplied by a source of charge. But this charge is
+supplied at a potential $V$, so the work done by the electrical system
+which keeps the potential constant is $V^2\,\Delta C$. The mechanical
+work $F\,\Delta z$ <em class="emph">plus</em> this electrical work $V^2\,\Delta C$
+together make up the change in the total energy $\tfrac{1}{2}V^2\,\Delta
+C$ of the condenser. Therefore $F\,\Delta z$ is
+$-\tfrac{1}{2}V^2\,\Delta C$, as before.</p>
+</div>
+</div>
+<div id="Ch8-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">8–3</span>The electrostatic energy of an ionic crystal</h3>
+<div id="Ch8-S3-p1" class="para">
+<p class="p">We now consider an application of the concept of electrostatic energy
+in atomic physics. We cannot easily measure the forces between atoms,
+but we are often interested in the energy differences between one
+atomic arrangement and another, as, for example, the energy of a
+chemical change. Since atomic forces are basically electrical,
+chemical energies are in large part just electrostatic energies.</p>
+</div>
+<div id="Ch8-S3-p2" class="para">
+<p class="p">Let’s consider, for example, the electrostatic energy of an ionic
+lattice. An ionic crystal like NaCl consists of positive and negative
+ions which can be thought of as rigid spheres. They attract
+electrically until they begin to touch; then there is a repulsive
+force which goes up very rapidly if we try to push them closer
+together.</p>
+</div>
+<div id="Ch8-S3-p3" class="para">
+<p class="p">For our first approximation, therefore, we imagine a set of rigid
+spheres that represent the atoms in a salt crystal. The structure of
+the lattice has been determined by x-ray diffraction. It is a cubic
+lattice—like a three-dimensional checkerboard. Figure <a href="#Ch8-F5">8–5</a>
+shows a cross-sectional view. The spacing of the ions is $2.81$ Å
+($=2.81\times10^{-8}$ cm).
+</p>
+</div>
+<div id="Ch8-F5" class="figure">
+<img src="img/FLP_II/f08-05/f08-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 8–5.</span>Cross section of a salt crystal on an atomic scale. The checkerboard
+arrangement of Na and Cl ions is the same in the two cross sections
+perpendicular to the one shown. (See Vol. I, Fig. <a href="I_01.html#Ch1-F7">1–7</a>.)
+</div>
+</div>
+<div id="Ch8-S3-p4" class="para">
+<p class="p">If our picture of this system is correct, we should be able to check
+it by asking the following question: How much energy will it take to
+pull all these ions apart—that is, to separate the crystal
+completely into ions? This energy should be equal to the heat of
+vaporization of NaCl plus the energy required to dissociate the
+molecules into ions. This total energy to separate NaCl to ions is
+determined experimentally to be $7.92$ electron volts per
+molecule. Using the conversion
+\begin{equation*}
+1\text{ eV}=1.602\times10^{-19}\text{ joule},
+\end{equation*}
+
+and Avogadro’s number for the number of molecules in a mole,
+\begin{equation*}
+N_0=6.02\times10^{23},
+\end{equation*}
+
+the energy of dissociation can also be given as
+\begin{equation*}
+W=7.64\times10^5\text{ joules/mole}.
+\end{equation*}
+
+Physical chemists prefer for an energy unit the
+kilocalorie, which is $4190$ joules; so that
+$1$ eV per molecule is $23$ kilocalories per mole. A chemist would then
+say that the dissociation energy of NaCl is
+\begin{equation*}
+W=183\text{ kcal/mole}.
+\end{equation*}
+
+</p>
+</div>
+<div id="Ch8-S3-p5" class="para">
+<p class="p">Can we obtain this chemical energy theoretically by computing how much
+work it would take to pull apart the crystal? According to our theory,
+this work is the sum of the potential energies of all the pairs of
+ions. The easiest way to figure out this sum is to pick out a
+particular ion and compute its potential energy with each of the other
+ions. That will give us <em class="emph">twice</em> the energy per ion, because the
+energy belongs to the <em class="emph">pairs</em> of charges. If we want the energy
+to be associated with one particular ion, we should take half the sum.
+But we really want the energy <em class="emph">per molecule</em>, which contains two
+ions, so that the sum we compute will give directly the energy per
+molecule.</p>
+</div>
+<div id="Ch8-S3-p6" class="para">
+<p class="p">The energy of an ion with one of its nearest neighbors is $e^2/a$,
+where $e^2=q_e^2/4\pi\epsO$ and $a$ is the center-to-center spacing
+between ions. (We are considering monovalent ions.) This energy is
+$5.12$ eV, which we already see is going to give us a result of the
+correct order of magnitude. But it is still a long way from the
+infinite sum of terms we need.</p>
+</div>
+<div id="Ch8-S3-p7" class="para">
+<p class="p">Let’s begin by summing all the terms from the ions along a straight
+line.  Considering that the ion marked Na in Fig. <a href="#Ch8-F5">8–5</a>
+is our special ion, we shall consider first those ions on a horizontal
+line with it. There are two nearest Cl ions with negative charges,
+each at the distance $a$. Then there are two positive ions at the
+distance $2a$, etc. Calling the energy of this sum $U_1$, we write
+\begin{align}
+U_1&=\frac{e^2}{a}\biggl(
+-\frac{2}{1}+\frac{2}{2}-\frac{2}{3}+\frac{2}{4}\mp\dotsb
+\biggr)\notag\\[1.5ex]
+\label{Eq:II:8:19}
+&=-\frac{2e^2}{a}\biggl(
+1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}\pm\dotsb
+\biggr).
+\end{align}
+
+The series converges slowly, so it is difficult to evaluate
+numerically, but it is known to be equal to $\ln2$. So
+\begin{equation}
+\label{Eq:II:8:20}
+U_1=-\frac{2e^2}{a}\ln2=-1.386\:\frac{e^2}{a}.
+\end{equation}
+
+</p>
+</div>
+<div id="Ch8-S3-p8" class="para">
+<p class="p">Now consider the next adjacent line of ions above. The nearest is
+negative and at the distance $a$. Then there are two positives at the
+distance $\sqrt{2}\,a$. The next pair are at the
+distance $\sqrt{5}\,a$, the next at $\sqrt{10}\,a$, and so on. So for the whole
+line we get the series
+\begin{equation}
+\label{Eq:II:8:21}
+\frac{e^2}{a}\biggl(
+-\frac{1}{1}+\frac{2}{\sqrt{2}}-\frac{2}{\sqrt{5}}+
+\frac{2}{\sqrt{10}}\mp\dotsb
+\biggr).
+\end{equation}
+
+There are <em class="emph">four</em> such lines: above, below, in front, and in
+back. Then there are the four lines which are the nearest lines on
+diagonals, and on and on.</p>
+</div>
+<div id="Ch8-S3-p9" class="para">
+<p class="p">If you work patiently through for all the lines, and then take the
+sum, you find that the grand total is
+\begin{equation*}
+U=-1.747\,\frac{e^2}{a},
+\end{equation*}
+
+which is just somewhat more than what we obtained in (<a href="#mjx-eqn-EqII820">8.20</a>)
+for the first line. Using $e^2/a=5.12$ eV, we get
+\begin{equation*}
+U=-8.94\text{ eV}.
+\end{equation*}
+
+Our answer is about $10\%$ above the experimentally observed
+energy. It shows that our idea that the whole lattice is held together
+by electrical Coulomb forces is fundamentally correct. This is the
+first time that we have obtained a specific property of a macroscopic
+substance from a knowledge of atomic physics. We will do much more
+later. The subject that tries to understand the behavior of bulk
+matter in terms of the laws of atomic behavior is called
+<em class="emph">solid-state physics</em>.
+</p>
+</div>
+<div id="Ch8-S3-p10" class="para">
+<p class="p">Now what about the error in our calculation? Why is it not exactly
+right? It is because of the repulsion between the ions at close
+distances. They are not perfectly rigid spheres, so when they are
+close together they are partly squashed. They are not very soft, so
+they squash only a little bit. Some energy, however, is used in
+deforming them, and when the ions are pulled apart this energy is
+released.  The actual energy needed to pull the ions apart is a little
+less than the energy that we calculated; the repulsion helps in
+overcoming the electrostatic attraction.</p>
+</div>
+<div id="Ch8-S3-p11" class="para">
+<p class="p">Is there any way we can make an allowance for this contribution? We
+could if we knew the law of the repulsive force. We are not ready to
+analyze the details of this repulsive mechanism, but we can get some
+idea of its characteristics from some large-scale measurements. From a
+measurement of the <em class="emph">compressibility</em> of the whole crystal, it is
+possible to obtain a quantitative idea of the law of repulsion between
+the ions and therefore of its contribution to the energy. In this way
+it has been found that this contribution must be $1/9.4$ of the
+contribution from the electrostatic attraction and, of course, of
+opposite sign. If we subtract this contribution from the pure
+electrostatic energy, we obtain $7.99$ eV for the dissociation energy
+per molecule. It is much closer to the observed result of $7.92$ eV,
+but still not in perfect agreement. There is one more thing we haven’t
+taken into account: we have made no allowance for the kinetic energy
+of the crystal vibrations. If a correction is made for this effect,
+very good agreement with the experimental number is obtained. The
+ideas are then correct; the major contribution to the energy of a
+crystal like NaCl is electrostatic.</p>
+</div>
+</div>
+<div id="Ch8-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">8–4</span>Electrostatic energy in nuclei</h3>
+<div id="Ch8-S4-p1" class="para">
+<p class="p">We will now take up another example of electrostatic energy in atomic
+physics, the electrical energy of atomic nuclei. Before we do this we
+will have to discuss some properties of the main forces (called nuclear
+forces) that hold the
+protons and neutrons together in a nucleus. In the early days of the
+discovery of nuclei—and of the neutrons and protons that make them
+up—it was hoped that the law of the strong, nonelectrical part of the
+force between, say, a proton and another proton would have some simple
+law, like the inverse square law of electricity. For once one had
+determined this law of force, and the corresponding ones between a
+proton and a neutron, and a neutron and a neutron, it would be possible
+to describe theoretically the complete behavior of these particles in
+nuclei. Therefore a big program was started for the study of the
+scattering of protons, in the hope of finding the law of force between
+them; but after thirty years of effort, nothing simple has emerged. A
+considerable knowledge of the force between proton and proton has been
+accumulated, but we find that the force is as complicated as it can
+possibly be.</p>
+</div>
+<div id="Ch8-S4-p2" class="para">
+<p class="p">What we mean by “as complicated as it can be” is that the force
+depends on as many things as it possibly can.</p>
+</div>
+<div id="Ch8-S4-p3" class="para">
+<p class="p">First, the force is not a simple function of the distance between the
+two protons.  At large distances there is an attraction, but at closer
+distances there is a repulsion. The distance dependence is a
+complicated function, still imperfectly known.</p>
+</div>
+<div id="Ch8-S4-p4" class="para">
+<p class="p">Second, the force depends on the orientation of the protons’
+spin. The protons have a spin, and any two
+interacting protons may be spinning with their angular momenta in the
+same direction or in opposite directions. And the force is different
+when the spins are parallel from what it is when they are antiparallel,
+as in (a) and (b) of Fig. <a href="#Ch8-F6">8–6</a>. The difference is quite
+large; it is not a small effect.
+</p>
+</div>
+<div id="Ch8-F6" class="figure">
+<img class="first" src="img/FLP_II/f08-06/f08-06_tc_big_a.svgz"><img class="middle" src="img/FLP_II/f08-06/f08-06_tc_big_b.svgz"><img class="last" src="img/FLP_II/f08-06/f08-06_tc_big_c.svgz"><div class="caption">
+<span class="tag">Fig. 8–6.</span>The force between two protons depends on every possible
+parameter.
+</div>
+</div>
+<div id="Ch8-S4-p5" class="para">
+<p class="p">Third, the force is considerably different when the separation of the
+two protons is in the direction <em class="emph">parallel</em> to their spins, as in
+(c) and (d) of Fig. <a href="#Ch8-F6">8–6</a>, than it is when the separation
+is in a direction <em class="emph">perpendicular</em> to the spins, as in (a)
+and (b).</p>
+</div>
+<div id="Ch8-S4-p6" class="para">
+<p class="p">Fourth, the force depends, as it does in magnetism, on the velocity of
+the protons, only much more strongly than in magnetism. And this
+velocity-dependent force is not a relativistic effect; it is strong
+even at speeds much less than the speed of light. Furthermore, this
+part of the force depends on other things besides the magnitude of the
+velocity. For instance, when a proton is moving near another proton,
+the force is different when the orbital motion has the same direction
+of rotation as the spin, as in (e) of Fig. <a href="#Ch8-F6">8–6</a>, than
+when it has the opposite direction of rotation, as in (f). This is
+called the “spin orbit” part of the force.
+</p>
+</div>
+<div id="Ch8-S4-p7" class="para">
+<p class="p">The force between a proton and a neutron and between a neutron and a
+neutron are also equally complicated. To this day we do not know the
+machinery behind these forces—that is to say, any simple way of
+understanding them.</p>
+</div>
+<div id="Ch8-S4-p8" class="para">
+<p class="p">There is, however, one important way in which the nucleon forces are
+<em class="emph">simpler</em> than they could be. That is that the <em class="emph">nuclear</em>
+force between two
+neutrons is the same as the force between a proton and a neutron, which
+is the same as the force between two protons! If, in any nuclear
+situation, we replace a proton by a neutron (or vice versa), the
+<em class="emph">nuclear interactions</em> are not changed.
+The “fundamental reason” for this equality is not known, but it is an
+example of an important principle that can be extended also to the
+interaction laws of other strongly interacting particles—such as the
+$\pi$-mesons and the “strange” particles.
+</p>
+</div>
+<div id="Ch8-S4-p9" class="para">
+<p class="p">This fact is nicely illustrated by the locations of the energy levels
+in similar nuclei. Consider a nucleus like B$^{11}$ (boron-eleven),
+which is composed of five protons and six neutrons. In the nucleus the
+eleven particles interact with one another in a most complicated
+dance. Now, there is one configuration of all the possible
+interactions which has the lowest possible energy; this is the normal
+state of the nucleus, and is called the <em class="emph">ground state</em>. If the nucleus is disturbed (for example, by being struck by a
+high-energy proton or other particle) it can be put into any number of
+other configurations, called <em class="emph">excited states</em>, each of which will have a
+characteristic energy that is higher than that of the ground state. In
+nuclear physics research, such as is carried on with Van de
+Graaff generator (for example, in
+Caltech’s Kellogg and Sloan Laboratories), the energies and other
+properties of these excited states are determined by experiment. The
+energies of the fifteen lowest known excited states of B$^{11}$ are
+shown in a one-dimensional graph on the left half of
+Fig. <a href="#Ch8-F7">8–7</a>. The lowest horizontal line represents the ground
+state.  The first excited state has an energy $2.14$ MeV higher than the
+ground state, the next an energy $4.46$ MeV higher than the ground
+state, and so on. The study of nuclear physics attempts to find an
+explanation for this rather complicated pattern of energies; there is as
+yet, however, no complete general theory of such nuclear energy levels.
+</p>
+</div>
+<div id="Ch8-F7" class="figure">
+<img src="img/FLP_II/f08-07/f08-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 8–7.</span>The energy levels of B$^{11}$ and C$^{11}$ (energies in
+MeV). The ground state of C$^{11}$ is $1.982$ MeV higher than that
+of B$^{11}$.
+</div>
+</div>
+<div id="Ch8-S4-p10" class="para">
+<p class="p">If we replace one of the neutrons in B$^{11}$ with a proton, we have
+the nucleus of an isotope of carbon, C$^{11}$. The energies of the
+lowest sixteen excited states of C$^{11}$ have also been measured;
+they are shown in the right half of Fig. <a href="#Ch8-F7">8–7</a>. (The
+broken lines indicate levels for which the experimental information is
+questionable.)</p>
+</div>
+<div id="Ch8-S4-p11" class="para">
+<p class="p">Looking at Fig. <a href="#Ch8-F7">8–7</a>, we see a striking similarity
+between the pattern of the energy levels in the two nuclei. The first
+excited states are about $2$ MeV above the ground states. There is a
+large gap of about $2.3$ MeV to the second excited state, then a small
+jump of only $0.5$ MeV to the third level. Again, between the fourth
+and fifth levels, a big jump; but between the fifth and sixth a tiny
+separation of the order of $0.1$ MeV. And so on. After about the tenth
+level, the correspondence seems to become lost, but can still be seen
+if the levels are labeled with their other defining
+characteristics—for instance, their angular momentum and what they
+do to lose their extra energy.</p>
+</div>
+<div id="Ch8-S4-p12" class="para">
+<p class="p">The striking similarity of the pattern of the energy levels of
+B$^{11}$ and C$^{11}$ is surely not just a coincidence. It must reveal
+some physical law. It shows, in fact, that even in the complicated
+situation in a nucleus, replacing a neutron by a proton makes very
+little change. This can mean only that the neutron-neutron and
+proton-proton forces must be nearly identical. Only then would we
+expect the nuclear configurations with five protons and six neutrons
+to be the same as with six protons and five neutrons.</p>
+</div>
+<div id="Ch8-S4-p13" class="para">
+<p class="p">Notice that the properties of these two nuclei tell us nothing about
+the neutron-proton force; there are the same number of neutron-proton
+combinations in both nuclei. But if we compare two other nuclei, such
+as C$^{14}$, which has six protons and eight neutrons, with N$^{14}$,
+which has seven of each, we find a similar correspondence of energy
+levels. So we can conclude that the p-p, n-n, and p-n forces are
+identical in all their complexities. There is an unexpected principle
+in the laws of nuclear forces. Even though the force between each pair
+of nuclear particles is very complicated, the force between the three
+possible different pairs is the same.</p>
+</div>
+<div id="Ch8-S4-p14" class="para">
+<p class="p">But there are some small differences. The levels do not correspond
+exactly; also, the ground state of C$^{11}$ has an absolute energy
+(its mass) which is higher than the ground state of B$^{11}$ by
+$1.982$ MeV. All the other levels are also higher in absolute energy
+by this same amount. So the forces are not exactly equal. But we know
+very well that the <em class="emph">complete</em> forces are not exactly equal; there
+is an <em class="emph">electrical</em> force between two protons because each has a
+positive charge, while between two neutrons there is no such
+electrical force. Can we perhaps explain the differences between
+B$^{11}$ and C$^{11}$ by the fact that the electrical interaction of
+the protons is different in the two cases?  Perhaps even the remaining
+minor differences in the levels are caused by electrical effects?
+Since the nuclear forces are so much stronger than the electrical
+force, electrical effects would have only a small perturbing effect on
+the energies of the levels.</p>
+</div>
+<div id="Ch8-S4-p15" class="para">
+<p class="p">In order to check this idea, or rather to find out what the
+consequences of this idea are, we first consider the difference in the
+ground-state energies of the two nuclei. To take a very simple model,
+we suppose that the nuclei are spheres of radius $r$ (to be
+determined), containing $Z$ protons. If we consider that a nucleus is
+like a sphere with uniform charge density, we would expect the
+electrostatic energy (from Eq. <a href="#mjx-eqn-EqII87">8.7</a>) to be
+\begin{equation}
+\label{Eq:II:8:22}
+U=\frac{3}{5}\,\frac{(Zq_e)^2}{4\pi\epsO r}.
+\end{equation}
+
+where $q_e$ is the elementary charge of the proton. Since $Z$ is five
+for B$^{11}$ and six for C$^{11}$, their electrostatic energies would
+be different.</p>
+</div>
+<div id="Ch8-S4-p16" class="para">
+<p class="p">With such a small number of protons, however, Eq. (<a href="#mjx-eqn-EqII822">8.22</a>)
+is not quite correct. If we compute the electrical energy between all
+pairs of protons, considered as points which we assume to be nearly
+uniformly distributed throughout the sphere, we find that in
+Eq. (<a href="#mjx-eqn-EqII822">8.22</a>) the quantity $Z^2$ should be replaced
+by $Z(Z-1)$, so the energy is
+\begin{equation}
+\label{Eq:II:8:23}
+U=\frac{3}{5}\,\frac{Z(Z-1)q_e^2}{4\pi\epsO r}=
+\frac{3}{5}\,\frac{Z(Z-1)e^2}{r}.
+\end{equation}
+
+If we knew the nuclear radius $r$, we could use (<a href="#mjx-eqn-EqII823">8.23</a>) to
+find the electrostatic energy difference between B$^{11}$ and
+C$^{11}$. But let’s do the opposite; let’s instead use the observed
+energy difference to compute the radius, assuming that the energy
+difference is all electrostatic in origin.</p>
+</div>
+<div id="Ch8-S4-p17" class="para">
+<p class="p">That is, however, not quite right. The energy difference of $1.982$ MeV
+between the ground states of B$^{11}$ and C$^{11}$ includes the
+rest energies—that is, the energy $mc^2$—of all the particles. In
+going from B$^{11}$ to C$^{11}$, we replace a neutron by a proton and
+an electron, which have less mass. So part of the energy difference is
+the difference in the rest energies of a neutron and that of a proton
+plus an electron, which is $0.784$ MeV. The difference, to be
+accounted for by electrostatic energy, is thus more than $1.982$ MeV;
+it is
+\begin{equation*}
+1.982\text{ MeV}+0.784\text{ MeV}=2.766\text{ MeV}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch8-S4-p18" class="para">
+<p class="p">Using this energy in Eq. (<a href="#mjx-eqn-EqII823">8.23</a>), for the radius of
+either B$^{11}$ or C$^{11}$ we find
+\begin{equation}
+\label{Eq:II:8:24}
+r=3.12\times10^{-13}\text{ cm}.
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S4-p19" class="para">
+<p class="p">Does this number have any meaning? To see whether it does, we should
+compare it with some other determination of the radius of these
+nuclei. For example, we can make another measurement of the radius of
+a nucleus by seeing how it scatters fast particles. From such
+measurements it has been found, in fact, that the <em class="emph">density</em> of
+matter in all nuclei is nearly the same, i.e., their volumes are
+proportional to the number of particles they contain. If we let $A$ be
+the number of protons and neutrons in a nucleus (a number very nearly
+proportional to its mass), it is found that its radius is given by
+\begin{equation}
+\label{Eq:II:8:25}
+r=A^{1/3}r_0,
+\end{equation}
+
+where
+\begin{equation}
+\label{Eq:II:8:26}
+r_0=1.2\times10^{-13}\text{ cm}.
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S4-p20" class="para">
+<p class="p">From these measurements we find that the radius of a B$^{11}$ (or a
+C$^{11}$) nucleus is expected to be
+\begin{equation*}
+r=(11)^{1/3}(1.2\times10^{-13})\text{ cm}=
+2.7\times10^{-13}\text{ cm}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch8-S4-p21" class="para">
+<p class="p">Comparing this result with (<a href="#mjx-eqn-EqII824">8.24</a>), we see that our
+assumptions that the energy difference between B$^{11}$ and C$^{11}$
+is electrostatic is fairly good; the discrepancy is only about $15\%$
+(not bad for our first nuclear computation!).</p>
+</div>
+<div id="Ch8-S4-p22" class="para">
+<p class="p">The reason for the discrepancy is probably the following. According to
+the current understanding of nuclei, an even number of nuclear
+particles—in the case of B$^{11}$, five neutrons together with five
+protons—makes a kind of <em class="emph">core</em>; when one more particle is added
+to this core, it revolves around on the outside to make a new
+spherical nucleus, rather than being absorbed. If this is so, we
+should have taken a different electrostatic energy for the additional
+proton. We should have taken the excess energy of C$^{11}$ over
+B$^{11}$ to be just
+\begin{equation*}
+\frac{Z_Bq_e^2}{4\pi\epsO r}
+\end{equation*}
+
+which is the energy needed to add one more proton to the outside of
+the core. This number is just $5/6$ of what Eq. (<a href="#mjx-eqn-EqII823">8.23</a>)
+predicts, so the new prediction for the radius is $5/6$
+of (<a href="#mjx-eqn-EqII824">8.24</a>), which is in much closer agreement with what is
+directly measured.</p>
+</div>
+<div id="Ch8-S4-p23" class="para">
+<p class="p">We can draw two conclusions from this agreement. One is that the
+electrical laws appear to be working at dimensions as small as
+$10^{-13}$ cm. The other is that we have verified the remarkable
+coincidence that the nonelectrical part of the forces between proton
+and proton, neutron and neutron, and proton and neutron are all equal.</p>
+</div>
+</div>
+<div id="Ch8-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">8–5</span>Energy in the electrostatic field</h3>
+<div id="Ch8-S5-p1" class="para">
+<p class="p">We now consider other methods of calculating electrostatic
+energy. They can all be derived from the basic relation
+Eq. (<a href="#mjx-eqn-EqII83">8.3</a>), the sum, over all pairs of charges, of the mutual
+energies of each charge-pair. First we wish to write an expression for
+the energy of a charge distribution. As usual, we consider that each
+volume element $dV$ contains the element of charge $\rho\,dV$. Then
+Eq. (<a href="#mjx-eqn-EqII83">8.3</a>) should be written
+\begin{equation}
+\label{Eq:II:8:27}
+U=\frac{1}{2}\underset{\substack{\text{all}\\\text{space}}}{\int}
+\frac{\rho(1)\rho(2)}{4\pi\epsO r_{12}}\,dV_1dV_2.
+\end{equation}
+
+Notice the factor $\tfrac{1}{2}$, which is introduced because in the
+double integral over $dV_1$ and $dV_2$ we have counted all pairs of
+charge elements twice. (There is no convenient way of writing an
+integral that keeps track of the pairs so that each pair is counted
+only once.)  Next we notice that the integral over $dV_2$
+in (<a href="#mjx-eqn-EqII827">8.27</a>) is just the potential at $(1)$. That is,
+\begin{equation*}
+\int\frac{\rho(2)}{4\pi\epsO r_{12}}\,dV_2=\phi(1),
+\end{equation*}
+
+so that (<a href="#mjx-eqn-EqII827">8.27</a>) can be written as
+\begin{equation*}
+U=\frac{1}{2}\int\rho(1)\phi(1)\,dV_1.
+\end{equation*}
+
+Or, since the point $(2)$ no longer appears, we can simply write
+\begin{equation}
+\label{Eq:II:8:28}
+U=\frac{1}{2}\int\rho\phi\,dV.
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S5-p2" class="para">
+<p class="p">This equation can be interpreted as follows. The potential energy of
+the charge $\rho\,dV$ is the product of this charge and the potential
+at the same point. The total energy is therefore the integral
+over $\phi\rho\,dV$. But there is again the factor $\tfrac{1}{2}$. It is
+still required because we are counting energies twice. The mutual
+energies of two charges is the charge of one times the potential at it
+due to the other. <em class="emph">Or</em>, it can be taken as the second charge
+times the potential at it from the first. Thus for two point charges
+we would write
+\begin{equation*}
+ U=q_1\phi(1)=q_1\,\frac{q_2}{4\pi\epsO r_{12}}
+\end{equation*}
+
+<em class="emph">or</em>
+\begin{equation*}
+ U=q_2\phi(2)=q_2\,\frac{q_1}{4\pi\epsO r_{12}}.
+\end{equation*}
+
+Notice that we could also write
+\begin{equation}
+\label{Eq:II:8:29}
+U=\tfrac{1}{2}[q_1\phi(1)+q_2\phi(2)].
+\end{equation}
+
+The integral in (<a href="#mjx-eqn-EqII828">8.28</a>) corresponds to the sum of both
+terms in the brackets of (<a href="#mjx-eqn-EqII829">8.29</a>). That is why we need the
+factor $\tfrac{1}{2}$.</p>
+</div>
+<div id="Ch8-S5-p3" class="para">
+<p class="p">An interesting question is: Where is the electrostatic energy located?
+One might also ask: Who cares? What is the meaning of such a question?
+If there is a pair of interacting charges, the combination has a
+certain energy. Do we need to say that the energy is located at one of
+the charges or the other, or at both, or in between? These questions
+may not make sense because we really know only that the total energy
+is conserved. The idea that the energy is located <em class="emph">somewhere</em> is
+not necessary.</p>
+</div>
+<div id="Ch8-S5-p4" class="para">
+<p class="p">Yet suppose that it <em class="emph">did</em> make sense to say, in general, that
+energy is located at a certain place, as it does for heat energy. We
+might then <em class="emph">extend</em> our principle of the conservation of energy
+with the idea that if the energy in a given volume changes, we should
+be able to account for the change by the flow of energy into or out of
+that volume. You realize that our early statement of the principle of
+the conservation of energy is still perfectly all right if some energy
+disappears at one place and appears somewhere else far away without
+anything passing (that is, without any special phenomena occurring) in
+the space between. We are, therefore, now discussing an extension of
+the idea of the conservation of energy. We might call it a principle
+of the <em class="emph">local</em> conservation of energy. Such a principle would say
+that the energy in any given volume changes only by the amount that
+flows into or out of the volume. It is indeed possible that energy is
+conserved locally in such a way. If it is, we would have a much more
+detailed law than the simple statement of the conservation of total
+energy. It does turn out that in nature <em class="emph">energy is conserved
+locally</em>. We can find formulas for where the energy is located and how
+it travels from place to place.</p>
+</div>
+<div id="Ch8-S5-p5" class="para">
+<p class="p">There is also a <em class="emph">physical</em> reason why it is imperative that we be
+able to say where energy is located. According to the theory of
+gravitation, all mass is a source of gravitational attraction. We also
+know, by $E=mc^2$, that mass and energy are equivalent. All energy is,
+therefore, a source of gravitational force. If we could not locate the
+energy, we could not locate all the mass. We would not be able to say
+where the sources of the gravitational field are located. The theory
+of gravitation would be incomplete.</p>
+</div>
+<div id="Ch8-S5-p6" class="para">
+<p class="p">If we restrict ourselves to electrostatics there is really no way to
+tell where the energy is located. The complete Maxwell
+equations
+of electrodynamics give us much more information (although even then the
+answer is, strictly speaking, not unique.) We will therefore discuss
+this question in detail again in a later chapter.  We will give you now
+only the result for the particular case of electrostatics.  The energy
+is located in space, where the electric field is. This seems reasonable
+because we know that when charges are accelerated they radiate electric
+fields.  We would like to say that when light or radiowaves travel from
+one point to another, they carry their energy with them. But there are
+no charges in the waves. So we would like to locate the energy where the
+electromagnetic field is and not at the charges from which it came. We
+thus describe the energy, not in terms of the charges, but in terms of
+the fields they produce. We can, in fact, show that
+Eq. (<a href="#mjx-eqn-EqII828">8.28</a>) is <em class="emph">numerically</em> equal to
+\begin{equation}
+\label{Eq:II:8:30}
+U=\frac{\epsO}{2}\int\FLPE\cdot\FLPE\,dV.
+\end{equation}
+
+We can then interpret this formula as saying that when an electric
+field is present, there is located in space an energy whose
+<em class="emph">density</em> (energy per unit volume) is
+\begin{equation}
+\label{Eq:II:8:31}
+u=\frac{\epsO}{2}\,\FLPE\cdot\FLPE=\frac{\epsO E^2}{2}.
+\end{equation}
+
+This idea is illustrated in Fig. <a href="#Ch8-F8">8–8</a>.</p>
+</div>
+<div id="Ch8-F8" class="figure">
+<img src="img/FLP_II/f08-08/f08-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 8–8.</span>Each volume element $dV=dx\,dy\,dz$ in an electric field
+contains the energy $(\epsO/2)E^2\,dV$.
+</div>
+</div>
+<div id="Ch8-S5-p7" class="para">
+<p class="p">To show that Eq. (<a href="#mjx-eqn-EqII830">8.30</a>) is consistent with our laws of
+electrostatics, we begin by introducing into Eq. (<a href="#mjx-eqn-EqII828">8.28</a>)
+the relation between $\rho$ and $\phi$ that we obtained in
+Chapter <a href="II_06.html">6</a>:
+\begin{equation}
+\rho=-\epsO\,\nabla^2\phi.\notag
+\end{equation}
+We get
+\begin{equation}
+\label{Eq:II:8:32}
+U=-\frac{\epsO}{2}\int\phi\,\nabla^2\phi\,dV.
+\end{equation}
+Writing out the components of the integrand, we see that
+<span class="eq-wide">
+\begin{align}
+\phi\,\nabla^2\phi&=\phi\biggl(
+\frac{\partial^2\phi}{\partial x^2}+
+\frac{\partial^2\phi}{\partial y^2}+
+\frac{\partial^2\phi}{\partial z^2}
+\biggr)\notag\\[.5ex]
+&=\ddp{}{x}\biggl(\!\phi\,\ddp{\phi}{x}\!\biggr)-
+\biggl(\!\ddp{\phi}{x}\!\biggr)^2+
+\ddp{}{y}\biggl(\!\phi\,\ddp{\phi}{y}\!\biggr)-
+\biggl(\!\ddp{\phi}{y}\!\biggr)^2+
+\ddp{}{z}\biggl(\!\phi\,\ddp{\phi}{z}\!\biggr)-
+\biggl(\!\ddp{\phi}{z}\!\biggr)^2
+\notag\\[1.5ex]
+\label{Eq:II:8:33}
+&=\FLPdiv{(\phi\,\FLPgrad{\phi})}-(\FLPgrad{\phi})\cdot(\FLPgrad{\phi}).
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\phi\,\nabla^2\phi&=\phi\biggl(
+\frac{\partial^2\phi}{\partial x^2}+
+\frac{\partial^2\phi}{\partial y^2}+
+\frac{\partial^2\phi}{\partial z^2}
+\biggr)\notag\\[.5ex]
+&=\quad\ddp{}{x}\biggl(\!\phi\,\ddp{\phi}{x}\!\biggr)-
+\biggl(\!\ddp{\phi}{x}\!\biggr)^2\notag\\&\quad+
+\ddp{}{y}\biggl(\!\phi\,\ddp{\phi}{y}\!\biggr)-
+\biggl(\!\ddp{\phi}{y}\!\biggr)^2\notag\\&\quad+
+\ddp{}{z}\biggl(\!\phi\,\ddp{\phi}{z}\!\biggr)-
+\biggl(\!\ddp{\phi}{z}\!\biggr)^2
+\notag\\[1.5ex]
+\label{Eq:II:8:33}
+&=\FLPdiv{(\phi\,\FLPgrad{\phi})}-(\FLPgrad{\phi})\cdot(\FLPgrad{\phi}).
+\end{align}
+</span>
+Our energy integral is then
+\begin{equation*}
+U=\frac{\epsO}{2}\int(\FLPgrad{\phi})\cdot(\FLPgrad{\phi})\,dV-
+\frac{\epsO}{2}\int\FLPdiv{(\phi\,\FLPgrad{\phi})}\,dV.
+\end{equation*}
+
+We can use Gauss’ theorem to change the second integral into a surface
+integral:
+\begin{equation}
+\label{Eq:II:8:34}
+\underset{\text{vol.}}{\int}\FLPdiv{(\phi\,\FLPgrad{\phi})}\,dV=
+\underset{\text{surface}}{\int}(\phi\,\FLPgrad{\phi})\cdot\FLPn\,da.
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S5-p8" class="para">
+<p class="p">We evaluate the surface integral in the case that the surface goes to
+infinity (so the volume integrals become integrals over all space),
+supposing that all the charges are located within some finite
+distance. The simple way to proceed is to take a spherical surface of
+enormous radius $R$ whose center is at the origin of coordinates. We
+know that when we are very far away from all charges, $\phi$ varies
+as $1/R$ and $\FLPgrad{\phi}$ as $1/R^2$. (Both will decrease even faster
+with $R$ if there the net charge in the distribution is zero.) Since
+the surface area of the large sphere increases as $R^2$, we see that
+the surface integral falls off as $(1/R)(1/R^2)R^2=(1/R)$ as the
+radius of the sphere increases. So if we include all space in our
+integration ($R\to\infty$), the surface integral goes to zero and we
+have that
+\begin{equation}
+\label{Eq:II:8:35}
+U=\frac{\epsO}{2}
+\underset{\substack{\text{all}\\\text{space}}}{\int}
+(\FLPgrad{\phi})\cdot(\FLPgrad{\phi})\,dV=
+\frac{\epsO}{2}
+\underset{\substack{\text{all}\\\text{space}}}{\int}
+\FLPE\cdot\FLPE\,dV.
+\end{equation}
+
+We see that it is possible for us to represent the energy of any
+charge distribution as being the integral over an energy density
+located in the field.</p>
+</div>
+</div>
+<div id="Ch8-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">8–6</span>The energy of a point charge</h3>
+<div id="Ch8-S6-p1" class="para">
+<p class="p">Our new relation, Eq. (<a href="#mjx-eqn-EqII835">8.35</a>), says that even a single
+point charge $q$ will have some electrostatic energy. In this case,
+the electric field is given by
+\begin{equation*}
+E=\frac{q}{4\pi\epsO r^2}.
+\end{equation*}
+
+So the energy density at the distance $r$ from the charge is
+\begin{equation*}
+\frac{\epsO E^2}{2}=\frac{q^2}{32\pi^2\epsO r^4}.
+\end{equation*}
+
+We can take for an element of volume a spherical shell of thickness $dr$
+and area $4\pi r^2$. The total energy is
+\begin{equation}
+\label{Eq:II:8:36}
+U=\int\limits_{r=0}^\infty\frac{q^2}{8\pi\epsO r^2}\,dr=
+\left.-\frac{q^2}{8\pi\epsO}\,\frac{1}{r}\right|_{r=0}^{r=\infty}.
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S6-p2" class="para">
+<p class="p">Now the limit at $r=\infty$ gives no difficulty. But for a point
+charge we are supposed to integrate down to $r=0$, which gives an
+infinite integral. Equation (<a href="#mjx-eqn-EqII835">8.35</a>) says that there is an
+infinite amount of energy in the field of a point charge, although we
+began with the idea that there was energy only <em class="emph">between</em> point
+charges.  In our original energy formula for a collection of point
+charges (Eq. <a href="#mjx-eqn-EqII83">8.3</a>), we did not include any interaction
+energy of a charge with itself. What has happened is that when we went
+over to a continuous distribution of charge in Eq. (<a href="#mjx-eqn-EqII827">8.27</a>),
+we counted the energy of interaction of every <em class="emph">infinitesimal</em>
+charge with all other infinitesimal charges. The same account is
+included in Eq. (<a href="#mjx-eqn-EqII835">8.35</a>), so when we apply it to a
+<em class="emph">finite</em> point charge, we are including the energy it would take to
+assemble that charge from infinitesimal parts. You will notice, in fact,
+that we would also get the result in Eq. (<a href="#mjx-eqn-EqII836">8.36</a>) if we used
+our expression (<a href="#mjx-eqn-EqII811">8.11</a>) for the energy of a charged sphere and
+let the radius tend toward zero.</p>
+</div>
+<div id="Ch8-S6-p3" class="para">
+<p class="p">We must conclude that the idea of locating the energy in the field is
+inconsistent with the assumption of the existence of point
+charges. One way out of the difficulty would be to say that elementary
+charges, such as an electron, are not points but are really small
+distributions of charge. Alternatively, we could say that there is
+something wrong in our theory of electricity at very small distances,
+or with the idea of the local conservation of energy. There are
+difficulties with either point of view. These difficulties have never
+been overcome; they exist to this day. Sometime later, when we have
+discussed some additional ideas, such as the momentum in an
+electromagnetic field, we will give a more complete account of these
+fundamental difficulties in our understanding of nature.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

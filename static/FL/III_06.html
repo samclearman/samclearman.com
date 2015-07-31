@@ -1,0 +1,1785 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 6: Spin One-Half</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+    		autoNumber: "AMS", formatNumber: function (n) { return "6." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+
+<div id="Ch6" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">6</span>Spin One-Half <a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a></h2>
+
+
+<div id="Ch6-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">6–1</span>Transforming amplitudes</h3>
+
+<div id="Ch6-S1-p1" class="para">
+<p class="p">In the last chapter, using a system of spin one as an
+example, we outlined the general principles of quantum mechanics:</p>
+   <div id="qm-principles">
+			<p class="p">Any state $\psi$ can be described in terms of a set of base states 
+			by giving the amplitudes to be in each of the base states.</p>
+			<p class="p">The amplitude to go from any state to another can, in general, be 
+			written as a sum of products, each product being the amplitude to go 
+			into one of the base states times the amplitude to go from that base 
+			state to the final condition, with the sum including a term for each 
+			base state:
+\begin{equation}
+\label{Eq:III:6:1}
+\braket{\chi}{\psi}=\sum_i\braket{\chi}{i}\braket{i}{\psi}.
+\end{equation}
+			The base states are orthogonal—the amplitude to be in one if you are in the
+			other is zero:
+\begin{equation}
+\label{Eq:III:6:2}
+\braket{i}{j}=\delta_{ij}.
+\end{equation}
+			The amplitude to get from one state to another directly is the complex conjugate
+			of the reverse:
+\begin{equation}
+\label{Eq:III:6:3}
+\braket{\chi}{\psi}\cconj=\braket{\psi}{\chi}.
+\end{equation}
+</p>
+</div>
+</div>
+<div id="Ch6-S1-p2" class="para">
+<p class="p">We also discussed a little bit about the fact that there can be more
+than one base for the states and that we can use Eq. (<a href="#mjx-eqn-EqIII61">6.1</a>)
+to convert from one base to another. Suppose, for example, that we have
+the amplitudes $\braket{iS}{\psi}$ to find the state $\psi$ in every one
+of the base states $i$ of a base system $S$, but that we then decide
+that we would prefer to describe the state in terms of another set of
+base states, say the states $j$ belonging to the base $T$. In the
+general formula, Eq. (<a href="#mjx-eqn-EqIII61">6.1</a>), we could substitute $jT$
+for $\chi$ and obtain this formula:
+\begin{equation}
+\label{Eq:III:6:4}
+\braket{jT}{\psi}=\sum_i\braket{jT}{iS}\braket{iS}{\psi}.
+\end{equation}
+The amplitudes for the state $(\psi)$ to be in the base states $(jT)$
+are related to the amplitudes to be in the base states $(iS)$ by the set
+of coefficients $\braket{jT}{iS}$. If there are $N$ base states, there
+are $N^2$ such coefficients. Such a set of coefficients is often called
+the “<em class="emph">transformation matrix</em> to go from the
+$S$-<em class="emph">representation</em> to the $T$-<em class="emph">representation</em>.” This looks
+rather formidable mathematically, but with a little renaming we can see
+that it is really not so bad. If we call $C_i$ the amplitude that the
+state $\psi$ is in the base state $iS$—that is,
+$C_i=\braket{iS}{\psi}$—and call $C_j'$ the corresponding amplitudes
+for the base system $T$—that is, $C_j'=\braket{jT}{\psi}$, then
+Eq. (<a href="#mjx-eqn-EqIII64">6.4</a>) can be written as
+\begin{equation}
+\label{Eq:III:6:5}
+C_j'=\sum_iR_{ji}C_i,
+\end{equation}
+where $R_{ji}$ means the same thing as $\braket{jT}{iS}$. Each
+amplitude $C_j'$ is equal to a sum over all $i$ of one of the
+coefficients $R_{ji}$ times each amplitude $C_i$. It has the same form
+as the transformation of a vector from one coordinate system to another.
+</p>
+</div>
+
+<div id="Ch6-S1-p3" class="para">
+<p class="p">In order to avoid being too abstract for too long, we have given you
+some examples of these coefficients for the spin-one case, so you can
+see how to use them in practice. On the other hand, there is a very
+beautiful thing in quantum mechanics—that from the sheer fact that
+there are three states and from the symmetry properties of space under
+rotations, these coefficients can be found purely by abstract reasoning.
+Showing you such arguments at this early stage has a disadvantage in
+that you are immersed in another set of abstractions before we get
+“down to earth.” However, the thing is so beautiful that we are going
+to do it anyway.
+</p>
+</div>
+
+<div id="Ch6-S1-p4" class="para">
+<p class="p">We will show you in this chapter how the transformation coefficients can
+be derived for spin one-half particles. We pick this case, rather than
+spin one, because it is somewhat easier. Our problem is to determine the
+coefficients $R_{ji}$ for a particle—an atomic system—which is split
+into two beams in a Stern-Gerlach apparatus. We are going to derive all
+the coefficients for the transformation from one representation to
+another by pure reasoning—plus a few assumptions. <em class="emph">Some</em>
+assumptions are always necessary in order to use “pure” reasoning!
+Although the arguments will be abstract and somewhat involved, the
+result we get will be relatively simple to state and easy to
+understand—and the result is the most important thing. You may, if you
+wish, consider this as a sort of cultural excursion. We have, in fact,
+arranged that all the essential results derived here are also derived in
+some other way when they are needed in later chapters. So you need have
+no fear of losing the thread of our study of quantum mechanics if you
+omit this chapter entirely, or study it at some later time. The
+excursion is “cultural” in the sense that it is intended to show that
+the principles of quantum mechanics are not only interesting, but are so
+deep that by adding only a few extra hypotheses about the structure of
+space, we can deduce a great many properties of physical systems. Also,
+it is important that we know where the different consequences of quantum
+mechanics come from, because so long as our laws of physics are
+incomplete—as we know they are—it is interesting to find out whether
+the places where our theories fail to agree with experiment is where our
+logic is the best or where our logic is the worst. Until now, it appears
+that where our logic is the most abstract it always gives correct
+results—it agrees with experiment. Only when we try to make specific
+models of the internal machinery of the fundamental particles and their
+interactions are we unable to find a theory that agrees with experiment.
+The theory then that we are about to describe agrees with experiment
+wherever it has been tested—for the strange particles as well as for
+electrons, protons, and so on.
+</p>
+</div>
+
+<div id="Ch6-S1-p5" class="para">
+<p class="p">One remark on an annoying, but interesting, point before we proceed:
+It is not possible to determine the coefficients $R_{ji}$ uniquely,
+because there is always some arbitrariness in the probability
+amplitudes. If you have a set of amplitudes of any kind, say the
+amplitudes to arrive at some place by a whole lot of different routes,
+and if you multiply every single amplitude by the same phase
+factor—say by $e^{i\delta}$—you have another set that is just as
+good. So, it is always possible to make an arbitrary change in phase
+of all the amplitudes in any given problem if you want to.
+</p>
+</div>
+
+<div id="Ch6-S1-p6" class="para">
+<p class="p">Suppose you calculate some probability by writing a sum of several
+amplitudes, say $(A+B+C+\dotsb)$ and taking the absolute square. Then
+somebody else calculates the same thing by using the sum of the
+amplitudes $(A'+B'+C'+\dotsb)$ and taking the absolute square. If all
+the $A'$, $B'$, $C'$, etc., are equal to the $A$, $B$, $C$, etc.,
+except for a factor $e^{i\delta}$, all probabilities obtained by
+taking the absolute squares will be exactly the same, since
+$(A'+B'+C'+\dotsb)$ is then equal to $e^{i\delta}(A+B+C+\dotsb)$. Or
+suppose, for instance, that we were computing something with
+Eq. (<a href="#mjx-eqn-EqIII61">6.1</a>), but then we suddenly change all of the phases of
+a certain base system. Every one of the amplitudes $\braket{i}{\psi}$
+would be multiplied by the same factor $e^{i\delta}$. Similarly, the
+amplitudes $\braket{i}{\chi}$ would also be changed by $e^{i\delta}$,
+but the amplitudes $\braket{\chi}{i}$ are the complex conjugates of the
+amplitudes $\braket{i}{\chi}$; therefore, the former gets changed by the
+factor $e^{-i\delta}$. The plus and minus $i\delta$’s in the exponents
+cancel out, and we would have the same expression we had before. So it
+is a general rule that if we change all the amplitudes with respect to a
+given base system by the same phase—or even if we just change
+<em class="emph">all</em> the amplitudes in any problem by the same phase—it makes no
+difference. There is, therefore, some freedom to choose the phases in
+our transformation matrix. Every now and then we will make such an
+arbitrary choice—usually following the conventions that are in general
+use.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch6-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">6–2</span>Transforming to a rotated coordinate system</h3>
+
+<div id="Ch6-F1" class="figure">
+<img src="img/FLP_III/f06-01/f06-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–1.</span>
+Top and side views of an “improved” Stern-Gerlach 
+apparatus with beams of a spin one-half particle.
+</div>
+</div>
+
+<div id="Ch6-S2-p1" class="para">
+<p class="p">We consider again the “improved” Stern-Gerlach apparatus described
+in the last chapter. A beam of spin one-half particles, entering at
+the left, would, in general, be split into <em class="emph">two</em> beams, as shown
+schematically in Fig. <a href="#Ch6-F1">6-1</a>. (There were three beams for
+spin <em class="emph">one</em>.) As before, the beams are put back together again
+unless one or the other of them is blocked off by a “stop” which
+intercepts the beam at its half-way point. In the figure we show an
+arrow which points in the direction of the increase of the
+<em class="emph">magnitude</em> of the field—say toward the magnet pole with the
+sharp edges. This arrow we take to represent <em class="emph">the “up” axis</em> of
+any particular apparatus. It is fixed relative to the apparatus and
+will allow us to indicate the relative orientations when we use
+several apparatuses together. We also assume that the direction of the
+magnetic field in each magnet is always the same with respect to the
+arrow.
+</p>
+</div>
+
+<div id="Ch6-S2-p2" class="para">
+<p class="p">We will say that those atoms which go in the “upper” beam are in the
+$(+)$ state <em class="emph">with respect to that apparatus</em> and that those in
+the “lower” beam are in the $(-)$ state. (There is no “zero” state
+for spin one-half particles.)
+</p>
+</div>
+
+<div id="Ch6-S2-p3" class="para">
+<p class="p">Now suppose we put two of our modified Stern-Gerlach apparatuses in
+sequence, as shown in Fig. <a href="#Ch6-F2">6-2</a>(a). The first one,
+which we call $S$, can be used to prepare a pure $(+S)$ or a pure
+$(-S)$ state by blocking one beam or the other. [As shown it prepares
+a pure $(+S)$ state.] For each condition, there is some amplitude for
+a particle that comes out of $S$ to be in either the $(+T)$ or the
+$(-T)$ beam of the second apparatus. There are, in fact, just four
+amplitudes: the amplitude to go from $(+S)$ to $(+T)$, from $(+S)$
+to $(-T)$, from $(-S)$ to $(+T)$, from $(-S)$ to $(-T)$. These amplitudes
+are just the four coefficients of the transformation matrix $R_{ji}$
+to go from the $S$-representation to the $T$-representation. We can
+consider that the first apparatus “prepares” a particular state in
+one representation and that the second apparatus “analyzes” that
+state in terms of the second representation. The kind of question we
+want to answer, then, is this: If an atom has been prepared in a given
+condition—say the $(+S)$ state—by blocking one of the beams in the
+apparatus $S$, what is the chance that it will get through the second
+apparatus $T$ if this is set for, say, the $(-T)$ state. The result
+will depend, of course, on the angles between the two systems $S$
+and $T$.
+</p>
+</div>
+
+<div id="Ch6-F2" class="figure">
+<img class="first" src="img/FLP_III/f06-02/f06-02_tc_big_a.svgz"><img class="last" src="img/FLP_III/f06-02/f06-02_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 6–2.</span>
+Two equivalent experiments.
+</div>
+</div>
+
+<div id="Ch6-S2-p4" class="para">
+<p class="p">We should explain why it is that we could have any hope of finding the
+coefficients $R_{ji}$ by deduction. You know that it is almost
+impossible to believe that if a particle has its spin lined up in the
+$+z$-direction, that there is some chance of finding the same particle
+with its spin pointing in the $+x$-direction—or in any other
+direction at all. In fact, it <em class="emph">is</em> almost impossible, but not
+quite. It is so nearly impossible that there is <em class="emph">only one way</em> it
+can be done, and that is the reason we can find out what that unique
+way is.
+</p>
+</div>
+
+<div id="Ch6-S2-p5" class="para">
+<p class="p">The first kind of argument we can make is this. Suppose we have a
+setup like the one in Fig. <a href="#Ch6-F2">6-2</a>(a), in which we have
+the two apparatuses $S$ and $T$, with $T$ cocked at the angle $\alpha$
+with respect to $S$, and we let only the $(+)$ beam through $S$ and
+the $(-)$ beam through $T$. We would observe a certain number for the
+probability that the particles coming out of $S$ get through $T$. Now
+suppose we make another measurement with the apparatus of
+Fig. <a href="#Ch6-F2">6-2</a>(b). The <em class="emph">relative</em> orientation of $S$
+and $T$ is the same, but the whole system sits at a different angle in
+space. We want to <em class="emph">assume</em> that both of these experiments give the
+same number for the chance that a particle in a pure state with respect
+to $S$ will get into some particular state with respect to $T$. We are
+assuming, in other words, that the result of any experiment of this type
+is the same—that the <em class="emph">physics</em> is the same—no matter how the
+<em class="emph">whole</em> apparatus is oriented in space. (You say, “That’s
+obvious.” But it <em class="emph">is</em> an assumption, and it is “right” only if
+it is actually what happens.)  That means that the coefficients $R_{ji}$
+depend only on the relation in space of $S$ and $T$, and not on the
+absolute situation of $S$ and $T$. To say this in another way, $R_{ji}$
+depends only on the <em class="emph">rotation</em> which carries $S$ to $T$, for
+evidently what is the same in Fig. <a href="#Ch6-F2">6-2</a>(a) and
+Fig. <a href="#Ch6-F2">6-2</a>(b) is the three-dimensional rotation which would
+carry apparatus $S$ into the orientation of apparatus $T$. When the
+transformation matrix $R_{ji}$ depends only on a rotation, as it does
+here, it is called a <em class="emph">rotation matrix</em>.
+</p>
+</div>
+
+<div id="Ch6-F3" class="figure">
+<img class="first" src="img/FLP_III/f06-03/f06-03_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_III/f06-03/f06-03_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 6–3.</span>
+If $T$ is “wide open,” (b) is equivalent to (a).
+</div>
+</div>
+
+<div id="Ch6-S2-p6" class="para">
+<p class="p">For our next step we will need one more piece of information. Suppose
+we add a third apparatus which we can call $U$, which follows $T$ at
+some arbitrary angle, as in Fig. <a href="#Ch6-F3">6-3</a>(a). (It’s
+beginning to look horrible, but that’s the fun of abstract
+thinking—you can make the most weird experiments just by drawing
+lines!) Now what is the $S\to T\to U$ transformation? What we really
+want to ask for is the amplitude to go from some state with respect
+to $S$ to some other state with respect to $U$, when we know the
+transformation from $S$ to $T$ and from $T$ to $U$. We are then asking
+about an experiment in which both channels of $T$ are open. We can get
+the answer by applying Eq. (<a href="#mjx-eqn-EqIII65">6.5</a>) twice in
+succession. For going from the $S$-representation to the
+$T$-representation, we have
+\begin{equation}
+\label{Eq:III:6:6}
+C_j'=\sum_iR_{ji}^{TS}C_i,
+\end{equation}
+where we put the superscripts $TS$ on the $R$, so that we can
+distinguish it from the coefficients $R^{UT}$ we will have for going
+from $T$ to $U$.
+</p>
+</div>
+
+<div id="Ch6-S2-p7" class="para">
+<p class="p">Assuming the amplitudes to be in the base states of the
+$U$-representation $C_k''$, we can relate them to the $T$-amplitudes
+by using Eq. (<a href="#mjx-eqn-EqIII65">6.5</a>) once more; we get
+\begin{equation}
+\label{Eq:III:6:7}
+C_k''=\sum_jR_{kj}^{UT}C_j'.
+\end{equation}
+Now we can combine Eqs. (<a href="#mjx-eqn-EqIII66">6.6</a>) and (<a href="#mjx-eqn-EqIII67">6.7</a>) to
+get the transformation to $U$ directly from $S$. Substituting $C_j'$
+from Eq. (<a href="#mjx-eqn-EqIII66">6.6</a>) in Eq. (<a href="#mjx-eqn-EqIII67">6.7</a>), we have
+\begin{equation}
+\label{Eq:III:6:8}
+C_k''=\sum_jR_{kj}^{UT}\sum_iR_{ji}^{TS}C_i.
+\end{equation}
+Or, since $i$ does not appear in $R_{kj}^{UT}$, we can put the
+$i$-summation also in front, and write
+\begin{equation}
+\label{Eq:III:6:9}
+C_k''=\sum_i\sum_jR_{kj}^{UT}R_{ji}^{TS}C_i.
+\end{equation}
+This is the formula for a double transformation.
+</p>
+</div>
+
+<div id="Ch6-S2-p8" class="para">
+<p class="p">Notice, however, that so long as all the beams in $T$ are unblocked,
+the state coming out of $T$ is the same as the one that went in. We
+could just as well have made a transformation from the
+$S$-representation directly to the $U$-representation. It should be
+the same as putting the $U$ apparatus right after $S$, as in
+Fig. <a href="#Ch6-F3">6-3</a>(b). In that case, we would have written
+\begin{equation}
+\label{Eq:III:6:10}
+C_k''=\sum_iR_{ki}^{US}C_i,
+\end{equation}
+with the coefficients $R_{ki}^{US}$ belonging to this
+transformation. Now, clearly, Eqs. (<a href="#mjx-eqn-EqIII69">6.9</a>)
+and (<a href="#mjx-eqn-EqIII610">6.10</a>) should give the same amplitudes $C_k''$, and
+this should be true no matter what the original state $\phi$ was which
+gave us the amplitudes $C_i$. So it must be that
+\begin{equation}
+\label{Eq:III:6:11}
+R_{ki}^{US}=\sum_jR_{kj}^{UT}R_{ji}^{TS}.
+\end{equation}
+In other words, for any rotation $S\to U$ of a reference base, which
+is viewed as a compounding of two successive rotations $S\to T$
+and $T\to U$, the rotation matrix $R_{ki}^{US}$ can be obtained from the
+matrices of the two partial rotations by Eq. (<a href="#mjx-eqn-EqIII611">6.11</a>). If
+you wish, you can find Eq. (<a href="#mjx-eqn-EqIII611">6.11</a>) directly from
+Eq. (<a href="#mjx-eqn-EqIII61">6.1</a>), for it is only a different notation
+for $\braket{kU}{iS}=\sum_j\braket{kU}{jT}\braket{jT}{iS}$.
+</p></div>
+
+<center><hr class="sep"></center>
+
+<div id="Ch6-S2-p9" class="para" style="font-size: 95%;">
+<p class="p">
+To be thorough, we should add the following parenthetical
+remarks. They are not terribly important, however, so you can skip to
+the next section if you want. What we have said is not quite right. We
+cannot really say that Eq. (<a href="#mjx-eqn-EqIII69">6.9</a>) and
+Eq. (<a href="#mjx-eqn-EqIII610">6.10</a>) must give <em class="emph">exactly</em> the same amplitudes.
+Only the <em class="emph">physics</em> should be the same; all the amplitudes could be
+different by some common phase factor like $e^{i\delta}$ without
+changing the result of any calculation about the real world. So, instead
+of Eq. (<a href="#mjx-eqn-EqIII611">6.11</a>), all we can say, really, is that
+\begin{equation}
+\label{Eq:III:6:12}
+e^{i\delta}R_{ki}^{US}=\sum_jR_{kj}^{UT}R_{ji}^{TS},
+\end{equation}
+where $\delta$ is <em class="emph">some</em> real constant. What this extra factor
+of $e^{i\delta}$ means, of course, is that the amplitudes we get if we
+use the matrix $R^{US}$ might all differ by the same
+phase $(e^{-i\delta})$ from the amplitude we would get using the two
+rotations $R^{UT}$ and $R^{TS}$. We know that it doesn’t matter if all
+amplitudes are changed by the same phase, so we could just ignore this
+phase factor if we wanted to. It turns out, however, that if we define
+all of our rotation matrices in a particular way, this extra phase
+factor will never appear—the $\delta$ in Eq. (<a href="#mjx-eqn-EqIII612">6.12</a>)
+will always be zero. Although it is not important for the rest of our
+arguments, we can give a quick proof by using a mathematical theorem
+about determinants. [If you don’t yet know much about determinants,
+don’t worry about the proof and just skip to the definition of
+Eq. (<a href="#mjx-eqn-EqIII615">6.15</a>).]
+</p>
+</div>
+
+<div id="Ch6-S2-p10" class="para" style="font-size: 95%;">
+<p class="p">
+First, we should say that Eq. (<a href="#mjx-eqn-EqIII611">6.11</a>) is the
+mathematical definition of a “product” of two matrices. (It is just
+convenient to be able to say: “$R^{US}$ is the product of $R^{UT}$
+and $R^{TS}$.” )  Second, there is a theorem of mathematics—which
+you can easily prove for the two-by-two matrices we have here—which
+says that the determinant of a “product” of two matrices is the
+product of their determinants. Applying this theorem to
+Eq. (<a href="#mjx-eqn-EqIII612">6.12</a>), we get
+\begin{equation}
+\label{Eq:III:6:13}
+e^{i2\delta}\,(\Det R^{US})=(\Det R^{UT})\cdot(\Det R^{TS}).
+\end{equation}
+(We leave off the subscripts, because they don’t tell us anything
+useful.) Yes, the $2\delta$ is right. Remember that we are dealing
+with two-by-two matrices; every term in the matrix $R_{ki}^{US}$ is
+multiplied by $e^{i\delta}$, so each product in the
+determinant—which has <em class="emph">two</em> factors—gets multiplied
+by $e^{i2\delta}$. Now let’s take the square root of
+Eq. (<a href="#mjx-eqn-EqIII613">6.13</a>) and divide it into Eq. (<a href="#mjx-eqn-EqIII612">6.12</a>); we
+get
+\begin{equation}
+\label{Eq:III:6:14}
+\frac{R_{ki}^{US}}{\sqrt{\Det R^{US}}}=\sum_j
+\frac{R_{kj}^{UT}}{\sqrt{\Det R^{UT}}}\,
+\frac{R_{ji}^{TS}}{\sqrt{\Det R^{TS}}}.
+\end{equation}
+The extra phase factor has disappeared.
+</p>
+</div>
+
+<div id="Ch6-S2-p11" class="para" style="font-size: 95%;">
+<p class="p">
+Now it turns out that if we want all of our amplitudes in any given
+representation to be normalized (which means, you remember, that
+$\sum_i\braket{\phi}{i}\braket{i}{\phi}=1$), the rotation matrices
+will all have determinants that are pure imaginary exponentials,
+like $e^{i\alpha}$. (We won’t prove it; you will see that it always comes
+out that way.) So we can, if we wish, choose to make all our rotation
+matrices $R$ have a unique phase by making $\Det R=1$. It is done like
+this. Suppose we find a rotation matrix $R$ in some arbitrary way. We
+make it a rule to “convert” it to “standard form” by defining
+\begin{equation}
+\label{Eq:III:6:15}
+R_{\text{standard}}=\frac{R}{\sqrt{\Det R}}.
+\end{equation}
+We can do this because we are just multiplying each term of $R$ by the
+same phase factor, to get the phases we want. In what follows, we will
+always assume that our matrices have been put in the “standard
+form” ; then we can use Eq. (<a href="#mjx-eqn-EqIII611">6.11</a>) without having any
+extra phase factors.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch6-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">6–3</span>Rotations about the $\boldsymbol{z}$-axis</h3>
+
+<div id="Ch6-S3-p1" class="para">
+<p class="p">We are now ready to find the transformation matrix $R_{ji}$ between
+two different representations. With our rule for compounding rotations
+and our assumption that space has no preferred direction, we have the
+keys we need for finding the matrix of any arbitrary rotation. There
+is only <em class="emph">one</em> solution. We begin with the transformation which
+corresponds to a rotation about the $z$-axis. Suppose we have two
+apparatuses $S$ and $T$ placed in series along a straight line with
+their axes parallel and pointing out of the page, as shown in
+Fig. <a href="#Ch6-F4">6-4</a>(a). We take our “$z$-axis” in this direction.
+Surely, if the beam goes “up” (toward $+z$) in the $S$ apparatus, it
+will do the same in the $T$ apparatus. Similarly, if it goes down
+in $S$, it will go down in $T$. Suppose, however, that the $T$ apparatus
+were placed at some other angle, but still with its axis parallel to the
+axis of $S$, as in Fig. <a href="#Ch6-F4">6-4</a>(b). Intuitively, you would
+say that a $(+)$ beam in $S$ would still go with a $(+)$ beam in $T$,
+because the fields and field gradients are still in the same physical
+direction. And that would be quite right. Also, a $(-)$ beam in $S$
+would still go into a $(-)$ beam in $T$. The same result would apply for
+any orientation of $T$ in the $xy$-plane of $S$. What does this tell us
+about the relation between $C_+'=\braket{+T}{\psi}$,
+$C_-'=\braket{-T}{\psi}$ and $C_+=\braket{+S}{\psi}$,
+$C_-=\braket{-S}{\psi}$? You might conclude that any rotation about the
+$z$-axis of the “frame of reference” for base states leaves the
+amplitudes to be “up” and “down” the same as before.  We could write
+$C_+'=C_+$ and $C_-'=C_-$—but that is <em class="emph">wrong</em>. All we <em class="emph">can</em>
+conclude is that for such rotations the probabilities to be in the
+“up” beam are the same for the $S$ and $T$ apparatuses. That is,
+\begin{equation*}
+\abs{C_+'}=\abs{C_+}\quad
+\text{and}\quad
+\abs{C_-'}=\abs{C_-}.
+\end{equation*}
+We cannot say that the <em class="emph">phases</em> of the amplitudes referred to the
+$T$ apparatus may not be different for the two different orientations
+in (a) and (b) of Fig. <a href="#Ch6-F4">6-4</a>.
+</p>
+</div>
+
+<div id="Ch6-F4" class="figure">
+<img class="first" src="img/FLP_III/f06-04/f06-04_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_III/f06-04/f06-04_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 6–4.</span>
+Rotating $90^\circ$ about the $z$-axis.
+</div>
+</div>
+
+
+<div id="Ch6-S3-p2" class="para">
+<p class="p">The two apparatuses in (a) and (b) of Fig. <a href="#Ch6-F4">6-4</a> are, in
+fact, different, as we can see in the following way. Suppose that we
+put an apparatus in front of $S$ which produces a pure $(+x)$ state.
+(The $x$-axis points toward the bottom of the figure.) Such
+particles would be split into $(+z)$ and $(-z)$ beams in $S$, but the
+two beams would be recombined to give a $(+x)$ state again
+at $P_1$—the exit of $S$. The same thing happens again in $T$. If we
+follow $T$ by a third apparatus $U$, whose axis is in the
+$(+x)$ direction and, as shown in Fig. <a href="#Ch6-F5">6-5</a>(a), all the
+particles would go into the $(+)$ beam of $U$. Now imagine what
+happens if $T$ and $U$ are swung around <em class="emph">together</em> by $90^\circ$
+to the positions shown in Fig. <a href="#Ch6-F5">6-5</a>(b). Again, the
+$T$ apparatus puts out just what it takes in, so the particles that enter
+$U$ are in a $(+x)$ state with respect to $S$. But $U$ now analyzes
+for the $(+y)$ state with respect to $S$, which is different. (By
+symmetry, we would now expect only one-half of the particles to get
+through.)
+</p>
+</div>
+
+<div id="Ch6-F5" class="figure">
+<img class="first" src="img/FLP_III/f06-05/f06-05_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_III/f06-05/f06-05_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 6–5.</span>
+Particle in a $(+x)$ state behaves differently in (a) and (b).
+</div>
+</div>
+
+
+<div id="Ch6-S3-p3" class="para">
+<p class="p">What could have changed? The apparatuses $T$ and $U$ are still in the
+same <em class="emph">physical</em> relationship to each other. Can the
+<em class="emph">physics</em> be changed just because $T$ and $U$ are in a different
+orientation? Our original assumption is that it should not. It must be
+that the <em class="emph">amplitudes</em> with respect to $T$ are different in the
+two cases shown in Fig. <a href="#Ch6-F5">6-5</a>—and, therefore, also in
+Fig. <a href="#Ch6-F4">6-4</a>. There must be some way for a particle to
+know that it has turned the corner at $P_1$. How could it tell? Well,
+all we have decided is that the <em class="emph">magnitudes</em> of $C_+'$ and $C_+$
+are the same in the two cases, but they could—in fact,
+<em class="emph">must</em>—have different <em class="emph">phases</em>. We conclude that $C_+'$
+and $C_+$ must be related by
+\begin{equation*}
+C_+'=e^{i\lambda}C_+,
+\end{equation*}
+and that $C_-'$ and $C_-$ must be related by
+\begin{equation*}
+C_-'=e^{i\mu}C_-,
+\end{equation*}
+where $\lambda$ and $\mu$ are real numbers which must be related in
+some way to the angle between $S$ and $T$.
+</p>
+</div>
+
+<div id="Ch6-S3-p4" class="para">
+<p class="p">The only thing we can say at the moment about $\lambda$ and $\mu$ is
+that they must not be equal [except for the special case shown in
+Fig. <a href="#Ch6-F5">6-5</a>(a), when $T$ is in the same orientation
+as $S$]. We have seen that equal phase changes in all amplitudes have no
+physical consequence. For the same reason, we can always add the same
+arbitrary amount to both $\lambda$ and $\mu$ without changing
+anything. So we are permitted to <em class="emph">choose</em> to make $\lambda$
+and $\mu$ equal to plus and minus the same number. That is, we can always
+take
+\begin{equation*}
+\lambda'=\lambda-\frac{(\lambda+\mu)}{2},\quad
+\mu'=\mu-\frac{(\lambda+\mu)}{2}.
+\end{equation*}
+Then
+\begin{equation*}
+\lambda'=\frac{\lambda}{2}-\frac{\mu}{2}=-\mu'.
+\end{equation*}
+So we adopt the convention<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+that $\mu=-\lambda$. We have then the general rule that for a rotation of
+the reference apparatus by some angle about the $z$-axis, the
+transformation is
+\begin{equation}
+\label{Eq:III:6:16}
+C_+'=e^{+i\lambda}C_+,\quad
+C_-'=e^{-i\lambda}C_-.
+\end{equation}
+The absolute values are the same, only the phases are different. These
+phase factors are responsible for the different results in the two
+experiments of Fig. <a href="#Ch6-F5">6-5</a>.
+</p>
+</div>
+
+<div id="Ch6-S3-p5" class="para">
+<p class="p">Now we would like to know the law that relates $\lambda$ to the angle
+between $S$ and $T$. We already know the answer for one case. If the
+angle is zero, $\lambda$ is zero. Now we will <em class="emph">assume</em> that the
+phase shift $\lambda$ is a continuous function of angle $\phi$ between
+$S$ and $T$ (see Fig. <a href="#Ch6-F4">6-4</a>) as $\phi$ goes to zero—as
+only seems reasonable. In other words, if we rotate $T$ from the
+straight line through $S$ by the small angle $\epsilon$, the $\lambda$
+is also a small quantity, say $m\epsilon$, where $m$ is some
+number. We write it this way because we can show that $\lambda$ must
+be proportional to $\epsilon$. Suppose we were to put after $T$
+another apparatus $T'$ which makes the angle $\epsilon$ with $T$, and,
+therefore, the angle $2\epsilon$ with $S$. Then, with respect to $T$,
+we have
+\begin{equation*}
+C_+'=e^{i\lambda}C_+,
+\end{equation*}
+and with respect to $T'$, we have
+\begin{equation*}
+C_+''=e^{i\lambda}C_+'=e^{i2\lambda}C_+.
+\end{equation*}
+But we know that we should get the same result if we put $T'$ right
+after $S$. Thus, when the angle is doubled, the phase is doubled. We
+can evidently extend the argument and build up any rotation at all by
+a sequence of infinitesimal rotations. We conclude that for <em class="emph">any</em>
+angle $\phi$, $\lambda$ is proportional to the angle. We can,
+therefore, write $\lambda=m\phi$.
+</p>
+</div>
+
+<div id="Ch6-S3-p6" class="para">
+<p class="p">The general result we get, then, is that for $T$ rotated about the
+$z$-axis by the angle $\phi$ with respect to $S$
+\begin{equation}
+\label{Eq:III:6:17}
+C_+'=e^{im\phi}C_+,\quad
+C_-'=e^{-im\phi}C_-.
+\end{equation}
+For the angle $\phi$, and for all rotations we speak of in the future,
+we adopt the standard convention that a <em class="emph">positive</em> rotation is a
+<em class="emph">right-handed</em> rotation about the positive direction of the
+reference axis. A positive $\phi$ has the sense of rotation of a
+right-handed screw advancing in the positive $z$-direction.
+</p>
+</div>
+
+<div id="Ch6-S3-p7" class="para">
+<p class="p">Now we have to find what $m$ must be. First, we might try this
+argument: Suppose $T$ is rotated by $360^\circ$; then, clearly, it is
+right back at zero degrees, and we should have $C_+'=C_+$
+and $C_-'=C_-$, or, what is the same thing, $e^{im2\pi}=1$. We
+get $m=1$. <em class="emph">This argument is wrong!</em> To see that it is, consider that
+$T$ is rotated by $180^\circ$. If $m$ were equal to $1$, we would have
+$C_+'=$ $e^{i\pi}C_+=$ $-C_+$ and $C_-'=$ $e^{-i\pi}C_-=$ $-C_-$. However, this
+is just the <em class="emph">original</em> state all over again. <em class="emph">Both</em>
+amplitudes are just multiplied by $-1$ which gives back the original
+physical system. (It is again a case of a common phase change.) This
+means that if the angle between $T$ and $S$ in Fig. <a href="#Ch6-F5">6-5</a>(b)
+is increased to $180^\circ$, the system (with respect to $T$) would be
+indistinguishable from the zero-degree situation, and the particles
+would again go through the $(+)$ state of the $U$ apparatus.
+At $180^\circ$, though, the $(+)$ state of the $U$ apparatus is the
+$(-x)$ state of the original $S$ apparatus. So a $(+x)$ state would become a
+$(-x)$ state. But we have done nothing to <em class="emph">change</em> the original
+state; the answer is wrong. We cannot have $m=1$.
+</p>
+</div>
+
+<div id="Ch6-S3-p8" class="para">
+<p class="p">We must have the situation that a rotation by $360^\circ$ and <em class="emph">no
+smaller angle</em> reproduces the same physical state. This will happen
+if $m=\tfrac{1}{2}$. Then, and only then, will the first angle that
+reproduces the same <em class="emph">physical</em> state
+be $\phi=360^\circ$.<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a> It gives
+\begin{equation}
+\label{Eq:III:6:18}
+\left.
+\begin{aligned}
+C_+'&=-C_+\\
+\\
+C_-'&=-C_-
+\end{aligned}
+\right\}
+\text{$360^\circ$ about $z$-axis}.
+\end{equation}
+It is very curious to say that if you turn the apparatus $360^\circ$
+you get new amplitudes. They aren’t really new, though, because the
+common change of sign doesn’t give any different physics. If someone
+else had decided to change all the signs of the amplitudes because he
+thought he had turned $360^\circ$, that’s all right; he gets the same
+physics.<a name="footnote_source_4" href="#footnote_4"><sup class="mark">4</sup></a> So our final
+answer is that if we know the amplitudes $C_+$ and $C_-$ for spin
+one-half particles with respect to a reference frame $S$, and we then
+use a base system referred to $T$ which is obtained from $S$ by a
+rotation of $\phi$ around the $z$-axis, the new amplitudes are given
+in terms of the old by
+\begin{equation}
+\label{Eq:III:6:19}
+\left.
+\begin{aligned}
+C_+'=e^{i\phi/2}C_+&\\
+\\
+C_-'=e^{-i\phi/2}C_-&
+\end{aligned}
+\right\}
+\text{$\phi$ about $z$}.
+\end{equation}
+</p>
+</div>
+
+</div> <!--end of section -->
+
+
+<div id="Ch6-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">6–4</span>Rotations of 180$^{\boldsymbol{\circ}}$ and
+90$^{\boldsymbol{\circ}}$ about $\boldsymbol{y}$</h3>
+
+<div id="Ch6-F6" class="figure">
+<img src="img/FLP_III/f06-06/f06-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–6.</span>
+A rotation of $180^\circ$ about the $y$-axis.</div>
+</div>
+
+
+<div id="Ch6-S4-p1" class="para">
+<p class="p">Next, we will try to guess the transformation for a rotation of $T$
+with respect to $S$ of $180^\circ$ around an axis <em class="emph">perpendicular</em>
+to the $z$-axis—say, about the $y$-axis. (We have defined the
+coordinate axes in Fig. <a href="#Ch6-F1">6-1</a>.)  In other words, we
+start with two identical Stern-Gerlach equipments, with the second
+one, $T$, turned “upside down” with respect to the first one, $S$,
+as in Fig. <a href="#Ch6-F6">6-6</a>. Now if we think of our particles as
+little magnetic dipoles, a particle that is in the $(+S)$ state—so
+that it goes on the “upper” path in the first apparatus—will also
+take the “upper” path in the second, so that it will be in the
+<em class="emph">minus</em> state with respect to $T$. (In the inverted
+$T$ apparatus, both the gradients <em class="emph">and</em> the field direction are
+reversed; for a particle with its magnetic moment in a given
+direction, the force is unchanged.)  Anyway, what is “up” with
+respect to $S$ will be “down” with respect to $T$. For these
+relative positions of $S$ and $T$, then, we know that the
+transformation must give
+\begin{equation*}
+\abs{C_+'}=\abs{C_-},\quad
+\abs{C_-'}=\abs{C_+}.
+\end{equation*}
+As before, we cannot rule out some additional phase factors; we could
+have (for $180^\circ$ about the $y$-axis)
+\begin{equation}
+\label{Eq:III:6:20}
+C_+'=e^{i\beta}C_-\quad
+\text{and}\quad
+C_-'=e^{i\gamma}C_+,
+\end{equation}
+where $\beta$ and $\gamma$ are still to be determined.
+</p>
+</div>
+
+<div id="Ch6-S4-p2" class="para">
+<p class="p">What about a rotation of $360^\circ$ about the $y$-axis? Well, we
+already know the answer for a rotation of $360^\circ$ about the
+$z$-axis—the amplitude to be in any state changes sign. A rotation
+of $360^\circ$ around any axis always brings us back to the original
+position. It must be that for <em class="emph">any</em> $360^\circ$ rotation, the
+result is the same as a $360^\circ$ rotation about the $z$-axis—all
+amplitudes simply change sign. Now suppose we imagine two successive
+rotations of $180^\circ$ about $y$—using Eq. (<a href="#mjx-eqn-EqIII620">6.20</a>)—we
+should get the result of Eq. (<a href="#mjx-eqn-EqIII618">6.18</a>). In other words,
+\begin{equation*}
+C_+''=e^{i\beta}C_-'=e^{i\beta}e^{i\gamma}C_+=-C_+
+\end{equation*}
+and
+\begin{equation}
+\label{Eq:III:6:21}
+C_-''=e^{i\gamma}C_+'=e^{i\gamma}e^{i\beta}C_-=-C_-.
+\end{equation}
+This means that
+\begin{equation*}
+e^{i\beta}e^{i\gamma}=-1\quad
+\text{or}\quad
+e^{i\gamma}=-e^{-i\beta}.
+\end{equation*}
+So the transformation for a rotation of $180^\circ$ about the $y$-axis
+can be written
+\begin{equation}
+\label{Eq:III:6:22}
+C_+'=e^{i\beta}C_-,\quad
+C_-'=-e^{-i\beta}C_+.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch6-S4-p3" class="para">
+<p class="p">The arguments we have just used would apply equally well to a rotation
+of $180^\circ$ about <em class="emph">any</em> axis in the $xy$-plane, although
+different axes can, of course, give different numbers for $\beta$.
+However, that is the only way they can differ. Now there is a
+certain amount of arbitrariness in the number $\beta$, but once it is
+specified for one axis of rotation in the $xy$-plane it is determined
+for any other axis. It is <em class="emph">conventional</em> to choose to
+set $\beta=0$ for a $180^\circ$ rotation about the $y$-axis.
+</p>
+</div>
+
+<div id="Ch6-S4-p4" class="para">
+<p class="p">To show that we have this choice, suppose we imagine that $\beta$ was
+not equal to zero for a rotation about the $y$-axis; then we can show
+that there is <em class="emph">some other</em> axis in the $xy$-plane, for which the
+corresponding phase factor <em class="emph">will</em> be zero. Let’s find the phase
+factor $\beta_A$ for an axis $A$ that makes the angle $\alpha$ with
+the $y$-axis, as shown in Fig. <a href="#Ch6-F7">6-7</a>(a). (For clarity,
+the figure is drawn with $\alpha$ equal to a negative number, but that
+doesn’t matter.) Now if we take a $T$ apparatus which is initially
+lined up with the $S$ apparatus and is then rotated $180^\circ$ about
+the axis $A$, its axes—which we will call $x''$, $y''$,
+
+and $z''$—will be as shown in Fig. <a href="#Ch6-F7">6-7</a>(a). The
+amplitudes with respect to $T$ will then be
+\begin{equation}
+\label{Eq:III:6:23}
+C_+''=e^{i\beta_A}C_-,\quad
+C_-''=-e^{-i\beta_A}C_+.
+\end{equation}
+</p>
+</div>
+
+
+<div id="Ch6-F7" class="figure">
+<img class="first" src="img/FLP_III/f06-07/f06-07_tc_iPad_big_a.svgz"><img class="middle" src="img/FLP_III/f06-07/f06-07_tc_iPad_big_b.svgz"><img class="last" src="img/FLP_III/f06-07/f06-07_tc_iPad_big_c.svgz"><div class="caption">
+<span class="tag">Fig. 6–7.</span>
+A $180^\circ$ rotation about the axis $A$ is equivalent to a
+rotation of $180^\circ$ about $y$, followed by a rotation about $z'$.
+</div>
+</div>
+
+
+<div id="Ch6-S4-p5" class="para">
+<p class="p">We can now think of getting to the same orientation by the two
+successive rotations shown in (b) and (c) of the figure. First, we
+imagine an apparatus $U$ which is rotated with respect to $S$
+by $180^\circ$ about the $y$-axis. The axes $x'$, $y'$, and $z'$ of $U$
+will be as shown in Fig. <a href="#Ch6-F7">6-7</a>(b), and the amplitudes
+<em class="emph">with respect to</em> $U$ are given by (<a href="#mjx-eqn-EqIII622">6.22</a>).
+</p>
+</div>
+
+<div id="Ch6-S4-p6" class="para">
+<p class="p">Now notice that we can go from $U$ to $T$ by a rotation about the
+“$z$-axis” of $U$, namely about $z'$, as shown in
+Fig. <a href="#Ch6-F7">6-7</a>(c). From the figure you can see that the angle
+required is two times the angle $\alpha$ but in the opposite direction
+(with respect to $z'$). Using the transformation of (<a href="#mjx-eqn-EqIII619">6.19</a>)
+with $\phi=-2\alpha$, we get
+\begin{equation}
+\label{Eq:III:6:24}
+C_+''=e^{-i\alpha}C_+',\quad
+C_-''=e^{+i\alpha}C_-'.
+\end{equation}
+Combining Eqs. (<a href="#mjx-eqn-EqIII624">6.24</a>) and (<a href="#mjx-eqn-EqIII622">6.22</a>), we get
+that
+\begin{equation}
+\label{Eq:III:6:25}
+C_+''=e^{i(\beta-\alpha)}C_-,\quad
+C_-''=-e^{-i(\beta-\alpha)}C_+.
+\end{equation}
+These amplitudes must, of course, be the same as we got
+in (<a href="#mjx-eqn-EqIII623">6.23</a>). So $\beta_A$ must be related to $\alpha$
+and $\beta$ by
+\begin{equation}
+\label{Eq:III:6:26}
+\beta_A=\beta-\alpha.
+\end{equation}
+This means that if the angle $\alpha$ between the $A$-axis and the
+$y$-axis (of $S$) is equal to $\beta$, the transformation for a
+rotation of $180^\circ$ about $A$ will have $\beta_A=0$.
+</p>
+</div>
+
+<div id="Ch6-S4-p7" class="para">
+<p class="p">Now so long as <em class="emph">some</em> axis perpendicular to the $z$-axis is going
+to have $\beta=0$, we may as well take it to be the $y$-axis. It is
+purely a matter of <em class="emph">convention</em>, and we adopt the one in general
+use. Our result: For a rotation of $180^\circ$ about the $y$-axis, we
+have
+\begin{equation}
+\label{Eq:III:6:27}
+\left.
+\begin{aligned}
+C_+'&=C_-\\
+\\
+C_-'&=-C_+
+\end{aligned}
+\right\}
+\text{$180^\circ$ about $y$}.
+\end{equation}
+
+</p>
+</div>
+
+<div id="Ch6-S4-p8" class="para">
+<p class="p">While we are thinking about the $y$-axis, let’s next ask for the
+transformation matrix for a rotation of $90^\circ$ about $y$. We can
+find it because we know that two successive $90^\circ$ rotations about
+the same axis must equal one $180^\circ$ rotation. We start by writing
+the transformation for $90^\circ$ in the most general form:
+\begin{equation}
+\label{Eq:III:6:28}
+C_+'=aC_++bC_-,\quad
+C_-'=cC_++dC_-.
+\end{equation}
+A second rotation of $90^\circ$ about the same axis would have the
+same coefficients:
+\begin{equation}
+\label{Eq:III:6:29}
+C_+''=aC_+'+bC_-',\quad
+C_-''=cC_+'+dC_-'.
+\end{equation}
+Combining Eqs. (<a href="#mjx-eqn-EqIII628">6.28</a>) and (<a href="#mjx-eqn-EqIII629">6.29</a>), we have
+\begin{equation}
+\label{Eq:III:6:30}
+\begin{alignedat}{2}
+C_+''&=a(aC_++bC_-)&+\,b(cC_++dC_-),\\[1ex]
+C_-''&=c(aC_++bC_-)&+\,d(cC_++dC_-).
+\end{alignedat}
+\end{equation}
+However, from (<a href="#mjx-eqn-EqIII627">6.27</a>) we know that
+\begin{equation*}
+C_+''=C_-,\quad
+C_-''=-C_+,
+\end{equation*}
+so that we must have that
+\begin{equation}
+\label{Eq:III:6:31}
+\begin{aligned}
+ab+bd&=1,\\
+a^2+bc&=0,\\
+ac+cd&=-1,\\
+bc+d^2&=0.
+\end{aligned}
+\end{equation}
+These four equations are enough to determine all our unknowns: $a$, $b$,
+$c$, and $d$. It is not hard to do. Look at the second and fourth
+equations. Deduce that $a^2=d^2$, which means that $a=d$ or else that
+$a=-d$. But $a=-d$ is out, because then the first equation wouldn’t be
+right. So $d=a$. Using this, we have immediately that $b=1/2a$ and
+that $c=-1/2a$. Now we have everything in terms of $a$. Putting, say,
+the second equation all in terms of $a$, we have
+\begin{equation*}
+a^2-\frac{1}{4a^2}=0\quad
+\text{or}\quad
+a^4=\frac{1}{4}.
+\end{equation*}
+This equation has four different solutions, but only two of them give
+the standard value for the determinant. We might as well
+take $a=1/\sqrt{2}$; then<a name="footnote_source_5" href="#footnote_5"><sup class="mark">5</sup></a>
+\begin{alignat*}{2}
+a&=1/\sqrt{2},&\quad
+b&=1/\sqrt{2},\\\\
+c&=-1/\sqrt{2},&\quad
+d&=1/\sqrt{2}.
+\end{alignat*}
+</p>
+</div>
+
+<div id="Ch6-S4-p9" class="para">
+<p class="p">In other words, for two apparatuses $S$ and $T$, with $T$ rotated with
+respect to $S$ by $90^\circ$ about the $y$-axis, the transformation is
+\begin{equation}
+\label{Eq:III:6:32}
+\left.
+\begin{aligned}
+C_+'&=\frac{1}{\sqrt{2}}\,(C_++C_-)\\
+\\
+C_-'&=\frac{1}{\sqrt{2}}\,(-C_++C_-)
+\end{aligned}
+\right\}
+\text{$90^\circ$ about $y$}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch6-S4-p10" class="para">
+<p class="p">We can, of course, solve these equations for $C_+$ and $C_-$, which will
+give us the transformation for a rotation of <em class="emph">minus</em> $90^\circ$
+about $y$. Changing the primes around, we would conclude that
+\begin{equation}
+\label{Eq:III:6:33}
+\left.
+\begin{aligned}
+C_+'&=\frac{1}{\sqrt{2}}\,(C_+-C_-)\\
+\\
+C_-'&=\frac{1}{\sqrt{2}}\,(C_++C_-)
+\end{aligned}
+\right\}
+\text{$-90^\circ$ about $y$}.
+\end{equation}
+</p>
+</div>
+
+</div> <!--end of section -->
+
+
+<div id="Ch6-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">6–5</span>Rotations about $\boldsymbol{x}$</h3>
+
+<div id="Ch6-S5-p1" class="para">
+<p class="p">You may be thinking: “This is getting ridiculous. What are they going
+to do next, $47^\circ$ around $y$, then $33^\circ$ about $x$, and so on,
+forever?” No, we are almost finished. With just two of the
+transformations we have—$90^\circ$ about $y$, and an arbitrary angle
+about $z$ (which we did first if you remember)—we can generate any
+rotation at all.
+</p>
+</div>
+
+<div id="Ch6-S5-p2" class="para">
+<p class="p">As an illustration, suppose that we want the angle $\alpha$ around $x$.
+We know how to deal with the angle $\alpha$ around $z$, but now we want
+it around $x$. How do we get it? First, we turn the axis $z$ down
+onto $x$—which is a rotation of $+90^\circ$ about $y$, as shown in
+Fig. <a href="#Ch6-F8">6-8</a>. Then we turn through the angle $\alpha$
+around $z'$. Then we rotate $-90^\circ$ about $y''$. The net result of
+the three rotations is the same as turning around $x$ by the
+angle $\alpha$. It is a property of space.
+</p>
+</div>
+
+<div id="Ch6-F8" class="figure">
+<img class="first" src="img/FLP_III/f06-08/f06-08_tc_iPad_big_a.svgz"><img class="middle" src="img/FLP_III/f06-08/f06-08_tc_iPad_big_b.svgz"><img class="last" src="img/FLP_III/f06-08/f06-08_tc_iPad_big_c.svgz"><div class="caption">
+<span class="tag">Fig. 6–8.</span>
+A rotation by $\alpha$ about the $x$-axis is equivalent to:
+  (a) a rotation by $+90^\circ$ about $y$, followed by (b) a rotation
+  by $\alpha$ about $z'$, followed by (c) a rotation of $-90^\circ$
+  about $y''$.
+</div>
+</div>
+
+<div id="Ch6-S5-p3" class="para">
+<p class="p">(These facts of the combinations of rotations, and what they produce,
+are hard to grasp intuitively. It is rather strange, because we live
+in three dimensions, but it is hard for us to appreciate what happens
+if we turn this way and then that way. Perhaps, if we were fish or
+birds and had a real appreciation of what happens when we turn
+somersaults in space, we could more easily appreciate such things.)
+</p>
+</div>
+
+<div id="Ch6-S5-p4" class="para">
+<p class="p">Anyway, let’s work out the transformation for a rotation by $\alpha$
+around the $x$-axis by using what we know. From the first rotation
+by $+90^\circ$ around $y$ the amplitudes go according to
+Eq. (<a href="#mjx-eqn-EqIII632">6.32</a>). Calling the rotated axes $x'$, $y'$, and $z'$,
+the next rotation by the angle $\alpha$ around $z'$ takes us to a frame
+$x''$, $y''$, $z''$, for which
+\begin{equation*}
+C_+''=e^{i\alpha/2}C_+',\quad
+C_-''=e^{-i\alpha/2}C_-'.
+\end{equation*}
+The last rotation of $-90^\circ$ about $y''$ takes us to $x'''$,
+$y'''$, $z'''$; by (<a href="#mjx-eqn-EqIII633">6.33</a>),
+\begin{equation*}
+C_+'''=\frac{1}{\sqrt{2}}\,(C_+''-C_-''),\quad
+C_-'''=\frac{1}{\sqrt{2}}\,(C_+''+C_-'').
+\end{equation*}
+Combining these last two transformations, we get
+\begin{align*}
+C_+'''&=\frac{1}{\sqrt{2}}\,
+(e^{+i\alpha/2}C_+'-e^{-i\alpha/2}C_-'),\\
+\\
+C_-'''&=\frac{1}{\sqrt{2}}\,
+(e^{+i\alpha/2}C_+'+e^{-i\alpha/2}C_-').
+\end{align*}
+Using Eqs. (<a href="#mjx-eqn-EqIII632">6.32</a>) for $C_+'$ and $C_-'$, we get the
+complete transformation:
+\begin{align*}
+C_+'''&=\tfrac{1}{2}
+\{e^{+i\alpha/2}(C_++C_-)-e^{-i\alpha/2}(-C_++C_-)\},\\
+\\
+C_-'''&=\tfrac{1}{2}
+\{e^{+i\alpha/2}(C_++C_-)+e^{-i\alpha/2}(-C_++C_-)\}.
+\end{align*}
+We can put these formulas in a simpler form by remembering that
+\begin{equation*}
+e^{i\theta}+e^{-i\theta}=2\cos\theta,\quad\text{and}\quad e^{i\theta}-e^{-i\theta}=2i\sin\theta.
+\end{equation*}
+We get
+\begin{equation}
+\label{Eq:III:6:34}
+\left.
+\begin{alignedat}{3}
+C_+'''&=\phantom{i}\biggl(\!&\cos\frac{\alpha}{2}&\biggr)C_+\!+
+i\biggl(\!&\sin\frac{\alpha}{2}&\biggr)C_-\\
+\\[1ex]
+C_-'''&=i\biggl(\!&\sin\frac{\alpha}{2}&\biggr)C_+\!+
+\phantom{i}\biggl(\!&\cos\frac{\alpha}{2}&\biggr)C_-
+\end{alignedat}
+\!\! % ebook remove
+\right\}
+\text{$\alpha$ about $x$}.
+\end{equation}
+Here is our transformation for a rotation about the $x$-axis by
+<em class="emph">any</em> angle $\alpha$. It is only a little more complicated than
+the others.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+
+<div id="Ch6-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">6–6</span>Arbitrary rotations</h3>
+
+<div id="Ch6-F9" class="figure">
+<img src="img/FLP_III/f06-09/f06-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–9.</span>
+The orientation of any coordinate frame $x'$, $y'$, $z'$
+relative to another frame $x$, $y$, $z$ can be defined in terms of
+Euler’s angles $\alpha$, $\beta$, $\gamma$.
+</div>
+</div>
+
+<div id="Ch6-S6-p1" class="para">
+<p class="p">Now we can see how to do <em class="emph">any</em> angle at all. First, notice that
+any relative orientation of two coordinate frames can be described in
+terms of three angles, as shown in Fig. <a href="#Ch6-F9">6-9</a>. If we
+have a set of axes $x'$, $y'$, and $z'$ oriented in any way at all
+with respect to $x$, $y$, and $z$, we can describe the relationship
+between the two frames by means of the three Euler angles $\alpha$, $\beta$,
+and $\gamma$, which define three successive rotations that
+will bring the $x$, $y$, $z$ frame into the $x'$, $y'$, $z'$
+frame. Starting at $x$, $y$, $z$, we rotate our frame through the
+angle $\beta$ about the $z$-axis, bringing the $x$-axis to the
+line $x_1$. Then, we rotate by $\alpha$ about this temporary $x$-axis, to
+bring $z$ down to $z'$. Finally, a rotation about the new $z$-axis
+(that is, $z'$) by the angle $\gamma$ will bring the $x$-axis into $x'$
+and the $y$-axis into $y'$.<a name="footnote_source_6" href="#footnote_6"><sup class="mark">6</sup></a> We know the transformations for each of the three
+rotations—they are given in (<a href="#mjx-eqn-EqIII619">6.19</a>)
+and (<a href="#mjx-eqn-EqIII634">6.34</a>). Combining them in the proper order, we get
+\begin{equation}
+\label{Eq:III:6:35}
+\begin{alignedat}{3}
+C_+'&=\phantom{i}&\cos\frac{\alpha}{2}&e^{i(\beta+\gamma)/2}C_+\!+
+i&\sin\frac{\alpha}{2}&e^{-i(\beta-\gamma)/2}C_-,\\
+\\
+C_-'&=i&\sin\frac{\alpha}{2}&e^{i(\beta-\gamma)/2}C_+\!+
+\phantom{i}&\cos\frac{\alpha}{2}&e^{-i(\beta+\gamma)/2}C_-.
+\end{alignedat}
+\end{equation}
+</p>
+</div>
+
+<div id="Ch6-S6-p2" class="para">
+<p class="p">So just starting from some assumptions about the properties of space,
+we have derived the amplitude transformation for any rotation at
+all. That means that if we know the amplitudes for any state of a spin
+one-half particle to go into the two beams of a Stern-Gerlach
+apparatus $S$, whose axes are $x$, $y$, and $z$, we can calculate what
+fraction would go into either beam of an apparatus $T$ with the axes
+$x'$, $y'$, and $z'$. In other words, if we have a state $\psi$ of a
+spin one-half particle, whose amplitudes are $C_+=\braket{+}{\psi}$
+and $C_-=\braket{-}{\psi}$ to be “up” and “down” with respect to
+the $z$-axis of the $x$, $y$, $z$ frame, we also know the amplitudes
+$C_+'$ and $C_-'$ to be “up” and “down” with respect to the
+$z'$-axis of any other frame $x'$, $y'$, $z'$. The four coefficients
+in Eqs. (<a href="#mjx-eqn-EqIII635">6.35</a>) are the terms of the “transformation
+matrix” with which we can project the amplitudes of a spin one-half
+particle into any other coordinate system.
+</p>
+</div>
+
+<div id="Ch6-S6-p3" class="para">
+<p class="p">We will now work out a few examples to show you how it all
+works. Let’s take the following simple question. We put a spin
+one-half atom through a Stern-Gerlach apparatus that transmits only the
+$(+z)$ state. What is the amplitude that it will be in the $(+x)$ state? 
+The $+x$ axis is the same as the $+z'$ axis of a system
+rotated $90^\circ$ about the $y$-axis. For this problem, then, it is
+simplest to use Eqs. (<a href="#mjx-eqn-EqIII632">6.32</a>)—although you could, of
+course, use the complete equations of (<a href="#mjx-eqn-EqIII635">6.35</a>). Since
+$C_+=1$ and $C_-=0$, we get $C_+'=1/\sqrt{2}$. The probabilities are
+the absolute square of these amplitudes; there is a $50$ percent
+chance that the particle will go through an apparatus that selects the
+$(+x)$ state. If we had asked about the $(-x)$ state the amplitude
+would have been $-1/\sqrt{2}$, which also gives a
+probability $1/2$—as you would expect from the symmetry of space. So if a
+particle is in the $(+z)$ state, it is equally likely to be in $(+x)$
+or $(-x)$, but with opposite phase.
+</p>
+</div>
+
+<div id="Ch6-S6-p4" class="para">
+<p class="p">There’s no prejudice in $y$ either. A particle in the $(+z)$ state has a
+$50$&ndash;$50$ chance of being in $(+y)$ or in $(-y)$. However, for these
+(using the formula for rotating $-90^\circ$ about $x$), the amplitudes
+are $1/\sqrt{2}$ and $-i/\sqrt{2}$. In this case, the two amplitudes
+have a phase difference of $90^\circ$ instead of $180^\circ$, as they
+did for the $(+x)$ and $(-x)$. In fact, that’s how the distinction
+between $x$ and $y$ shows up.
+</p>
+</div>
+
+<div id="Ch6-F10" class="figure">
+<img src="img/FLP_III/f06-10/f06-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–10.</span>
+An axis $A$ defined by the polar angles $\theta$ and $\phi$.
+</div>
+</div>
+
+<div id="Ch6-S6-p5" class="para">
+<p class="p">As our final example, suppose that we know that a spin one-half
+particle is in a state $\psi$ such that it is polarized “up” along
+some axis $A$, defined by the angles $\theta$ and $\phi$ in
+Fig. <a href="#Ch6-F10">6-10</a>. We want to know the amplitude $C_+$ that the
+particle is “up” along $z$ and the amplitude $C_-$ that it is “down” 
+along $z$.  We can find these amplitudes by imagining that $A$ is the
+$z$-axis of a system whose $x$-axis lies in some arbitrary
+direction—say in the plane formed by $A$ and $z$. We can then bring
+the frame of $A$ into $x$, $y$, $z$ by three rotations. First, we make a
+rotation by $-\pi/2$ about the axis $A$, which brings the $x$-axis into
+the line $B$ in the figure. Then we rotate by $\theta$ about line $B$
+(the new $x$-axis of frame $A$) to bring $A$ to the $z$-axis. Finally,
+we rotate by the angle $(\pi/2-\phi)$ about $z$. Remembering that we
+have only a $(+)$ state with respect to $A$, we get
+\begin{equation}
+\label{Eq:III:6:36}
+C_+=\cos\frac{\theta}{2}\,e^{-i\phi/2},\quad
+C_-=\sin\frac{\theta}{2}\,e^{+i\phi/2}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch6-S6-p6" class="para">
+<p class="p">We would like, finally, to summarize the results of this chapter in a
+form that will be useful for our later work. First, we remind you that
+our primary result in Eqs. (<a href="#mjx-eqn-EqIII635">6.35</a>) can be written in
+another notation. Note that Eqs. (<a href="#mjx-eqn-EqIII635">6.35</a>) mean just the
+same thing as Eq. (<a href="#mjx-eqn-EqIII64">6.4</a>). That is, in
+Eqs. (<a href="#mjx-eqn-EqIII635">6.35</a>) the coefficients of $C_+=\braket{+S}{\psi}$
+and $C_-=\braket{-S}{\psi}$ are just the amplitudes $\braket{jT}{iS}$ of
+Eq. (<a href="#mjx-eqn-EqIII64">6.4</a>)—the amplitudes that a particle in the
+$i$-state with respect to $S$ will be in the $j$-state with respect
+to $T$ (when the orientation of $T$ with respect to $S$ is given in terms
+of the angles $\alpha$, $\beta$, and $\gamma$). We also called them
+$R_{ji}^{TS}$ in Eq. (<a href="#mjx-eqn-EqIII66">6.6</a>). (We have a plethora of
+notations!) For example, $R_{-+}^{TS}=\braket{-T}{+S}$ is the
+coefficient of $C_+$ in the formula for $C_-'$, namely,
+$i\sin\,(\alpha/2)\,e^{i(\beta-\gamma)/2}$. We can, therefore, make a
+summary of our results in the form of a table, as we have done in
+Table <a href="#Ch6-T1">6–1</a>.
+</p>
+</div>
+
+<div id="Ch6-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 6–1</span>The amplitudes $\boldsymbol{\braket{jT}{iS}}$ for a rotation
+defined by the Euler angles $\boldsymbol{\alpha}$, $\boldsymbol{\beta}$,
+$\boldsymbol{\gamma}$ of Fig. <a href="#Ch6-F9">6-9</a></div>
+<div align="center">
+<table border="1" style="width: 50%">
+	<tr>
+		<td colspan="3" class="center">$R_{ji}(\alpha,\beta,\gamma)$</td>
+	</tr>
+	<tr>
+		<td class="l t center" width="14%">$\braket{jT}{iS}$</td>
+		<td class="ll t center">$+S$</td>
+		<td class="l t r center">$-S$</td>
+	</tr>
+	<tr>
+		<td class="l tt center">$+T$</td>
+		<td class="ll tt center">$\phantom{i}\cos\dfrac{\alpha}{2}\,e^{i(\beta+\gamma)/2}$</td>
+		<td class="l tt r center">$i\sin\dfrac{\alpha}{2}\,e^{-i(\beta-\gamma)/2}$</td>
+	</tr>
+	<tr>
+		<td class="l t b center">$-T$</td>
+		<td class="ll t b center">$i\sin\dfrac{\alpha}{2}\,e^{i(\beta-\gamma)/2}$</td>
+		<td class="l t r b center">$\phantom{i}\cos\dfrac{\alpha}{2}\,e^{-i(\beta+\gamma)/2}$</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch6-S6-p7" class="para">
+<p class="p">It will occasionally be handy to have these amplitudes already worked
+out for some simple special cases. Let’s let $R_z(\phi)$ stand for a
+rotation by the angle $\phi$ about the $z$-axis. We can also let it
+stand for the corresponding rotation matrix (omitting the subscripts $i$
+and $j$, which are to be implicitly understood). In the same spirit
+$R_x(\phi)$ and $R_y(\phi)$ will stand for rotations by the angle $\phi$
+about the $x$-axis or the $y$-axis. We give in Table <a href="#Ch6-T2">6–2</a>
+the matrices—the tables of amplitudes $\braket{jT}{iS}$—which
+project the amplitudes from the $S$-frame into the $T$-frame, where $T$
+is obtained from $S$ by the rotation specified.
+</p>
+</div>
+
+<div id="Ch6-T2" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 6–2</span>The amplitudes $\boldsymbol{\braket{jT}{iS}}$ for a rotation
+  $\boldsymbol{R(\phi)}$ by the angle $\boldsymbol{\phi}$ about the
+  $\boldsymbol{z}$-axis, $\boldsymbol{x}$-axis, or
+  $\boldsymbol{y}$-axis</div>
+<div align="center">
+<table border="1" style="width: 50%">
+	<tr>
+		<td colspan="3" class="center">$R_z(\phi)$</td>
+	</tr>
+	<tr>
+		<td class="l t center" width="14%">$\braket{jT}{iS}$</td>
+		<td class="ll t center">$+S$</td>
+		<td class="l t r center">$-S$</td>
+	</tr>
+	<tr>
+		<td class="l tt center" width="14%">$+T$</td>
+		<td class="ll tt center"> $e^{i\phi/2}$</td>
+		<td class="l tt r center">$0$</td>
+	</tr>
+	<tr>
+		<td class="l t b center" width="14%">$-T$</td>
+		<td class="ll t b center">$0$</td>
+		<td class="l t r b center">$e^{-i\phi/2}$</td>
+	</tr>
+	<tr><td colspan="3">&nbsp;</td></tr>
+	<tr>
+		<td colspan="3" class="center">$R_x(\phi)$</td>
+	</tr>
+	<tr>
+		<td class="l t center" width="14%">$\braket{jT}{iS}$</td>
+		<td class="ll t center">$+S$</td>
+		<td class="l t r center">$-S$</td>
+	</tr>
+	<tr>
+		<td class="l tt center" width="14%">$+T$</td>
+		<td class="ll tt center">$\phantom{i}\cos\phi/2$</td>
+		<td class="l tt r center">$i\sin\phi/2$</td>
+	</tr>
+	<tr>
+		<td class="l t b center" width="14%">$-T$</td>
+		<td class="ll t b center">$i\sin\phi/2$</td>
+		<td class="l t r b center">$\phantom{i}\cos\phi/2$</td>
+	</tr>
+	<tr><td colspan="3">&nbsp;</td></tr>
+	<tr>
+		<td colspan="3" class="center">$R_y(\phi)$</td>
+	</tr>
+	<tr>
+		<td class="l t center" width="14%">$\braket{jT}{iS}$</td>
+		<td class="ll t center">$+S$</td>
+		<td class="l t r center">$-S$</td>
+	</tr>
+	<tr>
+		<td class="l tt center" width="14%">$+T$</td>
+		<td class="ll tt center">$\cos\phi/2$</td>
+		<td class="l tt r center">$\sin\phi/2$</td>
+	</tr>
+	<tr>
+		<td class="l t b center" width="14%">$-T$</td>
+		<td class="ll t b center">$-\sin\phi/2$</td>
+		<td class="l t r b center">$\cos\phi/2$</td>
+	</tr>
+</table>
+</div>
+</div>
+</div> <!--end of section -->
+
+<ol id="footnotes">
+  <li class="footnote">
+    <a name="footnote_1"></a>
+    This chapter is a rather long and abstract
+side tour, and it does not introduce any idea which we will not also
+come to by a different route in later chapters. You can, therefore, skip
+over it, and come back later if you are interested.
+    <a href="#footnote_source_1">↩</a>
+  </li>
+ 
+  <li class="footnote">
+    <a name="footnote_2"></a>
+    Looking at it another way, we are
+just putting the transformation in the “standard form” described in
+Section <a href="#Ch6-S2">6-2</a> by using Eq. (<a href="#mjx-eqn-EqIII615">6.15</a>).
+    <a href="#footnote_source_2">↩</a>
+  </li>
+  
+  <li class="footnote">
+    <a name="footnote_3"></a>
+    It appears that $m=-\tfrac{1}{2}$ would
+also work. However, we see in (<a href="#mjx-eqn-EqIII617">6.17</a>) that the change in
+sign merely redefines the notation for a spin-up particle.
+    <a href="#footnote_source_3">↩</a>
+  </li>
+  
+  <li class="footnote">
+    <a name="footnote_4"></a>
+    Also, if something has been rotated by a sequence of
+small rotations whose net result is to return it to the original
+orientation, it is possible to define the idea that it has been
+rotated $360^\circ$—as distinct from zero net rotation—if you have
+kept track of the whole history. (Interestingly enough, this is
+<em class="emph">not</em> true for a net rotation of $720^\circ$.)
+    <a href="#footnote_source_4">↩</a>
+  </li>
+  
+  <li class="footnote">
+    <a name="footnote_5"></a>
+    The other solution changes all signs of
+$a$, $b$, $c$, and $d$ and corresponds to a $-270^\circ$ rotation.
+    <a href="#footnote_source_5">↩</a>
+  </li>
+  
+  <li class="footnote">
+    <a name="footnote_6"></a>
+    With a little work you can
+show that the frame $x$, $y$, $z$ can also be brought into the frame
+$x'$, $y'$, $z'$ by the following three rotations about the
+<em class="emph">original</em> axes: (1) rotate by the angle $\gamma$ around the
+original $z$-axis; (2) rotate by the angle $\alpha$ around the
+original $x$-axis; (3) rotate by the angle $\beta$ around the original
+$z$-axis.
+    <a href="#footnote_source_6">↩</a>
+  </li>
+</ol>
+
+</div> <!--end of chapter -->
+
+<!-- TOUCH NONE OF THE FOLLOWING-->
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

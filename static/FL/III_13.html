@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 13: Propagation in a Crystal Lattice</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "13." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch13" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">13</span>Propagation in a Crystal Lattice</h2>
+<div id="Ch13-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">13–1</span>States for an electron in a one-dimensional lattice</h3>
+<div id="Ch13-S1-p1" class="para">
+<p class="p">You would, at first sight, think that a low-energy electron
+would have great difficulty passing through a solid crystal. The atoms
+are packed together with their centers only a few angstroms apart, and
+the effective diameter of the atom for electron scattering is roughly an
+angstrom or so. That is, the atoms are large, relative to their spacing,
+so that you would expect the mean free path between collisions to be of
+the order of a few angstroms—which is practically nothing. You would
+expect the electron to bump into one atom or another almost immediately.
+Nevertheless, it is a ubiquitous phenomenon of nature that if the
+lattice is perfect, the electrons are able to travel through the crystal
+smoothly and easily—almost as if they were in a vacuum. This strange
+fact is what lets metals conduct electricity so easily; it has also
+permitted the development of many practical devices. It is, for
+instance, what makes it possible for a transistor to imitate the radio
+tube. In a radio tube electrons move freely through a vacuum, while in
+the transistor they move freely through a crystal lattice. The machinery
+behind the behavior of a transistor will be described in this chapter;
+the next one will describe the application of these principles in
+various practical devices.</p>
+</div>
+<div id="Ch13-S1-p2" class="para">
+<p class="p">The conduction of electrons in a crystal is one example of a very common
+phenomenon. Not only can electrons travel through crystals, but other
+“things” like atomic excitations can also travel in a similar manner.
+So the phenomenon which we want to discuss appears in many ways in the
+study of the physics of the solid state.</p>
+</div>
+<div id="Ch13-S1-p3" class="para">
+<p class="p">You will remember that we have discussed many examples of two-state
+systems. Let’s now think of an electron which can be in either one of
+two positions, in each of which it is in the same kind of
+environment. Let’s also suppose that there is a certain amplitude to
+go from one position to the other, and, of course, the same amplitude
+to go back, just as we have discussed for the hydrogen molecular ion
+in Section <a href="III_10.html#Ch10-S1">10–1</a>. The laws of quantum mechanics then
+give the following results. There are two possible states of definite
+energy for the electron. Each state can be described by the amplitude
+for the electron to be in each of the two basic positions. In either
+of the definite-energy states, the magnitudes of these two amplitudes
+are constant in time, and the phases vary in time with the same
+frequency. On the other hand, if we start the electron in one
+position, it will later have moved to the other, and still later will
+swing back again to the first position. The amplitude is analogous to
+the motions of two coupled pendulums.</p>
+</div>
+<div id="Ch13-S1-p4" class="para">
+<p class="p">Now consider a perfect crystal lattice in which we imagine that an
+electron can be situated in a kind of “pit” at one particular atom
+and with some particular energy. Suppose also that the electron has
+some amplitude to move into a different pit at one of the nearby
+atoms. It is something like the two-state system—but with an
+additional complication. When the electron arrives at the neighboring
+atom, it can afterward move on to still another position as well as
+return to its starting point. Now we have a situation analogous not to
+<em class="emph">two</em> coupled pendulums, but to an <em class="emph">infinite number</em> of
+pendulums all coupled together. It is something like what you see in
+one of those machines—made with a long row of bars mounted on a
+torsion wire—that is used in first-year physics to demonstrate wave
+propagation.</p>
+</div>
+<div id="Ch13-S1-p5" class="para">
+<p class="p">If you have a harmonic oscillator which is coupled to another harmonic
+oscillator, and that one to another, and so on …, and if you
+start an irregularity in one place, the irregularity will propagate as
+a wave along the line. The same situation exists if you place an
+electron at one atom of a long chain of atoms.</p>
+</div>
+<div id="Ch13-S1-p6" class="para">
+<p class="p">Usually, the simplest way of analyzing the mechanical problem is not
+to think in terms of what happens if a pulse is started at a definite
+place, but rather in terms of steady-wave solutions. There exist
+certain patterns of displacements which propagate through the crystal
+as a wave of a single, fixed frequency. Now the same thing happens
+with the electron—and for the same reason, because it’s described in
+quantum mechanics by similar equations.</p>
+</div>
+<div id="Ch13-S1-p7" class="para">
+<p class="p">You must appreciate one thing, however; the amplitude for the electron
+to be at a place is an <em class="emph">amplitude</em>, not a probability. If the
+electron were simply leaking from one place to another, like water
+going through a hole, the behavior would be completely different. For
+example, if we had two tanks of water connected by a tube to permit
+some leakage from one to the other, then the levels would approach
+each other exponentially. But for the electron, what happens is
+amplitude leakage and not just a plain probability leakage. And it’s a
+characteristic of the imaginary term—the $i$ in the differential
+equations of quantum mechanics—which changes the exponential
+solution to an oscillatory solution. What happens then is quite
+different from the leakage between interconnected tanks.
+</p>
+</div>
+<div id="Ch13-F1" class="figure">
+<img src="img/FLP_III/f13-01/f13-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–1.</span>The base states of an electron in a one-dimensional crystal.
+</div>
+</div>
+<div id="Ch13-S1-p8" class="para">
+<p class="p">We want now to analyze quantitatively the quantum mechanical
+situation. Imagine a one-dimensional system made of a long line of
+atoms as shown in Fig. <a href="#Ch13-F1">13–1</a>(a). (A crystal is, of course,
+three-dimensional but the physics is very much the same; once you
+understand the one-dimensional case you will be able to understand
+what happens in three dimensions.) Next, we want to see what happens
+if we put a single electron on this line of atoms. Of course, in a
+real crystal there are already millions of electrons. But most of them
+(nearly all for an insulating crystal) take up positions in some
+pattern of motion each around its own atom—and everything is quite
+stationary. However, we now want to think about what happens if we put
+an <em class="emph">extra</em> electron in. We will not consider what the other ones
+are doing because we suppose that to change their motion involves a
+lot of excitation energy. We are going to add an electron as if to
+produce one slightly bound negative ion. In watching what the
+<em class="emph">one</em> extra electron does we are making an approximation which
+disregards the mechanics of the inside workings of the atoms.</p>
+</div>
+<div id="Ch13-S1-p9" class="para">
+<p class="p">Of course the electron could then move to another atom, transferring
+the negative ion to another place. We will suppose that just as in the
+case of an electron jumping between two protons, the electron can jump
+from one atom to the neighbor on either side with a certain amplitude.</p>
+</div>
+<div id="Ch13-S1-p10" class="para">
+<p class="p">Now how do we describe such a system? What will be reasonable base
+states? If you remember what we did when we had only two possible
+positions, you can guess how it will go. Suppose that in our line of
+atoms the spacings are all equal; and that we number the atoms in
+sequence, as shown in Fig. <a href="#Ch13-F1">13–1</a>(a). One of the base states
+is that the electron is at atom number $6$, another base state is that
+the electron is at atom number $7$, or at atom number $8$, and so on. We
+can describe the $n$th base state by saying that the electron is at atom
+number $n$. Let’s say that this is the base state $\ket{n}$.
+Figure <a href="#Ch13-F1">13–1</a> shows what we mean by the three base states
+\begin{equation*}
+\ket{n-1},\:\ket{n},\:\text{and }\:\ket{n+1}.
+\end{equation*}
+
+Using these base states, any state $\ket{\phi}$ of the electron in our
+one-dimensional crystal can be described by giving all the
+amplitudes $\braket{n}{\phi}$ that the state $\ket{\phi}$ is in one of the base
+states—which means the amplitude that it is located at one
+particular atom. Then we can write the state $\ket{\phi}$ as a
+superposition of the base states
+\begin{equation}
+\label{Eq:III:13:1}
+\ket{\phi}=\sum_n\ket{n}\braket{n}{\phi}.
+\end{equation}
+</p>
+</div>
+<div id="Ch13-S1-p11" class="para">
+<p class="p">Next, we are going to suppose that when the electron is at one atom,
+there is a certain amplitude that it will leak to the atom on either
+side. And we’ll take the simplest case for which it can only leak to
+the nearest neighbors—to get to the next-nearest neighbor, it has to
+go in two steps. We’ll take that the amplitudes for the electron jump
+from one atom to the next is $iA/\hbar$ (per unit time).</p>
+</div>
+<div id="Ch13-S1-p12" class="para">
+<p class="p">For the moment we would like to write the amplitude $\braket{n}{\phi}$
+to be on the $n$th atom as $C_n$. Then Eq. (<a href="#mjx-eqn-EqIII131">13.1</a>) will
+be written
+\begin{equation}
+\label{Eq:III:13:2}
+\ket{\phi}=\sum_n\ket{n}C_n.
+\end{equation}
+
+If we knew each of the amplitudes $C_n$ at a given moment, we could
+take their absolute squares and get the probability that you would
+find the electron if you looked at atom $n$ at that time.</p>
+</div>
+<div id="Ch13-S1-p13" class="para">
+<p class="p">What will the situation be at some later time? By analogy with the
+two-state systems we have studied, we would propose that the
+Hamiltonian equations for this system should be made up of equations
+like this:
+\begin{equation}
+\label{Eq:III:13:3}
+i\hbar\,\ddt{C_n(t)}{t}=E_0C_n(t)-AC_{n+1}(t)-AC_{n-1}(t).
+\end{equation}
+</p>
+</div>
+<div id="Ch13-S1-p14" class="para">
+<p class="p">The first coefficient on the right, $E_0$, is, physically, the energy
+the electron would have if it couldn’t leak away from one of the
+atoms. (It doesn’t matter what we call $E_0$; as we have seen many
+times, it represents really nothing but our choice of the zero of
+energy.)  The next term represents the amplitude per unit time that
+the electron is leaking into the $n$th pit from the $(n+1)$st pit; and
+the last term is the amplitude for leakage from the $(n-1)$st pit. As
+usual, we’ll assume that $A$ is a constant (independent of $t$).</p>
+</div>
+<div id="Ch13-S1-p15" class="para">
+<p class="p">For a full description of the behavior of any state $\ket{\phi}$, we
+would have one equation like (<a href="#mjx-eqn-EqIII133">13.3</a>) for every one of the
+amplitudes $C_n$. Since we want to consider a crystal with a very
+large number of atoms, we’ll assume that there are an indefinitely
+large number of states—that the atoms go on forever in both
+directions. (To do the finite case, we will have to pay special
+attention to what happens at the ends.) If the number $N$ of our base
+states is indefinitely large, then also our full Hamiltonian equations
+are infinite in number! We’ll write down just a sample:
+\begin{equation}
+\label{Eq:III:13:4}
+\begin{aligned}
+\vdots\qquad&\qquad\qquad\qquad\qquad\:\:\vdots\\
+i\hbar\,\ddt{C_{n-1}}{t}&=
+E_0C_{n-1}-AC_{n-2}-AC_n,\\[1ex]
+i\hbar\,\ddt{C_n}{t}&=
+E_0C_n-AC_{n-1}-AC_{n+1},\\[1ex]
+i\hbar\,\ddt{C_{n+1}}{t}&=
+E_0C_{n+1}-AC_n-AC_{n+2},\\[1ex]
+\vdots\qquad&\qquad\qquad\qquad\qquad\:\:\vdots
+\end{aligned}
+\end{equation}
+</p>
+</div>
+</div>
+<div id="Ch13-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">13–2</span>States of definite energy</h3>
+<div id="Ch13-S2-p1" class="para">
+<p class="p">We could study many things about an electron in a lattice, but first
+let’s try to find the states of definite energy. As we have seen in
+earlier chapters this means that we have to find a situation in which
+the amplitudes all change at the same frequency if they change with
+time at all. We look for solutions of the form
+\begin{equation}
+\label{Eq:III:13:5}
+C_n=a_ne^{-iEt/\hbar}.
+\end{equation}
+
+The complex numbers $a_n$ tell us about the non-time-varying part of
+the amplitude to find the electron at the $n$th atom. If we put this
+trial solution into the equations of (<a href="#mjx-eqn-EqIII134">13.4</a>) to test them
+out, we get the result
+\begin{equation}
+\label{Eq:III:13:6}
+Ea_n=E_0a_n-Aa_{n+1}-Aa_{n-1}.
+\end{equation}
+
+We have an infinite number of such equations for the infinite number
+of unknowns $a_n$—which is rather petrifying.</p>
+</div>
+<div id="Ch13-S2-p2" class="para">
+<p class="p">All we have to do is take the determinant … but wait!
+Determinants are fine when there are $2$, $3$, or $4$ equations. But
+if there are a large number—or an infinite number—of equations,
+the determinants are not very convenient. We’d better just try to
+solve the equations directly. First, let’s label the atoms by their
+<em class="emph">positions</em>; we’ll say that the atom $n$ is at $x_n$ and the
+atom $(n+1)$ is at $x_{n+1}$. if the atomic spacing is $b$—as in
+Fig. <a href="#Ch13-F1">13–1</a>—we will have that $x_{n+1}=x_n+b$. By choosing
+our origin at atom zero, we can even have it that $x_n=nb$. We can
+rewrite Eq. (<a href="#mjx-eqn-EqIII135">13.5</a>) as
+\begin{equation}
+\label{Eq:III:13:7}
+C_n=a(x_n)e^{-iEt/\hbar},
+\end{equation}
+
+and Eq. (<a href="#mjx-eqn-EqIII136">13.6</a>) would become
+\begin{equation}
+\label{Eq:III:13:8}
+Ea(x_n)=E_0a(x_n)-Aa(x_{n+1})-Aa(x_{n-1}).
+\end{equation}
+
+Or, using the fact that $x_{n+1}=x_n+b$, we could also write
+\begin{equation}
+\label{Eq:III:13:9}
+Ea(x_n)=E_0a(x_n)\!-\!Aa(x_n\!+b)\!-\!Aa(x_n\!-b).
+\end{equation}
+
+This equation is somewhat similar to a differential equation. It tells
+us that a quantity, $a(x)$, at one point, ($x_n$), is related to the
+same physical quantity at some neighboring points, ($x_n\pm b$). (A
+differential equation relates the value of a function at a point to
+the values at infinitesimally nearby points.) Perhaps the methods we
+usually use for solving differential equations will also work here;
+let’s try.</p>
+</div>
+<div id="Ch13-S2-p3" class="para">
+<p class="p">Linear differential equations with constant coefficients can always be
+solved in terms of exponential functions. We can try the same thing
+here; let’s take as a trial solution
+\begin{equation}
+\label{Eq:III:13:10}
+a(x_n)=e^{ikx_n}.
+\end{equation}
+
+Then Eq. (<a href="#mjx-eqn-EqIII139">13.9</a>) becomes
+\begin{equation}
+\label{Eq:III:13:11}
+Ee^{ikx_n}=E_0e^{ikx_n}-Ae^{ik(x_n+b)}-Ae^{ik(x_n-b)}.
+\end{equation}
+
+We can now divide out the common factor $e^{ikx_n}$; we get
+\begin{equation}
+\label{Eq:III:13:12}
+E=E_0-Ae^{ikb}-Ae^{-ikb}.
+\end{equation}
+
+The last two terms are just equal to $(2A\cos kb)$, so
+\begin{equation}
+\label{Eq:III:13:13}
+E=E_0-2A\cos kb.
+\end{equation}
+
+We have found that for <em class="emph">any</em> choice at all for the constant $k$
+there is a solution whose energy is given by this equation. There are
+various possible energies depending on $k$, and each $k$ corresponds
+to a different solution. There are an infinite number of
+solutions—which is not surprising, since we started out with an
+infinite number of base states.</p>
+</div>
+<div id="Ch13-S2-p4" class="para">
+<p class="p">Let’s see what these solutions mean. For each $k$, the $a$’s are given
+by Eq. (<a href="#mjx-eqn-EqIII1310">13.10</a>). The amplitudes $C_n$ are then given by
+\begin{equation}
+\label{Eq:III:13:14}
+C_n=e^{ikx_n}e^{-(i/\hbar)Et},
+\end{equation}
+
+where you should remember that the energy $E$ also depends on $k$ as
+given in Eq. (<a href="#mjx-eqn-EqIII1313">13.13</a>). The <em class="emph">space
+dependence</em> of the
+amplitudes is $e^{ikx_n}$. The amplitudes oscillate as we go along from
+one atom to the next.</p>
+</div>
+<div id="Ch13-S2-p5" class="para">
+<p class="p">We mean that, in space, the amplitude goes as a <em class="emph">complex</em>
+oscillation—the <em class="emph">magnitude</em> is the same at every atom, but the
+phase at a given time advances by the amount $(ikb)$ from one atom to
+the next. We can visualize what is going on by plotting a vertical
+line to show just the real part at each atom as we have done in
+Fig. <a href="#Ch13-F2">13–2</a>. The envelope of these vertical lines (as shown
+by the broken-line curve) is, of course, a cosine curve. The imaginary
+part of $C_n$ is also an oscillating function, but is shifted $90^\circ$
+in phase so that the absolute square (which is the sum of the squares of
+the real and imaginary parts) is the same for all the $C$’s.</p>
+</div>
+<div id="Ch13-F2" class="figure">
+<img src="img/FLP_III/f13-02/f13-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–2.</span>Variation of the real part of $C_n$ with $x_n$.
+</div>
+</div>
+<div id="Ch13-S2-p6" class="para">
+<p class="p">Thus if we pick a $k$, we get a stationary state of a particular
+energy $E$. And for any such state, the electron is equally likely to
+be found at every atom—there is no preference for one atom or the
+other. Only the phase is different for different atoms. Also, as time
+goes on the phases vary. From Eq. (<a href="#mjx-eqn-EqIII1314">13.14</a>) the real and
+imaginary parts propagate along the crystal as waves—namely as the
+real or imaginary parts of
+\begin{equation}
+\label{Eq:III:13:15}
+e^{i[kx_n-(E/\hbar)t]}.
+\end{equation}
+
+The wave can travel toward positive or negative $x$ depending on the
+sign we have picked for $k$.</p>
+</div>
+<div id="Ch13-S2-p7" class="para">
+<p class="p">Notice that we have been assuming that the number $k$ that we put in
+our trial solution, Eq. (<a href="#mjx-eqn-EqIII1310">13.10</a>), was a real number. We
+can see now why that must be so if we have an infinite line of
+atoms. Suppose that $k$ were an imaginary number, say $ik'$. Then the
+amplitudes $a_n$ would go as $e^{k'x_n}$, which means that the
+amplitude would get larger and larger as we go toward large $x$’s—or
+toward large negative $x$’s if $k'$ is a negative number. This kind of
+solution would be O.K. if we were dealing with line of atoms that
+ended, but cannot be a physical solution for an infinite chain of
+atoms. It would give infinite amplitudes—and, therefore, infinite
+probabilities—which can’t represent a real situation. Later on we
+will see an example in which an imaginary $k$ does make sense.</p>
+</div>
+<div id="Ch13-S2-p8" class="para">
+<p class="p">The relation between the energy $E$ and the wave number $k$ as given
+in Eq. (<a href="#mjx-eqn-EqIII1313">13.13</a>) is plotted in Fig. <a href="#Ch13-F3">13–3</a>. As you can
+see from the figure, the energy can go from $(E_0-2A)$ at $k=0$ to
+$(E_0+2A)$ at $k=\pm\pi/b$. The graph is plotted for positive $A$; if
+$A$ were negative, the curve would simply be inverted, but the range
+would be the same. The significant result is that any energy is
+possible within a certain range or “band” of energies, but no
+others. According to our assumptions, if an electron in a crystal is
+in a stationary state, it can have no energy other than values in this
+band.</p>
+</div>
+<div id="Ch13-F3" class="figure">
+<img src="img/FLP_III/f13-03/f13-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–3.</span>The energy of the stationary states as a function of the
+parameter $k$.
+</div>
+</div>
+<div id="Ch13-S2-p9" class="para">
+<p class="p">According to Eq. (<a href="#mjx-eqn-EqIII1313">13.13</a>), the smallest $k$’s correspond
+to low-energy states—$E\approx(E_0-2A)$. As $k$ increases in
+magnitude (toward either positive or negative values) the energy at
+first increases, but then reaches a maximum at $k=\pm\pi/b$, as shown
+in Fig. <a href="#Ch13-F3">13–3</a>. For $k$’s larger than $\pi/b$, the energy would
+start
+to decrease again. But we do not really need to consider such values
+of $k$, because they do not give new states—they just repeat states
+we already have for smaller $k$. We can see that in the following
+way. Consider the lowest energy state for which $k=0$. The
+coefficient $a(x_n)$ is the same for all $x_n$. Now we would get the same energy
+for $k=2\pi/b$. But then, using Eq. (<a href="#mjx-eqn-EqIII1310">13.10</a>), we have
+that
+\begin{equation*}
+a(x_n)=e^{i(2\pi/b)x_n}.
+\end{equation*}
+
+However, taking $x_0$ to be at the origin, we can set $x_n=nb$; then
+$a(x_n)$ becomes
+\begin{equation*}
+a(x_n)=e^{i2\pi n}=1.
+\end{equation*}
+
+The state described by these $a(x_n)$ is physically the same state we
+got for $k=0$. It does not represent a different solution.</p>
+</div>
+<div id="Ch13-S2-p10" class="para">
+<p class="p">As another example, suppose that $k$ were $-\pi/4b$. The real part
+of $a(x_n)$ would vary as shown by curve $1$ in Fig. <a href="#Ch13-F4">13–4</a>.
+If $k$ were $7\pi/4b$, the real part of $a(x_n)$ would vary as shown by
+curve $2$ in the figure. (The complete cosine curves don’t mean
+anything, of course; all that matters is their values <em class="emph">at the
+points $x_n$</em>. The curves are just to help you see how things are
+going.) You see that both values of $k$ give the same amplitudes at all
+of the $x_n$’s.</p>
+</div>
+<div id="Ch13-F4" class="figure">
+<img src="img/FLP_III/f13-04/f13-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–4.</span>Two values of $k$ which represent the same physical situation;
+curve $1$ is for $k = -\pi/4b$, curve $2$ is for $k = 7\pi/4b$.
+</div>
+</div>
+<div id="Ch13-S2-p11" class="para">
+<p class="p">The upshot is that we have all the possible solutions of our problem
+if we take only $k$’s in a certain limited range. We’ll pick the range
+between $-\pi/b$ and $+\pi/b$—the one shown in
+Fig. <a href="#Ch13-F3">13–3</a>. In this range, the energy of the stationary
+states increases uniformly with an increase in the magnitude of $k$.</p>
+</div>
+<div id="Ch13-S2-p12" class="para">
+<p class="p">One side remark about something you can play with. Suppose that the
+electron cannot only jump to the nearest neighbor with
+amplitude $iA/\hbar$, but also has the possibility to jump in one direct leap to
+the <em class="emph">next nearest</em> neighbor with some other
+amplitude $iB/\hbar$. You will find that the solution can again be written in
+the form $a_n=e^{ikx_n}$—this type of solution is universal. You
+will also find that the stationary states with wave number $k$ have an
+energy equal to $(E_0-2A\cos kb-2B\cos 2kb)$. This shows that the
+shape of the curve of $E$ against $k$ is not universal, but depends
+upon the particular assumptions of the problem. It is not always a
+cosine wave—it’s not even necessarily symmetrical about some
+horizontal line. It is true, however, that the curve always repeats
+itself outside of the interval from $-\pi/b$ to $\pi/b$, so you never
+need to worry about other values of $k$.</p>
+</div>
+<div id="Ch13-S2-p13" class="para">
+<p class="p">Let’s look a little more closely at what happens for small $k$—that
+is, when the variations of the amplitudes from one $x_n$ to the next
+are quite slow. Suppose we choose our zero of energy by
+defining $E_0=2A$; then the minimum of the curve in Fig. <a href="#Ch13-F3">13–3</a> is
+at
+the zero of energy. For small enough $k$, we can write that
+\begin{equation*}
+\cos kb\approx1-k^2b^2/2,
+\end{equation*}
+
+and the energy of Eq. (<a href="#mjx-eqn-EqIII1313">13.13</a>) becomes
+\begin{equation}
+\label{Eq:III:13:16}
+E=Ak^2b^2.
+\end{equation}
+
+We have that the energy of the state is proportional to the square of
+the wave number which describes the spatial variations of the
+amplitudes $C_n$.</p>
+</div>
+</div>
+<div id="Ch13-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">13–3</span>Time-dependent states</h3>
+<div id="Ch13-S3-p1" class="para">
+<p class="p">In this section we would like to discuss the behavior of states in the
+one-dimensional lattice in more detail. If the amplitude for an electron
+to be at $x_n$ is $C_n$, the probability of finding it there
+is $\abs{C_n}^2$. For the <em class="emph">stationary</em> states described by
+Eq. (<a href="#mjx-eqn-EqIII1314">13.14</a>), this probability is the same for all $x_n$ and
+does not change with time. How can we represent a situation which we
+would describe roughly by saying an electron of a certain energy is
+localized in a certain region—so that it is more likely to be found at
+one place than at some other place? We can do that by making a
+superposition of several solutions like Eq. (<a href="#mjx-eqn-EqIII1314">13.14</a>) with
+slightly different values of $k$—and, therefore, slightly different
+energies. Then at $t=0$, at least, the amplitude $C_n$ will vary with
+position because of the interference between the various terms, just as
+one gets beats when there is a mixture of waves of different wavelengths
+(as we discussed in Chapter <a href="I_48.html">48</a>, Vol. I). So we can make up
+a “wave packet” with a predominant wave
+number $k_0$, but with various other wave numbers
+near $k_0$.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a></p>
+</div>
+
+<div id="Ch13-F5" class="figure">
+<img src="img/FLP_III/f13-05/f13-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–5.</span>The real part of $C(x_n)$ as a function of $x$ for a
+superposition of several states of similar energy. (The spacing $b$ is
+very small on the scale of $x$ shown.)
+</div>
+</div>
+
+<div id="Ch13-S3-p2" class="para">
+<p class="p">In our superposition of stationary states, the amplitudes with
+different $k$’s will represent states of slightly different energies, and,
+therefore, of slightly different frequencies; the interference pattern
+of the total $C_n$ will, therefore, also vary with time—there will be
+a pattern of “beats.” As we have seen in Chapter <a href="I_48.html">48</a> of
+Volume I, the peaks of the beats [the place where $\abs{C(x_n)}^2$ is
+large] will move along in $x$ as time goes on; they move with the speed
+we have called the “group velocity.” We found that this group velocity
+was related to the variation of $k$ with frequency by
+\begin{equation}
+\label{Eq:III:13:17}
+v_{\text{group}}=\ddt{\omega}{k};
+\end{equation}
+the same derivation would apply equally well here. An electron state
+which is a “clump”—namely one for which the $C_n$ vary in space
+like the wave packet of Fig. <a href="#Ch13-F5">13–5</a>—will move along our
+one-dimensional “crystal” with the speed $v$ equal to $d\omega/dk$,
+where $\omega=E/\hbar$. Using (<a href="#mjx-eqn-EqIII1316">13.16</a>) for $E$, we get
+that
+\begin{equation}
+\label{Eq:III:13:18}
+v=\frac{2Ab^2}{\hbar}\,k.
+\end{equation}
+In other words, the electrons move along with a speed proportional to
+the typical $k$. Equation (<a href="#mjx-eqn-EqIII1316">13.16</a>) then says that the
+energy of such an electron is proportional to the square of its
+velocity—<em class="emph">it acts like a classical particle</em>. So long as we
+look at things on a scale gross enough that we don’t see the fine
+structure, our quantum mechanical picture begins to give results like
+classical physics. In fact, if we solve Eq. (<a href="#mjx-eqn-EqIII1318">13.18</a>)
+for $k$ and substitute into (<a href="#mjx-eqn-EqIII1316">13.16</a>), we can write
+\begin{equation}
+\label{Eq:III:13:19}
+E=\tfrac{1}{2}m_{\text{eff}}\,v^2,
+\end{equation}
+where $m_{\text{eff}}$ is a constant. The extra “energy of motion”
+of the electron in a packet depends on the velocity just as for a
+classical particle. The constant $m_{\text{eff}}$—called the
+“effective mass”—is given by
+\begin{equation}
+\label{Eq:III:13:20}
+m_{\text{eff}}=\frac{\hbar^2}{2Ab^2}.
+\end{equation}
+Also notice that we can write
+\begin{equation}
+\label{Eq:III:13:21}
+m_{\text{eff}}\,v=\hbar k.
+\end{equation}
+If we choose to call $m_{\text{eff}}\,v$ the “momentum,” it is
+related to the wave number $k$ in the way we have described earlier
+for a free particle.</p>
+</div>
+<div id="Ch13-S3-p3" class="para">
+<p class="p">Don’t forget that $m_{\text{eff}}$ has nothing to do with the real
+mass of an electron. It may be quite different—although in real
+crystals it often happens to turn out to be the same general order of
+magnitude, about $2$ to $20$ times the free-space mass of the
+electron.</p>
+</div>
+<div id="Ch13-S3-p4" class="para">
+<p class="p">We have now explained a remarkable mystery—how an electron in a
+crystal (like an extra electron put into germanium) can ride right
+through the crystal and flow perfectly freely even though it has to
+hit all the atoms. It does so by having its amplitudes going
+pip-pip-pip from one atom to the next, working its way through the
+crystal. That is how a solid can conduct electricity.</p>
+</div>
+</div>
+<div id="Ch13-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">13–4</span>An electron in a three-dimensional lattice</h3>
+<div id="Ch13-S4-p1" class="para">
+<p class="p">Let’s look for a moment at how we could apply the same ideas to see
+what happens to an electron in three dimensions. The results turn out
+to be very similar. Suppose we have a rectangular lattice of atoms
+with lattice spacings of $a$, $b$, $c$ in the three directions. (If
+you want a cubic lattice, take the three spacings all equal.) Also
+suppose that the amplitude to leap in the $x$-direction to a neighbor
+is $(iA_x/\hbar)$, to leap in the $y$-direction is $(iA_y/\hbar)$, and
+to leap in the $z$-direction is $(iA_z/\hbar)$. Now how should we
+describe the base states? As in the one-dimensional case, one base
+state is that the electron is at the atom whose locations are $x$,
+$y$, $z$, where $(x,y,z)$ is one of the lattice points. Choosing our
+origin at one atom, these points are all at
+\begin{equation*}
+x=n_xa,\quad
+y=n_yb,\quad
+\text{and}\quad
+z=n_zc,
+\end{equation*}
+
+where $n_x$, $n_y$, $n_z$ are any three integers. Instead of using
+subscripts to indicate such points, we will now just use $x$, $y$,
+and $z$, understanding that they take on only their values at the lattice
+points. Thus the base state is represented by the
+symbol $\ket{\text{electron at $x,y,z$}}$, and the amplitude for an electron
+in some state $\ket{\psi}$ to be in this base state
+is $C(x,y,z)=\braket{\text{electron at $x,y,z$}}{\psi}$.</p>
+</div>
+<div id="Ch13-S4-p2" class="para">
+<p class="p">As before, the amplitudes $C(x,y,z)$ may vary with time. With our
+assumptions, the Hamiltonian equations should be like this:
+<span class="eq-wide">
+\begin{align}
+i\hbar\dfrac{dC(x,y,z)}{dt}=E_0C(x,y,z)
+&-A_xC(x+a,y,z)-A_xC(x-a,y,z)\notag\\[-1pt]
+&-A_yC(x,y+b,z)-A_yC(x,y-b,z)\notag\\[4pt]
+\label{Eq:III:13:22}
+&-A_zC(x,y,z+c)-A_zC(x,y,z-c).
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+i\hbar\dfrac{dC(x,y,z)}{dt}&=E_0C(x,y,z)\notag\\[-.3ex]
+-&A_xC(x\!+\!a,y,z)\!-\!A_xC(x\!-\!a,y,z)\notag\\[1ex]
+-&A_yC(x,y\!+\!b,z)\!-\!A_yC(x,y\!-\!b,z)\notag\\[.9ex]
+\label{Eq:III:13:22}
+-&A_zC(x,y,z\!+c\!)\!-\!A_zC(x,y,z\!-\!c).
+\end{align}
+</span>
+It looks rather long, but you can see where each term comes from.</p>
+</div>
+<div id="Ch13-S4-p3" class="para">
+<p class="p">Again we can try to find a stationary state in which all the $C$’s
+vary with time in the same way. Again the solution is an exponential:
+\begin{equation}
+\label{Eq:III:13:23}
+C(x,y,z)=e^{-iEt/\hbar}e^{i(k_xx+k_yy+k_zz)}.
+\end{equation}
+
+If you substitute this into (<a href="#mjx-eqn-EqIII1322">13.22</a>) you see that it
+works, provided that the energy $E$ is related to $k_x$, $k_y$,
+and $k_z$ in the following way:
+\begin{equation}
+\label{Eq:III:13:24}
+E=E_0\!-\!2A_x\!\cos k_xa\!-\!2A_y\!\cos k_yb\!-\!2A_z\!\cos k_zc.
+\end{equation}
+
+
+The energy now depends on the <em class="emph">three</em> wave numbers $k_x$, $k_y$,
+$k_z$, which, incidentally, are the components of a three-dimensional
+vector $\FLPk$. In fact, we can write Eq. (<a href="#mjx-eqn-EqIII1323">13.23</a>) in
+vector notation as
+\begin{equation}
+\label{Eq:III:13:25}
+C(x,y,z)=e^{-iEt/\hbar}e^{i\FLPk\cdot\FLPr}.
+\end{equation}
+
+The amplitude varies as a complex <em class="emph">plane wave</em> in three
+dimensions, moving in the direction of $\FLPk$, and with the wave
+number $k=(k_x+k_y+k_z)^{1/2}$.</p>
+</div>
+<div id="Ch13-S4-p4" class="para">
+<p class="p">The energy associated with these stationary states depends on the
+three components of $\FLPk$ in the complicated way given in
+Eq. (<a href="#mjx-eqn-EqIII1324">13.24</a>). The nature, of the variation of $E$
+with $\FLPk$ depends on relative signs and magnitudes of $A_x$, $A_y$,
+and $A_z$. If these three numbers are all positive, and if we are interested
+in small values of $k$, the dependence is relatively simple.</p>
+</div>
+<div id="Ch13-S4-p5" class="para">
+<p class="p">Expanding the cosines as we did before to get Eq. (<a href="#mjx-eqn-EqIII1316">13.16</a>),
+we can now get that
+\begin{equation}
+\label{Eq:III:13:26}
+E=E_{\text{min}}+A_xa^2k_x^2+A_yb^2k_y^2+A_zc^2k_z^2.
+\end{equation}
+</p>
+</div>
+<div id="Ch13-S4-p6" class="para">
+<p class="p">For a simple cubic lattice with lattice spacing $a$ we expect that
+$A_x$ and $A_y$ and $A_z$ would be equal—say all are just $A$—and
+we would have just
+\begin{equation}
+E=E_{\text{min}}+Aa^2(k_x^2+k_y^2+k_z^2),\notag
+\end{equation}
+or
+\begin{equation}
+\label{Eq:III:13:27}
+E=E_{\text{min}}+Aa^2k^2.
+\end{equation}
+This is just like Eq. (<a href="#mjx-eqn-EqIII1316">13.16</a>). Following the arguments
+used there, we would conclude that an electron packet in <em class="emph">three</em>
+dimensions (made up by superposing many states with nearly equal
+energies) also moves like a classical particle with some effective
+mass.</p>
+</div>
+<div id="Ch13-S4-p7" class="para">
+<p class="p">In a crystal with a lower symmetry than cubic (or even in a cubic
+crystal in which the state of the electron at each atom is not
+symmetrical) the three coefficients $A_x$, $A_y$, and $A_z$ are
+different. Then the “effective mass” of an electron localized in a
+small region <em class="emph">depends on its direction of motion</em>. It could, for
+instance, have a different inertia for motion in the $x$-direction
+than for motion in the $y$-direction. (The details of such a situation
+are sometimes described in terms of an “effective mass tensor.”)</p>
+</div>
+</div>
+<div id="Ch13-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">13–5</span>Other states in a lattice</h3>
+<div id="Ch13-S5-p1" class="para">
+<p class="p">According to Eq. (<a href="#mjx-eqn-EqIII1324">13.24</a>) the electron states we have
+been talking about can have energies only in a certain “band” of
+energies which covers the energy range from the minimum energy
+\begin{equation*}
+E_0-2(A_x+A_y+A_z)\hphantom{.}
+\end{equation*}
+
+to the maximum energy
+\begin{equation*}
+E_0+2(A_x+A_y+A_z).
+\end{equation*}
+Other energies are possible, but they belong to a different class of
+electron states. For the states we have described, we imagined base
+states in which an electron is placed on an atom of the crystal in
+some particular state, say the lowest energy state.</p>
+</div>
+<div id="Ch13-S5-p2" class="para">
+<p class="p">If you have an atom in empty space, and add an electron to make an ion,
+the ion can be formed in many ways. The electron can go on in such a way
+as to make the state of lowest energy, or it can go on to make one or
+another of many possible “excited states” of the ion each with a definite
+energy above the lowest energy. The same thing can happen in a crystal.
+Let’s suppose that the energy $E_0$ we picked above corresponds to base
+states which are ions of the lowest possible energy. We could also
+imagine a new set of base states in which the electron sits near the
+$n$th atom in a different way—in one of the excited states of the
+ion—so that the energy $E_0$ is now quite a bit higher. As before
+there is some amplitude $A$ (different from before) that the electron
+will jump from its excited state at one atom to the same excited state
+at a neighboring atom. The whole analysis goes as before; we find a band
+of possible energies centered at a higher energy. There can, in general,
+be many such bands each corresponding to a different level of
+excitation.
+</p>
+</div>
+<div id="Ch13-S5-p3" class="para">
+<p class="p">There are also other possibilities. There may be some amplitude that
+the electron jumps from an excited condition at one atom to an
+unexcited condition at the next atom. (This is called an interaction
+between bands.) The mathematical theory gets more and more complicated
+as you take into account more and more bands and add more and more
+coefficients for leakage between the possible states. No new ideas are
+involved, however; the equations are set up much as we have done in
+our simple example.</p>
+</div>
+<div id="Ch13-S5-p4" class="para">
+<p class="p">We should remark also that there is not much more to be said about the
+various coefficients, such as the amplitude $A$, which appear in the
+theory. Generally they are very hard to calculate, so in practical
+cases very little is known theoretically about these parameters and
+for any particular real situation we can only take values determined
+experimentally.</p>
+</div>
+<div id="Ch13-S5-p5" class="para">
+<p class="p">There are other situations where the physics and mathematics are
+almost exactly like what we have found for an electron moving in a
+crystal, but in which the “object” that moves is quite
+different. For instance, suppose that our original crystal—or rather
+linear lattice—was a line of neutral atoms, each with a loosely
+bound outer electron. Then imagine that we were to remove one
+electron. Which atom has lost its electron? Let $C_n$ now represent
+the amplitude that the electron <em class="emph">is missing</em> from the atom
+at $x_n$. There will, in general, be some amplitude $iA/\hbar$ that the
+electron at a neighboring atom—say the $(n-1)$st atom—will jump to
+the $n$th leaving the $(n-1)$st atom without its electron. This is the
+same as saying that there is an amplitude $A$ for the “missing
+electron” to jump from the $n$th atom to the $(n-1)$st atom. You can
+see that the equations will be exactly the same—of course, the value
+of $A$ need not be the same as we had before. Again we will get the
+same formulas for the energy levels, for the “waves” of probability
+which move through the crystal with the group velocity of
+Eq. (<a href="#mjx-eqn-EqIII1318">13.18</a>), for the effective mass, and so on. Only now
+the waves describe the behavior of the <em class="emph">missing electron</em>—or
+“hole” as it is called. So a “hole” acts just like a particle with a
+certain mass $m_{\text{eff}}$. You can see that this particle will
+appear to have a positive charge. We’ll have some more to say about such
+holes in the next chapter.</p>
+</div>
+<div id="Ch13-S5-p6" class="para">
+<p class="p">As another example, we can think of a line of identical <em class="emph">neutral</em>
+atoms one of which has been put into an excited state—that is, with
+more than its normal ground state energy. Let $C_n$ be the amplitude
+that the $n$th atom has the excitation. It can interact with a
+neighboring atom by handing over to it the extra energy and returning
+to the ground state. Call the amplitude for this
+process $iA/\hbar$. You can see that it’s the same mathematics all over
+again. Now the object which moves is called an
+<em class="emph">exciton</em>. It behaves like a neutral “particle”
+moving through the crystal, carrying the excitation energy. Such motion
+may be involved in certain biological processes such as
+vision, or photosynthesis. It has been guessed that the
+absorption of light in the retina produces an “exciton”
+which moves through some periodic structure (such as the layers in the
+rods we described in
+Chapter <a href="I_36.html">36</a>, Vol. I; see Fig. <a href="I_36.html#Ch36-F5">36–5</a>) to be
+accumulated at some special station where the energy is used to induce a
+chemical reaction.
+</p>
+</div>
+</div>
+<div id="Ch13-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">13–6</span>Scattering from imperfections in the lattice</h3>
+<div id="Ch13-S6-p1" class="para">
+<p class="p">We want now to consider the case of a single electron in a crystal
+which is not perfect. Our earlier analysis says that perfect crystals
+have perfect conductivity—that electrons can go slipping through the
+crystal, as in a vacuum, without friction. One of the most important
+things that can stop an electron from going on forever is an
+imperfection or irregularity in the crystal. As an example, suppose
+that somewhere in the crystal there is a missing atom; or suppose that
+someone put one wrong atom at one of the atomic sites so that things
+there are different than at the other atomic sites. Say the
+energy $E_0$ or the amplitude $A$ could be different. How would we describe
+what happens then?
+</p>
+</div>
+<div id="Ch13-S6-p2" class="para">
+<p class="p">To be specific, we will return to the one-dimensional case and we will
+assume that atom number “zero” is an “impurity” atom and has a
+different value of $E_0$ than any of the other atoms. Let’s call this
+energy $(E_0+F)$. What happens? When an electron arrives at atom
+“zero” there is some probability that the electron is scattered
+backwards. If a wave packet is moving along and it reaches a place
+where things are a little bit different, some of it will continue
+onward and some of it will bounce back. It’s quite difficult to
+analyze such a situation using a wave packet, because everything
+varies in time. It is much easier to work with steady-state
+solutions. So we will work with stationary states, which we will find
+can be made up of continuous waves which have transmitted and
+reflected parts. In three dimensions we would call the reflected part
+the scattered wave, since it would spread out in various directions.</p>
+</div>
+<div id="Ch13-S6-p3" class="para">
+<p class="p">We start out with a set of equations which are just like the ones in
+Eq. (<a href="#mjx-eqn-EqIII136">13.6</a>) except that the equation for $n=0$ is
+different from all the rest. The five equations for $n=-2$, $-1$, $0$,
+$+1$, and $+2$ look like this:
+\begin{equation}
+\label{Eq:III:13:28}
+\begin{aligned}
+\vdots\quad&\qquad\qquad\qquad\quad\vdots\\
+Ea_{-2}&=E_0a_{-2}-Aa_{-1}-Aa_{-3},\\[2pt]
+Ea_{-1}&=E_0a_{-1}-Aa_0-Aa_{-2},\\[2pt]
+Ea_0&=(E_0+F)a_0-Aa_1-Aa_{-1},\\[2pt]
+Ea_1&=E_0a_1-Aa_2-Aa_0,\\[2pt]
+Ea_2&=E_0a_2-Aa_3-Aa_1,\\
+\vdots\quad&\qquad\qquad\qquad\quad\vdots
+\end{aligned}
+\end{equation}
+
+There are, of course, all the other equations for $\abs{n}$ is greater
+than 2. They will look just like Eq. (<a href="#mjx-eqn-EqIII136">13.6</a>).</p>
+</div>
+<div id="Ch13-S6-p4" class="para">
+<p class="p">For the general case, we really ought to use a different $A$ for the
+amplitude that the electron jumps to or from atom “zero,” but the
+main features of what goes on will come out of a simplified example in
+which all the $A$’s are equal.</p>
+</div>
+<div id="Ch13-S6-p5" class="para">
+<p class="p">Equation (<a href="#mjx-eqn-EqIII1310">13.10</a>) would still work as a solution for all
+of the equations except the one for atom “zero”—it isn’t right for
+that one equation. We need a different solution which we can cook up
+in the following way. Equation (<a href="#mjx-eqn-EqIII1310">13.10</a>) represents a wave
+going in the positive $x$-direction. A wave going in the negative
+$x$-direction would have been an equally good solution. It would be
+written
+\begin{equation*}
+a(x_n)=e^{-ikx_n}.
+\end{equation*}
+
+The most general solution we could have taken for
+Eq. (<a href="#mjx-eqn-EqIII136">13.6</a>) would be a combination of a forward and a
+backward wave, namely
+\begin{equation}
+\label{Eq:III:13:29}
+a_n=\alpha e^{ikx_n}+\beta e^{-ikx_n}.
+\end{equation}
+
+This solution represents a complex wave of amplitude $\alpha$ moving
+in the $+x$-direction and a wave of amplitude $\beta$ moving in the
+$-x$-direction.</p>
+</div>
+<div id="Ch13-S6-p6" class="para">
+<p class="p">Now take a look at the set of equations for our new problem—the ones
+in (<a href="#mjx-eqn-EqIII1328">13.28</a>) together with those for all the other
+atoms. The equations involving $a_n$’s with $n\leq-1$ are all
+satisfied by Eq. (<a href="#mjx-eqn-EqIII1329">13.29</a>), with the condition that $k$
+is related to $E$ and the lattice spacing $b$ by
+\begin{equation}
+\label{Eq:III:13:30}
+E=E_0-2A\cos kb.
+\end{equation}
+
+The physical meaning is an “incident” wave of amplitude $\alpha$
+approaching atom “zero” (the “scatterer”) from the left, and a
+“scattered” or “reflected” wave of amplitude $\beta$ going back
+toward the left. We do not lose any generality if we set the
+amplitude $\alpha$ of the incident wave equal to $1$. Then the
+amplitude $\beta$ is, in general, a complex number.</p>
+</div>
+<div id="Ch13-S6-p7" class="para">
+<p class="p">We can say all the same things about the solutions of $a_n$
+for $n\geq1$. The coefficients could be different, so we would have for
+them
+\begin{equation}
+\label{Eq:III:13:31}
+a_n=\gamma e^{ikx_n}+\delta e^{-ikx_n},\quad
+\text{for}\quad
+n\geq1.
+\end{equation}
+
+Here, $\gamma$ is the amplitude of a wave going to the right and
+$\delta$ a wave coming from the right. We want to consider the
+<em class="emph">physical</em> situation in which a wave is originally started only
+from the left, and there is only a “transmitted” wave that comes out
+beyond the scatterer—or impurity atom. We will try for a solution in
+which $\delta=0$. We can, certainly, satisfy all of the equations for
+the $a_n$ except for the middle three in Eq. (<a href="#mjx-eqn-EqIII1328">13.28</a>) by
+the following trial solutions.
+\begin{align}
+a_n\:(\text{for $n&lt;0$}) &=e^{ikx_n}+\beta e^{-ikx_n},\notag\\[1ex]
+\label{Eq:III:13:32}
+a_n\:(\text{for $n&gt;0$}) &=\gamma e^{ikx_n}.
+\end{align}
+The situation we are talking about is illustrated in Fig. <a href="#Ch13-F6">13–6</a>.</p>
+</div>
+<div id="Ch13-F6" class="figure">
+<img src="img/FLP_III/f13-06/f13-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–6.</span>Waves in a one-dimensional lattice with one “impurity” atom
+at $n=0$.
+</div>
+</div>
+<div id="Ch13-S6-p8" class="para">
+<p class="p">By using the formulas in Eq. (<a href="#mjx-eqn-EqIII1332">13.32</a>) for $a_{-1}$
+and $a_{+1}$, the three middle equations of Eq. (<a href="#mjx-eqn-EqIII1328">13.28</a>)
+will allow us to solve for $a_0$ and also for the two coefficients
+$\beta$ and $\gamma$. So we have found a complete solution.
+Setting $x_n=nb$, we have to solve the three equations
+<span class="eq-wide">
+\begin{equation}
+\begin{gathered}
+(E-E_0)\{e^{ik(-b)}+\beta e^{-ik(-b)}\}=
+-A\{a_0+e^{ik(-2b)}+\beta e^{-ik(-2b)}\},\\[1ex]
+(E-E_0-F)a_0=
+-A\{\gamma e^{ikb}+e^{ik(-b)}+\beta e^{-ik(-b)}\},\\[1ex]
+(E-E_0)\gamma e^{ikb}=
+-A\{\gamma e^{ik(2b)}+a_0\}.
+\end{gathered}
+\label{Eq:III:13:33}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+(E\!-\!E_0)\{e^{ik(-b)}\!&+\beta e^{-ik(-b)}\}=\\
+&-A\{a_0\!+e^{ik(-2b)}\!+\beta e^{-ik(-2b)}\},\\[1ex]
+(E\!-\!E_0\!-\!F)a_0=\!&-\!A\{\gamma e^{ikb}\!+e^{ik(-b)}\!+\beta e^{-ik(-b)}\},\\[1ex]
+(E\!-\!E_0)\gamma e^{ikb}=\!&-\!A\{\gamma e^{ik(2b)}\!+a_0\}.
+\end{aligned}
+\label{Eq:III:13:33}
+\end{equation}
+</span>
+</p>
+</div>
+<div id="Ch13-S6-p9" class="para">
+<p class="p">Remember that $E$ is given in terms of $k$ by Eq. (<a href="#mjx-eqn-EqIII1330">13.30</a>).
+If you substitute this value for $E$ into the equations, and remember
+that $\cos x=\tfrac{1}{2}(e^{ix}+e^{-ix})$, you get from the first
+equation that
+\begin{equation}
+\label{Eq:III:13:34}
+a_0=1+\beta,
+\end{equation}
+
+and from the third equation that
+\begin{equation}
+\label{Eq:III:13:35}
+a_0=\gamma.
+\end{equation}
+
+These are consistent only if
+\begin{equation}
+\label{Eq:III:13:36}
+\gamma=1+\beta.
+\end{equation}
+This equation says that the transmitted wave ($\gamma$) is just the
+original incident wave ($1$) with an added wave ($\beta$) equal to the
+reflected wave. This is not always true, but happens to be so for a
+scattering at one atom only. If there were a clump of impurity atoms,
+the amount added to the forward wave would not necessarily be the same
+as the reflected wave.</p>
+</div>
+<div id="Ch13-S6-p10" class="para">
+<p class="p">We can get the amplitude $\beta$ of the reflected wave from the middle
+equation of Eq. (<a href="#mjx-eqn-EqIII1333">13.33</a>); we find that
+\begin{equation}
+\label{Eq:III:13:37}
+\beta=\frac{-F}{F-2iA\sin kb}.
+\end{equation}
+
+We have the complete solution for the lattice with one unusual atom.</p>
+</div>
+<div id="Ch13-S6-p11" class="para">
+<p class="p">You may be wondering how the transmitted wave can be “more” than the
+incident wave as it appears in Eq. (<a href="#mjx-eqn-EqIII1334">13.34</a>). Remember,
+though, that $\beta$ and $\gamma$ are complex numbers and that the
+number of particles (or rather, the probability of finding a particle)
+in a wave is proportional to the absolute square of the amplitude. In
+fact, there will be “conservation of electrons” only if
+\begin{equation}
+\label{Eq:III:13:38}
+\abs{\beta}^2+\abs{\gamma}^2=1.
+\end{equation}
+
+You can show that this is true for our solution.</p>
+</div>
+</div>
+<div id="Ch13-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">13–7</span>Trapping by a lattice imperfection</h3>
+<div id="Ch13-S7-p1" class="para">
+<p class="p">There is another interesting situation that can arise if $F$ is a
+negative number. If the energy of the electron is lower at the
+impurity atom (at $n=0$) than it is anywhere else, then the electron
+can get caught on this atom. That is, if $(E_0+F)$ is below the bottom
+of the band at $(E_0-2A)$, then the electron can get “trapped” in a
+state with $E&lt;E_0-2A$. Such a solution cannot come out of what we have
+done so far. We can get this solution, however, if we permit the trial
+solution we took in Eq. (<a href="#mjx-eqn-EqIII1310">13.10</a>) to have an imaginary
+number for $k$. Let’s set $k=\pm i\kappa$. Again, we can have
+different solutions for $n&lt;0$ and for $n&gt;0$. A possible solution
+for $n&lt;0$ might be
+\begin{equation}
+\label{Eq:III:13:39}
+a_n\:(\text{for $n&lt;0$})=ce^{+\kappa x_n}.
+\end{equation}
+
+We have to take a plus sign in the exponent; otherwise the amplitude
+would get indefinitely large for large negative values of $n$.
+Similarly, a possible solution for $n&gt;0$ would be
+\begin{equation}
+\label{Eq:III:13:40}
+a_n\:(\text{for $n&gt;0$})=c'e^{-\kappa x_n}.
+\end{equation}
+</p>
+</div>
+<div id="Ch13-S7-p2" class="para">
+<p class="p">If we put these trial solutions into Eq. (<a href="#mjx-eqn-EqIII1328">13.28</a>) all
+but the middle three are satisfied provided that
+\begin{equation}
+\label{Eq:III:13:41}
+E=E_0-A(e^{\kappa b}+e^{-\kappa b}).
+\end{equation}
+
+Since the sum of the two exponential terms is always greater than $2$,
+this energy is below the regular band, and is what we are looking
+for. The remaining three equations in Eq. (<a href="#mjx-eqn-EqIII1328">13.28</a>) are
+satisfied if $a_0=c=c'$ and if $\kappa$ is chosen so that
+\begin{equation}
+\label{Eq:III:13:42}
+A(e^{\kappa b}-e^{-\kappa b})=-F.
+\end{equation}
+
+Combining this equation with Eq. (<a href="#mjx-eqn-EqIII1341">13.41</a>) we can find
+the energy of the trapped electron; we get
+\begin{equation}
+\label{Eq:III:13:43}
+E=E_0-\sqrt{4A^2+F^2}.
+\end{equation}
+
+The trapped electron has a unique energy—located somewhat below the
+conduction band.</p>
+</div>
+<div id="Ch13-S7-p3" class="para">
+<p class="p">Notice that the amplitudes we have in Eq. (<a href="#mjx-eqn-EqIII1339">13.39</a>)
+and (<a href="#mjx-eqn-EqIII1340">13.40</a>) do <em class="emph">not</em> say that the trapped electron
+sits right on the impurity atom. The probability of finding the electron
+at nearby atoms is given by the square of these amplitudes. For one
+particular choice of the parameters it might vary as shown in the bar
+graph of Fig. <a href="#Ch13-F7">13–7</a>. The probability is greatest for
+finding the electron on the impurity atom. For nearby atoms the
+probability drops off exponentially with the distance from the impurity
+atom. This is another example of “barrier penetration.” From the
+point-of-view of classical physics the electron doesn’t have enough
+energy to get away from the energy “hole” at the trapping center. But
+quantum mechanically it can leak out a little way.</p>
+</div>
+<div id="Ch13-F7" class="figure">
+<img src="img/FLP_III/f13-07/f13-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–7.</span>The relative probabilities of finding a trapped electron at
+atomic sites near the trapping impurity atom.
+</div>
+</div>
+</div>
+<div id="Ch13-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">13–8</span>Scattering amplitudes and bound states</h3>
+<div id="Ch13-S8-p1" class="para">
+<p class="p">Finally, our example can be used to illustrate a point which is very
+useful these days in the physics of high-energy particles. It has to
+do with a relationship between scattering amplitudes and bound
+states. Suppose we have discovered—through experiment and
+theoretical analysis—the way that pions scatter from protons. Then a
+new particle is discovered and someone wonders whether maybe it is
+just a combination of a pion and a proton held together in some bound
+state (in an analogy to the way an electron is bound to a proton to
+make a hydrogen atom). By a bound state we mean a combination which
+has a lower energy than the two free-particles.</p>
+</div>
+<div id="Ch13-S8-p2" class="para">
+<p class="p">There is a general theory which says that a bound state will exist at
+that energy at which the scattering amplitude becomes infinite if
+extrapolated algebraically (the mathematical term is “analytically
+continued”) to energy regions outside of the permitted band.</p>
+</div>
+<div id="Ch13-S8-p3" class="para">
+<p class="p">The physical reason for this is as follows. A bound state is a
+situation in which there are only waves tied on to a point and there’s
+no wave coming in to get it started, it just exists there by
+itself. The relative proportion between the so-called “scattered” or
+created wave and the wave being “sent in” is infinite. We can test
+this idea in our example. Let’s write our expression
+Eq. (<a href="#mjx-eqn-EqIII1337">13.37</a>) for the scattered amplitude directly in terms
+of the energy $E$ of the particle being scattered (instead of in terms
+of $k$). Since Equation (<a href="#mjx-eqn-EqIII1330">13.30</a>) can be rewritten as
+\begin{equation*}
+2A\sin kb=\sqrt{4A^2-(E-E_0)^2},
+\end{equation*}
+
+the scattered amplitude is
+\begin{equation}
+\label{Eq:III:13:44}
+\beta=\frac{-F}{F-i\sqrt{4A^2-(E-E_0)^2}}.
+\end{equation}
+
+From our derivation, this equation should be used only for real states—those
+with energies in the energy band, $E=E_0\pm2A$. But suppose we forget that fact
+and extend the formula into the “unphysical” energy regions
+where $\abs{E-E_0}&gt;2A$. For these unphysical regions we can write<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+\begin{equation*}
+\sqrt{4A^2-(E-E_0)^2}=i\sqrt{(E-E_0)^2-4A^2}.
+\end{equation*}
+
+Then the “scattering amplitude,” whatever it may mean, is
+\begin{equation}
+\label{Eq:III:13:45}
+\beta=\frac{-F}{F+\sqrt{(E-E_0)^2-4A^2}}.
+\end{equation}
+
+Now we ask: Is there any energy $E$ for which $\beta$ becomes infinite
+(i.e., for which the expression for $\beta$ has a “pole”)? Yes, so
+long as $F$ is negative, the denominator of Eq. (<a href="#mjx-eqn-EqIII1345">13.45</a>)
+will be zero when
+\begin{equation*}
+(E-E_0)^2-4A^2=F^2,
+\end{equation*}
+
+or when
+\begin{equation*}
+E=E_0\pm\sqrt{4A^2+F^2}.
+\end{equation*}
+The minus sign gives just the energy we found in Eq. (<a href="#mjx-eqn-EqIII1343">13.43</a>)
+for the trapped energy.</p>
+</div>
+<div id="Ch13-S8-p4" class="para">
+<p class="p">What about the plus sign? This gives an energy <em class="emph">above</em> the
+allowed energy band. And indeed there is another bound state there
+which we missed when we solved the equations of
+Eq. (<a href="#mjx-eqn-EqIII1328">13.28</a>). We leave it as a puzzle for you to find the
+energy and amplitudes $a_n$ for this bound state.</p>
+</div>
+<div id="Ch13-S8-p5" class="para">
+<p class="p">The relation between scattering and bound states provides one of the
+most useful clues in the current search for an understanding of the
+experimental observations about the new strange particles.</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  Provided we do not try to make the packet too
+narrow.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  The
+sign of the root to be chosen here is a technical point related to the allowed
+signs of $\kappa$ in Eqs. (<a href="#mjx-eqn-EqIII1339">13.39</a>) and (<a href="#mjx-eqn-EqIII1340">13.40</a>).
+We won’t go into it here.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div>
+
+</div>
+    
+  </body>
+</html>

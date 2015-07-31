@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 34: The Magnetism of Matter</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "34." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch34" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">34</span>The Magnetism of Matter</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Review:</i>
+		</td>
+		<td>
+		Section&nbsp;<a href="II_15.html#Ch15-S1">15-1</a>, Vol.&nbsp;II, “The forces on a current loop; energy of a dipole.”
+		</td>
+	</tr>
+</table>
+
+<div id="Ch34-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">34–1</span>Diamagnetism and paramagnetism</h3>
+
+<div id="Ch34-S1-p1" class="para">
+<p class="p">In this chapter we are going to talk about the magnetic
+properties of materials. The material which has the most striking
+magnetic properties is, of course, iron. Similar magnetic properties are
+shared also by the elements nickel, cobalt, and—at sufficiently low
+temperatures (below&nbsp;$16^\circ$C)—by gadolinium, as well as by a number
+of peculiar alloys. That kind of magnetism, called
+<em class="emph">ferromagnetism</em>, is sufficiently striking and complicated that we
+will discuss it in a special chapter. However, all ordinary substances
+do show some magnetic effects, although very small ones—a thousand to
+a million times less than the effects in ferromagnetic materials. Here
+we are going to describe ordinary magnetism, that is to say, the
+magnetism of substances other than the ferromagnetic ones.
+</p>
+</div>
+
+<div id="Ch34-S1-p2" class="para">
+<p class="p">This small magnetism is of two kinds. Some materials are
+<em class="emph">attracted</em> toward magnetic fields; others are <em class="emph">repelled</em>.
+Unlike the electrical effect in matter, which always causes dielectrics
+to be attracted, there are two signs to the magnetic effect. These two
+signs can be easily shown with the help of a strong electromagnet which
+has one sharply pointed pole piece and one flat pole piece, as drawn in
+Fig.&nbsp;<a href="#Ch34-F1">34-1</a>. The magnetic field is much stronger near the
+pointed pole than near the flat pole. If a small piece of material is
+fastened to a long string and suspended between the poles, there will,
+in general, be a small force on it. This small force can be seen by the
+slight displacement of the hanging material when the magnet is turned
+on. The few ferromagnetic materials are attracted very strongly toward
+the pointed pole; all other materials feel only a very weak force. Some
+are weakly attracted to the pointed pole; and some are weakly repelled.
+</p>
+</div>
+
+<div id="Ch34-F1" class="figure">
+<img src="img/FLP_II/f34-01/f34-01_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 34–1.</span>
+A small cylinder of bismuth is weakly repelled by the sharp
+pole; a piece of aluminum is attracted.
+</div>
+</div>
+
+<div id="Ch34-S1-p3" class="para">
+<p class="p">The effect is most easily seen with a small cylinder of bismuth, which
+is <em class="emph">repelled</em> from the high-field region. Substances which are
+repelled in this way are called <em class="emph">diamagnetic</em>. Bismuth is one of
+the strongest diamagnetic materials, but even with it, the effect is
+still quite weak. Diamagnetism is always very weak. If a small piece
+of aluminum is suspended between the poles, there is also a weak
+force, but <em class="emph">toward</em> the pointed pole. Substances like aluminum
+are called <em class="emph">paramagnetic</em>. (In such an experiment, eddy-current
+forces arise when the magnet is turned on and off, and these can give
+off strong impulses. You must be careful to look for the net
+displacement after the hanging object settles down.)
+</p>
+</div>
+
+<div id="Ch34-S1-p4" class="para">
+<p class="p">We want now to describe briefly the mechanisms of these two effects.
+First, in many substances the atoms have no permanent magnetic
+moments, or rather, all the magnets within each atom balance out so
+that the <em class="emph">net</em> moment of the atom is zero. The electron spins and
+orbital motions all exactly balance out, so that any particular atom
+has no average magnetic moment. In these circumstances, when you turn on
+a magnetic field little extra currents are generated inside the atom by
+induction. According to Lenz’s law, these currents are in such a direction as to oppose the
+increasing field. So the induced magnetic moments of the atoms are
+directed <em class="emph">opposite</em> to the magnetic field. This is the mechanism of
+diamagnetism.
+</p>
+</div>
+
+<div id="Ch34-S1-p5" class="para">
+<p class="p">Then there are some substances for which the atoms do have a permanent
+magnetic moment—in which the electron spins and orbits have a net
+circulating current that is not zero. So besides the diamagnetic
+effect (which is always present), there is also the possibility of
+lining up the individual atomic magnetic moments. In this case, the
+moments try to line up <em class="emph">with</em> the magnetic field (in the way the
+permanent dipoles of a dielectric are lined up by the electric field),
+and the induced magnetism tends to enhance the magnetic field. These
+are the paramagnetic substances. Paramagnetism is generally fairly
+weak because the lining-up forces are relatively small compared with
+the forces from the thermal motions which try to derange the order. It
+also follows that paramagnetism is usually sensitive to the
+temperature. (The paramagnetism arising from the spins of the
+electrons responsible for conduction in a metal constitutes an
+exception. We will not be discussing this phenomenon here.) For
+ordinary paramagnetism, the lower the temperature, the stronger the
+effect. There is more lining-up at low temperatures when the deranging
+effects of the collisions are less. Diamagnetism, on the other hand,
+is more or less independent of the temperature. In any substance with
+built-in magnetic moments there is a diamagnetic as well as a
+paramagnetic effect, but the paramagnetic effect usually dominates.
+</p>
+</div>
+
+<div id="Ch34-S1-p6" class="para">
+<p class="p">In Chapter&nbsp;<a href="II_11.html">11</a> we described a <em class="emph">ferroelectric</em> material,
+in which all the electric dipoles get lined up by their own mutual
+electric fields. It is also possible to imagine the magnetic analog of
+ferroelectricity, in which all the atomic moments would line up and lock
+together. If you make calculations of how this should happen, you will
+find that because the magnetic forces are so much smaller than the
+electric forces, thermal motions should knock out this alignment even at
+temperatures as low as a few tenths of a degree Kelvin. So it would be
+impossible at room temperature to have any permanent lining up of the
+magnets.
+</p>
+</div>
+
+<div id="Ch34-S1-p7" class="para">
+<p class="p">On the other hand, this is exactly what does happen in iron—it does
+get lined up. There is an effective force between the magnetic moments
+of the different atoms of iron which is much, much greater than the
+<em class="emph">direct magnetic</em> interaction. It is an indirect effect which can
+be explained only by quantum mechanics. It is about ten thousand times
+stronger than the direct magnetic interaction, and is what lines up
+the moments in ferromagnetic materials. We discuss this special
+interaction in a later chapter.
+</p>
+</div>
+
+<div id="Ch34-S1-p8" class="para">
+<p class="p">Now that we have tried to give you a qualitative explanation of
+diamagnetism and paramagnetism, we must correct ourselves and say that
+<em class="emph">it is not possible</em> to understand the magnetic effects of
+materials in any honest way from the point of view of classical
+physics. Such magnetic effects are a <em class="emph">completely
+quantum-mechanical phenomenon</em>. It is, however, possible to make some
+phoney classical arguments and to get some idea of what is going
+on. We might put it this way. You can make some classical arguments
+and get guesses as to the behavior of the material, but these
+arguments are not “legal” in any sense because it is absolutely
+essential that quantum mechanics be involved in every one of these
+magnetic phenomena. On the other hand, there are situations, such as
+in a plasma or a region of space with many free electrons, where the
+electrons do obey the laws of classical mechanics. And in those
+circumstances, some of the theorems from classical magnetism are worth
+while. Also, the classical arguments are of some value for historical
+reasons. The first few times that people were able to guess at the
+meaning and behavior of magnetic materials, they used classical
+arguments. Finally, as we have already illustrated, classical
+mechanics can give us some useful guesses as to what might
+happen—even though the really honest way to study this subject would
+be to learn quantum mechanics first and then to understand the
+magnetism in terms of quantum mechanics.
+</p>
+</div>
+
+<div id="Ch34-S1-p9" class="para">
+<p class="p">On the other hand, we don’t want to wait until we learn quantum
+mechanics inside out to understand a simple thing like
+diamagnetism. We will have to lean on the classical mechanics as kind
+of half showing what happens, realizing, however, that the arguments
+are really not correct. We therefore make a series of theorems about
+classical magnetism that will confuse you because they will prove
+different things. Except for the last theorem, every one of them will
+be wrong. Furthermore, they will all be wrong as a description of the
+physical world, because quantum mechanics is left out.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch34-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">34–2</span>Magnetic moments and angular momentum</h3>
+
+<div id="Ch34-S2-p1" class="para">
+<p class="p">The first theorem we want to prove from classical mechanics is the
+following: If an electron is moving in a circular orbit (for example,
+revolving around a nucleus under the influence of a central force),
+there is a definite ratio between the magnetic moment and the angular
+momentum. Let’s call $\FLPJ$ the angular momentum and $\FLPmu$ the
+magnetic moment of the electron in the orbit. The magnitude of the
+angular momentum is the mass of the electron times the velocity times
+the radius. (See Fig.&nbsp;<a href="#Ch34-F2">34-2</a>.) It is directed perpendicular to the
+plane of the orbit.
+\begin{equation}
+\label{Eq:II:34:1}
+J=mvr.
+\end{equation}
+(This is, of course, a nonrelativistic formula, but it is a good
+approximation for atoms, because for the electrons involved $v/c$&nbsp;is
+generally of the order of&nbsp;$e^2/\hbar c\approx1/137$, or about $1$&nbsp;percent.)
+</p>
+</div>
+
+<div id="Ch34-F2" class="figure">
+<img src="img/FLP_II/f34-02/f34-02_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 34–2.</span>
+For any circular orbit the magnetic moment&nbsp;$\Figmu$ is
+$q/2m$&nbsp;times the angular momentum&nbsp;$\FigJ$.
+</div>
+</div>
+
+<div id="Ch34-S2-p2" class="para">
+<p class="p">The magnetic moment of the same orbit is the current times the
+area. (See Section&nbsp;<a href="II_14.html#Ch14-S5">14-5</a>.) The current is the charge per
+unit time which passes any point on the orbit, namely, the charge&nbsp;$q$
+times the frequency of rotation. The frequency is the velocity divided
+by the circumference of the orbit; so
+\begin{equation*}
+I=q\,\frac{v}{2\pi r}.
+\end{equation*}
+The area is&nbsp;$\pi r^2$, so the magnetic moment is
+\begin{equation}
+\label{Eq:II:34:2}
+\mu=\frac{qvr}{2}.
+\end{equation}
+It is also directed perpendicular to the plane of the orbit. So
+$\FLPJ$ and&nbsp;$\FLPmu$ are in the same direction:
+\begin{equation}
+\label{Eq:II:34:3}
+\FLPmu=\frac{q}{2m}\,\FLPJ\:(\text{orbit}).
+\end{equation}
+Their ratio depends neither on the velocity nor on the radius. For any
+particle moving in a circular orbit the magnetic moment is equal to
+$q/2m$&nbsp;times the angular momentum. For an electron, the charge is
+negative—we can call it&nbsp;$-q_e$; so for an electron
+\begin{equation}
+\label{Eq:II:34:4}
+\FLPmu=-\frac{q_e}{2m}\,\FLPJ\:(\text{electron orbit}).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch34-S2-p3" class="para">
+<p class="p">That’s what we would expect classically and, miraculously enough, it
+is also true quantum-mechanically. It’s one of those things. However,
+if you keep going with the classical physics, you find other places
+where it gives the wrong answers, and it is a great game to try to
+remember which things are right and which things are wrong. We might
+as well give you immediately what is true <em class="emph">in general</em> in quantum
+mechanics. First, Eq.&nbsp;(<a href="#mjx-eqn-EqII344">34.4</a>) is true for <em class="emph">orbital
+motion</em>, but that’s
+not the only magnetism that exists. The electron also has a spin
+rotation about its own axis (something like the earth rotating on its
+axis), and as a result of that spin it has both an angular momentum and
+a magnetic moment. But for reasons that are purely
+quantum-mechanical—there is no classical explanation—the ratio of
+$\FLPmu$ to&nbsp;$\FLPJ$ for the electron spin is twice as large as it is for
+orbital motion of the spinning electron:
+\begin{equation}
+\label{Eq:II:34:5}
+\FLPmu=-\frac{q_e}{m}\,\FLPJ\:(\text{electron spin}).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch34-S2-p4" class="para">
+<p class="p">In any atom there are, generally speaking, several electrons and some
+combination of spin and orbit rotations which builds up a total
+angular momentum and a total magnetic moment. Although there is no
+classical reason why it should be so, it is <em class="emph">always true</em> in
+quantum mechanics that (for an isolated atom) the direction of the
+magnetic moment is exactly opposite to the direction of the angular
+momentum. The ratio of the two is not necessarily either $-q_e/m$
+or&nbsp;$-q_e/2m$, but somewhere in between, because there is a mixture of the
+contributions from the orbits and the spins. We can write
+\begin{equation}
+\label{Eq:II:34:6}
+\FLPmu=-g\biggl(\frac{q_e}{2m}\biggr)\FLPJ,
+\end{equation}
+where $g$ is a factor which is characteristic of the state of the atom.
+It would be&nbsp;$1$ for a pure orbital moment, or&nbsp;$2$ for a pure spin
+moment, or some other number in between for a complicated system like an
+atom. This formula does not, of course, tell us very much. It says that
+the magnetic moment is <em class="emph">parallel to</em> the angular momentum, but can
+have any magnitude. The form of Eq.&nbsp;(<a href="#mjx-eqn-EqII346">34.6</a>) is convenient,
+however, because&nbsp;$g$—called the “Landé $g$-factor”—is a
+dimensionless constant whose magnitude is of the order of one. It is one
+of the jobs of quantum mechanics to predict the $g$-factor for any
+particular atomic state.
+</p>
+</div>
+
+<div id="Ch34-S2-p5" class="para">
+<p class="p">You might also be interested in what happens in nuclei. In nuclei
+there are protons and neutrons which may move around in some kind of
+orbit and at the same time, like an electron, have an intrinsic
+spin. Again the magnetic moment is parallel to the angular
+momentum. Only now the order of magnitude of the ratio of the two is
+what you would expect for a <em class="emph">proton</em> going around in a circle,
+with&nbsp;$m$ in Eq.&nbsp;(<a href="#mjx-eqn-EqII343">34.3</a>) equal to the <em class="emph">proton</em> mass. Therefore it is usual to write for nuclei
+\begin{equation}
+\label{Eq:II:34:7}
+\FLPmu=g\biggl(\frac{q_e}{2m_p}\biggr)\FLPJ,
+\end{equation}
+where $m_p$ is the mass of the proton, and&nbsp;$g$—called the
+<em class="emph">nuclear</em> $g$-factor—is a number near
+one, to be determined for each nucleus.
+</p>
+</div>
+
+<div id="Ch34-S2-p6" class="para">
+<p class="p">Another important difference for a nucleus is that the <em class="emph">spin</em>
+magnetic moment of the proton does <em class="emph">not</em> have a $g$-factor of
+$2$, as the electron does. For a proton, $g=2\cdot(2.79)$. Surprisingly
+enough, the <em class="emph">neutron</em> also has a spin magnetic moment, and its
+magnetic moment relative to its angular momentum is $2\cdot(-1.91)$. The
+neutron, in other words, is not exactly “neutral” in the magnetic
+sense. It is like a little magnet, and it has the kind of magnetic
+moment that a rotating <em class="emph">negative</em> charge would have.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch34-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">34–3</span>The precession of atomic magnets</h3>
+
+<div id="Ch34-S3-p1" class="para">
+<p class="p">One of the consequences of having the magnetic moment proportional to
+the angular momentum is that an atomic magnet placed in a magnetic field
+will <em class="emph">precess</em>. First we will argue classically. Suppose that we
+have the magnetic moment&nbsp;$\FLPmu$ suspended freely in a uniform magnetic
+field. It will feel a torque&nbsp;$\FLPtau$, equal to&nbsp;$\FLPmu\times\FLPB$,
+which tries to bring it in line with the field direction. But the atomic
+magnet is a gyroscope—it has the angular momentum&nbsp;$\FLPJ$. Therefore
+the torque due to the magnetic field will not cause the magnet to line
+up. Instead, the magnet will <em class="emph">precess</em>, as we saw when we analyzed
+a gyroscope in Chapter&nbsp;<a href="I_20.html">20</a> of Volume&nbsp;I. The angular
+momentum—and with it the magnetic moment—precesses about an axis
+parallel to the magnetic field. We can find the rate of precession by
+the same method we used in Chapter&nbsp;<a href="I_20.html">20</a> of the first volume.
+</p>
+</div>
+
+<div id="Ch34-F3" class="figure">
+<img src="img/FLP_II/f34-03/f34-03_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 34–3.</span>
+An object with angular momentum&nbsp;$\FigJ$ and a parallel magnetic
+moment&nbsp;$\Figmu$ placed in a magnetic field&nbsp;$\FigB$ precesses with the
+angular velocity&nbsp;$\omega_p$.
+</div>
+</div>
+
+<div id="Ch34-S3-p2" class="para">
+<p class="p">Suppose that in a small time&nbsp;$\Delta t$ the angular momentum changes
+from $\FLPJ$ to&nbsp;$\FLPJ'$, as drawn in Fig.&nbsp;<a href="#Ch34-F3">34-3</a>, staying always at
+the same angle&nbsp;$\theta$ with respect to the direction of the magnetic
+field&nbsp;$\FLPB$. Let’s call $\omega_p$ the angular velocity of the
+precession, so that in the time&nbsp;$\Delta t$ the angle <em class="emph">of
+precession</em>
+is&nbsp;$\omega_p\,\Delta t$. From the geometry of the figure, we see that
+the change of angular momentum in the time&nbsp;$\Delta t$ is
+\begin{equation*}
+\Delta J=(J\sin\theta)(\omega_p\,\Delta t).
+\end{equation*}
+So the rate of change of the angular momentum is
+\begin{equation}
+\label{Eq:II:34:8}
+\ddt{J}{t}=\omega_pJ\sin\theta,
+\end{equation}
+which must be equal to the torque:
+\begin{equation}
+\label{Eq:II:34:9}
+\tau=\mu B\sin\theta.
+\end{equation}
+The angular velocity of precession is then
+\begin{equation}
+\label{Eq:II:34:10}
+\omega_p=\frac{\mu}{J}\,B.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch34-S3-p3" class="para">
+<p class="p">Substituting $\mu/J$ from Eq.&nbsp;(<a href="#mjx-eqn-EqII346">34.6</a>), we see that for an
+atomic system
+\begin{equation}
+\label{Eq:II:34:11}
+\omega_p=g\,\frac{q_eB}{2m};
+\end{equation}
+the precession frequency is proportional to&nbsp;$B$. It is handy to
+remember that for an atom (or electron)
+\begin{equation}
+\label{Eq:II:34:12}
+f_p=\frac{\omega_p}{2\pi}=(\text{$1.4$ megacycles/gauss})gB,
+\end{equation}
+and that for a nucleus
+\begin{equation}
+\label{Eq:II:34:13}
+f_p=\frac{\omega_p}{2\pi}=(\text{$0.76$ kilocycles/gauss})gB.
+\end{equation}
+(The formulas for atoms and nuclei are different only because of the
+different conventions for&nbsp;$g$ for the two cases.)
+</p>
+</div>
+
+<div id="Ch34-S3-p4" class="para">
+<p class="p">According to the <em class="emph">classical</em> theory, then, the electron
+orbits—and spins—in an atom should precess in a magnetic field. Is
+it also true quantum-mechanically? It is essentially true, but the
+meaning of the “precession” is different. In quantum mechanics one
+cannot talk about the <em class="emph">direction</em> of the angular momentum in the
+same sense as one does classically; nevertheless, there is a very
+close analogy—so close that we continue to call it “precession.”
+We will discuss it later when we talk about the quantum-mechanical
+point of view.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch34-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">34–4</span>Diamagnetism</h3>
+
+<div id="Ch34-F4" class="figure">
+<img src="img/FLP_II/f34-04/f34-04_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 34–4.</span>
+The induced electric forces on the electrons in an atom.
+</div>
+</div>
+
+<div id="Ch34-S4-p1" class="para">
+<p class="p">Next we want to look at <em class="emph">dia</em>magnetism from the classical point
+of view. It can be worked out in several ways, but one of the nice
+ways is the following. Suppose that we slowly turn on a magnetic field
+in the vicinity of an atom. As the magnetic field changes an
+<em class="emph">electric</em> field is generated by magnetic induction. From
+Faraday’s law, the line integral of&nbsp;$\FLPE$ around any closed path is
+the rate of change of the magnetic flux through the path. Suppose we
+pick a path&nbsp;$\Gamma$ which is a circle of radius&nbsp;$r$ concentric with
+the center of the atom, as shown in Fig.&nbsp;<a href="#Ch34-F4">34-4</a>. The average
+tangential electric field&nbsp;$E$ around this path is given by
+\begin{equation*}
+E2\pi r=-\ddt{}{t}\,(B\pi r^2),
+\end{equation*}
+and there is a circulating electric field whose strength is
+\begin{equation*}
+E=-\frac{r}{2}\,\ddt{B}{t}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch34-S4-p2" class="para">
+<p class="p">The induced electric field acting on an electron in the atom produces
+a torque equal to&nbsp;$-q_eEr$, which must equal the rate of change of the
+angular momentum&nbsp;$dJ/dt$:
+\begin{equation}
+\label{Eq:II:34:14}
+\ddt{J}{t}=\frac{q_er^2}{2}\,\ddt{B}{t}.
+\end{equation}
+Integrating with respect to time from zero field, we find that the
+change in angular momentum due to turning on the field is
+\begin{equation}
+\label{Eq:II:34:15}
+\Delta J=\frac{q_er^2}{2}\,B.
+\end{equation}
+This is the extra angular momentum from the twist given to the
+electrons as the field is turned on.
+</p>
+</div>
+
+<div id="Ch34-S4-p3" class="para">
+<p class="p">This added angular momentum makes an extra magnetic moment which,
+because it is an <em class="emph">orbital</em> motion, is just&nbsp;$-q_e/2m$ times the
+angular momentum. The induced diamagnetic moment is
+\begin{equation}
+\label{Eq:II:34:16}
+\Delta\mu=-\frac{q_e}{2m}\,\Delta J=-\frac{q_e^2r^2}{4m}\,B.
+\end{equation}
+The minus sign (as you can see is right by using Lenz’s law) means
+that the added moment is opposite to the magnetic field.
+</p>
+</div>
+
+<div id="Ch34-S4-p4" class="para">
+<p class="p">We would like to write Eq.&nbsp;(<a href="#mjx-eqn-EqII3416">34.16</a>) a little differently.
+The&nbsp;$r^2$ which appears is the radius from an axis through the atom parallel
+to&nbsp;$\FLPB$, so if $\FLPB$ is along the $z$-direction, it is&nbsp;$x^2+y^2$.
+If we consider spherically symmetric atoms (or average over atoms with
+their natural axes in all directions) the average of&nbsp;$x^2+y^2$ is&nbsp;$2/3$
+of the average of the square of the true radial distance from the center
+<em class="emph">point</em> of the atom. It is therefore usually more convenient to
+write Eq.&nbsp;(<a href="#mjx-eqn-EqII3416">34.16</a>) as
+\begin{equation}
+\label{Eq:II:34:17}
+\Delta\mu=-\frac{q_e^2}{6m}\av{r^2}B.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch34-S4-p5" class="para">
+<p class="p">In any case, we have found an induced atomic moment proportional to
+the magnetic field&nbsp;$B$ and opposing it. This is diamagnetism of
+matter. It is this magnetic effect that is responsible for the small
+force on a piece of bismuth in a nonuniform magnetic field. (You could
+compute the force by working out the energy of the induced moments in
+the field and seeing how the energy changes as the material is moved
+into or out of the high-field region.)
+</p>
+</div>
+
+<div id="Ch34-S4-p6" class="para">
+<p class="p">We are still left with the problem: What is the mean square radius,
+$\av{r^2}$? Classical mechanics cannot supply an answer. We must go
+back and start over with quantum mechanics. In an atom we cannot
+really say where an electron is, but only know the probability that it
+will be at some place. If we interpret&nbsp;$\av{r^2}$ to mean the average
+of the square of the distance from the center for the probability
+distribution, the diamagnetic moment given by quantum mechanics is
+just the same as formula&nbsp;(<a href="#mjx-eqn-EqII3417">34.17</a>). This equation, of
+course, is the moment for one electron. The total moment is given by
+the sum over all the electrons in the atom. The surprising thing is
+that the classical argument and quantum mechanics give the same
+answer, although, as we shall see, the classical argument that gives
+Eq.&nbsp;(<a href="#mjx-eqn-EqII3417">34.17</a>) is not really valid in classical mechanics.
+</p>
+</div>
+
+<div id="Ch34-S4-p7" class="para">
+<p class="p">The same diamagnetic effect occurs even when an atom already has a
+permanent moment. Then the system will precess in the magnetic
+field. As the whole atom precesses, it takes up an additional small
+angular velocity, and that slow turning gives a small current which
+represents a correction to the magnetic moment. This is just the
+diamagnetic effect represented in another way. But we don’t really
+have to worry about that when we talk about paramagnetism. If the
+diamagnetic effect is first computed, as we have done here, we don’t
+have to worry about the fact that there is an extra little current
+from the precession. That has already been included in the diamagnetic
+term.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch34-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">34–5</span>Larmor’s theorem</h3>
+
+<div id="Ch34-S5-p1" class="para">
+<p class="p">We can already conclude something from our results so far. First of
+all, in the classical theory the moment&nbsp;$\FLPmu$ was always
+proportional to&nbsp;$\FLPJ$, with a given constant of proportionality for
+a particular atom. There wasn’t any spin of the electrons, and the
+constant of proportionality was always&nbsp;$-q_e/2m$; that is to say, in
+Eq.&nbsp;(<a href="#mjx-eqn-EqII346">34.6</a>) we should set&nbsp;$g=1$. The ratio of $\FLPmu$
+to&nbsp;$\FLPJ$ was independent of the internal motion of the electrons. Thus,
+according to the classical theory, all systems of electrons would
+precess with <em class="emph">the same</em> angular velocity. (This is <em class="emph">not</em>
+true in quantum mechanics.) This result is related to a theorem in
+classical mechanics that we would now like to prove. Suppose we have a
+group of electrons which are all held together by attraction toward a
+central point—as the electrons are attracted by a nucleus. The
+electrons will also be interacting with each other, and can, in
+general, have complicated motions. Suppose you have solved for the
+motions with <em class="emph">no</em> magnetic field and then want to know what the
+motions would be <em class="emph">with</em> a weak magnetic field. The theorem says
+that the motion with a weak magnetic field is always one of the
+no-field solutions with an added rotation, about the axis of the
+field, with the angular velocity&nbsp;$\omega_L=q_eB/2m$. (This is the same
+as&nbsp;$\omega_p$, if $g=1$.) There are, of course, many possible
+motions. The point is that for every motion without the magnetic field
+there is a corresponding motion in the field, which is the original
+motion plus a uniform rotation. This is called Larmor’s theorem,
+and&nbsp;$\omega_L$ is called the <em class="emph">Larmor
+frequency</em>.
+</p>
+</div>
+
+<div id="Ch34-S5-p2" class="para">
+<p class="p">We would like to show how the theorem can be proved, but we will let
+you work out the details. Take, first, one electron in a central force
+field. The force on it is just&nbsp;$\FLPF(r)$, directed toward the
+center. If we now turn on a uniform magnetic field, there is an
+additional force, $q\FLPv\times\FLPB$; so the total force is
+\begin{equation}
+\label{Eq:II:34:18}
+\FLPF(r)+q\FLPv\times\FLPB.
+\end{equation}
+Now let’s look at the same system from a coordinate system rotating with
+angular velocity&nbsp;$\omega$ about an axis through the center of force and
+parallel to&nbsp;$\FLPB$. This is no longer an inertial system, so we have to
+put in the proper pseudo forces—the
+centrifugal and
+Coriolis
+forces we
+talked about in Chapter&nbsp;<a href="I_19.html">19</a> of Volume&nbsp;I. We found there
+that in a frame rotating with angular velocity&nbsp;$\omega$, there is an
+apparent <em class="emph">tangential</em> force proportional to&nbsp;$v_r$, the radial
+component of velocity:
+\begin{equation}
+\label{Eq:II:34:19}
+F_t=-2m\omega v_r.
+\end{equation}
+And there is an apparent radial force which is given by
+\begin{equation}
+\label{Eq:II:34:20}
+F_r=m\omega^2r+2m\omega v_t,
+\end{equation}
+where $v_t$ is the tangential component of the velocity, measured
+<em class="emph">in</em> the rotating frame. (The radial component&nbsp;$v_r$ for rotating
+and inertial frames is the same.)
+</p>
+</div>
+
+<div id="Ch34-S5-p3" class="para">
+<p class="p">Now for small enough angular velocities (that is, if $\omega r\ll v_t$), we can
+neglect the first term (centrifugal) in Eq.&nbsp;(<a href="#mjx-eqn-EqII3420">34.20</a>) in comparison
+with the second (Coriolis). Then Eqs. (<a href="#mjx-eqn-EqII3419">34.19</a>)
+and&nbsp;(<a href="#mjx-eqn-EqII3420">34.20</a>) can be written together as
+\begin{equation}
+\label{Eq:II:34:21}
+\FLPF=-2m\FLPomega\times\FLPv.
+\end{equation}
+If we now <em class="emph">combine</em> a rotation and a magnetic field, we must add
+the force in Eq.&nbsp;(<a href="#mjx-eqn-EqII3421">34.21</a>) to that in Eq.&nbsp;(<a href="#mjx-eqn-EqII3418">34.18</a>).
+The total force is
+\begin{equation}
+\label{Eq:II:34:22}
+\FLPF(r)+q\FLPv\times\FLPB+2m\FLPv\times\FLPomega
+\end{equation}
+[we reverse the cross product and the sign of Eq.&nbsp;(<a href="#mjx-eqn-EqII3421">34.21</a>) to
+get the last term]. Looking at our result, we see that if
+\begin{equation*}
+2m\FLPomega=-q\FLPB
+\end{equation*}
+the two terms on the right cancel, and in the moving frame the only
+force is&nbsp;$\FLPF(r)$. The motion of the electron is just the same as
+with no magnetic field—and, of course, no rotation. We have proved
+Larmor’s theorem for one electron. Since the proof assumes a
+small&nbsp;$\omega$, it also means that the theorem is true only for weak
+magnetic fields. The only thing we could ask you to improve on is to
+take the case of many electrons mutually interacting with each other,
+but all in the same central field, and prove the same theorem. So no
+matter how complex an atom is, if it has a central field the theorem
+is true. But that’s the end of the classical mechanics, because it
+isn’t true in fact that the motions precess in that way. The
+precession frequency&nbsp;$\omega_p$ of Eq.&nbsp;(<a href="#mjx-eqn-EqII3411">34.11</a>) is only
+equal to&nbsp;$\omega_L$ if $g$ happens to be equal to&nbsp;$1$.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch34-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">34–6</span>Classical physics gives neither diamagnetism nor paramagnetism</h3>
+
+<div id="Ch34-S6-p1" class="para">
+<p class="p">Now we would like to demonstrate that according to classical mechanics
+there can be no diamagnetism and no paramagnetism at all. It sounds
+crazy—first, we have proved that there are paramagnetism,
+diamagnetism, precessing orbits, and so on, and now we are going to
+prove that it is all wrong. Yes!—We are going to prove that
+<em class="emph">if</em> you follow the <em class="emph">classical</em> mechanics far enough, there
+are no such magnetic effects—<em class="emph">they all cancel out</em>. If you
+start a classical argument in a certain place and don’t go far enough,
+you can get any answer you want. But the only legitimate and correct
+proof shows that there is no magnetic effect whatever.
+</p>
+</div>
+
+<div id="Ch34-S6-p2" class="para">
+<p class="p">It is a consequence of classical mechanics that if you have any kind
+of system—a gas with electrons, protons, and whatever—kept in a
+box so that the whole thing can’t turn, there will be no magnetic
+effect. It is possible to have a magnetic effect if you have an
+isolated system, like a star held together by itself, which can start
+rotating when you put on the magnetic field. But if you have a piece
+of material that is held in place so that it can’t start spinning,
+then there will be no magnetic effects. What we mean by holding down
+the spin is summarized this way: At a given temperature we suppose
+that there is <em class="emph">only one state</em> of thermal equilibrium. The
+theorem then says that if you turn on a magnetic field and wait for
+the system to get into thermal equilibrium, there will be no
+paramagnetism or diamagnetism—there will be no induced magnetic
+moment. Proof: According to statistical mechanics, the probability
+that a system will have any given state of motion is proportional
+to&nbsp;$e^{-U/kT}$, where $U$ is the energy of that motion. Now what is the
+energy of motion? For a particle moving in a constant magnetic field,
+the energy is the ordinary potential energy plus&nbsp;$mv^2/2$, with
+nothing additional for the magnetic field. [You know that the forces
+from electromagnetic fields are&nbsp;$q(\FLPE+\FLPv\times\FLPB)$, and that
+the rate of work&nbsp;$\FLPF\cdot\FLPv$ is just&nbsp;$q\FLPE\cdot\FLPv$, which
+is not affected by the magnetic field.] So the energy of a system,
+whether it is in a magnetic field or not, is always given by the
+kinetic energy plus the potential energy. Since the probability of any
+motion depends only on the energy—that is, on the velocity and
+position—it is the same whether or not there is a magnetic
+field. For <em class="emph">thermal</em> equilibrium, therefore, the magnetic field
+has no effect. If we have one system in a box, and then have another
+system in a second box, this time with a magnetic field, the
+probability of any particular velocity at any point in the first box
+is the same as in the second. If the first box has no average
+circulating current (which it will not have if it is in equilibrium
+with the stationary walls), there is no average magnetic moment. Since
+in the second box all the motions are the same, there is no average
+magnetic moment there either. Hence, if the temperature is kept
+constant and thermal equilibrium is re-established after the field is
+turned on, there can be no magnetic moment induced by the
+field—according to classical mechanics. We can only get a
+satisfactory understanding of magnetic phenomena from quantum
+mechanics.
+</p>
+</div>
+
+<div id="Ch34-S6-p3" class="para">
+<p class="p">Unfortunately, we cannot assume that you have a thorough understanding
+of quantum mechanics, so this is hardly the place to discuss the
+matter. On the other hand, we don’t always have to learn something
+first by learning the exact rules and then by learning how they are
+applied in different cases. Almost every subject that we have taken up
+in this course has been treated in a different way. In the case of
+electricity, we wrote the Maxwell equations on “Page One” and then
+deduced all the consequences. That’s one way. But we will <em class="emph">not</em> now
+try to begin a new “Page One,” writing the equations of quantum
+mechanics and deducing everything from them. We will just have to tell
+you some of the consequences of quantum mechanics, before you learn
+where they come from. So here we go.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch34-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">34–7</span>Angular momentum in quantum mechanics</h3>
+
+<div id="Ch34-S7-p1" class="para">
+<p class="p">We have already given you a relation between the magnetic moment and
+the angular momentum. That’s pleasant. But what do the magnetic moment
+and the angular momentum <em class="emph">mean</em> in quantum mechanics? In quantum
+mechanics it turns out to be best to define things like magnetic
+moments in terms of the other concepts such as energy, in order to
+make sure that one knows what it means. Now, it is easy to define a
+magnetic moment in terms of energy, because the energy of a moment in
+a magnetic field is, in the classical theory,
+$\FLPmu\cdot\FLPB$. Therefore, the following definition has been taken
+in quantum mechanics: If we calculate the energy of a system in a
+magnetic field and we find that it is proportional to the field
+strength (for small field), the coefficient is called the component of
+magnetic moment in the direction of the field. (We don’t have to get
+so elegant for our work now; we can still think of the magnetic moment
+in the ordinary, to some extent classical, sense.)
+</p>
+</div>
+
+<div id="Ch34-S7-p2" class="para">
+<p class="p">Now we would like to discuss the idea of angular momentum in quantum
+mechanics—or rather, the characteristics of what, in quantum
+mechanics, is called angular momentum. You see, when you go to new
+kinds of laws, you can’t just assume that each word is going to mean
+exactly the same thing. You may think, say, “Oh, I know what angular
+momentum is. It’s that thing that is changed by a torque.” But what’s
+a torque? In quantum mechanics we have to have new definitions of old
+quantities. It would, therefore, be legally best to call it by some
+other name such as “quantangular momentum,” or something like that,
+because it is the angular momentum as defined in quantum
+mechanics. But if we can find a quantity in quantum mechanics which is
+identical to our old idea of angular momentum when the system becomes
+large enough, there is no use in inventing an extra word. We might as
+well just call it angular momentum. With that understanding, this odd
+thing that we are about to describe <em class="emph">is</em> angular momentum. It is
+the thing which in a large system we recognize as angular momentum in
+classical mechanics.
+</p>
+</div>
+
+<div id="Ch34-S7-p3" class="para">
+<p class="p">First, we take a system in which angular momentum is conserved, such
+as an atom all by itself in empty space. Now such a thing (like the
+earth spinning on its axis) could, in the ordinary sense, be spinning
+around any axis one wished to choose. And for a given spin, there
+could be many different “states,” all of the same energy, each
+“state” corresponding to a particular direction of the axis of the
+angular momentum. So in the classical theory, with a given angular
+momentum, there is an infinite number of possible states, all of the
+same energy.
+</p>
+</div>
+
+<div id="Ch34-S7-p4" class="para">
+<p class="p">It turns out in quantum mechanics, however, that several strange
+things happen. First, the number of states in which such a system
+<em class="emph">can exist</em> is limited—there is only a finite number. If the
+system is small, the finite number is very small, and if the system is
+large, the finite number gets very, very large. Second, we
+<em class="emph">cannot</em> describe a “state” by giving the <em class="emph">direction</em> of
+its angular momentum, but only by giving the <em class="emph">component</em> of the
+angular momentum along some direction—say in the
+$z$-direction. Classically, an object with a given total angular
+momentum&nbsp;$J$ could have, for its $z$-component, any value from $+J$
+to&nbsp;$-J$. But quantum-mechanically, the $z$-component of angular momentum
+can have only certain discrete values. Any given system—a particular
+atom, or a nucleus, or anything—with a given energy, has a
+characteristic number&nbsp;$j$, and its $z$-component of angular momentum can
+only be one of the following set of values:
+\begin{equation}
+\label{Eq:II:34:23}
+\begin{aligned}
+j\hbar&\\
+(j-1)\hbar&\\
+(j-2)\hbar&\\
+\vdots\phantom{)\hbar}&\\
+-(j-2)\hbar&\\
+-(j-1)\hbar&\\
+-j\hbar&\\
+\end{aligned}
+\end{equation}
+The largest $z$-component is $j$ times&nbsp;$\hbar$; the next smaller is
+one unit of&nbsp;$\hbar$ less, and so on down to&nbsp;$-j\hbar$. The number&nbsp;$j$
+is called “the spin of the system.” (Some people call it the “total
+angular momentum quantum number”; but we’ll call it the “spin.”)
+</p>
+</div>
+
+<div id="Ch34-S7-p5" class="para">
+<p class="p">You may be worried that what we are saying can only be true for some
+“special” $z$-axis. But that is not so. For a system whose spin
+is&nbsp;$j$, the component of angular momentum along <em class="emph">any</em> axis can have
+only one of the values in&nbsp;(<a href="#mjx-eqn-EqII3423">34.23</a>).  Although it is quite
+mysterious, we ask you just to accept it for the moment. We will come
+back and discuss the point later. You may at least be pleased to hear
+that the $z$-component goes from some number to minus the <em class="emph">same</em>
+number, so that we at least don’t have to decide which is the plus
+direction of the $z$-axis. (Certainly, if we said that it went
+from&nbsp;$+j$ to minus a different amount, that would be infinitely mysterious,
+because we wouldn’t have been able to define the $z$-axis, pointing
+the other way.)
+</p>
+</div>
+
+<div id="Ch34-S7-p6" class="para">
+<p class="p">Now if the $z$-component of angular momentum must go down by integers
+from $+j$ to&nbsp;$-j$, then $j$ must be an integer. No! Not quite;
+twice&nbsp;$j$ must be an integer. It is only the <em class="emph">difference</em> between $+j$
+and&nbsp;$-j$ that must be an integer. So, in general, the spin&nbsp;$j$ is
+either an integer or a half-integer, depending on whether&nbsp;$2j$ is even
+or odd. Take, for instance, a nucleus like lithium, which has a spin
+of three-halves, $j=3/2$. Then the angular momentum around the
+$z$-axis, in units of&nbsp;$\hbar$, is one of the following:
+\begin{equation*}
+\begin{matrix}
++3/2\phantom{.}\\
++1/2\phantom{.}\\
+-1/2\phantom{.}\\
+-3/2.
+\end{matrix}
+\end{equation*}
+There are four possible states, each of the same energy, if the
+nucleus is in empty space with no external fields. If we have a system
+whose spin is two, then the $z$-component of angular momentum has only
+the values, in units of&nbsp;$\hbar$,
+\begin{equation*}
+\begin{matrix}
+\phantom{-}2\phantom{.}\\
+\phantom{-}1\phantom{.}\\
+\phantom{-}0\phantom{.}\\
+-1\phantom{.}\\
+-2.
+\end{matrix}
+\end{equation*}
+If you count how many states there are for a given&nbsp;$j$, there are
+$(2j+1)$&nbsp;possibilities. In other words, if you tell me the energy and
+also the spin&nbsp;$j$, it turns out that there are exactly $(2j+1)$&nbsp;states
+with that energy, each state corresponding to one of the different
+possible values of the $z$-component of the angular momentum.
+</p>
+</div>
+
+<div id="Ch34-S7-p7" class="para">
+<p class="p">We would like to add one other fact. If you pick out any atom of
+known&nbsp;$j$ at random and measure the $z$-component of the angular momentum,
+then you may get any one of the possible values, and each of the
+values is <em class="emph">equally</em> likely. All of the states are in fact single
+states, and each is just as good as any other. Each one has the same
+“weight” in the world. (We are assuming that nothing has been done
+to sort out a special sample.) This fact has, incidentally, a simple
+classical analog. If you ask the same question classically: What is
+the likelihood of a particular $z$-component of angular momentum if
+you take a random sample of systems, all with the same total angular
+momentum?—the answer is that all values from the maximum to the
+minimum are equally likely. (You can easily work that out.) The
+classical result corresponds to the equal probability of the
+$(2j+1)$&nbsp;possibilities in quantum mechanics.
+</p>
+</div>
+
+<div id="Ch34-S7-p8" class="para">
+<p class="p">From what we have so far, we can get another interesting and somewhat
+surprising conclusion. In certain classical calculations the quantity
+that appears in the final result is the <em class="emph">square</em> of the magnitude
+of the angular momentum&nbsp;$\FLPJ$—in other words,
+$\FLPJ\cdot\FLPJ$. It turns out that it is often possible to
+<em class="emph">guess</em> at the correct quantum-mechanical formula by using the
+classical calculation and the following simple rule: Replace
+$J^2=\FLPJ\cdot\FLPJ$ by&nbsp;$j(j+1)\hbar^2$. This rule is commonly used,
+and usually gives the correct result, but <em class="emph">not</em> always. We can
+give the following argument to show why you might expect this rule to
+work.
+</p>
+</div>
+
+<div id="Ch34-S7-p9" class="para">
+<p class="p">The scalar product&nbsp;$\FLPJ\cdot\FLPJ$ can be written as
+\begin{equation*}
+\FLPJ\cdot\FLPJ=J_x^2+J_y^2+J_z^2.
+\end{equation*}
+Since it is a scalar, it should be the same for any orientation of the
+spin. Suppose we pick samples of any given atomic system at random and
+make measurements of $J_x^2$, or $J_y^2$, or $J_z^2$, the
+<em class="emph">average value</em> should be the same for each. (There is no special
+distinction for any one of the directions.) Therefore, the average
+of&nbsp;$\FLPJ\cdot\FLPJ$ is just equal to three times the average of any
+component squared, say of&nbsp;$J_z^2$;
+\begin{equation*}
+\av{\FLPJ\cdot\FLPJ} = 3\av{J_z^2}.
+\end{equation*}
+But since $\FLPJ\cdot\FLPJ$ is the same for all orientations, its
+average is, of course, just its constant value; we have
+\begin{equation}
+\label{Eq:II:34:24}
+\FLPJ\cdot\FLPJ = 3\av{J_z^2}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch34-S7-p10" class="para">
+<p class="p">If we now say that we will use the same equation for quantum
+mechanics, we can easily find&nbsp;$\av{J_z^2}$. We just have to take the
+sum of the $(2j+1)$&nbsp;possible values of&nbsp;$J_z^2$, and divide by the
+total number;
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:34:25}
+\av{J_z^2} = \frac
+{j^2+(j-1)^2+\dotsb+(-j+1)^2+(-j)^2}
+{2j+1}\,\hbar^2.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\label{Eq:II:34:25}
+\av{J_z^2} =\\[1ex]
+\frac{j^2+(j-1)^2+\dotsb+(-j+1)^2+(-j)^2}
+{2j+1}\,\hbar^2.\notag
+\end{gather}
+</span>
+For a system with a spin of&nbsp;$3/2$, it goes like this:
+<span class="eq-wide">
+\begin{equation*}
+\av{J_z^2} = \frac
+{(3/2)^2+(1/2)^2+(-1/2)^2+(-3/2)^2}
+{4}\,\hbar^2=\frac{5}{4}\,\hbar^2.
+\end{equation*}</span>
+<span class="eq-narrow">
+
+\begin{gather*}
+\av{J_z^2} =\\[1.25ex]
+\frac{(3/2)^2+(1/2)^2+(-1/2)^2+(-3/2)^2}
+{4}\,\hbar^2\\[1.25ex]
+\kern{-1.75ex}=\frac{5}{4}\,\hbar^2.
+\end{gather*}
+
+</span>
+We conclude that
+\begin{equation*}
+\FLPJ\cdot\FLPJ = 3\av{J_z^2} =
+3\tfrac{5}{4}\hbar^2=\tfrac{3}{2}(\tfrac{3}{2}+1)\hbar^2.
+\end{equation*}
+We will leave it for you to show that Eq.&nbsp;(<a href="#mjx-eqn-EqII3425">34.25</a>),
+together with Eq.&nbsp;(<a href="#mjx-eqn-EqII3424">34.24</a>), gives the general result
+\begin{equation}
+\label{Eq:II:34:26}
+\FLPJ\cdot\FLPJ=j(j+1)\hbar^2.
+\end{equation}
+Although we would think classically that the largest possible value of
+the $z$-component of&nbsp;$\FLPJ$ is just the magnitude
+of&nbsp;$\FLPJ$—namely, $\sqrt{\FLPJ\cdot\FLPJ}$—quantum mechanically the
+maximum of&nbsp;$J_z$ is always a little less than that, because $j\hbar$
+is always less than&nbsp;$\sqrt{j(j+1)}\hbar$. The angular momentum is
+never “completely along the $z$-direction.”
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch34-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">34–8</span>The magnetic energy of atoms</h3>
+
+<div id="Ch34-S8-p1" class="para">
+<p class="p">Now we want to talk again about the magnetic moment. We have said that
+in quantum mechanics the magnetic moment of a particular atomic system
+can be written in terms of the angular momentum by
+Eq.&nbsp;(<a href="#mjx-eqn-EqII346">34.6</a>);
+\begin{equation}
+\label{Eq:II:34:27}
+\FLPmu=-g\biggl(\frac{q_e}{2m}\biggr)\FLPJ,
+\end{equation}
+where $-q_e$ and&nbsp;$m$ are the charge and mass of the electron.
+</p>
+</div>
+
+<div id="Ch34-S8-p2" class="para">
+<p class="p">An atomic magnet placed in an external magnetic field will have an
+extra magnetic energy which depends on the component of its magnetic
+moment along the field direction. We know that
+\begin{equation}
+\label{Eq:II:34:28}
+U_{\text{mag}}=-\FLPmu\cdot\FLPB.
+\end{equation}
+Choosing our $z$-axis along the direction of&nbsp;$\FLPB$,
+\begin{equation}
+\label{Eq:II:34:29}
+U_{\text{mag}}=-\mu_zB.
+\end{equation}
+Using Eq.&nbsp;(<a href="#mjx-eqn-EqII3427">34.27</a>), we have that
+\begin{equation*}
+U_{\text{mag}}=g\biggl(\frac{q_e}{2m}\biggr)J_zB.
+\end{equation*}
+Quantum mechanics says that $J_z$ can have only certain values:
+$j\hbar$,&nbsp;$(j-1)\hbar$, &hellip;,&nbsp;$-j\hbar$. Therefore, the magnetic
+energy of an atomic system is not arbitrary; it can have only certain
+values. Its maximum value, for instance, is
+\begin{equation*}
+g\biggl(\frac{q_e}{2m}\biggr)\hbar jB.
+\end{equation*}
+The quantity&nbsp;$q_e\hbar/2m$ is usually given the name “the Bohr
+magneton” and written&nbsp;$\mu_B$:
+\begin{equation*}
+\mu_B=\frac{q_e\hbar}{2m}.
+\end{equation*}
+The possible values of the magnetic energy are
+\begin{equation*}
+U_{\text{mag}}=g\mu_BB\,\frac{J_z}{\hbar},
+\end{equation*}
+where $J_z/\hbar$ takes on the possible values $j$,&nbsp;$(j-1)$, $(j-2)$,
+&hellip;, $(-j+1)$,&nbsp;$-j$.
+</p>
+</div>
+
+<div id="Ch34-S8-p3" class="para">
+<p class="p">In other words, the energy of an atomic system is changed when it is put
+in a magnetic field by an amount that is proportional to the field, and
+proportional to&nbsp;$J_z$. We say that the energy of an atomic system is
+“split into $2j+1$&nbsp;levels” by a magnetic field. For instance, an atom
+whose energy is&nbsp;$U_0$ outside a magnetic field and whose $j$ is&nbsp;$3/2$,
+will have four possible energies when placed in a field. We can show
+these energies by an energy-level diagram like that drawn in
+Fig.&nbsp;<a href="#Ch34-F5">34-5</a>. Any particular atom can have only one of the
+four possible energies in any given field&nbsp;$B$. That is what quantum
+mechanics says about the behavior of an atomic system in a magnetic
+field.
+</p>
+</div>
+
+<div id="Ch34-F5" class="figure">
+<img src="img/FLP_II/f34-05/f34-05_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 34–5.</span>
+The possible magnetic energies of an atomic system with a spin
+of&nbsp;$3/2$ in a magnetic filed&nbsp;$\FigB$.
+</div>
+</div>
+
+<div id="Ch34-S8-p4" class="para">
+<p class="p">The simplest “atomic” system is a single electron. The spin of an
+electron is&nbsp;$1/2$, so there are two possible states: $J_z=\hbar/2$
+and&nbsp;$J_z=-\hbar/2$. For an electron, at rest (no orbital motion), the spin
+magnetic moment has a $g$-value of&nbsp;$2$, so the magnetic energy can be
+either&nbsp;$\pm\mu_BB$. The possible energies in a magnetic field are shown
+in Fig.&nbsp;<a href="#Ch34-F6">34-6</a>. Speaking loosely we say that the electron
+either has its spin “up” (along the field) or “down” (opposite the
+field).
+</p>
+</div>
+
+<div id="Ch34-F6" class="figure">
+<img src="img/FLP_II/f34-06/f34-06_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 34–6.</span>
+The two possible energy states of an electron in a magnetic
+field&nbsp;$\FigB$.
+</div>
+</div>
+
+<div id="Ch34-S8-p5" class="para">
+<p class="p">For systems with higher spins, there are more states. We can think
+that the spin is “up” or “down” or cocked at some “angle” in
+between, depending on the value of&nbsp;$J_z$.
+</p>
+</div>
+
+<div id="Ch34-S8-p6" class="para">
+<p class="p">We will use these quantum mechanical results to discuss the magnetic
+properties of materials in the next chapter.
+</p>
+</div>
+
+</div> <!--end of last section -->
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

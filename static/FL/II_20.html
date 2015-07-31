@@ -1,0 +1,1606 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 20: Solutions of Maxwell’s Equations in Free Space</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "20." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch20" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">20</span>Solutions of Maxwell’s Equations in Free Space</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref" rowspan=2>
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapter&nbsp;<a href="I_47.html">47</a>, Vol.&nbsp;I, <i>The Wave Equation</i>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Chapter&nbsp;<a href="I_28.html">28</a>, Vol.&nbsp;I, <i>Electromagnetic Radiation</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch20-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">20–1</span>Waves in free space; plane waves</h3>
+<div id="Ch20-S1-p1" class="para">
+<p class="p">In Chapter <a href="II_18.html">18</a> we had reached the point where we had the
+Maxwell equations in complete form. All there is to know about the
+classical theory of the electric and magnetic fields can be found in the
+four equations:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:20:1}
+ \begin{alignedat}{6}
+&\text{I.}&\;\;
+&\FLPdiv{\FLPE}&&\;=\frac{\rho}{\epsO}\quad&\quad
+&\text{II.}&\;\;
+&\FLPcurl{\FLPE}&&\;=-\ddp{\FLPB}{t}\\[1ex]
+&\text{III.}&\;\;
+&\FLPdiv{\FLPB}&&\;=0\quad&\quad
+&\text{IV.}&\;\;
+c^2&\FLPcurl{\FLPB}&&\;=\frac{\FLPj}{\epsO}+\ddp{\FLPE}{t}
+\end{alignedat}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\label{Eq:II:20:1}
+ \begin{alignedat}{3}
+&\text{I.}&&\FLPdiv{\FLPE}&\;=&\;\frac{\rho}{\epsO}\\[1ex]
+&\text{II.}&&\FLPcurl{\FLPE}&\;=&\;-\ddp{\FLPB}{t}\\[1ex]
+&\text{III.}&&\FLPdiv{\FLPB}&\;=&\;0\\[1ex]
+&\text{IV.}&\quad c^2&\FLPcurl{\FLPB}&\;=&\;\frac{\FLPj}{\epsO}+\ddp{\FLPE}{t}
+\end{alignedat}
+\end{equation}
+</span>
+When we put all these equations together, a remarkable new phenomenon
+occurs: fields generated by moving charges can leave the sources and
+travel alone through space. We considered a special example in which
+an infinite current sheet is suddenly turned on. After the current has
+been on for the time $t$, there are uniform electric and magnetic
+fields extending out the distance $ct$ from the source. Suppose that
+the current sheet lies in the $yz$-plane with a surface current
+density $J$ going toward positive $y$. The electric field will have
+only a $y$-component, and the magnetic field, only a
+$z$-component. The field components are given by
+\begin{equation}
+\label{Eq:II:20:2}
+E_y=cB_z=-\frac{J}{2\epsO c},
+\end{equation}
+
+for positive values of $x$ less than $ct$. For larger $x$ the fields
+are zero. There are, of course, similar fields extending the same
+distance from the current sheet in the negative $x$-direction. In
+Fig. <a href="#Ch20-F1">20–1</a> we show a graph of the magnitude of the
+fields as a function of $x$ at the instant $t$. As time goes on, the
+“wavefront” at $ct$ moves outward in $x$ at the constant
+velocity $c$.</p>
+</div>
+<div id="Ch20-F1" class="figure">
+<img src="img/FLP_II/f20-01/f20-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–1.</span>The electric and magnetic field as a function of $x$ at the
+time $t$ after the current sheet is turned on.
+</div>
+</div>
+<div id="Ch20-S1-p2" class="para">
+<p class="p">Now consider the following sequence of events. We turn on a current of
+unit strength for a while, then suddenly increase the current strength
+to three units, and hold it constant at this value. What do the fields
+look like then? We can see what the fields will look like in the
+following way. First, we imagine a current of unit strength that is
+turned on at $t=0$ and left constant forever. The fields for
+positive $x$ are then given by the graph in part (a) of Fig. <a href="#Ch20-F2">20–2</a>.
+Next, we ask what would happen if we turn on a steady current of two
+units at the time $t_1$.</p>
+</div>
+<div id="Ch20-F2" class="figure">
+<img src="img/FLP_II/f20-02/f20-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–2.</span>The electric field of a current sheet. (a) One unit of current
+turned on at $t=0$; (b) Two units of current turned on at $t=t_1$;
+(c) Superposition of (a) and (b).
+</div>
+</div>
+<div id="Ch20-S1-p3" class="para">
+<p class="p">The fields in this case will be twice as high as before, but will
+extend out in $x$ only the distance $c(t-t_1)$, as shown in part (b)
+of the figure. When we add these two solutions, using the principle of
+superposition, we find that the sum of the two sources is a current of
+one unit for the time from zero to $t_1$ and a current of three units
+for times greater than $t_1$. At the time $t$ the fields will vary
+with $x$ as shown in part (c) of Fig. <a href="#Ch20-F2">20–2</a>.</p>
+</div>
+<div id="Ch20-S1-p4" class="para">
+<p class="p">Now let’s take a more complicated problem. Consider a current which is
+turned on to one unit for a while, then turned up to three units, and
+later turned off to zero. What are the fields for such a current? We
+can find the solution in the same way—by adding the solutions of
+three separate problems. First, we find the fields for a step current
+of unit strength. (We have solved that problem already.)  Next, we
+find the fields produced by a step current of two units. Finally, we
+solve for the fields of a step current of <em class="emph">minus</em> three
+units. When we add the three solutions, we will have a current which
+is one unit strong from $t=0$ to some later time, say $t_1$, then
+three units strong until a still later time $t_2$, and then turned
+off—that is, to zero. A graph of the current as a function of time
+is shown in Fig. <a href="#Ch20-F3">20–3</a>(a). When we add the three
+solutions for the electric field, we find that its variation with $x$,
+at a given instant $t$, is as shown in Fig. <a href="#Ch20-F3">20–3</a>(b). The
+field is an exact representation of the current. The field distribution
+in space is a nice graph of the current variation with time—only drawn
+backwards. As time goes on the whole picture moves outward at the
+speed $c$, so there is a little blob of field, travelling toward positive $x$,
+which contains a completely detailed memory of the history of all the
+current variations. If we were to stand miles away, we could tell from
+the variation of the electric or magnetic field exactly how the current
+had varied at the source.</p>
+</div>
+<div id="Ch20-F3" class="figure">
+<img src="img/FLP_II/f20-03/f20-03_tc_iPad_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–3.</span>If the current source strength varies as shown in (a), then
+at the time $t$ shown by the arrow the electric field as a function
+of $x$ is as shown in (b).
+</div>
+</div>
+<div id="Ch20-S1-p5" class="para">
+<p class="p">You will also notice that long after all activity at the source has
+completely stopped and all charges and currents are zero, the block of
+field continues to travel through space. We have a distribution of
+electric and magnetic fields that exist independently of any charges
+or currents. That is the new effect that comes from the complete set
+of Maxwell’s equations. If we want, we can give a complete
+mathematical representation of the analysis we have just done by
+writing that the electric field at a given place and a given time is
+proportional to the current at the source, only not at the <em class="emph">same</em>
+time, but at the <em class="emph">earlier</em> time $t-x/c$. We can write
+\begin{equation}
+\label{Eq:II:20:3}
+E_y(t)=-\frac{J(t-x/c)}{2\epsO c}.
+\end{equation}
+</p>
+</div>
+<div id="Ch20-S1-p6" class="para">
+<p class="p">We have, believe it or not, already derived this same equation from
+another point of view in Vol. I, when we were dealing with the
+theory of the index of refraction. Then, we had to figure out what
+fields were produced by a thin layer of oscillating dipoles in a sheet
+of dielectric material with the dipoles set in motion by the electric
+field of an incoming electromagnetic wave. Our problem was to
+calculate the combined fields of the original wave and the waves
+radiated by the oscillating dipoles. How could we have calculated the
+fields generated by moving charges when we didn’t have Maxwell’s
+equations? At that time we took as our starting point (without any
+derivation) a formula for the radiation fields produced at large
+distances from an accelerating point charge. If you will look in
+Chapter <a href="I_31.html">31</a> of Vol. I, you will see that
+Eq. (<a href="I_31.html#mjx-eqn-EqI319">31.9</a>) there is just the same as the
+Eq. (<a href="#mjx-eqn-EqII203">20.3</a>) that we have just written down. Although our
+earlier derivation was correct only at large distances from the source,
+we see now that the same result continues to be correct even right up to
+the source.</p>
+</div>
+<div id="Ch20-S1-p7" class="para">
+<p class="p">We want now to look in a general way at the behavior of electric and
+magnetic fields in empty space far away from the sources, i.e., from
+the currents and charges. Very near the sources—near enough so that
+during the delay in transmission, the source has not had time to
+change much—the fields are very much the same as we have found in
+what we called the electrostatic or magnetostatic cases. If we go out
+to distances large enough so that the delays become important,
+however, the nature of the fields can be radically different from the
+solutions we have found. In a sense, the fields begin to take on a
+character of their own when they have gone a long way from all the
+sources. So we can begin by discussing the behavior of the fields in a
+region where there are no currents or charges.</p>
+</div>
+<div id="Ch20-S1-p8" class="para">
+<p class="p">Suppose we ask: What kind of fields can there be in regions where
+$\rho$ and $\FLPj$ are both zero? In Chapter <a href="II_18.html">18</a> we saw
+that the physics of Maxwell’s equations could also be expressed in
+terms of differential equations for the scalar and vector potentials:
+\begin{align}
+\label{Eq:II:20:4}
+\nabla^2\phi-
+\frac{1}{c^2}\,\frac{\partial^2\phi}{\partial t^2}&=
+-\frac{\rho}{\epsO},\\[1ex]
+\label{Eq:II:20:5}
+\nabla^2\FLPA-
+\frac{1}{c^2}\,\frac{\partial^2\FLPA}{\partial t^2}&=
+-\frac{\FLPj}{\epsO c^2}.
+\end{align}
+
+If $\rho$ and $\FLPj$ are zero, these equations take on the simpler
+form
+\begin{align}
+\label{Eq:II:20:6}
+\nabla^2\phi-
+\frac{1}{c^2}\,\frac{\partial^2\phi}{\partial t^2}&=0,\\[1ex]
+\label{Eq:II:20:7}
+\nabla^2\FLPA-
+\frac{1}{c^2}\,\frac{\partial^2\FLPA}{\partial t^2}&=\FLPzero.
+\end{align}
+
+Thus in free space the scalar potential $\phi$ and each component of
+the vector potential $\FLPA$ all satisfy the same mathematical
+equation. Suppose we let $\psi$ (psi) stand for any one of the four
+quantities $\phi$, $A_x$, $A_y$, $A_z$; then we want to investigate
+the general solutions of the following equation:
+\begin{equation}
+\label{Eq:II:20:8}
+\nabla^2\psi-
+\frac{1}{c^2}\,\frac{\partial^2\psi}{\partial t^2}=0.
+\end{equation}
+
+This equation is called the three-dimensional wave
+equation—three-dimensional, because the function $\psi$ may depend
+in general on $x$, $y$, and $z$, and we need to worry about variations
+in all three coordinates. This is made clear if we write out
+explicitly the three terms of the Laplacian operator:
+\begin{equation}
+\label{Eq:II:20:9}
+\frac{\partial^2\psi}{\partial x^2}+
+\frac{\partial^2\psi}{\partial y^2}+
+\frac{\partial^2\psi}{\partial z^2}-
+\frac{1}{c^2}\,\frac{\partial^2\psi}{\partial t^2}=0.
+\end{equation}
+</p>
+</div>
+<div id="Ch20-S1-p9" class="para">
+<p class="p">In free space, the electric fields $\FLPE$ and $\FLPB$ also satisfy
+the wave equation. For example, since $\FLPB=\FLPcurl{\FLPA}$, we can
+get a differential equation for $\FLPB$ by taking the curl of
+Eq. (<a href="#mjx-eqn-EqII207">20.7</a>). Since the Laplacian is a scalar operator, the
+order of the Laplacian and curl operations can be interchanged:
+\begin{equation*}
+\FLPcurl{(\nabla^2\FLPA)}=\nabla^2(\FLPcurl{\FLPA})=\nabla^2\FLPB.
+\end{equation*}
+
+Similarly, the order of the operations curl and $\ddpl{}{t}$ can be
+interchanged:
+\begin{equation*}
+\FLPcurl{\frac{1}{c^2}\,\frac{\partial^2\FLPA}{\partial t^2}}=
+\frac{1}{c^2}\,\frac{\partial^2}{\partial t^2}(\FLPcurl{\FLPA})=
+\frac{1}{c^2}\,\frac{\partial^2\FLPB}{\partial t^2}.
+\end{equation*}
+
+Using these results, we get the following differential equation
+for $\FLPB$:
+\begin{equation}
+\label{Eq:II:20:10}
+\nabla^2\FLPB-
+\frac{1}{c^2}\,\frac{\partial^2\FLPB}{\partial t^2}=\FLPzero.
+\end{equation}
+
+So each component of the magnetic field $\FLPB$ satisfies the
+three-dimensional wave equation. Similarly, using the fact that
+$\FLPE=-\FLPgrad{\phi}-\ddpl{\FLPA}{t}$, it follows that the electric
+field $\FLPE$ in free space also satisfies the three-dimensional wave
+equation:
+\begin{equation}
+\label{Eq:II:20:11}
+\nabla^2\FLPE-
+\frac{1}{c^2}\,\frac{\partial^2\FLPE}{\partial t^2}=\FLPzero.
+\end{equation}
+</p>
+</div>
+<div id="Ch20-S1-p10" class="para">
+<p class="p">All of our electromagnetic fields satisfy the same wave equation,
+Eq. (<a href="#mjx-eqn-EqII208">20.8</a>). We might well ask: What is the most general
+solution to this equation? However, rather than tackling that
+difficult question right away, we will look first at what can be said
+in general about those solutions in which nothing varies in $y$
+and $z$. (Always do an easy case first so that you can see what is going
+to happen, and then you can go to the more complicated cases.) Let’s
+suppose that the magnitudes of the fields depend only upon $x$—that
+there are no <em class="emph">variations</em> of the fields with $y$ and $z$. We are,
+of course, considering plane waves again. We should expect to get
+results something like those in the previous section. In fact, we will
+find precisely the same answers. You may ask: “Why do it all over
+again?” It is important to do it again, first, because we did not
+show that the waves we found were the most general solutions for plane
+waves, and second, because we found the fields only from a very
+particular kind of current source. We would like to ask now: What is
+the most general kind of one-dimensional wave there can be in free
+space? We cannot find that by seeing what happens for this or that
+particular source, but must work with greater generality. Also we are
+going to work this time with differential equations instead of with
+integral forms. Although we will get the same results, it is a way of
+practicing back and forth to show that it doesn’t make any difference
+which way you go. You should know how to do things every which way,
+because when you get a hard problem, you will often find that only one
+of the various ways is tractable.</p>
+</div>
+<div id="Ch20-S1-p11" class="para">
+<p class="p">We could consider directly the solution of the wave equation for some
+electromagnetic quantity. Instead, we want to start right from the
+beginning with Maxwell’s equations in free space so that you can see
+their close relationship to the electromagnetic waves. So we start
+with the equations in (<a href="#mjx-eqn-EqII201">20.1</a>), setting the charges and
+currents equal to zero. They become
+\begin{equation}
+\label{Eq:II:20:12}
+\begin{alignedat}{3}
+&\text{I.}&&\FLPdiv{\FLPE}&\;=&\;0\\[1ex]
+&\text{II.}&&\FLPcurl{\FLPE}&\;=&\;-\ddp{\FLPB}{t}\\[1ex]
+&\text{III.}&&\FLPdiv{\FLPB}&\;=&\;0\\[1ex]
+&\text{IV.}&\quad c^2&\FLPcurl{\FLPB}&\;=&\;\ddp{\FLPE}{t}
+\end{alignedat}
+\end{equation}
+</p>
+</div>
+<div id="Ch20-S1-p12" class="para">
+<p class="p">We write the first equation out in components:
+\begin{equation}
+\label{Eq:II:20:13}
+\FLPdiv{\FLPE}=\ddp{E_x}{x}+\ddp{E_y}{y}+\ddp{E_z}{z}=0.
+\end{equation}
+
+We are assuming that there are no variations with $y$ and $z$, so the
+last two terms are zero. This equation then tells us that
+\begin{equation}
+\label{Eq:II:20:14}
+\ddp{E_x}{x}=0.
+\end{equation}
+
+Its solution is that $E_x$, the component of the electric field in the
+$x$-direction, is a constant in space. If you look at IV
+in (<a href="#mjx-eqn-EqII2012">20.12</a>), supposing no $\FLPB$-variation in $y$ and $z$
+either, you can see that $E_x$ is also constant in time. Such a field
+could be the steady <span class="text smallcaps">dc</span> field from some charged condenser plates
+a long distance away. We are not interested now in such an uninteresting
+static field; we are at the moment interested only in dynamically
+varying fields. For <em class="emph">dynamic</em> fields, $E_x=0$.</p>
+</div>
+<div id="Ch20-S1-p13" class="para">
+<p class="p">We have then the important result that for the propagation of plane
+waves in any direction, <em class="emph">the electric field must be at right
+angles to the direction of propagation</em>. It can, of course, still vary
+in a complicated way with the coordinate $x$.</p>
+</div>
+<div id="Ch20-S1-p14" class="para">
+<p class="p">The transverse $\FLPE$-field can always be resolved into two
+components, say the $y$-component and the $z$-component. So let’s
+first work out a case in which the electric field has only one
+transverse component. We’ll take first an electric field that is
+always in the $y$-direction, with zero $z$-component. Evidently, if we
+solve this problem we can also solve for the case where the electric
+field is always in the $z$-direction. The general solution can always
+be expressed as the superposition of two such fields.
+</p>
+</div>
+<div id="Ch20-S1-p15" class="para">
+<p class="p">How easy our equations now get. The only component of the electric
+field that is not zero is $E_y$, and all derivatives—except those
+with respect to $x$—are zero. The rest of Maxwell’s equations then
+become quite simple.</p>
+</div>
+<div id="Ch20-S1-p16" class="para">
+<p class="p">Let’s look next at the second of Maxwell’s equations [II of
+Eq. (<a href="#mjx-eqn-EqII2012">20.12</a>)]. Writing out the components of the curl
+$\FLPE$, we have
+\begin{alignat*}{4}
+&(\FLPcurl{\FLPE})_x&&=\ddp{E_z}{y}&&-\ddp{E_y}{z}&&=0,\\[1.5ex]
+&(\FLPcurl{\FLPE})_y&&=\ddp{E_x}{z}&&-\ddp{E_z}{x}&&=0,\\[1.5ex]
+&(\FLPcurl{\FLPE})_z&&=\ddp{E_y}{x}&&-\ddp{E_x}{y}&&=\ddp{E_y}{x}.
+\end{alignat*}
+
+The $x$-component of $\FLPcurl{\FLPE}$ is zero because the derivatives
+with respect to $y$ and $z$ are zero. The $y$-component is also zero;
+the first term is zero because the derivative with respect to $z$ is
+zero, and the second term is zero because $E_z$ is zero. The only
+components of the curl of $\FLPE$ that is not zero is the
+$z$-component, which is equal to $\ddpl{E_y}{x}$. Setting the three
+components of $\FLPcurl{\FLPE}$ equal to the corresponding components
+of $-\ddpl{\FLPB}{t}$, we can conclude the following:
+\begin{align}
+\label{Eq:II:20:15}
+&\ddp{B_x}{t}=0,\quad\ddp{B_y}{t}=0.\\[1ex]
+\label{Eq:II:20:16}
+&\ddp{B_z}{t}=-\ddp{E_y}{x}.
+\end{align}
+
+Since the $x$-component of the magnetic field and the $y$-component of
+the magnetic field both have zero time derivatives, these two
+components are just constant fields and correspond to the
+magnetostatic solutions we found earlier. Somebody may have left some
+permanent magnets near where the waves are propagating. We will ignore
+these constant fields and set $B_x$ and $B_y$ equal to zero.
+</p>
+</div>
+<div id="Ch20-S1-p17" class="para">
+<p class="p">Incidentally, we would already have concluded that the $x$-component
+of $\FLPB$ should be zero for a different reason. Since the divergence
+of $\FLPB$ is zero (from the third Maxwell equation), applying the
+same arguments we used above for the electric field, we would conclude
+that the longitudinal component of the magnetic field can have no
+variation with $x$. Since we are ignoring such uniform fields in our
+wave solutions, we would have set $B_x$ equal to zero. In plane
+electromagnetic waves the $\FLPB$-field, as well as the $\FLPE$-field,
+must be directed at right angles to the direction of propagation.</p>
+</div>
+<div id="Ch20-S1-p18" class="para">
+<p class="p">Equation (<a href="#mjx-eqn-EqII2016">20.16</a>) gives us the additional proposition that
+if the electric field has only a $y$-component, the magnetic field
+will have only a $z$-component. So $\FLPE$ and $\FLPB$ <em class="emph">are at
+right angles</em> to each other. This is exactly what happened in the
+special wave we have already considered.</p>
+</div>
+<div id="Ch20-S1-p19" class="para">
+<p class="p">We are now ready to use the last of Maxwell’s equations for free space
+[IV of Eq. (<a href="#mjx-eqn-EqII2012">20.12</a>)]. Writing out the components, we have
+\begin{equation}
+\label{Eq:II:20:17}
+\begin{alignedat}{4}
+&c^2(\FLPcurl{\FLPB})_x&&=
+c^2\,\ddp{B_z}{y}&&-c^2\,\ddp{B_y}{z}&&=\ddp{E_x}{t},\\[1ex]
+&c^2(\FLPcurl{\FLPB})_y&&=
+c^2\,\ddp{B_x}{z}&&-c^2\,\ddp{B_z}{x}&&=\ddp{E_y}{t},\\[1ex]
+&c^2(\FLPcurl{\FLPB})_z&&=
+c^2\,\ddp{B_y}{x}&&-c^2\,\ddp{B_x}{y}&&=\ddp{E_z}{t}.
+\end{alignedat}
+\end{equation}
+
+Of the six derivatives of the components of $\FLPB$, only the
+term $\ddpl{B_z}{x}$ is not equal to zero. So the three equations give us
+simply
+\begin{equation}
+\label{Eq:II:20:18}
+-c^2\,\ddp{B_z}{x}=\ddp{E_y}{t}.
+\end{equation}
+</p>
+</div>
+<div id="Ch20-S1-p20" class="para">
+<p class="p">The result of all our work is that only one component each of the electric and
+magnetic fields is not zero, and that these components must satisfy Eqs.
+(<a href="#mjx-eqn-EqII2016">20.16</a>) and (<a href="#mjx-eqn-EqII2018">20.18</a>). The two equations can be combined
+into one if we differentiate the first with respect to $x$ and the second with
+respect to $t$; the left-hand sides of the two equations will then be the same
+(except for the factor $c^2$). So we find that $E_y$ satisfies the equation
+\begin{equation}
+\label{Eq:II:20:19}
+\frac{\partial^2E_y}{\partial
+x^2}-\frac{1}{c^2}\,\frac{\partial^2E_y}{\partial t^2}=0.
+\end{equation}
+
+We have seen the same differential equation before, when we studied
+the propagation of sound. It is the wave equation for one-dimensional
+waves.</p>
+</div>
+<div id="Ch20-S1-p21" class="para">
+<p class="p">You should note that in the process of our derivation we have found
+something <em class="emph">more</em> than is contained in Eq. (<a href="#mjx-eqn-EqII2011">20.11</a>).
+Maxwell’s equations have given us the further information that
+electromagnetic waves have field components only at right angles to the
+direction of the wave propagation.</p>
+</div>
+<div id="Ch20-S1-p22" class="para">
+<p class="p">Let’s review what we know about the solutions of the one-dimensional
+wave equation. If any quantity $\psi$ satisfies the one-dimensional
+wave equation
+\begin{equation}
+\label{Eq:II:20:20}
+\frac{\partial^2\psi}{\partial
+x^2}-\frac{1}{c^2}\,\frac{\partial^2\psi}{\partial t^2}=0,
+\end{equation}
+
+then one possible solution is a function $\psi(x,t)$ of the form
+\begin{equation}
+\label{Eq:II:20:21}
+\psi(x,t)=f(x-ct),
+\end{equation}
+
+that is, some function of the <em class="emph">single</em> variable $(x-ct)$. The
+function $f(x-ct)$ represents a “rigid” pattern in $x$ which travels
+toward positive $x$ at the speed $c$ (see Fig. <a href="#Ch20-F4">20–4</a>). For
+example, if the function $f$ has a maximum when its argument is zero,
+then for $t=0$ the maximum of $\psi$, will occur at $x=0$. At some later
+time, say $t=10$, $\psi$ will have its maximum at $x=10c$. As time goes
+on, the maximum moves toward positive $x$ at the speed $c$.</p>
+</div>
+<div id="Ch20-F4" class="figure">
+<img src="img/FLP_II/f20-04/f20-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–4.</span>The function $f(x-ct)$ represents a constant “shape” that
+travels toward positive $x$ with the speed $c$.
+</div>
+</div>
+<div id="Ch20-S1-p23" class="para">
+<p class="p">Sometimes it is more convenient to say that a solution of the
+one-dimensional wave equation is a function of $(t-x/c)$. However,
+this is saying the same thing, because any function of $(t-x/c)$ is
+also a function of $(x-ct)$:
+\begin{equation*}
+F(t-x/c)=F\biggl[-\frac{x-ct}{c}\biggr]=f(x-ct).
+\end{equation*}
+</p>
+</div>
+<div id="Ch20-S1-p24" class="para">
+<p class="p">Let’s show that $f(x-ct)$ is indeed a solution of the wave
+equation. Since it is a function of only one variable—the
+variable $(x-ct)$—we will let $f'$ represent the derivative of $f$ with
+respect to its variable and $f''$ represent the second derivative
+of $f$. Differentiating Eq. (<a href="#mjx-eqn-EqII2021">20.21</a>) with respect to $x$, we
+have
+\begin{equation*}
+\ddp{\psi}{x}=f'(x-ct),
+\end{equation*}
+
+since the derivative of $(x-ct)$ with respect to $x$ is $1$. The
+second derivative of $\psi$, with respect to $x$ is clearly
+\begin{equation}
+\label{Eq:II:20:22}
+\frac{\partial^2\psi}{\partial x^2}=f''(x-ct).
+\end{equation}
+
+Taking derivatives of $\psi$ with respect to $t$, we find
+\begin{align}
+&\ddp{\psi}{t}=f'(x-ct)(-c),\notag\\[1.5ex]
+\label{Eq:II:20:23}
+&\frac{\partial^2\psi}{\partial t^2}=+c^2f''(x-ct).
+\end{align}
+
+We see that $\psi$ does indeed satisfy the one-dimensional wave
+equation.</p>
+</div>
+<div id="Ch20-S1-p25" class="para">
+<p class="p">You may be wondering: “If I have the wave equation, how do I know
+that I should take $f(x-ct)$ as a solution? I don’t like this backward
+method. Isn’t there some <em class="emph">forward</em> way to find the solution?”
+Well, one good forward way is to know the solution. It is possible to
+“cook up” an apparently forward mathematical argument, especially
+because we know what the solution is supposed to be, but with an
+equation as simple as this we don’t have to play games. Soon you will
+get so that when you see Eq. (<a href="#mjx-eqn-EqII2020">20.20</a>), you nearly
+simultaneously see $\psi=f(x-xt)$ as a solution. (Just as now when you
+see the integral of $x^2\,dx$, you know right away that the answer
+is $x^3/3$.)</p>
+</div>
+<div id="Ch20-S1-p26" class="para">
+<p class="p">Actually you should also see a little more. Not only is any function
+of $(x-ct)$ a solution, but any function of $(x+ct)$ is also a
+solution. Since the wave equation contains only $c^2$, changing the
+sign of $c$ makes no difference. In fact, the <em class="emph">most general</em>
+solution of the one-dimensional wave equation is the sum of two
+arbitrary functions, one of $(x-ct)$ and the other of $(x+ct)$:
+\begin{equation}
+\label{Eq:II:20:24}
+\psi=f(x-ct)+g(x+ct).
+\end{equation}
+
+The first term represents a wave travelling toward positive $x$, and
+the second term an arbitrary wave travelling toward negative $x$. The
+general solution is the superposition of two such waves both existing
+at the same time.</p>
+</div>
+
+<center><hr class="sep"></center>
+
+<div id="Ch20-S1-p27" class="para">
+<p class="p"><span class="text small">We will leave the following amusing question for you to think
+about. Take a function $\psi$ of the following form:
+\begin{equation*}
+\psi=\cos kx\cos kct.
+\end{equation*}
+
+This equation isn’t in the form of a function of $(x-ct)$ or
+of $(x+ct)$. Yet you can easily show that this function is a solution of
+the wave equation by direct substitution into Eq. (<a href="#mjx-eqn-EqII2020">20.20</a>).
+How can we then say that the general solution is of the form of
+Eq. (<a href="#mjx-eqn-EqII2024">20.24</a>)?</span></p>
+</div>
+<center><hr class="sep"></center>
+<div id="Ch20-S1-p28" class="para">
+<p class="p">Applying our conclusions about the solution of the wave equation to
+the $y$-component of the electric field, $E_y$, we conclude that $E_y$
+can vary with $x$ in any arbitrary fashion. However, the fields which
+do exist can always be considered as the sum of two patterns. One wave
+is sailing through space in one direction with speed $c$, with an
+associated magnetic field perpendicular to the electric field; another
+wave is travelling in the opposite direction with the same speed. Such
+waves correspond to the electromagnetic waves that we know
+about—light, radiowaves, infrared radiation, ultraviolet radiation,
+x-rays, and so on. We have already discussed the radiation of light in
+great detail in Vol. I. Since everything we learned there applies to
+any electromagnetic wave, we don’t need to consider in great detail
+here the behavior of these waves.</p>
+</div>
+<div id="Ch20-S1-p29" class="para">
+<p class="p">We should perhaps make a few further remarks on the question of the
+polarization of the electromagnetic waves. In our solution we chose to
+consider the special case in which the electric field has only a
+$y$-component. There is clearly another solution for waves travelling
+in the plus or minus $x$-direction, with an electric field which has
+only a $z$-component. Since Maxwell’s equations are linear, the
+general solution for one-dimensional waves propagating in the
+$x$-direction is the sum of waves of $E_y$ and waves of $E_z$. This
+general solution is summarized in the following equations:
+\begin{equation}
+\label{Eq:II:20:25}
+\begin{aligned}
+\FLPE&=(0,E_y,E_z)\\[.5ex]
+E_y&=f(x-ct)+g(x+ct)\\[.5ex]
+E_z&=F(x-ct)+G(x+ct)\\[1ex]
+\FLPB&=(0,B_y,B_z)\\[.5ex]
+cB_z&=f(x-ct)-g(x+ct)\\[.5ex]
+cB_y&=-F(x-ct)+G(x+ct).
+\end{aligned}
+\end{equation}
+
+Such electromagnetic waves have an $\FLPE$-vector whose direction is
+not constant but which gyrates around in some arbitrary way in the
+$yz$-plane. At every point the magnetic field is always perpendicular
+to the electric field and to the direction of propagation.</p>
+</div>
+<div id="Ch20-S1-p30" class="para">
+<p class="p">If there are only waves travelling in one direction, say the positive
+$x$-direction, there is a simple rule which tells the relative
+orientation of the electric and magnetic fields. The rule is that the
+cross product $\FLPE\times\FLPB$—which is, of course, a vector at
+right angles to both $\FLPE$ and $\FLPB$—points in the direction in
+which the wave is travelling. If $\FLPE$ is rotated into $\FLPB$ by a
+right-hand screw, the screw points in the direction of the wave
+velocity. (We shall see later that the vector $\FLPE\times\FLPB$ has a
+special physical significance: it is a vector which describes the flow
+of energy in an electromagnetic field.)</p>
+</div>
+</div>
+<div id="Ch20-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">20–2</span>Three-dimensional waves</h3>
+<div id="Ch20-S2-p1" class="para">
+<p class="p">We want now to turn to the subject of three-dimensional waves. We have
+already seen that the vector $\FLPE$ satisfies the wave equation. It
+is also easy to arrive at the same conclusion by arguing directly from
+Maxwell’s equations. Suppose we start with the equation
+\begin{equation*}
+\FLPcurl{\FLPE}=-\ddp{\FLPB}{t}
+\end{equation*}
+
+and take the curl of both sides:
+\begin{equation}
+\label{Eq:II:20:26}
+\FLPcurl{(\FLPcurl{\FLPE})}=-\ddp{}{t}(\FLPcurl{\FLPB}).
+\end{equation}
+
+You will remember that the curl of the curl of any vector can be
+written as the sum of two terms, one involving the divergence and the
+other the Laplacian,
+\begin{equation*}
+\FLPcurl{(\FLPcurl{\FLPE})}=\FLPgrad{(\FLPdiv{\FLPE})}-\nabla^2\FLPE.
+\end{equation*}
+
+In free space, however, the divergence of $\FLPE$ is zero, so only the
+Laplacian term remains. Also, from the fourth of Maxwell’s equations
+in free space [Eq. (<a href="#mjx-eqn-EqII2012">20.12</a>)] the time derivative
+of $c^2\,\FLPcurl{\FLPB}$ is the second derivative of $\FLPE$ with
+respect to $t$:
+\begin{equation*}
+c^2\,\ddp{}{t}(\FLPcurl{\FLPB})=\frac{\partial^2\FLPE}{\partial t^2}.
+\end{equation*}
+
+Equation (<a href="#mjx-eqn-EqII2026">20.26</a>) then becomes
+\begin{equation*}
+\nabla^2\FLPE=\frac{1}{c^2}\,\frac{\partial^2\FLPE}{\partial t^2},
+\end{equation*}
+
+which is the three-dimensional wave equation. Written out in all its
+glory, this equation is, of course,
+\begin{equation}
+\label{Eq:II:20:27}
+\frac{\partial^2\FLPE}{\partial x^2}+
+\frac{\partial^2\FLPE}{\partial y^2}+
+\frac{\partial^2\FLPE}{\partial z^2}-
+\frac{1}{c^2}\,\frac{\partial^2\FLPE}{\partial t^2}=\FLPzero.
+\end{equation}
+</p>
+</div>
+<div id="Ch20-S2-p2" class="para">
+<p class="p">How shall we find the general wave solution? The answer is that all
+the solutions of the three-dimensional wave equation can be
+represented as a superposition of the one-dimensional solutions we
+have already found. We obtained the equation for waves which move in
+the $x$-direction by supposing that the field did not depend on $y$
+and $z$. Obviously, there are other solutions in which the fields do
+not depend on $x$ and $z$, representing waves going in the
+$y$-direction. Then there are solutions which do not depend on $x$
+and $y$, representing waves travelling in the $z$-direction. Or in
+general, since we have written our equations in vector form, the
+three-dimensional wave equation can have solutions which are plane
+waves moving in any direction at all. Again, since the equations are
+linear, we may have simultaneously as many plane waves as we wish,
+travelling in as many different directions. Thus the most general
+solution of the three-dimensional wave equation is a superposition of
+all sorts of plane waves moving in all sorts of directions.</p>
+</div>
+<div id="Ch20-S2-p3" class="para">
+<p class="p">Try to imagine what the electric and magnetic fields look like at
+present in the space in this lecture room. First of all, there is a
+steady magnetic field; it comes from the currents in the interior of
+the earth—that is, the earth’s steady magnetic field. Then there are
+some irregular, nearly static electric fields produced perhaps by
+electric charges generated by friction as various people move about in
+their chairs and rub their coat sleeves against the chair arms. Then
+there are other magnetic fields produced by oscillating currents in
+the electrical wiring—fields which vary at a frequency of
+$60$ cycles per second, in synchronism with the generator at Boulder
+Dam. But more interesting are the electric and magnetic fields varying
+at much higher frequencies. For instance, as light travels from window
+to floor and wall to wall, there are little wiggles of the electric
+and magnetic fields moving along at $186{,}000$ miles per second. Then
+there are also infrared waves travelling from the warm foreheads to
+the cold blackboard. And we have forgotten the ultraviolet light, the
+x-rays, and the radiowaves travelling through the room.</p>
+</div>
+<div id="Ch20-S2-p4" class="para">
+<p class="p">Flying across the room are electromagnetic waves which carry music of
+a jazz band. There are waves modulated by a series of impulses
+representing pictures of events going on in other parts of the world,
+or of imaginary aspirins dissolving in imaginary stomachs. To
+demonstrate the reality of these waves it is only necessary to turn on
+electronic equipment that converts these waves into pictures and
+sounds.</p>
+</div>
+<div id="Ch20-S2-p5" class="para">
+<p class="p">If we go into further detail to analyze even the smallest wiggles,
+there are tiny electromagnetic waves that have come into the room from
+enormous distances. There are now tiny oscillations of the electric
+field, whose crests are separated by a distance of one foot, that have
+come from millions of miles away, transmitted to the earth from the
+Mariner II space craft which has just passed Venus. Its signals carry
+summaries of information it has picked up about the planets
+(information obtained from electromagnetic waves that travelled from
+the planet to the space craft).</p>
+</div>
+<div id="Ch20-S2-p6" class="para">
+<p class="p">There are very tiny wiggles of the electric and magnetic fields that
+are waves which originated billions of light years away—from
+galaxies in the remotest corners of the universe. That this is true
+has been found by “filling the room with wires”—by building
+antennas as large as this room. Such radiowaves have been detected
+from places in space beyond the range of the greatest optical
+telescopes. Even they, the optical telescopes, are simply gatherers of
+electromagnetic waves. What we call the stars are only inferences,
+inferences drawn from the only physical reality we have yet gotten
+from them—from a careful study of the unendingly complex undulations
+of the electric and magnetic fields reaching us on earth.</p>
+</div>
+<div id="Ch20-S2-p7" class="para">
+<p class="p">There is, of course, more: the fields produced by lightning miles
+away, the fields of the charged cosmic ray particles as they zip
+through the room, and more, and more. What a complicated thing is the
+electric field in the space around you! Yet it always satisfies the
+three-dimensional wave equation.</p>
+</div>
+</div>
+<div id="Ch20-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">20–3</span>Scientific imagination</h3>
+<div id="Ch20-S3-p1" class="para">
+<p class="p">I have asked you to imagine these electric and magnetic fields. What
+do you do? Do you know how? How do <em class="emph">I</em> imagine the electric and
+magnetic field? What do <em class="emph">I</em> actually see? What are the demands of
+scientific imagination? Is it any different from trying to imagine
+that the room is full of invisible angels? No, it is not like imagining
+invisible angels. It requires a much higher degree of imagination to
+understand the electromagnetic field than to understand invisible
+angels. Why?  Because to make invisible angels understandable, all I
+have to do is to alter their properties <em class="emph">a little bit</em>—I make
+them slightly visible, and then I can see the shapes of their wings,
+and bodies, and halos. Once I succeed in imagining a visible angel,
+the abstraction required—which is to take almost invisible angels
+and imagine them completely invisible—is relatively easy. So you
+say, “Professor, please give me an approximate description of the
+electromagnetic waves, even though it may be slightly inaccurate, so
+that I too can see them as well as I can see almost invisible
+angels. Then I will modify the picture to the necessary abstraction.”</p>
+</div>
+<div id="Ch20-S3-p2" class="para">
+<p class="p">I’m sorry I can’t do that for you. I don’t know how. I have no picture
+of this electromagnetic field that is in any sense accurate. I have
+known about the electromagnetic field a long time—I was in the same
+position 25 years ago that you are now, and I have had 25 years more
+of experience thinking about these wiggling waves. When I start
+describing the magnetic field moving through space, I speak of the
+$\FLPE$- and $\FLPB$-fields and wave my arms and you may imagine that
+I can see them. I’ll tell you what I see. I see some kind of vague
+shadowy, wiggling lines—here and there is an $E$ and $B$ written on
+them somehow, and perhaps some of the lines have arrows on them—an
+arrow here or there which disappears when I look too closely at
+it. When I talk about the fields swishing through space, I have a
+terrible confusion between the symbols I use to describe the objects
+and the objects themselves. I cannot really make a picture that is
+even nearly like the true waves. So if you have some difficulty in
+making such a picture, you should not be worried that your difficulty
+is unusual.</p>
+</div>
+<div id="Ch20-S3-p3" class="para">
+<p class="p">Our science makes terrific demands on the imagination. The degree of
+imagination that is required is much more extreme than that required
+for some of the ancient ideas. The modern ideas are much harder to
+imagine. We use a lot of tools, though. We use mathematical equations
+and rules, and make a lot of pictures. What I realize now is that when
+I talk about the electromagnetic field in space, I see some kind of a
+superposition of all of the diagrams which I’ve ever seen drawn about
+them. I don’t see little bundles of field lines running about because
+it worries me that if I ran at a different speed the bundles would
+disappear, I don’t even always see the electric and magnetic fields
+because sometimes I think I should have made a picture with the vector
+potential and the scalar potential, for those were perhaps the more
+physically significant things that were wiggling.</p>
+</div>
+<div id="Ch20-S3-p4" class="para">
+<p class="p">Perhaps the only hope, you say, is to take a mathematical view. Now
+what is a mathematical view? From a mathematical view, there is an
+electric field vector and a magnetic field vector at every point in
+space; that is, there are six numbers associated with every point. Can
+you imagine six numbers associated with each point in space? That’s
+too hard. Can you imagine even <em class="emph">one</em> number associated with every
+point?  I cannot! I can imagine such a thing as the temperature at
+every point in space. That seems to be understandable. There is a
+hotness and coldness that varies from place to place. But I honestly
+do not understand the idea of a <em class="emph">number</em> at every point.</p>
+</div>
+<div id="Ch20-S3-p5" class="para">
+<p class="p">So perhaps we should put the question: Can we represent the electric
+field by something more like a temperature, say like the displacement of
+a piece of jello? Suppose that we were to begin by imagining that the
+world was filled with thin jello and that the fields represented some
+distortion—say a stretching or twisting—of the jello. Then we could
+visualize the field. After we “see” what it is like we could abstract
+the jello away. For many years that’s what people tried to do.
+Maxwell, Ampère, Faraday, and others tried to understand electromagnetism this way. (Sometimes they
+called the abstract jello “ether.”) But it turned out that the attempt
+to imagine the electromagnetic field in that way was really standing in
+the way of progress. We are unfortunately limited to abstractions, to
+using instruments to detect the field, to using mathematical symbols to
+describe the field, etc. But nevertheless, in some sense the fields are
+real, because after we are all finished fiddling around with
+mathematical equations—with or without making pictures and drawings or
+trying to visualize the thing—we can still make the instruments detect
+the signals from Mariner II and find out about galaxies a billion miles
+away, and so on.</p>
+</div>
+<div id="Ch20-S3-p6" class="para">
+<p class="p">The whole question of imagination in science is often misunderstood by
+people in other disciplines. They try to test our imagination in the
+following way. They say, “Here is a picture of some people in a
+situation. What do you imagine will happen next?” When we say, “I
+can’t imagine,” they may think we have a weak imagination. They
+overlook the fact that whatever we are <em class="emph">allowed</em> to imagine in
+science must be <em class="emph">consistent with everything else we know:</em> that the
+electric fields and the waves we talk about are not just some happy
+thoughts which we are free to make as we wish, but ideas which must be
+consistent with all the laws of physics we know. We can’t allow
+ourselves to seriously imagine things which are obviously in
+contradiction to the known laws of nature. And so our kind of
+imagination is quite a difficult game. One has to have the imagination
+to think of something that has never been seen before, never been heard
+of before. At the same time the thoughts are restricted in a strait
+jacket, so to speak, limited by the conditions that come from our
+knowledge of the way nature really is. The problem of creating something
+which is new, but which is consistent with everything which has been
+seen before, is one of extreme difficulty.
+</p>
+</div>
+<div id="Ch20-S3-p7" class="para">
+<p class="p">While I’m on this subject I want to talk about whether it will ever be possible
+to imagine <em class="emph">beauty</em> that we can’t <em class="emph">see</em>. It is an interesting
+question. When we look at a rainbow, it looks beautiful to us. Everybody says,
+“Ooh, a rainbow.” (You see how scientific I am. I am afraid to say something
+is beautiful unless I have an experimental way of defining it.) But how would we
+describe a rainbow if we were blind? We <em class="emph">are</em> blind when we measure the
+infrared reflection coefficient of sodium chloride, or when we talk about the
+frequency of the waves that are coming from some galaxy that we can’t see—we
+make a diagram, we make a plot. For instance, for the rainbow, such a plot would
+be the intensity of radiation vs. wavelength measured with a
+spectrophotometer for each direction in the sky. Generally, such measurements
+would give a curve that was rather flat. Then some day, someone would discover
+that for certain conditions of the weather, and at certain angles in the sky,
+the spectrum of intensity as a function of wavelength would behave strangely; it
+would have a bump. As the angle of the instrument was varied only a little bit,
+the maximum of the bump would move from one wavelength to another. Then one day
+the physical review of the blind men might publish a technical article with the
+title “The Intensity of Radiation as a Function of Angle under Certain
+Conditions of the Weather.” In this article there might appear a graph such as
+the one in Fig. <a href="#Ch20-F5">20–5</a>. The author would perhaps remark that at the
+larger angles there was more radiation at long wavelengths, whereas for the
+smaller angles the maximum in the radiation came at shorter wavelengths. (From
+our point of view, we would say that the light at $40^\circ$ is predominantly
+green and the light at $42^\circ$ is predominantly red.)
+</p>
+</div>
+<div id="Ch20-F5" class="figure">
+<img src="img/FLP_II/f20-05/f20-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–5.</span>The intensity of electromagnetic waves as a function of
+wavelength for three angles (measured from the direction opposite
+the sun), observed only with certain meteorological conditions.
+</div>
+</div>
+<div id="Ch20-S3-p8" class="para">
+<p class="p">Now do we find the graph of Fig. <a href="#Ch20-F5">20–5</a> beautiful? It
+contains much more detail than we apprehend when we look at a rainbow,
+because our eyes cannot see the exact details in the shape of a
+spectrum. The eye, however, finds the rainbow beautiful. Do we have
+enough imagination to see in the spectral curves the same beauty we
+see when we look directly at the rainbow? I don’t know.</p>
+</div>
+<div id="Ch20-S3-p9" class="para">
+<p class="p">But suppose I have a graph of the reflection coefficient of a sodium
+chloride crystal as a function of wavelength in the infrared, and also
+as a function of angle. I would have a representation of how it would
+look to my eyes if they could see in the infrared—perhaps some
+glowing, shiny “green,” mixed with reflections from the surface in a
+“metallic red.” That would be a beautiful thing, but I don’t know
+whether I can ever look at a graph of the reflection coefficient of
+NaCl measured with some instrument and say that it has the same
+beauty.
+</p>
+</div>
+<div id="Ch20-S3-p10" class="para">
+<p class="p">On the other hand, even if we cannot see beauty in particular measured
+results, we <em class="emph">can</em> already claim to see a certain beauty in the
+equations which describe general physical laws. For example, in the
+wave equation (<a href="#mjx-eqn-EqII209">20.9</a>), there’s something nice about the
+regularity of the appearance of the $x$, the $y$, the $z$, and
+the $t$. And this nice symmetry in appearance of the $x$, $y$, $z$,
+and $t$ suggests to the mind still a greater beauty which has to do with
+the four dimensions, the possibility that space has four-dimensional
+symmetry, the possibility of analyzing that and the developments of
+the special theory of relativity. So there is plenty of intellectual
+beauty associated with the equations.</p>
+</div>
+</div>
+<div id="Ch20-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">20–4</span>Spherical waves</h3>
+<div id="Ch20-S4-p1" class="para">
+<p class="p">We have seen that there are solutions of the wave equation which
+correspond to plane waves, and that any electromagnetic wave can be
+described as a superposition of many plane waves. In certain special
+cases, however, it is more convenient to describe the wave field in a
+different mathematical form. We would like to discuss now the theory
+of spherical waves—waves which correspond to spherical surfaces that
+are spreading out from some center. When you drop a stone into a lake,
+the ripples spread out in circular waves on the surface—they are
+two-dimensional waves. A spherical wave is a similar thing except that
+it spreads out in three dimensions.</p>
+</div>
+<div id="Ch20-S4-p2" class="para">
+<p class="p">Before we start describing spherical waves, we need a little
+mathematics. Suppose we have a function that depends only on the
+radial distance $r$ from a certain origin—in other words, a function
+that is spherically symmetric. Let’s call the function $\psi(r)$,
+where by $r$ we mean
+\begin{equation*}
+r=\sqrt{x^2+y^2+z^2},
+\end{equation*}
+
+the radial distance from the origin. In order to find out what
+functions $\psi(r)$ satisfy the wave equation, we will need an
+expression for the Laplacian of $\psi$. So we want to find the sum of
+the second derivatives of $\psi$ with respect to $x$, $y$, and $z$. We
+will use the notation that $\psi'(r)$ represents the derivative
+of $\psi$ with respect to $r$ and $\psi''(r)$ represents the second
+derivative of $\psi$ with respect to $r$.</p>
+</div>
+<div id="Ch20-S4-p3" class="para">
+<p class="p">First, we find the derivatives with respect to $x$. The first
+derivative is
+\begin{equation*}
+\ddp{\psi(r)}{x}=\psi'(r)\,\ddp{r}{x}.
+\end{equation*}
+
+The second derivative of $\psi$ with respect to $x$ is
+\begin{equation*}
+\frac{\partial^2\psi}{\partial x^2}=
+\psi''\biggl(\ddp{r}{x}\biggr)^2+
+\psi'\,\frac{\partial^2r}{\partial x^2}.
+\end{equation*}
+
+We can evaluate the partial derivatives of $r$ with respect to $x$
+from
+\begin{equation*}
+\ddp{r}{x}=\frac{x}{r},\quad
+\frac{\partial^2r}{\partial x^2}=
+\frac{1}{r}\biggl(1-\frac{x^2}{r^2}\biggr).
+\end{equation*}
+
+So the second derivative of $\psi$ with respect to $x$ is
+\begin{equation}
+\label{Eq:II:20:28}
+\frac{\partial^2\psi}{\partial x^2}=\frac{x^2}{r^2}\psi''+\frac{1}{r}\biggl(1-\frac{x^2}{r^2}\biggr)\psi'.
+\end{equation}
+Likewise,
+\begin{alignat}{3}
+\label{Eq:II:20:29}
+\frac{\partial^2\psi}{\partial y^2}&=
+\frac{y^2}{r^2}\,&&\psi''+
+\frac{1}{r}\biggl(1-\frac{y^2}{r^2}&&\biggr)\psi',\\[1.5ex]
+\label{Eq:II:20:30}
+\frac{\partial^2\psi}{\partial z^2}&=
+\frac{z^2}{r^2}\,&&\psi''+
+\frac{1}{r}\biggl(1-\frac{z^2}{r^2}&&\biggr)\psi'.
+\end{alignat}
+</p>
+</div>
+<div id="Ch20-S4-p4" class="para">
+<p class="p">The Laplacian is the sum of these three derivatives. Remembering that
+$x^2+y^2+z^2=r^2$, we get
+\begin{equation}
+\label{Eq:II:20:31}
+\nabla^2\psi(r)=\psi''(r)+\frac{2}{r}\,\psi'(r).
+\end{equation}
+
+It is often more convenient to write this equation in the following
+form:
+\begin{equation}
+\label{Eq:II:20:32}
+\nabla^2\psi(r)=\frac{1}{r}\,\frac{d^2}{dr^2}(r\psi).
+\end{equation}
+
+If you carry out the differentiation indicated in
+Eq. (<a href="#mjx-eqn-EqII2032">20.32</a>), you will see that the right-hand side is the
+same as in Eq. (<a href="#mjx-eqn-EqII2031">20.31</a>).</p>
+</div>
+<div id="Ch20-S4-p5" class="para">
+<p class="p">If we wish to consider spherically symmetric fields which can
+propagate as spherical waves, our field quantity must be a function of
+both $r$ and $t$. Suppose we ask, then, what functions $\psi(r,t)$ are
+solutions of the three-dimensional wave equation
+\begin{equation}
+\label{Eq:II:20:33}
+\nabla^2\psi(r,t)-\frac{1}{c^2}\,
+\frac{\partial^2}{\partial t^2}\,\psi(r,t)=0.
+\end{equation}
+
+Since $\psi(r,t)$ depends only on the spatial coordinates through $r$,
+we can use the equation for the Laplacian we found above,
+Eq. (<a href="#mjx-eqn-EqII2032">20.32</a>). To be precise, however, since $\psi$ is also a
+function of $t$, we should write the derivatives with respect to $r$ as
+partial derivatives. Then the wave equation becomes
+\begin{equation*}
+\frac{1}{r}\,\frac{\partial^2}{\partial r^2}\,(r\psi)-
+\frac{1}{c^2}\,\frac{\partial^2}{\partial t^2}\,\psi=0.
+\end{equation*}
+
+</p>
+</div>
+<div id="Ch20-S4-p6" class="para">
+<p class="p">We must now solve this equation, which appears to be much more
+complicated than the plane wave case. But notice that if we multiply
+this equation by $r$, we get
+\begin{equation}
+\label{Eq:II:20:34}
+\frac{\partial^2}{\partial r^2}\,(r\psi)-
+\frac{1}{c^2}\,\frac{\partial^2}{\partial t^2}\,(r\psi)=0.
+\end{equation}
+
+This equation tells us that the function $r\psi$ satisfies the
+one-dimensional wave equation in the variable $r$. Using the general
+principle which we have emphasized so often, that the same equations
+always have the same solutions, we know that if $r\psi$ is a function
+only of $(r-ct)$ then it will be a solution of Eq. (<a href="#mjx-eqn-EqII2034">20.34</a>).
+So we know that spherical waves must have the form
+\begin{equation*}
+r\psi(r,t)=f(r-ct).
+\end{equation*}
+
+Or, as we have seen before, we can equally well say that $r\psi$ can
+have the form
+\begin{equation*}
+r\psi=f(t-r/c).
+\end{equation*}
+
+Dividing by $r$, we find that the field quantity $\psi$ (whatever it
+may be) has the following form:
+\begin{equation}
+\label{Eq:II:20:35}
+\psi=\frac{f(t-r/c)}{r}.
+\end{equation}
+
+Such a function represents a general spherical wave travelling outward
+from the origin at the speed $c$. If we forget about the $r$ in the
+denominator for a moment, the amplitude of the wave as a function of
+the distance from the origin at a given time has a certain shape that
+travels outward at the speed $c$. The factor $r$ in the denominator,
+however, says that the amplitude of the wave decreases in proportion
+to $1/r$ as the wave propagates. In other words, unlike a plane wave
+in which the amplitude remains constant as the wave runs along, in a
+spherical wave the amplitude steadily decreases, as shown in
+Fig. <a href="#Ch20-F6">20–6</a>. This effect is easy to understand from a simple
+physical argument.</p>
+</div>
+<div id="Ch20-F6" class="figure">
+<img class="first" src="img/FLP_II/f20-06/f20-06_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_II/f20-06/f20-06_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 20–6.</span>A spherical wave $\psi=f(t-r/c)/r$. (a) $\psi$ as a function
+of $r$ for $t=t_1$ and the same wave for the later time $t_2$.
+(b) $\psi$ as a function of $t$ for $r=r_1$ and the same wave seen
+at $r_2$.
+</div>
+</div>
+<div id="Ch20-S4-p7" class="para">
+<p class="p">We know that the energy density in a wave depends on the square of the
+wave amplitude. As the wave spreads, its energy is spread over larger
+and larger areas proportional to the radial distance squared. If the
+total energy is conserved, the energy density must fall as $1/r^2$,
+and the amplitude of the wave must decrease as $1/r$. So
+Eq. (<a href="#mjx-eqn-EqII2035">20.35</a>) is the “reasonable” form for a spherical wave.</p>
+</div>
+<div id="Ch20-S4-p8" class="para">
+<p class="p">We have disregarded the second possible solution to the
+one-dimensional wave equation:
+\begin{equation*}
+r\psi=g(t+r/c),
+\end{equation*}
+
+or
+\begin{equation*}
+\psi=\frac{g(t+r/c)}{r}.
+\end{equation*}
+
+This also represents a spherical wave, but one which travels
+<em class="emph">inward</em> from large $r$ toward the origin.</p>
+</div>
+<div id="Ch20-S4-p9" class="para">
+<p class="p">We are now going to make a special assumption. We say, without any
+demonstration whatever, that the waves generated by a source are only
+the waves which go <em class="emph">outward</em>. Since we know that waves are caused
+by the motion of charges, we want to think that the waves proceed
+outward from the charges. It would be rather strange to imagine that
+before charges were set in motion, a spherical wave started out from
+infinity and arrived at the charges just at the time they began to
+move. That is a possible solution, but experience shows that when
+charges are accelerated the waves travel outward from the
+charges. Although Maxwell’s equations would allow either possibility,
+we will put in an <em class="emph">additional fact</em>—based on experience—that
+only the outgoing wave solution makes “physical sense.”</p>
+</div>
+<div id="Ch20-S4-p10" class="para">
+<p class="p">We should remark, however, that there is an interesting consequence to
+this additional assumption: we are removing the symmetry with respect
+to time that exists in Maxwell’s equations. The original equations for
+$\FLPE$ and $\FLPB$, and also the wave equations we derived from them,
+have the property that if we change the sign of $t$, the equation is
+unchanged. These equations say that for every solution corresponding
+to a wave going in one direction there is an equally valid solution
+for a wave travelling in the opposite direction. Our statement that we
+will consider only the outgoing spherical waves is an important
+additional assumption. (A formulation of electrodynamics in which this
+additional assumption is avoided has been carefully
+studied. Surprisingly, in many circumstances it does <em class="emph">not</em> lead
+to physically absurd conclusions, but it would take us too far astray
+to discuss these ideas just now. We will talk about them a little more
+in Chapter <a href="II_28.html">28</a>.)</p>
+</div>
+<div id="Ch20-S4-p11" class="para">
+<p class="p">We must mention another important point. In our solution for an
+outgoing wave, Eq. (<a href="#mjx-eqn-EqII2035">20.35</a>), the function $\psi$ is
+infinite at the origin. That is somewhat peculiar. We would like to
+have a wave solution which is smooth everywhere. Our solution must
+represent physically a situation in which there is some source at the
+origin. In other words, we have inadvertently made a mistake. We have
+not solved the free wave equation (<a href="#mjx-eqn-EqII2033">20.33</a>)
+<em class="emph">everywhere;</em> we have solved Eq. (<a href="#mjx-eqn-EqII2033">20.33</a>) with zero
+on the right everywhere, except at the origin. Our mistake crept in
+because some of the steps in our derivation are not “legal”
+when $r=0$.</p>
+</div>
+<div id="Ch20-S4-p12" class="para">
+<p class="p">Let’s show that it is easy to make the same kind of mistake in an
+electrostatic problem. Suppose we want a solution of the equation for
+an electrostatic potential in free space, $\nabla^2\phi=0$. The
+Laplacian is equal to zero, because we are assuming that there are no
+charges anywhere. But what about a spherically symmetric solution to
+this equation—that is, some function $\phi$ that depends only
+on $r$. Using the formula of Eq. (<a href="#mjx-eqn-EqII2032">20.32</a>) for the Laplacian,
+we have
+\begin{equation*}
+\frac{1}{r}\,\frac{d^2}{dr^2}\,(r\phi)=0.
+\end{equation*}
+
+Multiplying this equation by $r$, we have an equation which is readily
+integrated:
+\begin{equation*}
+\frac{d^2}{dr^2}\,(r\phi)=0.
+\end{equation*}
+
+If we integrate once with respect to $r$, we find that the first
+derivative of $r\phi$ is a constant, which we may call $a$:
+\begin{equation*}
+\ddt{}{r}\,(r\phi)=a.
+\end{equation*}
+
+Integrating again, we find that $r\phi$ is of the form
+\begin{equation*}
+r\phi=ar+b,
+\end{equation*}
+
+where $b$ is another constant of integration. So we have found that
+the following $\phi$ is a solution for the electrostatic potential in
+free space:
+\begin{equation*}
+\phi=a+\frac{b}{r}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch20-S4-p13" class="para">
+<p class="p">Something is evidently wrong. In the region where there are no
+electric charges, we know the solution for the electrostatic
+potential: the potential is everywhere a constant. That corresponds to
+the first term in our solution. But we also have the second term,
+which says that there is a contribution to the potential that varies
+as one over the distance from the origin. We know, however, that such
+a potential corresponds to a point charge at the origin. So, although
+we thought we were solving for the potential in free space, our
+solution also gives the field for a point source at the origin. Do you
+see the similarity between what happened now and what happened when we
+solved for a spherically symmetric solution to the wave equation? If
+there were really no charges or currents at the origin, there would
+not be spherical outgoing waves. The spherical waves must, of course,
+be produced by sources at the origin. In the next chapter we will
+investigate the connection between the outgoing electromagnetic waves
+and the currents and voltages which produce them.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 14: Semiconductors</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "14." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch14" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">14</span>Semiconductors</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Reference:</i>
+		</td>
+		<td>	
+		C. Kittel, <i>Introduction to Solid State Physics</i>, John Wiley and Sons, Inc., New York, 2nd ed., 1956. Chapters 13, 14, and 18.
+		</td>
+	</tr>
+</table>
+
+<div id="Ch14-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">14–1</span>Electrons and holes in semiconductors</h3>
+<div id="Ch14-S1-p1" class="para">
+<p class="p">One of the remarkable and dramatic developments in recent
+years has been the application of solid state science to technical
+developments in electrical devices such as transistors. The study of
+semiconductors led to the discovery of their useful properties and to a
+large number of practical applications. The field is changing so rapidly
+that what we tell you today may be incorrect next year. It will
+certainly be incomplete. And it is perfectly clear that with the
+continuing study of these materials many new and more wonderful things
+will be possible as time goes on. You will not need to understand this
+chapter for what comes later in this volume, but you may find it
+interesting to see that at least something of what you are learning has
+some relation to the practical world.</p>
+</div>
+<div id="Ch14-S1-p2" class="para">
+<p class="p">There are large numbers of semiconductors known, but we’ll concentrate
+on those which now have the greatest technical application. They are
+also the ones that are best understood, and in understanding them we
+will obtain a degree of understanding of many of the others. The
+semiconductor substances in most common use today are silicon and
+germanium. These elements crystallize in the diamond
+lattice, a kind of cubic structure in which the
+atoms have tetrahedral bonding with their four nearest neighbors. They
+are insulators at very low temperatures—near absolute zero—although
+they do conduct electricity somewhat at room temperature. They are not
+metals; they are called <em class="emph">semiconductors</em>.</p>
+</div>
+<div id="Ch14-S1-p3" class="para">
+<p class="p">If we somehow put an extra electron into a crystal of silicon or
+germanium which is at a low temperature, we will have just the
+situation we described in the last chapter. The electron will be able
+to wander around in the crystal jumping from one atomic site to the
+next. Actually, we have looked only at the behavior of electrons in a
+rectangular lattice, and the equations would be somewhat different for
+the real lattice of silicon or germanium. All of the essential points
+are, however, illustrated by the results for the rectangular lattice.</p>
+</div>
+<div id="Ch14-S1-p4" class="para">
+<p class="p">As we saw in Chapter <a href="III_13.html">13</a>, these electrons can have
+energies only in a certain energy band—called the <em class="emph">conduction
+band</em>. Within this band the energy is related to the
+wave-number $\FLPk$ of the probability amplitude $C$
+(see Eq. (<a href="III_13.html#mjx-eqn-EqIII1324">13.24</a>)) by
+\begin{equation}
+\label{Eq:III:14:1}
+E=\!E_0\!-\!2A_x\!\cos k_xa\!-\!2A_y\!\cos k_yb\!-\!2A_z\!\cos k_zc.
+\end{equation}
+
+The $A$’s are the amplitudes for jumping in the $x$-, $y$-,
+and $z$-directions, and $a$, $b$, and $c$ are the lattice spacings in
+these directions.</p>
+</div>
+<div id="Ch14-S1-p5" class="para">
+<p class="p">For energies near the bottom of the band, we can approximate
+Eq. (<a href="#mjx-eqn-EqIII141">14.1</a>) by
+\begin{equation}
+\label{Eq:III:14:2}
+E=E_{\text{min}}+A_xa^2k_x^2+A_yb^2k_y^2+A_zc^2k_z^2
+\end{equation}
+
+(see Section <a href="III_13.html#Ch13-S4">13–4</a>).</p>
+</div>
+<div id="Ch14-S1-p6" class="para">
+<p class="p">If we think of electron motion in some particular direction, so that
+the components of $\FLPk$ are always in the same ratio, the energy is
+a quadratic function of the wave number—and as we have seen of the
+momentum of the electron. We can write
+\begin{equation}
+\label{Eq:III:14:3}
+E=E_{\text{min}}+\alpha k^2,
+\end{equation}
+
+where $\alpha$ is some constant, and we can make a graph of $E$
+versus $k$ as in Fig. <a href="#Ch14-F1">14–1</a>. We’ll call such a graph an
+“energy diagram.” An electron in a particular
+state of energy and momentum can be indicated by a point such as $S$ in
+the figure.
+</p>
+</div>
+<div id="Ch14-F1" class="figure">
+<img src="img/FLP_III/f14-01/f14-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–1.</span>The energy diagram for an electron in an insulating crystal.
+</div>
+</div>
+<div id="Ch14-S1-p7" class="para">
+<p class="p">As we also mentioned in Chapter <a href="III_13.html">13</a>, we can have a similar
+situation if we <em class="emph">remove</em> an electron from a neutral insulator.
+Then, an electron can jump over from a nearby atom and fill the
+“hole,” but leaving another “hole” at the atom it started from. We
+can describe this behavior by writing an amplitude to find the
+<em class="emph">hole</em> at any particular atom, and by saying that the <em class="emph">hole</em>
+can jump from one atom to the next. (Clearly, the amplitudes $A$ that
+the hole jumps from atom $a$ to atom $b$ is just the same as the
+amplitude that an electron on atom $b$ jumps into the hole at atom $a$.)
+The mathematics is just the same for the <em class="emph">hole</em> as it was for the
+extra electron, and we get again that the energy of the hole is related
+to its wave number by an equation just like Eq.
+(<a href="#mjx-eqn-EqIII141">14.1</a>) or (<a href="#mjx-eqn-EqIII142">14.2</a>), except, of course, with
+different numerical values for the amplitudes $A_x$, $A_y$, and $A_z$.
+The hole has an energy related to the wave number of its probability
+amplitudes. Its energy lies in a restricted band, and near the bottom of
+the band its energy varies quadratically with the wave number—or
+momentum—just as in Fig. <a href="#Ch14-F1">14–1</a>. Following the arguments
+of Section <a href="III_13.html#Ch13-S3">13–3</a>, we would find that <em class="emph">the hole also
+behaves like a classical particle</em> with a certain effective
+mass—except that in noncubic crystals the mass depends on the
+direction of motion. So the hole behaves like a <em class="emph">positive particle</em>
+moving through the crystal. The charge of the hole-particle is positive,
+because it is located at the site of a missing electron; and when it
+moves in one direction there are actually electrons moving in the
+opposite direction.</p>
+</div>
+<div id="Ch14-S1-p8" class="para">
+<p class="p">If we put several electrons into a neutral crystal, they will move
+around much like the atoms of a low-pressure gas. If there are not too
+many, their interactions will not be very important. If we then put an
+electric field across the crystal, the electrons will start to move
+and an electric current will flow. Eventually they would all be drawn
+to one edge of the crystal, and, if there is a metal electrode there,
+they would be collected, leaving the crystal neutral.</p>
+</div>
+<div id="Ch14-S1-p9" class="para">
+<p class="p">Similarly we could put many holes into a crystal. They would roam
+around at random unless there is an electric field. With a field they
+would flow toward the negative terminal, and would be
+“collected”—what actually happens is that they are neutralized by
+electrons from the metal terminal.</p>
+</div>
+<div id="Ch14-S1-p10" class="para">
+<p class="p">One can also have both holes and electrons together. If there are not
+too many, they will all go their way independently. With an electric
+field, they will all contribute to the current. For obvious reasons,
+electrons are called the <em class="emph">negative carriers</em> and the holes are called the
+<em class="emph">positive carriers</em>.</p>
+</div>
+<div id="Ch14-S1-p11" class="para">
+<p class="p">We have so far considered that electrons are put into the crystal from
+the outside, or are removed to make a hole. It is also possible to
+“create” an electron-hole pair by taking a bound electron away from
+one neutral atom and putting it some distance away in the same
+crystal. We then have a free electron and a free hole, and the two can
+move about as we have described.</p>
+</div>
+<div id="Ch14-F2" class="figure">
+<img src="img/FLP_III/f14-02/f14-02_tc_iPad_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–2.</span>The energy $E^-$ is required to “create” a free electron.
+</div>
+</div>
+<div id="Ch14-S1-p12" class="para">
+<p class="p">The energy required to put an electron <em class="emph">into</em> a state $S$—we
+say to “create” the state $S$—is the energy $E^-$ shown in
+Fig. <a href="#Ch14-F2">14–2</a>. It is some energy above $E^-_{\text{min}}$. The
+energy required to “create” a hole in some state $S'$ is the
+energy $E^+$ of Fig. <a href="#Ch14-F3">14–3</a>, which is some energy greater
+than $E^+_{\text{min}}$. Now if we create a pair in the states $S$ and $S'$,
+the energy required is just $E^-+E^+$.</p>
+</div>
+<div id="Ch14-F3" class="figure">
+<img src="img/FLP_III/f14-03/f14-03_tc_iPad_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–3.</span>The energy $E^+$ is required to “create” a hole in the
+state $S'$.
+</div>
+</div>
+<div id="Ch14-S1-p13" class="para">
+<p class="p">The creation of pairs is a common process (as we will see later), so
+many people like to put Fig. <a href="#Ch14-F2">14–2</a> and
+Fig. <a href="#Ch14-F3">14–3</a> together on the same graph—with the
+<em class="emph">hole</em> energy plotted <em class="emph">downward</em>, although it is, of course a
+<em class="emph">positive</em> energy. We have combined our two graphs in this way in
+Fig. <a href="#Ch14-F4">14–4</a>. The advantage of such a graph is that the
+energy $E_{\text{pair}}=E^-+E^+$ required to create a pair with the
+electron in $S$ and the hole in $S'$ is just the vertical distance
+between $S$ and $S'$ as shown in Fig. <a href="#Ch14-F4">14–4</a>. The minimum
+energy required to create a pair is called the “gap” energy and is
+equal to $E^-_{\text{min}}+E^+_{\text{min}}$.</p>
+</div>
+<div id="Ch14-F4" class="figure">
+<img src="img/FLP_III/f14-04/f14-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–4.</span>Energy diagrams for an electron and a hole drawn together.
+</div>
+</div>
+<div id="Ch14-S1-p14" class="para">
+<p class="p">Sometimes you will see a simpler diagram called an energy level
+diagram which is drawn when people are not
+interested in the $k$ variable. Such a diagram—shown in
+Fig. <a href="#Ch14-F5">14–5</a>—just shows the possible energies for the
+electrons and holes.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a></p>
+</div>
+<div id="Ch14-F5" class="figure">
+<img src="img/FLP_III/f14-05/f14-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–5.</span>Energy level diagram for electrons and holes.
+</div>
+</div>
+<div id="Ch14-S1-p15" class="para">
+<p class="p">How can electron-hole pairs be created? There are several ways. For
+example, photons of light (or x-rays) can be absorbed and create a
+pair if the photon energy is above the energy of the gap. The rate at
+which pairs are produced is proportional to the light intensity. If
+two electrodes are plated on a wafer of the crystal and a “bias”
+voltage is applied, the electrons and holes will be drawn to the
+electrodes. The circuit current will be proportional to the intensity
+of the light. This mechanism is responsible for the phenomenon of
+photoconductivity and the operation of photoconductive cells.</p>
+</div>
+<div id="Ch14-S1-p16" class="para">
+<p class="p">Electron hole pairs can also be produced by high-energy
+particles. When a fast-moving charged particle—for instance, a
+proton or a pion with an energy of tens or hundreds of MeV—goes
+through a crystal, its electric field will knock electrons out of
+their bound states creating electron-hole pairs. Such events occur
+hundreds of thousands of times per millimeter of track. After the
+passage of the particle, the carriers can be collected and in doing so
+will give an electrical pulse. This is the mechanism at play in the
+semiconductor counters recently put to use for experiments in nuclear
+physics. Such counters do not require semiconductors, they can also be
+made with crystalline insulators. In fact, the first of such counters
+was made using a diamond crystal which is an insulator at room
+temperature. Very pure crystals are required if the holes and
+electrons are to be able to move freely to the electrodes without
+being trapped. The semiconductors silicon and germanium are used
+because they can be produced with high purity in reasonable large
+sizes (centimeter dimensions).</p>
+</div>
+<div id="Ch14-S1-p17" class="para">
+<p class="p">So far we have been concerned with semiconductor crystals at
+temperatures near absolute zero. At any finite temperature there is
+still another mechanism by which electron-hole pairs can be
+created. The pair energy can be provided from the thermal energy of
+the crystal. The thermal vibrations of the crystal can transfer their
+energy to a pair—giving rise to “spontaneous” creation.</p>
+</div>
+<div id="Ch14-S1-p18" class="para">
+<p class="p">The probability per unit time that the energy as large as the gap
+energy $E_{\text{gap}}$ will be concentrated at one atomic site is
+proportional to $e^{-E_{\text{gap}}/\kappa T}$, where $T$ is the
+temperature and $\kappa$ is Boltzmann’s
+constant (see
+Chapter <a href="I_40.html">40</a>, Vol. I). Near absolute zero there is no
+appreciable probability, but as the temperature rises there is an
+increasing probability of producing such pairs. At any finite
+temperature the production should continue forever at a constant rate
+giving more and more negative and positive carriers. Of course that does
+not happen because after a while the electrons and holes accidentally
+find each other—the electron drops into the hole and the excess energy
+is given to the lattice. We say that the electron and hole
+“annihilate.” There is a certain probability per second that a hole
+meets an electron and the two things annihilate each other.
+</p>
+</div>
+<div id="Ch14-S1-p19" class="para">
+<p class="p">If the number of electrons per unit volume is $N_n$ ($n$ for negative
+carriers) and the density of positive carriers is $N_p$, the chance
+per unit time that an electron and a hole will find each other and
+annihilate is proportional to the product $N_nN_p$. In equilibrium
+this rate must equal the rate that pairs are created. You see that in
+equilibrium the product of $N_n$ and $N_p$ should be given by some
+constant times the Boltzmann factor:
+\begin{equation}
+\label{Eq:III:14:4}
+N_nN_p=\text{const}\,e^{-E_{\text{gap}}/\kappa T}.
+\end{equation}
+
+When we say constant, we mean nearly constant. A more complete
+theory—which includes more details about how holes and electrons
+“find” each other—shows that the “constant” is slightly
+dependent upon temperature, but the major dependence on temperature is
+in the exponential.</p>
+</div>
+<div id="Ch14-S1-p20" class="para">
+<p class="p">Let’s consider, as an example, a pure material which is originally
+neutral. At a finite temperature you would expect the number of
+positive and negative carriers to be equal, $N_n=N_p$. Then each of
+them should vary with temperature as $e^{-E_{\text{gap}}/2\kappa
+T}$. The variation of many of the properties of a semiconductor—the
+conductivity for example—is mainly determined by the exponential
+factor because all the other factors vary much more slowly with
+temperature. The gap energy for germanium is about $0.72$ eV and for
+silicon $1.1$ eV.</p>
+</div>
+<div id="Ch14-S1-p21" class="para">
+<p class="p">At room temperature $\kappa T$ is about $1/40$ of an electron volt. At
+these temperatures there are enough holes and electrons to give a
+significant conductivity, while at, say, $30^\circ$K—one-tenth of
+room temperature—the conductivity is imperceptible. The gap energy
+of diamond is $6$ or $7$ eV and diamond is a good insulator at room
+temperature.</p>
+</div>
+</div>
+<div id="Ch14-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">14–2</span>Impure semiconductors</h3>
+<div id="Ch14-S2-p1" class="para">
+<p class="p">So far we have talked about two ways that extra electrons can be put
+into an otherwise ideally perfect crystal lattice. One way was to
+inject the electron from an outside source; the other way, was to
+knock a bound electron off a neutral atom creating simultaneously an
+electron and a hole. It is possible to put electrons into the
+conduction band of a crystal in still another way. Suppose we imagine
+a crystal of germanium in which one of the germanium atoms is replaced
+by an arsenic atom. The germanium atoms have a valence of $4$ and the
+crystal structure is controlled by the four valence
+electrons. Arsenic, on the other hand, has a valence of $5$. It turns
+out that a single arsenic atom can sit in the germanium lattice
+(because it has approximately the correct size), but in doing so it
+must act as a valence $4$ atom—using four of its valence electrons
+to form the crystal bonds and having one electron left over. This
+extra electron is very loosely attached—the binding energy is only
+about $1/100$ of
+an electron
+volt. At room temperature the electron easily picks
+up that much energy from the thermal energy of the crystal, and then
+takes off on its own—moving about in the lattice as a free
+electron. An impurity atom such as the arsenic is called a <em class="emph">donor
+site</em> because it can give up a negative carrier to the
+crystal. If a crystal of germanium is grown from a melt to which a very
+small amount of arsenic has been added, the arsenic donor sites will be
+distributed throughout the crystal and the crystal will have a certain
+density of negative carriers built in.</p>
+</div>
+<div id="Ch14-S2-p2" class="para">
+<p class="p">You might think that these carriers would get swept away as soon as
+any small electric field was put across the crystal. This will not
+happen, however, because the arsenic atoms in the body of the crystal
+each have a positive charge. If the body of the crystal is to remain
+neutral, the average density of negative carrier electrons must be
+equal to the density of donor sites. If you put two electrodes on the
+edges of such a crystal and connect them to a battery, a current will
+flow; but as the carrier electrons are swept out at one end, new
+conduction electrons must be introduced from the electrode on the
+other end so that the average density of conduction electrons is left
+very nearly equal to the density of donor sites.
+</p>
+</div>
+<div id="Ch14-S2-p3" class="para">
+<p class="p">Since the donor sites are positively charged, there will be some
+tendency for them to capture some of the conduction electrons as they
+diffuse around inside the crystal. A donor site can, therefore, act as
+a trap such as those we discussed in the last section. But if the
+trapping energy is sufficiently small—as it is for arsenic—the
+number of carriers which are trapped at any one time is a small
+fraction of the total. For a complete understanding of the behavior of
+semiconductors one must take into account this trapping. For the rest
+of our discussion, however, we will assume that the trapping energy is
+sufficiently low and the temperature is sufficiently high, that all of
+the donor sites have given up their electrons. This is, of course,
+just an approximation.</p>
+</div>
+<div id="Ch14-S2-p4" class="para">
+<p class="p">It is also possible to build into a germanium crystal some impurity
+atom whose valence is $3$, such as aluminum. The aluminum atom tries
+to act as a valence $4$ object by stealing an extra electron. It can
+steal an electron from some nearby germanium atom and end up as a
+negatively charged atom with an effective valence of $4$. Of course,
+when it steals the electron from a germanium atom, it leaves a hole
+there; and this hole can wander around in the crystal as a positive
+carrier. An impurity atom which can produce a hole in this way is
+called an <em class="emph">acceptor</em> because it “accepts” an
+electron. If a germanium or a silicon crystal is grown from a melt to
+which a small amount of aluminum impurity has been added, the crystal
+will have built-in a certain density of holes which can act as positive
+carriers.</p>
+</div>
+<div id="Ch14-S2-p5" class="para">
+<p class="p">When a donor or an acceptor impurity is added to a semiconductor, we
+say that the material has been “doped.”</p>
+</div>
+<div id="Ch14-S2-p6" class="para">
+<p class="p">When a germanium crystal with some built-in donor impurities is at
+room temperature, some conduction electrons are contributed by the
+thermally induced electron-hole pair creation as well as by the donor
+sites. The electrons from both sources are, naturally, equivalent, and
+it is the total number $N_n$ which comes into play in the statistical
+processes that lead to equilibrium. If the temperature is not too low,
+the number of negative carriers contributed by the donor impurity
+atoms is roughly equal to the number of impurity atoms present. In
+equilibrium Eq. (<a href="#mjx-eqn-EqIII144">14.4</a>) must still be valid; at a given
+temperature the product $N_nN_p$ is determined. This means that if we
+add some donor impurity which increases $N_n$, the number $N_p$ of
+positive carriers will have to decrease by such an amount that
+$N_nN_p$ is unchanged. If the impurity concentration is high enough,
+the number $N_n$ of negative carriers is determined by the number of
+donor sites and is nearly independent of temperature—all of the
+variation in the exponential factor is supplied by $N_p$, even though
+it is much less than $N_n$. An otherwise pure crystal with a small
+concentration of donor impurity will have a majority of negative
+carriers; such a material is called an “$n$-type”
+semiconductor.
+</p>
+</div>
+<div id="Ch14-S2-p7" class="para">
+<p class="p">If an acceptor-type impurity is added to the crystal lattice, some of
+the new holes will drift around and annihilate some of the free
+electrons produced by thermal fluctuation. This process will go on until
+Eq. (<a href="#mjx-eqn-EqIII144">14.4</a>) is satisfied. Under equilibrium conditions the
+number of positive carriers will be increased and the number of negative
+carriers will be decreased, leaving the product a constant. A material
+with an excess of positive carriers is called a “$p$-type”
+semiconductor.
+</p>
+</div>
+<div id="Ch14-S2-p8" class="para">
+<p class="p">If we put two electrodes on a piece of semiconductor crystal and
+connect them to a source of potential difference, there will be an
+electric field inside the crystal. The electric field will cause the
+positive and the negative carriers to move, and an electric current
+will flow. Let’s consider first what will happen in an $n$-type
+material in which there is a large majority of negative carriers. For
+such material we can disregard the holes; they will contribute very
+little to the current because there are so few of them. In an ideal
+crystal the carriers would move across without any impediment. In a
+real crystal at a finite temperature, however,—especially in a
+crystal with some impurities—the electrons do not move completely
+freely. They are continually making collisions which knock them out of
+their original trajectories, that is, changing their momentum. These
+collisions are just exactly the scatterings we talked about in the
+last chapter and occur at any irregularity in the crystal lattice. In
+an $n$-type material the main causes of scattering are the very donor
+sites that are producing the carriers. Since the conduction electrons
+have a very slightly different energy at the donor sites, the
+probability waves are scattered from that point. Even in a perfectly
+pure crystal, however, there are (at any finite temperature)
+irregularities in the lattice due to thermal vibrations. From the
+classical point of view we can say that the atoms aren’t lined up
+exactly on a regular lattice, but are, at any instant, slightly out of
+place due to their thermal vibrations. The energy $E_0$ associated
+with each lattice point in the theory we described in
+Chapter <a href="III_13.html">13</a> varies a little bit from place to place so that
+the waves of probability amplitude are not transmitted perfectly but are
+scattered in an irregular fashion. At very high temperatures or for very
+pure materials this scattering may become important, but in most doped
+materials used in practical devices the impurity atoms contribute most
+of the scattering. We would like now to make an estimate of the
+electrical conductivity of such a material.</p>
+</div>
+<div id="Ch14-S2-p9" class="para">
+<p class="p">When an electric field is applied to an $n$-type semiconductor, each
+negative carrier will be accelerated in this field, picking up
+velocity until it is scattered from one of the donor sites. This means
+that the carriers which are ordinarily moving about in a random
+fashion with their thermal energies will pick up an average drift
+velocity along the lines of the electric field and give rise to a
+current through the crystal. The drift velocity is in general rather
+small compared with the typical thermal velocities so that we can
+estimate the current by assuming that the average time that the
+carrier travels between scatterings is a constant. Let’s say that the
+negative carrier has an effective electric charge $q_n$. In an
+electric field $\Efieldvec$, the force on the carrier will
+be $q_n\Efieldvec$. In Section <a href="I_43.html#Ch43-S3">43–3</a> of Volume I we
+calculated the average drift velocity under such circumstances and found
+that it is given by $F\tau/m$, where $F$ is the force on the charge,
+$\tau$ is the mean free time between collisions, and $m$ is the mass. We
+should use the effective mass we calculated in the last chapter but
+since we want to make a rough calculation we will suppose that this
+effective mass is the same in all directions. Here we will call
+it $m_n$. With this approximation the average drift velocity will be
+\begin{equation}
+\label{Eq:III:14:5}
+\FLPv_{\text{drift}}=\frac{q_n\Efieldvec\tau_n}{m_n}.
+\end{equation}
+
+Knowing the drift velocity we can find the current. Electric current
+density $\FLPj$ is just the number of carriers per unit volume, $N_n$,
+multiplied by the average drift velocity, and by the charge on each
+carrier. The current density is therefore
+\begin{equation}
+\label{Eq:III:14:6}
+\FLPj=N_n\FLPv_{\text{drift}}q_n=
+\frac{N_nq_n^2\tau_n}{m_n}\,\Efieldvec.
+\end{equation}
+
+We see that the current density is proportional to the electric field;
+such a semiconductor material obeys Ohm’s law. The coefficient of
+proportionality between $\FLPj$ and $\Efieldvec$, the
+conductivity $\sigma$, is
+\begin{equation}
+\label{Eq:III:14:7}
+\sigma=\frac{N_nq_n^2\tau_n}{m_n}.
+\end{equation}
+
+For an $n$-type material the conductivity is relatively independent of
+temperature. First, the number of majority carriers $N_n$ is
+determined primarily by the density of donors in the crystal (so long
+as the temperature is not so low that too many of the carriers are
+trapped). Second, the mean time between collisions $\tau_n$ is mainly
+controlled by the density of impurity atoms, which is, of course,
+independent of the temperature.</p>
+</div>
+<div id="Ch14-S2-p10" class="para">
+<p class="p">We can apply all the same arguments to a $p$-type material, changing
+only the values of the parameters which appear in
+Eq. (<a href="#mjx-eqn-EqIII147">14.7</a>). If there are comparable numbers of both
+negative and positive carriers present at the same time, we must add the
+contributions from each kind of carrier. The total conductivity will be
+given by
+\begin{equation}
+\label{Eq:III:14:8}
+\sigma=\frac{N_nq_n^2\tau_n}{m_n}+\frac{N_pq_p^2\tau_p}{m_p}.
+\end{equation}
+</p>
+</div>
+<div id="Ch14-S2-p11" class="para">
+<p class="p">For very pure materials, $N_p$ and $N_n$ will be nearly equal. They
+will be smaller than in a doped material, so the conductivity will be
+less. Also they will vary rapidly with temperature
+(like $e^{-E_{\text{gap}}/2\kappa T}$, as we have seen), so the conductivity
+may change extremely fast with temperature.</p>
+</div>
+</div>
+<div id="Ch14-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">14–3</span>The Hall effect</h3>
+<div id="Ch14-F6" class="figure">
+<img src="img/FLP_III/f14-06/f14-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–6.</span>The Hall effect comes from the magnetic forces on the
+carriers.
+</div>
+</div>
+<div id="Ch14-S3-p1" class="para">
+<p class="p">It is certainly a peculiar thing that in a substance where the only
+relatively free objects are electrons, there should be an electrical
+current carried by holes that behave like positive particles. We would
+like, therefore, to describe an experiment that shows in a rather
+clear way that the sign of the carrier of electric current is quite
+definitely positive. Suppose we have a block made of semiconductor
+material—it could also be a metal—and we put an electric field on
+it so as to draw a current in some direction, say the horizontal
+direction as drawn in Fig. <a href="#Ch14-F6">14–6</a>. Now suppose we put a magnetic field
+on the block pointing at a right angle to the current, say <em class="emph">into</em>
+the plane of the figure. The moving carriers will feel a magnetic
+force $q(\FLPv\times\FLPB)$. And since the average drift velocity is
+either right or left—depending on the sign of the charge on the
+carrier—the average magnetic force on the carriers will be either up
+or down. No, that is not right! For the directions we have assumed for
+the current and the magnetic field the magnetic force on the moving
+charges will always be <em class="emph">up</em>. Positive charges moving in the
+direction of $\FLPj$ (to the right) will feel an upward force. If the
+current is carried by negative charges, they will be moving left (for
+the same sign of the conduction current) and they will also feel an
+upward force. Under steady conditions, however, there is no upward
+motion of the carriers because the current can flow only from left to
+right. What happens is that a few of the charges initially flow
+upward, producing a surface charge density along the upper surface of
+semiconductor—leaving an equal and opposite surface charge density
+along the bottom surface of the crystal. The charges pile up on the
+top and bottom surfaces until the electric forces they produce on the
+moving charges just exactly cancel the magnetic force (on the average)
+so that the steady current flows horizontally. The charges on the top
+and bottom surfaces will produce a potential difference vertically
+across the crystal which can be measured with a high-resistance
+voltmeter, as shown in Fig. <a href="#Ch14-F7">14–7</a>. The sign of the potential
+difference registered by the voltmeter will depend on the sign of the
+carrier charges responsible for the current.</p>
+</div>
+<div id="Ch14-F7" class="figure">
+<img src="img/FLP_III/f14-07/f14-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–7.</span>Measuring the Hall effect.
+</div>
+</div>
+<div id="Ch14-S3-p2" class="para">
+<p class="p">When such experiments were first done it was expected that the sign of
+the potential difference would be negative as one would expect for
+negative conduction electrons. People were, therefore, quite surprised
+to find that for some materials the sign of the potential difference
+was in the opposite direction. It appeared that the current carrier
+was a particle with a positive charge. From our discussion of doped
+semiconductors it is understandable that an $n$-type semiconductor
+should produce the sign of potential difference appropriate to
+negative carriers, and that a $p$-type semiconductor should give an
+opposite potential difference, since the current is carried by the
+positively charged holes.</p>
+</div>
+<div id="Ch14-S3-p3" class="para">
+<p class="p">The original discovery of the anomalous sign of the potential
+difference in the Hall effect was made in a metal rather than a
+semiconductor. It had been assumed that in metals the conduction was
+always by electron; however, it was found out that for beryllium the
+potential difference had the wrong sign. It is now understood that in
+metals as well as in semiconductors it is possible, in certain
+circumstances, that the “objects” responsible for the conduction are
+holes. Although it is ultimately the electrons in the crystal which do
+the moving, nevertheless, the relationship of the momentum and the
+energy, and the response to external fields is exactly what one would
+expect for an electric current carried by positive particles.</p>
+</div>
+<div id="Ch14-S3-p4" class="para">
+<p class="p">Let’s see if we can make a quantitative estimate of the magnitude of
+the voltage difference expected from the Hall effect. If the voltmeter
+in Fig. <a href="#Ch14-F7">14–7</a> draws a negligible current, then the charges inside the
+semiconductor must be moving from left to right and the vertical
+magnetic force must be precisely cancelled by a vertical electric
+field which we will call $\Efieldvec_{\text{tr}}$ (the “tr” is for
+“transverse”). If this electric field is to cancel the magnetic
+forces, we must have
+\begin{equation}
+\label{Eq:III:14:9}
+\Efieldvec_{\text{tr}}=-\FLPv_{\text{drift}}\times\FLPB.
+\end{equation}
+
+Using the relation between the drift velocity and the electric current
+density given in Eq. (<a href="#mjx-eqn-EqIII146">14.6</a>), we get
+\begin{equation*}
+\Efield_{\text{tr}}=-\frac{1}{qN}\,jB.
+\end{equation*}
+
+The potential difference between the top and the bottom of the crystal
+is, of course, this electric field strength multiplied by the height
+of the crystal. The electric field strength $\Efield_{\text{tr}}$ in
+the crystal is proportional to the current density and to the magnetic
+field strength. The constant of proportionality $1/qN$ is called the
+Hall coefficient and is usually represented by the
+symbol $R_{\text{H}}$. The Hall coefficient depends just on the density of
+carriers—provided that carriers of one sign are in a large
+majority. Measurement of the Hall effect is, therefore, one convenient
+way of determining experimentally the density of carriers in a
+semiconductor.</p>
+</div>
+</div>
+<div id="Ch14-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">14–4</span>Semiconductor junctions</h3>
+<div id="Ch14-F8" class="figure">
+<img src="img/FLP_III/f14-08/f14-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–8.</span>A $p$-$n$ junction.
+</div>
+</div>
+<div id="Ch14-S4-p1" class="para">
+<p class="p">We would like to discuss now what happens if we take two pieces of
+germanium or silicon with different internal characteristics—say
+different kinds or amounts of doping—and put them together to make a
+“junction.” Let’s start out with what is called a $p$-$n$ junction
+in which we have $p$-type germanium on one side of the boundary and
+$n$-type germanium on the other side of the boundary—as sketched in
+Fig. <a href="#Ch14-F8">14–8</a>. Actually, it is not practical to put together two
+separate pieces of crystal and have them in uniform contact on an
+atomic scale. Instead, junctions are made out of a single crystal
+which has been modified in the two separate regions. One way is to add
+some suitable doping impurity to the “melt” after only half of the
+crystal has grown. Another way is to paint a little of the impurity
+element on the surface and then heat the crystal causing some impurity
+atoms to diffuse into the body of the crystal. Junctions made in these
+ways do not have a sharp boundary, although the boundaries can be made
+as thin as $10^{-4}$ centimeters or so. For our discussions we will
+imagine an ideal situation in which these two regions of the crystal
+with different properties meeting at a sharp boundary.</p>
+</div>
+<div id="Ch14-S4-p2" class="para">
+<p class="p">On the $n$-type side of the $p$-$n$ junction there are free electrons
+which can move about, as well as the fixed donor sites which balance
+the overall electric charge. On the $p$-type side there are free holes
+moving about and an equal number of negative acceptor sites keeping
+the charge balanced. Actually, that describes the situation before we
+put the two materials in contact. Once they are connected together the
+situation will change near the boundary. When the electrons in the
+$n$-type material arrive at the boundary they will not be reflected
+back as they would at a free surface, but are able to go right on into
+the $p$-type material. Some of the electrons of the $n$-type material
+will, therefore, tend to diffuse over into the $p$-type material where
+there are fewer electrons. This cannot go on forever because as we
+lose electrons from the $n$-side the net positive charge there
+increases until finally an electric voltage is built up which retards
+the diffusion of electrons into the $p$-side. In a similar way, the
+positive carriers of the $p$-type material can diffuse across the
+junction into the $n$-type material. When they do this they leave
+behind an excess of negative charge. Under equilibrium conditions the
+net diffusion current must be zero. This is brought about by the
+electric fields, which are established in such a way as to draw the
+positive carriers back toward the $p$-type material.</p>
+</div>
+<div id="Ch14-F9" class="figure">
+<img src="img/FLP_III/f14-09/f14-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–9.</span>The electric potential and the carrier densities in an unbiased
+semiconductor junction.
+</div>
+</div>
+<div id="Ch14-S4-p3" class="para">
+<p class="p">The two diffusion processes we have been describing go on
+simultaneously and, you will notice, both act in the direction which
+will charge up the $n$-type material in a positive sense and the
+$p$-type material in a negative sense. Because of the finite
+conductivity of the semiconductor material, the change in potential
+from the $p$-side to the $n$-side will occur in a relatively narrow
+region near the boundary; the main body of each block of material will
+have a uniform potential. Let’s imagine an $x$-axis in a direction
+perpendicular to the boundary surface. Then the electric potential
+will vary with $x$, as shown in Fig. <a href="#Ch14-F9">14–9</a>(b). We have also shown in
+part (c) of the figure the expected variation of the density $N_n$ of
+$n$-carriers and the density $N_p$ of $p$-carriers. Far away from the
+junction the carrier densities $N_p$ and $N_n$ should be just the
+equilibrium density we would expect for individual blocks of materials
+at the same temperature. (We have drawn the figure for a junction in
+which the $p$-type material is more heavily doped than the $n$-type
+material.) Because of the potential gradient at the junction, the
+positive carriers have to climb up a potential hill to get to the
+$n$-type side. This means that under equilibrium conditions there can
+be fewer positive carriers in the $n$-type material than there are in
+the $p$-type material. Remembering the laws of statistical mechanics,
+we expect that the ratio of $p$-type carriers on the two sides to be
+given by the following equation:
+\begin{equation}
+\label{Eq:III:14:10}
+\frac{N_p(\text{$n$-side})}{N_p(\text{$p$-side})}=
+e^{-q_pV/\kappa T}.
+\end{equation}
+
+The product $q_pV$ in the numerator of the exponential is just the
+energy required to carry a charge of $q_p$ through a potential
+difference $V$.</p>
+</div>
+<div id="Ch14-S4-p4" class="para">
+<p class="p">We have a precisely similar equation for the densities of the $n$-type
+carriers:
+\begin{equation}
+\label{Eq:III:14:11}
+\frac{N_n(\text{$n$-side})}{N_n(\text{$p$-side})}=
+e^{-q_nV/\kappa T}.
+\end{equation}
+
+If we know the equilibrium densities in each of the two materials, we
+can use either of the two equations above to determine the potential
+difference across the junction.</p>
+</div>
+<div id="Ch14-S4-p5" class="para">
+<p class="p">Notice that if Eqs. (<a href="#mjx-eqn-EqIII1410">14.10</a>) and (<a href="#mjx-eqn-EqIII1411">14.11</a>) are to give the same value for the potential difference $V$, the product $N_pN_n$ must be the same for the $p$-side as for the $n$-side. (Remember that $q_n=-q_p$.) We have seen earlier, however, that this product depends only on the temperature and the gap energy of the crystal. Provided both sides of the crystal are at the same temperature, the two equations are consistent with the same value of the potential difference.
+</p>
+</div>
+<div id="Ch14-S4-p6" class="para">
+<p class="p">Since there is a potential difference from one side of the junction to
+the other, it looks something like a battery. Perhaps if we connect a
+wire from the $n$-type side to the $p$-type side we will get an
+electrical current. That would be nice because then the current would
+flow forever without using up any material and we would have an
+infinite source of energy in violation of the second law of
+thermodynamics!  There is, however, no current if you connect a wire
+from the $p$-side to the $n$-side. And the reason is easy to
+see. Suppose we imagine first a wire made out of a piece of undoped
+material. When we connect this wire to the $n$-type side, we have a
+junction. There will be a potential difference across this
+junction. Let’s say that it is just one-half the potential difference
+from the $p$-type material to the $n$-type material. When we connect
+our undoped wire to the $p$-type side of the junction, there is also a
+potential difference at this junction—again, one-half the potential
+drop across the $p$-$n$ junction. At all the junctions the potential
+differences adjust themselves so that there is no net current flow in
+the circuit. Whatever kind of wire you use to connect together the two
+sides of the $n$-$p$ junction, you are producing two new junctions,
+and so long as all the junctions are at the same temperature, the
+potential jumps at the junctions all compensate each other and no
+current will flow in the circuit. It does turn out, however—if you
+work out the details—that if some of the junctions are at a
+different temperature than the other junctions, currents will
+flow. Some of the junctions will be heated and others will be cooled
+by this current and thermal energy will be converted into electrical
+energy. This effect is responsible for the operation of thermocouples
+which are used for measuring temperatures, and of thermoelectric
+generators. The same effect is also used to make small refrigerators.</p>
+</div>
+<div id="Ch14-S4-p7" class="para">
+<p class="p">If we cannot measure the potential difference between the two sides of
+an $n$-$p$ junction, how can we really be sure that the potential
+gradient shown in Fig. <a href="#Ch14-F9">14–9</a> really exists? One way is to
+shine light on the junction. When the light photons are absorbed they
+can produce an electron-hole pair. In the strong electric field that
+exists at the junction (equal to the slope of the potential curve of
+Fig. <a href="#Ch14-F9">14–9</a>) the hole will be driven into the $p$-type
+region and the electron will be driven into the $n$-type region. If the
+two sides of the junction are now connected to an external circuit,
+these extra charges will provide a current. The energy of the light will
+be converted into electrical energy in the junction. The solar cells
+which generate electrical power for the operation of some of our
+satellites operate on this principle.</p>
+</div>
+<div id="Ch14-S4-p8" class="para">
+<p class="p">In our discussion of the operation of a semiconductor junction we have
+been assuming that the holes and the electrons act more-or-less
+independently—except that they somehow get into proper statistical
+equilibrium. When we were describing the current produced by light
+shining on the junction, we were assuming that an electron or a hole
+produced in the junction region would get into the main body of the
+crystal before being annihilated by a carrier of the opposite
+polarity. In the immediate vicinity of the junction, where the density
+of carriers of both signs is approximately equal, the effect of
+electron-hole annihilation (or as it is often called,
+“recombination”) is an important effect, and in a detailed analysis
+of a semiconductor junction must be properly taken into account. We
+have been assuming that a hole or an electron produced in a junction
+region has a good chance of getting into the main body of the crystal
+before recombining. The typical time for an electron or a hole to find
+an opposite partner and annihilate it is for typical semiconductor
+materials in the range between $10^{-3}$ and $10^{-7}$ seconds. This
+time is, incidentally, much longer than the mean free time $\tau$
+between collisions with scattering sites in the crystal which we used
+in the analysis of conductivity. In a typical $n$-$p$ junction, the
+time for an electron or hole formed in the junction region to be swept
+away into the body of the crystal is generally much shorter than the
+recombination time. Most of the pairs will, therefore, contribute to
+an external current.</p>
+</div>
+</div>
+<div id="Ch14-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">14–5</span>Rectification at a semiconductor junction</h3>
+<div id="Ch14-S5-p1" class="para">
+<p class="p">We would like to show next how it is that a $p$-$n$ junction can act
+like a rectifier. If we put a voltage across the junction, a large
+current will flow if the polarity is in one direction, but a very
+small current will flow if the same voltage is applied in the opposite
+direction. If an alternating voltage is applied across the junction, a
+net current will flow in one direction—the current is “rectified.”
+Let’s look again at what is going on in the equilibrium condition
+described by the graphs of Fig. <a href="#Ch14-F9">14–9</a>. In the $p$-type material there
+is a large concentration $N_p$ of positive carriers. These carriers
+are diffusing around and a certain number of them each second approach
+the junction. This current of positive carriers which approaches the
+junction is proportional to $N_p$. Most of them, however, are turned
+back by the high potential hill at the junction and only the
+fraction $e^{-qV/\kappa T}$ gets through. There is also a current of positive
+carriers approaching the junction from the other side. This current is
+also proportional to the density of positive carriers in the $n$-type
+region, but the carrier density here is much smaller than the density
+on the $p$-type side. When the positive carriers approach the junction
+from the $n$-type side, they find a hill with a negative slope and
+immediately slide downhill to the p-type side of the junction. Let’s
+call this current $I_0$. Under equilibrium the currents from the two
+directions are equal. We expect then the following relation:
+\begin{equation}
+\label{Eq:III:14:12}
+I_0\propto N_p(\text{$n$-side})=
+N_p(\text{$p$-side})e^{-qV/\kappa T}.
+\end{equation}
+
+You will notice that this equation is really just the same as
+Eq. (<a href="#mjx-eqn-EqIII1410">14.10</a>). We have just derived it in a different way.</p>
+</div>
+<div id="Ch14-S5-p2" class="para">
+<p class="p">Suppose, however, that we lower the voltage on the $n$-side of the
+junction by an amount $\Delta V$—which we can do by applying an
+external potential difference to the junction. Now the difference in
+potential across the potential hill is no longer $V$ but $V-\Delta
+V$. The current of positive carriers from the $p$-side to the $n$-side
+will now have this potential difference in its exponential
+factor. Calling this current $I_1$, we have
+\begin{equation*}
+I_1\propto N_p(\text{$p$-side})e^{-q(V-\Delta V)/\kappa T}.
+\end{equation*}
+
+This current is larger than $I_0$ by just the factor $e^{q\Delta
+V/\kappa T}$. So we have the following relation between $I_1$
+and $I_0$:
+\begin{equation}
+\label{Eq:III:14:13}
+I_1=I_0e^{+q\Delta V/\kappa T}.
+\end{equation}
+
+The current from the $p$-side increases exponentially with the
+externally applied voltage $\Delta V$. The current of positive
+carriers from the $n$-side, however, remains constant so long
+as $\Delta V$ is not too large. When they approach the barrier, these
+carriers will still find a downhill potential and will all fall down
+to the $p$-side. (If $\Delta V$ is larger than the natural potential
+difference $V$, the situation would change, but we will not consider
+what happens at such high voltages.) The net current $I$ of positive
+carriers which flows across the junction is then the difference
+between the currents from the two sides:
+\begin{equation}
+\label{Eq:III:14:14}
+I=I_0(e^{+q\Delta V/\kappa T}-1).
+\end{equation}
+
+The net current $I$ of holes flows into the $n$-type region. There the
+holes diffuse into the body of the $n$-region, where they are
+eventually annihilated by the majority $n$-type carriers—the
+electrons. The electrons which are lost in this annihilation will be
+made up by a current of electrons from the external terminal of the
+$n$-type material.</p>
+</div>
+<div id="Ch14-S5-p3" class="para">
+<p class="p">When $\Delta V$ is zero, the net current in Eq. (<a href="#mjx-eqn-EqIII1414">14.14</a>)
+is zero. For positive $\Delta V$ the current increases rapidly with
+the applied voltage. For negative $\Delta V$ the current reverses in
+sign, but the exponential term soon becomes negligible and the
+negative current never exceeds $I_0$—which under our assumptions is
+rather small. This back current $I_0$ is limited by the small density
+of the minority $p$-type carriers on the $n$-side of the junction.</p>
+</div>
+<div id="Ch14-S5-p4" class="para">
+<p class="p">If you go through exactly the same analysis for the current of
+negative carriers which flows across the junction, first with no
+potential difference and then with a small externally applied
+potential difference $\Delta V$, you get again an equation just
+like (<a href="#mjx-eqn-EqIII1414">14.14</a>) for the net electron current. Since the total
+current is the sum of the currents contributed by the two carriers,
+Eq. (<a href="#mjx-eqn-EqIII1414">14.14</a>) still applies for the total current provided we
+identify $I_0$ as the maximum current which can flow for a reversed
+voltage.</p>
+</div>
+<div id="Ch14-S5-p5" class="para">
+<p class="p">The voltage-current characteristic of Eq. (<a href="#mjx-eqn-EqIII1414">14.14</a>) is
+shown in Fig. <a href="#Ch14-F10">14–10</a>. It shows the typical behavior of solid state
+diodes—such as those used in modern computers. We should remark that
+Eq. (<a href="#mjx-eqn-EqIII1414">14.14</a>) is true only for small voltages. For
+voltages comparable to or larger than the natural internal voltage
+difference $V$, other effects come into play and the current no longer
+obeys the simple equation.</p>
+</div>
+<div id="Ch14-F10" class="figure">
+<img src="img/FLP_III/f14-10/f14-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–10.</span>The current through a junction as a function of the voltage
+across it.
+</div>
+</div>
+<div id="Ch14-S5-p6" class="para">
+<p class="p">You may remember, incidentally, that we got exactly the same equation we
+have found here in Eq. (<a href="#mjx-eqn-EqIII1414">14.14</a>) when we discussed the
+“mechanical rectifier”—the ratchet and pawl—in
+Chapter <a href="I_46.html">46</a> of Volume I. We get the same equations in the
+two situations because the basic physical processes are quite similar.</p>
+</div>
+</div>
+<div id="Ch14-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">14–6</span>The transistor</h3>
+<div id="Ch14-S6-p1" class="para">
+<p class="p">Perhaps the most important application of semiconductors is in the
+transistor. The transistor consists of two semiconductor junctions very
+close together. Its operation is based in part on the same principles
+that we just described for the semiconductor diode—the rectifying
+junction. Suppose we make a little bar of germanium with three distinct
+regions, a $p$-type region, an $n$-type region, and another $p$-type
+region, as shown in Fig. <a href="#Ch14-F11">14–11</a>(a). This combination is
+called a $p$-$n$-$p$ transistor. Each of the two junctions in the
+transistor will behave much in the way we have described in the last
+section. In particular, there will be a potential gradient at each
+junction having a certain potential drop from the $n$-type region to
+each $p$-type region. If the two $p$-type regions have the same internal
+properties, the variation in potential as we go across the crystal will
+be as shown in the graph of Fig. <a href="#Ch14-F11">14–11</a>(b).</p>
+</div>
+<div id="Ch14-F11" class="figure">
+<img src="img/FLP_III/f14-11/f14-11_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–11.</span>The potential distribution in a transistor with no applied
+voltages.
+</div>
+</div>
+<div id="Ch14-S6-p2" class="para">
+<p class="p">Now let’s imagine that we connect each of the three regions to
+external voltage sources as shown in part (a) of Fig. <a href="#Ch14-F12">14–12</a>. We will
+refer all voltages to the terminal connected to the left-hand
+$p$-region so it will be, by definition, at zero potential. We will
+call this terminal the <em class="emph">emitter</em>. The $n$-type region is called
+the <em class="emph">base</em> and it is connected to a slightly negative
+potential. The right-hand $p$-type region is called the
+<em class="emph">collector</em>, and is connected to a somewhat larger negative
+potential. Under these circumstances the variation of potential across
+the crystal will be as shown in the graph of Fig. <a href="#Ch14-F12">14–12</a>(b).</p>
+</div>
+<div id="Ch14-F12" class="figure">
+<img src="img/FLP_III/f14-12/f14-12_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–12.</span>The potential distribution in an operating transistor.
+</div>
+</div>
+<div id="Ch14-S6-p3" class="para">
+<p class="p">Let’s first see what happens to the positive carriers, since it is
+primarily their behavior which controls the operation of the
+$p$-$n$-$p$ transistor. Since the emitter is at a relatively more
+positive potential than the base, a current of positive carriers will
+flow from the emitter region into the base region. A relatively large
+current flows, since we have a junction operating with a “forward
+voltage”—corresponding to the right-hand half of the graph in
+Fig. <a href="#Ch14-F10">14–10</a>. With these conditions, positive carriers or holes are
+being “emitted” from the $p$-type region into the $n$-type
+region. You might think that this current would flow out of the
+$n$-type region through the base terminal $b$. Now, however, comes the
+secret of the transistor. The $n$-type region is made very
+thin—typically $10^{-3}$ cm or less, much narrower than its
+transverse dimensions. This means that as the holes enter the $n$-type
+region they have a very good chance of diffusing across to the other
+junction before they are annihilated by the electrons in the $n$-type
+region. When they get to the right-hand boundary of the $n$-type
+region they find a steep downward potential hill and immediately fall
+into the right-hand $p$-type region. This side of the crystal is
+called the collector because it “collects” the holes after they have
+diffused across the $n$-type region. In a typical transistor, all but
+a fraction of a percent of the hole current which leaves the emitter
+and enters the base is collected in the collector region, and only the
+small remainder contributes to the net base current. The sum of the
+base and collector currents is, of course, equal to the emitter
+current.</p>
+</div>
+<div id="Ch14-S6-p4" class="para">
+<p class="p">Now imagine what happens if we vary slightly the potential $V_b$ on
+the base terminal. Since we are on a relatively steep part of the
+curve of Fig. <a href="#Ch14-F10">14–10</a>, a small variation of the potential $V_b$ will
+cause a rather large change in the emitter current $I_e$. Since the
+collector voltage $V_c$ is much more negative than the base voltage,
+these slight variations in potential will not effect appreciably the
+steep potential hill between the base and the collector. Most of the
+positive carriers emitted into the $n$-region will still be caught by
+the collector. Thus as we vary the potential of the base electrode,
+there will be a corresponding variation in the collector current $I_c$.
+The essential point, however, is that the base current $I_b$
+always remains a small fraction of the collector current. The
+transistor is an amplifier; a small current $I_b$ introduced into the
+base electrode gives a large current—$100$ or so times higher—at
+the collector electrode.</p>
+</div>
+<div id="Ch14-S6-p5" class="para">
+<p class="p">What about the electrons—the negative carriers that we have been
+neglecting so far? First, note that we do not expect any significant
+electron current to flow between the base and the collector. With a
+large negative voltage on the collector, the electrons in the base
+would have to climb a very high potential energy hill and the
+probability of doing that is very small. There is a very small current
+of electrons to the collector.</p>
+</div>
+<div id="Ch14-S6-p6" class="para">
+<p class="p">On the other hand, the electrons in the base <em class="emph">can</em> go into the
+emitter region. In fact, you might expect the electron current in this
+direction to be comparable to the hole current from the emitter into
+the base. Such an electron current isn’t useful, and, on the contrary,
+is bad because it increases the total base current required for a
+given current of holes to the collector. The transistor is, therefore,
+designed to minimize the electron current to the emitter. The electron
+current is proportional to $N_n(\text{base})$, the density of negative
+carriers in the base material while the hole current from the emitter
+depends on $N_p(\text{emitter})$, the density of positive carriers in
+the emitter region. By using relatively little doping in the $n$-type
+material $N_n(\text{base})$ can be made much smaller
+than $N_p(\text{emitter})$. (The very thin base region also helps a great
+deal because the sweeping out of the holes in this region by the
+collector increases significantly the average hole current from the
+emitter into the base, while leaving the electron current unchanged.)
+The net result is that the electron current across the emitter-base
+junction can be made much less than the hole current, so that the
+electrons do not play any significant role in operation of the
+$p$-$n$-$p$ transistor. The currents are dominated by motion of the
+holes, and the transistor performs as an amplifier as we have
+described above.</p>
+</div>
+<div id="Ch14-S6-p7" class="para">
+<p class="p">It is also possible to make a transistor by interchanging the $p$-type
+and $n$-type materials in Fig. <a href="#Ch14-F11">14–11</a>. Then we have what is called an
+$n$-$p$-$n$ transistor. In the $n$-$p$-$n$ transistor the main
+currents are carried by the electrons which flow from the emitter into
+the base and from there to the collector. Obviously, all the arguments
+we have made for the $p$-$n$-$p$ transistor also apply to the
+$n$-$p$-$n$ transistor if the potentials of the electrodes are chosen
+with the opposite signs.</p>
+</div>
+</div>
+<ol id="footnotes"><li class="footnote">
+  <a name="footnote_1"></a>
+  In many books this same energy diagram is
+interpreted in a different way. The energy scale refers only to
+<em class="emph">electrons</em>. Instead of thinking of the energy of the hole, they
+think of the energy an electron <em class="emph">would</em> have if it filled the hole.
+This energy is <em class="emph">lower</em> than the free-electron energy—in fact,
+just the amount lower that you see in Fig. <a href="#Ch14-F5">14–5</a>. With this
+interpretation of the energy scale, the gap energy is the minimum energy
+which must be given <em class="emph">to an electron</em> to move it from its bound
+state to the conduction band.
+  <a href="#footnote_source_1">↩</a>
+</li></ol>
+</div>
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div>
+
+</div>
+    
+  </body>
+</html>

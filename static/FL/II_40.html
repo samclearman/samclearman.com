@@ -1,0 +1,1484 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 40: The Flow of Dry Water</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "40." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch40" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">40</span>The Flow of Dry Water</h2>
+
+<div id="Ch40-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">40–1</span>Hydrostatics</h3>
+
+<div id="Ch40-S1-p1" class="para">
+<p class="p">The subject of the flow of fluids, and particularly of water,
+fascinates everybody. We can all remember, as children, playing in the
+bathtub or in mud puddles with the strange stuff. As we get older, we
+watch streams, waterfalls, and whirlpools, and we are fascinated by
+this substance which seems almost alive relative to solids. The
+behavior of fluids is in many ways very unexpected and
+interesting—it is the subject of this chapter and the next. The
+efforts of a child trying to dam a small stream flowing in the street
+and his surprise at the strange way the water works its way out has
+its analog in our attempts over the years to understand the flow of
+fluids. We have tried to dam the water up—in our understanding—by
+getting the laws and the equations that describe the flow. We will
+describe these attempts in this chapter. In the next chapter, we will
+describe the unique way in which water has broken through the dam and
+escaped our attempts to understand it.
+</p>
+</div>
+
+<div id="Ch40-S1-p2" class="para">
+<p class="p">We suppose that the elementary properties of water are already known
+to you. The main property that distinguishes a fluid from a solid is
+that a fluid cannot <em class="emph">maintain</em> a shear stress for any length of
+time. If a shear is applied to a fluid, it will move under the
+shear. Thicker liquids like honey move less easily than fluids like
+air or water. The measure of the ease with which a fluid yields is its
+viscosity. In this chapter we will consider only situations in which
+the viscous effects can be ignored. The effects of viscosity will be
+taken up in the next chapter.
+</p>
+</div>
+
+<div id="Ch40-F1" class="figure">
+<img src="img/FLP_II/f40-01/f40-01_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 40–1.</span>
+In a static fluid the force per unit area across any surface is
+normal to the surface and is the same for all orientations of the
+surface.
+</div>
+</div>
+
+<div id="Ch40-S1-p3" class="para">
+<p class="p">We begin by considering <em class="emph">hydrostatics</em>, the theory of liquids at
+rest. When liquids are at rest, there are no shear forces (even for
+viscous liquids). The law of hydrostatics, therefore, is that the
+stresses are always normal to any surface inside the fluid. The normal
+force per unit area is called the <em class="emph">pressure</em>. From the fact that there
+is no shear in a static fluid it follows that the pressure stress is the
+same in all directions (Fig.&nbsp;<a href="#Ch40-F1">40-1</a>). We will let you
+entertain yourself by proving that if there is no shear on any plane in
+a fluid, the pressure must be the same in any direction.
+</p>
+</div>
+
+<div id="Ch40-F2" class="figure">
+<img src="img/FLP_II/f40-02/f40-02_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 40–2.</span>
+The pressure in a static liquid.
+</div>
+</div>
+
+<div id="Ch40-S1-p4" class="para">
+<p class="p">The pressure in a fluid may vary from place to place. For example, in
+a static fluid at the earth’s surface the pressure will vary with
+height because of the weight of the fluid. If the density&nbsp;$\rho$ of
+the fluid is considered constant, and if the pressure at some
+arbitrary zero level is called&nbsp;$p_0$ (Fig.&nbsp;<a href="#Ch40-F2">40-2</a>), then the pressure
+at a height&nbsp;$h$ above this point is&nbsp;$p=p_0-\rho gh$, where $g$ is the
+gravitational force per unit mass. The combination
+\begin{equation*}
+p+\rho gh
+\end{equation*}
+is, therefore, a constant in the static fluid. This relation is
+familiar to you, but we will now derive a more general result of which
+it is a special case.
+</p>
+</div>
+
+<div id="Ch40-S1-p5" class="para">
+<p class="p">If we take a small cube of water, what is the net force on it from the
+pressure? Since the pressure at any place is the same in all
+directions, there can be a net force per unit volume only because the
+pressure varies from one point to another. Suppose that the pressure
+is varying in the $x$-direction—and we take the coordinate
+directions parallel to the cube edges. The pressure on the face at&nbsp;$x$
+gives the force&nbsp;$p\,\Delta y\,\Delta z$ (Fig.&nbsp;<a href="#Ch40-F3">40-3</a>), and the
+pressure on the face at&nbsp;$x+\Delta x$ gives the
+force&nbsp;$-[p+(\ddpl{p}{x})\,\Delta x]\,\Delta y\,\Delta z$, so that the
+resultant force is&nbsp;$-(\ddpl{p}{x})\,\Delta x\,\Delta y\,\Delta z$. If
+we take the remaining pairs of faces of the cube, we easily see that
+the pressure force per unit volume is&nbsp;$-\FLPgrad{p}$. If there are
+other forces in addition—such as gravity—then the pressure must
+balance them to give equilibrium.
+</p>
+</div>
+
+<div id="Ch40-F3" class="figure">
+<img src="img/FLP_II/f40-03/f40-03_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 40–3.</span>
+The net pressure force on a cube is&nbsp;$-\Fignabla p$ per unit volume.
+</div>
+</div>
+
+<div id="Ch40-S1-p6" class="para">
+<p class="p">Let’s take a circumstance in which such an additional force can be
+described by a potential energy, as would be true in the case of
+gravitation; we will let $\phi$ stand for the potential energy per
+unit mass. (For gravity, for instance, $\phi$ is just&nbsp;$gz$.) The force
+per unit mass is given in terms of the potential by&nbsp;$-\FLPgrad{\phi}$,
+and if $\rho$ is the density of the fluid, the force per unit volume
+is&nbsp;$-\rho\,\FLPgrad{\phi}$. For equilibrium this force per unit volume
+added to the pressure force per unit volume must give zero:
+\begin{equation}
+\label{Eq:II:40:1}
+-\FLPgrad{p}-\rho\,\FLPgrad{\phi}=\FLPzero.
+\end{equation}
+Equation&nbsp;(<a href="#mjx-eqn-EqII401">40.1</a>) is the equation of hydrostatics. In
+<em class="emph">general</em>, it <em class="emph">has no solution</em>. If the density varies in
+space in an arbitrary way, there is no way for the forces to be in
+balance, and the fluid cannot be in static equilibrium. Convection
+currents will start up. We can see this from the equation since the
+pressure term is a pure gradient, whereas for variable&nbsp;$\rho$ the
+other term is not. Only when $\rho$ is a constant is the potential
+term a pure gradient. Then the equation has a solution
+\begin{equation*}
+p+\rho\phi=\text{const}.
+\end{equation*}
+Another possibility which allows hydrostatic equilibrium is for&nbsp;$\rho$
+to be a function only of&nbsp;$p$. However, we will leave the subject of
+hydrostatics because it is not nearly so interesting as the situation
+when fluids are in motion.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch40-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">40–2</span>The equations of motion</h3>
+
+<div id="Ch40-S2-p1" class="para">
+<p class="p">First, we will discuss fluid motions in a purely abstract, theoretical
+way and then consider special examples. To describe the motion of a
+fluid, we must give its properties at every point. For example, at
+different places, the water (let us call the fluid “water”) is
+moving with different <em class="emph">velocities</em>. To specify the character of
+the flow, therefore, we must give the three components of velocity at
+every point and for any time. If we can find the equations that
+determine the velocity, then we would know how the liquid moves at all
+times. The velocity, however, is not the only property that the fluid
+has which varies from point to point. We have just discussed the
+variation of the <em class="emph">pressure</em> from point to point. And there are
+still other variables. There may also be a variation of <em class="emph">density</em>
+from point to point. In addition, the fluid may be a conductor and
+carry an electric <em class="emph">current</em> whose density&nbsp;$\FLPj$ varies from
+point to point in magnitude and direction. There may be a
+<em class="emph">temperature</em> which varies from point to point, or a
+<em class="emph">magnetic field</em>, and so on. So the number of fields needed to
+describe the complete situation will depend on how complicated the
+problem is. There are interesting phenomena when currents and
+magnetism play a dominant part in determining the behavior of the
+fluid; the subject is called <em class="emph">magnetohydrodynamics</em>, and great
+attention is being paid to it at the present time. However, we are not
+going to consider these more complicated situations because there are
+already interesting phenomena at a lower level of complexity, and even
+the more elementary level will be complicated enough.
+</p>
+</div>
+
+<div id="Ch40-S2-p2" class="para">
+<p class="p">We will take the situation where there is no magnetic field and no
+conductivity, and we will not worry about the temperature because we
+will suppose that the density and pressure determine in a unique manner
+the temperature at any point. As a matter of fact, we will reduce the
+complexity of our work by making the assumption that the density is a
+constant—we imagine that the fluid is essentially incompressible.
+Putting it another way, we are supposing that the variations of pressure
+are so small that the changes in density produced thereby are
+negligible. If that is not the case, we would encounter phenomena
+additional to the ones we will be discussing here—for example, the
+propagation of sound or of shock waves. We have already discussed the
+propagation of sound and shocks to some extent, so we will now isolate
+our consideration of hydrodynamics from these other phenomena by making
+the approximation that the density&nbsp;$\rho$ is a constant. It is easy to
+determine when the approximation of constant&nbsp;$\rho$ is a good one. We can
+say that if the velocities of flow are much less than the speed of a
+sound wave in the fluid, we do not have to worry about variations in
+density. The escape that water makes in our attempts to understand it is
+not related to the approximation of constant density. The complications
+that do permit the escape will be discussed in the next chapter.
+</p>
+</div>
+
+<div id="Ch40-S2-p3" class="para">
+<p class="p">In the general theory of fluids one must begin with an <em class="emph">equation
+of state</em> for the fluid which connects the pressure to the density. In
+our approximation this equation of state is simply
+\begin{equation*}
+\rho=\text{const}.
+\end{equation*}
+This then is the first relation for our variables. The next relation
+expresses the conservation of matter—if matter flows away from a
+point, there must be a decrease in the amount left behind. If the
+fluid velocity is&nbsp;$\FLPv$, then the mass which flows in a unit time
+across a unit area of surface is the component of&nbsp;$\rho\FLPv$ normal
+to the surface. We have had a similar relation in electricity. We also
+know from electricity that the divergence of such a quantity gives the
+rate of decrease of the density per unit time. In the same way, the
+equation
+\begin{equation}
+\label{Eq:II:40:2}
+\FLPdiv{(\rho\FLPv)}=-\ddp{\rho}{t}
+\end{equation}
+expresses the conservation of mass for a fluid; it is the hydrodynamic
+<em class="emph">equation of continuity</em>. In our approximation, which is the
+incompressible fluid approximation, $\rho$ is a constant, and the
+equation of continuity is simply
+\begin{equation}
+\label{Eq:II:40:3}
+\FLPdiv{\FLPv}=0.
+\end{equation}
+The fluid velocity&nbsp;$\FLPv$—like the magnetic field&nbsp;$\FLPB$—has
+zero divergence. (The hydrodynamic equations are often closely
+analogous to the electrodynamic equations; that’s why we studied
+electrodynamics first. Some people argue the other way; they think
+that one should study hydrodynamics first so that it will be easier to
+understand electricity afterwards. But electrodynamics is really much
+easier than hydrodynamics.)
+</p>
+</div>
+
+<div id="Ch40-S2-p4" class="para">
+<p class="p">We will get our next equation from Newton’s law which tells us how the
+velocity changes because of the forces. The mass of an element of
+volume of the fluid times its acceleration must be equal to the force
+on the element. Taking an element of unit volume, and writing the
+force per unit volume as&nbsp;$\FLPf$, we have
+\begin{equation*}
+\rho\times(\text{acceleration})=\FLPf.
+\end{equation*}
+We will write the force density as the sum of three terms. We have
+already considered the pressure force per unit volume,
+$-\FLPgrad{p}$. Then there are the “external” forces which act at a
+distance—like gravity or electricity. When they are conservative
+forces with a potential per unit mass, $\phi$, they give a force
+density&nbsp;$-\rho\,\FLPgrad{\phi}$. (If the external forces are not
+conservative, we would have to write&nbsp;$\FLPf_{\text{ext}}$ for the
+external force per unit volume.) Then there is another “internal”
+force per unit volume, which is due to the fact that in a
+<em class="emph">flowing</em> fluid there can also be a shearing stress. This is
+called the viscous force, which we will
+write&nbsp;$\FLPf_{\text{visc}}$. Our equation of motion is
+\begin{equation}
+\label{Eq:II:40:4}
+\rho\times(\text{acceleration})=
+-\FLPgrad{p}-\rho\,\FLPgrad{\phi}+\FLPf_{\text{visc}}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch40-S2-p5" class="para">
+<p class="p">For this chapter we are going to suppose that the liquid is “thin” in
+the sense that the viscosity is unimportant, so we will
+omit&nbsp;$\FLPf_{\text{visc}}$. When we drop the viscosity term, we will be
+making an approximation which describes some ideal stuff rather than
+real water. John von&nbsp;Neumann was
+well aware of the tremendous difference between what happens when you
+don’t have the viscous terms and when you do, and he was also aware
+that, during most of the development of hydrodynamics until about 1900,
+almost the main interest was in solving beautiful <em class="emph">mathematical</em>
+problems with this approximation which had almost nothing to do with
+real fluids. He characterized the theorist who made such analyses as a
+man who studied “dry water.” Such analyses leave out an
+<em class="emph">essential</em> property of the fluid. It is because we are leaving
+this property out of our calculations in this chapter that we have given
+it the title “The Flow of Dry Water.”  We are postponing a discussion
+of <em class="emph">real</em> water to the next chapter.
+</p>
+</div>
+
+<div id="Ch40-F4" class="figure">
+<img src="img/FLP_II/f40-04/f40-04_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 40–4.</span>
+The acceleration of a fluid particle.
+</div>
+</div>
+
+<div id="Ch40-S2-p6" class="para">
+<p class="p">If we leave out $\FLPf_{\text{visc}}$, we have in Eq.&nbsp;(<a href="#mjx-eqn-EqII404">40.4</a>)
+everything we need except an expression for the acceleration. You might
+think that the formula for the acceleration of a fluid particle would be
+very simple, for it seems obvious that if $\FLPv$ is the velocity of a
+fluid particle at some place in the fluid, the acceleration would just
+be&nbsp;$\ddpl{\FLPv}{t}$. <em class="emph">It is not</em>—and for a rather subtle reason.
+The derivative&nbsp;$\ddpl{\FLPv}{t}$, is the rate at which the
+velocity&nbsp;$\FLPv(x,y,z,t)$ changes at a <em class="emph">fixed point</em> in space. What we need
+is how fast the velocity changes for a <em class="emph">particular piece</em> of fluid.
+Imagine that we mark one of the drops of water with a colored speck so
+we can watch it. In a small interval of time&nbsp;$\Delta t$, this drop will
+move to a different location. If the drop is moving along some path as
+sketched in Fig.&nbsp;<a href="#Ch40-F4">40-4</a>, it might in&nbsp;$\Delta t$ move from
+$P_1$ to&nbsp;$P_2$. In fact, it will move in the $x$-direction by an
+amount&nbsp;$v_x\,\Delta t$, in the $y$-direction by the amount&nbsp;$v_y\,\Delta t$, and
+in the $z$-direction by the amount&nbsp;$v_z\,\Delta t$. We see that, if
+$\FLPv(x,y,z,t)$ is the velocity of the fluid particle which is
+at&nbsp;$(x,y,z)$ at the time&nbsp;$t$, then the velocity of the <em class="emph">same</em>
+particle, at the time&nbsp;$t+\Delta t$ is given by&nbsp;$\FLPv(x+\Delta
+x,y+\Delta y,z+\Delta z,t+\Delta t)$—with
+\begin{equation*}
+\Delta x=v_x\,\Delta t,\quad
+\Delta y=v_y\,\Delta t,\quad
+\text{and}\quad
+\Delta z=v_z\,\Delta t.
+\end{equation*}
+From the definition of the partial derivatives—recall
+Eq.&nbsp;(<a href="II_02.html#mjx-eqn-EqII27">2.7</a>)—we have, to first order, that
+<span class="eq-wide">
+\begin{align*}
+\FLPv(x+\;&v_x\,\Delta t,y+v_y\,\Delta t,z+v_z\,\Delta t,t+\Delta t)\\[2pt]
+&=\FLPv(x,y,z,t)+
+\ddp{\FLPv}{x}\,v_x\,\Delta t+
+\ddp{\FLPv}{y}\,v_y\,\Delta t+
+\ddp{\FLPv}{z}\,v_z\,\Delta t+
+\ddp{\FLPv}{t}\,\Delta t.
+\end{align*}
+</span>
+<span class="eq-narrow">
+\begin{gather*}
+\FLPv(x+v_x\Delta t,\,y+v_y\Delta t,\,z+v_z\Delta t,\,t+\Delta t)=\\[1.5ex]
+\FLPv(x,y,z,t)\!+\!
+\ddp{\FLPv}{x}\,v_x\Delta t+\!
+\ddp{\FLPv}{y}\,v_y\Delta t+\!
+\ddp{\FLPv}{z}\,v_z\Delta t+\!
+\ddp{\FLPv}{t}\,\Delta t.
+\end{gather*}
+</span>
+The acceleration $\Delta\FLPv/\Delta t$ is
+\begin{equation*}
+v_x\,\ddp{\FLPv}{x}+v_y\,\ddp{\FLPv}{y}+v_z\,\ddp{\FLPv}{z}+\ddp{\FLPv}{t}.
+\end{equation*}
+We can write this symbolically—treating&nbsp;$\FLPnabla$ as a vector—as
+\begin{equation}
+\label{Eq:II:40:5}
+(\FLPv\cdot\FLPnabla)\FLPv+\ddp{\FLPv}{t}.
+\end{equation}
+Note that there can be an acceleration even
+though&nbsp;$\ddpl{\FLPv}{t}=\FLPzero$ so that velocity <em class="emph">at a given point</em> is
+not changing. As an example, water flowing in a circle at a constant
+speed is accelerating even though the velocity at a given point is not
+changing. The reason is, of course, that the velocity of a particular
+piece of water which is initially at one point on the circle has a
+different direction a moment later; there is a centripetal
+acceleration.
+</p>
+</div>
+
+<div id="Ch40-S2-p7" class="para">
+<p class="p">The rest of our theory is just mathematical—finding solutions of the
+equation of motion we get by putting the acceleration&nbsp;(<a href="#mjx-eqn-EqII405">40.5</a>)
+into Eq.&nbsp;(<a href="#mjx-eqn-EqII404">40.4</a>). We get
+\begin{equation}
+\label{Eq:II:40:6}
+\ddp{\FLPv}{t}+(\FLPv\cdot\FLPnabla)\FLPv=
+-\frac{\FLPgrad{p}}{\rho}-\FLPgrad{\phi},
+\end{equation}
+where viscosity has been omitted. We can rearrange this equation by
+using the following identity from vector analysis:
+\begin{equation*}
+(\FLPv\cdot\FLPnabla)\FLPv=(\FLPcurl{\FLPv})\times\FLPv+
+\tfrac{1}{2}\FLPgrad{(\FLPv\cdot\FLPv)}.
+\end{equation*}
+If we now <em class="emph">define</em> a new <em class="emph">vector field</em>&nbsp;$\FLPOmega$, as the
+curl of&nbsp;$\FLPv$,
+\begin{equation}
+\label{Eq:II:40:7}
+\FLPOmega=\FLPcurl{\FLPv},
+\end{equation}
+the vector identity can be written as
+\begin{equation*}
+(\FLPv\cdot\FLPnabla)\FLPv=\FLPOmega\times\FLPv+
+\tfrac{1}{2}\FLPgrad{v^2},
+\end{equation*}
+and our equation of motion&nbsp;(<a href="#mjx-eqn-EqII406">40.6</a>) becomes
+\begin{equation}
+\label{Eq:II:40:8}
+\ddp{\FLPv}{t}+\FLPOmega\times\FLPv+
+\frac{1}{2}\,\FLPgrad{v^2}=
+-\frac{\FLPgrad{p}}{\rho}-\FLPgrad{\phi}.
+\end{equation}
+You can verify that Eqs. (<a href="#mjx-eqn-EqII406">40.6</a>)
+and&nbsp;(<a href="#mjx-eqn-EqII408">40.8</a>) are equivalent by checking that the components of
+the two sides of the equation are equal—and making use
+of&nbsp;(<a href="#mjx-eqn-EqII407">40.7</a>).
+</p>
+</div>
+
+<div id="Ch40-S2-p8" class="para">
+<p class="p">The vector field&nbsp;$\FLPOmega$ is called the
+<em class="emph">vorticity</em>. If the vorticity is zero everywhere,
+we say that the flow is <em class="emph">irrotational</em>. We have already defined in
+Section&nbsp;<a href="II_03.html#Ch3-S5">3-5</a> a thing called the <em class="emph">circulation</em> of a
+vector field. The circulation around any closed loop in a fluid is the
+line integral of the fluid velocity, at a given instant of time, around
+that loop:
+\begin{equation*}
+(\text{Circulation})=\oint\FLPv\cdot d\FLPs.
+\end{equation*}
+The circulation <em class="emph">per unit area</em> for an infinitesimal loop is
+then—using Stokes’ theorem—equal to&nbsp;$\FLPcurl{\FLPv}$. So the
+vorticity&nbsp;$\FLPOmega$ is the circulation around a unit area
+(perpendicular to the direction of&nbsp;$\FLPOmega$). It also follows that
+if you put a little piece of dirt—<em class="emph">not</em> an infinitesimal
+point—at any place in the liquid it will rotate with the angular
+velocity&nbsp;$\FLPOmega/2$. Try to see if you can prove that. You can also
+check it out that for a bucket of water on a turntable, $\FLPOmega$ is
+equal to twice the local angular velocity of the water.
+</p>
+</div>
+
+<div id="Ch40-S2-p9" class="para">
+<p class="p">If we are interested only in the velocity field, we can eliminate the
+pressure from our equations. Taking the curl of both sides of
+Eq.&nbsp;(<a href="#mjx-eqn-EqII408">40.8</a>), remembering that $\rho$ is a constant and that
+the curl of any gradient is zero, and using Eq.&nbsp;(<a href="#mjx-eqn-EqII403">40.3</a>), we get
+\begin{equation}
+\label{Eq:II:40:9}
+\ddp{\FLPOmega}{t}+\FLPcurl{(\FLPOmega\times\FLPv)}=\FLPzero.
+\end{equation}
+This equation, together with the equations
+\begin{equation}
+\label{Eq:II:40:10}
+\FLPOmega=\FLPcurl{\FLPv}
+\end{equation}
+and
+\begin{equation}
+\label{Eq:II:40:11}
+\FLPdiv{\FLPv}=0,
+\end{equation}
+describes completely the velocity field&nbsp;$\FLPv$. Mathematically
+speaking, if we know $\FLPOmega$ at some time, then we know the curl
+of the velocity vector, and we also know that its divergence is zero,
+so given the physical situation we have all we need to
+determine&nbsp;$\FLPv$ everywhere. (It is just like the situation in magnetism where
+we had $\FLPdiv{\FLPB}=0$ and&nbsp;$\FLPcurl{\FLPB}=\FLPj/\epsO c^2$.)
+Thus, a given $\FLPOmega$ determines&nbsp;$\FLPv$ just as a given $\FLPj$
+determines&nbsp;$\FLPB$. Then, knowing $\FLPv$, Eq.&nbsp;(<a href="#mjx-eqn-EqII409">40.9</a>)
+tells us the rate of change of&nbsp;$\FLPOmega$ from which we can get the
+new&nbsp;$\FLPOmega$ for the next instant. Using Eq.&nbsp;(<a href="#mjx-eqn-EqII4010">40.10</a>),
+again we find the new&nbsp;$\FLPv$, and so on. You see how these equations
+contain all the machinery for calculating the flow. Note, however,
+that this procedure gives the velocity field only; we have lost all
+information about the pressure.
+</p>
+</div>
+
+<div id="Ch40-S2-p10" class="para">
+<p class="p">We point out one special consequence of our equation. If
+$\FLPOmega=\FLPzero$ everywhere at any time&nbsp;$t$, $\ddpl{\FLPOmega}{t}$
+also vanishes, so that $\FLPOmega$ is still zero everywhere
+at&nbsp;$t+\Delta t$. We have a solution to the equation; the flow is
+permanently irrotational. If a flow was started with zero rotation, it
+would always have zero rotation. The equations to be solved then are
+\begin{equation*}
+\FLPdiv{\FLPv}=0,\quad
+\FLPcurl{\FLPv}=\FLPzero.
+\end{equation*}
+They are just like the equations for the electrostatic or
+magnetostatic fields in free space. We will come back to them and look
+at some special problems later.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch40-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">40–3</span>Steady flow—Bernoulli’s theorem</h3>
+
+<div id="Ch40-S3-p1" class="para">
+<p class="p">Now we want to return to the equation of motion, Eq.&nbsp;(<a href="#mjx-eqn-EqII408">40.8</a>),
+but limit ourselves to situations in which the flow is “steady.” By
+steady flow we mean that at any one place in the fluid the velocity
+never changes. The fluid at any point is always replaced by new fluid
+moving in exactly the same way. The velocity picture always looks the
+same—$\FLPv$ is a static vector field. In the same way that we drew
+“field lines” in magnetostatics, we can now draw lines which are
+always tangent to the fluid velocity as shown in Fig.&nbsp;<a href="#Ch40-F5">40-5</a>.
+These lines are called <em class="emph">streamlines</em>.  For
+steady flow, they are evidently the actual paths of fluid particles. (In
+unsteady flow the streamline pattern changes in time, and the streamline
+pattern at any instant does not represent the path of a fluid particle.)
+</p>
+</div>
+
+<div id="Ch40-F5" class="figure">
+<img src="img/FLP_II/f40-05/f40-05_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 40–5.</span>
+Streamlines in steady fluid flow.
+</div>
+</div>
+
+<div id="Ch40-S3-p2" class="para">
+<p class="p">A steady flow does not mean that nothing is happening—atoms in the
+fluid are moving and changing their velocities. It only means that
+$\ddpl{\FLPv}{t}=\FLPzero$. Then if we take the dot product of&nbsp;$\FLPv$
+into the equation of motion, the
+term&nbsp;$\FLPv\cdot(\FLPOmega\times\FLPv)$ drops out, and we are left with
+\begin{equation}
+\label{Eq:II:40:12}
+\FLPv\cdot\FLPgrad{\biggl\{
+\frac{p}{\rho}+\phi+\frac{1}{2}\,v^2
+\biggr\}}=0.
+\end{equation}
+This equation says that <em class="emph">for a small displacement in the
+direction of the fluid velocity</em> the quantity inside the brackets
+doesn’t change. Now in steady flow all displacements are along
+streamlines, so Eq.&nbsp;(<a href="#mjx-eqn-EqII4012">40.12</a>) tells us that <em class="emph">for all
+the points along a streamline</em>, we can write
+\begin{equation}
+\label{Eq:II:40:13}
+\frac{p}{\rho}+\frac{1}{2}\,v^2+\phi=\text{const}\:(\text{streamline}).
+\end{equation}
+This is <em class="emph">Bernoulli’s theorem</em>. The constant may in general be
+different for different streamlines; all we know is that the left-hand
+side of Eq.&nbsp;(<a href="#mjx-eqn-EqII4013">40.13</a>) is the same all along a <em class="emph">given
+streamline</em>. Incidentally, we may notice that for steady
+<em class="emph">irrotational</em> motion for which $\FLPOmega=\FLPzero$, the
+equation of motion&nbsp;(<a href="#mjx-eqn-EqII408">40.8</a>) gives us the relation
+\begin{equation*}
+\FLPgrad{\biggl\{
+\frac{p}{\rho}+\frac{1}{2}\,v^2+\phi
+\biggr\}}=0,
+\end{equation*}
+so that
+\begin{equation}
+\label{Eq:II:40:14}
+\frac{p}{\rho}+\frac{1}{2}\,v^2+\phi=\text{const}\:(\text{everywhere}).
+\end{equation}
+It’s just like Eq.&nbsp;(<a href="#mjx-eqn-EqII4013">40.13</a>) <em class="emph">except</em> that <em class="emph">now</em>
+the constant has the <em class="emph">same value throughout the fluid</em>.
+</p>
+</div>
+
+<div id="Ch40-S3-p3" class="para">
+<p class="p">The theorem of Bernoulli is in fact nothing more than a statement of
+the conservation of energy. A conservation theorem such as this gives
+us a lot of information about a flow without our actually having to
+solve the detailed equations. Bernoulli’s theorem is so important and
+so simple that we would like to show you how it can be derived in a
+way that is different from the formal calculations we have just
+used. Imagine a bundle of adjacent streamlines which form a stream
+tube as sketched in Fig.&nbsp;<a href="#Ch40-F6">40-6</a>. Since the walls of the tube consist
+of streamlines, no fluid flows out through the wall. Let’s call the
+area at one end of the stream tube&nbsp;$A_1$, the fluid velocity
+there&nbsp;$v_1$, the density of the fluid&nbsp;$\rho_1$, and the potential
+energy&nbsp;$\phi_1$. At the other end of the tube, we have the corresponding
+quantities $A_2$,&nbsp;$v_2$, $\rho_2$, and&nbsp;$\phi_2$. Now after a short
+interval of time&nbsp;$\Delta t$, the fluid at&nbsp;$A_1$ has moved a
+distance&nbsp;$v_1\,\Delta t$, and the fluid at&nbsp;$A_2$ has moved a
+distance&nbsp;$v_2\,\Delta t$ [Fig.&nbsp;<a href="#Ch40-F6">40-6</a>(b)]. The conservation of <em class="emph">mass</em>
+requires that the mass which enters through&nbsp;$A_1$ must be equal to the
+mass which leaves through&nbsp;$A_2$. These masses at these two ends must
+be the same:
+\begin{equation*}
+\Delta M=\rho_1A_1v_1\,\Delta t=\rho_2A_2v_2\,\Delta t.
+\end{equation*}
+So we have the equality
+\begin{equation}
+\label{Eq:II:40:15}
+\rho_1A_1v_1=\rho_2A_2v_2.
+\end{equation}
+This equation tells us that the velocity varies inversely with the
+area of the stream tube if $\rho$ is constant.
+</p>
+</div>
+
+<div id="Ch40-F6" class="figure">
+<img class="first" src="img/FLP_II/f40-06/f40-06_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_II/f40-06/f40-06_tc_iPad_big_b.svgz"><div class="caption"><span class="tag">Fig. 40–6.</span>
+Fluid motion in a flow tube.
+</div>
+</div>
+
+<div id="Ch40-S3-p4" class="para">
+<p class="p">Now we calculate the work done by the fluid pressure. The work done on
+the fluid entering at&nbsp;$A_1$ is&nbsp;$p_1A_1v_1\,\Delta t$, and the work
+given up at&nbsp;$A_2$ is&nbsp;$p_2A_2v_2\,\Delta t$. The net work on the fluid
+between $A_1$ and&nbsp;$A_2$ is, therefore,
+\begin{equation*}
+p_1A_1v_1\,\Delta t-p_2A_2v_2\,\Delta t,
+\end{equation*}
+which must equal the increase in the energy of a mass&nbsp;$\Delta M$ of
+fluid in going from $A_1$ to&nbsp;$A_2$. In other words,
+\begin{equation}
+\label{Eq:II:40:16}
+p_1A_1v_1\,\Delta t-p_2A_2v_2\,\Delta t=\Delta M(E_2-E_1),
+\end{equation}
+where $E_1$ is the energy per unit mass of fluid at&nbsp;$A_1$, and $E_2$
+is the energy per unit mass at&nbsp;$A_2$. The energy per unit mass of the
+fluid can be written as
+\begin{equation*}
+E=\tfrac{1}{2}v^2+\phi+U,
+\end{equation*}
+where $\tfrac{1}{2}v^2$ is the kinetic energy per unit mass, $\phi$ is
+the potential energy per unit mass, and $U$ is an additional term
+which represents the internal energy per unit mass of fluid. The
+internal energy might correspond, for example, to the thermal energy
+in a compressible fluid, or to chemical energy. All these quantities can
+vary from point to point. Using this form for the energies
+in&nbsp;(<a href="#mjx-eqn-EqII4016">40.16</a>), we have
+<span class="eq-wide">
+\begin{equation*}
+\frac{p_1A_1v_1\,\Delta t}{\Delta M}-
+\frac{p_2A_2v_2\,\Delta t}{\Delta M}=
+\frac{1}{2}\,v_2^2+\phi_2+U_2-
+\frac{1}{2}\,v_1^2-\phi_1-U_1.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+\frac{p_1A_1v_1\,\Delta t}{\Delta M}&-
+\frac{p_2A_2v_2\,\Delta t}{\Delta M}\,=\\[1ex]
+\frac{1}{2}\,v_2^2+\phi_2+U_2&-
+\frac{1}{2}\,v_1^2-\phi_1-U_1.
+\end{align*}
+</span>
+But we have seen that $\Delta M=\rho Av\,\Delta t$, so we get
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:40:17}
+\frac{p_1}{\rho_1}+\frac{1}{2}\,v_1^2+\phi_1+U_1=
+\frac{p_2}{\rho_2}+\frac{1}{2}\,v_2^2+\phi_2+U_2,
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+&\frac{p_1}{\rho_1}+\frac{1}{2}\,v_1^2+\phi_1+U_1\,=\\[1ex]
+&\frac{p_2}{\rho_2}+\frac{1}{2}\,v_2^2+\phi_2+U_2,
+\end{aligned}
+\label{Eq:II:40:17}
+\end{equation}
+</span>
+which is the Bernoulli result with an additional term for the internal
+energy. If the fluid is incompressible, the internal energy term is the
+same on both sides, and we get again that Eq.&nbsp;(<a href="#mjx-eqn-EqII4014">40.14</a>) holds
+along any streamline.
+</p>
+</div>
+
+<div id="Ch40-F7" class="figure">
+<img src="img/FLP_II/f40-07/f40-07_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 40–7.</span>
+Flow from a tank.
+</div>
+</div>
+
+<div id="Ch40-S3-p5" class="para">
+<p class="p">We consider now some simple examples in which the Bernoulli integral
+gives us a description of the flow. Suppose we have water flowing out
+of a hole near the bottom of a tank, as drawn in Fig.&nbsp;<a href="#Ch40-F7">40-7</a>. We take
+a situation in which the flow speed&nbsp;$v_{\text{out}}$ at the hole is
+much larger than the flow speed near the top of the tank; in other
+words, we imagine that the diameter of the tank is so large that we
+can neglect the drop in the liquid level. (We could make a more
+accurate calculation if we wished.) At the top of the tank the
+pressure is&nbsp;$p_0$, the atmospheric pressure, and the pressure at the
+sides of the jet is also&nbsp;$p_0$. Now we write our Bernoulli equation
+for a streamline, such as the one shown in the figure. At the top of
+the tank, we take $v$ equal to zero and we also take the gravity
+potential&nbsp;$\phi$ to be zero. At the speed&nbsp;$v_{\text{out}}$, and
+$\phi=-gh$, so that
+\begin{equation*}
+p_0=p_0+\tfrac{1}{2}\rho v_{\text{out}}^2-\rho gh,
+\end{equation*}
+or
+\begin{equation}
+\label{Eq:II:40:18}
+v_{\text{out}}=\sqrt{2gh}.
+\end{equation}
+This velocity is just what we would get for something which falls the
+distance&nbsp;$h$.  It is not too surprising, since the water at the exit
+gains kinetic energy at the expense of the potential energy of the
+water at the top. Do not get the idea, however, that you can figure
+out the rate that the fluid flows out of the tank by multiplying this
+velocity by the area of the hole. The fluid velocities as the jet
+leaves the hole are not all parallel to each other but have components
+inward toward the center of the stream—the jet is converging. After
+the jet has gone a little way, the contraction stops and the
+velocities do become parallel. So the total flow is the velocity times
+the area <em class="emph">at that point</em>. In fact, if we have a discharge opening
+which is just a round hole with a sharp edge, the jet contracts to
+$62$&nbsp;percent of the area of the hole.  The reduced effective area of
+the discharge varies for different shapes of discharge tubes, and
+experimental contractions are available as tables of <em class="emph">efflux
+coefficients</em>.
+</p>
+</div>
+
+<div id="Ch40-F8" class="figure">
+<img src="img/FLP_II/f40-08/f40-08_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 40–8.</span>
+With a re-entrant discharge tube, the stream contracts to
+one-half the area of the opening.
+</div>
+</div>
+
+<div id="Ch40-S3-p6" class="para">
+<p class="p">If the discharge tube is re-entrant, as shown in Fig.&nbsp;<a href="#Ch40-F8">40-8</a>,
+it is possible to prove in a most beautiful way that the efflux
+coefficient is exactly $50$&nbsp;percent. We will give just a hint of how the
+proof goes. We have used the conservation of energy to get the velocity,
+Eq.&nbsp;(<a href="#mjx-eqn-EqII4018">40.18</a>), but there is also momentum conservation to
+consider. Since there is an outflow of momentum in the discharge jet,
+there must be a force applied over the cross section of the discharge
+tube. Where does the force come from? The force must come from the
+pressure on the walls. As long as the efflux hole is small and away from
+the walls, the fluid velocity near the walls of the tank will be very
+small. Therefore, the pressure on every face is almost exactly the same
+as the static pressure in a fluid at rest—from
+Eq.&nbsp;(<a href="#mjx-eqn-EqII4014">40.14</a>). Then the static pressure at any point on the
+side of the tank must be matched by an equal pressure at the point on
+the opposite wall, <em class="emph">except</em> at the points on the wall opposite the
+charge tube. If we calculate the momentum poured out through the jet by
+this pressure, we can show that the efflux coefficient is&nbsp;$1/2$. We
+cannot use this method for a discharge hole like that shown in
+Fig.&nbsp;<a href="#Ch40-F7">40-7</a>, however, because the velocity increase along the
+wall right near the discharge area gives a pressure fall which we are
+not able to calculate.
+</p>
+</div>
+
+<div id="Ch40-F9" class="figure">
+<img src="img/FLP_II/f40-09/f40-09_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 40–9.</span>
+The pressure is lowest where the velocity is highest.
+</div>
+</div>
+
+<div id="Ch40-S3-p7" class="para">
+<p class="p">Let’s look at another example—a horizontal pipe with changing cross
+section, as shown in Fig.&nbsp;<a href="#Ch40-F9">40-9</a>, with water flowing in one end and
+out the other. The conservation of energy, namely Bernoulli’s formula,
+says that the pressure is lower in the constricted area where the
+velocity is higher. We can easily demonstrate this effect by measuring
+the pressure at different cross sections with small vertical columns
+of water attached to the flow tube through holes small enough so that
+they do not disturb the flow. The pressure is then measured by the
+height of water in these vertical columns. The pressure is found to be
+less at the constriction than it is on either side. If the area beyond
+the constriction comes back to the same value it had before the
+constriction, the pressure rises again. Bernoulli’s formula would
+predict that the pressure downstream of the constriction should be the
+same as it was upstream, but actually it is noticeably less. The
+reason that our prediction is wrong is that we have neglected the
+frictional, viscous forces which cause a pressure drop along the
+tube. Despite this pressure drop the pressure is definitely lower at
+the constriction (because of the increased speed) than it is on either
+side of it—as predicted by Bernoulli. The speed&nbsp;$v_2$ must certainly
+exceed&nbsp;$v_1$ to get the same amount of water through the narrower
+tube. So the water accelerates in going from the wide to the narrow
+part. The force that gives this acceleration comes from the drop in
+pressure.
+</p>
+</div>
+
+<div id="Ch40-F10" class="figure">
+<img src="img/FLP_II/f40-10/f40-10_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 40–10.</span>
+Proof that $v$ is not equal to&nbsp;$\sqrt{2gh}$.
+</div>
+</div>
+
+<div id="Ch40-S3-p8" class="para">
+<p class="p">We can check our results with another simple demonstration. Suppose we
+have on a tank a discharge tube which throws a jet of water upward as
+shown in Fig.&nbsp;<a href="#Ch40-F10">40-10</a>. If the efflux velocity were
+exactly&nbsp;$\sqrt{2gh}$, the discharge water should rise to a level even with the
+surface of the water in the tank. Experimentally, it falls somewhat
+short. Our prediction is roughly right, but again viscous friction
+which has not been included in our energy conservation formula has
+resulted in a loss of energy.
+</p>
+</div>
+
+<div id="Ch40-S3-p9" class="para">
+<p class="p">Have you ever held two pieces of paper close together and tried to
+blow them apart? Try it! They come <em class="emph">together</em>. The reason, of
+course, is that the air has a higher speed going through the
+constricted space between the sheets than it does when it gets
+outside. The pressure between the sheets is <em class="emph">lower</em> than
+atmospheric pressure, so they come together rather than separating.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch40-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">40–4</span>Circulation</h3>
+
+<div id="Ch40-S4-p1" class="para">
+<p class="p">We saw at the beginning of the last section that if we have an
+incompressible fluid with no circulation, the flow satisfies the
+following two equations:
+\begin{equation}
+\label{Eq:II:40:19}
+\FLPdiv{\FLPv}=0,\quad
+\FLPcurl{\FLPv}=\FLPzero.
+\end{equation}
+They are the same as the equations of electrostatics or magnetostatics
+in empty space. The divergence of the electric field is zero when
+there are no charges, and the curl of the electrostatic field is
+always zero. The curl of the magnetostatic field is zero if there are
+no currents, and the divergence of the magnetic field is always
+zero. Therefore, Eqs.&nbsp;(<a href="#mjx-eqn-EqII4019">40.19</a>) have the same solutions as
+the equations for&nbsp;$\FLPE$ in electrostatics or for&nbsp;$\FLPB$ in
+magnetostatics. As a matter of fact, we have already solved the
+problem of the flow of a fluid past a sphere, as an electrostatic
+analogy, in Section&nbsp;<a href="II_12.html#Ch12-S5">12-5</a>. The electrostatic analog is a
+uniform electric field plus a dipole field. The dipole field is so
+adjusted that the flow velocity normal to the surface of the sphere is
+zero. The same problem for the flow past a cylinder can be worked out
+in a similar way by using a suitable line dipole with a uniform flow
+field. This solution holds for a situation in which the fluid velocity
+at large distances is constant—both in magnitude and direction. The
+solution is sketched in Fig.&nbsp;<a href="#Ch40-F11">40-11</a>(a).
+</p>
+</div>
+
+<div id="Ch40-F11" class="figure">
+<img class="first" src="img/FLP_II/f40-11/f40-11_tc_big_a.svgz"><img class="middle" src="img/FLP_II/f40-11/f40-11_tc_big_b.svgz"><img class="last" src="img/FLP_II/f40-11/f40-11_tc_big_c.svgz"><div class="caption"><span class="tag">Fig. 40–11.</span>
+(a)&nbsp;Ideal fluid flow past a cylinder. (b)&nbsp;Circulation around a
+cylinder. (c)&nbsp;The superposition of (a) and&nbsp;(b).
+</div>
+</div>
+
+<div id="Ch40-S4-p2" class="para">
+<p class="p">There is another solution for the flow around a cylinder when the
+conditions are such that the fluid at large distances moves in circles
+around the cylinder. The flow is, then, circular everywhere, as in
+Fig.&nbsp;<a href="#Ch40-F11">40-11</a>(b). Such a flow has a circulation around the cylinder,
+although&nbsp;$\FLPcurl{\FLPv}$ is still zero <em class="emph">in the fluid</em>. How can
+there be circulation without a curl? We have a circulation around the
+cylinder because the line integral of&nbsp;$\FLPv$ around any loop
+<em class="emph">enclosing</em> the cylinder is not zero. At the same time, the line
+integral of&nbsp;$\FLPv$ around any closed path which does <em class="emph">not</em>
+include the cylinder is zero. We saw the same thing when we found the
+magnetic field around a wire. The curl of&nbsp;$\FLPB$ was zero outside of
+the wire, although a line integral of&nbsp;$\FLPB$ around a path which
+encloses the wire did not vanish. The velocity field in an
+irrotational circulation around a cylinder is precisely the same as
+the magnetic field around a wire. For a circular path with its center
+at the center of the cylinder, the line integral of the velocity is
+\begin{equation*}
+\oint\FLPv\cdot d\FLPs=2\pi rv.
+\end{equation*}
+For irrotational flow the integral must be independent of&nbsp;$r$. Let’s
+call the constant value&nbsp;$C$, then we have that
+\begin{equation}
+\label{Eq:II:40:20}
+v=\frac{C}{2\pi r},
+\end{equation}
+where $v$ is the tangential velocity, and $r$ is the distance from the
+axis.
+</p>
+</div>
+
+<div id="Ch40-S4-p3" class="para">
+<p class="p">There is a nice demonstration of a fluid circulating around a
+hole. You take a transparent cylindrical tank with a drain hole in the
+center of the bottom. You fill it with water, stir up some circulation
+with a stick, and pull the drain plug. You get the pretty effect shown
+in Fig.&nbsp;<a href="#Ch40-F12">40-12</a>. (You’ve seen a similar thing many times in the
+bathtub!) Although you put in some&nbsp;$\omega$ at beginning, it soon dies
+down because of viscosity and the flow becomes irrotational—although
+still with some circulation around the hole.
+</p>
+</div>
+
+<div id="Ch40-F12" class="figure">
+<img src="img/FLP_II/f40-12/f40-12_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 40–12.</span>
+Water with circulation draining from a tank.
+</div>
+</div>
+
+<div id="Ch40-S4-p4" class="para">
+<p class="p">From the theory, we can calculate the shape of the inner surface of
+the water. As a particle of the water moves inward it picks up
+speed. From Eq.&nbsp;(<a href="#mjx-eqn-EqII4020">40.20</a>) the tangential velocity goes
+as&nbsp;$1/r$—it’s just from the conservation of angular momentum, like the
+skater pulling in her arms. Also the radial velocity goes as&nbsp;$1/r$.
+Ignoring the tangential motion, we have water going radially
+inward toward a hole; from $\FLPdiv{\FLPv}=0$, it follows that the
+radial velocity is proportional to&nbsp;$1/r$. So the total velocity also
+increases as&nbsp;$1/r$, and the water goes in along Archimedean
+spirals. The air-water surface is all at atmospheric pressure, so it
+must have—from Eq.&nbsp;(<a href="#mjx-eqn-EqII4014">40.14</a>)—the property that
+\begin{equation*}
+gz+\tfrac{1}{2}v^2=\text{const}.
+\end{equation*}
+But $v$ is proportional to&nbsp;$1/r$, so the shape of the surface is
+\begin{equation*}
+(z-z_0)=\frac{k}{r^2}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch40-S4-p5" class="para">
+<p class="p">An interesting point—which <em class="emph">is not true in general</em> but is true
+for incompressible, irrotational flow—is that if we have one solution
+and a second solution, then the sum is also a solution. This is true
+because the equations in&nbsp;(<a href="#mjx-eqn-EqII4019">40.19</a>) are linear. The complete
+equations of hydrodynamics, Eqs.
+(<a href="#mjx-eqn-EqII409">40.9</a>),&nbsp;(<a href="#mjx-eqn-EqII4010">40.10</a>), and&nbsp;(<a href="#mjx-eqn-EqII4011">40.11</a>), are
+not linear, which makes a vast difference. For the irrotational flow
+about the cylinder, however, we can superpose the flow of
+Fig.&nbsp;<a href="#Ch40-F11">40-11</a>(a) on the flow of Fig.&nbsp;<a href="#Ch40-F11">40-11</a>(b) and
+get the new flow pattern shown in Fig.&nbsp;<a href="#Ch40-F11">40-11</a>(c). This flow
+is of special interest. The flow velocity is higher on the upper side of
+the cylinder than on the lower side. The pressures are therefore
+<em class="emph">lower</em> on the <em class="emph">upper</em> side than on the lower side. So when we
+have a combination of a circulation around a cylinder <em class="emph">and</em> a net
+horizontal flow, there is a net <em class="emph">vertical force</em> on the
+cylinder—it is called a <em class="emph">lift force</em>. Of course, if there is no
+circulation, there is no net force on any body according to our theory
+of “dry” water.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch40-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">40–5</span>Vortex lines</h3>
+
+<div id="Ch40-S5-p1" class="para">
+<p class="p">We have already written down the general equations for the flow of an
+incompressible fluid when there may be vorticity. They are
+\begin{align*}
+\text{I.}&\quad\FLPdiv{\FLPv}=0,\\[1.5ex]
+\text{II.}&\quad\FLPOmega=\FLPcurl{\FLPv},\\[1ex]
+\text{III.}&\quad\ddp{\FLPOmega}{t}+
+\FLPcurl{(\FLPOmega\times\FLPv)}=\FLPzero.
+\end{align*}
+The physical content of these equations has been described in words by
+Helmholtz in terms of three
+theorems. First, imagine that in the fluid we were to draw <em class="emph">vortex
+lines</em> rather than streamlines. By vortex lines we mean field lines that
+have the direction of&nbsp;$\FLPOmega$ and have a density in any region
+proportional to the magnitude of&nbsp;$\FLPOmega$. From&nbsp;II the divergence
+of&nbsp;$\FLPOmega$ is <em class="emph">always</em> zero
+(remember—Section&nbsp;<a href="II_03.html#Ch3-S7">3-7</a>—that the divergence of a curl
+is always zero). So vortex lines are like lines of&nbsp;$\FLPB$—they never
+start or stop, and will tend to go in closed loops. Now
+Helmholtz described&nbsp;III in
+words by the following statement: the vortex lines <em class="emph">move with the
+fluid</em>. This means that if you were to mark the fluid particles along
+some vortex lines—by coloring them with ink, for example—then as the
+fluid moves and carries those particles along, they will always mark the
+new positions of the vortex lines. In whatever way the atoms of the
+liquid move, the vortex lines move with them. That is one way to
+describe the laws.
+</p>
+</div>
+
+<div id="Ch40-S5-p2" class="para">
+<p class="p">It also suggests a method for solving any problems. Given the initial
+flow pattern—say&nbsp;$\FLPv$ everywhere—then you can
+calculate&nbsp;$\FLPOmega$. From the&nbsp;$\FLPv$ you can also tell where the
+vortex lines are going to be a little later—they move with the
+speed&nbsp;$\FLPv$. With the new&nbsp;$\FLPOmega$ you can use I and&nbsp;II to find the
+new&nbsp;$\FLPv$. (That’s just like the problem of finding&nbsp;$\FLPB$, given the
+currents.) If we are given the flow pattern at one instant we can in
+principle calculate it for all subsequent times. We have the general
+solution for nonviscous flow.
+</p>
+</div>
+
+<div id="Ch40-F13" class="figure">
+<img class="first" src="img/FLP_II/f40-13/f40-13_tc_iPad_big_a.svgz"><img class="last"  src="img/FLP_II/f40-13/f40-13_tc_iPad_big_b.svgz"><div class="caption"><span class="tag">Fig. 40–13.</span>
+(a)&nbsp;A group of vortex lines at&nbsp;$t$; (b)&nbsp;the same lines at a
+later time&nbsp;$t'$.
+</div>
+</div>
+
+<div id="Ch40-S5-p3" class="para">
+<p class="p">We would like to show how Helmholtz’s statement—and, therefore, III—can
+be at least partly understood. It is really just the law of conservation
+of angular momentum applied to the fluid. Suppose we imagine a small
+cylinder of the liquid whose axis is parallel to the vortex lines, as in
+Fig.&nbsp;<a href="#Ch40-F13">40-13</a>(a). At some time later, this <em class="emph">same</em> piece
+of fluid will be somewhere else. Generally it will occupy a cylinder
+with a different diameter and be in a different place. It may also have
+a different orientation, say as in Fig.&nbsp;<a href="#Ch40-F13">40-13</a>(b). If,
+however, the diameter has decreased as shown in Fig.&nbsp;<a href="#Ch40-F13">40-13</a>,
+the length will have increased to keep the volume constant (since we are
+assuming an incompressible fluid). Also, since the vortex lines are
+stuck with the material, their density will go up as the cross-sectional
+area goes down. The product of the vorticity&nbsp;$\FLPOmega$ and area&nbsp;$A$ of
+the cylinder will remain constant, so according to
+Helmholtz, we should have
+\begin{equation}
+\label{Eq:II:40:21}
+\Omega_2A_2=\Omega_1A_1.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch40-S5-p4" class="para">
+<p class="p">Now notice that with zero viscosity all the forces on the surface of
+the cylindrical volume (or <em class="emph">any</em> volume, for that matter) are
+perpendicular to the surface. The pressure forces can cause the volume
+to be moved from place to place, or can cause it to change shape; but
+with no <em class="emph">tangential</em> forces the magnitude of the <em class="emph">angular
+momentum of the material inside</em> cannot change. The angular momentum
+of the liquid in the little cylinder is its moment of inertia&nbsp;$I$
+times the angular velocity of the liquid, which is proportional to the
+vorticity&nbsp;$\Omega$. For a cylinder, the moment of inertia is
+proportional to&nbsp;$mr^2$. So from the conservation of angular momentum,
+we would conclude that
+\begin{equation*}
+(M_1R_1^2)\,\Omega_1=(M_2R_2^2)\,\Omega_2.
+\end{equation*}
+But the mass is the same, $M_1=M_2$, and the areas are proportional
+to&nbsp;$R^2$, so we get again just Eq.&nbsp;(<a href="#mjx-eqn-EqII4021">40.21</a>). Helmholtz’s
+statement—which is equivalent to&nbsp;III—is just a consequence of the fact
+that in the absence of viscosity the angular momentum of an element of
+the fluid cannot change.
+</p>
+</div>
+
+<div id="Ch40-F14" class="figure">
+<img src="img/FLP_II/f40-14/f40-14_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 40–14.</span>
+Making a travelling vortex ring.
+</div>
+</div>
+
+<div id="Ch40-S5-p5" class="para">
+<p class="p">There is a nice demonstration of a moving vortex which is made with
+the simple apparatus of Fig.&nbsp;<a href="#Ch40-F14">40-14</a>. It is a “drum” two feet in
+diameter and two feet long made by stretching a thick rubber sheet
+over the open end of a cylindrical “box.” The “bottom”—the drum
+is tipped on its side—is solid except for a $3$-inch diameter
+hole. If you give a sharp blow on the rubber diaphragm with your hand,
+a vortex ring is projected out of the hole. Although the vortex is
+invisible, you can tell it’s there because it will blow out a candle
+$10$ to $20$&nbsp;feet away. By the delay in the effect, you can tell that
+“something” is travelling at a finite speed. You can see better what
+is going on if you first blow some smoke into the box. Then you see
+the vortex as a beautiful round “smoke ring.”
+</p>
+</div>
+
+<div id="Ch40-F15" class="figure">
+<img class="first" src="img/FLP_II/f40-15/f40-15_tc_big_a.svgz"><img class="last" src="img/FLP_II/f40-15/f40-15_tc_big_b.svgz"><div class="caption"><span class="tag">Fig. 40–15.</span>
+A moving vortex ring (a smoke ring). (a)&nbsp;The vortex lines.
+(b)&nbsp;A cross section of the ring.
+</div>
+</div>
+
+<div id="Ch40-S5-p6" class="para">
+<p class="p">The smoke ring is a torus-shaped bundle of vortex lines, as shown in 
+Fig.&nbsp;<a href="#Ch40-F15">40-15(a)</a>. 
+Since $\FLPOmega=\FLPcurl{\FLPv}$, these vortex lines
+represent also a circulation of&nbsp;$\FLPv$ as shown in part (b) of the
+figure. We can understand the forward motion of the ring in the
+following way: The circulating velocity around the <em class="emph">bottom</em> of
+the ring extends up to the top of the ring, having there a forward
+motion. Since the lines of&nbsp;$\FLPOmega$ move with the fluid, they also
+move ahead with the velocity&nbsp;$\FLPv$. (Of course, the circulation
+of&nbsp;$\FLPv$ around the top part of the ring is responsible for the forward
+motion of the vortex lines at the bottom.)
+</p>
+</div>
+
+<div id="Ch40-S5-p7" class="para">
+<p class="p">We must now mention a serious difficulty. We have already noted that
+Eq.&nbsp;(<a href="#mjx-eqn-EqII409">40.9</a>) says that, if $\FLPOmega$ is initially zero,
+it will always be zero. This result is a great failure of the theory
+of “dry” water, because it means that once $\FLPOmega$ is zero it is
+<em class="emph">always</em> zero—it is impossible to <em class="emph">produce</em> any vorticity
+under any circumstance.  Yet, in our simple demonstration with the
+drum, we can generate a vortex ring starting with air which was
+initially at rest. (Certainly, $\FLPv=\FLPzero$, $\FLPOmega=\FLPzero$
+everywhere in the box before we hit it.) Also, we all know that we can
+start some vorticity in a lake with a paddle. Clearly, we must go to a
+theory of “wet” water to get a complete understanding of the
+behavior of a fluid.
+</p>
+</div>
+
+<div id="Ch40-S5-p8" class="para">
+<p class="p">Another feature of the dry water theory which is incorrect is the
+supposition we make regarding the flow at the boundary between it and
+the surface of a solid.  When we discussed the flow past a
+cylinder—as in Fig.&nbsp;<a href="#Ch40-F11">40-11</a>, for example—we permitted the fluid to
+slide along the surface of the solid. In our theory, the velocity at a
+solid surface could have any value depending on how it got started,
+and we did not consider any “friction” between the fluid and the
+solid. It is an experimental fact, however, that the velocity of a
+real fluid always goes to zero at the surface of a solid
+object. Therefore, our solution for the cylinder, with or without
+circulation, is wrong—as is our result regarding the generation of
+vorticity. We will tell you about the more correct theories in the
+next chapter.
+</p>
+</div>
+
+</div> <!--end of last section -->
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

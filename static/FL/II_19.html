@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 19: The Principle of Least Action</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "19." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch19" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">19</span>The Principle of Least Action</h2>
+
+<div id="Ch2-F0" class="figure">
+<img src="img/FLP_II/f19-plates/f19-01a_mg_new.jpg">
+
+
+</div><div id="Ch19-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">19–1</span>A special lecture—almost verbatim<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a></h3>
+
+<div id="Ch19-S1-p1" class="para">
+<p class="p">“When I was in high school, my physics teacher—whose name
+was Mr.&nbsp;Bader—called me down one day after physics class and said,
+‘You look bored; I want to tell you something interesting.’ Then he told
+me something which I found absolutely fascinating, and have, since then,
+always found fascinating. Every time the subject comes up, I work on it.
+In fact, when I began to prepare this lecture I found myself making more
+analyses on the thing. Instead of worrying about the lecture, I got
+involved in a new problem. The subject is this—the principle of least
+action.
+</p>
+</div>
+
+<div id="Ch19-F1" class="figure">
+<img src="img/FLP_II/f19-plates/f19-01b_mg.jpg">
+<div class="caption"><span class="tag">Fig. 19–1.</span>
+</div>
+</div>
+
+<div id="Ch19-S1-p2" class="para">
+<p class="p">“Mr.&nbsp;Bader told me the following: Suppose you have a particle (in a
+gravitational field, for instance) which starts somewhere and moves to
+some other point by free motion—you throw it, and it goes up and comes
+down (Fig.&nbsp;<a href="#Ch19-F1">19–1</a>). It goes from the original place to the
+final place in a certain amount of time. Now, you try a different
+motion. Suppose that to get from here to there, it went as shown in
+Fig.&nbsp;<a href="#Ch19-F2">19–2</a> but got there in just the same amount of time.
+Then he said this: If you calculate the kinetic energy at every moment
+on the path, take away the potential energy, and integrate it over the
+time during the whole path, you’ll find that the number you’ll get is
+<em class="emph">bigger</em> than that for the actual motion.
+</p>
+</div>
+
+<div id="Ch19-F2" class="figure">
+<img src="img/FLP_II/f19-plates/f19-01c_mg.jpg">
+<div class="caption"><span class="tag">Fig. 19–2.</span>
+</div>
+</div>
+
+<div id="Ch19-S1-p3" class="para">
+<p class="p">“In other words, the laws of Newton could be stated not in the form&nbsp;$F=ma$
+but in the form: the average kinetic energy less the average potential
+energy is as little as possible for the path of an object going from one
+point to another.
+</p>
+</div>
+
+<div id="Ch19-S1-p4" class="para">
+<p class="p">“Let me illustrate a little bit better what it means. If you take the
+case of the gravitational field, then if the particle has the
+path&nbsp;$x(t)$ (let’s just take one dimension for a moment; we take a
+trajectory that goes up and down and not sideways), where $x$ is the
+height above the ground, the kinetic energy
+is&nbsp;$\tfrac{1}{2}m\,(dx/dt)^2$, and the potential energy at any time
+is&nbsp;$mgx$. Now I take the kinetic energy minus the potential energy at
+every moment along the path and integrate that with respect to time from
+the initial time to the final time. Let’s suppose that at the original
+time&nbsp;$t_1$ we started at some height and at the end of the time&nbsp;$t_2$ we
+are definitely ending at some other place (Fig.&nbsp;<a href="#Ch19-F3">19–3</a>).
+</p>
+</div>
+
+<div id="Ch19-F3" class="figure">
+<img src="img/FLP_II/f19-plates/f19-02a_mg.jpg">
+<div class="caption"><span class="tag">Fig. 19–3.</span>
+</div>
+</div>
+
+<div id="Ch19-S1-p5" class="para">
+<p class="p">“Then the integral is
+\begin{equation*}
+\int_{t_1}^{t_2}\biggl[
+\frac{1}{2}m\biggl(\ddt{x}{t}\biggr)^2-mgx\biggr]dt.
+\end{equation*}
+The actual motion is some kind of a curve—it’s a parabola if we plot
+against the time—and gives a certain value for the integral. But we
+could <em class="emph">imagine</em> some other motion that went very high and came up
+and down in some peculiar way (Fig.&nbsp;<a href="#Ch19-F4">19–4</a>). We can
+calculate the kinetic energy minus the potential energy and integrate
+for such a path … or for any other path we want. The miracle is
+that the true path is the one for which that integral is least.
+</p>
+</div>
+
+<div id="Ch19-F4" class="figure">
+<img src="img/FLP_II/f19-plates/f19-02b_mg.jpg">
+<div class="caption"><span class="tag">Fig. 19–4.</span>
+</div>
+</div>
+
+<div id="Ch19-S1-p6" class="para">
+<p class="p">“Let’s try it out. First, suppose we take the case of a free particle
+for which there is no potential energy at all. Then the rule says that
+in going from one point to another in a given amount of time, the
+kinetic energy integral is least, so it must go at a uniform
+speed. (We know that’s the right answer—to go at a uniform speed.)
+Why is that? Because if the particle were to go any other way, the
+velocities would be sometimes higher and sometimes lower than the
+average. The average velocity is the same for every case because it
+has to get from ‘here’ to ‘there’ in a given amount of time.
+</p>
+</div>
+
+<div id="Ch19-S1-p7" class="para">
+<p class="p">“As an example, say your job is to start from home and get to school
+in a given length of time with the car. You can do it several ways:
+You can accelerate like mad at the beginning and slow down with the
+brakes near the end, or you can go at a uniform speed, or you can go
+backwards for a while and then go forward, and so on. The thing is
+that the average speed has got to be, of course, the total distance
+that you have gone over the time. But if you do anything but go at a
+uniform speed, then sometimes you are going too fast and sometimes you
+are going too slow. Now the mean <em class="emph">square</em> of something that
+deviates around an average, as you know, is always greater than the
+square of the mean; so the kinetic energy integral would always be
+higher if you wobbled your velocity than if you went at a uniform
+velocity. So we see that the integral is a minimum if the velocity is
+a constant (when there are no forces). The correct path is shown in 
+Fig.&nbsp;<a href="#Ch19-F5">19–5</a>.
+</p>
+</div>
+
+<div id="Ch19-F5" class="figure">
+<img src="img/FLP_II/f19-plates/f19-02c_mg.jpg">
+<div class="caption"><span class="tag">Fig. 19–5.</span>
+</div>
+</div>
+
+<div id="Ch19-S1-p8" class="para">
+<p class="p">“Now, an object thrown up in a gravitational field does rise faster
+first and then slow down. That is because there is also the potential
+energy, and we must have the least <em class="emph">difference</em> of kinetic and
+potential energy on the average. Because the potential energy rises as
+we go up in space, we will get a lower <em class="emph">difference</em> if we can get
+as soon as possible up to where there is a high potential energy. Then
+we can take that potential away from the kinetic energy and get a
+lower average. So it is better to take a path which goes up and gets a
+lot of negative stuff from the potential energy (Fig.&nbsp;<a href="#Ch19-F6">19–6</a>).
+</p>
+</div>
+
+<div id="Ch19-F6" class="figure">
+<img src="img/FLP_II/f19-plates/f19-02d_mg.jpg">
+<div class="caption"><span class="tag">Fig. 19–6.</span>
+</div>
+</div>
+
+<div id="Ch19-S1-p9" class="para">
+<p class="p">“On the other hand, you can’t go up too fast, or too far, because you
+will then have too much kinetic energy involved—you have to go very
+fast to get way up and come down again in the fixed amount of time
+available. So you don’t want to go too far up, but you want to go up
+some. So it turns out that the solution is some kind of balance
+between trying to get more potential energy with the least amount of
+extra kinetic energy—trying to get the difference, kinetic minus the
+potential, as small as possible.
+</p>
+</div>
+
+<div id="Ch19-S1-p10" class="para">
+<p class="p">“That is all my teacher told me, because he was a very good teacher
+and knew when to stop talking. But I don’t know when to stop
+talking. So instead of leaving it as an interesting remark, I am going
+to horrify and disgust you with the complexities of life by proving
+that it is so. The kind of mathematical problem we will have is very
+difficult and a new kind. We have a certain quantity which is called
+the <em class="emph">action</em>, $S$. It is the kinetic energy, minus the potential
+energy, integrated over time.
+\begin{equation*}
+\text{Action}=S=\int_{t_1}^{t_2}
+(\text{KE}-\text{PE})\,dt.
+\end{equation*}
+Remember that the PE and KE are both functions of time. For each
+different possible path you get a different number for this
+action. Our mathematical problem is to find out for what curve that
+number is the least.
+</p>
+</div>
+
+<div id="Ch19-S1-p11" class="para">
+<p class="p">“You say—Oh, that’s just the ordinary calculus of maxima and
+minima. You calculate the action and just differentiate to find the
+minimum.
+</p>
+</div>
+
+<div id="Ch19-S1-p12" class="para">
+<p class="p">“But watch out. Ordinarily we just have a function of some variable,
+and we have to find the value of that <em class="emph">variable</em> where the
+function is least or most. For instance, we have a rod which has been
+heated in the middle and the heat is spread around. For each point on
+the rod we have a temperature, and we must find the point at which
+that temperature is largest. But now for <em class="emph">each path in space</em> we
+have a number—quite a different thing—and we have to find the
+<em class="emph">path in space</em> for which the number is the minimum. That is a
+completely different branch of mathematics. It is not the ordinary
+calculus. In fact, it is called the <em class="emph">calculus of
+variations</em>.
+</p>
+</div>
+
+<div id="Ch19-S1-p13" class="para">
+<p class="p">“There are many problems in this kind of mathematics. For example,
+the circle is usually defined as the locus of all points at a constant
+distance from a fixed point, but another way of defining a circle is
+this: a circle is that curve <em class="emph">of given length</em> which encloses the
+biggest area. Any other curve encloses less area for a given perimeter
+than the circle does. So if we give the problem: find that curve which
+encloses the greatest area for a given perimeter, we would have a
+problem of the calculus of variations—a different kind of calculus than you’re used to.
+</p>
+</div>
+
+<div id="Ch19-S1-p14" class="para">
+<p class="p">“So we make the calculation for the path of an object. Here is the
+way we are going to do it. The idea is that we imagine that there is a
+true path and that any other curve we draw is a false path, so that if
+we calculate the action for the false path we will get a value that is
+bigger than if we calculate the action for the true path
+(Fig.&nbsp;<a href="#Ch19-F7">19–7</a>).
+</p>
+</div>
+
+<div id="Ch19-F7" class="figure">
+<img src="img/FLP_II/f19-plates/f19-03a_mg.jpg">
+<div class="caption"><span class="tag">Fig. 19–7.</span>
+</div>
+</div>
+
+<div id="Ch19-S1-p15" class="para">
+<p class="p">“Problem: Find the true path. Where is it? One way, of course, is to
+calculate the action for millions and millions of paths and look at
+which one is lowest. When you find the lowest one, that’s the true
+path.
+</p>
+</div>
+
+<div id="Ch19-S1-p16" class="para">
+<p class="p">“That’s a possible way. But we can do it better than that. When we
+have a quantity which has a minimum—for instance, in an ordinary
+function like the temperature—one of the properties of the minimum
+is that if we go away from the minimum in the <em class="emph">first</em> order, the
+deviation of the function from its minimum value is only <em class="emph">second</em>
+order. At any place else on the curve, if we move a small distance the
+value of the function changes also in the first order. But at a
+minimum, a tiny motion away makes, in the first approximation, no
+difference (Fig.&nbsp;<a href="#Ch19-F8">19–8</a>).
+</p>
+</div>
+
+<div id="Ch19-F8" class="figure">
+<img src="img/FLP_II/f19-plates/f19-03b_mg.jpg">
+<div class="caption"><span class="tag">Fig. 19–8.</span>
+</div>
+</div>
+
+<div id="Ch19-S1-p17" class="para">
+<p class="p">“That is what we are going to use to calculate the true path. If we
+have the true path, a curve which differs only a little bit from it
+will, in the first approximation, make no difference in the
+action. Any difference will be in the second approximation, if we
+really have a minimum.
+</p>
+</div>
+
+<div id="Ch19-S1-p18" class="para">
+<p class="p">“That is easy to prove. If there is a change in the first order when
+I deviate the curve a certain way, there is a change in the action
+that is <em class="emph">proportional</em> to the deviation. The change presumably
+makes the action greater; otherwise we haven’t got a minimum. But then
+if the change is <em class="emph">proportional</em> to the deviation, reversing the
+sign of the deviation will make the action less. We would get the
+action to increase one way and to decrease the other way. The only way
+that it could really be a minimum is that in the <em class="emph">first</em>
+approximation it doesn’t make any change, that the changes are
+proportional to the square of the deviations from the true path.
+</p>
+</div>
+
+<div id="Ch19-S1-p19" class="para">
+<p class="p">“So we work it this way: We call&nbsp;$\underline{x(t)}$ (with an
+underline) the true path—the one we are trying to find. We take some
+trial path&nbsp;$x(t)$ that differs from the true path by a small amount
+which we will call&nbsp;$\eta(t)$ (eta of&nbsp;$t$; Fig.&nbsp;<a href="#Ch19-F9">19–9</a>).
+</p>
+</div>
+
+<div id="Ch19-F9" class="figure">
+<img src="img/FLP_II/f19-plates/f19-04_mg.jpg">
+<div class="caption"><span class="tag">Fig. 19–9.</span>
+</div>
+</div>
+
+<div id="Ch19-S1-p20" class="para">
+<p class="p">“Now the idea is that if we calculate the action&nbsp;$S$ for the
+path&nbsp;$x(t)$, then the difference between that $S$ and the action that we
+calculated for the path&nbsp;$\underline{x(t)}$—to simplify the writing we
+can call it&nbsp;$\underline{S}$—the difference of $\underline{S}$ and&nbsp;$S$
+must be zero in the first-order approximation of small&nbsp;$\eta$. It can
+differ in the second order, but in the first order the difference must
+be zero.
+</p>
+</div>
+
+<div id="Ch19-S1-p21" class="para">
+<p class="p">“And that must be true for any&nbsp;$\eta$ at all. Well, not quite. The
+method doesn’t mean anything unless you consider paths which all begin
+and end at the same two points—each path begins at a certain point
+at&nbsp;$t_1$ and ends at a certain other point at&nbsp;$t_2$, and those points
+and times are kept fixed. So the deviations in our&nbsp;$\eta$ have to be
+zero at each end, $\eta(t_1)=0$ and&nbsp;$\eta(t_2)=0$. With that
+condition, we have specified our mathematical problem.
+</p>
+</div>
+
+<div id="Ch19-S1-p22" class="para">
+<p class="p">“If you didn’t know any calculus, you might do the same kind of thing
+to find the minimum of an ordinary function&nbsp;$f(x)$. You could discuss
+what happens if you take $f(x)$ and add a small amount&nbsp;$h$ to&nbsp;$x$ and
+argue that the correction to&nbsp;$f(x)$ in the first order in&nbsp;$h$ must be
+zero at the minimum. You would substitute $x+h$ for&nbsp;$x$ and expand out
+to the first order in&nbsp;$h$ … just as we are going to do
+with&nbsp;$\eta$.
+</p>
+</div>
+
+<div id="Ch19-S1-p23" class="para">
+<p class="p">“The idea is then that we substitute&nbsp;$x(t)=\underline{x(t)}+\eta(t)$
+in the formula for the action:
+\begin{equation*}
+S=\int\biggl[
+\frac{m}{2}\biggl(\ddt{x}{t}\biggr)^2-V(x)
+\biggr]dt,
+\end{equation*}
+where I call the potential energy&nbsp;$V(x)$. The derivative&nbsp;$dx/dt$ is,
+of course, the derivative of&nbsp;$\underline{x(t)}$ plus the derivative
+of&nbsp;$\eta(t)$, so for the action I get this expression:
+\begin{equation*}
+S=\int_{t_1}^{t_2}\biggl[
+\frac{m}{2}\biggl(
+\ddt{\underline{x}}{t}+\ddt{\eta}{t}
+\biggr)^2-V(\underline{x}+\eta)
+\biggr]dt.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch19-S1-p24" class="para">
+<p class="p">“Now I must write this out in more detail. For the squared term I get
+\begin{equation*}
+\biggl(\ddt{\underline{x}}{t}\biggr)^2+
+2\,\ddt{\underline{x}}{t}\,\ddt{\eta}{t}+
+\biggl(\ddt{\eta}{t}\biggr)^2.
+\end{equation*}
+But wait. I’m not worrying about higher than the first order, so I
+will take all the terms which involve $\eta^2$ and higher powers and
+put them in a little box called ‘second and higher order.’ From this
+term I get only second order, but there will be more from something
+else. So the kinetic energy part is
+\begin{equation*}
+\frac{m}{2}\biggl(\ddt{\underline{x}}{t}\biggr)^2+
+m\,\ddt{\underline{x}}{t}\,\ddt{\eta}{t}+
+(\text{second and higher order}).
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch19-S1-p25" class="para">
+<p class="p">“Now we need the potential&nbsp;$V$ at&nbsp;$\underline{x}+\eta$. I consider
+$\eta$ small, so I can write $V(x)$ as a Taylor series. It is
+approximately&nbsp;$V(\underline{x})$; in the next approximation (from the
+ordinary nature of derivatives) the correction is $\eta$&nbsp;times the
+rate of change of&nbsp;$V$ with respect to&nbsp;$x$, and so on:
+\begin{equation*}
+V(\underline{x}+\eta)=V(\underline{x})+
+\eta V'(\underline{x})+\frac{\eta^2}{2}\,V''(\underline{x})+\dotsb
+\end{equation*}
+I have written $V'$ for the derivative of&nbsp;$V$ with respect to&nbsp;$x$ in
+order to save writing. The term in&nbsp;$\eta^2$ and the ones beyond fall
+into the ‘second and higher order’ category and we don’t have to worry
+about them. Putting it all together, 
+\begin{aligned}
+S=\int_{t_1}^{t_2}\biggl[
+&\frac{m}{2}\biggl(\ddt{\underline{x}}{t}\biggr)^2-V(\underline{x})+
+m\,\ddt{\underline{x}}{t}\,\ddt{\eta}{t}\notag\\
+&-\eta V'(\underline{x})+(\text{second and higher order})\biggr]dt.\notag
+\end{aligned}
+Now if we look carefully at the thing, we see that the first two terms
+which I have arranged here correspond to the action&nbsp;$\underline{S}$
+that I would have calculated with the true path&nbsp;$\underline{x}$. The
+thing I want to concentrate on is the change in&nbsp;$S$—the difference
+between the&nbsp;$S$ and the&nbsp;$\underline{S}$ that we would get for the
+right path. This difference we will write as&nbsp;$\delta S$, called the
+variation in&nbsp;$S$. Leaving out the ‘second and higher order’ terms, I
+have for&nbsp;$\delta S$
+\begin{equation*}
+\delta S=\int_{t_1}^{t_2}\biggl[
+m\,\ddt{\underline{x}}{t}\,\ddt{\eta}{t}-\eta V'(\underline{x})
+\biggr]dt.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch19-S1-p26" class="para">
+<p class="p">“Now the problem is this: Here is a certain integral. I don’t know
+what the&nbsp;$\underline{x}$ is yet, but I do know that <em class="emph">no matter
+what</em>&nbsp;$\eta$ is, this integral must be zero. Well, you think, the only
+way that that can happen is that what multiplies&nbsp;$\eta$ must be zero.
+But what about the first term with&nbsp;$d\eta/dt$? Well, after all,
+if&nbsp;$\eta$ can be anything at all, its derivative is anything also, so you
+conclude that the coefficient of&nbsp;$d\eta/dt$ must also be zero. That
+isn’t quite right. It isn’t quite right because there is a connection
+between&nbsp;$\eta$ and its derivative; they are not absolutely
+independent, because $\eta(t)$ must be zero at both $t_1$ and&nbsp;$t_2$.
+</p>
+</div>
+
+<div id="Ch19-S1-p27" class="para">
+<p class="p">“The method of solving all problems in the calculus of variations
+always uses the same general principle. You make the shift in the
+thing you want to vary (as we did by adding&nbsp;$\eta$); you look at the
+first-order terms; <em class="emph">then</em> you always arrange things in such a
+form that you get an integral of the form ‘some kind of stuff times
+the shift&nbsp;$(\eta)$,’ but with no other derivatives (no&nbsp;$d\eta/dt$). It
+must be rearranged so it is always ‘something’ times&nbsp;$\eta$. You will
+see the great value of that in a minute. (There are formulas that tell
+you how to do this in some cases without actually calculating, but
+they are not general enough to be worth bothering about; the best way
+is to calculate it out this way.)
+</p>
+</div>
+
+<div id="Ch19-S1-p28" class="para">
+<p class="p">“How can I rearrange the term in&nbsp;$d\eta/dt$ to make it have an&nbsp;$\eta$?
+I can do that by integrating by parts. It turns out that the whole trick
+of the calculus of variations consists of writing down the variation
+of&nbsp;$S$ and then integrating by parts so that the derivatives of&nbsp;$\eta$
+disappear. It is always the same in every problem in which derivatives
+appear.
+</p>
+</div>
+
+<div id="Ch19-S1-p29" class="para">
+<p class="p">“You remember the general principle for integrating by parts. If you
+have any function&nbsp;$f$ times&nbsp;$d\eta/dt$ integrated with respect to&nbsp;$t$,
+you write down the derivative of&nbsp;$\eta f$:
+\begin{equation*}
+\ddt{}{t}(\eta f)=\eta\,\ddt{f}{t}+f\,\ddt{\eta}{t}.
+\end{equation*}
+The integral you want is over the last term, so 
+\begin{equation*}
+\int f\,\ddt{\eta}{t}\,dt=\eta f-\int\eta\,\ddt{f}{t}\,dt.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch19-S1-p30" class="para">
+<p class="p">“In our formula for&nbsp;$\delta S$, the function&nbsp;$f$ is $m$
+times&nbsp;$d\underline{x}/dt$; therefore, I have the following formula
+for&nbsp;$\delta S$.
+<span class="eq-wide">
+\begin{equation*}
+\delta S=\left.m\,\ddt{\underline{x}}{t}\,\eta(t)\right|_{t_1}^{t_2}-
+\int_{t_1}^{t_2}\ddt{}{t}\biggl(m\,\ddt{\underline{x}}{t}\biggr)\eta(t)\,dt-
+\int_{t_1}^{t_2}V'(\underline{x})\,\eta(t)\,dt.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+\delta S=\left.m\,\ddt{\underline{x}}{t}\,\eta(t)\right|_{t_1}^{t_2}-
+\int_{t_1}^{t_2}\ddt{}{t}\biggl(m\,\ddt{\underline{x}}{t}\biggr)\eta(t)\,&dt\\[1ex]
+-\int_{t_1}^{t_2}V'(\underline{x})\,\eta(t)\,&dt.
+\end{align*}
+
+
+</span>
+The first term must be evaluated at the two limits $t_1$ and&nbsp;$t_2$. Then
+I must have the integral from the rest of the integration by parts. The
+last term is brought down without change.
+</p>
+</div>
+
+<div id="Ch19-S1-p31" class="para">
+<p class="p">“Now comes something which always happens—the integrated part
+disappears. (In fact, if the integrated part does not disappear, you
+restate the principle, adding conditions to make sure it does!) We
+have already said that $\eta$ must be zero at both ends of the path,
+because the principle is that the action is a minimum provided that
+the varied curve begins and ends at the chosen points. The condition
+is that $\eta(t_1)=0$, and&nbsp;$\eta(t_2)=0$. So the integrated term is
+zero. We collect the other terms together and obtain this:
+\begin{equation*}
+\delta S=\int_{t_1}^{t_2}\biggl[
+-m\,\frac{d^2\underline{x}}{dt^2}-V'(\underline{x})
+\biggr]\eta(t)\,dt.
+\end{equation*}
+The variation in&nbsp;$S$ is now the way we wanted it—there is the stuff
+in brackets, say&nbsp;$F$, all multiplied by&nbsp;$\eta(t)$ and integrated from
+$t_1$ to&nbsp;$t_2$.
+</p>
+</div>
+
+<div id="Ch19-S1-p32" class="para">
+<p class="p">“We have that an integral of something or other times&nbsp;$\eta(t)$ is
+always zero:
+\begin{equation*}
+\int F(t)\,\eta(t)\,dt=0.
+\end{equation*}
+I have some function of&nbsp;$t$; I multiply it by&nbsp;$\eta(t)$; and I
+integrate it from one end to the other. And no matter what the&nbsp;$\eta$
+is, I get zero. That means that the function&nbsp;$F(t)$ is zero. That’s
+obvious, but anyway I’ll show you one kind of proof.
+</p>
+</div>
+
+<div id="Ch19-F10" class="figure">
+<img src="img/FLP_II/f19-plates/f19-06_mg.jpg">
+<div class="caption"><span class="tag">Fig. 19–10.</span>
+</div>
+</div>
+
+<div id="Ch19-S1-p33" class="para">
+<p class="p">“Suppose that for&nbsp;$\eta(t)$ I took something which was zero for all&nbsp;$t$
+except right near one particular value. It stays zero until it gets to
+this&nbsp;$t$, then it blips up for a moment and blips right back down
+(Fig.&nbsp;<a href="#Ch19-F10">19–10</a>). When we do the integral of this&nbsp;$\eta$ times
+any function&nbsp;$F$, the only place that you get anything other than zero
+was where&nbsp;$\eta(t)$ was blipping, and then you get the value of&nbsp;$F$ at
+that place times the integral over the blip. The integral over the blip
+alone isn’t zero, but when multiplied by $F$ it has to be; so the
+function&nbsp;$F$ has to be zero where the blip was. But the blip was
+anywhere I wanted to put it, so&nbsp;$F$ must be zero everywhere.
+</p>
+</div>
+
+<div id="Ch19-S1-p34" class="para">
+<p class="p">“We see that if our integral is zero for any&nbsp;$\eta$, then the
+coefficient of&nbsp;$\eta$ must be zero. The action integral will be a
+minimum for the path that satisfies this complicated differential
+equation:
+\begin{equation*}
+\biggl[-m\,\frac{d^2\underline{x}}{dt^2}-V'(\underline{x})\biggr]=0.
+\end{equation*}
+It’s not really so complicated; you have seen it before. It is
+just&nbsp;$F=ma$. The first term is the mass times acceleration, and the
+second is the derivative of the potential energy, which is the force.
+</p>
+</div>
+
+<div id="Ch19-S1-p35" class="para">
+<p class="p">“So, for a conservative system at least, we have demonstrated that
+the principle of least action gives the right answer; it says that the
+path that has the minimum action is the one satisfying Newton’s law.
+</p>
+</div>
+
+<div id="Ch19-S1-p36" class="para">
+<p class="p">“One remark: I did not prove it was a <em class="emph">minimum</em>—maybe it’s a
+maximum. In fact, it doesn’t really have to be a minimum. It is quite
+analogous to what we found for the ‘principle of least time’ which we
+discussed in optics. There also, we said at first it was ‘least’
+time. It turned out, however, that there were situations in which it
+wasn’t the <em class="emph">least</em> time. The fundamental principle was that for
+any <em class="emph">first-order variation</em> away from the optical path, the
+<em class="emph">change</em> in time was zero; it is the same story. What we really
+mean by ‘least’ is that the first-order change in the value of&nbsp;$S$,
+when you change the path, is zero. It is not necessarily a ‘minimum.’
+</p>
+</div>
+
+<div id="Ch19-S1-p37" class="para">
+<p class="p">“Next, I remark on some generalizations. In the first place, the thing
+can be done in three dimensions. Instead of just&nbsp;$x$, I would have
+$x$,&nbsp;$y$, and&nbsp;$z$ as functions of&nbsp;$t$; the action is more complicated.
+For three-dimensional motion, you have to use the complete kinetic
+energy—$(m/2)$&nbsp;times the whole velocity squared. That is,
+\begin{equation*}
+\text{KE}=\frac{m}{2}\biggl[
+\biggl(\ddt{x}{t}\biggr)^2\!\!+\biggl(\ddt{y}{t}\biggr)^2\!\!+
+\biggl(\ddt{z}{t}\biggr)^2\,\biggr].
+\end{equation*}
+Also, the potential energy is a function of $x$,&nbsp;$y$, and&nbsp;$z$. And
+what about the path? The path is some general curve in space, which is
+not so easily drawn, but the idea is the same. And what about
+the&nbsp;$\eta$?  Well, $\eta$ can have three components. You could shift the
+paths in&nbsp;$x$, or in&nbsp;$y$, or in&nbsp;$z$—or you could shift in all three
+directions simultaneously. So $\eta$ would be a vector. This doesn’t
+really complicate things too much, though. Since only the
+<em class="emph">first-order</em> variation has to be zero, we can do the calculation
+by three successive shifts. We can shift&nbsp;$\eta$ only in the
+$x$-direction and say that coefficient must be zero. We get one
+equation. Then we shift it in the $y$-direction and get another. And
+in the $z$-direction and get another. Or, of course, in any order that
+you want. Anyway, you get three equations. And, of course, Newton’s
+law is really three equations in the three dimensions—one for each
+component. I think that you can practically see that it is bound to
+work, but we will leave you to show for yourself that it will work for
+three dimensions. Incidentally, you could use any coordinate system
+you want, polar or otherwise, and get Newton’s laws appropriate to
+that system right off by seeing what happens if you have the
+shift&nbsp;$\eta$ in radius, or in angle, etc.
+</p>
+</div>
+
+<div id="Ch19-S1-p38" class="para">
+<p class="p">“Similarly, the method can be generalized to any number of particles.
+If you have, say, two particles with a force between them, so that there
+is a mutual potential energy, then you just add the kinetic energy of
+both particles and take the potential energy of the mutual interaction.
+And what do you vary? You vary the paths of <em class="emph">both</em> particles. Then,
+for two particles moving in three dimensions, there are six equations.
+You can vary the position of particle&nbsp;$1$ in the $x$-direction, in the
+$y$-direction, and in the $z$-direction, and similarly for particle&nbsp;$2$;
+so there are six equations. And that’s as it should be. There are the
+three equations that determine the acceleration of particle&nbsp;$1$ in terms
+of the force on it and three for the acceleration of particle&nbsp;$2$, from
+the force on it. You follow the same game through, and you get Newton’s
+law in three dimensions for any number of particles.
+</p>
+</div>
+
+<div id="Ch19-S1-p39" class="para">
+<p class="p">“I have been saying that we get Newton’s law. That is not quite true,
+because Newton’s law includes nonconservative forces like friction.
+Newton said that&nbsp;$ma$ is equal to
+any&nbsp;$F$. But the principle of least action only works for
+<em class="emph">conservative</em> systems—where all forces can be gotten from a
+potential function. You know, however, that on a microscopic level—on
+the deepest level of physics—there are no nonconservative forces.
+Nonconservative forces, like friction, appear only because we neglect
+microscopic complications—there are just too many particles to
+analyze. But the <em class="emph">fundamental</em> laws <em class="emph">can</em> be put in the form
+of a principle of least action.
+</p>
+</div>
+
+<div id="Ch19-S1-p40" class="para">
+<p class="p">“Let me generalize still further. Suppose we ask what happens if the
+particle moves relativistically. We did not get the right relativistic
+equation of motion; $F=ma$ is only right nonrelativistically. The
+question is: Is there a corresponding principle of least action for
+the relativistic case? There is. The formula in the case of relativity
+is the following:
+<span class="eq-wide">
+\begin{equation*}
+S=-m_0c^2\int_{t_1}^{t_2}\sqrt{1-v^2/c^2}\,dt-
+q\int_{t_1}^{t_2}[\phi(x,y,z,t)-\FLPv\cdot
+\FLPA(x,y,z,t)]\,dt.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+S=-m_0c^2&\int_{t_1}^{t_2}\sqrt{1-v^2/c^2}\,dt\\[1.25ex]
+-q&\int_{t_1}^{t_2}[\phi(x,y,z,t)-\FLPv\cdot
+\FLPA(x,y,z,t)]\,dt.
+\end{align*}
+
+</span>
+The first part of the action integral is the rest mass&nbsp;$m_0$
+times&nbsp;$c^2$ times the integral of a function of velocity,
+$\sqrt{1-v^2/c^2}$. Then instead of just the potential energy, we have
+an integral over the scalar potential&nbsp;$\phi$ and over $\FLPv$ times
+the vector potential&nbsp;$\FLPA$. Of course, we are then including only
+electromagnetic forces. All electric and magnetic fields are given in
+terms of $\phi$ and&nbsp;$\FLPA$. This action function gives the complete
+theory of relativistic motion of a single particle in an
+electromagnetic field.
+</p>
+</div>
+
+<div id="Ch19-S1-p41" class="para">
+<p class="p">“Of course, wherever I have written $\FLPv$, you understand that
+before you try to figure anything out, you must substitute $dx/dt$
+for&nbsp;$v_x$ and so on for the other components. Also, you put the point
+along the path at time&nbsp;$t$, $x(t)$, $y(t)$, $z(t)$ where I wrote
+simply $x$, $y$, $z$. Properly, it is only after you have made those
+replacements for the&nbsp;$\FLPv$’s that you have the formula for the
+action for a relativistic particle. I will leave to the more ingenious
+of you the problem to demonstrate that this action formula does, in
+fact, give the correct equations of motion for relativity. May I
+suggest you do it first without the&nbsp;$\FLPA$, that is, for no magnetic
+field?  Then you should get the components of the equation of motion,
+$d\FLPp/dt=-q\,\FLPgrad{\phi}$, where, you remember,
+$\FLPp=m_0\FLPv/\sqrt{1-v^2/c^2}$.
+</p>
+</div>
+
+<div id="Ch19-S1-p42" class="para">
+<p class="p">“It is much more difficult to include also the case with a vector
+potential. The variations get much more complicated. But in the end,
+the force term does come out equal to&nbsp;$q(\FLPE+\FLPv\times\FLPB)$, as
+it should. But I will leave that for you to play with.
+</p>
+</div>
+
+<div id="Ch19-S1-p43" class="para">
+<p class="p">“I would like to emphasize that in the general case, for instance in
+the relativistic formula, the action integrand no longer has the form of
+the kinetic energy minus the potential energy. That’s only true in the
+nonrelativistic approximation. For example, the
+term&nbsp;$m_0c^2\sqrt{1-v^2/c^2}$ is not what we have called the kinetic
+energy. The question of what the action should be for any particular
+case must be determined by some kind of trial and error. It is just the
+same problem as determining what are the laws of motion in the first
+place. You just have to fiddle around with the equations that you know
+and see if you can get them into the form of the principle of least
+action.
+</p>
+</div>
+
+<div id="Ch19-S1-p44" class="para">
+<p class="p">“One other point on terminology. The function that is integrated over
+time to get the action&nbsp;$S$ is called the <em class="emph">Lagrangian</em>,
+$\Lagrangian$,
+which is a function only of the velocities and positions of particles.
+So the principle of least action is also written
+\begin{equation*}
+S=\int_{t_1}^{t_2}\Lagrangian(x_i,v_i)\,dt,
+\end{equation*}
+where by $x_i$ and&nbsp;$v_i$ are meant all the components of the positions
+and velocities. So if you hear someone talking about the ‘Lagrangian,’
+you know they are talking about the function that is used to
+find&nbsp;$S$. For relativistic motion in an electromagnetic field
+\begin{equation*}
+\Lagrangian=-m_0c^2\sqrt{1-v^2/c^2}-q(\phi-\FLPv\cdot\FLPA).
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch19-S1-p45" class="para">
+<p class="p">“Also, I should say that $S$ is not really called the ‘action’ by the
+most precise and pedantic people. It is called ‘Hamilton´s first
+principal function.’ Now I hate to give a lecture on
+‘the-principle-of-least-Hamilton’s-first-principal-function.’ So I call
+it ‘the action.’ Also, more and more people are calling it the action.
+You see, historically something else which is not quite as useful was
+called the action, but I think it’s more sensible to change to a newer
+definition. So now you too will call the new function the action, and
+pretty soon everybody will call it by that simple name.
+</p>
+</div>
+
+<div id="Ch19-S1-p46" class="para">
+<p class="p">“Now I want to say some things on this subject which are similar to the
+discussions I gave about the principle of least time. There is quite a
+difference in the characteristic of a law which says a certain integral
+from one place to another is a minimum—which tells something about the
+whole path—and of a law which says that as you go along, there is a
+force that makes it accelerate. The second way tells how you inch your
+way along the path, and the other is a grand statement about the whole
+path. In the case of light, we talked about the connection of these two.
+Now, I would like to explain why it is true that there are differential
+laws when there is a least action principle of this kind. The reason is
+the following: Consider the actual path in space and time. As before,
+let’s take only one dimension, so we can plot the graph of&nbsp;$x$ as a
+function of&nbsp;$t$. Along the true path, $S$ is a minimum. Let’s suppose
+that we have the true path and that it goes through some point&nbsp;$a$ in
+space and time, and also through another nearby point&nbsp;$b$
+(Fig.&nbsp;<a href="#Ch19-F11">19–11</a>). Now if the entire integral from $t_1$ to&nbsp;$t_2$
+is a minimum, it is also necessary that the integral along the little
+section from $a$ to&nbsp;$b$ is also a minimum. It can’t be that the part
+from $a$ to&nbsp;$b$ is a little bit more. Otherwise you could just fiddle
+with just that piece of the path and make the whole integral a little
+lower.
+</p>
+</div>
+
+<div id="Ch19-F11" class="figure">
+<img src="img/FLP_II/f19-plates/f19-08_mg.jpg">
+<div class="caption"><span class="tag">Fig. 19–11.</span>
+</div>
+</div>
+
+<div id="Ch19-S1-p47" class="para">
+<p class="p">“So every subsection of the path must also be a minimum. And this is
+true no matter how short the subsection. Therefore, the principle that
+the whole path gives a minimum can be stated also by saying that an
+infinitesimal section of path also has a curve such that it has a
+minimum action. Now if we take a short enough section of
+path—between two points $a$ and&nbsp;$b$ very close together—how the
+potential varies from one place to another far away is not the
+important thing, because you are staying almost in the same place over
+the whole little piece of the path. The only thing that you have to
+discuss is the first-order change in the potential. The answer can
+only depend on the derivative of the potential and not on the
+potential everywhere. So the statement about the gross property of the
+whole path becomes a statement of what happens for a short section of
+the path—a differential statement. And this differential statement
+only involves the derivatives of the potential, that is, the force at
+a point. That’s the qualitative explanation of the relation between
+the gross law and the differential law.
+</p>
+</div>
+
+<div id="Ch19-S1-p48" class="para">
+<p class="p">“In the case of light we also discussed the question: How does the
+particle find the right path? From the differential point of view, it
+is easy to understand. Every moment it gets an acceleration and knows
+only what to do at that instant. But all your instincts on cause and
+effect go haywire when you say that the particle decides to take the
+path that is going to give the minimum action. Does it ‘smell’ the
+neighboring paths to find out whether or not they have more action? In
+the case of light, when we put blocks in the way so that the photons
+could not test all the paths, we found that they couldn’t figure out
+which way to go, and we had the phenomenon of diffraction.
+</p>
+</div>
+
+<div id="Ch19-S1-p49" class="para">
+<p class="p">“Is the same thing true in mechanics? Is it true that the particle
+doesn’t just ‘take the right path’ but that it looks at all the other
+possible trajectories? And if by having things in the way, we don’t
+let it look, that we will get an analog of diffraction? The miracle of
+it all is, of course, that it does just that. That’s what the laws of
+quantum mechanics say. So our principle of least action is
+incompletely stated. It isn’t that a particle takes the path of least
+action but that it smells all the paths in the neighborhood and
+chooses the one that has the least action by a method analogous to the
+one by which light chose the shortest time. You remember that the way
+light chose the shortest time was this: If it went on a path that took
+a different amount of time, it would arrive at a different phase. And
+the total amplitude at some point is the sum of contributions of
+amplitude for all the different ways the light can arrive. All the
+paths that give wildly different phases don’t add up to anything. But
+if you can find a whole sequence of paths which have phases almost all
+the same, then the little contributions will add up and you get a
+reasonable total amplitude to arrive. The important path becomes the
+one for which there are many nearby paths which give the same phase.
+</p>
+</div>
+
+<div id="Ch19-S1-p50" class="para">
+<p class="p">“It is just exactly the same thing for quantum mechanics. The
+complete quantum mechanics (for the nonrelativistic case and
+neglecting electron spin) works as follows: The probability that a
+particle starting at point&nbsp;$1$ at the time&nbsp;$t_1$ will arrive at
+point&nbsp;$2$ at the time&nbsp;$t_2$ is the square of a probability amplitude. The
+total amplitude can be written as the sum of the amplitudes for each
+possible path—for each way of arrival. For every&nbsp;$x(t)$ that we
+could have—for every possible imaginary trajectory—we have to
+calculate an amplitude. Then we add them all together. What do we take
+for the amplitude for each path? Our action integral tells us what the
+amplitude for a single path ought to be. The amplitude is proportional
+to some constant times&nbsp;$e^{iS/\hbar}$, where $S$ is the action for
+that path. That is, if we represent the phase of the amplitude by a
+complex number, the phase angle is&nbsp;$S/\hbar$. The action&nbsp;$S$ has
+dimensions of energy times time, and 
+Planck’s constant&nbsp;$\hbar$ has the
+same dimensions. It is the constant that determines when quantum
+mechanics is important.
+</p>
+</div>
+
+<div id="Ch19-S1-p51" class="para">
+<p class="p">“Here is how it works: Suppose that for all paths, $S$ is very large
+compared to&nbsp;$\hbar$. One path contributes a certain amplitude. For a
+nearby path, the phase is quite different, because with an enormous&nbsp;$S$
+even a small change in&nbsp;$S$ means a completely different phase—because
+$\hbar$ is so tiny. So nearby paths will normally cancel their effects
+out in taking the sum—except for one region, and that is when a path
+and a nearby path all give the same phase in the first approximation
+(more precisely, the same action within&nbsp;$\hbar$). Only those paths will
+be the important ones. So in the limiting case in which Planck’s
+constant&nbsp;$\hbar$ goes to zero, the
+correct quantum-mechanical laws can be summarized by simply saying:
+‘Forget about all these probability amplitudes. The particle does go on
+a special path, namely, that one for which $S$ does not vary in the
+first approximation.’ That’s the relation between the principle of least
+action and quantum mechanics. The fact that quantum mechanics can be
+formulated in this way was discovered in 1942 by a student of that same
+teacher, Bader, I spoke of at the beginning of this lecture. [Quantum
+mechanics was originally formulated by giving a differential equation
+for the amplitude (Schrödinger) and also by some other matrix mathematics
+(Heisenberg).]
+</p>
+</div>
+
+<div id="Ch19-S1-p52" class="para">
+<p class="p">“Now I want to talk about other minimum principles in physics. There
+are many very interesting ones. I will not try to list them all now
+but will only describe one more. Later on, when we come to a physical
+phenomenon which has a nice minimum principle, I will tell about it
+then. I want now to show that we can describe electrostatics, not by
+giving a differential equation for the field, but by saying that a
+certain integral is a maximum or a minimum. First, let’s take the case
+where the charge density is known everywhere, and the problem is to
+find the potential&nbsp;$\phi$ everywhere in space. You know that the
+answer should be
+\begin{equation*}
+\nabla^2\phi=-\rho/\epsO.
+\end{equation*}
+But another way of stating the same thing is this: Calculate the
+integral&nbsp;$U\stared$, where
+\begin{equation*}
+U\stared=\frac{\epsO}{2}\int(\FLPgrad{\phi})^2\,dV-
+\int\rho\phi\,dV,
+\end{equation*}
+which is a volume integral to be taken over all space. This thing is a
+minimum for the correct potential distribution&nbsp;$\phi(x,y,z)$.
+</p>
+</div>
+
+<div id="Ch19-S1-p53" class="para">
+<p class="p">“We can show that the two statements about electrostatics are
+equivalent. Let’s suppose that we pick any function&nbsp;$\phi$. We want to
+show that when we take for&nbsp;$\phi$ the correct
+potential&nbsp;$\underline{\phi}$, plus a small deviation&nbsp;$f$, then in the first
+order, the change in&nbsp;$U\stared$ is zero. So we write
+\begin{equation*}
+\phi=\underline{\phi}+f.
+\end{equation*}
+The $\underline{\phi}$ is what we are looking for, but we are making a
+variation of it to find what it has to be so that the variation
+of&nbsp;$U\stared$ is zero to first order. For the first part of&nbsp;$U\stared$,
+we need
+\begin{equation*}
+(\FLPgrad{\phi})^2=(\FLPgrad{\underline{\phi}})^2+
+2\,\FLPgrad{\underline{\phi}}\cdot\FLPgrad{f}+
+(\FLPgrad{f})^2.
+\end{equation*}
+The only first-order term that will vary is
+\begin{equation*}
+2\,\FLPgrad{\underline{\phi}}\cdot\FLPgrad{f}.
+\end{equation*}
+In the second term of the quantity&nbsp;$U\stared$, the integrand is
+\begin{equation*}
+\rho\phi=\rho\underline{\phi}+\rho f,
+\end{equation*}
+whose variable part is&nbsp;$\rho f$. So, keeping only the variable parts,
+we need the integral
+\begin{equation*}
+\Delta U\stared=\int(\epsO\FLPgrad{\underline{\phi}}\cdot\FLPgrad{f}-
+\rho f)\,dV.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch19-S1-p54" class="para">
+<p class="p">“Now, following the old general rule, we have to get the darn thing
+all clear of derivatives of&nbsp;$f$. Let’s look at what the derivatives
+are. The dot product is
+\begin{equation*}
+\ddp{\underline{\phi}}{x}\,\ddp{f}{x}+
+\ddp{\underline{\phi}}{y}\,\ddp{f}{y}+
+\ddp{\underline{\phi}}{z}\,\ddp{f}{z},
+\end{equation*}
+which we have to integrate with respect to&nbsp;$x$, to&nbsp;$y$, and to&nbsp;$z$. Now
+here is the trick: to get rid of&nbsp;$\ddpl{f}{x}$ we integrate by parts
+with respect to&nbsp;$x$. That will carry the derivative over onto
+the&nbsp;$\underline{\phi}$. It’s the same general idea we used to get rid of
+derivatives with respect to&nbsp;$t$. We use the equality
+\begin{equation*}
+\int\ddp{\underline{\phi}}{x}\,\ddp{f}{x}\,dx=
+f\,\ddp{\underline{\phi}}{x}-
+\int f\,\frac{\partial^2\underline{\phi}}{\partial x^2}\,dx.
+\end{equation*}
+The integrated term is zero, since we have to make $f$ zero at infinity.
+(That corresponds to making $\eta$ zero at $t_1$ and&nbsp;$t_2$. So our
+principle should be more accurately stated: $U\stared$ is less for the
+true&nbsp;$\phi$ than for any other&nbsp;$\phi(x,y,z)$ having the same values at
+infinity.) Then we do the same thing for $y$ and&nbsp;$z$. So our
+integral&nbsp;$\Delta U\stared$ is
+\begin{equation*}
+\Delta U\stared=\int(-\epsO\nabla^2\underline{\phi}-\rho)f\,dV.
+\end{equation*}
+In order for this variation to be zero for any&nbsp;$f$, no matter what,
+the coefficient of&nbsp;$f$ must be zero and, therefore,
+\begin{equation*}
+\nabla^2\underline{\phi}=-\rho/\epsO.
+\end{equation*}
+We get back our old equation. So our ‘minimum’ proposition is correct.
+</p>
+</div>
+
+<div id="Ch19-S1-p55" class="para">
+<p class="p">“We can generalize our proposition if we do our algebra in a little
+different way. Let’s go back and do our integration by parts without
+taking components. We start by looking at the following equality:
+\begin{equation*}
+\FLPdiv{(f\,\FLPgrad{\underline{\phi}})}=
+\FLPgrad{f}\cdot\FLPgrad{\underline{\phi}}+f\,\nabla^2\underline{\phi}.
+\end{equation*}
+If I differentiate out the left-hand side, I can show that it is just
+equal to the right-hand side. Now we can use this equation to integrate
+by parts. In our integral&nbsp;$\Delta U\stared$, we replace
+$\FLPgrad{\underline{\phi}}\cdot\FLPgrad{f}$
+by&nbsp;$\FLPdiv{(f\,\FLPgrad{\underline{\phi}})}-f\,\nabla^2\underline{\phi}$,
+which gets integrated over volume. The divergence term integrated over
+volume can be replaced by a surface integral:
+\begin{equation*}
+\int\FLPdiv{(f\,\FLPgrad{\underline{\phi}})}\,dV=
+\int f\,\FLPgrad{\underline{\phi}}\cdot\FLPn\,da.
+\end{equation*}
+Since we are integrating over all space, the surface over which we are
+integrating is at infinity. There, $f$ is zero and we get the same
+answer as before.
+</p>
+</div>
+
+<div id="Ch19-S1-p56" class="para">
+<p class="p">“Only now we see how to solve a problem when we <em class="emph">don’t</em> know
+where all the charges are. Suppose that we have conductors with
+charges spread out on them in some way. We can still use our minimum
+principle if the potentials of all the conductors are fixed. We carry
+out the integral for&nbsp;$U\stared$ only in the space outside of all
+conductors. Then, since we can’t vary&nbsp;$\underline{\phi}$ on the
+conductor, $f$ is zero on all those surfaces, and the surface integral
+\begin{equation*}
+\int f\,\FLPgrad{\underline{\phi}}\cdot\FLPn\,da
+\end{equation*}
+is still zero. The remaining volume integral
+\begin{equation*}
+\Delta U\stared=\int(-\epsO\,\nabla^2\underline{\phi}-\rho)f\,dV
+\end{equation*}
+is only to be carried out in the spaces between conductors. Of course,
+we get Poisson’s equation again,
+\begin{equation*}
+\nabla^2\underline{\phi}=-\rho/\epsO.
+\end{equation*}
+So we have shown that our original integral&nbsp;$U\stared$ is also a minimum if
+we evaluate it over the space outside of conductors all at fixed
+potentials (that is, such that any trial&nbsp;$\phi(x,y,z)$ must equal the
+given potential of the conductors when $(x,y,z)$ is a point on the
+surface of a conductor).
+</p>
+</div>
+
+<div id="Ch19-S1-p57" class="para">
+<p class="p">“There is an interesting case when the only charges are on
+conductors. Then
+\begin{equation*}
+U\stared=\frac{\epsO}{2}\int(\FLPgrad{\phi})^2\,dV.
+\end{equation*}
+Our minimum principle says that in the case where there are conductors
+set at certain given potentials, the potential between them adjusts
+itself so that integral&nbsp;$U\stared$ is least. What is this integral? The
+term&nbsp;$\FLPgrad{\phi}$ is the electric field, so the integral is the
+electrostatic energy. The true field is the one, of all those coming
+from the gradient of a potential, with the minimum total energy.
+</p>
+</div>
+
+<div id="Ch19-F12" class="figure">
+<img src="img/FLP_II/f19-plates/f19-11_mg.jpg">
+<div class="caption"><span class="tag">Fig. 19–12.</span>
+</div>
+</div>
+
+<div id="Ch19-S1-p58" class="para">
+<p class="p">“I would like to use this result to calculate something particular to
+show you that these things are really quite practical. Suppose I take
+two conductors in the form of a cylindrical condenser
+(Fig.&nbsp;<a href="#Ch19-F12">19–12</a>). The inside conductor has the potential&nbsp;$V$,
+and the outside is at the potential zero. Let the radius of the inside
+conductor be&nbsp;$a$ and that of the outside, $b$. Now we can suppose
+<em class="emph">any</em> distribution of potential between the two. If we use the
+<em class="emph">correct</em>&nbsp;$\underline{\phi}$, and
+calculate&nbsp;$\epsO/2\int(\FLPgrad{\underline{\phi}})^2\,dV$, it should be
+the energy of the system, $\tfrac{1}{2}CV^2$. So we can also
+calculate&nbsp;$C$ by our principle. But if we use a wrong distribution of
+potential and try to calculate the capacity&nbsp;$C$ by this method, we will
+get a capacity that is too big, since $V$ is specified. Any assumed
+potential&nbsp;$\phi$ that is not the exactly correct one will give a
+fake&nbsp;$C$ that is larger than the correct value. But if my false&nbsp;$\phi$
+is any rough approximation, the&nbsp;$C$ will be a good approximation,
+because the error in&nbsp;$C$ is second order in the error in&nbsp;$\phi$.
+</p>
+</div>
+
+<div id="Ch19-S1-p59" class="para">
+<p class="p">“Suppose I don’t know the capacity of a cylindrical condenser. I can
+use this principle to find it. I just guess at the potential
+function&nbsp;$\phi$ until I get the lowest&nbsp;$C$. Suppose, for instance, I pick a
+potential that corresponds to a constant field. (You know, of course,
+that the field isn’t really constant here; it varies as&nbsp;$1/r$.) A
+field which is constant means a potential which goes linearly with
+distance. To fit the conditions at the two conductors, it must be
+\begin{equation*}
+\phi=V\biggl(1-\frac{r-a}{b-a}\biggr).
+\end{equation*}
+This function is&nbsp;$V$ at&nbsp;$r=a$, zero at&nbsp;$r=b$, and in between has a
+constant slope equal to&nbsp;$-V/(b-a)$. So what one does to find the
+integral&nbsp;$U\stared$ is multiply the square of this gradient by&nbsp;$\epsO/2$
+and integrate over all volume. Let’s do this calculation for a
+cylinder of unit length. A volume element at the radius&nbsp;$r$ is&nbsp;$2\pi
+r\,dr$. Doing the integral, I find that my first try at the capacity
+gives
+\begin{equation*}
+\frac{1}{2}\,CV^2(\text{first try})=\frac{\epsO}{2}
+\int_a^b\frac{V^2}{(b-a)^2}\,2\pi r\,dr.
+\end{equation*}
+The integral is easy; it is just
+\begin{equation*}
+\pi V^2\biggl(\frac{b+a}{b-a}\biggr).
+\end{equation*}
+So I have a formula for the capacity which is not the true one but is
+an approximate job:
+\begin{equation*}
+\frac{C}{2\pi\epsO}=\frac{b+a}{2(b-a)}.
+\end{equation*}
+It is, naturally, different from the correct
+answer&nbsp;$C=2\pi\epsO/\ln(b/a)$, but it’s not too bad. Let’s compare it
+with the right answer for several values of&nbsp;$b/a$. I have computed out
+the answers in Table&nbsp;<a href="#Ch19-T1">19–1</a>. Even when $b/a$ is as big
+as&nbsp;$2$—which gives a pretty big variation in the field compared with a
+linearly varying field—I get a pretty fair approximation. The answer
+is, of course, a little too high, as expected. The thing gets much worse
+if you have a tiny wire inside a big cylinder. Then the field has
+enormous variations and if you represent it by a constant, you’re not
+doing very well. With&nbsp;$b/a=100$, we’re off by nearly a factor of two.
+Things are much better for small&nbsp;$b/a$. To take the opposite extreme,
+when the conductors are not very far apart—say&nbsp;$b/a=1.1$—then the
+constant field is a pretty good approximation, and we get the correct
+value for&nbsp;$C$ to within a tenth of a percent.
+</p>
+</div>
+
+<div id="Ch19-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 19–1</span></div>
+<div align="center">
+<table border="1" style="width: 35%">
+	<tr>
+		<td class="b center">
+		$\displaystyle\frac{b}{a}$
+		</td>
+		<td class="l b center">
+		$\displaystyle\frac{C_{\text{true}}}{2\pi\epsO}$
+		</td>
+		<td class="l b center">
+		$\displaystyle\frac{C (\text{first approx.})}{2\pi\epsO}$
+		</td>
+	</tr>
+	<tr>
+		<td class="center">
+			\begin{aligned}
+			2&\notag\\
+			4&\\
+			10&\\
+			100&
+			\end{aligned}
+		</td>
+		<td class="l center">
+			\begin{aligned}
+			&1.4423\notag\\
+			&0.721\\
+			&0.434\\
+			&0.217
+			\end{aligned}
+		</td>
+		<td class="l center">
+			\begin{aligned}
+			&1.500\notag\\
+			&0.833\\
+			&0.612\\
+			&0.51
+			\end{aligned}
+		</td>
+	</tr>
+	<tr>
+		<td class="center">
+			\begin{aligned}
+			&1.5\notag\\
+			&1.1
+			\end{aligned}
+		</td>
+		<td class="l center">
+			\begin{aligned}
+			&\phantom{1}2.4662\notag\\
+			&10.492059
+			\end{aligned}
+		</td>
+		<td class="l center">
+			\begin{aligned}
+			&\phantom{1}2.50\notag\\
+			&10.500000
+			\end{aligned}
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch19-S1-p60" class="para">
+<p class="p">“Now I would like to tell you how to improve such a calculation. (Of
+course, you <em class="emph">know</em> the right answer for the cylinder, but the
+method is the same for some other odd shapes, where you may not know
+the right answer.) The next step is to try a better approximation to
+the unknown true&nbsp;$\phi$. For example, we might try a constant plus an
+exponential&nbsp;$\phi$, etc. But how do you know when you have a better
+approximation unless you know the true&nbsp;$\phi$? Answer: You
+calculate&nbsp;$C$; the lowest&nbsp;$C$ is the value nearest the truth. Let us try this
+idea out. Suppose that the potential is not linear but say quadratic
+in&nbsp;$r$—that the electric field is not constant but linear. The most
+<em class="emph">general</em> quadratic form that fits $\phi=0$ at&nbsp;$r=b$ and $\phi=V$
+at&nbsp;$r=a$ is
+\begin{equation*}
+\phi=V\biggl[1+\alpha\biggl(\frac{r-a}{b-a}\biggr)-
+(1+\alpha)\biggl(\frac{r-a}{b-a}\biggr)^2
+\biggr],
+\end{equation*}
+where $\alpha$ is any constant number. This formula is a little more
+complicated. It involves a quadratic term in the potential as well as
+a linear term. It is very easy to get the field out of it. The field
+is just
+\begin{equation*}
+E=-\ddt{\phi}{r}=-\frac{\alpha V}{b-a}+
+2(1+\alpha)\,\frac{(r-a)V}{(b-a)^2}.
+\end{equation*}
+Now we have to square this and integrate over volume. But wait a moment.
+What should I take for&nbsp;$\alpha$? I can take a parabola for the&nbsp;$\phi$;
+but what parabola? Here’s what I do: Calculate the capacity with
+<em class="emph">an arbitrary</em>&nbsp;$\alpha$. What I get is
+\begin{equation*}
+\frac{C}{2\pi\epsO}=\frac{a}{b-a}
+\biggl[\frac{b}{a}\biggl(\frac{\alpha^2}{6}+
+\frac{2\alpha}{3}+1\biggr)+
+\frac{1}{6}\,\alpha^2+\frac{1}{3}\biggr].
+\end{equation*}
+It looks a little complicated, but it comes out of integrating the
+square of the field. Now I can pick my&nbsp;$\alpha$. I know that the truth
+lies lower than anything that I am going to calculate, so whatever I put
+in for&nbsp;$\alpha$ is going to give me an answer too big. But if I keep
+playing with&nbsp;$\alpha$ and get the lowest possible value I can, that
+lowest value is nearer to the truth than any other value. So what I do
+next is to pick the&nbsp;$\alpha$ that gives the minimum value for&nbsp;$C$.
+Working it out by ordinary calculus, I get that the minimum&nbsp;$C$ occurs
+for&nbsp;$\alpha=-2b/(b+a)$. Substituting that value into the formula, I
+obtain for the minimum capacity
+\begin{equation*}
+\frac{C}{2\pi\epsO}=\frac{b^2+4ab+a^2}{3(b^2-a^2)}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch19-S1-p61" class="para">
+<p class="p">“I’ve worked out what this formula gives for&nbsp;$C$ for various values
+of&nbsp;$b/a$. I call these numbers&nbsp;$C (\text{quadratic})$.
+Table&nbsp;<a href="#Ch19-T2">19–2</a> compares&nbsp;$C (\text{quadratic})$ with the
+true&nbsp;$C$.
+</p>
+</div>
+
+<div id="Ch19-T2" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 19–2</span></div>
+<div align="center">
+<table border="1" style="width: 35%">
+	<tr>
+		<td class="b center">
+		$\displaystyle\frac{b}{a}$
+		</td>
+		<td class="l b center">
+		$\displaystyle\frac{C_{\text{true}}}{2\pi\epsO}$
+		</td>
+		<td class="l b center">
+		$\displaystyle\frac{C (\text{quadratic})}{2\pi\epsO}$
+		</td>
+	</tr>
+	<tr>
+		<td class="center">
+			\begin{aligned}
+			2&\notag\\
+			4&\\
+			10&\\
+			100&
+			\end{aligned}
+		</td>
+		<td class="l center">
+			\begin{aligned}
+			&1.4423\notag\\
+			&0.721\\
+			&0.434\\
+			&0.217
+			\end{aligned}
+		</td>
+		<td class="l center">
+			\begin{aligned}
+			&1.444\notag\\
+			&0.733\\
+			&0.475\\
+			&0.346
+			\end{aligned}
+		</td>
+	</tr>
+	<tr>
+		<td class="center">
+			\begin{aligned}
+			&1.5\notag\\
+			&1.1
+			\end{aligned}
+		</td>
+		<td class="l center">
+			\begin{aligned}
+			&\phantom{1}2.4662\notag\\
+			&10.492059
+			\end{aligned}
+		</td>
+		<td class="l center">
+			\begin{aligned}
+			&\phantom{1}2.4667\notag\\
+			&10.492065
+			\end{aligned}
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch19-S1-p62" class="para">
+<p class="p">“For example, when the ratio of the radii is $2$ to&nbsp;$1$, I
+have&nbsp;$1.444$, which is a very good approximation to the true answer,
+$1.4423$. Even for larger&nbsp;$b/a$, it stays pretty good—it is much,
+much better than the first approximation. It is even fairly
+good—only off by $10$&nbsp;percent—when $b/a$ is $10$ to&nbsp;$1$. But when
+it gets to be $100$ to&nbsp;$1$—well, things begin to go wild. I get that
+$C$ is&nbsp;$0.346$ instead of&nbsp;$0.217$. On the other hand, for a ratio of
+radii of&nbsp;$1.5$, the answer is excellent; and for a&nbsp;$b/a$ of&nbsp;$1.1$, the
+answer comes out&nbsp;$10.492065$ instead of&nbsp;$10.492059$. Where the answer
+should be good, it is very, very good.
+</p>
+</div>
+
+<div id="Ch19-S1-p63" class="para">
+<p class="p">“I have given these examples, first, to show the theoretical value of
+the principles of minimum action and minimum principles in general
+and, second, to show their practical utility—not just to calculate a
+capacity when we already know the answer. For any other shape, you can
+guess an approximate field with some unknown parameters like&nbsp;$\alpha$
+and adjust them to get a minimum. You will get excellent numerical
+results for otherwise intractable problems.”
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch19-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">19–2</span>A note added after the lecture</h3>
+
+<div id="Ch19-S2-p1" class="para">
+<p class="p">“I should like to add something that I didn’t have time for in the
+lecture. (I always seem to prepare more than I have time to tell about.)
+As I mentioned earlier, I got interested in a problem while working on
+this lecture. I want to tell you what that problem is. Among the minimum
+principles that I could mention, I noticed that most of them sprang in
+one way or another from the least action principle of mechanics and
+electrodynamics. But there is also a class that does not. As an example,
+if currents are made to go through a piece of material obeying
+Ohm’s law, the currents distribute
+themselves inside the piece so that the rate at which heat is generated
+is as little as possible. Also we can say (if things are kept
+isothermal) that the rate at which energy is generated is a minimum.
+Now, this principle also holds, according to classical theory, in
+determining even the distribution of velocities of the electrons inside
+a metal which is carrying a current. The distribution of velocities is
+not exactly the equilibrium distribution [Chapter&nbsp;<a href="I_40.html">40</a>,
+Vol.&nbsp;I, Eq.&nbsp;(<a href="I_40.html#mjx-eqn-EqI406">40.6</a>)] because they are drifting sideways. The
+new distribution can be found from the principle that it is the
+distribution for a given current for which the entropy developed per
+second by collisions is as small as possible. The true description of
+the electrons’ behavior ought to be by quantum mechanics, however. The
+question is: Does the same principle of minimum entropy generation also
+hold when the situation is described quantum-mechanically? I haven’t
+found out yet.
+</p>
+</div>
+
+<div id="Ch19-S2-p2" class="para">
+<p class="p">“The question is interesting academically, of course. Such principles
+are fascinating, and it is always worth while to try to see how general
+they are. But also from a more practical point of view, I <em class="emph">want</em> to
+know. I, with some colleagues, have published a paper in which we
+calculated by quantum mechanics approximately the electrical resistance
+felt by an electron moving through an ionic crystal like NaCl.
+[Feynman, Hellwarth, Iddings,
+and Platzman, “Mobility of Slow Electrons in a Polar Crystal,”
+<i>Phys. Rev.</i> <b>127</b>, 1004 (1962).] But if a minimum
+principle existed, we could use it to make the results much more
+accurate, just as the minimum principle for the capacity of a condenser
+permitted us to get such accuracy for that capacity even though we had
+only a rough knowledge of the electric field.”
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  Later chapters do not depend on the material of this special 
+  lecture—which is intended to be for “entertainment.”
+  <a href="#footnote_source_1">↩</a>
+</li>
+</ol>
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

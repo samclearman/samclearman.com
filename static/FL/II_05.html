@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 5: Application of Gauss’ Law</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "5." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch5" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">5</span>Application of Gauss’ Law</h2>
+<div id="Ch5-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">5–1</span>Electrostatics is Gauss’ law plus …</h3>
+<div id="Ch5-S1-p1" class="para">
+<p class="p">There are two laws of electrostatics: that the flux of the electric
+field from a volume is proportional to the charge inside—Gauss’ law,
+and that the circulation of the electric field is zero—$\FLPE$ is a
+gradient. From these two laws, all the predictions of electrostatics
+follow. But to say these things mathematically is one thing; to use
+them easily, and with a certain amount of ingenuity, is another. In
+this chapter we will work through a number of calculations which can
+be made with Gauss’ law directly. We will prove theorems and describe
+some effects, particularly in conductors, that can be understood very
+easily from Gauss’ law. Gauss’ law by itself cannot give the solution
+of any problem because the other law must be obeyed too. So when we
+use Gauss’ law for the solution of particular problems, we will have
+to add something to it. We will have to presuppose, for instance, some
+idea of how the field looks—based, for example, on arguments of
+symmetry. Or we may have to introduce specifically the idea that the
+field is the gradient of a potential.</p>
+</div>
+</div>
+<div id="Ch5-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">5–2</span>Equilibrium in an electrostatic field</h3>
+<div id="Ch5-S2-p1" class="para">
+<p class="p">Consider first the following question: When can a point charge be in
+stable mechanical equilibrium in the electric field of other charges?
+As an example, imagine three negative charges at the corners of an
+equilateral triangle in a horizontal plane. Would a positive charge
+placed at the center of the triangle remain there? (It will be simpler
+if we ignore gravity for the moment, although including it would not
+change the results.) The force on the positive charge is zero, but is
+the equilibrium stable? Would the charge return to the equilibrium
+position if displaced slightly? The answer is no.</p>
+</div>
+<div id="Ch5-S2-p2" class="para">
+<p class="p">There are <em class="emph">no</em> points of stable equilibrium in <em class="emph">any</em>
+electrostatic field—except right on top of another charge. Using
+Gauss’ law, it is easy to see why. First, for a charge to be in
+equilibrium at any particular point $P_0$, the field must be zero.
+Second, if the equilibrium is to be a stable one, we require that if
+we move the charge away from $P_0$ in <em class="emph">any</em> direction, there
+should be a restoring force directed opposite to the displacement. The
+electric field at <em class="emph">all</em> nearby points must be pointing
+inward—toward the point $P_0$. But that is in violation of Gauss’
+law if there is no charge at $P_0$, as we can easily see.</p>
+</div>
+<div id="Ch5-F1" class="figure">
+<img src="img/FLP_II/f05-01/f05-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–1.</span>If $P_0$ were a position of stable equilibrium for a positive
+charge, the electric field everywhere in the neighborhood would
+point toward $P_0$.
+</div>
+</div>
+<div id="Ch5-S2-p3" class="para">
+<p class="p">Consider a tiny imaginary surface that encloses $P_0$, as in
+Fig. <a href="#Ch5-F1">5–1</a>. If the electric field everywhere in the vicinity
+is pointed toward $P_0$, the surface integral of the normal component is
+certainly not zero. For the case shown in the figure, the flux through
+the surface must be a negative number. But Gauss’ law says that the flux
+of electric field through any surface is proportional to the total
+charge inside. If there is no charge at $P_0$, the field we have
+imagined violates Gauss’ law. It is impossible to balance a positive
+charge in empty space—at a point where there is not some negative
+charge. A positive charge <em class="emph">can</em> be in equilibrium if it is in the
+middle of a distributed negative charge. Of course, the negative charge
+distribution would have to be held in place by other than electrical
+forces!</p>
+</div>
+<div id="Ch5-S2-p4" class="para">
+<p class="p">Our result has been obtained for a point charge. Does the same
+conclusion hold for a complicated arrangement of charges held together
+in fixed relative positions—with rods, for example? We consider the
+question for two equal charges fixed on a rod. Is it possible that
+this combination can be in equilibrium in some electrostatic field?
+The answer is again no. The <em class="emph">total</em> force on the rod cannot be
+restoring for displacements in every direction.</p>
+</div>
+<div id="Ch5-S2-p5" class="para">
+<p class="p">Call $\FLPF$ the total force on the rod in any position—$\FLPF$ is
+then a vector field.  Following the argument used above, we conclude
+that at a position of stable equilibrium, the divergence of $\FLPF$
+must be a negative number. But the total force on the rod is the first
+charge times the field at its position, plus the second charge times
+the field at its position:
+\begin{equation}
+\label{Eq:II:5:1}
+\FLPF=q_1\FLPE_1+q_2\FLPE_2.
+\end{equation}
+
+The divergence of $\FLPF$ is given by
+\begin{equation*}
+\FLPdiv{\FLPF}=q_1(\FLPdiv{\FLPE_1})+q_2(\FLPdiv{\FLPE_2}).
+\end{equation*}
+
+If each of the two charges $q_1$ and $q_2$ is in free space, both
+$\FLPdiv{\FLPE_1}$ and $\FLPdiv{\FLPE_2}$ are zero,
+and $\FLPdiv{\FLPF}$ is zero—not negative, as would be required for
+equilibrium. You can see that an extension of the argument shows that
+no rigid combination of any number of charges can have a position of
+stable equilibrium in an electrostatic field in free space.</p>
+</div>
+<div id="Ch5-F2" class="figure">
+<img src="img/FLP_II/f05-02/f05-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–2.</span>A charge can be in equilibrium if there are mechanical
+constraints.
+</div>
+</div>
+<div id="Ch5-S2-p6" class="para">
+<p class="p">Now we have not shown that equilibrium is forbidden if there are
+pivots or other mechanical constraints. As an example, consider a
+hollow tube in which a charge can move back and forth freely, but not
+sideways. Now it is very easy to devise an electric field that points
+inward at both ends of the tube if it is allowed that the field may
+point laterally outward near the center of the tube. We simply place
+positive charges at each end of the tube, as in Fig. <a href="#Ch5-F2">5–2</a>.
+There can now be an equilibrium point even though the divergence
+of $\FLPE$ is zero. The charge, of course, would not be in stable
+equilibrium for sideways motion were it not for “nonelectrical” forces
+from the tube walls.</p>
+</div>
+</div>
+<div id="Ch5-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">5–3</span>Equilibrium with conductors</h3>
+<div id="Ch5-S3-p1" class="para">
+<p class="p">There is no stable spot in the field of a system of fixed
+charges. What about a system of charged conductors? Can a system of
+charged conductors produce a field that will have a stable equilibrium
+point for a point charge? (We mean at a point other than on a
+conductor, of course.) You know that conductors have the property that
+charges can move freely around in them. Perhaps when the point charge
+is displaced slightly, the other charges on the conductors will move
+in a way that will give a restoring force to the point charge?  The
+answer is still no—although the proof we have just given doesn’t
+show it. The proof for this case is more difficult, and we will only
+indicate how it goes.</p>
+</div>
+<div id="Ch5-S3-p2" class="para">
+<p class="p">First, we note that when charges redistribute themselves on the
+conductors, they can only do so if their motion decreases their total
+potential energy. (Some energy is lost to heat as they move in the
+conductor.) Now we have already shown that if the charges producing a
+field are <em class="emph">stationary</em>, there is, near any zero point $P_0$ in
+the field, some direction for which moving a point charge away
+from $P_0$ will <em class="emph">decrease</em> the energy of the system (since the force
+is <em class="emph">away</em> from $P_0$). Any readjustment of the charges on the
+conductors can only lower the potential energy still more, so (by the
+principle of virtual work) their motion will only <em class="emph">increase</em> the
+force in that particular direction away from $P_0$, and not reverse
+it.</p>
+</div>
+<div id="Ch5-S3-p3" class="para">
+<p class="p">Our conclusions do not mean that it is not possible to balance a
+charge by electrical forces. It is possible if one is willing to
+control the locations or the sizes of the supporting charges with
+suitable devices. You know that a rod standing on its point in a
+gravitational field is unstable, but this does not prove that it
+cannot be balanced on the end of a finger. Similarly, a charge can be
+held in one spot by electric fields if they are <em class="emph">variable</em>. But
+not with a passive—that is, a <em class="emph">static</em>—system.</p>
+</div>
+</div>
+<div id="Ch5-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">5–4</span>Stability of atoms</h3>
+<div id="Ch5-S4-p1" class="para">
+<p class="p">If charges cannot be held stably in position, it is surely not proper
+to imagine matter to be made up of static <em class="emph">point</em> charges
+(electrons and protons) governed only by the laws of
+electrostatics. Such a static configuration is impossible; it would
+collapse!</p>
+</div>
+<div id="Ch5-F3" class="figure">
+<img src="img/FLP_II/f05-03/f05-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–3.</span>The Thomson model of an atom.
+</div>
+</div>
+<div id="Ch5-S4-p2" class="para">
+<p class="p">It was once suggested that the positive charge of an atom could be
+distributed uniformly in a sphere, and the negative charges, the
+electrons, could be at rest inside the positive charge, as shown in
+Fig. <a href="#Ch5-F3">5–3</a>. This was the first atomic model, proposed by
+Thomson. But
+Rutherford concluded from the
+experiment of Geiger and
+Marsden that the positive
+charges were very much concentrated, in what he called the nucleus.
+Thomson’s static model had to be abandoned.
+Rutherford and
+Bohr then suggested that the
+equilibrium might be dynamic, with the electrons revolving in orbits, as
+shown in Fig. <a href="#Ch5-F4">5–4</a>. The electrons would be kept from falling
+in toward the nucleus by their orbital motion. We already know at least
+one difficulty with this picture. With such motion, the electrons would
+be accelerating (because of the circular motion) and would, therefore,
+be radiating energy. They would lose the kinetic energy required to stay
+in orbit, and would spiral in toward the nucleus. Again unstable!</p>
+</div>
+<div id="Ch5-F4" class="figure">
+<img src="img/FLP_II/f05-04/f05-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–4.</span>The Rutherford-Bohr model of an atom.
+</div>
+</div>
+<div id="Ch5-S4-p3" class="para">
+<p class="p">The stability of the atoms is now explained in terms of quantum
+mechanics. The electrostatic forces pull the electron as close to the
+nucleus as possible, but the electron is compelled to stay spread out in
+space over a distance given by the uncertainty
+principle. If it
+were confined in too small a space, it would have a great uncertainty in
+momentum. But that means that it would have a high expected
+energy—which it would use to escape from the electrical attraction.
+The net result is an electrical equilibrium not too different from the
+idea of Thomson—only it is the <em class="emph">negative</em> charge that is spread
+out (because the mass of the electron is so much smaller than the mass
+of the proton).</p>
+</div>
+</div>
+<div id="Ch5-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">5–5</span>The field of a line charge</h3>
+<div id="Ch5-S5-p1" class="para">
+<p class="p">Gauss’ law can be used to solve a number of electrostatic field
+problems involving a special symmetry—usually spherical,
+cylindrical, or planar symmetry.  In the remainder of this chapter we
+will apply Gauss’ law to a few such problems.  The ease with which
+these problems can be solved may give the misleading impression that
+the method is very powerful, and that one should be able to go on to
+many other problems. It is unfortunately not so. One soon exhausts the
+list of problems that can be solved easily with Gauss’ law. In later
+chapters we will develop more powerful methods for investigating
+electrostatic fields.</p>
+</div>
+<div id="Ch5-S5-p2" class="para">
+<p class="p">As our first example, we consider a system with cylindrical
+symmetry. Suppose that we have a very long, uniformly charged rod. By
+this we mean that electric charges are distributed uniformly along an
+indefinitely long straight line, with the charge $\lambda$ per unit
+length. We wish to know the electric field. The problem can, of
+course, be solved by integrating the contribution to the field from
+every part of the line. We are going to do it without integrating, by
+using Gauss’ law and some guesswork. First, we surmise that the
+electric field will be directed radially outward from the line. Any
+axial component from charges on one side would be accompanied by an
+equal axial component from charges on the other side. The result could
+only be a radial field. It also seems reasonable that the field should
+have the same magnitude at all points equidistant from the line. This
+is obvious. (It may not be easy to prove, but it is true if space is
+symmetric—as we believe it is.)</p>
+</div>
+<div id="Ch5-F5" class="figure">
+<img src="img/FLP_II/f05-05/f05-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–5.</span>A cylindrical gaussian surface coaxial with a line charge.
+</div>
+</div>
+<div id="Ch5-S5-p3" class="para">
+<p class="p">We can use Gauss’ law in the following way. We consider an
+<em class="emph">imaginary</em> surface in the shape of a cylinder coaxial with the
+line, as shown in Fig. <a href="#Ch5-F5">5–5</a>. According to Gauss’ law,
+the total flux of $\FLPE$ from this surface is equal to the charge
+inside divided by $\epsO$. Since the field is assumed to be normal to
+the surface, the normal component is the magnitude of the field. Let’s
+call it $E$. Also, let the radius of the cylinder be $r$, and its
+length be taken as one unit, for convenience. The flux through the
+cylindrical surface is equal to $E$ times the area of the surface,
+which is $2\pi r$. The flux through the two end faces is zero because
+the electric field is tangential to them. The total charge inside our
+surface is just $\lambda$, because the length of the line inside is
+one unit. Gauss’ law then gives
+\begin{gather}
+E\cdot2\pi r=\lambda/\epsO,\notag\\[1ex]
+\label{Eq:II:5:2}
+E=\frac{\lambda}{2\pi\epsO r}.
+\end{gather}
+
+The electric field of a line charge depends inversely on the
+<em class="emph">first</em> power of the distance from the line.</p>
+</div>
+</div>
+<div id="Ch5-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">5–6</span>A sheet of charge; two sheets</h3>
+<div id="Ch5-F6" class="figure">
+<img src="img/FLP_II/f05-06/f05-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–6.</span>The electric field near a uniformly charged sheet can be
+found by applying Gauss’ law to an imaginary box.
+</div>
+</div>
+<div id="Ch5-S6-p1" class="para">
+<p class="p">As another example, we will calculate the field from a uniform plane
+sheet of charge. Suppose that the sheet is infinite in extent and that
+the charge per unit area is $\sigma$. We are going to take another
+guess. Considerations of symmetry lead us to believe that the field
+direction is everywhere normal to the plane, and <em class="emph">if we have no
+field from any other charges in the world</em>, the fields must be the
+same (in magnitude) on each side. This time we choose for our Gaussian
+surface a rectangular box that cuts through the sheet, as shown in
+Fig. <a href="#Ch5-F6">5–6</a>. The two faces parallel to the sheet will have
+equal areas, say $A$. The field is normal to these two faces, and
+parallel to the other four. The total flux is $E$ times the area of
+the first face, plus $E$ times the area of the opposite face—with no
+contribution from the other four faces. The total charge enclosed in
+the box is $\sigma A$. Equating the flux to the charge inside, we have
+\begin{equation}
+EA+EA=\frac{\sigma A}{\epsO},\notag
+\end{equation}
+
+from which
+\begin{equation}
+\label{Eq:II:5:3}
+E=\frac{\sigma}{2\epsO},
+\end{equation}
+
+a simple but important result.</p>
+</div>
+<div id="Ch5-S6-p2" class="para">
+<p class="p">You may remember that the same result was obtained in an earlier
+chapter by an integration over the entire surface. Gauss’ law gives us
+the answer, in this instance, much more quickly (although it is not as
+generally applicable as the earlier method).</p>
+</div>
+<div id="Ch5-S6-p3" class="para">
+<p class="p">We emphasize that this result applies <em class="emph">only</em> to the field due to
+the charges on the sheet. If there are other charges in the
+neighborhood, the total field near the sheet would be the sum
+of (<a href="#mjx-eqn-EqII53">5.3</a>) and the field of the other charges. Gauss’ law
+would then tell us only that
+\begin{equation}
+\label{Eq:II:5:4}
+E_1+E_2=\frac{\sigma}{\epsO},
+\end{equation}
+
+where $E_1$ and $E_2$ are the fields directed outward on each side of
+the sheet.</p>
+</div>
+<div id="Ch5-F7" class="figure">
+<img src="img/FLP_II/f05-07/f05-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–7.</span>The field between two charged sheets is $\sigma/\epsO$.
+</div>
+</div>
+<div id="Ch5-S6-p4" class="para">
+<p class="p">The problem of two parallel sheets with equal and opposite charge
+densities, $+\sigma$ and $-\sigma$, is equally simple if we assume
+again that the outside world is quite symmetric. Either by superposing
+two solutions for a single sheet or by constructing a gaussian box
+that includes both sheets, it is easily seen that the field is zero
+<em class="emph">outside</em> of the two sheets (Fig. <a href="#Ch5-F7">5–7</a>a). By
+considering a box that includes only one surface or the other, as in
+(b) or (c) of the figure, it can be seen that the field between the
+sheets must be twice what it is for a single sheet. The result is
+\begin{alignat}{2}
+\label{Eq:II:5:5}
+&E\,(\text{between the sheets})&\,=&\,\sigma/\epsO,\\[2ex]
+\label{Eq:II:5:6}
+&E\,(\text{outside})           &\,=&\,0.
+\end{alignat}
+</p>
+</div>
+</div>
+<div id="Ch5-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">5–7</span>A sphere of charge; a spherical shell</h3>
+<div id="Ch5-S7-p1" class="para">
+<p class="p">We have already (in Chapter <a href="II_04.html">4</a>) used Gauss’ law to find
+the field outside a uniformly charged spherical region. The same
+method can also give us the field at points <em class="emph">inside</em> the
+sphere. For example, the computation can be used to obtain a good
+approximation to the field inside an atomic nucleus. In spite of the
+fact that the protons in a nucleus repel each other, they are, because
+of the strong nuclear forces, spread nearly uniformly throughout the
+body of the nucleus.</p>
+</div>
+<div id="Ch5-F8" class="figure">
+<img src="img/FLP_II/f05-08/f05-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–8.</span>Gauss’ law can be used to find the field inside a uniformly
+charged sphere.
+</div>
+</div>
+<div id="Ch5-S7-p2" class="para">
+<p class="p">Suppose that we have a sphere of radius $R$ filled uniformly with
+charge. Let $\rho$ be the charge per unit volume. Again using
+arguments of symmetry, we assume the field to be radial and equal in
+magnitude at all points at the same distance from the center. To find
+the field at the distance $r$ from the center, we take a spherical
+gaussian surface of radius $r$ ($r&lt;R$), as shown in
+Fig. <a href="#Ch5-F8">5–8</a>. The flux out of this surface is
+\begin{equation*}
+4\pi r^2E.
+\end{equation*}
+
+The charge inside our gaussian surface is the volume inside
+times $\rho$, or
+\begin{equation*}
+\tfrac{4}{3}\pi r^3\rho.
+\end{equation*}
+
+Using Gauss’ law, it follows that the magnitude of the field is given
+by
+\begin{equation}
+\label{Eq:II:5:7}
+E=\frac{\rho r}{3\epsO}\quad(r&lt;R).
+\end{equation}
+
+You can see that this formula gives the proper result for $r=R$. The
+electric field is <em class="emph">proportional</em> to the radius and is directed
+radially outward.</p>
+</div>
+<div id="Ch5-S7-p3" class="para">
+<p class="p">The arguments we have just given for a uniformly charged sphere can be
+applied also to a thin spherical shell of charge. Assuming that the
+field is everywhere radial and is spherically symmetric, one gets
+immediately from Gauss’ law that the field outside the shell is like
+that of a point charge, while the field everywhere inside the shell is
+zero. (A gaussian surface inside the shell will contain no charge.)</p>
+</div>
+</div>
+<div id="Ch5-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">5–8</span>Is the field of a point charge exactly $\boldsymbol{1/r^2}$?</h3>
+<div id="Ch5-S8-p1" class="para">
+<p class="p">If we look in a little more detail at <i>how</i> the field inside
+the shell gets to be zero, we can see more clearly why it is that Gauss’ law is
+true only because the Coulomb force depends exactly on the square of
+the distance. Consider any point $P$ inside a uniform spherical shell
+of charge. Imagine a small cone whose apex is at $P$ and which extends
+to the surface of the sphere, where it cuts out a small surface
+area $\Delta a_1$, as in Fig. <a href="#Ch5-F9">5–9</a>. An exactly symmetric cone
+diverging from the opposite side of $P$ would cut out the surface
+area $\Delta a_2$. If the distances from $P$ to these two elements of area
+are $r_1$ and $r_2$, the areas are in the ratio
+\begin{equation*}
+\frac{\Delta a_2}{\Delta a_1}=\frac{r_2^2}{r_1^2}.
+\end{equation*}
+
+(You can show this by geometry for any point $P$ inside the sphere.)</p>
+</div>
+<div id="Ch5-F9" class="figure">
+<img src="img/FLP_II/f05-09/f05-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–9.</span>The field is zero at any point $P$ inside a spherical shell
+of charge.
+</div>
+</div>
+<div id="Ch5-S8-p2" class="para">
+<p class="p">If the surface of the sphere is uniformly charged, the charge $\Delta
+q$ on each of the elements of area is proportional to the area, so
+\begin{equation*}
+\frac{\Delta q_2}{\Delta q_1}=\frac{\Delta a_2}{\Delta a_1}.
+\end{equation*}
+
+Coulomb’s law then says that
+the magnitudes of the fields produced at $P$ by these two surface
+elements are in the ratio
+\begin{equation*}
+\frac{E_2}{E_1}=\frac{\Delta q_2/r_2^2}{\Delta q_1/r_1^2}=1.
+\end{equation*}
+
+The fields cancel exactly. Since all parts of the surface can be
+paired off in the same way, the total field at $P$ is zero. But you
+can see that it would not be so if the exponent of $r$ in
+Coulomb’s law were not exactly two.
+</p>
+</div>
+<div id="Ch5-S8-p3" class="para">
+<p class="p">The validity of Gauss’ law depends upon the inverse square law of
+Coulomb.  If the force law were not exactly the inverse square, it
+would not be true that the field inside a uniformly charged sphere
+would be exactly zero. For instance, if the force varied more rapidly,
+like, say, the inverse cube of $r$, that portion of the surface which
+is nearer to an interior point would produce a field which is larger
+than that which is farther away, resulting in a radial inward field
+for a positive surface charge. These conclusions suggest an elegant
+way of finding out whether the inverse square law is precisely
+correct. We need only determine whether or not the field inside of a
+uniformly charged spherical shell is precisely zero.</p>
+</div>
+<div id="Ch5-S8-p4" class="para">
+<p class="p">It is lucky that such a method exists. It is usually difficult to
+measure a physical quantity to high precision—a one percent result may
+not be too difficult, but how would one go about measuring, say,
+Coulomb’s law to an accuracy of one
+part in a billion? It is almost certainly not possible with the best
+available techniques to measure the <em class="emph">force</em> between two charged
+objects with such an accuracy. But by determining only that the electric
+fields inside a charged sphere are <em class="emph">smaller</em> than some value we can
+make a highly accurate measurement of the correctness of Gauss’ law, and
+hence of the inverse square dependence of Coulomb’s
+law. What one does, in effect, is
+<em class="emph">compare</em> the force law to an ideal inverse square. Such
+comparisons of things that are equal, or nearly so, are usually the
+bases of the most precise physical measurements.</p>
+</div>
+<div id="Ch5-F10" class="figure">
+<img src="img/FLP_II/f05-10/f05-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–10.</span>The electric field is zero inside a closed conducting shell.
+</div>
+</div>
+<div id="Ch5-S8-p5" class="para">
+<p class="p">How shall we observe the field inside a charged sphere? One way is to
+try to charge an object by touching it to the inside of a spherical
+conductor. You know that if we touch a small metal ball to a charged
+object and then touch it to an electrometer the meter will become
+charged and the pointer will move from zero (Fig. <a href="#Ch5-F10">5–10</a>a).
+The ball picks up charge because there are electric fields outside the
+charged sphere that cause charges to run onto (or off) the little ball.
+If you do the same experiment by touching the little ball to the
+<em class="emph">inside</em> of the charged sphere, you find that no charge is carried
+to the electrometer. With such an experiment you can easily show that
+the field inside is, at most, a few percent of the field outside, and
+that Gauss’ law is at least approximately correct.</p>
+</div>
+<div id="Ch5-S8-p6" class="para">
+<p class="p">It appears that Benjamin
+Franklin
+was the first to notice that the field inside a
+conducting shell is zero. The result seemed strange to him. When he
+reported his observation to
+Priestley,
+the latter suggested that it
+might be connected with an inverse square law, since it was known that
+a spherical shell of matter produced no gravitational field
+inside. But Coulomb
+didn’t measure the inverse square dependence until
+18 years later, and Gauss’ law came even later still.</p>
+</div>
+<div id="Ch5-S8-p7" class="para">
+<p class="p">Gauss’ law has been checked carefully by putting an electrometer
+inside a large sphere and observing whether any deflections occur when
+the sphere is charged to a high voltage. A null result is always
+obtained. Knowing the geometry of the apparatus and the sensitivity of
+the meter, it is possible to compute the minimum field that would be
+observed. From this number it is possible to place an upper limit on
+the deviation of the exponent from two. If we write that the
+electrostatic force depends on $r^{-2+\epsilon}$, we can place an
+upper bound on $\epsilon$. By this method
+Maxwell determined
+that $\epsilon$ was less than $1/10{,}000$. The experiment was repeated and
+improved upon in 1936 by
+Plimpton and
+Lawton. They found that
+Coulomb’s exponent differs from two by less than one part in a
+billion.</p>
+</div>
+<div id="Ch5-S8-p8" class="para">
+<p class="p">Now that brings up an interesting question: How accurate do we know
+this Coulomb law to be in various circumstances? The experiments we
+just described measure the dependence of the field on distance for
+distances of some tens of centimeters. But what about the distances
+inside an atom—in the hydrogen atom, for instance, where we believe
+the electron is attracted to the nucleus by the same inverse square
+law? It is true that quantum mechanics must be used for the mechanical
+part of the behavior of the electron, but the force is the usual
+electrostatic one. In the formulation of the problem, the potential
+energy of an electron must be known as a function of distance from the
+nucleus, and Coulomb’s law gives a potential which varies inversely
+with the first power of the distance.  How accurately is the exponent
+known for such small distances? As a result of very careful
+measurements in 1947 by Lamb
+and Retherford on the relative
+positions of the energy levels of hydrogen, we know that the exponent
+is correct again to one part in a billion on the atomic scale—that
+is, at distances of the order of one angstrom ($10^{-8}$ centimeter).</p>
+</div>
+<div id="Ch5-S8-p9" class="para">
+<p class="p">The accuracy of the Lamb-Retherford measurement was possible again because of a physical “accident.”
+Two of the states of a hydrogen atom are expected to have almost
+identical energies <em class="emph">only</em> if the potential varies exactly
+as $1/r$. A measurement was made of the very slight <em class="emph">difference</em> in
+energies by finding the frequency $\omega$ of the photons that are
+emitted or absorbed in the transition from one state to the other,
+using for the energy difference $\Delta E=\hbar\omega$. Computations
+showed that $\Delta E$ would have been noticeably different from what
+was observed if the exponent in the force law $1/r^2$ differed
+from $2$ by as much as one part in a billion.</p>
+</div>
+<div id="Ch5-S8-p10" class="para">
+<p class="p">Is the same exponent correct at still shorter distances? From
+measurements in nuclear physics it is found that there are
+electrostatic forces at typical nuclear distances—at about
+$10^{-13}$ centimeter—and that they still vary approximately as the
+inverse square. We shall look at some of the evidence in a later
+chapter. Coulomb’s law is, we know, still valid, at least to some
+extent, at distances of the order of $10^{-13}$ centimeter.</p>
+</div>
+<div id="Ch5-S8-p11" class="para">
+<p class="p">How about $10^{-14}$ centimeter? This range can be investigated by
+bombarding protons with very energetic electrons and observing how
+they are scattered. Results to date seem to indicate that the law
+fails at these distances. The electrical force seems to be about $10$
+times too weak at distances less than $10^{-14}$ centimeter.  Now
+there are two possible explanations. One is that the Coulomb law does
+not work at such small distances; the other is that our objects, the
+electrons and protons, are not point charges. Perhaps either the
+electron or proton, or both, is some kind of a smear. Most physicists
+prefer to think that the charge of the proton is smeared. We know that
+protons interact strongly with mesons. This implies that a proton
+will, from time to time, exist as a neutron with a $\pi^+$ meson
+around it. Such a configuration would act—on the average—like a
+little sphere of positive charge. We know that the field from a sphere
+of charge does not vary as $1/r^2$ all the way into the center. It is
+quite likely that the proton charge is smeared, but the theory of
+pions is still quite incomplete, so it may also be that Coulomb’s law
+fails at very small distances. The question is still open.</p>
+</div>
+<div id="Ch5-S8-p12" class="para">
+<p class="p">One more point: The inverse square law is valid at distances like one
+meter and also at $10^{-10}$ m; but is the coefficient $1/4\pi\epsO$
+the same?  The answer is yes; at least to an accuracy of $15$ parts in
+a million.
+</p>
+</div>
+<div id="Ch5-S8-p13" class="para">
+<p class="p">We go back now to an important matter that we slighted when we spoke
+of the experimental verification of Gauss’ law. You may have wondered
+how the experiment of Maxwell
+or of Plimpton and
+Lawton could give
+such an accuracy unless the spherical conductor they used was a
+perfect sphere. An accuracy of one part in a billion is really
+something to achieve, and you might well ask whether they could make a
+sphere which was that precise. There are certain to be slight
+irregularities in any real sphere and if there are irregularities,
+will they not produce fields inside? We wish to show now that it is
+not necessary to have a perfect sphere.  It is possible, in fact, to
+show that there is no field inside a closed conducting shell of
+<em class="emph">any</em> shape. In other words, the experiments depended on $1/r^2$,
+but had nothing to do with the surface being a sphere (except that
+with a sphere it is easier to calculate what the fields <em class="emph">would</em>
+be if Coulomb had been wrong), so we take up that subject now. To show
+this, it is necessary to know some of the properties of electrical
+conductors.</p>
+</div>
+</div>
+<div id="Ch5-S9" class="section">
+<h3 class="title section-title">
+<span class="tag">5–9</span>The fields of a conductor</h3>
+<div id="Ch5-S9-p1" class="para">
+<p class="p">An electrical conductor is a solid that contains many “free”
+electrons. The electrons can move around freely <em class="emph">in</em> the
+material, but cannot leave the surface.  In a metal there are so many
+free electrons that any electric field will set large numbers of them
+into motion. Either the current of electrons so set up must be
+continually kept moving by external sources of energy, or the motion
+of the electrons will cease as they discharge the sources producing
+the initial field. In “electrostatic” situations, we do not consider
+continuous sources of current (they will be considered later when we
+study magnetostatics), so the electrons move only until they have
+arranged themselves to produce zero electric field everywhere inside
+the conductor. (This usually happens in a small fraction of a second.)
+If there were any field left, this field would urge still more
+electrons to move; the only electrostatic solution is that the field
+is everywhere zero inside.</p>
+</div>
+<div id="Ch5-S9-p2" class="para">
+<p class="p">Now consider the <em class="emph">interior</em> of a charged conducting object. (By
+“interior” we mean in the <em class="emph">metal</em> itself.) Since the metal is a
+conductor, the interior field must be zero, and so the gradient of the
+potential $\phi$ is zero. That means that $\phi$ does not vary from
+point to point. Every conductor is an equipotential <em class="emph">region</em>, and
+its surface is an equipotential surface. Since in a conducting
+material the electric field is everywhere zero, the divergence
+of $\FLPE$ is zero, and by Gauss’ law the charge density in the
+<em class="emph">interior</em> of the conductor must be zero.</p>
+</div>
+<div id="Ch5-S9-p3" class="para">
+<p class="p">If there can be no charges in a conductor, how can it ever be charged?
+What do we mean when we say a conductor is “charged”? Where are the
+charges?  The answer is that they reside at the surface of the
+conductor, where there are strong forces to keep them from
+leaving—they are not completely “free.” When we study solid-state
+physics, we shall find that the excess charge of any conductor is on
+the average within one or two atomic layers of the surface. For our
+present purposes, it is accurate enough to say that if any charge is
+put on, or <em class="emph">in</em>, a conductor it all accumulates on the surface;
+there is no charge in the interior of a conductor.</p>
+</div>
+<div id="Ch5-S9-p4" class="para">
+<p class="p">We note also that the electric field <em class="emph">just outside</em> the surface
+of a conductor must be normal to the surface. There can be no
+tangential component. If there were a tangential component, the
+electrons would move <em class="emph">along</em> the surface; there are no forces
+preventing that. Saying it another way: we know that the electric
+field lines must always go at right angles to an equipotential
+surface.</p>
+</div>
+<div id="Ch5-F11" class="figure">
+<img src="img/FLP_II/f05-11/f05-11_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–11.</span>The electric field just outside the surface of a conductor is
+proportional to the local surface density of charge.
+</div>
+</div>
+<div id="Ch5-S9-p5" class="para">
+<p class="p">We can also, using Gauss’ law, relate the field strength just outside
+a conductor to the local density of the charge at the surface. For a
+gaussian surface, we take a small cylindrical box half inside and half
+outside the surface, like the one shown in Fig. <a href="#Ch5-F11">5–11</a>. There
+is a contribution to the total flux of $\FLPE$ only from the side of the
+box outside the conductor. The field just outside the surface of a
+conductor is then
+<br><br>
+<em class="emph">&emsp;&emsp;Outside a conductor:</em>
+\begin{equation}
+\label{Eq:II:5:8}
+E=\frac{\sigma}{\epsO},
+\end{equation}
+
+where $\sigma$ is the <em class="emph">local</em> surface charge density.</p>
+</div>
+<div id="Ch5-S9-p6" class="para">
+<p class="p">Why does a sheet of charge on a conductor produce a different field
+than <em class="emph">just</em> a sheet of charge? In other words, why
+is (<a href="#mjx-eqn-EqII58">5.8</a>) twice as large as (<a href="#mjx-eqn-EqII53">5.3</a>)? The reason, of
+course, is that we have <em class="emph">not</em> said for the conductor that there are
+no “other” charges around. There must, in fact, be some to make
+$\FLPE=\FLPzero$ in the conductor. The charges in the immediate
+neighborhood of a point $P$ on the surface do, in fact, give a field
+$E_{\text{local}}=\sigma_{\text{local}}/2\epsO$ both inside and
+outside the surface. But all the rest of the charges on the conductor
+“conspire” to produce an additional field at the point $P$ equal in
+magnitude to $E_{\text{local}}$. The total field inside goes to zero
+and the field outside to $2E_{\text{local}}=\sigma/\epsO$.</p>
+</div>
+</div>
+<div id="Ch5-S10" class="section">
+<h3 class="title section-title">
+<span class="tag">5–10</span>The field in a cavity of a conductor</h3>
+<div id="Ch5-S10-p1" class="para">
+<p class="p">We return now to the problem of the hollow container—a conductor
+with a cavity. There is no field in the <em class="emph">metal</em>, but what about
+in the <em class="emph">cavity</em>? We shall show that if the cavity is <em class="emph">empty</em>
+then there are no fields in it, <em class="emph">no matter what the shape</em> of the
+conductor or the cavity—say for the one in Fig. <a href="#Ch5-F12">5–12</a>.
+Consider a gaussian surface, like $S$ in Fig. <a href="#Ch5-F12">5–12</a>, that
+encloses the cavity but stays everywhere in the conducting material.
+Everywhere on $S$ the field is zero, so there is no flux through $S$ and
+the <em class="emph">total</em> charge inside $S$ is zero. For a spherical shell, one
+could then argue from symmetry that there could be <em class="emph">no</em> charge
+inside. But, in general, we can only say that there are equal amounts of
+positive and negative charge on the inner surface of the conductor.
+There <em class="emph">could</em> be a positive surface charge on one part and a
+negative one somewhere else, as indicated in Fig. <a href="#Ch5-F12">5–12</a>.
+Such a thing cannot be ruled out by Gauss’ law.</p>
+</div>
+<div id="Ch5-F12" class="figure">
+<img src="img/FLP_II/f05-12/f05-12_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–12.</span>What is the field in an empty cavity of a conductor, for any
+shape?
+</div>
+</div>
+<div id="Ch5-S10-p2" class="para">
+<p class="p">What really happens, of course, is that any equal and opposite charges
+on the inner surface would slide around to meet each other, cancelling
+out completely.  We can show that they must cancel completely by using
+the law that the circulation of $\FLPE$ is always zero
+(electrostatics). Suppose there were charges on some parts of the
+inner surface. We know that there would have to be an equal number of
+opposite charges somewhere else. Now any lines of $\FLPE$ would have
+to start on the positive charges and end on the negative charges
+(since we are considering only the case that there are no free charges
+in the cavity). Now imagine a loop $\Gamma$ that crosses the cavity
+along a line of force from some positive charge to some negative
+charge, and returns to its starting point via the conductor (as in
+Fig. <a href="#Ch5-F12">5–12</a>). The integral along such a line of force
+from the positive to the negative charges would not be zero. The
+integral through the metal is zero, since $\FLPE=\FLPzero$. So we
+would have
+\begin{equation*}
+\oint\FLPE\cdot d\FLPs\neq0???
+\end{equation*}
+
+But the line integral of $\FLPE$ around any closed loop in an
+electrostatic field is always zero. So there can be no fields inside
+the empty cavity, nor any charges on the inside surface.</p>
+</div>
+<div id="Ch5-S10-p3" class="para">
+<p class="p">You should notice carefully one important qualification we have
+made. We have always said “inside an <em class="emph">empty</em>” cavity. If some
+charges are <em class="emph">placed</em> at some fixed locations in the cavity—as
+on an insulator or on a small conductor insulated from the main
+one—then there <em class="emph">can</em> be fields in the cavity. But then that is
+not an “empty” cavity.</p>
+</div>
+<div id="Ch5-S10-p4" class="para">
+<p class="p">We have shown that if a cavity is completely enclosed by a conductor,
+no static distribution of charges <em class="emph">outside</em> can ever produce any
+fields inside. This explains the principle of “shielding” electrical
+equipment by placing it in a metal can. The same arguments can be used
+to show that no static distribution of charges <em class="emph">inside</em> a closed
+grounded conductor can produce any fields <em class="emph">outside</em>.
+Shielding works both ways! In
+electrostatics—but not in varying fields—the fields on the two sides
+of a closed grounded conducting shell are completely independent.
+</p>
+</div>
+<div id="Ch5-S10-p5" class="para">
+<p class="p">Now you see why it was possible to check Coulomb’s law to such a great
+precision. The shape of the hollow shell used doesn’t matter. It
+doesn’t need to be spherical; it could be square! If Gauss’ law is
+exact, the field inside is always zero. Now you also understand why it
+is safe to sit inside the high-voltage terminal of a million-volt
+Van de Graaff generator,
+without worrying about getting a shock—because of Gauss’ law.
+</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

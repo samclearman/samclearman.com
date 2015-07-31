@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 27: Geometrical Optics</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "27." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch27" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">27</span>Geometrical Optics</h2>
+<div id="Ch27-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">27–1</span>Introduction</h3>
+<div id="Ch27-S1-p1" class="para">
+<p class="p">In this chapter we shall discuss some elementary applications of the
+ideas of the previous chapter to a number of practical devices, using
+the approximation called <em class="emph">geometrical optics</em>. This is a most
+useful approximation in the practical design of many optical systems
+and instruments. Geometrical optics is either very simple or else it
+is very complicated. By that we mean that we can either study it only
+superficially, so that we can design instruments roughly, using rules
+that are so simple that we hardly need deal with them here at all,
+since they are practically of high school level, or else, if we want
+to know about the small errors in lenses and similar details, the
+subject gets so complicated that it is too advanced to discuss here!
+If one has an actual, detailed problem in lens design, including
+analysis of aberrations, then he is advised to read about the subject
+or else simply to trace the rays through the various surfaces (which
+is what the book tells how to do), using the law of refraction from
+one side to the other, and to find out where they come out and see if
+they form a satisfactory image. People have said that this is too
+tedious, but today, with computing machines, it is the right way to do
+it. One can set up the problem and make the calculation for one ray
+after another very easily. So the subject is really ultimately quite
+simple, and involves no new principles. Furthermore, it turns out that
+the rules of either elementary or advanced optics are seldom
+characteristic of other fields, so that there is no special reason to
+follow the subject very far, with one important exception.</p>
+</div>
+<div id="Ch27-S1-p2" class="para">
+<p class="p">The most advanced and abstract theory of geometrical optics was worked
+out by Hamilton, and it turns out that this has very important
+applications in mechanics. It is actually even more important in
+mechanics than it is in optics, and so we leave Hamilton’s theory for
+the subject of advanced analytical mechanics, which is studied in the
+senior year or in graduate school. So, appreciating that geometrical
+optics contributes very little, except for its own sake, we now go on
+to discuss the elementary properties of simple optical systems on the
+basis of the principles outlined in the last chapter.</p>
+</div>
+<div id="Ch27-F1" class="figure">
+<img src="img/FLP_I/f27-01/f27-01_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 27–1</span>
+</div>
+</div>
+<div id="Ch27-S1-p3" class="para">
+<p class="p">In order to go on, we must have one geometrical formula, which is the
+following: if we have a triangle with a small altitude $h$ and a long
+base $d$, then the diagonal $s$ (we are going to need it to find the
+difference in time between two different routes) is longer than the
+base (Fig. <a href="#Ch27-F1">27–1</a>). How much longer? The
+difference $\Delta = s - d$ can be found in a number of ways. One way is this. We
+see that $s^2 - d^2 = h^2$, or $(s - d)(s + d) = h^2$. But $s - d =
+\Delta$, and $s + d \approx 2s$. Thus
+\begin{equation}
+\label{Eq:I:27:1}
+\Delta \approx h^2/2s.
+\end{equation}This is all the geometry we need to discuss the formation of images by
+curved surfaces!</p>
+</div>
+</div>
+<div id="Ch27-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">27–2</span>The focal length of a spherical surface</h3>
+<div id="Ch27-S2-p1" class="para">
+<p class="p">The first and simplest situation to discuss is a single refracting
+surface, separating two media with different indices of refraction
+(Fig. <a href="#Ch27-F2">27–2</a>). We leave the case of arbitrary indices of
+refraction to the student, because <em class="emph">ideas</em> are always the most
+important thing, not the specific situation, and the problem is easy
+enough to do in any case. So we shall suppose that, on the left, the
+speed is $1$ and on the right it is $1/n$, where $n$ is the index of
+refraction. The light travels more slowly in the glass by a factor $n$.</p>
+</div>
+<div id="Ch27-F2" class="figure">
+<img src="img/FLP_I/f27-02/f27-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–2.</span>Focusing by a single refracting surface.
+</div>
+</div>
+<div id="Ch27-S2-p2" class="para">
+<p class="p">Now suppose that we have a point at $O$, at a distance $s$ from the
+front surface of the glass, and another point $O'$ at a distance $s'$
+inside the glass, and we desire to arrange the curved surface in such
+a manner that every ray from $O$ which hits the surface, at any
+point $P$, will be bent so as to proceed toward the point $O'$. For that to
+be true, we have to shape the surface in such a way that the time it
+takes for the light to go from $O$ to $P$, that is, the distance $OP$
+divided by the speed of light (the speed here is unity), plus $n \cdot
+O'P$, which is the time it takes to go from $P$ to $O'$, is equal to a
+constant independent of the point $P$. This condition supplies us with
+an equation for determining the surface. The answer is that the
+surface is a very complicated fourth-degree curve, and the student may
+entertain himself by trying to calculate it by analytic geometry. It
+is simpler to try a special case that corresponds to $s \to \infty$,
+because then the curve is a second-degree curve and is more
+recognizable. It is interesting to compare this curve with the
+parabolic curve we found for a focusing mirror when the light is
+coming from infinity.</p>
+</div>
+<div id="Ch27-S2-p3" class="para">
+<p class="p">So the proper surface cannot easily be made—to focus the light from
+one point to another requires a rather complicated surface. It turns
+out in practice that we do not try to make such complicated surfaces
+ordinarily, but instead we make a compromise. Instead of trying to get
+<em class="emph">all</em> the rays to come to a focus, we arrange it so that only the
+rays fairly close to the axis $OO'$ come to a focus. The farther ones
+may deviate if they want to, unfortunately, because the ideal surface
+is complicated, and we use instead a spherical surface with the right
+curvature at the axis. It is so much easier to fabricate a sphere than
+other surfaces that it is profitable for us to find out what happens
+to rays striking a spherical surface, supposing that only the rays
+near the axis are going to be focused perfectly. Those rays which are
+near the axis are sometimes called <em class="emph">paraxial rays</em>, and what we are analyzing are the conditions for the focusing of
+paraxial rays. We shall discuss later the errors
+that are introduced by the fact that all rays are not always close to
+the axis.
+</p>
+</div>
+<div id="Ch27-S2-p4" class="para">
+<p class="p">Thus, supposing $P$ is close to the axis, we drop a perpendicular $PQ$
+such that the height $PQ$ is $h$. For a moment, we imagine that the
+surface is a plane passing through $P$. In that case, the time needed
+to go from $O$ to $P$ would exceed the time from $O$ to $Q$, and also,
+the time from $P$ to $O'$ would exceed the time from $Q$ to $O'$. But
+that is why the glass must be curved, because the total excess time
+must be compensated by the delay in passing from $V$ to $Q$! Now the
+<em class="emph">excess</em> time along route $OP$ is $h^2/2s$, and the excess time
+on the other route is $nh^2/2s'$. This excess time, which must be
+matched by the delay in going along $VQ$, differs from what it would
+have been in a vacuum, because there is a medium present. In other
+words, the time to go from $V$ to $Q$ is not as if it were straight in
+the air, but it is slower by the factor $n$, so that the excess delay
+in this distance is then $(n - 1)VQ$. And now, how large is $VQ$? If
+the point $C$ is the center of the sphere and if its radius is $R$, we
+see by the same formula that the distance $VQ$ is equal
+to $h^2/2R$. Therefore we discover that the law that connects the
+distances $s$ and $s'$, and that gives us the radius of curvature $R$
+of the surface that we need, is
+\begin{equation}
+\label{Eq:I:27:2}
+(h^2/2s) + (nh^2/2s') = (n-1)h^2/2R
+\end{equation}
+or
+\begin{equation}
+\label{Eq:I:27:3}
+(1/s)+(n/s')=(n-1)/R.
+\end{equation}
+If we have a position $O$ and another position $O'$, and want to focus
+light from $O$ to $O'$, then we can calculate the required radius of
+curvature $R$ of the surface by this formula.
+</p>
+</div>
+<div id="Ch27-S2-p5" class="para">
+<p class="p">Now it turns out, interestingly, that the same lens, with the same
+curvature $R$, will focus for other distances, namely, for any pair of
+distances such that the sum of the two reciprocals, one multiplied
+by $n$, is a constant. Thus a given lens will (so long as we limit
+ourselves to paraxial rays) focus not only from $O$ to $O'$, but
+between an infinite number of other pairs of points, so long as those
+pairs of points bear the relationship that $1/s + n/s'$ is a constant,
+characteristic of the lens.</p>
+</div>
+<div id="Ch27-S2-p6" class="para">
+<p class="p">In particular, an interesting case is that in which $s \to \infty$. We
+can see from the formula that as one $s$ increases, the other
+decreases. In other words, if point $O$ goes out, point $O'$ comes in,
+and vice versa. As point $O$ goes toward infinity, point $O'$ keeps
+moving in until it reaches a certain distance, called the <em class="emph">focal
+length</em> $f'$, inside the material. If parallel rays come in, they will
+meet the axis at a distance $f'$. Likewise, we could imagine it the
+other way. (Remember the reciprocity rule: if light will go from $O$
+to $O'$, of course it will also go from $O'$ to $O$.) Therefore, if we
+had a light source inside the glass, we might want to know where the
+focus is. In particular, if the light in the glass were at infinity
+(same problem) where would it come to a focus outside? This distance
+is called $f$. Of course, we can also put it the other way. If we had
+a light source at $f$ and the light went through the surface, then it
+would go out as a parallel beam. We can easily find out what $f$
+and $f'$ are:
+\begin{alignat}{3}
+\label{Eq:I:27:4}
+&n/f'&&=(n-1)/R\quad\text{or}\quad f'&&=Rn/(n-1),\\[2ex]
+\label{Eq:I:27:5}
+&1/f&&=(n-1)/R\quad\text{or}\quad f&&=R/(n-1).
+\end{alignat}</p>
+</div>
+<div id="Ch27-S2-p7" class="para">
+<p class="p">We see an interesting thing: if we divide each focal length by the
+corresponding index of refraction we get the same result! This theorem,
+in fact, is general. It is true of any system of lenses, no matter how
+complicated, so it is interesting to remember. We did not prove here
+that it is general—we merely noted it for a single surface, but it
+happens to be true in general that the two focal lengths of a system are
+related in this way. Sometimes Eq. (<a href="#mjx-eqn-EqI273">27.3</a>) is written in the
+form
+\begin{equation}
+\label{Eq:I:27:6}
+1/s+n/s'=1/f.
+\end{equation}
+This is more useful than (<a href="#mjx-eqn-EqI273">27.3</a>) because we can measure $f$
+more easily than we can measure the curvature and index of refraction
+of the lens: if we are not interested in designing a lens or in
+knowing how it got that way, but simply lift it off a shelf, the
+interesting quantity is $f$, not the $n$ and the $1$ and the $R$!</p>
+</div>
+<div id="Ch27-S2-p8" class="para">
+<p class="p">Now an interesting situation occurs if $s$ becomes less than $f$. What
+happens then? If $s &lt; f$, then $(1/s) &gt; (1/f)$, and therefore $s'$ is
+negative; our equation says that the light will focus only with a
+negative value of $s'$, whatever that means! It does mean something
+very interesting and very definite. It is still a useful formula, in
+other words, even when the numbers are negative. What it means is
+shown in Fig. <a href="#Ch27-F3">27–3</a>. If we draw the rays which are
+diverging from $O$, they will be bent, it is true, at the surface, and
+they will not come to a focus, because $O$ is so close in that they
+are “beyond parallel.”  However, they diverge as if they had come
+from a point $O'$ <em class="emph">outside</em> the glass. This is an apparent image,
+sometimes called a <em class="emph">virtual image</em>. The
+image $O'$ in Fig. <a href="#Ch27-F2">27–2</a> is called a <em class="emph">real image</em>. If
+the light really comes to a point, it is a real image. But if the light
+<em class="emph">appears</em> to be coming <em class="emph">from</em> a point, a fictitious point
+different from the original point, it is a virtual image. So when $s'$
+comes out negative, it means that $O'$ is on the other side of the
+surface, and everything is all right.</p>
+</div>
+<div id="Ch27-F3" class="figure">
+<img src="img/FLP_I/f27-03/f27-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–3.</span>A virtual image.
+</div>
+</div>
+<div id="Ch27-S2-p9" class="para">
+<p class="p">Now consider the interesting case where $R$ is equal to infinity; then
+we have $(1/s) + (n/s') = 0$. In other words, $s' = -ns$, which means
+that if we look from a dense medium into a rare medium and see a point
+in the rare medium, it appears to be deeper by a factor $n$. Likewise,
+we can use the same equation backwards, so that if we look into a
+plane surface at an object that is at a certain distance inside the
+dense medium, it will appear as though the light is coming from not as
+far back (Fig. <a href="#Ch27-F4">27–4</a>). When we look at the bottom of a
+swimming pool from above, it does not look as deep as it really is, by
+a factor $3/4$, which is the reciprocal of the index of refraction of
+water.</p>
+</div>
+<div id="Ch27-F4" class="figure">
+<img src="img/FLP_I/f27-04/f27-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–4.</span>A plane surface re-images the light from $O'$ to $O$.
+</div>
+</div>
+<div id="Ch27-S2-p10" class="para">
+<p class="p">We could go on, of course, to discuss the spherical mirror. But if one
+appreciates the ideas involved, he should be able to work it out for
+himself. Therefore we leave it to the student to work out the formula
+for the spherical mirror, but we mention that it is well to adopt
+certain conventions concerning the distances involved:</p>
+<ol id="Ch27-I1" class="enumerate">
+<li id="Ch27-I1.i1" class="item">The object distance $s$ is positive if the point $O$ is to the
+left of the surface.</li>
+<li id="Ch27-I1.i2" class="item">The image distance $s'$ is positive if the point $O'$ is to the
+right of the surface.</li>
+<li id="Ch27-I1.i3" class="item">The radius of curvature of the surface is positive if the center
+is to the right of the surface.</li>
+</ol>
+<p>In Fig. <a href="#Ch27-F2">27–2</a>, for example, $s$, $s'$, and $R$ are all
+positive; in Fig. <a href="#Ch27-F3">27–3</a>, $s$ and $R$ are positive, but
+$s'$ is negative. If we had used a concave surface, our
+formula (<a href="#mjx-eqn-EqI273">27.3</a>) would still give the correct result if we
+merely make $R$ a negative quantity.</p>
+</div>
+<div id="Ch27-S2-p11" class="para">
+<p class="p">In working out the corresponding formula for a mirror, using the above
+conventions, you will find that if you put $n=-1$ throughout the
+formula (<a href="#mjx-eqn-EqI273">27.3</a>) (as though the material behind the mirror
+had an index $-1$), the right formula for a mirror results!</p>
+</div>
+<div id="Ch27-S2-p12" class="para">
+<p class="p">Although the derivation of formula (<a href="#mjx-eqn-EqI273">27.3</a>) is simple and
+elegant, using least time, one can of course work out the same formula
+using Snell’s law, remembering that the angles are so small that the
+sines of angles can be replaced by the angles themselves.</p>
+</div>
+</div>
+<div id="Ch27-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">27–3</span>The focal length of a lens</h3>
+<div id="Ch27-S3-p1" class="para">
+<p class="p">Now we go on to consider another situation, a very practical one. Most
+of the lenses that we use have two surfaces, not just one. How does this
+affect matters? Suppose that we have two surfaces of different
+curvature, with glass filling the space between them
+(Fig. <a href="#Ch27-F5">27–5</a>). We want to study the problem of focusing from a
+point $O$ to an alternate point $O'$. How can we do that? The answer is
+this: First, use formula (<a href="#mjx-eqn-EqI273">27.3</a>) for the first surface,
+forgetting about the second surface. This will tell us that the light
+which was diverging from $O$ will appear to be converging or diverging,
+depending on the sign, from some other point, say $O'$. Now we consider
+a new problem. We have a different surface, between glass and air, in
+which rays are converging toward a certain point $O'$. Where will they
+actually converge? We use the same formula again! We find that they
+converge at $O''$. Thus, if necessary, we can go through $75$ surfaces
+by just using the same formula in succession, from one to the next!</p>
+</div>
+<div id="Ch27-F5" class="figure">
+<img src="img/FLP_I/f27-05/f27-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–5.</span>Image formation by a two-surface lens.
+</div>
+</div>
+<div id="Ch27-S3-p2" class="para">
+<p class="p">There are some rather high-class formulas that would save us
+considerable energy in the few times in our lives that we might have
+to chase the light through five surfaces, but it is easier just to
+chase it through five surfaces when the problem arises than it is to
+memorize a lot of formulas, because it may be we will never have to
+chase it through any surfaces at all!</p>
+</div>
+<div id="Ch27-S3-p3" class="para">
+<p class="p">In any case, the principle is that when we go through one surface we
+find a new position, a new focal point, and then take that point as
+the starting point for the next surface, and so on. In order to
+actually do this, since on the second surface we are going from $n$
+to $1$ rather than from $1$ to $n$, and since in many systems there is
+more than one kind of glass, so that there are indices $n_1$, $n_2$,
+…, we really need a generalization of formula (<a href="#mjx-eqn-EqI273">27.3</a>)
+for a case where there are two different indices, $n_1$ and $n_2$,
+rather than only $n$. Then it is not difficult to prove that the
+general form of (<a href="#mjx-eqn-EqI273">27.3</a>) is
+\begin{equation}
+\label{Eq:I:27:7}
+(n_1/s)+(n_2/s')=(n_2-n_1)/R.
+\end{equation}</p>
+</div>
+<div id="Ch27-F6" class="figure">
+<img src="img/FLP_I/f27-06/f27-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–6.</span>A thin lens with two positive radii.
+</div>
+</div>
+<div id="Ch27-S3-p4" class="para">
+<p class="p">Particularly simple is the special case in which the two surfaces are
+very close together—so close that we may ignore small errors due to
+the thickness. If we draw the lens as shown in Fig. <a href="#Ch27-F6">27–6</a>, we
+may ask this question: How must the lens be built so as to focus light
+from $O$ to $O'$? Suppose the light comes exactly to the edge of the
+lens, at point $P$. Then the excess time in going from $O$ to $O'$ is
+$(n_1h^2/2s) + (n_1h^2/2s')$, ignoring for a moment the presence of the
+thickness $T$ of glass of index $n_2$. Now, to make the time for the
+direct path equal to that for the path $OPO'$, we have to use a piece of
+glass whose thickness $T$ at the center is such that the delay
+introduced in going through this thickness is enough to compensate for
+the excess time above. Therefore the thickness of the lens at the center
+must be given by the relationship
+\begin{equation}
+\label{Eq:I:27:8}
+(n_1h^2/2s)+(n_1h^2/2s')=(n_2-n_1)T.
+\end{equation}
+We can also express $T$ in terms of the radii $R_1$ and $R_2$ of the
+two surfaces. Paying attention to our convention (3), we thus find,
+for $R_1 &lt; R_2$ (a convex lens),
+\begin{equation}
+\label{Eq:I:27:9}
+T = (h^2/2R_1) - (h^2/2R_2).
+\end{equation}
+Therefore, we finally get
+\begin{equation}
+\label{Eq:I:27:10}
+(n_1/s)+(n_1/s') = (n_2-n_1)(1/R_1-1/R_2).
+\end{equation}
+Now we note again that if one of the points is at infinity, the other
+will be at a point which we will call the focal length $f$. The focal
+length $f$ is given by
+\begin{equation}
+\label{Eq:I:27:11}
+1/f = (n-1)(1/R_1-1/R_2).
+\end{equation}
+where $n= n_2/n_1$.</p>
+</div>
+<div id="Ch27-S3-p5" class="para">
+<p class="p">Now, if we take the opposite case, where $s$ goes to infinity, we see
+that $s'$ is at the focal length $f'$. This time the focal lengths are
+equal. (This is another special case of the general rule that the
+ratio of the two focal lengths is the ratio of the indices of
+refraction in the two media in which the rays focus. In this
+particular optical system, the initial and final indices are the same,
+so the two focal lengths are equal.)</p>
+</div>
+<div id="Ch27-S3-p6" class="para">
+<p class="p">Forgetting for a moment about the actual formula for the focal length,
+if we bought a lens that somebody designed with certain radii of
+curvature and a certain index, we could measure the focal length, say,
+by seeing where a point at infinity focuses. Once we had the focal
+length, it would be better to write our equation in terms of the focal
+length directly, and the formula then is
+\begin{equation}
+\label{Eq:I:27:12}
+(1/s) + (1/s') = 1/f.
+\end{equation}
+</p>
+</div>
+<div id="Ch27-S3-p7" class="para">
+<p class="p">Now let us see how the formula works and what it implies in different
+circumstances. First, it implies that if $s$ or $s'$ is infinite the
+other one is $f$. That means that parallel light focuses at a
+distance $f$, and this in effect <em class="emph">defines</em> $f$. Another interesting thing
+it says is that both points move in the same direction. If one moves
+to the right, the other does also. Another thing it says is that $s$
+and $s'$ are equal if they are both equal to $2f$. In other words, if
+we want a symmetrical situation, we find that they will both focus at
+a distance $2f$.</p>
+</div>
+</div>
+<div id="Ch27-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">27–4</span>Magnification</h3>
+<div id="Ch27-F7" class="figure">
+<img src="img/FLP_I/f27-07/f27-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–7.</span>The geometry of imaging by a thin lens.
+</div>
+</div>
+<div id="Ch27-S4-p1" class="para">
+<p class="p">So far we have discussed the focusing action only for points on the
+axis. Now let us discuss also the imaging of objects not exactly on
+the axis, but a little bit off, so that we can understand the
+properties of <em class="emph">magnification</em>. When we set up a lens so as to
+focus light from a small filament onto a “point” on a screen, we
+notice that on the screen we get a “picture” of the same filament,
+except of a larger or smaller size than the true filament. This must
+mean that the light comes to a focus from <em class="emph">each point</em> of the
+filament. In order to understand this a little better, let us analyze
+the thin lens system shown schematically in Fig. <a href="#Ch27-F7">27–7</a>. We
+know the following facts:</p>
+<ol id="Ch27-I2" class="enumerate">
+<li id="Ch27-I2.i1" class="item">Any ray that comes in parallel on one side proceeds toward a
+certain particular point called the focus on the other side, at a
+distance $f$ from the lens.</li>
+<li id="Ch27-I2.i2" class="item">Any ray that arrives at the lens from the focus on one side
+comes out parallel to the axis on the other side.</li>
+</ol>
+<p>This is all we need to establish formula (<a href="#mjx-eqn-EqI2712">27.12</a>) by
+geometry, as follows: Suppose we have an object at some distance $x$
+from the focus; let the height of the object be $y$. Then we know that
+one of the rays, namely $PQ$, will be bent so as to pass through the
+focus $R$ on the other side. Now if the lens will focus point $P$ at
+all, we can find out where if we find out where just one other ray
+goes, because the new focus will be where the two intersect again. We
+need only use our ingenuity to find the exact direction of <em class="emph">one</em>
+other ray. But we remember that a parallel ray goes through the focus
+and <em class="emph">vice versa</em>: a ray which goes through the focus will come
+out parallel!  So we draw ray $PT$ through $U$. (It is true that the
+actual rays which are doing the focusing may be much more limited than
+the two we have drawn, but they are harder to figure, so we make
+believe that we can make this ray.) Since it would come out parallel,
+we draw $TS$ parallel to $XW$. The intersection $S$ is the point we
+need. This will determine the correct place and the correct
+height. Let us call the height $y'$ and the distance from the focus,
+$x'$. Now we may derive a lens formula. Using the similar triangles
+$PVU$ and $TXU$, we find
+\begin{equation}
+\label{Eq:I:27:13}
+\frac{y'}{f}=\frac{y}{x}.
+\end{equation}
+Similarly, from triangles $SWR$ and $QXR$, we get
+\begin{equation}
+\label{Eq:I:27:14}
+\frac{y'}{x'}=\frac{y}{f}.
+\end{equation}
+Solving each for $y'/y$, we find that
+\begin{equation}
+\label{Eq:I:27:15}
+\frac{y'}{y}=\frac{x'}{f}=\frac{f}{x}.
+\end{equation}
+Equation (<a href="#mjx-eqn-EqI2715">27.15</a>) is the famous lens formula; in it is everything we need to know about lenses: It tells us
+the magnification, $y'/y$, in terms of the distances and the focal
+lengths. It also connects the two distances $x$ and $x'$ with $f$:
+\begin{equation}
+\label{Eq:I:27:16}
+xx'=f^2,
+\end{equation}
+which is a much neater form to work with than Eq. (<a href="#mjx-eqn-EqI2712">27.12</a>). We
+leave it to the student to demonstrate that if we call $s = x + f$
+and $s' = x' + f$, Eq. (<a href="#mjx-eqn-EqI2712">27.12</a>) is the same as
+Eq. (<a href="#mjx-eqn-EqI2716">27.16</a>).</p>
+</div>
+</div>
+<div id="Ch27-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">27–5</span>Compound lenses</h3>
+<div id="Ch27-S5-p1" class="para">
+<p class="p">Without actually deriving it, we shall briefly describe the general
+result when we have a number of lenses. If we have a system of several
+lenses, how can we possibly analyze it? That is easy. We start with
+some object and calculate where its image is for the first lens, using
+formula (<a href="#mjx-eqn-EqI2716">27.16</a>) or (<a href="#mjx-eqn-EqI2712">27.12</a>) or any other
+equivalent formula, or by drawing diagrams. So we find an image. Then
+we treat this image as the source for the next lens, and use the
+second lens with whatever its focal length is to again find an
+image. We simply chase the thing through the succession of
+lenses. That is all there is to it. It involves nothing new in
+principle, so we shall not go into it. However, there is a very
+interesting net result of the effects of any sequence of lenses on
+light that starts and ends up in the same medium, say air. Any optical
+instrument—a telescope or a microscope with any number of lenses and
+mirrors—has the following property: There exist two planes, called
+the <em class="emph">principal planes</em> of the system (these planes are often
+fairly close to the first surface of the first lens and the last
+surface of the last lens), which have the following properties: (1) If
+light comes into the system parallel from the first side, it comes out
+at a certain focus, at a distance from the <em class="emph">second</em> principal
+plane equal to the focal length, just as though the system were a thin
+lens situated at this plane. (2) If parallel light comes in the other
+way, it comes to a focus at the same distance $f$ from the
+<em class="emph">first</em> principal plane, again as if a thin lens where situated
+there. (See Fig. <a href="#Ch27-F8">27–8</a>.)</p>
+</div>
+<div id="Ch27-F8" class="figure">
+<img src="img/FLP_I/f27-08/f27-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–8.</span>Illustration of the principal planes of an optical system.
+</div>
+</div>
+<div id="Ch27-S5-p2" class="para">
+<p class="p">Of course, if we measure the distances $x$ and $x'$, and $y$ and $y'$
+as before, the formula (<a href="#mjx-eqn-EqI2716">27.16</a>) that we have written for the
+thin lens is absolutely general, provided that we measure the focal
+length from the principal planes and not from the center of the
+lens. It so happens that for a thin lens the principal planes are
+coincident. It is just as though we could take a thin lens, slice it
+down the middle, and separate it, and not notice that it was
+separated. Every ray that comes in pops out immediately on the other
+side of the second plane from the same point as it went into the first
+plane! The principal planes and the focal length may be found either
+by experiment or by calculation, and then the whole set of properties
+of the optical system are described. It is very interesting that the
+result is not complicated when we are all finished with such a big,
+complicated optical system.</p>
+</div>
+</div>
+<div id="Ch27-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">27–6</span>Aberrations</h3>
+<div id="Ch27-S6-p1" class="para">
+<p class="p">Before we get too excited about how marvelous lenses are, we must
+hasten to add that there are also serious limitations, because of the
+fact that we have limited ourselves, strictly speaking, to paraxial
+rays, the rays near the axis. A real lens having a finite size will,
+in general, exhibit <em class="emph">aberrations</em>. For example, a ray that is on
+the axis, of course, goes through the focus; a ray that is very close
+to the axis will still come to the focus very well. But as we go
+farther out, the ray begins to deviate from the focus, perhaps by
+falling short, and a ray striking near the top edge comes down and
+misses the focus by quite a wide margin. So, instead of getting a
+point image, we get a smear. This effect is called <em class="emph">spherical
+aberration</em>, because it is a property of the spherical surfaces we use in
+place of the right shape. This could be remedied, for any specific
+object distance, by re-forming the shape of the lens surface, or perhaps
+by using several lenses arranged so that the aberrations of the
+individual lenses tend to cancel each other.</p>
+</div>
+<div id="Ch27-S6-p2" class="para">
+<p class="p">Lenses have another fault: light of different colors has different
+speeds, or different indices of refraction, in the glass, and
+therefore the focal length of a given lens is different for different
+colors. So if we image a white spot, the image will have colors,
+because when we focus for the red, the blue is out of focus, or vice
+versa. This property is called <em class="emph">chromatic
+aberration</em>.</p>
+</div>
+<div id="Ch27-S6-p3" class="para">
+<p class="p">There are still other faults. If the object is off the axis, then the
+focus really isn’t perfect any more, when it gets far enough off the
+axis. The easiest way to verify this is to focus a lens and then tilt
+it so that the rays are coming in at a large angle from the axis. Then
+the image that is formed will usually be quite crude, and there may be
+no place where it focuses well. There are thus several kinds of errors
+in lenses that the optical designer tries to remedy by using many
+lenses to compensate each other’s errors.</p>
+</div>
+<div id="Ch27-S6-p4" class="para">
+<p class="p">How careful do we have to be to eliminate aberrations? Is it possible
+to make an absolutely perfect optical system? Suppose we had built an
+optical system that is supposed to bring light exactly to a
+point. Now, arguing from the point of view of least time, can we find
+a condition on how perfect the system has to be? The system will have
+some kind of an entrance opening for the light. If we take the
+farthest ray from the axis that can come to the focus (if the system
+is perfect, of course), the times for all rays are exactly equal. But
+nothing is perfect, so the question is, how wrong can the time be for
+this ray and not be worth correcting any further? That depends on how
+perfect we want to make the image. But suppose we want to make the
+image as perfect as it possibly can be made. Then, of course, our
+impression is that we have to arrange that every ray takes as nearly
+the same time as possible. But it turns out that this is not true,
+that beyond a certain point we are trying to do something that is too
+fine, because the theory of geometrical optics does not work!</p>
+</div>
+<div id="Ch27-S6-p5" class="para">
+<p class="p">Remember that the principle of least time is not an accurate
+formulation, unlike the principle of conservation of energy or the
+principle of conservation of momentum. The principle of least time is
+only an <em class="emph">approximation</em>, and it is interesting to know how much
+error can be allowed and still not make any apparent difference. The
+answer is that if we have arranged that between the maximal ray—the
+worst ray, the ray that is farthest out—and the central ray, the
+difference in time is less than about the period that corresponds to
+one oscillation of the light, then there is no use improving it any
+further. Light is an oscillatory thing with a definite frequency that
+is related to the wavelength, and if we have arranged that the time
+difference for different rays is less than about a period, there is no
+use going any further.</p>
+</div>
+</div>
+<div id="Ch27-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">27–7</span>Resolving power</h3>
+<div id="Ch27-S7-p1" class="para">
+<p class="p">Another interesting question—a very important technical question
+with all optical instruments—is how much <em class="emph">resolving power</em> they
+have. If we build a microscope, we want to see the objects that we are
+looking at. That means, for instance, that if we are looking at a
+bacterium with a spot on each end, we want to <em class="emph">see</em> that there
+are two dots when we magnify them. One might think that all we have to
+do is to get enough magnification—we can always add another lens,
+and we can always magnify again and again, and with the cleverness of
+designers, all the spherical aberrations and chromatic aberrations can
+be cancelled out, and there is no reason why we cannot keep on
+magnifying the image. So the limitations of a microscope are not that
+it is impossible to build a lens that magnifies more than
+$2000$ diameters. We can build a system of lenses that magnifies
+$10{,}000$ diameters, but we <em class="emph">still</em> could not see two points that are too
+close together because of the limitations of geometrical optics,
+because of the fact that least time is not precise.</p>
+</div>
+<div id="Ch27-F9" class="figure">
+<img src="img/FLP_I/f27-09/f27-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–9.</span>The resolving power of an optical system.
+</div>
+</div>
+<div id="Ch27-S7-p2" class="para">
+<p class="p">To discover the rule that determines how far apart two points have to
+be so that at the image they appear as separate points can be stated
+in a very beautiful way associated with the time it takes for
+different rays. Suppose that we disregard the aberrations now, and
+imagine that for a particular point $P$ (Fig. <a href="#Ch27-F9">27–9</a>) all
+the rays from object to image $T$ take exactly the same time. (It is
+not true, because it is not a perfect system, but that is another
+problem.) Now take another nearby point, $P'$, and ask whether its
+image will be distinct from $T$. In other words, whether we can make
+out the difference between them. Of course, according to geometrical
+optics, there should be two point images, but what we see may be
+rather smeared and we may not be able to make out that there are two
+points. The condition that the second point is focused in a distinctly
+different place from the first one is that the two times for the
+extreme rays $P'ST$ and $P'RT$ on each side of the big opening of the
+lenses to go from one end to the other, must <em class="emph">not</em> be equal from
+the two possible object points to a given image point. Why? Because,
+if the times were equal, of course both would <em class="emph">focus</em> at the same
+point. So the times are not going to be equal. But by how much do they
+have to differ so that we can say that both do <em class="emph">not</em> come to a
+common focus, so that we can distinguish the two image points?  The
+general rule for the resolution of any optical instrument is this: two
+different point sources can be resolved only if one source is focused
+at such a point that the times for the maximal rays from the other
+source to reach that point, as compared with its own true image point,
+differ by more than one period. It is necessary that the difference in
+time between the top ray and the bottom ray to the <em class="emph">wrong</em> focus
+shall exceed a certain amount, namely, approximately the period of
+oscillation of the light:
+\begin{equation}
+\label{Eq:I:27:17}
+t_2-t_1 &gt; 1/\nu,
+\end{equation}
+where $\nu$ is the frequency of the light (number of oscillations per
+second; also speed divided by wavelength). If the distance of
+separation of the two points is called $D$, and if the opening angle
+of the lens is called $\theta$, then one can demonstrate
+that (<a href="#mjx-eqn-EqI2717">27.17</a>) is exactly equivalent to the statement that $D$
+must exceed $\lambda/n\sin\theta$, where $n$ is the index of refraction
+at $P$ and $\lambda$ is the wavelength. The smallest things that we can
+see are therefore approximately the wavelength of light. A corresponding
+formula exists for telescopes, which tells us the smallest difference in
+angle between two stars that can just be distinguished.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a></p>
+</div>
+</div>
+<ol id="footnotes"><li class="footnote">
+  <a name="footnote_1"></a>
+  The
+angle is about $\lambda/D$, where $D$ is the lens diameter. Can you see
+why?
+  <a href="#footnote_source_1">↩</a>
+</li></ol>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

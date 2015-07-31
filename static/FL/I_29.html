@@ -1,0 +1,1055 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 29: Interference</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js", "cancel.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "29." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch29" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">29</span>Interference</h2>
+<div id="Ch29-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">29–1</span>Electromagnetic waves</h3>
+<div id="Ch29-S1-p1" class="para">
+<p class="p">In this chapter we shall discuss the subject of the preceding chapter
+more mathematically. We have qualitatively demonstrated that there are
+maxima and minima in the radiation field from two sources, and our
+problem now is to describe the field in mathematical detail, not just
+qualitatively.</p>
+</div>
+<div id="Ch29-F1" class="figure">
+<img src="img/FLP_I/f29-01/f29-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–1.</span>The electric field $\FigE$ due to a positive charge whose
+retarded acceleration is $\Figa'$.
+</div>
+</div>
+<div id="Ch29-S1-p2" class="para">
+<p class="p">We have already physically analyzed the meaning of
+formula (<a href="I_28.html#mjx-eqn-EqI286">28.6</a>) quite satisfactorily, but there are a few
+points to be made about it mathematically. In the first place, if a
+charge is accelerating up and down along a line, in a motion of very
+small amplitude, the field at some angle $\theta$ from the axis of the
+motion is in a direction at right angles to the line of sight and in the
+plane containing both the acceleration and the line of sight
+(Fig. <a href="#Ch29-F1">29–1</a>). If the distance is called $r$, then at time $t$
+the electric field has the magnitude
+\begin{equation}
+\label{Eq:I:29:1}
+E(t)=\frac{-qa(t-r/c)\sin\theta}{4\pi\epsO c^2r},
+\end{equation}
+where $a(t - r/c)$ is the acceleration at the time $(t - r/c)$, called
+the <em class="emph">retarded</em> acceleration.</p>
+</div>
+<div id="Ch29-S1-p3" class="para">
+<p class="p">Now it would be interesting to draw a picture of the field under
+different conditions. The thing that is interesting, of course, is the
+factor $a(t - r/c)$, and to understand it we can take the simplest
+case, $\theta = 90^\circ$, and plot the field graphically. What we had
+been thinking of before is that we stand in one position and ask how
+the field there changes with time. But instead of that, we are now
+going to see what the field looks like at different positions in space
+at a given instant. So what we want is a “snapshot” picture which
+tells us what the field is in different places. Of course it depends
+upon the acceleration of the charge. Suppose that the charge at first
+had some particular motion: it was initially standing still, and it
+suddenly accelerated in some manner, as shown in Fig. <a href="#Ch29-F2">29–2</a>,
+and then stopped. Then, a little bit later, we measure the field at a
+different place. Then we may assert that the field will appear as shown
+in Fig. <a href="#Ch29-F3">29–3</a>. At each point the field is determined by the
+acceleration of the charge at an earlier time, the amount earlier being
+the delay $r/c$. The field at farther and farther points is determined
+by the acceleration at earlier and earlier times. So the curve in
+Fig. <a href="#Ch29-F3">29–3</a> is really, in a sense, a “reversed” plot of the
+acceleration as a function of time; the distance is related to time by a
+constant scale factor $c$, which we often take as unity. This is easily
+seen by considering the mathematical behavior of $a(t - r/c)$.
+Evidently, if we add a little time $\Delta t$, we get the same value for
+$a(t - r/c)$ as we would have if we had subtracted a little distance:
+$\Delta r = -c\,\Delta t$.</p>
+</div>
+<div id="Ch29-F2" class="figure">
+<img src="img/FLP_I/f29-02/f29-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–2.</span>The acceleration of a certain charge as a function of time.
+</div>
+</div>
+<div id="Ch29-F3" class="figure">
+<img src="img/FLP_I/f29-03/f29-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–3.</span>The electric field as a function of position at a later
+time. (The $1/r$ variation is ignored.)
+</div>
+</div>
+<div id="Ch29-S1-p4" class="para">
+<p class="p">Stated another way: if we add a little time $\Delta t$, we can restore
+$a(t - r/c)$ to its former value by <em class="emph">adding</em> a little
+distance $\Delta r = c\,\Delta t$. That is, as time goes on <em class="emph">the field
+moves as a wave outward from the source</em>. That is the reason why we
+sometimes say light is propagated as waves. It is equivalent to saying
+that the field is delayed, or to saying that the electric field is
+moving outward as time goes on.</p>
+</div>
+<div id="Ch29-S1-p5" class="para">
+<p class="p">An interesting special case is that where the charge $q$ is moving up
+and down in an oscillatory manner. The case which we studied
+experimentally in the last chapter was one in which the displacement $x$
+at any time $t$ was equal to a certain constant $x_0$, the
+magnitude of the oscillation, times $\cos\omega t$. Then the
+acceleration is
+\begin{equation}
+\label{Eq:I:29:2}
+a=-\omega^2x_0\cos\omega t=a_0\cos\omega t,
+\end{equation}
+where $a_0$ is the maximum acceleration, $-\omega^2x_0$. Putting this
+formula into (<a href="#mjx-eqn-EqI291">29.1</a>), we find
+\begin{equation}
+\label{Eq:I:29:3}
+E=-q\sin\theta\,
+\frac{a_0\cos\omega(t-r/c)}{4\pi\epsO rc^2}.
+\end{equation}
+Now, ignoring the angle $\theta$ and the constant factors, let us see
+what that looks like as a function of position or as a function of
+time.</p>
+</div>
+</div>
+<div id="Ch29-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">29–2</span>Energy of radiation</h3>
+<div id="Ch29-S2-p1" class="para">
+<p class="p">First of all, at any particular moment or in any particular place, the
+strength of the field varies inversely as the distance $r$, as we
+mentioned previously. Now we must point out that the <em class="emph">energy</em>
+content of a wave, or the energy effects that such an electric field
+can have, are proportional to the <em class="emph">square</em> of the field, because
+if, for instance, we have some kind of a charge or an oscillator in
+the electric field, then if we let the field act on the oscillator, it
+makes it move. If this is a linear oscillator, the acceleration,
+velocity, and displacement produced by the electric field acting on
+the charge are all proportional to the field. So the kinetic energy
+which is developed in the charge is proportional to the <em class="emph">square</em>
+of the field. So we shall take it that the energy that a field can
+deliver to a system is proportional somehow to the square of the
+field.</p>
+</div>
+<div id="Ch29-F4" class="figure">
+<img src="img/FLP_I/f29-04/f29-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–4.</span>The energy flowing within the cone $OABCD$ is independent of
+the distance $r$ at which it is measured.
+</div>
+</div>
+<div id="Ch29-S2-p2" class="para">
+<p class="p">This means that the energy that the source can deliver decreases as we
+get farther away; in fact, it varies <em class="emph">inversely as the square of
+the distance</em>. But that has a very simple interpretation: if we wanted
+to pick up all the energy we could from the wave in a certain cone at
+a distance $r_1$ (Fig. <a href="#Ch29-F4">29–4</a>), and we do the same at
+another distance $r_2$, we find that the amount of energy per unit
+area at any one place goes inversely as the square of $r$, but the
+area of the surface intercepted by the cone goes <em class="emph">directly</em> as
+the square of $r$. So the energy that we can take out of the wave
+within a given conical angle is the same, no matter how far away we
+are! In particular, the total energy that we could take out of the
+whole wave by putting absorbing oscillators all around is a certain
+fixed amount. So the fact that the amplitude of $E$ varies as $1/r$ is
+the same as saying that there is an energy flux which is never lost,
+an energy which goes on and on, spreading over a greater and greater
+effective area. Thus we see that after a charge has oscillated, it has
+lost some energy which it can never recover; the energy keeps going
+farther and farther away without diminution. So if we are far enough
+away that our basic approximation is good enough, the charge cannot
+recover the energy which has been, as we say, radiated away. Of course
+the energy still exists somewhere, and is available to be picked up by
+other systems. We shall study this energy “loss” further in
+Chapter <a href="I_32.html">32</a>.</p>
+</div>
+<div id="Ch29-S2-p3" class="para">
+<p class="p">Let us now consider more carefully how the wave (<a href="#mjx-eqn-EqI293">29.3</a>)
+varies as a function of time at a given place, and as a function of
+position at a given time. Again we ignore the $1/r$ variation and the
+constants.</p>
+</div>
+</div>
+<div id="Ch29-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">29–3</span>Sinusoidal waves</h3>
+<div id="Ch29-S3-p1" class="para">
+<p class="p">First let us fix the position $r$, and watch the field as a function
+of time. It is oscillatory at the angular frequency $\omega$. The angular
+frequency $\omega$ can be defined as the <em class="emph">rate of change of phase
+with time</em> (radians per second). We have already studied such a thing,
+so it should be quite familiar to us by now. The <em class="emph">period</em> is the
+time needed for one oscillation, one complete cycle, and we have worked
+that out too; it is $2\pi/\omega$, because $\omega$ times the period is
+one cycle of the cosine.</p>
+</div>
+<div id="Ch29-S3-p2" class="para">
+<p class="p">Now we introduce a new quantity which is used a great deal in
+physics. This has to do with the opposite situation, in which we
+fix $t$ and look at the wave as a function of distance $r$. Of course we
+notice that, as a function of $r$, the wave (<a href="#mjx-eqn-EqI293">29.3</a>) is also
+oscillatory. That is, aside from $1/r$, which we are ignoring, we see
+that $E$ oscillates as we change the position. So, in analogy with
+$\omega$, we can define a quantity called the <em class="emph">wave
+number</em>, symbolized as $k$. This is defined as
+<em class="emph">the rate of change of phase with distance</em> (radians per meter).
+That is, as we move in space at a fixed time, the phase changes.</p>
+</div>
+<div id="Ch29-S3-p3" class="para">
+<p class="p">There is another quantity that corresponds to the period, and we might
+call it the period in space, but it is usually called the
+wavelength, symbolized $\lambda$. The wavelength is
+the distance occupied by one complete cycle. It is easy to see, then,
+that the wavelength is $2\pi/k$, because $k$ times the wavelength would
+be the number of radians that the whole thing changes, being the product
+of the rate of change of the radians per meter, times the number of
+meters, and we must make a $2\pi$ change for one cycle. So $k\lambda =
+2\pi$ is exactly analogous to $\omega t_0 = 2\pi$.
+</p>
+</div>
+<div id="Ch29-S3-p4" class="para">
+<p class="p">Now in our particular wave there is a definite relationship between
+the frequency and the wavelength, but the above definitions of $k$
+and $\omega$ are actually quite general. That is, the wavelength and the
+frequency may not be related in the same way in other physical
+circumstances. However, in our circumstance the rate of change of
+phase with distance is easily determined, because if we call $\phi =
+\omega(t - r/c)$ the phase, and differentiate (partially) with respect
+to distance $r$, the rate of change, $\ddpl{\phi}{r}$, is
+\begin{equation}
+\label{Eq:I:29:4}
+\biggl|\ddp{\phi}{r}\biggr|=
+k = \frac{\omega}{c}.
+\end{equation}
+There are many ways to represent the same thing, such as
+</p>
+<center>
+<table style="width: 50%">
+	<tr>
+		<td>
+		\begin{align}
+		\label{Eq:I:29:5}
+		\lambda &= ct_0 &\\[2ex]
+		\label{Eq:I:29:6}
+		\omega &= ck &
+		\end{align}
+		</td>
+		<td>
+		\begin{align}
+		\label{Eq:I:29:7}
+		\lambda\nu &= c &\\[2ex]
+		\label{Eq:I:29:8}
+		\omega\lambda &= 2\pi c &
+		\end{align}
+	   </td>
+	</tr>
+</table>
+</center>
+<p>Why is the wavelength equal to $c$ times the period? That’s very easy,
+of course, because if we sit still and wait for one period to elapse,
+the waves, travelling at the speed $c$, will move a distance $ct_0$,
+and will of course have moved over just one wavelength.</p>
+</div>
+<div id="Ch29-S3-p5" class="para">
+<p class="p">In a physical situation other than that of light, $k$ is not
+necessarily related to $\omega$ in this simple way. If we call the
+distance along an axis $x$, then the formula for a cosine wave moving
+in a direction $x$ with a wave number $k$ and an angular
+frequency $\omega$ will be written in general as $\cos\,(\omega t - kx)$.
+</p>
+</div>
+<div id="Ch29-S3-p6" class="para">
+<p class="p">Now that we have introduced the idea of wavelength, we may say
+something more about the circumstances in which (<a href="#mjx-eqn-EqI291">29.1</a>) is a
+legitimate formula. We recall that the field is made up of several
+pieces, one of which varies inversely as $r$, another part which
+varies inversely as $r^2$, and others which vary even faster. It would
+be worth while to know in what circumstances the $1/r$ part of the
+field is the most important part, and the other parts are relatively
+small. Naturally, the answer is “if we go ‘far enough’ away,”
+because terms which vary inversely as the square ultimately become
+negligible compared with the $1/r$ term. How far is “far enough”?
+The answer is, qualitatively, that the other terms are of
+order $\lambda/r$ smaller than the $1/r$ term. Thus, so long as we are
+beyond a few wavelengths, (<a href="#mjx-eqn-EqI291">29.1</a>) is an excellent
+approximation to the field. Sometimes the region beyond a few
+wavelengths is called the “wave zone.”
+</p>
+</div>
+</div>
+<div id="Ch29-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">29–4</span>Two dipole radiators</h3>
+<div id="Ch29-S4-p1" class="para">
+<p class="p">Next let us discuss the mathematics involved in combining the effects
+of two oscillators to find the net field at a given point. This is
+very easy in the few cases that we considered in the previous
+chapter. We shall first describe the effects qualitatively, and then
+more quantitatively. Let us take the simple case, where the
+oscillators are situated with their centers in the same horizontal
+plane as the detector, and the line of vibration is vertical.</p>
+</div>
+<div id="Ch29-F5" class="figure">
+<img class="first" src="img/FLP_I/f29-05/f29-05_tc_big_a.svgz"><img class="last" src="img/FLP_I/f29-05/f29-05_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 29–5.</span>The intensities in various directions from two dipole
+oscillators one-half wavelength apart. Left: in phase ($\alpha =
+  0$). Right: one-half period out of phase ($\alpha = \pi$).
+</div>
+</div>
+<div id="Ch29-S4-p2" class="para">
+<p class="p">Figure <a href="#Ch29-F5">29–5</a>(a) represents the top view of two such
+oscillators, and in this particular example they are half a wavelength
+apart in a N–S direction, and are oscillating together in the same
+phase, which we call zero phase. Now we would like to know the
+intensity of the radiation in various directions. By the intensity we
+mean the amount of energy that the field carries past us per second,
+which is proportional to the square of the field, averaged in time. So
+the thing to look at, when we want to know how bright the light is, is
+the square of the electric field, not the electric field itself. (The
+electric field tells the strength of the force felt by a stationary
+charge, but the amount of energy that is going past, in watts per
+square meter, is proportional to the square of the electric field. We
+shall derive the constant of proportionality in Chapter <a href="I_31.html">31</a>.) If
+we look at the array from the W side, both oscillators contribute
+equally and in phase, so the electric field is twice as strong as it
+would be from a single oscillator. Therefore <em class="emph">the intensity is
+four times as strong as it would be if there were only one
+oscillator</em>. (The numbers in Fig. <a href="#Ch29-F5">29–5</a> represent how
+strong the intensity would be in this case, compared with what it
+would be if there were only a single oscillator of unit strength.)
+Now, in either the N or S direction along the line of the oscillators,
+since they are half a wavelength apart, the effect of one oscillator
+turns out to be out of phase by exactly half an oscillation from the
+other, and therefore the fields add to zero. At a certain particular
+intermediate angle (in fact, at $30^\circ$) the intensity is $2$, and
+it falls off, $4$, $2$, $0$, and so forth. We have to learn how to
+find these numbers at other angles. It is a question of adding two
+oscillations with different phases.</p>
+</div>
+<div id="Ch29-S4-p3" class="para">
+<p class="p">Let us quickly look at some other cases of interest. Suppose the
+oscillators are again one-half a wavelength apart, but the
+phase $\alpha$ of one is set half a period behind the other in its
+oscillation (Fig. <a href="#Ch29-F5">29–5</a>b). In the W direction the
+intensity is now zero, because one oscillator is “pushing” when the
+other one is “pulling.” But in the N direction the signal from the
+near one comes at a certain time, and that of the other comes half a
+period later. But the latter was <em class="emph">originally</em> half a period
+behind in timing, and therefore it is now exactly <em class="emph">in time</em> with
+the first one, and so the intensity in this direction is
+$4$ units. The intensity in the direction at $30^\circ$ is still $2$, as
+we can prove later.</p>
+</div>
+<div id="Ch29-S4-p4" class="para">
+<p class="p">Now we come to an interesting case which shows up a possibly useful
+feature. Let us remark that one of the reasons that phase relations of
+oscillators are interesting is for beaming radio transmitters. For
+instance, if we build an antenna system and want to send a radio
+signal, say, to Hawaii, we set the antennas up as in
+Fig. <a href="#Ch29-F5">29–5</a>(a) and we broadcast with our two antennas in
+phase, because Hawaii is to the west of us. Then we decide that tomorrow
+we are going to broadcast toward Alberta, Canada. Since that is north,
+not west, all we have to do is to reverse the phase of one of our
+antennas, and we can broadcast to the north. So we can build antenna
+systems with various arrangements. Ours is one of the simplest possible
+ones; we can make them much more complicated, and by changing the phases
+in the various antennas we can send the beams in various directions and
+send most of the power in the direction in which we wish to transmit,
+without ever moving the antenna! In both of the preceding cases,
+however, while we are broadcasting toward Alberta we are wasting a lot
+of power on Easter Island, and it would be interesting to ask whether it
+is possible to send it in only <em class="emph">one</em> direction. At first sight we
+might think that with a pair of antennas of this nature the result is
+always going to be symmetrical. So let us consider a case that comes out
+unsymmetrical, to show the possible variety.</p>
+</div>
+<div id="Ch29-F6" class="figure">
+<img src="img/FLP_I/f29-06/f29-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–6.</span>A pair of dipole antennas giving maximum power in one
+direction.
+</div>
+</div>
+<div id="Ch29-S4-p5" class="para">
+<p class="p">If the antennas are separated by one-quarter wavelength, and if the N
+one is one-fourth period behind the S one in time, then what happens
+(Fig. <a href="#Ch29-F6">29–6</a>)? In the W direction we get $2$, as we will
+see later. In the S direction we get <em class="emph">zero</em>, because the signal
+from S comes at a certain time; that from N comes $90^\circ$ later in
+<em class="emph">time</em>, but it is already $90^\circ$ behind in its built-in
+phase, therefore it arrives, altogether, $180^\circ$ out of phase, and
+there is no effect. On the other hand, in the N direction, the N
+signal arrives earlier than the S signal by $90^\circ$ in time,
+because it is a quarter wavelength closer. But its phase is set so,
+that it is oscillating $90^\circ$ <em class="emph">behind</em> in time, which just
+compensates the delay difference, and therefore the two signals appear
+<em class="emph">together</em> in phase, making the field strength twice as large,
+and the energy four times as great.</p>
+</div>
+<div id="Ch29-S4-p6" class="para">
+<p class="p">Thus, by using some cleverness in spacing and phasing our antennas, we
+can send the power all in one direction. But still it is distributed
+over a great range of angles. Can we arrange it so that it is focused
+still more sharply in a particular direction? Let us consider the case
+of Hawaii again, where we are sending the beam east and west but it is
+spread over quite an angle, because even at $30^\circ$ we are still
+getting half the intensity—we are wasting the power. Can we do
+better than that? Let us take a situation in which the separation is
+ten wavelengths (Fig. <a href="#Ch29-F7">29–7</a>), which is more nearly
+comparable to the situation in which we experimented in the previous
+chapter, with separations of several wavelengths rather than a small
+fraction of a wavelength. Here the picture is quite different.</p>
+</div>
+<div id="Ch29-F7" class="figure">
+<img src="img/FLP_I/f29-07/f29-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–7.</span>The intensity pattern for two dipoles separated by $10\lambda$.
+</div>
+</div>
+<div id="Ch29-S4-p7" class="para">
+<p class="p">If the oscillators are ten wavelengths apart (we take the in-phase
+case to make it easy), we see that in the E–W direction, they are in
+phase, and we get a strong intensity, four times what we would get if
+one of them were there alone. On the other hand, at a very small angle
+away, the arrival times differ by $180^\circ$ and the intensity is
+zero. To be precise, if we draw a line from each oscillator to a
+distant point and the difference $\Delta$ in the two distances
+is $\lambda/2$, half an oscillation, then they will be out of phase. So
+this first null occurs when that happens. (The figure is not drawn to
+scale; it is only a rough sketch.) This means that we do indeed have a
+very sharp beam in the direction we want, because if we just move over
+a little bit we lose all our intensity. Unfortunately for practical
+purposes, if we were thinking of making a radio broadcasting array and
+we doubled the distance $\Delta$, then we would be a whole cycle out of
+phase, which is the same as being exactly <em class="emph">in</em> phase again! Thus we
+get many successive maxima and minima, just as we found with the
+$2\tfrac{1}{2}\lambda$ spacing in Chapter <a href="I_28.html">28</a>.</p>
+</div>
+<div id="Ch29-S4-p8" class="para">
+<p class="p">Now how can we arrange to get rid of all these extra maxima, or
+“lobes,” as they are called? We could get rid of the unwanted lobes
+in a rather interesting way. Suppose that we were to place another set
+of antennas between the two that we already have. That is, the outside
+ones are still $10\lambda$ apart, but between them, say
+every $2\lambda$, we have put another antenna, and we drive them all in
+phase. There are now six antennas, and if we looked at the intensity
+in the E–W direction, it would, of course, be much higher with six
+antennas than with one. The field would be six times and the intensity
+thirty-six times as great (the square of the field). We get $36$ units
+of intensity in that direction. Now if we look at neighboring points,
+we find a zero as before, roughly, but if we go farther, to where we
+used to get a big “bump,” we get a much smaller “bump” now. Let us
+try to see why.</p>
+</div>
+<div id="Ch29-F8" class="figure">
+<img src="img/FLP_I/f29-08/f29-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–8.</span>A six-dipole antenna array and part of its intensity
+pattern.
+</div>
+</div>
+<div id="Ch29-S4-p9" class="para">
+<p class="p">The reason is that although we might expect to get a big bump when the
+distance $\Delta$ is exactly equal to the wavelength, it is true that
+dipoles $1$ and $6$ are then in phase and are cooperating in trying to
+get some strength in that direction. But numbers $3$ and $4$ are
+roughly $\tfrac{1}{2}$ a wavelength out of phase with $1$ and $6$, and
+although $1$ and $6$ push together, $3$ and $4$ push together too, but
+in opposite phase. Therefore there is very little intensity in this
+direction—but there is something; it does not balance exactly. This
+kind of thing keeps on happening; we get very little bumps, and we
+have the strong beam in the direction where we want it. But in this
+particular example, something else will happen: namely, since the
+distance between successive dipoles is $2\lambda$, it is possible to
+find an angle where the distance $\delta$ between <em class="emph">successive
+dipoles</em> is exactly one wavelength, so that the effects from all of
+them are in phase again. Each one is delayed relative to the next one
+by $360^\circ$, so they all come back in phase, and we have another
+strong beam in that direction! It is easy to avoid this in practice
+because it is possible to put the dipoles closer than one wavelength
+apart. If we put in more antennas, closer than one wavelength apart,
+then this cannot happen. But the fact that this <em class="emph">can</em> happen at
+certain angles, if the spacing is bigger than one wavelength, is a
+very interesting and useful phenomenon in other applications—not
+radio broadcasting, but in <em class="emph">diffraction gratings</em>.</p>
+</div>
+</div>
+<div id="Ch29-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">29–5</span>The mathematics of interference</h3>
+<div id="Ch29-S5-p1" class="para">
+<p class="p">Now we have finished our analysis of the phenomena of dipole radiators
+qualitatively, and we must learn how to analyze them
+quantitatively. To find the effect of two sources at some particular
+angle in the most general case, where the two oscillators have some
+intrinsic relative phase $\alpha$ from one another and the strengths
+$A_1$ and $A_2$ are not equal, we find that we have to add two cosines
+having the same frequency, but with different phases. It is very easy
+to find this phase difference; it is made up of a delay due to the
+difference in distance, and the intrinsic, built-in phase of the
+oscillation. Mathematically, we have to find the sum $R$ of two waves:
+$R = A_1 \cos\,(\omega t + \phi_1) + A_2 \cos\,(\omega t + \phi_2)$. How
+do we do it?</p>
+</div>
+<div id="Ch29-S5-p2" class="para">
+<p class="p">It is really very easy, and we presume that we already know how to do
+it. However, we shall outline the procedure in some detail. First, we
+can, if we are clever with mathematics and know enough about cosines
+and sines, simply work it out. The easiest such case is the one where
+$A_1$ and $A_2$ are equal, let us say they are both equal to $A$. In
+those circumstances, for example (we could call this the trigonometric
+method of solving the problem), we have
+\begin{equation}
+\label{Eq:I:29:9}
+R = A[\cos\,(\omega t+\phi_1)+\cos\,(\omega t + \phi_2)].
+\end{equation}
+Once, in our trigonometry class, we may have learned the rule that
+\begin{equation}
+\label{Eq:I:29:10}
+\cos A+\cos B=2\cos\tfrac{1}{2}(A+B)\cos\tfrac{1}{2}(A-B).
+\end{equation}
+If we know that, then we can immediately write $R$ as
+\begin{equation}
+\label{Eq:I:29:11}
+R=2A\cos\tfrac{1}{2}(\phi_1-\phi_2)\cos\,(\omega t+\tfrac{1}{2}\phi_1+
+\tfrac{1}{2}\phi_2).
+\end{equation}
+So we find that we have an oscillatory wave with a new phase and a new
+amplitude. In general, the result <em class="emph">will</em> be an oscillatory wave
+with a new amplitude $A_R$, which we may call the resultant amplitude,
+oscillating at the same frequency but with a phase
+difference $\phi_R$, called the resultant phase. In view of this, our particular
+case has the following result: that the resultant amplitude is
+\begin{equation}
+\label{Eq:I:29:12}
+A_R=2A\cos\tfrac{1}{2}(\phi_1-\phi_2),
+\end{equation}
+and the resultant phase is the average of the two phases, and we have
+completely solved our problem.</p>
+</div>
+<div id="Ch29-F9" class="figure">
+<img src="img/FLP_I/f29-09/f29-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–9.</span>A geometrical method for combining two cosine waves. The
+entire diagram is thought of as rotating counterclockwise with
+angular frequency $\omega$.
+</div>
+</div>
+<div id="Ch29-S5-p3" class="para">
+<p class="p">Now suppose that we cannot remember that the sum of two cosines is
+twice the cosine of half the sum times the cosine of half the
+difference. Then we may use another method of analysis which is more
+geometrical. Any cosine function of $\omega t$ can be considered as
+the horizontal projection of a <em class="emph">rotating vector</em>. Suppose there
+were a vector $\FLPA_1$ of length $A_1$ rotating with time, so that
+its angle with the horizontal axis is $\omega t + \phi_1$. (We shall
+leave out the $\omega t$ in a minute, and see that it makes no
+difference.)  Suppose that we take a snapshot at the time $t = 0$,
+although, in fact, the picture is rotating with angular
+velocity $\omega$ (Fig. <a href="#Ch29-F9">29–9</a>). The projection of $\FLPA_1$ along
+the horizontal axis is precisely $A_1\cos\,(\omega t + \phi_1)$. Now
+at $t= 0$ the second wave could be represented by another vector,
+$\FLPA_2$, of length $A_2$ and at an angle $\phi_2$, and also
+rotating. They are both rotating with the same angular
+velocity $\omega$, and therefore the <em class="emph">relative</em> positions of the two are
+fixed. The system goes around like a rigid body. The horizontal
+projection of $\FLPA_2$ is $A_2\cos\,(\omega t + \phi_2)$. But we know
+from the theory of vectors that if we add the two vectors in the
+ordinary way, by the parallelogram rule, and draw the resultant
+vector $\FLPA_R$, the $x$-component of the resultant is the sum of the
+$x$-components of the other two vectors. That solves our problem. It
+is easy to check that this gives the correct result for the special
+case we treated above, where $A_1=$ $A_2 =$ $A$. In this case, we see from
+Fig. <a href="#Ch29-F9">29–9</a> that $\FLPA_R$ lies midway between $\FLPA_1$
+and $\FLPA_2$ and makes an angle $\tfrac{1}{2}(\phi_2 - \phi_1)$ with
+each. Therefore we see that $A_R = 2A\cos\tfrac{1}{2}(\phi_2 -
+\phi_1)$, as before. Also, as we see from the triangle, the phase
+of $\FLPA_R$, as it goes around, is the average angle of $\FLPA_1$
+and $\FLPA_2$ when the two amplitudes are equal. Clearly, we can also
+solve for the case where the amplitudes are not equal, just as
+easily. We can call that the <em class="emph">geometrical</em> way of solving the
+problem.
+</p>
+</div>
+<div id="Ch29-S5-p4" class="para">
+<p class="p">There is still another way of solving the problem, and that is the
+<em class="emph">analytical</em> way. That is, instead of having actually to draw a
+picture like Fig. <a href="#Ch29-F9">29–9</a>, we can write something down
+which says the same thing as the picture: instead of drawing the
+vectors, we write a <em class="emph">complex number</em> to represent each of the
+vectors. The real parts of the complex numbers are the actual physical
+quantities. So in our particular case the waves could be written in
+this way: $A_1e^{i(\omega t + \phi_1)}$ [the real part of this is
+$A_1\cos\,(\omega t + \phi_1)]$ and $A_2e^{i(\omega t + \phi_2)}$. Now
+we can add the two:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:29:13}
+R=A_1e^{i(\omega t + \phi_1)}+A_2e^{i(\omega t + \phi_2)}=
+(A_1e^{i\phi_1}+A_2e^{i\phi_2})e^{i\omega t}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+R&=A_1e^{i(\omega t + \phi_1)}+A_2e^{i(\omega t + \phi_2)}\notag\\[1ex]
+&=(A_1e^{i\phi_1}+A_2e^{i\phi_2})e^{i\omega t}
+\label{Eq:I:29:13}
+\end{align}
+</span>
+or
+\begin{equation}
+\label{Eq:I:29:14}
+\hat{R}=A_1e^{i\phi_1}+A_2e^{i\phi_2}=A_Re^{i\phi_R}.
+\end{equation}
+This solves the problem that we wanted to solve, because it represents
+the result as a complex number of magnitude $A_R$ and phase $\phi_R$.</p>
+</div>
+<div id="Ch29-S5-p5" class="para">
+<p class="p">To see how this method works, let us find the amplitude $A_R$ which is
+the “length” of $\hat{R}$. To get the “length” of a complex
+quantity, we always multiply the quantity by its complex conjugate,
+which gives the length squared. The complex conjugate is the same
+expression, but with the sign of the $i$’s reversed. Thus we have
+\begin{equation}
+\label{Eq:I:29:15}
+A_R^2=(A_1e^{i\phi_1}+A_2e^{i\phi_2})(A_1e^{-i\phi_1}+A_2e^{-i\phi_2}).
+\end{equation}
+In multiplying this out, we get $A_1^2 + A_2^2$ (here the $e$’s
+cancel), and for the cross terms we have
+\begin{equation*}
+A_1A_2(e^{i(\phi_1-\phi_2)}+e^{i(\phi_2-\phi_1)}).
+\end{equation*}
+Now
+\begin{equation*}
+e^{i\theta}+e^{-i\theta}=
+\cos\theta+i\sin\theta+\cos\theta-i\sin\theta.
+\end{equation*}
+That is to say, $e^{i\theta} + e^{-i\theta} = 2\cos\theta$. Our final
+result is therefore
+\begin{equation}
+\label{Eq:I:29:16}
+A_R^2=A_1^2+A_2^2+2A_1A_2\cos\,(\phi_2-\phi_1).
+\end{equation}</p>
+</div>
+<div id="Ch29-S5-p6" class="para">
+<p class="p">As we see, this agrees with the length of $\FLPA_R$ in
+Fig. <a href="#Ch29-F9">29–9</a>, using the rules of trigonometry.</p>
+</div>
+<div id="Ch29-S5-p7" class="para">
+<p class="p">Thus the sum of the two effects has the intensity $A_1^2$ we would get
+with one of them alone, plus the intensity $A_2^2$ we would get with
+the other one alone, plus a correction. This correction we call the
+<em class="emph">interference effect</em>. It is really only the difference between
+what we get simply by adding the intensities, and what actually
+happens. We call it interference whether it is positive or
+negative. (Interference in ordinary language usually suggests
+opposition or hindrance, but in physics we often do not use language
+the way it was originally designed!) If the interference term is
+positive, we call that case <em class="emph">constructive</em> interference, horrible
+though it may sound to anybody other than a physicist! The opposite
+case is called <em class="emph">destructive</em> interference.</p>
+</div>
+<div id="Ch29-F10" class="figure">
+<img src="img/FLP_I/f29-10/f29-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–10.</span>Two oscillators of equal amplitude, with a phase
+difference $\alpha$ between them.
+</div>
+</div>
+<div id="Ch29-S5-p8" class="para">
+<p class="p">Now let us see how to apply our general formula (<a href="#mjx-eqn-EqI2916">29.16</a>) for
+the case of two oscillators to the special situations which we have
+discussed qualitatively. To apply this general formula, it is only
+necessary to find what phase difference, $\phi_1 - \phi_2$, exists
+between the signals arriving at a given point. (It depends only on the
+phase difference, of course, and not on the phase itself.) So let us
+consider the case where the two oscillators, of equal amplitude, are
+separated by some distance $d$ and have an intrinsic relative
+phase $\alpha$. (When one is at phase zero, the phase of the other
+is $\alpha$.)  Then we ask what the intensity will be in some azimuth
+direction $\theta$ from the E–W line. [Note that this is <em class="emph">not</em>
+the same $\theta$ as appears in (<a href="#mjx-eqn-EqI291">29.1</a>). We are torn between
+using an unconventional symbol like $\cancel{\text{U}}\!\!,$ or the conventional
+symbol $\theta$ (Fig. <a href="#Ch29-F10">29–10</a>).] The phase relationship is
+found by noting that the difference in distance from $P$ to the two
+oscillators is $d\sin\theta$, so that the phase difference
+contribution from this is the number of wavelengths in $d\sin\theta$,
+multiplied by $2\pi$. (Those who are more sophisticated might want to
+multiply the wave number $k$, which is the rate of change of phase
+with distance, by $d\sin\theta$; it is exactly the same.) The phase
+difference due to the distance difference is thus $2\pi
+d\sin\theta/\lambda$, but, due to the timing of the oscillators, there
+is an additional phase $\alpha$. So the phase difference at arrival
+would be
+\begin{equation}
+\label{Eq:I:29:17}
+\phi_2-\phi_1=\alpha+2\pi d\sin\theta/\lambda.
+\end{equation}
+This takes care of all the cases. Thus all we have to do is substitute
+this expression into (<a href="#mjx-eqn-EqI2916">29.16</a>) for the case $A_1 = A_2$, and
+we can calculate all the various results for two antennas of equal
+intensity.</p>
+</div>
+<div id="Ch29-S5-p9" class="para">
+<p class="p">Now let us see what happens in our various cases. The reason we know,
+for example, that the intensity is $2$ at $30^\circ$ in
+Fig. <a href="#Ch29-F5">29–5</a> is the following: the two oscillators
+are $\tfrac{1}{2}\lambda$ apart, so at $30^\circ$, $d\sin\theta=\lambda/4$.
+Thus $\phi_2 - \phi_1 =$ $2\pi\lambda/4\lambda =$ $\pi/2$, and so the
+interference term is zero. (We are adding two vectors at $90^\circ$.)
+The result is the hypotenuse of a $45^\circ$ right-angle triangle, which
+is $\sqrt{2}$ times the unit amplitude; squaring it, we get twice the
+intensity of one oscillator alone. All the other cases can be worked out
+in this same way.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

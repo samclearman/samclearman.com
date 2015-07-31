@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 7: The Theory of Gravitation</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "7." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+    <div class="content">
+        <div class="document">
+            <div id="Ch7" class="chapter">
+                <h2 class="title chapter-title">
+                    <span class="tag">7</span>The Theory of Gravitation</h2>
+                <div id="Ch7-S1" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">7–1</span>Planetary motions</h3>
+                    <div id="Ch7-S1-p1" class="para">
+                        <p class="p">In this chapter we shall discuss one of the most
+                        far-reaching generalizations of the human mind. While we are admiring
+                        the human mind, we should take some time off to stand in awe of a
+                        <em class="emph">nature</em> that could follow with such completeness and generality
+                        such an elegantly simple principle as the law of gravitation. What is
+                        this law of gravitation? It is that every object in the universe
+                        attracts every other object with a force which for any two bodies is
+                        proportional to the mass of each and varies inversely as the square of
+                        the distance between them. This statement can be expressed
+                        mathematically by the equation
+                        \begin{equation*}
+                        F=G\,\frac{mm'}{r^2}.
+                        \end{equation*}
+                        If to this we add the fact that an object responds to a force by
+                        accelerating in the direction of the force by an amount that is
+                        inversely proportional to the mass of the object, we shall have said
+                        everything required, for a sufficiently talented mathematician could
+                        then deduce all the consequences of these two principles. However, since
+                        you are not assumed to be sufficiently talented yet, we shall discuss
+                        the consequences in more detail, and not just leave you with only these
+                        two bare principles. We shall briefly relate the story of the discovery
+                        of the law of gravitation and discuss some of its consequences, its
+                        effects on history, the mysteries that such a law entails, and some
+                        refinements of the law made by Einstein; we shall also discuss the
+                        relationships of the law to the other laws of physics. All this cannot
+                        be done in one chapter, but these subjects will be treated in due time
+                        in subsequent chapters.</p>
+                    </div>
+                    <div id="Ch7-S1-p2" class="para">
+                        <p class="p">The story begins with the ancients observing the motions of planets
+                        among the stars, and finally deducing that they went around the sun, a
+                        fact that was rediscovered later by Copernicus. Exactly <em class="emph">how</em> the planets went around the
+                        sun, with exactly <em class="emph">what motion</em>, took a little more work to
+                        discover. In the beginning of the fifteenth century there were great
+                        debates as to whether they really went around the sun or not. Tycho
+                        Brahe had an idea that was different
+                        from anything proposed by the ancients: his idea was that these debates
+                        about the nature of the motions of the planets would best be resolved if
+                        the actual positions of the planets in the sky were measured
+                        sufficiently accurately. If measurement showed exactly how the planets
+                        moved, then perhaps it would be possible to establish one or another
+                        viewpoint. This was a tremendous idea—that to find something out, it
+                        is better to perform some careful experiments than to carry on deep
+                        philosophical arguments. Pursuing this idea, Tycho Brahe studied the positions of the planets for many years
+                        in his observatory on the island of Hven, near Copenhagen. He made
+                        voluminous tables, which were then studied by the mathematician
+                        Kepler, after
+                        Tycho’s death.
+                        Kepler discovered from the data
+                        some very beautiful and remarkable, but simple, laws regarding planetary
+                        motion.</p>
+                    </div>
+                </div>
+                <div id="Ch7-S2" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">7–2</span>Kepler’s laws</h3>
+                    <div id="Ch7-S2-p1" class="para">
+                        <p class="p">First of all, Kepler found that
+                        each planet goes around the sun in a curve called an
+                        <em class="emph">ellipse</em>, with the sun at a focus of the
+                        ellipse. An ellipse is not just an oval,
+                        but is a very specific and precise curve that can be obtained by using
+                        two tacks, one at each focus, a loop of string, and a pencil; more
+                        mathematically, it is the locus of all points the sum of whose distances
+                        from two fixed points (the foci) is a constant. Or, if you will, it is a
+                        foreshortened circle (Fig. <a href="#Ch7-F1">7–1</a>).
+                        </p>
+                    </div>
+                    <div id="Ch7-F1" class="figure">
+                        <img src="img/FLP_I/f07-01/f07-01_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 7–1.</span>An ellipse.
+                        </div>
+                    </div>
+                    <div id="Ch7-S2-p2" class="para">
+                        <p class="p">Kepler’s second observation was
+                        that the planets do not go around the sun at a uniform speed, but move
+                        faster when they are nearer the sun and more slowly when they are
+                        farther from the sun, in precisely this way: Suppose a planet is
+                        observed at any two successive times, let us say a week apart, and that
+                        the radius vector<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> is drawn to the planet for each
+                        observed position. The orbital arc traversed by the planet during the
+                        week, and the two radius vectors, bound a certain plane area, the shaded
+                        area shown in Fig. <a href="#Ch7-F2">7–2</a>. If two similar observations are made
+                        a week apart, at a part of the orbit farther from the sun (where the
+                        planet moves more slowly), the similarly bounded area is exactly the
+                        same as in the first case. So, in accordance with the second law, the
+                        orbital speed of each planet is such that the radius “sweeps out”
+                        equal areas in equal times.</p>
+                    </div>
+                    <div id="Ch7-F2" class="figure">
+                        <img src="img/FLP_I/f07-02/f07-02_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 7–2.</span>Kepler’s law of areas.
+                        </div>
+                    </div>
+                    <div id="Ch7-S2-p3" class="para">
+                        <p class="p">Finally, a third law was discovered by Kepler much later; this law is of a different category from the
+                        other two, because it deals not with only a single planet, but relates
+                        one planet to another. This law says that when the orbital period and
+                        orbit size of any two planets are compared, the periods are proportional
+                        to the $3/2$ power of the orbit size. In this statement the period is
+                        the time interval it takes a planet to go completely around its orbit,
+                        and the size is measured by the length of the greatest diameter of the
+                        elliptical orbit, technically known as the major axis. More simply, if
+                        the planets went in circles, as they nearly do, the time required to go
+                        around the circle would be proportional to the $3/2$ power of the
+                        diameter (or radius). Thus Kepler’s three laws are:
+                        <ol id="Ch7-I1" class="enumerate">
+                            <li id="Ch7-I1.i1" class="item">
+                                Each planet moves around the sun in an ellipse, with the sun
+                                at one focus.</li>
+                            <li id="Ch7-I1.i2" class="item">
+                                The radius vector from the sun to the planet sweeps out equal
+                                areas in equal intervals of time.</li>
+                            <li id="Ch7-I1.i3" class="item">
+                                The squares of the periods of any two planets are
+                                proportional to the cubes of the semimajor axes of their respective
+                                orbits: $T\propto a^{3/2}$.</li>
+                        </ol>
+                        </p>
+                    </div>
+                </div>
+                <div id="Ch7-S3" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">7–3</span>Development of dynamics</h3>
+                    <div id="Ch7-S3-p1" class="para">
+                        <p class="p">While Kepler was discovering
+                        these laws, Galileo was studying
+                        the laws of motion. The problem was, what makes the planets go around?
+                        (In those days, one of the theories proposed was that the planets went
+                        around because behind them were invisible angels, beating their wings
+                        and driving the planets forward. You will see that this theory is now
+                        modified! It turns out that in order to keep the planets going around,
+                        the invisible angels must fly in a different direction and they have no
+                        wings. Otherwise, it is a somewhat similar theory!)
+                        Galileo discovered a very
+                        remarkable fact about motion, which was essential for understanding
+                        these laws. That is the principle of <em class="emph">inertia</em>—if something is
+                        moving, with nothing touching it and completely undisturbed, it will go
+                        on forever, coasting at a uniform speed in a straight line. (<em class="emph">Why</em>
+                        does it keep on coasting? We do not know, but that is the way it is.)</p>
+                    </div>
+                    <div id="Ch7-S3-p2" class="para">
+                        <p class="p">Newton modified this idea, saying
+                        that the only way to change the motion of a body is to use <em class="emph">force</em>.
+                        If the body speeds up, a force has been applied <em class="emph">in the direction
+                            of motion</em>. On the other hand, if its motion is changed to a new
+                        <em class="emph">direction</em>, a force has been applied <em class="emph">sideways</em>.
+                        Newton thus added the idea that a
+                        force is needed to change the speed <em class="emph">or the direction</em> of motion of
+                        a body. For example, if a stone is attached to a string and is whirling
+                        around in a circle, it takes a force to keep it in the circle. We have
+                        to <em class="emph">pull</em> on the string. In fact, the law is that the acceleration
+                        produced by the force is inversely proportional to the mass, or the
+                        force is proportional to the mass times the acceleration. The more
+                        massive a thing is, the stronger the force required to produce a given
+                        acceleration. (The mass can be measured by putting other stones on the
+                        end of the same string and making them go around the same circle at the
+                        same speed. In this way it is found that more or less force is required,
+                        the more massive object requiring more force.) The brilliant idea
+                        resulting from these considerations is that no <em class="emph">tangential</em> force
+                        is needed to keep a planet in its orbit (the angels do not have to fly
+                        tangentially) because the planet would coast in that direction anyway.
+                        If there were nothing at all to disturb it, the planet would go off in a
+                        <em class="emph">straight line</em>. But the actual motion deviates from the line on
+                        which the body would have gone if there were no force, the deviation
+                        being essentially <em class="emph">at right angles</em> to the motion, not in the
+                        direction of the motion. In other words, because of the principle of
+                        inertia, the force needed to control the motion of a planet
+                        <em class="emph">around</em> the sun is not a force around the sun but <em class="emph">toward</em>
+                        the sun. (If there is a force toward the sun, the sun might be the
+                        angel, of course!)</p>
+                    </div>
+                </div>
+                <div id="Ch7-S4" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">7–4</span>Newton’s law of gravitation</h3>
+                    <div id="Ch7-S4-p1" class="para">
+                        <p class="p">From his better understanding of the theory of motion,
+                        Newton appreciated that <em class="emph">the
+                            sun</em> could be the seat or organization of forces that govern the motion
+                        of the planets. Newton proved to
+                        himself (and perhaps we shall be able to prove it soon) that the very
+                        fact that equal areas are swept out in equal times is a precise sign
+                        post of the proposition that all deviations are precisely
+                        <em class="emph">radial</em>—that the law of areas is a direct consequence of the
+                        idea that all of the forces are directed exactly <em class="emph">toward the sun</em>.</p>
+                    </div>
+                    <div id="Ch7-S4-p2" class="para">
+                        <p class="p">Next, by analyzing Kepler’s third law it is possible to show that the
+                        farther away the planet, the weaker the forces. If two planets at
+                        different distances from the sun are compared, the analysis shows that
+                        the forces are inversely proportional to the squares of the respective
+                        distances. With the combination of the two laws,
+                        Newton concluded that there must
+                        be a force, inversely as the square of the distance, directed in a line
+                        between the two objects.
+                        </p>
+                    </div>
+                    <div id="Ch7-S4-p3" class="para">
+                        <p class="p">Being a man of considerable feeling for generalities,
+                        Newton supposed, of course, that
+                        this relationship applied more generally than just to the sun holding
+                        the planets. It was already known, for example, that the planet Jupiter
+                        had moons going around it as the moon of the earth goes around the
+                        earth, and Newton felt certain
+                        that each planet held its moons with a force. He already knew of the
+                        force holding <em class="emph">us</em> on the earth, so he proposed that this was a
+                        <em class="emph">universal force</em>—<em class="emph">that everything pulls everything else</em>.</p>
+                    </div>
+                    <div id="Ch7-S4-p4" class="para">
+                        <p class="p">The next problem was whether the pull of the earth on its people was the
+                        “same” as its pull on the moon, i.e., inversely as the square of the
+                        distance. If an object on the surface of the earth falls $16$ feet in
+                        the first second after it is released from rest, how far does the moon
+                        fall in the same time? We might say that the moon does not fall at all.
+                        But if there were no force on the moon, it would go off in a straight
+                        line, whereas it goes in a circle instead, so it really <em class="emph">falls in</em>
+                        from where it would have been if there were no force at all. We can
+                        calculate from the radius of the moon’s orbit (which is about
+                        $240{,}000$ miles) and how long it takes to go around the earth
+                        (approximately $29$ days), how far the moon moves in its orbit in
+                        $1$ second, and can then calculate how far it falls in one
+                        second.<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a> This distance turns out to be roughly $1/20$ of an
+                        inch in a second. That fits very well with the inverse square law,
+                        because the earth’s radius is $4000$ miles, and if something which is
+                        $4000$ miles from the center of the earth falls $16$ feet in a second,
+                        something $240{,}000$ miles, or $60$ times as far away, should fall
+                        only $1/3600$ of $16$ feet, which also is roughly $1/20$ of an inch.
+                        Wishing to put this theory of gravitation to a test by similar
+                        calculations, Newton made his
+                        calculations very carefully and found a discrepancy so large that he
+                        regarded the theory as contradicted by facts, and did not publish his
+                        results. Six years later a new measurement of the size of the earth
+                        showed that the astronomers had been using an incorrect distance to the
+                        moon. When Newton heard of this,
+                        he made the calculation again, with the corrected figures, and obtained
+                        beautiful agreement.</p>
+                    </div>
+                    <div id="Ch7-F3" class="figure">
+                        <img src="img/FLP_I/f07-03/f07-03_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 7–3.</span>Apparatus for showing the independence of vertical and
+                            horizontal motions.
+                        </div>
+                    </div>
+                    <div id="Ch7-S4-p5" class="para">
+                        <p class="p">This idea that the moon “falls” is somewhat confusing, because, as you
+                        see, it does not come any <em class="emph">closer</em>. The idea is sufficiently
+                        interesting to merit further explanation: the moon falls in the sense
+                        that <em class="emph">it falls away from the straight line that it would pursue if
+                            there were no forces</em>. Let us take an example on the surface of the
+                        earth. An object released near the earth’s surface will fall $16$ feet
+                        in the first second. An object shot out <em class="emph">horizontally</em> will also
+                        fall $16$ feet; even though it is moving horizontally, it still falls
+                        the same $16$ feet in the same time. Figure <a href="#Ch7-F3">7–3</a> shows an
+                        apparatus which demonstrates this. On the horizontal track is a ball
+                        which is going to be driven forward a little distance away. At the same
+                        height is a ball which is going to fall vertically, and there is an
+                        electrical switch arranged so that at the moment the first ball leaves
+                        the track, the second ball is released. That they come to the same depth
+                        at the same time is witnessed by the fact that they collide in midair.
+                        An object like a bullet, shot horizontally, might go a long way in one
+                        second—perhaps $2000$ feet—but it will still fall $16$ feet if it is
+                        aimed horizontally. What happens if we shoot a bullet faster and faster?
+                        Do not forget that the earth’s surface is curved. If we shoot it fast
+                        enough, then when it falls $16$ feet it may be at just the same height
+                        above the ground as it was before. How can that be? It still falls, but
+                        the earth curves away, so it falls “around” the earth. The question
+                        is, how far does it have to go in one second so that the earth is
+                        $16$ feet below the horizon? In Fig. <a href="#Ch7-F4">7–4</a> we see the earth
+                        with its $4000$-mile radius, and the tangential, straight line path that
+                        the bullet would take if there were no force. Now, if we use one of
+                        those wonderful theorems in geometry, which says that our tangent is the
+                        mean proportional between the two parts of the diameter cut by an equal
+                        chord, we see that the horizontal distance travelled is the mean
+                        proportional between the $16$ feet fallen and the $8000$-mile diameter
+                        of the earth. The square root of $(16/5280)\times8000$ comes out very
+                        close to $5$ miles. Thus we see that if the bullet moves at $5$ miles a
+                        second, it then will continue to fall toward the earth at the same rate
+                        of $16$ feet each second, but will never get any closer because the
+                        earth keeps curving away from it. Thus it was that Mr. Gagarin
+                        maintained himself in space while going $25{,}000$ miles around the
+                        earth at approximately $5$ miles per second. (He took a little longer
+                        because he was a little higher.)</p>
+                    </div>
+                    <div id="Ch7-F4" class="figure">
+                        <img src="img/FLP_I/f07-04/f07-04_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 7–4.</span>Acceleration toward the center of a circular path. From plane
+                            geometry, $x/S = (2R - S)/x \approx 2R/x$, where $R$ is the radius
+                            of the earth, $4000$ miles; $x$ is the distance “travelled
+                            horizontally” in one second; and $S$ is the distance “fallen” in
+                            one second ($16$ feet).
+                        </div>
+                    </div>
+                    <div id="Ch7-S4-p6" class="para">
+                        <p class="p">Any great discovery of a new law is useful only if we can take more out
+                        than we put in. Now, Newton
+                        <em class="emph">used</em> the second and third of Kepler’s laws to deduce his law of gravitation. What
+                        did he <em class="emph">predict?</em>  First, his analysis of the moon’s motion was a
+                        prediction because it connected the falling of objects on the earth’s
+                        surface with that of the moon. Second, the question is, <em class="emph">is the
+                            orbit an ellipse?</em> We shall see in a later chapter how it is possible to
+                        calculate the motion exactly, and indeed one can prove that it should be
+                        an ellipse,<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a>  so no
+                        extra fact is needed to explain Kepler’s <em class="emph">first</em> law. Thus
+                        Newton made his first powerful
+                        prediction.</p>
+                    </div>
+                    <div id="Ch7-S4-p7" class="para">
+                        <p class="p">The law of gravitation explains many phenomena not previously
+                        understood. For example, the pull of the moon on the earth causes the
+                        tides, hitherto mysterious. The moon pulls the water up under it and
+                        makes the tides—people had thought of that before, but they were not
+                        as clever as Newton, and so they
+                        thought there ought to be only one tide during the day. The reasoning
+                        was that the moon pulls the water up under it, making a high tide and a
+                        low tide, and since the earth spins underneath, that makes the tide at
+                        one station go up and down every $24$ hours. Actually the tide goes up
+                        and down in $12$ hours. Another school of thought claimed that the high
+                        tide should be on the other side of the earth because, so they argued,
+                        the moon pulls the earth away from the water! Both of these theories are
+                        wrong. It actually works like this: the pull of the moon for the earth
+                        and for the water is “balanced” at the center. But the water which is
+                        closer to the moon is pulled <em class="emph">more</em> than the average and the water
+                        which is farther away from it is pulled <em class="emph">less</em> than the average.
+                        Furthermore, the water can flow while the more rigid earth cannot. The
+                        true picture is a combination of these two things.</p>
+                    </div>
+                    <div id="Ch7-F5" class="figure">
+                        <img src="img/FLP_I/f07-05/f07-05_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 7–5.</span>The earth-moon system, with tides.
+                        </div>
+                    </div>
+                    <div id="Ch7-S4-p8" class="para">
+                        <p class="p">What do we mean by “balanced”? What balances? If the moon pulls the
+                        whole earth toward it, why doesn’t the earth fall right “up” to the
+                        moon? Because the earth does the same trick as the moon, it goes in a
+                        circle around a point which is inside the earth but not at its center.
+                        The moon does not just go around the earth, the earth and the moon both
+                        go around a central position, each falling toward this common position,
+                        as shown in Fig. <a href="#Ch7-F5">7–5</a>. This motion around the common center
+                        is what balances the fall of each. So the earth is not going in a
+                        straight line either; it travels in a circle. The water on the far side
+                        is “unbalanced” because the moon’s attraction there is weaker than it
+                        is at the center of the earth, where it just balances the “centrifugal
+                        force.” The
+                        result of this imbalance is that the water rises up, away from the
+                        center of the earth. On the near side, the attraction from the moon is
+                        stronger, and the imbalance is in the opposite direction in space, but
+                        again <em class="emph">away</em> from the center of the earth. The net result is that
+                        we get <em class="emph">two</em> tidal bulges.</p>
+                    </div>
+                </div>
+                <div id="Ch7-S5" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">7–5</span>Universal gravitation</h3>
+                    <div id="Ch7-S5-p1" class="para">
+                        <p class="p">What else can we understand when we understand gravity? Everyone knows
+                        the earth is round. Why is the earth round? That is easy; it is due to
+                        gravitation. The earth can be understood to be round merely because
+                        everything attracts everything else and so it has attracted itself
+                        together as far as it can! If we go even further, the earth is not
+                        <em class="emph">exactly</em> a sphere because it is rotating, and this brings in
+                        centrifugal effects which tend to oppose gravity near the equator. It turns out that
+                        the earth should be elliptical, and we even get the right shape for the
+                        ellipse. We can thus deduce that the sun, the moon, and the earth should
+                        be (nearly) spheres, just from the law of gravitation.
+                        </p>
+                    </div>
+                    <div id="Ch7-S5-p2" class="para">
+                        <p class="p">What else can you do with the law of gravitation? If we look at the
+                        moons of Jupiter we can understand everything about the way they move
+                        around that planet. Incidentally, there was once a certain difficulty
+                        with the moons of Jupiter that is worth remarking on. These satellites
+                        were studied very carefully by Rømer, who noticed that the moons sometimes seemed to be ahead
+                        of schedule, and sometimes behind. (One can find their schedules by
+                        waiting a very long time and finding out how long it takes on the
+                        average for the moons to go around.) Now they were <em class="emph">ahead</em> when
+                        Jupiter was particularly <em class="emph">close</em> to the earth and they were
+                        <em class="emph">behind</em> when Jupiter was <em class="emph">farther</em> from the earth. This would
+                        have been a very difficult thing to explain according to the law of
+                        gravitation—it would have been, in fact, the death of this wonderful
+                        theory if there were no other explanation. If a law does not work even
+                        in <em class="emph">one place</em> where it ought to, it is just wrong. But the reason
+                        for this discrepancy was very simple and beautiful: it takes a little
+                        while to <em class="emph">see</em> the moons of Jupiter because of the time it takes
+                        light to travel from Jupiter to the earth. When Jupiter is closer to the
+                        earth the time is a little less, and when it is farther from the earth,
+                        the time is more. This is why moons appear to be, on the average, a
+                        little ahead or a little behind, depending on whether they are closer to
+                        or farther from the earth. This phenomenon showed that light does not
+                        travel instantaneously, and furnished the first estimate of the speed of
+                        light. This was done in 1676.</p>
+                    </div>
+                    <div id="Ch7-S5-p3" class="para">
+                        <p class="p">If all of the planets push and pull on each other, the force which
+                        controls, let us say, Jupiter in going around the sun is not just the
+                        force from the sun; there is also a pull from, say, Saturn. This force
+                        is not really strong, since the sun is much more massive than Saturn,
+                        but there is <em class="emph">some</em> pull, so the orbit of Jupiter should not be a
+                        perfect ellipse, and it is not; it is slightly off, and “wobbles”
+                        around the correct elliptical orbit. Such a motion is a little more
+                        complicated. Attempts were made to analyze the motions of Jupiter,
+                        Saturn, and Uranus on the basis of the law of gravitation. The effects
+                        of each of these planets on each other were calculated to see whether or
+                        not the tiny deviations and irregularities in these motions could be
+                        completely understood from this one law. Lo and behold, for Jupiter and
+                        Saturn, all was well, but Uranus was “weird.” It behaved in a very
+                        peculiar manner. It was not travelling in an exact ellipse, but that was
+                        understandable, because of the attractions of Jupiter and Saturn. But
+                        even if allowance were made for these attractions, Uranus <em class="emph">still</em>
+                        was not going right, so the laws of gravitation were in danger of being
+                        overturned, a possibility that could not be ruled out. Two men,
+                        Adams and Le Verrier, in England and
+                        France, independently, arrived at another possibility: perhaps there is
+                        <em class="emph">another</em> planet, dark and invisible, which men had not seen. This
+                        planet, $N$, could pull on Uranus. They calculated where such a planet
+                        would have to be in order to cause the observed perturbations. They sent
+                        messages to the respective observatories, saying, “Gentlemen, point
+                        your telescope to such and such a place, and you will see a new
+                        planet.”  It often depends on with whom you are working as to whether
+                        they pay any attention to you or not. They did pay attention to
+                        Le Verrier; they looked, and
+                        there planet $N$ was! The other observatory then also looked very
+                        quickly in the next few days and saw it too.</p>
+                    </div>
+                    <div id="Ch7-F6" class="figure">
+                        <img src="img/FLP_I/f07-06/f07-06_small.jpg"><div class="caption">
+                            <span class="tag">Fig. 7–6.</span>A double-star system.
+                        </div>
+                    </div>
+                    <div id="Ch7-F7" class="figure">
+                        <img src="img/FLP_I/f07-07/f07-07_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 7–7.</span>Orbit of Sirius <span class="text italic">B</span> with respect to Sirius <span class="text italic">A</span>.
+                        </div>
+                    </div>
+                    <div id="Ch7-S5-p4" class="para">
+                        <p class="p">This discovery shows that Newton’s laws are absolutely right in the solar system; but do they extend
+                        beyond the relatively small distances of the nearest planets? The first
+                        test lies in the question, do <em class="emph">stars</em> attract <em class="emph">each other</em> as
+                        well as planets? We have definite evidence that they do in the
+                        <em class="emph">double stars</em>. Figure <a href="#Ch7-F6">7–6</a> shows a
+                        double star—two stars very close together (there is also a third star
+                        in the picture so that we will know that the photograph was not turned).
+                        The stars are also shown as they appeared several years later. We see
+                        that, relative to the “fixed” star, the axis of the pair has rotated,
+                        i.e., the two stars are going around each other. Do they rotate
+                        according to Newton’s laws? Careful
+                        measurements of the relative positions of one such double star system
+                        are shown in Fig. <a href="#Ch7-F7">7–7</a>. There we see a beautiful ellipse, the
+                        measures starting in 1862 and going all the way around to 1904 (by now
+                        it must have gone around once more). Everything coincides with
+                        Newton’s laws, except that the star
+                        Sirius A is <em class="emph">not at the focus</em>. Why should that be?  Because the
+                        plane of the ellipse is not in the “plane of the sky.” We are not
+                        looking at right angles to the orbit plane, and when an ellipse is
+                        viewed at a tilt, it remains an ellipse but the focus is no longer at
+                        the same place. Thus we can analyze double stars, moving about each
+                        other, according to the requirements of the gravitational law.</p>
+                    </div>
+                    <div id="Ch7-F8" class="figure">
+                        <img src="img/FLP_I/f07-08/f07-08_small.jpg"><div class="caption">
+                            <span class="tag">Fig. 7–8.</span>A globular star cluster.
+                        </div>
+                    </div>
+                    <div id="Ch7-S5-p5" class="para">
+                        <p class="p">That the law of gravitation is true at even bigger distances is
+                        indicated in Fig. <a href="#Ch7-F8">7–8</a>. If one cannot see gravitation acting
+                        here, he has no soul. This figure shows one of the most beautiful things
+                        in the sky—a globular star cluster. All of the dots are stars.
+                        Although they look as if they are packed solid toward the center, that
+                        is due to the fallibility of our instruments. Actually, the distances
+                        between even the centermost stars are very great and they very rarely
+                        collide. There are more stars in the interior than farther out, and as
+                        we move outward there are fewer and fewer. It is obvious that there is
+                        an attraction among these stars. It is clear that gravitation exists at
+                        these enormous dimensions, perhaps $100{,}000$ times the size of the
+                        solar system. Let us now go further, and look at an <em class="emph">entire
+                            galaxy</em>, shown in Fig. <a href="#Ch7-F9">7–9</a>. The shape of this galaxy
+                        indicates an obvious tendency for its matter to agglomerate. Of course
+                        we cannot prove that the law here is precisely inverse square, only that
+                        there is still an attraction, at this enormous dimension, that holds the
+                        whole thing together. One may say, “Well, that is all very clever but
+                        why is it not just a ball?”  Because it is <em class="emph">spinning</em> and has
+                        <em class="emph">angular momentum</em> which it cannot give up
+                        as it contracts; it must contract mostly in a plane. (Incidentally, if
+                        you are looking for a good problem, the exact details of how the arms
+                        are formed and what determines the shapes of these galaxies has not been
+                        worked out.) It is, however, clear that the shape of the galaxy is due
+                        to gravitation even though the complexities of its structure have not
+                        yet allowed us to analyze it completely. In a galaxy we have a scale of
+                        perhaps $50{,}000$ to $100{,}000$ light years. The earth’s distance from
+                        the sun is $8\tfrac{1}{3}$ light <em class="emph">minutes</em>, so you can see how
+                        large these dimensions are.</p>
+                    </div>
+                    <div id="Ch7-F9" class="figure">
+                        <img src="img/FLP_I/f07-09/f07-09_small.jpg"><div class="caption">
+                            <span class="tag">Fig. 7–9.</span>A galaxy (M81).
+                        </div>
+                    </div>
+                    <div id="Ch7-F10" class="figure">
+                        <img src="img/FLP_I/f07-10/f07-10_small.jpg"><div class="caption">
+                            <span class="tag">Fig. 7–10.</span>A cluster of galaxies.
+                        </div>
+                    </div>
+                    <div id="Ch7-S5-p6" class="para">
+                        <p class="p">Gravity appears to exist at even bigger dimensions, as indicated by
+                        Fig. <a href="#Ch7-F10">7–10</a>, which shows many “little” things clustered
+                        together. This is a <em class="emph">cluster of galaxies</em>, just like a star
+                        cluster. Thus galaxies attract each other at such distances that they
+                        too are agglomerated into clusters. Perhaps gravitation exists even over
+                        distances of <em class="emph">tens of millions</em> of light years; so far as we now
+                        know, gravity seems to go out forever inversely as the square of the
+                        distance.</p>
+                    </div>
+                    <div id="Ch7-F11" class="figure">
+                        <img src="img/FLP_I/f07-11/f07-11_small.jpg"><div class="caption">
+                            <span class="tag">Fig. 7–11.</span>An interstellar dust cloud.
+                        </div>
+                    </div>
+                    <div id="Ch7-S5-p7" class="para">
+                        <p class="p">Not only can we understand the nebulae, but from the law of gravitation
+                        we can even get some ideas about the origin of the stars. If we have a
+                        big cloud of dust and gas, as indicated in Fig. <a href="#Ch7-F11">7–11</a>, the
+                        gravitational attractions of the pieces of dust for one another might
+                        make them form little lumps. Barely visible in the figure are “little”
+                        black spots which may be the beginning of the accumulations of dust and
+                        gases which, due to their gravitation, begin to form stars. Whether we
+                        have ever seen a star form or not is still debatable.
+                        Figure <a href="#Ch7-F12">7–12</a> shows the one piece of evidence which suggests
+                        that we have. At the left is a picture of a region of gas with some
+                        stars in it taken in 1947, and at the right is another picture, taken
+                        only $7$ years later, which shows two new bright spots. Has gas
+                        accumulated, has gravity acted hard enough and collected it into a ball
+                        big enough that the stellar nuclear reaction starts in the interior and
+                        turns it into a star? Perhaps, and perhaps not. It is unreasonable that
+                        in only seven years we should be so lucky as to see a star change itself
+                        into visible form; it is much less probable that we should see
+                        <em class="emph">two!</em></p>
+                    </div>
+                </div>
+                <div id="Ch7-F12" class="figure">
+                    <img src="img/FLP_I/f07-12/f07-12_small.jpg"><div class="caption">
+                        <span class="tag">Fig. 7–12.</span>The formation of new stars?
+                    </div>
+                </div>
+                <div id="Ch7-S6" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">7–6</span>Cavendish’s experiment</h3>
+                    <div id="Ch7-F13" class="figure">
+                        <img src="img/FLP_I/f07-13/f07-13_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 7–13.</span>A simplified diagram of the apparatus used by Cavendish to
+                            verify the law of universal gravitation for small objects and to
+                            measure the gravitational constant $G$.
+                        </div>
+                    </div>
+                    <div id="Ch7-S6-p1" class="para">
+                        <p class="p">Gravitation, therefore, extends over enormous distances. But if there is
+                        a force between <em class="emph">any</em> pair of objects, we ought to be able to
+                        measure the force between our own objects. Instead of having to watch
+                        the stars go around each other, why can we not take a ball of lead and a
+                        marble and watch the marble go toward the ball of lead? The difficulty
+                        of this experiment when done in such a simple manner is the very
+                        weakness or delicacy of the force. It must be done with extreme care,
+                        which means covering the apparatus to keep the air out, making sure it
+                        is not electrically charged, and so on; then the force can be measured.
+                        It was first measured by Cavendish with an apparatus which is schematically indicated in
+                        Fig. <a href="#Ch7-F13">7–13</a>. This first demonstrated the direct force between
+                        two large, fixed balls of lead and two smaller balls of lead on the ends
+                        of an arm supported by a very fine fiber, called a torsion fiber. By
+                        measuring how much the fiber gets twisted, one can measure the strength
+                        of the force, verify that it is inversely proportional to the square of
+                        the distance, and determine how strong it is. Thus, one may accurately
+                        determine the coefficient $G$ in the formula
+                        \begin{equation*}
+                        F=G\,\frac{mm'}{r^2}.
+                        \end{equation*}
+                        All the masses and distances are known. You say, “We knew it already
+                        for the earth.” Yes, but we did not know the <em class="emph">mass</em> of the earth.
+                        By knowing $G$ from this experiment and by knowing how strongly the
+                        earth attracts, we can indirectly learn how great is the mass of the
+                        earth! This experiment has been called “weighing the earth” by some
+                        people, and it can be used to determine the coefficient $G$ of the
+                        gravity law. This is the only way in which the mass of the earth can be
+                        determined. $G$ turns out to be
+                        \begin{equation*}
+                        6.670\times10^{-11}\text{ newton}\cdot\text{m}^2/\text{kg}^2.
+                        \end{equation*}
+                        </p>
+                    </div>
+                    <div id="Ch7-S6-p2" class="para">
+                        <p class="p">It is hard to exaggerate the importance of the effect on the history of
+                        science produced by this great success of the theory of gravitation.
+                        Compare the confusion, the lack of confidence, the incomplete knowledge
+                        that prevailed in the earlier ages, when there were endless debates and
+                        paradoxes, with the clarity and simplicity of this law—this fact that
+                        all the moons and planets and stars have such a <em class="emph">simple rule</em> to
+                        govern them, and further that man could <em class="emph">understand</em> it and deduce
+                        how the planets should move! This is the reason for the success of the
+                        sciences in following years, for it gave hope that the other phenomena
+                        of the world might also have such beautifully simple laws.</p>
+                    </div>
+                </div>
+                <div id="Ch7-S7" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">7–7</span>What is gravity?</h3>
+                    <div id="Ch7-S7-p1" class="para">
+                        <p class="p">But is this such a simple law? What about the machinery of it? All we
+                        have done is to describe <em class="emph">how</em> the earth moves around the sun, but
+                        we have not said <em class="emph">what makes it go</em>. Newton made no hypotheses about this; he was satisfied to find
+                        <em class="emph">what</em> it did without getting into the machinery of it. <em class="emph">No
+                            one has since given any machinery</em>. It is characteristic of the physical
+                        laws that they have this abstract character. The law of conservation of
+                        energy is a theorem concerning quantities that have to be calculated and
+                        added together, with no mention of the machinery, and likewise the great
+                        laws of mechanics are quantitative mathematical laws for which no
+                        machinery is available. Why can we use mathematics to describe nature
+                        without a mechanism behind it? No one knows. We have to keep going
+                        because we find out more that way.</p>
+                    </div>
+                    <div id="Ch7-S7-p2" class="para">
+                        <p class="p">Many mechanisms for gravitation have been suggested. It is interesting
+                        to consider one of these, which many people have thought of from time to
+                        time. At first, one is quite excited and happy when he “discovers” it,
+                        but he soon finds that it is not correct. It was first discovered about
+                        1750. Suppose there were many particles moving in space at a very high
+                        speed in all directions and being only slightly absorbed in going
+                        through matter. When they <em class="emph">are</em> absorbed, they give an impulse to
+                        the earth. However, since there are as many going one way as another,
+                        the impulses all balance. But when the sun is nearby, the particles
+                        coming toward the earth through the sun are partially absorbed, so fewer
+                        of them are coming from the sun than are coming from the other side.
+                        Therefore, the earth feels a net impulse toward the sun and it does not
+                        take one long to see that it is inversely as the square of the
+                        distance—because of the variation of the solid angle that the sun
+                        subtends as we vary the distance. What is wrong with that machinery? It
+                        involves some new consequences which are <em class="emph">not true</em>. This
+                        particular idea has the following trouble: the earth, in moving around
+                        the sun, would impinge on more particles which are coming from its
+                        forward side than from its hind side (when you run in the rain, the rain
+                        in your face is stronger than that on the back of your head!). Therefore
+                        there would be more impulse given the earth from the front, and the
+                        earth would feel a <em class="emph">resistance to motion</em> and would be slowing up
+                        in its orbit. One can calculate how long it would take for the earth to
+                        stop as a result of this resistance, and it would not take long enough
+                        for the earth to still be in its orbit, so this mechanism does not work.
+                        No machinery has ever been invented that “explains” gravity without
+                        also predicting some other phenomenon that does <em class="emph">not</em> exist.</p>
+                    </div>
+                    <div id="Ch7-S7-p3" class="para">
+                        <p class="p">Next we shall discuss the possible relation of gravitation to other
+                        forces. There is no explanation of gravitation in terms of other forces
+                        at the present time. It is not an aspect of electricity or anything like
+                        that, so we have no explanation. However, gravitation and other forces
+                        are very similar, and it is interesting to note analogies. For example,
+                        the force of electricity between two charged objects looks just like the
+                        law of gravitation: the force of electricity is a constant, with a minus
+                        sign, times the product of the charges, and varies inversely as the
+                        square of the distance. It is in the opposite direction—likes repel.
+                        But is it still not very remarkable that the two laws involve the same
+                        function of distance? Perhaps gravitation and electricity are much more
+                        closely related than we think. Many attempts have been made to unify
+                        them; the so-called unified field theory is only a very elegant attempt
+                        to combine electricity and gravitation; but, in comparing gravitation
+                        and electricity, the most interesting thing is the <em class="emph">relative
+                            strengths</em> of the forces. Any theory that contains them both must also
+                        deduce how strong the gravity is.</p>
+                    </div>
+                    <div id="Ch7-F14" class="figure">
+                        <img src="img/FLP_I/f07-14/f07-14_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 7–14.</span>The relative strengths of electrical and gravitational
+                            interactions between two electrons.
+                        </div>
+                    </div>
+                    <div id="Ch7-S7-p4" class="para">
+                        <p class="p">If we take, in some natural units, the repulsion of two electrons
+                        (nature’s universal charge) due to electricity, and the attraction of
+                        two electrons due to their masses, we can measure the ratio of
+                        electrical repulsion to the gravitational attraction. The ratio is
+                        independent of the distance and is a fundamental constant of nature. The
+                        ratio is shown in Fig. <a href="#Ch7-F14">7–14</a>. The gravitational attraction
+                        relative to the electrical repulsion between two electrons is $1$
+                        divided by $4.17\times10^{42}$! The question is, where does such a large
+                        number come from? It is not accidental, like the ratio of the volume of
+                        the earth to the volume of a flea. We have considered two natural
+                        aspects of the same thing, an electron. This fantastic number is a
+                        natural constant, so it involves something deep in nature. Where could
+                        such a tremendous number come from? Some say that we shall one day find
+                        the “universal equation,” and in it, one of the roots will be this
+                        number. It is very difficult to find an equation for which such a
+                        fantastic number is a natural root. Other possibilities have been
+                        thought of; one is to relate it to the age of the universe. Clearly, we
+                        have to find <em class="emph">another</em> large number somewhere. But do we mean the
+                        age of the universe in <em class="emph">years?</em> No, because years are not
+                        “natural”; they were devised by men. As an example of something
+                        natural, let us consider the time it takes light to go across a proton,
+                        $10^{-24}$ second. If we compare this time with the <em class="emph">age of the
+                            universe</em>, $2\times10^{10}$ years, the answer is $10^{-42}$. It has
+                        about the same number of zeros going off it, so it has been proposed
+                        that the gravitational constant is related to the age of the universe.
+                        If that were the case, the gravitational constant would change with
+                        time, because as the universe got older the ratio of the age of the
+                        universe to the time which it takes for light to go across a proton
+                        would be gradually increasing. Is it possible that the gravitational
+                        constant <em class="emph">is</em> changing with time? Of course the changes would be so
+                        small that it is quite difficult to be sure.</p>
+                    </div>
+                    <div id="Ch7-S7-p5" class="para">
+                        <p class="p">One test which we can think of is to determine what would have been the
+                        effect of the change during the past $10^9$ years, which is
+                        approximately the age from the earliest life on the earth to now, and
+                        one-tenth of the age of the universe. In this time, the gravity constant
+                        would have increased by about $10$ percent. It turns out that if we
+                        consider the structure of the sun—the balance between the weight of
+                        its material and the rate at which radiant energy is generated inside it—we can
+                        deduce that if the gravity were $10$ percent stronger, the sun would be
+                        much more than $10$ percent brighter—by the <em class="emph">sixth power</em> of the
+                        gravity constant! If we calculate what happens to the orbit of the earth
+                        when the gravity is changing, we find that the earth was then
+                        <em class="emph">closer in</em>. Altogether, the earth would be about $100$ degrees
+                        centigrade hotter, and all of the water would not have been in the sea,
+                        but vapor in the air, so life would not have started in the sea. So we
+                        do <em class="emph">not</em> now believe that the gravity constant is changing with the
+                        age of the universe. But such arguments as the one we have just given
+                        are not very convincing, and the subject is not completely closed.</p>
+                    </div>
+                    <div id="Ch7-S7-p6" class="para">
+                        <p class="p">It is a fact that the force of gravitation is proportional to the
+                        <em class="emph">mass</em>, the quantity which is fundamentally a measure of
+                        <em class="emph">inertia</em>—of how hard it is to hold something
+                        which is going around in a circle. Therefore two objects, one heavy and
+                        one light, going around a larger object in the same circle at the same
+                        speed because of gravity, will stay together because to go in a circle
+                        <em class="emph">requires</em> a force which is stronger for a bigger mass. That is,
+                        the gravity is stronger for a given mass in <em class="emph">just the right
+                            proportion</em> so that the two objects will go around together. If one
+                        object were inside the other it would <em class="emph">stay</em> inside; it is a
+                        perfect balance. Therefore, Gagarin or Titov would find things
+                        “weightless” inside a space ship; if they happened to let go of a
+                        piece of chalk, for example, it would go around the earth in exactly the
+                        same way as the whole space ship, and so it would appear to remain
+                        suspended before them in space. It is very interesting that this force
+                        is <em class="emph">exactly</em> proportional to the mass with great precision, because
+                        if it were not exactly proportional there would be some effect by which
+                        inertia and weight would differ. The absence of such an effect has been
+                        checked with great accuracy by an experiment done first by
+                        Eötvös in 1909 and more
+                        recently by Dicke. For all
+                        substances tried, the masses and weights are exactly proportional within
+                        $1$ part in $1{,}000{,}000{,}000$, or less. This is a remarkable
+                        experiment.</p>
+                    </div>
+                </div>
+                <div id="Ch7-S8" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">7–8</span>Gravity and relativity</h3>
+                    <div id="Ch7-S8-p1" class="para">
+                        <p class="p">Another topic deserving discussion is Einstein’s modification of
+                        Newton’s law of gravitation. In spite of all the excitement it created,
+                        Newton’s law of gravitation is not correct! It was modified by Einstein
+                        to take into account the theory of relativity. According to Newton, the
+                        gravitational effect is instantaneous, that is, if we were to move a
+                        mass, we would at once feel a new force because of the new position of
+                        that mass; by such means we could send signals at infinite speed.
+                        Einstein advanced arguments which suggest that we <em class="emph">cannot send
+                            signals faster than the speed of light</em>, so the law of gravitation must
+                        be wrong. By correcting it to take the delays into account, we have a
+                        new law, called Einstein’s law of gravitation. One feature of this new
+                        law which is quite easy to understand is this: In the Einstein
+                        relativity theory, anything which has
+                        <em class="emph">energy</em> has mass—mass in the sense that it is attracted
+                        gravitationally. Even light, which has an energy, has a “mass.” When a
+                        light beam, which has energy in it, comes past the sun there is an
+                        attraction on it by the sun. Thus the light does not go straight, but is
+                        deflected. During the eclipse of the sun, for example, the stars which
+                        are around the sun should appear displaced from where they would be if
+                        the sun were not there, and this has been observed.</p>
+                    </div>
+                    <div id="Ch7-S8-p2" class="para">
+                        <p class="p">Finally, let us compare gravitation with other theories. In recent years
+                        we have discovered that all mass is made of tiny particles and that
+                        there are several kinds of interactions, such as nuclear forces, etc.
+                        None of these nuclear or electrical forces has yet been found to explain
+                        gravitation. The quantum-mechanical aspects of nature have not yet been
+                        carried over to gravitation. When the scale is so small that we need the
+                        quantum effects, the gravitational effects are so weak that the need for
+                        a quantum theory of gravitation has not yet developed. On the other
+                        hand, for consistency in our physical theories it would be important to
+                        see whether Newton’s law modified to Einstein’s law can be further
+                        modified to be consistent with the uncertainty
+                        principle. This last modification has not yet been completed.
+                        </p>
+                    </div>
+                </div>
+                <ol id="footnotes">
+                    <li class="footnote">
+                        <a name="footnote_1"></a>
+                        A radius vector is a line drawn from the sun
+                        to any point in a planet’s orbit.
+                        <a href="#footnote_source_1">↩</a>
+                    </li>
+                    <li class="footnote">
+                        <a name="footnote_2"></a>
+                        That is, how far the circle of the moon’s orbit falls
+                        below the straight line tangent to it at the point where the moon was
+                        one second before.
+                        <a href="#footnote_source_2">↩</a>
+                    </li>
+                    <li class="footnote">
+                        <a name="footnote_3"></a>
+                        The proof is not given in this course.
+                        <a href="#footnote_source_3">↩</a>
+                    </li>
+                </ol>
+            </div>
+            <footer>
+                <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+                    Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+            </footer>
+        </div>
+    </div>
+    
+</div>    
+</body>
+</html>

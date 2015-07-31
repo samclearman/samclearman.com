@@ -1,0 +1,1033 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 29: The Motion of Charges in Electric and Magnetic Fields</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "29." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch29" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">29</span>The Motion of Charges in Electric and Magnetic Fields</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapter&nbsp;<a href="I_30.html">30</a>, Vol.&nbsp;I, <i>Diffraction</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch29-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">29–1</span>Motion in a uniform electric or magnetic field</h3>
+<div id="Ch29-S1-p1" class="para">
+<p class="p">We want now to describe—mainly in a qualitative way—the motions of
+charges in various circumstances. Most of the interesting phenomena in
+which charges are moving in fields occur in very complicated
+situations, with many, many charges all interacting with each
+other. For instance, when an electromagnetic wave goes through a block
+of material or a plasma, billions and billions of charges are
+interacting with the wave and with each other. We will come to such
+problems later, but now we just want to discuss the much simpler
+problem of the motions of a single charge in a <em class="emph">given</em> field. We
+can then disregard all other charges—except, of course, those
+charges and currents which exist somewhere to produce the fields we
+will assume.</p>
+</div>
+<div id="Ch29-S1-p2" class="para">
+<p class="p">We should probably ask first about the motion of a particle in a
+uniform electric field. At low velocities, the motion is not
+particularly interesting—it is just a uniform acceleration in the
+direction of the field. However, if the particle picks up enough
+energy to become relativistic, then the motion gets more
+complicated. But we will leave the solution for that case for you to
+play with.</p>
+</div>
+<div id="Ch29-S1-p3" class="para">
+<p class="p">Next, we consider the motion in a uniform magnetic field with zero
+electric field. We have already solved this problem—one solution is
+that the particle goes in a circle. The magnetic
+force $q\FLPv\times\FLPB$ is always at right angles to the motion,
+so $d\FLPp/dt$ is perpendicular to $\FLPp$ and has the magnitude $vp/R$,
+where $R$ is the radius of the circle:
+\begin{equation*}
+F=qvB=\frac{vp}{R}.
+\end{equation*}
+
+The radius of the circular orbit is then
+\begin{equation}
+\label{Eq:II:29:1}
+R=\frac{p}{qB}.
+\end{equation}
+</p>
+</div>
+<div id="Ch29-S1-p4" class="para">
+<p class="p">That is only one possibility. If the particle has a component of its
+motion along the field direction, that motion is constant, since there
+can be no component of the magnetic force in the direction of the field.
+The general motion of a particle in a uniform magnetic field is a
+constant velocity parallel to $\FLPB$ and a circular motion at right
+angles to $\FLPB$—the trajectory is a cylindrical helix
+(Fig. <a href="#Ch29-F1">29–1</a>). The radius of the helix is given by
+Eq. (<a href="#mjx-eqn-EqII291">29.1</a>) if we replace $p$ by $p_\perp$, the component of
+momentum at right angles to the field.</p>
+</div>
+<div id="Ch29-F1" class="figure">
+<img src="img/FLP_II/f29-01/f29-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–1.</span>Motion of a particle in a uniform magnetic field.
+</div>
+</div>
+</div>
+<div id="Ch29-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">29–2</span>Momentum analysis</h3>
+<div id="Ch29-S2-p1" class="para">
+<p class="p">A uniform magnetic field is often used in making a “momentum
+analyzer,” or “momentum spectrometer,”
+for high-energy charged particles. Suppose that charged particles are
+shot into a uniform magnetic field at the point $A$ in
+Fig. <a href="#Ch29-F2">29–2</a>(a), the magnetic field being perpendicular to the
+plane of the drawing. Each particle will go into an orbit which is a
+circle whose radius is proportional to its momentum. If all the
+particles enter perpendicular to the edge of the field, they will leave
+the field at a distance $x$ (from $A$) which is proportional to their
+momentum $p$. A counter placed at some point such as $C$ will detect
+only those particles whose momentum is in an interval $\Delta p$ near
+the momentum $p=qBx/2$.</p>
+</div>
+<div id="Ch29-F2" class="figure">
+<img class="first" src="img/FLP_II/f29-02/f29-02_tc_big_a.svgz"><img class="last" src="img/FLP_II/f29-02/f29-02_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 29–2.</span>A uniform-field momentum spectrometer with $180^\circ$
+focusing: (a) different momenta; (b) different angles. (The magnetic
+field is directed perpendicular to the plane of the figure.)
+</div>
+</div>
+<div id="Ch29-S2-p2" class="para">
+<p class="p">It is, of course, not necessary that the particles go through
+$180^\circ$ before they are counted, but the so-called
+“$180^\circ$ spectrometer” has a special property. It is not necessary
+that all the particles enter at right angles to the field edge.
+Figure <a href="#Ch29-F2">29–2</a>(b) shows the trajectories of three particles,
+all with the <em class="emph">same</em> momentum but entering the field at different
+angles. You see that they take different trajectories, but all leave the
+field very close to the point $C$. We say that there is a “focus.”
+Such a focusing property has the advantage that larger angles can be
+accepted at $A$—although some limit is usually imposed, as shown in
+the figure. A larger angular acceptance usually means that more
+particles are counted in a given time, decreasing the time required for
+a given measurement.</p>
+</div>
+<div id="Ch29-S2-p3" class="para">
+<p class="p">By varying the magnetic field, or moving the counter along in $x$, or by
+using many counters to cover a range of $x$, the “spectrum” of
+momenta in the incoming beam can be measured.
+[By the “momentum spectrum” $f(p)$, we mean that the number of
+particles with momenta between $p$ and $(p+dp)$ is $f(p)\,dp$.] Such
+measurements have been made, for example, to determine the distribution
+of energies in the $\beta$-decay of various nuclei.
+</p>
+</div>
+<div id="Ch29-S2-p4" class="para">
+<p class="p">There are many other forms of momentum spectrometers, but we will
+describe just one more, which has an especially large <em class="emph">solid</em>
+angle of acceptance. It is based on the helical orbits in a uniform
+field, like the one shown in Fig. <a href="#Ch29-F1">29–1</a>. Let’s think of a cylindrical
+coordinate system—$\rho,\theta,z$—set up with the $z$-axis along
+the direction of the field. If a particle is emitted from the origin
+at some angle $\alpha$ with respect to the $z$-axis, it will move
+along a spiral whose equation is
+\begin{equation*}
+\rho=a\sin kz,\quad\theta=bz,
+\end{equation*}
+
+where $a$, $b$, and $k$ are parameters you can easily work out in
+terms of $p$, $\alpha$, and the magnetic field $B$. If we plot the
+distance $\rho$ from the axis as a function of $z$ for a given
+momentum, but for several starting angles, we will get curves like the
+solid ones drawn in Fig. <a href="#Ch29-F3">29–3</a>. (Remember that this is just a kind of
+projection of a helical trajectory.) When the angle between the axis
+and the starting direction is larger, the peak value of $\rho$ is
+large but the longitudinal velocity is less, so the trajectories for
+different angles tend to come to a kind of “focus” near the
+point $A$ in the figure. If we put a narrow aperture of $A$, particles with
+a range of initial angles can still get through and pass on to the
+axis, where they can be counted by the long detector $D$.</p>
+</div>
+<div id="Ch29-F3" class="figure">
+<img src="img/FLP_II/f29-03/f29-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–3.</span>An axial-field spectrometer.
+</div>
+</div>
+<div id="Ch29-S2-p5" class="para">
+<p class="p">Particles which leave the source at the origin with a higher momentum
+but at the same angles, follow the paths shown by the broken lines and
+do not get through the aperture at $A$. So the apparatus selects a
+small interval of momenta. The advantage over the first spectrometer
+described is that the aperture $A$—and the aperture $A'$—can be an
+annulus, so that particles which leave the source in a rather large
+solid angle are accepted. A large fraction of the particles from the
+source are used—an important advantage for weak sources or for very
+precise measurements.</p>
+</div>
+<div id="Ch29-S2-p6" class="para">
+<p class="p">One pays a price for this advantage, however, because a large volume
+of uniform magnetic field is required, and this is usually only
+practical for low-energy particles. One way of making a uniform field,
+you remember, is to wind a coil on a sphere, with a surface current
+density proportional to the sine of the angle. You can also show that
+the same thing is true for an ellipsoid of rotation. So such
+spectrometers are often made by winding an elliptical coil on a wooden
+(or aluminum) frame. All that is required is that the current in each
+interval of axial distance $\Delta x$ be the same, as shown in
+Fig. <a href="#Ch29-F4">29–4</a>.</p>
+</div>
+<div id="Ch29-F4" class="figure">
+<img src="img/FLP_II/f29-04/f29-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–4.</span>An ellipsoidal coil with equal currents in each axial
+interval $\Delta x$ produces a uniform magnetic field inside.
+</div>
+</div>
+</div>
+<div id="Ch29-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">29–3</span>An electrostatic lens</h3>
+<div id="Ch29-S3-p1" class="para">
+<p class="p">Particle focusing has many applications. For instance, the electrons
+that leave the cathode in a TV picture tube are brought to a focus at
+the screen—to make a fine spot. In this case, one wants to take
+electrons all of the same energy but with different initial angles and
+bring them together in a small spot. The problem is like focusing
+light with a lens, and devices which do the corresponding job for
+particles are also called lenses.</p>
+</div>
+
+<div id="Ch29-F5" class="figure">
+<img src="img/FLP_II/f29-05/f29-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–5.</span>An electronic lens. The field lines shown are “lines of
+force,” that is, of $q\FigE$.
+</div>
+</div>
+
+<div id="Ch29-S3-p2" class="para">
+<p class="p">One example of an electron lens is sketched in Fig. <a href="#Ch29-F5">29–5</a>. It is an
+“electrostatic” lens whose operation depends on the electric field
+between two adjacent electrodes. Its operation can be understood by
+considering what happens to a parallel beam that enters from the
+left. When the electrons arrive at the region $a$, they feel a force
+with a sidewise component and get a certain impulse that bends them
+toward the axis. You might think that they would get an equal and
+opposite impulse in the region $b$, but that is not so. By the time
+the electrons reach $b$ they have gained energy and so <em class="emph">spend
+less time</em> in the region $b$. The forces are the same, but the time is
+shorter, so the impulse is less. In going through the regions $a$
+and $b$, there is a net axial impulse, and the electrons are bent toward a
+common point. In leaving the high-voltage region, the particles get
+another kick toward the axis. The force is outward in region $c$ and
+inward in region $d$, but the particles stay longer in the latter
+region, so there is again a net impulse. For distances not too far
+from the axis, the total impulse through the lens is proportional to
+the distance from the axis (Can you see why?), and this is just the
+condition necessary for lens-type focusing.</p>
+</div>
+<div id="Ch29-S3-p3" class="para">
+<p class="p">You can use the same arguments to show that there is focusing if the
+potential of the middle electrode is either positive or negative with
+respect to the other two. Electrostatic lenses of this type are
+commonly used in cathode-ray tubes and in some electron microscopes.</p>
+</div>
+</div>
+<div id="Ch29-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">29–4</span>A magnetic lens</h3>
+<div id="Ch29-F6" class="figure">
+<img src="img/FLP_II/f29-06/f29-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–6.</span>A magnetic lens.
+</div>
+</div>
+<div id="Ch29-F7" class="figure">
+<img src="img/FLP_II/f29-07/f29-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–7.</span>Electron motion in the magnetic lens.
+</div>
+</div>
+<div id="Ch29-S4-p1" class="para">
+<p class="p">Another kind of lens—often found in electron microscopes—is the
+magnetic lens sketched schematically in Fig. <a href="#Ch29-F6">29–6</a>. A cylindrically
+symmetric electromagnet has very sharp circular pole tips which
+produce a strong, nonuniform field in a small region. Electrons which
+travel vertically through this region are focused. You can understand
+the mechanism by looking at the magnified view of the pole-tip region
+drawn in Fig. <a href="#Ch29-F7">29–7</a>. Consider two electrons $a$ and $b$ that leave
+the source $S$ at some angle with respect to the axis. As electron $a$
+reaches the beginning of the field, it is deflected <em class="emph">away from
+you</em> by the horizontal component of the field. But then it will have a
+lateral velocity, so that when it passes through the strong vertical
+field, it will get an impulse toward the axis. Its lateral motion is
+taken out by the magnetic force as it leaves the field, so the net
+effect is an impulse toward the axis, plus a “rotation” about the
+axis. All the forces on particle $b$ are opposite, so it also is
+deflected toward the axis. In the figure, the divergent electrons are
+brought into parallel paths. The action is like a lens with an object
+at the focal point. Another similar lens upstream can be used to focus
+the electrons back to a single point, making an image of the source $S$.</p>
+</div>
+</div>
+<div id="Ch29-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">29–5</span>The electron microscope</h3>
+<div id="Ch29-F8" class="figure">
+<img src="img/FLP_II/f29-08/f29-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–8.</span>The resolution of a microscope is limited by the angle subtended
+from the source.
+</div>
+</div>
+<div id="Ch29-S5-p1" class="para">
+<p class="p">You know that electron microscopes can “see” objects too small to be
+seen by optical microscopes. We discussed in Chapter <a href="I_30.html">30</a>
+of Vol. I the basic limitations of any optical system due to
+diffraction of the lens opening. If a lens opening subtends the
+angle $2\theta$ from a source (see Fig. <a href="#Ch29-F8">29–8</a>), two neighboring spots at
+the source cannot be seen as separate if they are closer than about
+\begin{equation*}
+\delta\approx\frac{\lambda}{\sin\theta},
+\end{equation*}
+
+where $\lambda$ is the wavelength of the light. With the best optical
+microscope, $\theta$ approaches the theoretical limit of $90^\circ$,
+so $\delta$ is about equal to $\lambda$, or approximately
+$5000$ angstroms.</p>
+</div>
+<div id="Ch29-S5-p2" class="para">
+<p class="p">The same limitation would also apply to an electron microscope, but
+there the wavelength is—for $50$-kilovolt electrons—about
+$0.05$ angstrom. If one could use a lens opening of near $30^\circ$, it would
+be possible to see objects only $\tfrac{1}{5}$ of an angstrom
+apart. Since the atoms in molecules are typically $1$ or $2$ angstroms
+apart, we could get photographs of molecules. Biology would be easy;
+we would have a photograph of the DNA structure. What a tremendous
+thing that would be! Most of present-day research in molecular biology
+is an attempt to figure out the shapes of complex organic
+molecules. If we could only see them!</p>
+</div>
+<div id="Ch29-S5-p3" class="para">
+<p class="p">Unfortunately, the best resolving power that has been achieved in an
+electron microscope is more like $20$ angstroms. The reason is that no
+one has yet designed a lens with a large opening. All lenses have
+“spherical aberration,”
+which means that rays at large angles from the axis have a different
+point of focus than the rays nearer the axis, as shown in
+Fig. <a href="#Ch29-F9">29–9</a>. By special techniques, optical microscope lenses
+can be made with a negligible spherical aberration, but no one has yet
+been able to make an electron lens which avoids spherical aberration.
+</p>
+</div>
+<div id="Ch29-F9" class="figure">
+<img src="img/FLP_II/f29-09/f29-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–9.</span>Spherical aberration of a lens.
+</div>
+</div>
+<div id="Ch29-S5-p4" class="para">
+<p class="p">In fact, one can show that any electrostatic or magnetic lens of the
+types we have described must have an irreducible amount of spherical
+aberration. This aberration—together with diffraction—limits the
+resolving power of electron microscopes to their present value.</p>
+</div>
+<div id="Ch29-S5-p5" class="para">
+<p class="p">The limitation we have mentioned does not apply to electric and
+magnetic fields which are not axially symmetric or which are not
+constant in time. Perhaps some day someone will think of a new kind of
+electron lens that will overcome the inherent aberration of the simple
+electron lens. Then we will be able to photograph atoms
+directly. Perhaps one day chemical compounds will be analyzed by
+looking at the positions of the atoms rather than by looking at the
+color of some precipitate!</p>
+</div>
+</div>
+<div id="Ch29-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">29–6</span>Accelerator guide fields</h3>
+<div id="Ch29-S6-p1" class="para">
+<p class="p">Magnetic fields are also used to produce special particle trajectories
+in high energy particle accelerators. Machines like the
+cyclotron and synchrotron bring
+particles to high energies by passing the particles repeatedly through
+a strong electric field. The particles are held in their cyclic orbits
+by a magnetic field.
+</p>
+</div>
+<div id="Ch29-S6-p2" class="para">
+<p class="p">We have seen that a particle in a uniform magnetic field will go in a
+circular orbit. This, however, is true only for a perfectly uniform
+field. Imagine a field $B$ which is nearly uniform over a large area
+but which is slightly stronger in one region than in another. If we
+put a particle of momentum $p$ in this field, it will go in a nearly
+circular orbit with the radius $R=p/qB$. The radius of curvature will,
+however, be slightly smaller in the region where the field is
+stronger. The orbit is not a closed circle but will “walk” through
+the field, as shown in Fig. <a href="#Ch29-F10">29–10</a>. We can, if we wish, consider that
+the slight “error” in the field produces an extra angular kick which
+sends the particle off on a new track. If the particles are to make
+millions of revolutions in an accelerator, some kind of “radial
+focusing” is needed which will tend to keep the trajectories close to
+some design orbit.</p>
+</div>
+<div id="Ch29-F10" class="figure">
+<img src="img/FLP_II/f29-10/f29-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–10.</span>Particle motion in a slightly nonuniform field.
+</div>
+</div>
+<div id="Ch29-S6-p3" class="para">
+<p class="p">Another difficulty with a uniform field is that the particles do not
+remain in a plane. If they start out with the slightest angle—or are
+given a slight angle by any small error in the field—they will go in
+a helical path that will eventually take them into the magnet pole or
+the ceiling or floor of the vacuum tank. Some arrangement must be made
+to inhibit such vertical drifts; the field must provide “vertical
+focusing” as well as radial focusing.</p>
+</div>
+
+<div id="Ch29-F11" class="figure">
+<img src="img/FLP_II/f29-11/f29-11_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–11.</span>Radial motion of a particle in a magnetic field with a large
+positive slope.
+</div>
+</div>
+
+<div id="Ch29-S6-p4" class="para">
+<p class="p">One would, at first, guess that radial focusing could be provided by
+making a magnetic field which increases with increasing distance from
+the center of the design path. Then if a particle goes out to a large
+radius, it will be in a stronger field which will bend it back toward
+the correct radius. If it goes to too small a radius, the bending will
+be less, and it will be returned toward the design radius. If a
+particle is once started at some angle with respect to the ideal
+circle, it will oscillate about the ideal circular orbit, as shown in
+Fig. <a href="#Ch29-F11">29–11</a>. The radial focusing would keep the particles near the
+circular path.</p>
+</div>
+<div id="Ch29-F12" class="figure">
+<img src="img/FLP_II/f29-12/f29-12_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–12.</span>Radial motion of a particle in a magnetic field with a small
+negative slope.
+</div>
+</div>
+<div id="Ch29-S6-p5" class="para">
+<p class="p">Actually there is still some radial focusing even with the
+<em class="emph">opposite</em> field slope. This can happen if the radius of
+curvature of the trajectory does not increase more rapidly than the
+increase in the distance of the particle from the center of the
+field. The particle orbits will be as drawn in Fig. <a href="#Ch29-F12">29–12</a>. If the
+gradient of the field is too large, however, the orbits will not
+return to the design radius but will spiral inward or outward, as
+shown in Fig. <a href="#Ch29-F13">29–13</a>.</p>
+</div>
+<div id="Ch29-F13" class="figure">
+<img src="img/FLP_II/f29-13/f29-13_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–13.</span>Radial motion of a particle in a magnetic field with a large
+negative slope.
+</div>
+</div>
+<div id="Ch29-S6-p6" class="para">
+<p class="p">We usually describe the slope of the field in terms of the “relative
+gradient” or <em class="emph">field index</em>, $n$:
+\begin{equation}
+\label{Eq:II:29:2}
+n=\frac{dB/B}{dr/r}.
+\end{equation}
+
+A guide field gives radial focusing if this relative gradient is
+greater than $-1$.</p>
+</div>
+<div id="Ch29-F14" class="figure">
+<img src="img/FLP_II/f29-14/f29-14_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–14.</span>A vertical guide field as seen in a cross section perpendicular
+to the orbits.
+</div>
+</div>
+<div id="Ch29-S6-p7" class="para">
+<p class="p">A radial field gradient will also produce <em class="emph">vertical</em> forces on
+the particles. Suppose we have a field that is stronger nearer to the
+center of the orbit and weaker at the outside. A vertical cross
+section of the magnet at right angles to the orbit might be as shown
+in Fig. <a href="#Ch29-F14">29–14</a>. (For protons the orbits would be coming out of the
+page.) If the field is to be stronger to the left and weaker to the
+right, the lines of the magnetic field must be curved as shown. We can
+see that this must be so by using the law that the circulation
+of $\FLPB$ is zero in free space. If we take coordinates as shown in the
+figure, then
+\begin{equation}
+(\FLPcurl{\FLPB})_y=\ddp{B_x}{z}-\ddp{B_z}{x}=0,\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:29:3}
+\ddp{B_x}{z}=\ddp{B_z}{x}.
+\end{equation}
+
+Since we assume that $\ddpl{B_z}{x}$ is negative, there must be an
+equal negative $\ddpl{B_x}{z}$. If the “nominal” plane of the orbit
+is a plane of symmetry where $B_x=0$, then the radial component $B_x$
+will be negative above the plane and positive below. The lines must be
+curved as shown.</p>
+</div>
+<div id="Ch29-S6-p8" class="para">
+<p class="p">Such a field will have vertical focusing properties. Imagine a proton
+that is travelling more or less parallel to the central orbit but
+above it. The horizontal component of $\FLPB$ will exert a downward
+force on it. If the proton is below the central orbit, the force is
+reversed. So there is an effective “restoring force” toward the
+central orbit. From our arguments there will be vertical focusing,
+provided that the <em class="emph">vertical</em> field decreases with increasing
+radius; but if the field gradient is positive, there will be
+“vertical defocusing.” So for vertical focusing, the field index $n$
+must be less than zero. We found above that for radial focusing $n$
+had to be greater than $-1$. The two conditions together give the
+condition that
+\begin{equation*}
+-1&lt;n&lt;0
+\end{equation*}
+
+if the particles are to be kept in stable orbits. In
+cyclotrons, values very near zero are used; in
+betatrons and synchrotrons, the
+value $n =-0.6$ is typically used.
+</p>
+</div>
+</div>
+<div id="Ch29-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">29–7</span>Alternating-gradient focusing</h3>
+<div id="Ch29-S7-p1" class="para">
+<p class="p">Such small values of $n$ give rather “weak” focusing. It is clear
+that much more effective radial focusing would be given by a large
+positive gradient ($n\gg1$), but then the vertical forces would be
+strongly defocusing. Similarly, large negative slopes ($n\ll-1$) would
+give stronger vertical forces but would cause radial defocusing. It
+was realized about $10$ years ago, however, that a force that
+alternates between strong focusing and strong defocusing can still
+have a <em class="emph">net</em> focusing force.</p>
+</div>
+<div id="Ch29-F15" class="figure">
+<img src="img/FLP_II/f29-15/f29-15_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–15.</span>A horizontal focusing quadrupole lens.
+</div>
+</div>
+<div id="Ch29-S7-p2" class="para">
+<p class="p">To explain how <em class="emph">alternating-gradient focusing</em> works, we will first
+describe the operation of a quadrupole lens, which is based on the same
+principle. Imagine that a uniform negative magnetic field is added to
+the field of Fig. <a href="#Ch29-F14">29–14</a>, with the strength adjusted to make
+zero field at the orbit. The resulting field—for small displacements
+from the neutral point—would be like the field shown in
+Fig. <a href="#Ch29-F15">29–15</a>. Such a four-pole magnet is called a
+“quadrupole lens.” A positive particle that enters (from the reader) to the
+right or left of the center is pushed back toward the center. If the
+particle enters above or below, it is pushed <em class="emph">away</em> from the
+center. This is a horizontal focusing lens. If the horizontal gradient
+is reversed—as can be done by reversing all the polarities—the signs
+of all the forces are reversed and we have a vertical focusing lens, as
+in Fig. <a href="#Ch29-F16">29–16</a>. For such lenses, the field strength—and
+therefore the focusing forces—increase linearly with the distance of
+the lens from the axis.</p>
+</div>
+<div id="Ch29-F16" class="figure">
+<img src="img/FLP_II/f29-16/f29-16_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–16.</span>A vertical focusing quadrupole lens.
+</div>
+</div>
+<div id="Ch29-S7-p3" class="para">
+<p class="p">Now imagine that two such lenses are placed in series. If a particle
+enters with some horizontal displacement from the axis, as shown in
+Fig. <a href="#Ch29-F17">29–17</a>(a), it will be deflected toward the axis in the first
+lens. When it arrives at the second lens it is closer to the axis, so
+the force outward is less and the outward deflection is less. There is a
+net bending toward the axis; the <em class="emph">average</em> effect is horizontally
+focusing. On the other hand, if we look at a particle which enters off
+the axis in the vertical direction, the path will be as shown in
+Fig. <a href="#Ch29-F17">29–17</a>(b). The particle is first deflected <em class="emph">away</em>
+from the axis, but then it arrives at the second lens with a larger
+displacement, feels a stronger force, and so is bent toward the axis.
+Again the net effect is focusing. Thus a pair of quadrupole
+lenses acts
+independently for horizontal and vertical motion—very much like an
+optical lens. Quadrupole lenses are used to form and control beams
+of particles in much the same way that optical lenses are used for light
+beams.
+</p>
+</div>
+<div id="Ch29-F17" class="figure">
+<img src="img/FLP_II/f29-17/f29-17_tc_iPad_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–17.</span>Horizontal and vertical focusing with a pair of quadrupole lenses.
+</div>
+</div>
+<div id="Ch29-S7-p4" class="para">
+<p class="p">We should point out that an alternating-gradient system does not
+<em class="emph">always</em> produce focusing. If the gradients are too large (in
+relation to the particle momentum or to the spacing between the
+lenses), the net effect can be a defocusing one. You can see how that
+could happen if you imagine that the spacing between the two lenses of
+Fig. <a href="#Ch29-F17">29–17</a> were increased, say, by a factor of three or four.</p>
+</div>
+<div id="Ch29-S7-p5" class="para">
+<p class="p">Let’s return now to the synchrotron guide
+magnet. We can consider that it consists of an alternating sequence of
+“positive” and “negative” lenses with a superimposed uniform
+field. The uniform field serves to bend the particles, on the average,
+in a horizontal circle (with no effect on the vertical motion), and
+the alternating lenses act on any particles that might tend to go
+astray—pushing them always toward the central orbit (on the
+average).
+</p>
+</div>
+<div id="Ch29-S7-p6" class="para">
+<p class="p">There is a nice mechanical analog which demonstrates that a force which
+alternates between a “focusing” force and a “defocusing” force can
+have a net “focusing” effect. Imagine a mechanical “pendulum” which
+consists of a <em class="emph">solid</em> rod with a weight on the end, suspended from
+a pivot which is arranged to be moved rapidly up and down by a motor
+driven crank. Such a pendulum has <em class="emph">two</em> equilibrium positions.
+Besides the normal, downward-hanging position, the pendulum is also in
+equilibrium “hanging upward”—with its “bob” <em class="emph">above</em> the
+pivot! Such a pendulum is drawn in Fig. <a href="#Ch29-F18">29–18</a>.</p>
+</div>
+<div id="Ch29-F18" class="figure">
+<img src="img/FLP_II/f29-18/f29-18_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–18.</span>A pendulum with an oscillating pivot can have a stable position
+with the bob above the pivot.
+</div>
+</div>
+<div id="Ch29-S7-p7" class="para">
+<p class="p">By the following argument you can see that the vertical pivot motion
+is equivalent to an alternating focusing force. When the pivot is
+accelerated downward, the “bob” tends to move inward, as indicated
+in Fig. <a href="#Ch29-F19">29–19</a>. When the pivot is accelerated upward, the effect is
+reversed. The force restoring the “bob” toward the axis alternates,
+but the average effect is a force toward the axis. So the pendulum
+will swing back and forth about a neutral position which is just
+opposite the normal one.</p>
+</div>
+<div id="Ch29-F19" class="figure">
+<img src="img/FLP_II/f29-19/f29-19_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–19.</span>A downward acceleration of the pivot causes the pendulum to
+move toward the vertical.
+</div>
+</div>
+<div id="Ch29-S7-p8" class="para">
+<p class="p">There is, of course, a much easier way of keeping a pendulum upside
+down, and that is by <em class="emph">balancing</em> it on your finger! But try to
+balance <em class="emph">two independent</em> sticks on the <em class="emph">same finger</em>! Or
+one stick with your eyes closed! Balancing involves making a
+correction for what is going wrong. And this is not possible, in
+general, if there are several things going wrong at once. In a
+synchrotron there are billions of particles going
+around together, each one of which may start out with a different
+“error.” The kind of focusing we have been describing works on them
+all.
+</p>
+</div>
+</div>
+<div id="Ch29-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">29–8</span>Motion in crossed electric and magnetic fields</h3>
+<div id="Ch29-S8-p1" class="para">
+<p class="p">So far we have talked about particles in electric fields only or in
+magnetic fields only. There are some interesting effects when there
+are both kinds of fields at the same time. Suppose we have a uniform
+magnetic field $\FLPB$ and an electric field $\FLPE$ at right
+angles. Particles that start out perpendicular to $\FLPB$ will move in
+a curve like the one in Fig. <a href="#Ch29-F20">29–20</a>. (The figure is a <em class="emph">plane</em>
+curve, <em class="emph">not</em> a helix!) We can understand this motion
+qualitatively. When the particle (assumed positive) moves in the
+direction of $\FLPE$, it picks up speed, and so it is bent less by the
+magnetic field. When it is going against the $\FLPE$-field, it loses
+speed and is continually bent more by the magnetic field. The net
+effect is that it has an average “drift” in the direction
+of $\FLPE\times\FLPB$.</p>
+</div>
+<div id="Ch29-F20" class="figure">
+<img src="img/FLP_II/f29-20/f29-20_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 29–20.</span>Path of a particle in crossed electric and magnetic fields.
+</div>
+</div>
+<div id="Ch29-S8-p2" class="para">
+<p class="p">We can, in fact, show that the motion is a uniform circular motion
+superimposed on a uniform sidewise motion at the speed $v_d=E/B$—the
+trajectory in Fig. <a href="#Ch29-F20">29–20</a> is a cycloid. Imagine an observer
+who is moving to the right at a constant speed. In his frame our
+magnetic field gets transformed to a new magnetic field <em class="emph">plus</em> an
+electric field in the <em class="emph">downward</em> direction. If he has just the
+right speed, his total electric field will be zero, and he will see the
+electron going in a circle. So the motion <em class="emph">we</em> see is a circular
+motion, plus a translation at the drift speed $v_d=E/B$. The motion of
+electrons in crossed electric and magnetic fields is the basis of the
+<em class="emph">magnetron</em> tubes, i.e., oscillators used for generating microwave
+energy.</p>
+</div>
+<div id="Ch29-S8-p3" class="para">
+<p class="p">There are many other interesting examples of particle motions in
+electric and magnetic fields—such as the orbits of the electrons and
+protons trapped in the Van Allen belts—but we do not, unfortunately,
+have the time to deal with them here.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

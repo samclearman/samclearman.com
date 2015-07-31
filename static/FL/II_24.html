@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 24: Waveguides</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "24." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch24" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">24</span>Waveguides</h2>
+<div id="Ch24-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">24–1</span>The transmission line</h3>
+<div id="Ch24-S1-p1" class="para">
+<p class="p">In the last chapter we studied what happened to the lumped
+elements of circuits when they were operated at very high frequencies,
+and we were led to see that a resonant circuit could be replaced by a
+cavity with the fields resonating inside. Another interesting technical
+problem is the connection of one object to another, so that
+electromagnetic energy can be transmitted between them. In low-frequency
+circuits the connection is made with wires, but this method doesn’t work
+very well at high frequencies because the circuits would radiate energy
+into all the space around them, and it is hard to control where the
+energy will go. The fields spread out around the wires; the currents and
+voltages are not “guided” very well by the wires. In this chapter we
+want to look into the ways that objects can be interconnected at high
+frequencies. At least, that’s one way of presenting our subject.</p>
+</div>
+<div id="Ch24-S1-p2" class="para">
+<p class="p">Another way is to say that we have been discussing the behavior of
+waves in free space. Now it is time to see what happens when
+oscillating fields are confined in one or more dimensions. We will
+discover the interesting new phenomenon when the fields are confined
+in only two dimensions and allowed to go free in the third dimension,
+they propagate in waves. These are “guided waves”—the subject of
+this chapter.</p>
+</div>
+<div id="Ch24-S1-p3" class="para">
+<p class="p">We begin by working out the general theory of the <em class="emph">transmission
+line</em>. The ordinary power transmission line that runs from tower to
+tower over the countryside radiates away some of its power, but the
+power frequencies ($50$–$60$ cycles/sec) are so low that this loss is
+not serious. The radiation could be stopped by surrounding the line
+with a metal pipe, but this method would not be practical for power
+lines because the voltages and currents used would require a very
+large, expensive, and heavy pipe. So simple “open lines” are used.</p>
+</div>
+<div id="Ch24-S1-p4" class="para">
+<p class="p">For somewhat higher frequencies—say a few kilocycles—radiation can
+already be serious. However, it can be reduced by using
+“twisted-pair” transmission lines, as is done for short-run
+telephone connections. At higher frequencies, however, the radiation
+soon becomes intolerable, either because of power losses or because
+the energy appears in other circuits where it isn’t wanted. For
+frequencies from a few kilocycles to some hundreds of megacycles,
+electromagnetic signals and power are usually transmitted via coaxial
+lines consisting of a wire inside a cylindrical
+“outer conductor” or “shield.” Although the following treatment will
+apply to a transmission line of two parallel conductors of any shape, we
+will carry it out referring to a coaxial line.
+</p>
+</div>
+<div id="Ch24-F1" class="figure">
+<img src="img/FLP_II/f24-01/f24-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–1.</span>A coaxial transmission line.
+</div>
+</div>
+<div id="Ch24-S1-p5" class="para">
+<p class="p">We take the simplest coaxial line that has a central conductor, which
+we suppose is a thin hollow cylinder, and an outer conductor which is
+another thin cylinder on the same axis as the inner conductor, as in
+Fig. <a href="#Ch24-F1">24–1</a>. We begin by figuring out approximately how the
+line behaves at relatively low frequencies. We have already described
+some of the low-frequency behavior when we said earlier that two such
+conductors had a certain amount of inductance per unit length or a
+certain capacity per unit length. We can, in fact, describe the
+low-frequency behavior of any transmission line by giving its inductance
+per unit length, $L_0$ and its capacity per unit length, $C_0$. Then we
+can analyze the line as the limiting case of the $L$-$C$ filter as
+discussed in Section <a href="II_22.html#Ch22-S6">22–6</a>. We can make a filter which
+imitates the line by taking small series elements $L_0\,\Delta x$ and
+small shunt capacities $C_0\,\Delta x$, where $\Delta x$ is an element
+of length of the line. Using our results for the infinite filter, we see
+that there would be a propagation of electric signals along the line.
+Rather than following that approach, however, we would now rather look
+at the line from the point of view of a differential equation.</p>
+</div>
+<div id="Ch24-F2" class="figure">
+<img src="img/FLP_II/f24-02/f24-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–2.</span>The currents and voltages of a transmission line.
+</div>
+</div>
+<div id="Ch24-S1-p6" class="para">
+<p class="p">Suppose that we see what happens at two neighboring points along the
+transmission line, say at the distances $x$ and $x+\Delta x$ from the
+beginning of the line. Let’s call the voltage difference between the two
+conductors $V(x)$, and the current along the “hot” conductor $I(x)$
+(see Fig. <a href="#Ch24-F2">24–2</a>). If the current in the line is varying, the
+inductance will give us a voltage drop across the small section of line
+from $x$ to $x+\Delta x$ in the amount
+\begin{equation*}
+\Delta V=V(x+\Delta x)-V(x)=-L_0\,\Delta x\,\ddt{I}{t}.
+\end{equation*}
+
+Or, taking the limit as $\Delta x\to0$, we get
+\begin{equation}
+\label{Eq:II:24:1}
+\ddp{V}{x}=-L_0\,\ddp{I}{t}.
+\end{equation}
+
+The changing current gives a gradient of the voltage.</p>
+</div>
+<div id="Ch24-S1-p7" class="para">
+<p class="p">Referring again to the figure, if the voltage at $x$ is changing,
+there must be some charge supplied to the capacity in that region. If
+we take the small piece of line between $x$ and $x+\Delta x$, the
+charge on it is $q=C_0\,\Delta x V$. The time rate-of-change of this
+charge is $C_0\,\Delta x\,dV/dt$, but the charge changes only if the
+current $I(x)$ into the element is different from the
+current $I(x+\Delta x)$ out. Calling the difference $\Delta I$, we have
+\begin{equation*}
+\Delta I=-C_0\,\Delta x\,\ddt{V}{t}.
+\end{equation*}
+
+Taking the limit as $\Delta x\to0$, we get
+\begin{equation}
+\label{Eq:II:24:2}
+\ddp{I}{x}=-C_0\,\ddp{V}{t}.
+\end{equation}
+
+So the conservation of charge implies that the gradient of the current
+is proportional to the time rate-of-change of the voltage.</p>
+</div>
+<div id="Ch24-S1-p8" class="para">
+<p class="p">Equations (<a href="#mjx-eqn-EqII241">24.1</a>) and (<a href="#mjx-eqn-EqII242">24.2</a>) are then the basic
+equations of a transmission line. If we wish, we could modify them to
+include the effects of resistance in the conductors or of leakage of
+charge through the insulation between the conductors, but for our
+present discussion we will just stay with the simple example.</p>
+</div>
+<div id="Ch24-S1-p9" class="para">
+<p class="p">The two transmission line equations can be combined by differentiating
+one with respect to $t$ and the other with respect to $x$ and eliminating
+either $V$ or $I$. Then we have either
+\begin{equation}
+\label{Eq:II:24:3}
+\frac{\partial^2V}{\partial x^2} =C_0L_0\,\frac{\partial^2V}{\partial t^2}
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:24:4}
+\frac{\partial^2I}{\partial x^2} =C_0L_0\,\frac{\partial^2I}{\partial t^2}
+\end{equation}
+</p>
+</div>
+<div id="Ch24-S1-p10" class="para">
+<p class="p">Once more we recognize the wave equation in $x$. For a uniform
+transmission line, the voltage (and current) propagates along the line
+as a wave. The voltage along the line must be of the form
+$V(x,t)=f(x-vt)$ or $V(x,t)=g(x+vt)$, or a sum of both. Now what is
+the velocity $v$? We know that the coefficient of the
+$\partial^2/\partial t^2$ term is just $1/v^2$, so
+\begin{equation}
+\label{Eq:II:24:5}
+v=\frac{1}{\sqrt{L_0C_0}}.
+\end{equation}
+</p>
+</div>
+<div id="Ch24-S1-p11" class="para">
+<p class="p">We will leave it for you to show that the voltage <em class="emph">for each wave</em>
+in a line is proportional to the current of that wave and that the
+constant of proportionality is just the characteristic
+impedance $z_0$. Calling $V_+$ and $I_+$ the voltage and current for a wave
+going in the plus $x$-direction, you should get
+\begin{equation}
+\label{Eq:II:24:6}
+V_+=z_0I_+.
+\end{equation}
+
+Similarly, for the wave going toward minus $x$ the relation is
+\begin{equation*}
+V_-=z_0I_-.
+\end{equation*}
+</p>
+</div>
+<div id="Ch24-S1-p12" class="para">
+<p class="p">The characteristic impedance—as we found out from our filter
+equations—is given by
+\begin{equation}
+\label{Eq:II:24:7}
+z_0=\sqrt{\frac{L_0}{C_0}},
+\end{equation}
+
+and is, therefore, a pure resistance.</p>
+</div>
+<div id="Ch24-S1-p13" class="para">
+<p class="p">To find the propagation speed $v$ and the characteristic
+impedance $z_0$ of a transmission line, we have to know the inductance and
+capacity per unit length. We can calculate them easily for a coaxial
+cable, so we will see how that goes. For the inductance we follow the
+ideas of Section <a href="II_17.html#Ch17-S8">17–8</a>, and set $\tfrac{1}{2}LI^2$ equal
+to the magnetic energy which we get by integrating $\epsO c^2B^2/2$
+over the volume. Suppose that the central conductor carries the
+current $I$; then we know that $B=I/2\pi\epsO c^2r$, where $r$ is the
+distance from the axis. Taking as a volume element a cylindrical shell
+of thickness $dr$ and of length $l$, we have for the magnetic energy
+\begin{equation*}
+U=\frac{\epsO c^2}{2}\int_a^b\biggl(
+\frac{I}{2\pi\epsO c^2r}
+\biggr)^2l\,2\pi r\,dr,
+\end{equation*}
+
+where $a$ and $b$ are the radii of the inner and outer conductors,
+respectively. Carrying out the integral, we get
+\begin{equation}
+\label{Eq:II:24:8}
+U=\frac{I^2l}{4\pi\epsO c^2}\ln\frac{b}{a}.
+\end{equation}
+
+Setting the energy equal to $\tfrac{1}{2}LI^2$, we find
+\begin{equation}
+\label{Eq:II:24:9}
+L=\frac{l}{2\pi\epsO c^2}\ln\frac{b}{a}.
+\end{equation}
+
+It is, as it should be, proportional to the length $l$ of the line, so
+the inductance per unit length $L_0$ is
+\begin{equation}
+\label{Eq:II:24:10}
+L_0=\frac{\ln(b/a)}{2\pi\epsO c^2}.
+\end{equation}
+</p>
+</div>
+<div id="Ch24-S1-p14" class="para">
+<p class="p">We have worked out the charge on a cylindrical condenser (see
+Section <a href="II_12.html#Ch12-S2">12–2</a>). Now, dividing the charge by the potential
+difference, we get
+\begin{equation*}
+C=\frac{2\pi\epsO l}{\ln(b/a)}.
+\end{equation*}
+
+The capacity per unit length $C_0$ is $C/l$. Combining this result
+with Eq. (<a href="#mjx-eqn-EqII2410">24.10</a>), we see that the product $L_0C_0$ is
+just equal to $1/c^2$, so $v=1/\sqrt{L_0C_0}$ is equal to $c$. The
+wave travels down the line with the speed of light. We point out that
+this result depends on our assumptions: (a) that there are no
+dielectrics or magnetic materials in the space between the conductors,
+and (b) that the currents are all on the surfaces of the conductors
+(as they would be for perfect conductors). We will see later that for
+good conductors at high frequencies, all currents distribute
+themselves on the surfaces as they would for a perfect conductor, so
+this assumption is then valid.</p>
+</div>
+<div id="Ch24-S1-p15" class="para">
+<p class="p">Now it is interesting that so long as assumptions (a) and (b) are
+correct, the product $L_0C_0$ is equal to $1/c^2$ for <em class="emph">any</em>
+parallel pair of conductors—even, say, for a hexagonal inner
+conductor anywhere inside an elliptical outer conductor. So long as
+the cross section is constant and the space between has no material,
+waves are propagated at the velocity of light.</p>
+</div>
+<div id="Ch24-S1-p16" class="para">
+<p class="p">No such general statement can be made about the characteristic
+impedance. For the coaxial line, it is
+\begin{equation}
+\label{Eq:II:24:11}
+z_0=\frac{\ln(b/a)}{2\pi\epsO c}.
+\end{equation}
+
+The factor $1/\epsO c$ has the dimensions of a resistance and is equal
+to $120\pi$ ohms. The geometric factor $\ln(b/a)$ depends only
+logarithmically on the dimensions, so for the coaxial line—and most
+lines—the characteristic impedance has typical values of from
+$50$ ohms or so to a few hundred ohms.
+</p>
+</div>
+</div>
+<div id="Ch24-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">24–2</span>The rectangular waveguide</h3>
+<div id="Ch24-S2-p1" class="para">
+<p class="p">The next thing we want to talk about seems, at first sight, to be a
+striking phenomenon: if the central conductor is removed from the
+coaxial line, it can still carry electromagnetic power. In other
+words, at high enough frequencies a hollow tube will work just as well
+as one with wires. It is related to the mysterious way in which a
+resonant circuit of a condenser and inductance gets replaced by
+nothing but a can at high frequencies.</p>
+</div>
+<div id="Ch24-S2-p2" class="para">
+<p class="p">Although it may seem to be a remarkable thing when one has been
+thinking in terms of a transmission line as a distributed inductance
+and capacity, we all know that electromagnetic waves can travel along
+inside a hollow metal pipe. If the pipe is straight, we can <i>see</i>
+through it! So certainly electromagnetic waves go through a pipe. But
+we also know that it is not possible to transmit low-frequency waves
+(power or telephone) through the inside of a single metal pipe. So it
+must be that electromagnetic waves will go through if their wavelength
+is short enough. Therefore we want to discuss the limiting case of the
+longest wavelength (or the lowest frequency) that can get through a
+pipe of a given size. Since the pipe is then being used to carry
+waves, it is called a <em class="emph">waveguide</em>.</p>
+</div>
+<div id="Ch24-S2-p3" class="para">
+<p class="p">We will begin with a rectangular pipe, because it is the simplest case
+to analyze. We will first give a mathematical treatment and come back
+later to look at the problem in a much more elementary way. The more
+elementary approach, however, can be applied easily only to a
+rectangular guide. The basic phenomena are the same for a general
+guide of arbitrary shape, so the mathematical argument is fundamentally
+more sound.</p>
+</div>
+<div id="Ch24-S2-p4" class="para">
+<p class="p">Our problem, then, is to find what kind of waves can exist inside a
+rectangular pipe. Let’s first choose some convenient coordinates; we
+take the $z$-axis along the length of the pipe, and the $x$- and
+$y$-axes parallel to the two sides, as shown in Fig. <a href="#Ch24-F3">24–3</a>.</p>
+</div>
+<div id="Ch24-F3" class="figure">
+<img src="img/FLP_II/f24-03/f24-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–3.</span>Coordinates chosen for the rectangular waveguide.
+</div>
+</div>
+<div id="Ch24-S2-p5" class="para">
+<p class="p">We know that when light waves go down the pipe, they have a transverse
+electric field; so suppose we look first for solutions in which
+$\FLPE$ is perpendicular to $z$, say with only a $y$-component,
+$E_y$. This electric field will have some variation across the guide;
+in fact, it must go to zero at the sides parallel to the $y$-axis,
+because the currents and charges in a conductor always adjust
+themselves so that there is no tangential component of the electric
+field at the surface of a conductor. So $E_y$ will vary with $x$ in
+some arch, as shown in Fig. <a href="#Ch24-F4">24–4</a>. Perhaps it is the Bessel function
+we found for a cavity?  No, because the Bessel function has to do with
+cylindrical geometries. For a rectangular geometry, waves are usually
+simple harmonic functions, so we should try something like $\sin
+k_xx$.</p>
+</div>
+<div id="Ch24-F4" class="figure">
+<img src="img/FLP_II/f24-04/f24-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–4.</span>The electric field in the waveguide at some value of $z$.
+</div>
+</div>
+<div id="Ch24-S2-p6" class="para">
+<p class="p">Since we want waves that propagate down the guide, we expect the field
+to alternate between positive and negative values as we go along in $z$,
+as in Fig. <a href="#Ch24-F5">24–5</a>, and these oscillations will travel along the
+guide with some velocity $v$. If we have oscillations at some definite
+frequency $\omega$, we would guess that the wave might vary with $z$
+like $\cos\,(\omega t-k_zz)$, or to use the more convenient
+mathematical form, like $e^{i(\omega t-k_zz)}$. This $z$-dependence
+represents a wave travelling with the speed $v=\omega/k_z$ (see
+Chapter <a href="I_29.html">29</a>, Vol. I).</p>
+</div>
+<div id="Ch24-F5" class="figure">
+<img src="img/FLP_II/f24-05/f24-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–5.</span>The $z$-dependence of the field in the waveguide.
+</div>
+</div>
+<div id="Ch24-S2-p7" class="para">
+<p class="p">So we might guess that the wave in the guide would have the following
+mathematical form:
+\begin{equation}
+\label{Eq:II:24:12}
+E_y=E_0e^{i(\omega t-k_zz)}\sin k_xx.
+\end{equation}
+</p>
+</div>
+<div id="Ch24-S2-p8" class="para">
+<p class="p">Let’s see whether this guess satisfies the correct field
+equations. First, the electric field should have no tangential
+components at the conductors. Our field satisfies this requirement; it
+is perpendicular to the top and bottom faces and is zero at the two
+side faces. Well, it is if we choose $k_x$ so that one-half a cycle
+of $\sin k_xx$ just fits in the width of the guide—that is, if
+\begin{equation}
+\label{Eq:II:24:13}
+k_xa=\pi.
+\end{equation}
+
+There are other possibilities, like $k_xa=2\pi$, $3\pi$, $\dotsc$, or, in
+general,
+\begin{equation}
+\label{Eq:II:24:14}
+k_xa=n\pi,
+\end{equation}
+
+where $n$ is any integer. These represent various complicated
+arrangements of the field, but for now let’s take only the simplest
+one, where $k_x=\pi/a$, where $a$ is the width of the inside of the
+guide.</p>
+</div>
+<div id="Ch24-S2-p9" class="para">
+<p class="p">Next, the divergence of $\FLPE$ must be zero in the free space inside
+the guide, since there are no charges there. Our $\FLPE$ has only a
+$y$-component, and it doesn’t change with $y$, so we do have that
+$\FLPdiv{\FLPE}=0$.</p>
+</div>
+<div id="Ch24-S2-p10" class="para">
+<p class="p">Finally, our electric field must agree with the rest of Maxwell’s
+equations in the free space inside
+the guide. That is the same thing as saying that it must satisfy the
+wave equation
+\begin{equation}
+\label{Eq:II:24:15}
+\frac{\partial^2E_y}{\partial x^2}+
+\frac{\partial^2E_y}{\partial y^2}+
+\frac{\partial^2E_y}{\partial z^2}-
+\frac{1}{c^2}\,\frac{\partial^2E_y}{\partial t^2}=0.
+\end{equation}
+
+We have to see whether our guess, Eq. (<a href="#mjx-eqn-EqII2412">24.12</a>), will
+work. The second derivative of $E_y$ with respect to $x$ is
+just $-k_x^2E_y$. The second derivative with respect to $y$ is zero, since
+nothing depends on $y$. The second derivative with respect to $z$
+is $-k_z^2E_y$, and the second derivative with respect to $t$
+is $-\omega^2E_y$. Equation (<a href="#mjx-eqn-EqII2415">24.15</a>) then says that
+\begin{equation*}
+k_x^2E_y+k_z^2E_y-\frac{\omega^2}{c^2}\,E_y=0.
+\end{equation*}
+
+Unless $E_y$ is zero everywhere (which is not very interesting), this
+equation is correct if
+\begin{equation}
+\label{Eq:II:24:16}
+k_x^2+k_z^2-\frac{\omega^2}{c^2}=0.
+\end{equation}
+
+We have already fixed $k_x$, so this equation tells us that there can
+be waves of the type we have assumed if $k_z$ is related to the
+frequency $\omega$ so that Eq. (<a href="#mjx-eqn-EqII2416">24.16</a>) is satisfied—in
+other words, if
+\begin{equation}
+\label{Eq:II:24:17}
+k_z=\sqrt{(\omega^2/c^2)-(\pi^2/a^2)}.
+\end{equation}
+
+The waves we have described are propagated in the $z$-direction with
+this value of $k_z$.</p>
+</div>
+<div id="Ch24-S2-p11" class="para">
+<p class="p">The wave number $k_z$ we get from Eq. (<a href="#mjx-eqn-EqII2417">24.17</a>) tells us,
+for a given frequency $\omega$, the speed with which the nodes of the
+wave propagate down the guide. The phase velocity is
+\begin{equation}
+\label{Eq:II:24:18}
+v=\frac{\omega}{k_z}.
+\end{equation}
+</p>
+</div>
+<div id="Ch24-S2-p12" class="para">
+<p class="p">You will remember that the wavelength $\lambda$ of a travelling wave
+is given by $\lambda=2\pi v/\omega$, so $k_z$ is also equal
+to $2\pi/\lambda_g$, where $\lambda_g$ is the wavelength of the
+oscillations along the $z$-direction—the “guide wavelength.” The
+wavelength in the guide is different, of course, from the free-space
+wavelength of electromagnetic waves of the same frequency. If we call
+the free-space wavelength $\lambda_0$, which is equal to $2\pi
+c/\omega$, we can write Eq. (<a href="#mjx-eqn-EqII2417">24.17</a>) as
+\begin{equation}
+\label{Eq:II:24:19}
+\lambda_g=\frac{\lambda_0}{\sqrt{1-(\lambda_0/2a)^2}}.
+\end{equation}
+</p>
+</div>
+<div id="Ch24-S2-p13" class="para">
+<p class="p">Besides the electric fields there are magnetic fields that will travel
+with the wave, but we will not bother to work out an expression for
+them right now. Since $c^2\FLPcurl{\FLPB}=\ddpl{\FLPE}{t}$, the lines
+of $\FLPB$ will circulate around the regions in which $\ddpl{\FLPE}{t}$
+is largest, that is, halfway between the maximum and
+minimum of $\FLPE$. The loops of $\FLPB$ will lie parallel to the
+$xz$-plane and between the crests and troughs of $\FLPE$, as shown in
+Fig. <a href="#Ch24-F6">24–6</a>.</p>
+</div>
+<div id="Ch24-F6" class="figure">
+<img src="img/FLP_II/f24-06/f24-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–6.</span>The magnetic field in the waveguide.
+</div>
+</div>
+</div>
+<div id="Ch24-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">24–3</span>The cutoff frequency</h3>
+<div id="Ch24-S3-p1" class="para">
+<p class="p">In solving Eq. (<a href="#mjx-eqn-EqII2416">24.16</a>) for $k_z$, there should really be
+two roots—one plus and one minus. We should write
+\begin{equation}
+\label{Eq:II:24:20}
+k_z=\pm\sqrt{(\omega^2/c^2)-(\pi^2/a^2)}.
+\end{equation}
+
+The two signs simply mean that there can be waves which propagate with
+a negative phase velocity (toward $-z$), as well as waves which
+propagate in the positive direction in the guide. Naturally, it should
+be possible for waves to go in either direction. Since both types of
+waves can be present at the same time, there will be the possibility of
+standing-wave solutions.</p>
+</div>
+<div id="Ch24-S3-p2" class="para">
+<p class="p">Our equation for $k_z$ also tells us that higher frequencies give
+larger values of $k_z$, and therefore smaller wavelengths, until in
+the limit of large $\omega$, $k$ becomes equal to $\omega/c$, which is
+the value we would expect for waves in free space. The light we
+“see” through a pipe still travels at the speed $c$. But now notice
+that if we go toward low frequencies, something strange happens. At
+first the wavelength gets longer and longer, but if $\omega$ gets too
+small the quantity inside the square root of Eq. (<a href="#mjx-eqn-EqII2420">24.20</a>)
+suddenly becomes negative. This will happen as soon as $\omega$ gets
+to be less than $\pi c/a$—or when $\lambda_0$ becomes greater
+than $2a$. In other words, when the frequency gets smaller than a certain
+critical frequency $\omega_c=\pi c/a$, the wave number $k_z$ (and
+also $\lambda_g$) becomes imaginary and we haven’t got a solution any
+more. Or do we?  Who said that $k_z$ has to be real? What if it does
+come out imaginary?  Our field equations are still satisfied. Perhaps
+an imaginary $k_z$ also represents a wave.</p>
+</div>
+<div id="Ch24-S3-p3" class="para">
+<p class="p">Suppose $\omega$ is less than $\omega_c$; then we can write
+\begin{equation}
+\label{Eq:II:24:21}
+k_z=\pm ik',
+\end{equation}
+
+where $k'$ is a positive real number:
+\begin{equation}
+\label{Eq:II:24:22}
+k=\sqrt{(\pi^2/a^2)-(\omega^2/c^2)}.
+\end{equation}
+
+If we now go back to our expression, Eq. (<a href="#mjx-eqn-EqII2412">24.12</a>), for
+$E_y$, we have
+\begin{equation}
+\label{Eq:II:24:23}
+E_y =E_0e^{i(\omega t\mp ik'z)}\sin k_xx,
+\end{equation}
+
+which we can write as
+\begin{equation}
+\label{Eq:II:24:24}
+E_y =E_0e^{\pm k'z}e^{i\omega t}\sin k_xx.
+\end{equation}
+</p>
+</div>
+<div id="Ch24-S3-p4" class="para">
+<p class="p">This expression gives an $\FLPE$-field that oscillates with time
+as $e^{i\omega t}$ but which varies with $z$ as $e^{\pm k'z}$. It
+decreases or increases with $z$ smoothly as a real exponential. In our
+derivation we didn’t worry about the sources that started the waves,
+but there must, of course, be a source someplace in the guide. The
+sign that goes with $k'$ must be the one that makes the field decrease
+with increasing distance from the source of the waves.</p>
+</div>
+<div id="Ch24-S3-p5" class="para">
+<p class="p">So for frequencies below $\omega_c=\pi c/a$, waves do
+<i>not</i> propagate down the guide; the oscillating fields penetrate into
+the guide only a distance of the order of $1/k'$. For this reason, the
+frequency $\omega_c$ is called the “cutoff frequency” of the guide. Looking at
+Eq. (<a href="#mjx-eqn-EqII2422">24.22</a>), we see that for frequencies just a little
+below $\omega_c$, the number $k'$ is small and the fields can
+penetrate a long distance into the guide. But if $\omega$ is much less
+than $\omega_c$, the exponential coefficient $k'$ is equal to $\pi/a$
+and the field dies off extremely rapidly, as shown in
+Fig. <a href="#Ch24-F7">24–7</a>. The field decreases by $1/e$ in the
+distance $a/\pi$, or in only about one-third of the guide width. The fields
+penetrate very little distance from the source.</p>
+</div>
+<div id="Ch24-F7" class="figure">
+<img src="img/FLP_II/f24-07/f24-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–7.</span>The variation of $E_y$ with $z$ for $\omega\ll\omega_c$.
+</div>
+</div>
+<div id="Ch24-S3-p6" class="para">
+<p class="p">We want to emphasize an interesting feature of our analysis of the
+guided waves—the appearance of the imaginary wave
+number $k_z$. Normally, if we solve an equation in physics and get an
+imaginary number, it doesn’t mean anything physical. For <em class="emph">waves</em>,
+however, an imaginary wave number <em class="emph">does</em> mean something. The wave
+equation is still satisfied; it only means that the solution gives
+exponentially decreasing fields instead of propagating waves. So in
+any wave problem where $k$ becomes imaginary for some frequency, it
+means that the form of the wave changes—the sine wave changes into
+an exponential.</p>
+</div>
+</div>
+<div id="Ch24-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">24–4</span>The speed of the guided waves</h3>
+<div id="Ch24-S4-p1" class="para">
+<p class="p">The wave velocity we have used above is the phase velocity, which is the speed
+of a node of the wave; it is a function of frequency. If we combine Eqs.
+(<a href="#mjx-eqn-EqII2417">24.17</a>) and (<a href="#mjx-eqn-EqII2418">24.18</a>), we can write
+\begin{equation}
+\label{Eq:II:24:25}
+v_{\text{phase}}=\frac{c}{\sqrt{1-(\omega_c/\omega)^2}}.
+\end{equation}
+
+For frequencies above cutoff—where travelling waves
+exist—$\omega_c/\omega$ is less than one, and $v_{\text{phase}}$ is
+real and <em class="emph">greater than</em> the speed of light. We have already seen
+in Chapter <a href="I_48.html">48</a> of Vol. I that <em class="emph">phase</em> velocities
+greater than light are possible, because it is just the nodes of the
+wave which are moving and not energy or information. In order to know
+how fast <em class="emph">signals</em> will travel, we have to calculate the speed of
+pulses or modulations made by the interference of a wave of one
+frequency with one or more waves of slightly different frequencies
+(see Chapter <a href="I_48.html">48</a>, Vol. I). We have called the speed of
+the envelope of such a group of waves the group velocity; it is not
+$\omega/k$ but $d\omega/dk$:
+\begin{equation}
+\label{Eq:II:24:26}
+v_{\text{group}}=\ddt{\omega}{k}.
+\end{equation}
+
+Taking the derivative of Eq. (<a href="#mjx-eqn-EqII2417">24.17</a>) with respect
+to $\omega$ and inverting to get $d\omega/dk$, we find that
+\begin{equation}
+\label{Eq:II:24:27}
+v_{\text{group}}=c\sqrt{1-(\omega_c/\omega)^2},
+\end{equation}
+
+which is less than the speed of light.</p>
+</div>
+<div id="Ch24-S4-p2" class="para">
+<p class="p">The geometric mean of $v_{\text{phase}}$ and $v_{\text{group}}$ is
+just $c$, the speed of light:
+\begin{equation}
+\label{Eq:II:24:28}
+v_{\text{phase}}v_{\text{group}}=c^2.
+\end{equation}
+
+This is curious, because we have seen a similar relation in quantum
+mechanics. For a particle with any velocity—even relativistic—the
+momentum $p$ and energy $U$ are related by
+\begin{equation}
+\label{Eq:II:24:29}
+U^2=p^2c^2+m^2c^4.
+\end{equation}
+
+But in quantum mechanics the energy is $\hbar\omega$, and the momentum
+is $\hbar/\lambdabar$, which is equal to $\hbar k$; so
+Eq. (<a href="#mjx-eqn-EqII2429">24.29</a>) can be written
+\begin{equation}
+\label{Eq:II:24:30}
+\frac{\omega^2}{c^2}=k^2+\frac{m^2c^2}{\hbar^2},
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:24:31}
+k=\sqrt{(\omega^2/c^2)-(m^2c^2/\hbar^2)},
+\end{equation}
+
+which looks very much like Eq. (<a href="#mjx-eqn-EqII2417">24.17</a>) … Interesting!</p>
+</div>
+<div id="Ch24-S4-p3" class="para">
+<p class="p">The group velocity of the waves is also the speed at which energy is
+transported along the guide. If we want to find the energy flow down
+the guide, we can get it from the energy density times the group
+velocity. If the root mean square electric field is $E_0$, then the
+average density of electric energy is $\epsO E_0^2/2$. There is also
+some energy associated with the magnetic field. We will not prove it
+here, but in any cavity or guide the magnetic and electric energies
+are equal, so the total electromagnetic energy density is $\epsO
+E_0^2$. The power $dU/dt$ transmitted by the guide is then
+\begin{equation}
+\label{Eq:II:24:32}
+\ddt{U}{t}=\epsO E_0^2abv_{\text{group}}.
+\end{equation}
+
+(We will see later another, more general way of getting the energy
+flow.)</p>
+</div>
+</div>
+<div id="Ch24-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">24–5</span>Observing guided waves</h3>
+<div id="Ch24-S5-p1" class="para">
+<p class="p">Energy can be coupled into a waveguide by some kind of an “antenna.”
+For example, a little vertical wire or “stub” will do. The presence of
+the guided waves can be observed by picking up some of the
+electromagnetic energy with a little receiving “antenna,” which again
+can be a little stub of wire or a small loop. In Fig. <a href="#Ch24-F8">24–8</a>,
+we show a guide with some cutaways to show a driving stub and a pickup
+“probe”. The driving stub can be connected to a signal generator via a
+coaxial cable, and the pickup probe can be connected by a similar cable
+to a detector. It is usually convenient to insert the pickup probe via a
+long thin slot in the guide, as shown in Fig. <a href="#Ch24-F8">24–8</a>. Then
+the probe can be moved back and forth along the guide to sample the
+fields at various positions.</p>
+</div>
+<div id="Ch24-F8" class="figure">
+<img src="img/FLP_II/f24-08/f24-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–8.</span>A waveguide with a driving stub and a pickup probe.
+</div>
+</div>
+<div id="Ch24-S5-p2" class="para">
+<p class="p">If the signal generator is set at some frequency $\omega$ greater than
+the cutoff frequency $\omega_c$, there will be waves propagated down
+the guide from the driving stub. These will be the only waves present
+if the guide is infinitely long, which can effectively be arranged by
+terminating the guide with a carefully designed absorber in such a way
+that there are no reflections from the far end. Then, since the
+detector measures the time average of the fields near the probe, it
+will pick up a signal which is independent of the position along the
+guide; its output will be proportional to the power being transmitted.
+</p>
+</div>
+<div id="Ch24-S5-p3" class="para">
+<p class="p">If now the far end of the guide is finished off in some way that
+produces a reflected wave—as an extreme example, if we closed it off
+with a metal plate—there will be a reflected wave in addition to the
+original forward wave. These two waves will interfere and produce a
+standing wave in the guide similar to the standing waves on a string
+which we discussed in Chapter <a href="I_49.html">49</a> of Vol. I. Then, as
+the pickup probe is moved along the line, the detector reading will
+rise and fall periodically, showing a maximum in the fields at each
+loop of the standing wave and a minimum at each node. The distance
+between two successive nodes (or loops) is just $\lambda_g/2$. This
+gives a convenient way of measuring the guide wavelength. If the
+frequency is now moved closer to $\omega_c$, the distances between
+nodes increase, showing that the guide wavelength increases as
+predicted by Eq. (<a href="#mjx-eqn-EqII2419">24.19</a>).</p>
+</div>
+<div id="Ch24-S5-p4" class="para">
+<p class="p">Suppose now the signal generator is set at a frequency just a little
+below $\omega_c$. Then the detector output will decrease gradually as
+the pickup probe is moved down the guide. If the frequency is set
+somewhat lower, the field strength will fall rapidly, following the
+curve of Fig. <a href="#Ch24-F7">24–7</a>, and showing that waves are not
+propagated.</p>
+</div>
+</div>
+<div id="Ch24-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">24–6</span>Waveguide plumbing</h3>
+<div id="Ch24-S6-p1" class="para">
+<p class="p">An important practical use of waveguides is for the transmission of
+high-frequency power, as, for example, in coupling the high-frequency
+oscillator or output amplifier of a radar set to an antenna. In fact,
+the antenna itself usually consists of a parabolic reflector fed at
+its focus by a waveguide flared out at the end to make a “horn” that
+radiates the waves coming along the guide. Although high frequencies
+can be transmitted along a coaxial cable, a waveguide is better for
+transmitting large amounts of power. First, the maximum power that can
+be transmitted along a line is limited by the breakdown of the
+insulation (solid or gas) between the conductors. For a given amount
+of power, the field strengths in a guide are usually less than they
+are in a coaxial cable, so higher powers can be transmitted before
+breakdown occurs. Second, the power losses in the coaxial cable are
+usually greater than in a waveguide. In a coaxial cable there must be
+insulating material to support the central conductor, and there is an
+energy loss in this material—particularly at high frequencies. Also,
+the current densities on the central conductor are quite high, and
+since the losses go as the <em class="emph">square</em> of the current density, the
+lower currents that appear on the walls of the guide result in lower
+energy losses. To keep these losses to a minimum, the inner surfaces
+of the guide are often plated with a material of high conductivity,
+such as silver.</p>
+</div>
+<div id="Ch24-F9" class="figure">
+<img src="img/FLP_II/f24-09/f24-09_mg.jpg"><div class="caption">
+<span class="tag">Fig. 24–9.</span>Sections of waveguide connected with flanges.
+</div>
+</div>
+<div id="Ch24-S6-p2" class="para">
+<p class="p">The problem of connecting a “circuit” with waveguides is quite
+different from the corresponding circuit problem at low frequencies,
+and is usually called microwave “plumbing.” Many special devices
+have been developed for the purpose. For instance, two sections of
+waveguide are usually connected together by means of flanges, as can
+be seen in Fig. <a href="#Ch24-F9">24–9</a>. Such connections can, however,
+cause serious energy losses, because the surface currents must flow
+across the joint, which may have a relatively high resistance. One way
+to avoid such losses is to make the flanges as shown in the cross
+section drawn in Fig. <a href="#Ch24-F10">24–10</a>. A small space is left
+between the adjacent sections of the guide, and a groove is cut in the
+face of one of the flanges to make a small cavity of the type shown in
+Fig. <a href="II_23.html#Ch23-F16">23–16</a>(c). The dimensions are chosen so that this
+cavity is resonant at the frequency being used. This resonant cavity
+presents a high “impedance” to the currents, so relatively little
+current flows across the metallic joints (at $a$ in
+Fig. <a href="#Ch24-F10">24–10</a>). The high guide currents simply charge and
+discharge the “capacity” of the gap (at $b$ in the figure), where
+there is little dissipation of energy.</p>
+</div>
+<div id="Ch24-F10" class="figure">
+<img src="img/FLP_II/f24-10/f24-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–10.</span>A low-loss connection between two sections of waveguide.
+</div>
+</div>
+<div id="Ch24-S6-p3" class="para">
+<p class="p">Suppose you want to stop a waveguide in a way that won’t result in
+reflected waves. Then you must put something at the end that imitates
+an infinite length of guide. You need a “termination” which acts for
+the guide like the characteristic impedance does for a transmission
+line—something that absorbs the arriving waves without making
+reflections. Then the guide will act as though it went on forever.
+Such terminations are made by putting inside the guide some wedges of
+resistance material carefully designed to absorb the wave energy while
+generating almost no reflected waves.</p>
+</div>
+<div id="Ch24-F11" class="figure">
+<img src="img/FLP_II/f24-11/f24-11_mg.jpg"><div class="caption">
+<span class="tag">Fig. 24–11.</span>A waveguide “T.” (The flanges have plastic end caps to keep
+the inside clean while the “T” is not being used.
+</div>
+</div>
+<div id="Ch24-S6-p4" class="para">
+<p class="p">If you want to connect <em class="emph">three</em> things together—for instance,
+one source to two different antennas—then you can use a “T” like
+the one shown in Fig. <a href="#Ch24-F11">24–11</a>. Power fed in at the center
+section of the “T” will be split and go out the two side arms (and
+there may also be some reflected waves). You can see qualitatively from
+the sketches in Fig. <a href="#Ch24-F12">24–12</a> that the fields would spread out when
+they
+get to the end of the input section and make electric fields that will
+start waves going out the two arms. Depending on whether electric fields
+in the guide are parallel or perpendicular to the “top” of the “T,”
+the fields at the junction would be roughly as shown in (a) or (b) of
+Fig. <a href="#Ch24-F12">24–12</a>.</p>
+</div>
+<div id="Ch24-F12" class="figure">
+<img src="img/FLP_II/f24-12/f24-12_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–12.</span>The electric fields in a waveguide “T” for two possible field
+orientations.
+</div>
+</div>
+<div id="Ch24-S6-p5" class="para">
+<p class="p">Finally, we would like to describe a device called an “unidirectional
+coupler,” which is very useful for telling what is going on after you
+have connected a complicated arrangement of waveguides. Suppose you
+want to know which way the waves are going in a particular section of
+guide—you might be wondering, for instance, whether or not there is
+a strong reflected wave. The unidirectional coupler takes out a small
+fraction of the power of a guide if there is a wave going one way, but
+none if the wave is going the other way. By connecting the output of
+the coupler to a detector, you can measure the “one-way” power in
+the guide.</p>
+</div>
+<div id="Ch24-F13" class="figure">
+<img src="img/FLP_II/f24-13/f24-13_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–13.</span>A unidirectional coupler.
+</div>
+</div>
+<div id="Ch24-S6-p6" class="para">
+<p class="p">Figure <a href="#Ch24-F13">24–13</a> is a drawing of a unidirectional coupler; a
+piece of waveguide $AB$ has another piece of waveguide $CD$ soldered to
+it along one face. The guide $CD$ is curved away so that there is room
+for the connecting flanges. Before the guides are soldered together, two
+(or more) holes have been drilled in each guide (matching each other) so
+that some of the fields in the main guide $AB$ can be coupled into the
+secondary guide $CD$. Each of the holes acts like a little antenna that
+produces a wave in the secondary guide. If there were only one hole,
+waves would be sent in both directions and would be the same no matter
+which way the wave was going in the primary guide. But when there are
+<em class="emph">two</em> holes with a separation space equal to one-quarter of the
+guide wavelength, they will make two sources $90^\circ$ out of phase. Do
+you remember that we considered in Chapter <a href="I_29.html">29</a> of Vol. I
+the interference of the waves from two antennas spaced $\lambda/4$ apart
+and excited $90^\circ$ out of phase in time?  We found that the waves
+subtract in one direction and add in the opposite direction. The same
+thing will happen here. The wave produced in the guide $CD$ will be
+going in the same direction as the wave in $AB$.</p>
+</div>
+<div id="Ch24-S6-p7" class="para">
+<p class="p">If the wave in the primary guide is travelling from $A$ toward $B$,
+there will be a wave at the output $D$ of the secondary guide. If the
+wave in the primary guide goes from $B$ toward $A$, there will be a
+wave going toward the end $C$ of the secondary guide. This end is
+equipped with a termination, so that this wave is absorbed and there
+is no wave at the output of the coupler.</p>
+</div>
+</div>
+<div id="Ch24-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">24–7</span>Waveguide modes</h3>
+<div id="Ch24-F14" class="figure">
+<img src="img/FLP_II/f24-14/f24-14_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–14.</span>Another possible variation of $E_y$ with $x$
+</div>
+</div>
+<div id="Ch24-S7-p1" class="para">
+<p class="p">The wave we have chosen to analyze is a special solution of the field
+equations. There are many more. Each solution is called a waveguide
+“mode.” For example, our $x$-dependence of the field was just
+one-half a cycle of a sine wave. There is an equally good solution
+with a full cycle; then the variation of $E_y$ with $x$ is as shown in
+Fig. <a href="#Ch24-F14">24–14</a>. The $k_x$ for such a mode is twice as large, so the
+cutoff frequency is much higher. Also, in the wave we studied $\FLPE$
+has only a $y$-component, but there are other modes with more
+complicated electric fields. If the electric field has components only
+in $x$ and $y$—so that the total electric field is always at right
+angles to the $z$-direction—the mode is called a “transverse
+electric” (or TE) mode. The magnetic field of such modes will always
+have a $z$-component. It turns out that if $\FLPE$ has a component in
+the $z$-direction (along the direction of propagation), then the
+magnetic field will always have only transverse components. So such
+fields are called transverse magnetic (TM) modes. For a rectangular
+guide, all the other modes have a higher cutoff frequency than the
+simple TE mode we have described. It is, therefore, possible—and
+usual—to use a guide with a frequency just above the cutoff for this
+lowest mode but below the cutoff frequency for all the others, so that
+just the one mode is propagated. Otherwise, the behavior gets
+complicated and difficult to control.</p>
+</div>
+</div>
+<div id="Ch24-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">24–8</span>Another way of looking at the guided waves</h3>
+<div id="Ch24-S8-p1" class="para">
+<p class="p">We want now to show you another way of understanding why a waveguide
+attenuates the fields rapidly for frequencies below the cutoff
+frequency $\omega_c$. Then you will have a more “physical” idea of
+why the behavior changes so drastically between low and high
+frequencies. We can do this for the rectangular guide by analyzing the
+fields in terms of reflections—or images—in the walls of the
+guide. The approach only works for rectangular guides, however; that’s
+why we started with the more mathematical analysis which works, in
+principle, for guides of any shape.</p>
+</div>
+<div id="Ch24-S8-p2" class="para">
+<p class="p">For the mode we have described, the vertical dimension (in $y$) had no
+effect, so we can ignore the top and bottom of the guide and imagine
+that the guide is extended indefinitely in the vertical direction. We
+imagine then that the guide just consists of two vertical plates with
+the separation $a$.</p>
+</div>
+<div id="Ch24-S8-p3" class="para">
+<p class="p">Let’s say that the source of the fields is a vertical wire placed in
+the middle of the guide, with the wire carrying a current that
+oscillates at the frequency $\omega$. In the absence of the guide
+walls such a wire would radiate cylindrical waves.</p>
+</div>
+<div id="Ch24-S8-p4" class="para">
+<p class="p">Now we consider that the guide walls are perfect conductors. Then,
+just as in electrostatics, the conditions at the surface will be
+correct if we add to the field of the wire the field of one or more
+suitable image wires. The image idea works just as well for
+electrodynamics as it does for electrostatics, provided, of course,
+that we also include the retardations. We know that is true because we
+have often seen a mirror producing an image of a light source. And a
+mirror is just a “perfect” conductor for electromagnetic waves with
+optical frequencies.</p>
+</div>
+<div id="Ch24-F15" class="figure">
+<img src="img/FLP_II/f24-15/f24-15_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–15.</span>The line source $S_0$ between the conducting plane walls $W_1$
+and $W_2$. The walls can be replaced by the infinite sequence of image
+sources.
+</div>
+</div>
+<div id="Ch24-S8-p5" class="para">
+<p class="p">Now let’s take a horizontal cross section, as shown in Fig. <a href="#Ch24-F15">24–15</a>,
+where $W_1$ and $W_2$ are the two guide walls and $S_0$ is the source
+wire. We call the direction of the current in the wire positive. Now
+if there were only one wall, say $W_1$, we could remove it if we
+placed an image source (with opposite polarity) at the position
+marked $S_1$. But with both walls in place there will also be an image
+of $S_0$ in the wall $W_2$, which we show as the image $S_2$. This
+source, too, will have an image in $W_1$, which we call $S_3$. Now
+both $S_1$ and $S_3$ will have images in $W_2$ at the positions marked
+$S_4$ and $S_6$, and so on. For our two plane conductors with the
+source halfway between, the fields are the same as those produced by
+an infinite line of sources, all separated by the distance $a$. (It
+is, in fact just what you would <em class="emph">see</em> if you looked at a wire
+placed halfway between two parallel mirrors.)  For the fields to be
+zero at the walls, the polarity of the currents in the images must
+alternate from one image to the next. In other words, they oscillate
+$180^\circ$ out of phase. The waveguide field is, then, just the
+superposition of the fields of such an infinite set of line sources.</p>
+</div>
+<div id="Ch24-S8-p6" class="para">
+<p class="p">We know that if we are close to the sources, the field is very much
+like the static fields. We considered in Section <a href="II_07.html#Ch7-S5">7–5</a>
+the static field of a grid of line sources and found that it is like
+the field of a charged plate except for terms that decrease
+exponentially with the distance from the grid. Here the average source
+strength is zero, because the sign alternates from one source to the
+next. Any fields which exist should fall off exponentially with
+distance. Close to the source, we see the field mainly of the nearest
+source; at large distances, many sources contribute and their average
+effect is zero. So now we see why the waveguide below cutoff frequency
+gives an exponentially decreasing field. At low frequencies, in
+particular, the static approximation is good, and it predicts a rapid
+attenuation of the fields with distance.</p>
+</div>
+<div id="Ch24-S8-p7" class="para">
+<p class="p">Now we are faced with the opposite question: Why are waves propagated
+at all? That is the mysterious part! The reason is that at high
+frequencies the retardation of the fields can introduce additional
+changes in phase which can cause the fields of the out-of-phase
+sources to add instead of cancelling. In fact, in
+Chapter <a href="I_29.html">29</a> of Vol. I we have already studied, just for
+this problem, the fields generated by an array of antennas or by an
+optical grating. There we found that when several radio antennas are
+suitably arranged, they can give an interference pattern that has a
+strong signal in some direction but no signal in another.</p>
+</div>
+<div id="Ch24-F16" class="figure">
+<img src="img/FLP_II/f24-16/f24-16_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–16.</span>One set of coherent waves from an array of line sources.
+</div>
+</div>
+<div id="Ch24-S8-p8" class="para">
+<p class="p">Suppose we go back to Fig. <a href="#Ch24-F15">24–15</a> and look at the fields
+which arrive at a large distance from the array of image sources. The
+fields will be strong only in certain directions which depend on the
+frequency—only in those directions for which the fields from all the
+sources add in phase. At a reasonable distance from the sources the
+field propagates in these special directions as plane waves. We have
+sketched such a wave in Fig. <a href="#Ch24-F16">24–16</a>, where the solid lines
+represent the wave crests and the dashed lines represent the troughs.
+The wave direction will be the one for which the difference in the
+retardation for two neighboring sources to the crest of a wave
+corresponds to one-half a period of oscillation. In other words, the
+difference between $r_2$ and $r_0$ in the figure is one-half of the
+free-space wavelength:
+\begin{equation}
+r_2-r_0=\frac{\lambda_0}{2}.\notag
+\end{equation}
+
+The angle $\theta$ is then given by
+\begin{equation}
+\label{Eq:II:24:33}
+\sin\theta=\frac{\lambda_0}{2a}.
+\end{equation}
+</p>
+</div>
+<div id="Ch24-S8-p9" class="para">
+<p class="p">There is, of course, another set of waves travelling downward at the
+symmetric angle with respect to the array of sources. The complete
+waveguide field (not too close to the source) is the superposition of
+these two sets of waves, as shown in Fig. <a href="#Ch24-F17">24–17</a>. The actual fields
+are really like this, of course, only between the two walls of the
+waveguide.</p>
+</div>
+<div id="Ch24-F17" class="figure">
+<img src="img/FLP_II/f24-17/f24-17_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–17.</span>The waveguide field can be viewed as the superposition of two
+trains of plane waves.
+</div>
+</div>
+<div id="Ch24-S8-p10" class="para">
+<p class="p">At points like $A$ and $C$, the crests of the two wave patterns
+coincide, and the field will have a maximum; at points like $B$, both
+waves have their peak negative value, and the field has its minimum
+(largest negative) value. As time goes on the field in the guide
+appears to be travelling along the guide with a
+wavelength $\lambda_g$, which is the distance from $A$ to $C$.
+That distance is related to $\theta$ by
+\begin{equation}
+\label{Eq:II:24:34}
+\cos\theta=\frac{\lambda_0}{\lambda_g}.
+\end{equation}
+
+Using Eq. (<a href="#mjx-eqn-EqII2433">24.33</a>) for $\theta$, we get that
+\begin{equation}
+\label{Eq:II:24:35}
+\lambda_g=\frac{\lambda_0}{\cos\theta}=
+\frac{\lambda_0}{\sqrt{1-(\lambda_0/2a)^2}},
+\end{equation}
+
+which is just what we found in Eq. (<a href="#mjx-eqn-EqII2419">24.19</a>).</p>
+</div>
+<div id="Ch24-S8-p11" class="para">
+<p class="p">Now we see why there is only wave propagation above the cutoff
+frequency $\omega_0$. If the free-space wavelength is longer
+than $2a$, there is no angle where the waves shown in Fig. <a href="#Ch24-F16">24–16</a>
+can
+appear. The necessary constructive interference appears suddenly when
+$\lambda_0$ drops below $2a$, or when $\omega$ goes above $\omega_0=\pi c/a$.</p>
+</div>
+<div id="Ch24-S8-p12" class="para">
+<p class="p">If the frequency is high enough, there can be two or more possible
+directions in which the waves will appear. For our case, this will
+happen if $\lambda_0&lt;\tfrac{2}{3}a$. In general, however, it could
+also happen when $\lambda_0&lt;a$. These additional waves correspond to
+the higher guide modes we have mentioned.</p>
+</div>
+<div id="Ch24-S8-p13" class="para">
+<p class="p">It has also been made evident by our analysis why the phase velocity
+of the guided waves is greater than $c$ and why this velocity depends
+on $\omega$. As $\omega$ is changed, the angle of the free waves of
+Fig. <a href="#Ch24-F16">24–16</a> changes, and therefore so does the velocity along the
+guide.
+</p>
+</div>
+<div id="Ch24-S8-p14" class="para">
+<p class="p">Although we have described the guided wave as the superposition of the
+fields of an infinite array of line sources, you can see that we
+would arrive at the same result if we imagined two sets of free-space
+waves being continually reflected back and forth between two perfect
+mirrors—remembering that a reflection means a reversal of
+phase. These sets of reflecting waves would all cancel each other
+unless they were going at just the angle $\theta$ given in
+Eq. (<a href="#mjx-eqn-EqII2433">24.33</a>). There are many ways of looking at the same
+thing.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

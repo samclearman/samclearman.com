@@ -1,0 +1,1679 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 31: Tensors</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "31." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch31" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">31</span>Tensors</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref" rowspan=2>
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapter&nbsp;<a href="I_11.html">11</a>, Vol.&nbsp;I, <i>Vectors</i>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Chapter&nbsp;<a href="I_20.html">20</a>, Vol.&nbsp;I, <i>Rotation in Space</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch31-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">31–1</span>The tensor of polarizability</h3>
+<div id="Ch31-S1-p1" class="para">
+<p class="p">Physicists always have a habit of taking the simplest example of any
+phenomenon and calling it “physics,” leaving the more complicated
+examples to become the concern of other fields—say of applied
+mathematics, electrical engineering, chemistry, or
+crystallography. Even solid-state physics is almost only half physics
+because it worries too much about special substances. So in these
+lectures we will be leaving out many interesting things. For instance,
+one of the important properties of crystals—or of most
+substances—is that their electric polarizability is different in
+different directions. If you apply a field in any direction, the
+atomic charges shift a little and produce a dipole moment, but the
+magnitude of the moment depends very much on the direction of the
+field. That is, of course, quite a complication. But in physics we
+usually start out by talking about the special case in which the
+polarizability is the same in all directions, to make life easier. We
+leave the other cases to some other field. Therefore, for our later
+work, we will not need at all what we are going to talk about in this
+chapter.</p>
+</div>
+<div id="Ch31-S1-p2" class="para">
+<p class="p">The mathematics of tensors is particularly useful for describing
+properties of substances which vary in direction—although that’s
+only one example of their use. Since most of you are not going to
+become physicists, but are going to go into the <em class="emph">real</em> world,
+where things depend severely upon direction, sooner or later you will
+need to use tensors. In order not to leave anything out, we are going
+to describe tensors, although not in great detail. We want the feeling
+that our treatment of physics is complete. For example, our
+electrodynamics is complete—as complete as any electricity and
+magnetism course, even a graduate course. Our mechanics is not
+complete, because we studied mechanics when you didn’t have a high
+level of mathematical sophistication, and we were not able to discuss
+subjects like the principle of least action, or Lagrangians, or
+Hamiltonians, and so on, which are <em class="emph">more elegant ways</em> of
+describing mechanics. Except for general relativity, however, we do
+have the complete <em class="emph">laws</em> of mechanics. Our electricity and
+magnetism is complete, and a lot of other things are quite
+complete. The quantum mechanics, naturally, will not be—we have to
+leave something for the future. But you should at least know what a
+tensor is.</p>
+</div>
+<div id="Ch31-S1-p3" class="para">
+<p class="p">We emphasized in Chapter <a href="II_30.html">30</a> that the properties of
+crystalline substances are different in different directions—we say
+they are <em class="emph">anisotropic</em>. The variation of the induced dipole
+moment with the direction of the applied electric field is only one
+example, the one we will use for our example of a tensor. Let’s say
+that for a given direction of the electric field the induced dipole
+moment per unit volume $\FLPP$ is proportional to the strength of the
+applied field $\FLPE$. (This is a good approximation for many
+substances if $\FLPE$ is not too large.) We will call the
+proportionality constant $\alpha$.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> We want now to consider substances in
+which $\alpha$ depends on the direction of the applied field, as, for
+example, in crystals like calcite, which make double images when you
+look through them.</p>
+</div>
+<div id="Ch31-S1-p4" class="para">
+<p class="p">Suppose, in a particular crystal, we find that an electric
+field $\FLPE_1$ in the $x$-direction produces the polarization $\FLPP_1$
+in the $x$-direction. Then we find that an electric field $\FLPE_2$ in
+the $y$-direction, with the same <em class="emph">strength</em>, as $\FLPE_1$ produces
+a different polarization $\FLPP_2$ in the $y$-direction. What would
+happen if we put an electric field at $45^\circ$? Well, that’s a
+superposition of two fields along $x$ and $y$, so the
+polarization $\FLPP$ will be the vector sum of $\FLPP_1$ and $\FLPP_2$,
+as shown in Fig. <a href="#Ch31-F1">31–1</a>(a). The polarization is no longer in
+the same direction as the electric field. You can see how that might
+come about. There may be charges which can move easily up and down, but
+which are rather stiff for sidewise motions. When a force is applied
+at $45^\circ$, the charges move farther up than they do toward the side.
+The displacements are not in the direction of the external force,
+because there are asymmetric internal elastic forces.</p>
+</div>
+<div id="Ch31-F1" class="figure">
+<img class="first" src="img/FLP_II/f31-01/f31-01_tc_big_a.svgz"><img class="last" src="img/FLP_II/f31-01/f31-01_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 31–1.</span>The vector addition of polarizations in an anisotropic
+crystal.
+</div>
+</div>
+<div id="Ch31-S1-p5" class="para">
+<p class="p">There is, of course, nothing special about $45^\circ$. It is
+<em class="emph">generally</em> true that the induced polarization of a crystal is
+<em class="emph">not</em> in the direction of the electric field. In our example
+above, we happened to make a “lucky” choice of our $x$-
+and $y$-axes, for which $\FLPP$ was along $\FLPE$ for both the $x$-
+and $y$-directions. If the crystal were rotated with respect to the
+coordinate axes, the electric field $\FLPE_2$ in the $y$-direction
+would have produced a polarization $\FLPP$ with both an $x$- and
+a $y$-component. Similarly, the polarization due to an electric field in
+the $x$-direction would have produced a polarization with an
+$x$-component and a $y$-component. Then the polarizations would be as
+shown in Fig. <a href="#Ch31-F1">31–1</a>(b), instead of as in part (a). Things
+get more complicated—but for any field $\FLPE$, the <em class="emph">magnitude</em>
+of $\FLPP$ is still proportional to the magnitude of $\FLPE$.</p>
+</div>
+<div id="Ch31-S1-p6" class="para">
+<p class="p">We want now to treat the general case of an arbitrary orientation of a
+crystal with respect to the coordinate axes. An electric field in the
+$x$-direction will produce a polarization $\FLPP$ with $x$-, $y$-,
+and $z$-components; we can write
+\begin{equation}
+\label{Eq:II:31:1}
+P_x=\alpha_{xx}E_x,\quad
+P_y=\alpha_{yx}E_x,\quad
+P_z=\alpha_{zx}E_x.
+\end{equation}
+</p>
+</div>
+<div id="Ch31-S1-p7" class="para">
+<p class="p">All we are saying here is that if the electric field is in the
+$x$-direction, the polarization does not have to be in that same
+direction, but rather has an $x$-, a $y$-, and a $z$-component—each
+proportional to $E_x$. We are calling the constants of proportionality
+$\alpha_{xx}$, $\alpha_{yx}$, and $\alpha_{zx}$, respectively (the
+first letter to tell us which component of $\FLPP$ is involved, the
+last to refer to the direction of the electric field).</p>
+</div>
+<div id="Ch31-S1-p8" class="para">
+<p class="p">Similarly, for a field in the $y$-direction, we can write
+\begin{equation}
+\label{Eq:II:31:2}
+P_x=\alpha_{xy}E_y,\quad
+P_y=\alpha_{yy}E_y,\quad
+P_z=\alpha_{zy}E_y;
+\end{equation}
+
+and for a field in the $z$-direction,
+\begin{equation}
+\label{Eq:II:31:3}
+P_x=\alpha_{xz}E_z,\quad
+P_y=\alpha_{yz}E_z,\quad
+P_z=\alpha_{zz}E_z.
+\end{equation}
+
+Now we have said that polarization depends linearly on the fields, so if there
+is an electric field $\FLPE$ that has both an $x$- and a $y$-component, the
+resulting $x$-component of $\FLPP$ will be the sum of the two $P_x$’s of
+Eqs. (<a href="#mjx-eqn-EqII311">31.1</a>) and (<a href="#mjx-eqn-EqII312">31.2</a>). If $\FLPE$ has components
+along $x$, $y$, and $z$, the resulting components of $\FLPP$ will be the sum of
+the three contributions in Eqs. (<a href="#mjx-eqn-EqII311">31.1</a>), (<a href="#mjx-eqn-EqII312">31.2</a>),
+and (<a href="#mjx-eqn-EqII313">31.3</a>). In other words, $\FLPP$ will be given by
+\begin{equation}
+\label{Eq:II:31:4}
+\begin{alignedat}{4}
+P_x&=\alpha_{xx}&&E_x+\alpha_{xy}&&E_y+\alpha_{xz}&&E_z,\\[1ex]
+P_y&=\alpha_{yx}&&E_x+\alpha_{yy}&&E_y+\alpha_{yz}&&E_z,\\[1ex]
+P_z&=\alpha_{zx}&&E_x+\alpha_{zy}&&E_y+\alpha_{zz}&&E_z.
+\end{alignedat}
+\end{equation}
+</p>
+</div>
+<div id="Ch31-S1-p9" class="para">
+<p class="p">The dielectric behavior of the crystal is then completely described by
+the nine quantities ($\alpha_{xx}$, $\alpha_{xy}$, $\alpha_{xz}$,
+$\alpha_{yx}$, …), which we can represent by the
+symbol $\alpha_{ij}$. (The subscripts $i$ and $j$ each stand for any one of
+the three possible letters $x$, $y$, and $z$.) Any arbitrary electric
+field $\FLPE$ can be resolved with the components $E_x$, $E_y$, and $E_z$;
+from these we can use the $\alpha_{ij}$ to find $P_x$, $P_y$,
+and $P_z$, which together give the total polarization $\FLPP$. The set
+of nine coefficients $\alpha_{ij}$ is called a <em class="emph">tensor</em>—in this
+instance, the <em class="emph">tensor of polarizability</em>. Just as we say that the
+three numbers $(E_x,E_y,E_z)$ “form the vector $\FLPE$,” we say that
+the nine numbers ($\alpha_{xx}$, $\alpha_{xy}$, …) “form the
+tensor $\alpha_{ij}$.”</p>
+</div>
+</div>
+<div id="Ch31-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">31–2</span>Transforming the tensor components</h3>
+<div id="Ch31-S2-p1" class="para">
+<p class="p">You know that when we change to a different coordinate system $x'$, $y'$,
+and $z'$, the components $E_{x'}$, $E_{y'}$, and $E_{z'}$ of the
+vector will be quite different—as will also <em class="emph">the components</em>
+of $\FLPP$. So all the coefficients $\alpha_{ij}$ will be different for a
+different set of coordinates. You can, in fact, see how the $\alpha$’s
+must be changed by changing the components of $\FLPE$ and $\FLPP$ in
+the proper way, because if we describe the <em class="emph">same physical</em>
+electric field in the new coordinate system we should get the same
+polarization. For any new set of coordinates, $P_{x'}$ is a linear
+combination of $P_x$, $P_y$, and $P_z$:
+\begin{equation*}
+P_{x'}=aP_x+bP_y+cP_z,
+\end{equation*}
+
+and similarly for the other components. If you substitute for
+$P_x$, $P_y$, and $P_z$ in terms of the $E$’s, using
+Eq. (<a href="#mjx-eqn-EqII314">31.4</a>), you get
+\begin{alignat*}{6}
+P_{x'}&=&&\,a&&(\alpha_{xx}&&E_x+\alpha_{xy}&&E_y+\alpha_{xz}&&E_z)\\[.5ex]
+&+\,&&\,b&&(\alpha_{yx}&&E_x+\alpha_{yy}&&E_y+\alpha_{yz}&&E_z)\\[.5ex]
+&+\,&&\,c&&(\alpha_{zx}&&E_x+\alpha_{zy}&&E_y+\alpha_{zz}&&E_z).
+\end{alignat*}
+
+Then you write $E_x$, $E_y$, and $E_z$ in terms of $E_{x'}$, $E_{y'}$,
+and $E_{z'}$; for instance,
+\begin{equation*}
+E_x=a'E_{x'}+b'E_{y'}+c'E_{z'},
+\end{equation*}
+
+where $a'$, $b'$, $c'$ are related to, but not equal to, $a$, $b$,
+$c$. So you have $P_{x'}$, expressed in terms of the components
+$E_{x'}$, $E_{y'}$, and $E_{z'}$; that is, you have the new $\alpha_{ij}$.
+It is fairly messy, but quite straightforward.</p>
+</div>
+<div id="Ch31-S2-p2" class="para">
+<p class="p">When we talk about changing the axes we are assuming that the crystal
+stays put <em class="emph">in space</em>. If the crystal were rotated <em class="emph">with</em> the
+axes, the $\alpha$’s would not change. Conversely, if the orientation
+of the crystal were changed with respect to the axes, we would have a
+new set of $\alpha$’s. But if they are known for <em class="emph">any</em> one
+orientation of the crystal, they can be found for any other
+orientation by the transformation we have just described. In other
+words, the dielectric property of a crystal is described
+<em class="emph">completely</em> by giving the components of the polarization
+tensor $\alpha_{ij}$ with respect to any arbitrarily chosen set of axes. Just
+as we can associate a vector velocity $\FLPv=(v_x,v_y,v_z)$ with a
+particle, knowing that the three components will change in a certain
+definite way if we change our coordinate axes, so with a crystal we
+associate its polarization tensor $\alpha_{ij}$, whose nine components
+will transform in a certain definite way if the coordinate system is
+changed.</p>
+</div>
+<div id="Ch31-S2-p3" class="para">
+<p class="p">The relation between $\FLPP$ and $\FLPE$ written in
+Eq. (<a href="#mjx-eqn-EqII314">31.4</a>) can be put in the more compact notation:
+\begin{equation}
+\label{Eq:II:31:5}
+P_i=\sum_j\alpha_{ij}E_j,
+\end{equation}
+
+where it is understood that $i$ represents either $x$, $y$, or $z$ and
+that the sum is taken on $j=x$, $y$, and $z$. Many special notations
+have been invented for dealing with tensors, but each of them is
+convenient only for a limited class of problems. One common convention
+is to omit the sum sign $(\sum)$ in Eq. (<a href="#mjx-eqn-EqII315">31.5</a>), leaving
+it <em class="emph">understood</em> that whenever the same subscript occurs twice
+(here $j$), a sum is to be taken over that index. Since we will be using
+tensors so little, we will not bother to adopt any such special
+notations or conventions.</p>
+</div>
+</div>
+<div id="Ch31-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">31–3</span>The energy ellipsoid</h3>
+<div id="Ch31-S3-p1" class="para">
+<p class="p">We want now to get some experience with tensors. Suppose we ask the
+interesting question: What energy is required to polarize the crystal
+(in addition to the energy in the electric field which we know is $\epsO
+E^2/2$ per unit volume)? Consider for a moment the atomic charges that
+are being displaced. The work done in displacing the charge the
+distance $dx$ is $qE_x\,dx$, and if there are $N$ charges per unit volume, the
+work done is $qE_xN\,dx$. But $qN\,dx$ is the change $dP_x$ in the
+dipole moment per unit volume. So the energy required <em class="emph">per unit
+volume</em> is
+\begin{equation*}
+E_x\,dP_x.
+\end{equation*}
+
+Combining the work for the three components of the field, the work per
+unit volume is found to be
+\begin{equation*}
+\FLPE\cdot d\FLPP.
+\end{equation*}
+
+Since the magnitude of $\FLPP$ is proportional to $\FLPE$, the work
+done per unit volume in bringing the polarization from $\FLPzero$
+to $\FLPP$ is the integral of $\FLPE\cdot d\FLPP$. Calling this
+work $u_P$,<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a> we write
+\begin{equation}
+\label{Eq:II:31:6}
+u_P=\tfrac{1}{2}\FLPE\cdot\FLPP=\tfrac{1}{2}
+\sum_iE_iP_i.
+\end{equation}
+</p>
+</div>
+<div id="Ch31-S3-p2" class="para">
+<p class="p">Now we can express $\FLPP$ in terms of $\FLPE$ by
+Eq. (<a href="#mjx-eqn-EqII315">31.5</a>), and we have that
+\begin{equation}
+\label{Eq:II:31:7}
+u_P=\tfrac{1}{2}\sum_i\sum_j\alpha_{ij}E_iE_j.
+\end{equation}
+
+The energy density $u_P$ is a number independent of the choice of
+axes, so it is a scalar. A tensor has then the property that when it
+is summed over one index (with a vector), it gives a new vector; and
+when it is summed over <em class="emph">both</em> indexes (with <i>two</i>
+vectors), it gives a scalar.
+</p>
+</div>
+<div id="Ch31-S3-p3" class="para">
+<p class="p">The tensor $\alpha_{ij}$ should really be called a “tensor of second
+rank,” because it has two indexes. A vector—with <em class="emph">one</em>
+index—is a tensor of the first rank, and a scalar—with no
+index—is a tensor of zero rank. So we say that the electric
+field $\FLPE$ is a tensor of the first rank and that the energy
+density $u_P$ is a tensor of zero rank. It is possible to extend the ideas of
+a tensor to three or more indexes, and so to make tensors of ranks
+higher than two.</p>
+</div>
+<div id="Ch31-S3-p4" class="para">
+<p class="p">The subscripts of the polarization tensor range over three possible
+values—they are tensors in three dimensions. The mathematicians
+consider tensors in four, five, or more dimensions. We have already
+used a four-dimensional tensor $F_{\mu\nu}$ in our relativistic
+description of the electromagnetic field (Chapter <a href="II_26.html">26</a>).</p>
+</div>
+<div id="Ch31-S3-p5" class="para">
+<p class="p">The polarization tensor $\alpha_{ij}$ has the interesting property
+that it is <em class="emph">symmetric</em>, that is, that $\alpha_{xy}=\alpha_{yx}$,
+and so on for any pair of indexes. (This is a <em class="emph">physical</em> property
+of a real crystal and not necessary for all tensors.) You can prove
+for yourself that this must be true by computing the change in energy
+of a crystal through the following cycle: (1) Turn on a field in the
+$x$-direction; (2) turn on a field in the $y$-direction; (3) turn
+<em class="emph">off</em> the $x$-field; (4) turn off the $y$-field. The crystal is
+now back where it started, and the net work done on the polarization
+must be back to zero. You can show, however, that for this to be true,
+$\alpha_{xy}$ must be equal to $\alpha_{yx}$. The same kind of
+argument can, of course, be given for $\alpha_{xz}$, etc. So the
+polarization tensor is symmetric.</p>
+</div>
+<div id="Ch31-S3-p6" class="para">
+<p class="p">This also means that the polarization tensor can be measured by just
+measuring the energy required to polarize the crystal in various
+directions. Suppose we apply an $\FLPE$-field with only an $x$- and a
+$y$-component; then according to Eq. (<a href="#mjx-eqn-EqII317">31.7</a>),
+\begin{equation}
+\label{Eq:II:31:8}
+u_P=\tfrac{1}{2}[\alpha_{xx}E_x^2+(\alpha_{xy}+\alpha_{yx})E_xE_y+
+\alpha_{yy}E_y^2].
+\end{equation}
+
+With an $E_x$ alone, we can determine $\alpha_{xx}$; with an $E_y$
+alone, we can determine $\alpha_{yy}$; with both $E_x$ and $E_y$, we
+get an extra energy due to the term
+with $(\alpha_{xy}+\alpha_{yx})$. Since the $\alpha_{xy}$ and $\alpha_{yx}$
+are equal, this term is $2\alpha_{xy}$ and can be related to the
+energy.</p>
+</div>
+<div id="Ch31-S3-p7" class="para">
+<p class="p">The energy expression, Eq. (<a href="#mjx-eqn-EqII318">31.8</a>), has a nice geometric
+interpretation. Suppose we ask what fields $E_x$ and $E_y$ correspond to some
+given energy density—say $u_0$. That is just the mathematical problem of
+solving the equation
+\begin{equation*}
+\alpha_{xx}E_x^2+2\alpha_{xy}E_xE_y+\alpha_{yy}E_y^2=2u_0.
+\end{equation*}
+
+This is a quadratic equation, so if we plot $E_x$ and $E_y$ the
+solutions of this equation are all the points on an ellipse
+(Fig. <a href="#Ch31-F2">31–2</a>). (It must be an ellipse, rather than a parabola
+or a hyperbola, because the energy for any field is always positive and
+finite.) The vector $\FLPE$ with components $E_x$ and $E_y$ can be drawn
+from the origin to the ellipse. So such an “energy ellipse” is a nice
+way of “visualizing” the polarization tensor.</p>
+</div>
+<div id="Ch31-F2" class="figure">
+<img src="img/FLP_II/f31-02/f31-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 31–2.</span>Locus of the vector $\FigE=(E_x,E_y)$ that gives a constant
+energy of polarization.
+</div>
+</div>
+<div id="Ch31-S3-p8" class="para">
+<p class="p">If we now generalize to include all three components, the electric
+vector $\FLPE$ in <em class="emph">any</em> direction required to give a unit energy
+density gives a point which will be on the surface of an ellipsoid, as
+shown in Fig. <a href="#Ch31-F3">31–3</a>. The shape of this ellipsoid of
+constant energy uniquely characterizes the tensor polarizability.</p>
+</div>
+<div id="Ch31-F3" class="figure">
+<img src="img/FLP_II/f31-03/f31-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 31–3.</span>The energy ellipsoid of the polarization tensor.
+</div>
+</div>
+<div id="Ch31-S3-p9" class="para">
+<p class="p">Now an ellipsoid has the nice property that it can always be described
+simply by giving the directions of three “principal axes” and the
+diameters of the ellipse along these axes. The “principal axes” are
+the directions of the longest and shortest diameters and the direction
+at right angles to both. They are indicated by the axes $a$, $b$,
+and $c$ in Fig. <a href="#Ch31-F3">31–3</a>. With respect to these axes, the
+ellipsoid has the particularly simple equation
+\begin{equation*}
+\alpha_{aa}E_a^2+\alpha_{bb}E_b^2+\alpha_{cc}E_c^2=2u_0.
+\end{equation*}
+</p>
+</div>
+<div id="Ch31-S3-p10" class="para">
+<p class="p">So with respect to these axes, the dielectric tensor has only three
+components that are not zero: $\alpha_{aa}$, $\alpha_{bb}$,
+and $\alpha_{cc}$. That is to say, no matter how complicated a crystal is,
+it is always possible to choose a set of axes (not necessarily the
+crystal axes) for which the polarization tensor has only three
+components. With such a set of axes, Eq. (<a href="#mjx-eqn-EqII314">31.4</a>) becomes
+simply
+\begin{equation}
+\label{Eq:II:31:9}
+P_a=\alpha_{aa}E_a,\quad
+P_b=\alpha_{bb}E_b,\quad
+P_c=\alpha_{cc}E_c.
+\end{equation}
+
+An electric field along any one of the principal axes produces a
+polarization along the same axis, but the coefficients for the three
+axes may, of course, be different.</p>
+</div>
+<div id="Ch31-S3-p11" class="para">
+<p class="p">Often, a tensor is described by listing the nine coefficients in a
+table inside of a pair of brackets:
+\begin{equation}
+\label{Eq:II:31:10}
+\begin{bmatrix}
+\alpha_{xx} & \alpha_{xy} & \alpha_{xz}\\
+\alpha_{yx} & \alpha_{yy} & \alpha_{yz}\\
+\alpha_{zx} & \alpha_{zy} & \alpha_{zz}
+\end{bmatrix}.
+\end{equation}
+
+For the principal axes $a$, $b$, and $c$, only the diagonal terms are
+not zero; we say then that “the tensor is diagonal.” The complete
+tensor is
+\begin{equation}
+\label{Eq:II:31:11}
+\begin{bmatrix}
+\alpha_{aa} & 0 & 0\\
+0 & \alpha_{bb} & 0\\
+0 & 0 & \alpha_{cc}
+\end{bmatrix}.
+\end{equation}
+
+The important point is that any polarization tensor (in fact,
+<em class="emph">any symmetric</em> tensor of rank two in any number of dimensions)
+can be put in this form by choosing a suitable set of coordinate axes.</p>
+</div>
+<div id="Ch31-S3-p12" class="para">
+<p class="p">If the three elements of the polarization tensor in diagonal form are
+all equal, that is, if
+\begin{equation}
+\label{Eq:II:31:12}
+\alpha_{aa}=\alpha_{bb}=\alpha_{cc}=\alpha,
+\end{equation}
+
+the energy ellipsoid becomes a sphere, and the polarizability is the
+same in all directions. The material is isotropic. In the tensor
+notation,
+\begin{equation}
+\label{Eq:II:31:13}
+\alpha_{ij}=\alpha\delta_{ij}
+\end{equation}
+
+where $\delta_{ij}$ is the <em class="emph">unit tensor</em>
+\begin{equation}
+\label{Eq:II:31:14}
+\delta_{ij}=
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}.
+\end{equation}
+
+That means, of course,
+\begin{equation}
+\label{Eq:II:31:15}
+\begin{aligned}
+&\delta_{ij}=1,\quad\text{if}\quad i=j;\\[1mm]
+&\delta_{ij}=0,\quad\text{if}\quad i\neq j.
+\end{aligned}
+\end{equation}
+
+The tensor $\delta_{ij}$ is often called the “Kronecker
+delta.” You may amuse yourself by proving that the
+tensor (<a href="#mjx-eqn-EqII3114">31.14</a>) has exactly the same form if you change the
+coordinate system to any other rectangular one. The polarization tensor
+of Eq. (<a href="#mjx-eqn-EqII3113">31.13</a>) gives
+\begin{equation*}
+P_i=\alpha\sum_j\delta_{ij}E_j=\alpha E_i,
+\end{equation*}
+
+which means the same as our old result for isotropic dielectrics:
+\begin{equation*}
+\FLPP=\alpha\FLPE.
+\end{equation*}
+</p>
+</div>
+<div id="Ch31-S3-p13" class="para">
+<p class="p">The shape and orientation of the polarization ellipsoid can sometimes
+be related to the symmetry properties of the crystal. We have said in
+Chapter <a href="II_30.html">30</a> that there are $230$ different possible
+internal symmetries of a three-dimensional lattice and that they can,
+for many purposes, be conveniently grouped into seven classes,
+according to the shape of the unit cell. Now the ellipsoid of
+polarizability must share the internal geometric symmetries of the
+crystal. For example, a triclinic crystal has low symmetry—the
+ellipsoid of polarizability will have unequal axes, and its
+orientation will not, in general, be aligned with the crystal axes. On
+the other hand, a monoclinic crystal has the property that its
+properties are unchanged if the crystal is rotated $180^\circ$ about
+one axis. So the polarization tensor must be the same after such a
+rotation. It follows that the ellipsoid of the polarizability must
+return to itself after a $180^\circ$ rotation. That can happen only if
+one of the axes of the ellipsoid is in the same direction as the
+symmetry axis of the crystal. Otherwise, the orientation and
+dimensions of the ellipsoid are unrestricted.</p>
+</div>
+<div id="Ch31-S3-p14" class="para">
+<p class="p">For an orthorhombic crystal, however, the axes of the ellipsoid must
+correspond to the crystal axes, because a $180^\circ$ rotation about
+any one of the three axes repeats the same lattice. If we go to a
+tetragonal crystal, the ellipse must have the same symmetry, so it
+must have two equal diameters. Finally, for a cubic crystal, all three
+diameters of the ellipsoid must be equal; it becomes a sphere, and the
+polarizability of the crystal is the same in all directions.</p>
+</div>
+<div id="Ch31-S3-p15" class="para">
+<p class="p">There is a big game of figuring out the possible kinds of tensors for
+all the possible symmetries of a crystal. It is called a
+“group-theoretical” analysis. But for the simple case of the
+polarizability tensor, it is relatively easy to see what the relations
+must be.</p>
+</div>
+</div>
+<div id="Ch31-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">31–4</span>Other tensors; the tensor of inertia</h3>
+<div id="Ch31-S4-p1" class="para">
+<p class="p">There are many other examples of tensors appearing in physics. For
+example, in a metal, or in any conductor, one often finds that the
+current density $\FLPj$ is approximately proportional to the electric
+field $\FLPE$; the proportionality constant is called the
+conductivity $\sigma$:
+\begin{equation*}
+\FLPj=\sigma\FLPE.
+\end{equation*}
+
+For crystals, however, the relation between $\FLPj$ and $\FLPE$ is
+more complicated; the conductivity is not the same in all
+directions. The conductivity is a tensor, and we write
+\begin{equation*}
+j_i=\sum\sigma_{ij}E_j.
+\end{equation*}
+</p>
+</div>
+<div id="Ch31-S4-p2" class="para">
+<p class="p">Another example of a physical tensor is the moment of inertia. In
+Chapter <a href="I_18.html">18</a> of Volume I we saw that a solid object
+rotating about a fixed axis has an angular momentum $L$ proportional
+to the angular velocity $\omega$, and we called the proportionality
+factor $I$, the moment of inertia:
+\begin{equation*}
+L=I\omega.
+\end{equation*}
+
+For an arbitrarily shaped object, the moment of inertia depends on its
+orientation with respect to the axis of rotation. For instance, a
+rectangular block will have different moments about each of its three
+orthogonal axes. Now angular velocity $\FLPomega$ and angular
+momentum $\FLPL$ are both vectors. For rotations about one of the axes of
+symmetry, they are parallel. But if the moment of inertia is different
+for the three principal axes, then $\FLPomega$ and $\FLPL$ are, in
+general, not in the same direction (see Fig. <a href="#Ch31-F4">31–4</a>). They are
+related
+in a way analogous to the relation between $\FLPE$ and $\FLPP$. In
+general, we must write
+\begin{equation}
+\label{Eq:II:31:16}
+\begin{alignedat}{4}
+L_x&=I_{xx}&&\omega_x+I_{xy}&&\omega_y+I_{xz}&&\omega_z,\\[3pt]
+L_y&=I_{yx}&&\omega_x+I_{yy}&&\omega_y+I_{yz}&&\omega_z,\\[3pt]
+L_z&=I_{zx}&&\omega_x+I_{zy}&&\omega_y+I_{zz}&&\omega_z.
+\end{alignedat}
+\end{equation}
+
+The nine coefficients $I_{ij}$ are called the tensor of
+inertia. Following the analogy with the polarization, the kinetic
+energy for any angular momentum must be some quadratic form in the
+components $\omega_x$, $\omega_y$, and $\omega_z$:
+\begin{equation}
+\label{Eq:II:31:17}
+\text{KE}=\tfrac{1}{2}\sum_{ij}I_{ij}\omega_i\omega_j.
+\end{equation}
+
+We can use the energy to define the ellipsoid of inertia. Also, energy
+arguments can be used to show that the tensor is
+symmetric—that $I_{ij}=I_{ji}$.</p>
+</div>
+<div id="Ch31-F4" class="figure">
+<img src="img/FLP_II/f31-04/f31-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 31–4.</span>The angular momentum $\FigL$ of a solid object is not, in
+general, parallel to its angular velocity $\Figomega$.
+</div>
+</div>
+<div id="Ch31-S4-p3" class="para">
+<p class="p">The tensor of inertia for a rigid body can be worked out if the shape
+of the object is known. We need only to write down the total kinetic
+energy of all the particles in the body. A particle of mass $m$ and
+velocity $\FLPv$ has the kinetic energy $\tfrac{1}{2}mv^2$, and the
+total kinetic energy is just the sum
+\begin{equation*}
+\sum\tfrac{1}{2}mv^2
+\end{equation*}
+
+over all of the particles of the body. The velocity $\FLPv$ of each
+particle is related to the angular velocity $\FLPomega$ of the solid
+body. Let’s assume that the body is rotating about its center of mass,
+which we take to be at rest. Then if $\FLPr$ is the displacement of a
+particle from the center of mass, its velocity $\FLPv$ is given
+by $\FLPomega\times\FLPr$. So the total kinetic energy is
+\begin{equation}
+\label{Eq:II:31:18}
+\text{KE}=\sum\tfrac{1}{2}m(\FLPomega\times\FLPr)^2.
+\end{equation}
+
+Now all we have to do is write $\FLPomega\times\FLPr$ out in terms of
+the components $\omega_x$, $\omega_y$, $\omega_z$, and $x$, $y$, $z$,
+and compare the result with Eq. (<a href="#mjx-eqn-EqII3117">31.17</a>); we
+find $I_{ij}$ by identifying terms. Carrying out the algebra, we write
+\begin{align*}
+(\FLPomega\times\FLPr)^2&=
+(\FLPomega\times\FLPr)_x^2+
+(\FLPomega\times\FLPr)_y^2+
+(\FLPomega\times\FLPr)_z^2\\[1ex]
+&=(\omega_yz-\omega_zy)^2+
+(\omega_zx-\omega_xz)^2+
+(\omega_xy-\omega_yx)^2\\[1ex]
+&=\begin{alignedat}[t]{7}
+&+\;\omega_y^2&&z^2&&-\;2\omega_y&&\omega_z&&zy&&\;+\;\omega_z^2&&y^2\\
+&+\;\omega_z^2&&x^2&&-\;2\omega_z&&\omega_x&&xz&&\;+\;\omega_x^2&&z^2\\[.3ex]
+&+\;\omega_x^2&&y^2&&-\;2\omega_x&&\omega_y&&yx&&\;+\;\omega_y^2&&x^2.
+\end{alignedat}
+\end{align*}
+
+Multiplying this equation by $m/2$, summing over all particles, and
+comparing with Eq. (<a href="#mjx-eqn-EqII3117">31.17</a>), we see that $I_{xx}$, for
+instance, is given by
+\begin{equation*}
+I_{xx}=\sum m(y^2+z^2).
+\end{equation*}
+
+This is the formula we have had before (Chapter <a href="I_19.html">19</a>,
+Vol. I) for the moment of inertia of a body about the
+$x$-axis. Since $r^2=x^2+y^2+z^2$, we can also write this term as
+\begin{equation*}
+I_{xx}=\sum m(r^2-x^2).
+\end{equation*}
+
+Working out all of the other terms, the tensor of inertia can be
+written as
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:31:19}
+I_{ij}=
+\begin{bmatrix}
+\sum m(r^2-x^2) & -\sum mxy & -\sum mxz\\
+-\sum myx & \sum m(r^2-y^2) & -\sum myz\\
+-\sum mzx & -\sum mzy & \sum m(r^2-z^2)
+\end{bmatrix}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\label{Eq:II:31:19}
+I_{ij}=\\[1ex]
+\left[\begin{alignedat}{4}
+\sum &m(r^2\!-x^2)& -\!&\sum\!mxy& -\!&\sum\!mxz&\\[.5ex]
+-\!&\sum\!myx& \sum &m(r^2\!-y^2)& -\!&\sum\!myz&\\[.5ex]
+-\!&\sum\!mzx& -\!&\sum\!mzy& \sum &m(r^2\!-z^2)&
+\end{alignedat}\right]\notag
+\end{gather}
+</span>
+</p>
+</div>
+<div id="Ch31-S4-p4" class="para">
+<p class="p">If you wish, this may be written in “tensor notation” as
+\begin{equation}
+\label{Eq:II:31:20}
+I_{ij}=\sum m(r^2\delta_{ij}-r_ir_j),
+\end{equation}
+
+where the $r_i$ are the components $(x,y,z)$ of the position vector of
+a particle and the $\sum$ means to sum over all the particles. The
+moment of inertia, then, is a tensor of the second rank whose terms
+are a property of the body and relate $\FLPL$ to $\FLPomega$ by
+\begin{equation}
+\label{Eq:II:31:21}
+L_i=\sum_jI_{ij}\omega_j.
+\end{equation}
+
+</p>
+</div>
+<div id="Ch31-S4-p5" class="para">
+<p class="p">For a body of any shape whatever, we can find the ellipsoid of inertia
+and, therefore, the three principal axes. Referred to these axes, the
+tensor will be diagonal, so for any object there are always three
+orthogonal axes for which the angular velocity and angular momentum
+are parallel. They are called the principal axes of inertia.</p>
+</div>
+</div>
+<div id="Ch31-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">31–5</span>The cross product</h3>
+<div id="Ch31-S5-p1" class="para">
+<p class="p">We should point out that we have been using tensors of the second rank
+since Chapter <a href="I_20.html">20</a> of Volume I. There, we defined a
+“torque in a plane,” such as $\tau_{xy}$ by
+\begin{equation*}
+\tau_{xy}=xF_y-yF_x.
+\end{equation*}
+
+Generalized to three dimensions, we could write
+\begin{equation}
+\label{Eq:II:31:22}
+\tau_{ij}=r_iF_j-r_jF_i.
+\end{equation}
+
+The quantity $\tau_{ij}$ is a tensor of the second rank. One way to
+see that this is so is by combining $\tau_{ij}$ with some vector, say
+the unit vector $\FLPe$, according to
+\begin{equation*}
+\sum_j\tau_{ij}e_j.
+\end{equation*}
+
+If this quantity is a <em class="emph">vector</em>, then $\tau_{ij}$ must transform
+as a tensor—this is our definition of a tensor. Substituting
+for $\tau_{ij}$, we have
+\begin{align*}
+\sum_j\tau_{ij}e_j&=\sum_jr_iF_je_j-\sum_jr_je_jF_i\\[1ex]
+&=r_i(\FLPF\cdot\FLPe)-(\FLPr\cdot\FLPe)F_i.
+\end{align*}
+
+Since the dot products are scalars, the two terms on the right-hand
+side are vectors, and likewise their difference. So $\tau_{ij}$ is a
+tensor.</p>
+</div>
+<div id="Ch31-S5-p2" class="para">
+<p class="p">But $\tau_{ij}$ is a special kind of tensor; it is
+<em class="emph">antisymmetric</em>, that is,
+\begin{equation*}
+\tau_{ij}=-\tau_{ji},
+\end{equation*}
+
+so it has only three nonzero terms—$\tau_{xy}$, $\tau_{yz}$,
+and $\tau_{zx}$. We were able to show in Chapter <a href="I_20.html">20</a> of
+Volume I that these three terms, almost “by accident,” transform
+like the three components of a vector, so that we could <em class="emph">define</em>
+\begin{equation*}
+\FLPtau=(\tau_x,\tau_y,\tau_z)=(\tau_{yz},\tau_{zx},\tau_{xy})
+\end{equation*}
+
+We say “by accident,” because it happens only in three
+dimensions. In four dimensions, for instance, an antisymmetric tensor
+of the second rank has up to <em class="emph">six</em> nonzero terms and certainly cannot
+be replaced by a vector with <em class="emph">four</em> components.</p>
+</div>
+<div id="Ch31-S5-p3" class="para">
+<p class="p">Just as the axial vector $\FLPtau=\FLPr\times\FLPF$ is a tensor, so
+also is every cross product of two polar vectors—all the same
+arguments apply. By luck, however, they are also representable by
+vectors (really pseudo vectors), so our mathematics has been made
+easier for us.
+</p>
+</div>
+<div id="Ch31-S5-p4" class="para">
+<p class="p">Mathematically, if $\FLPa$ and $\FLPb$ are any two vectors, the nine
+quantities $a_ib_j$ form a tensor (although it may have no useful
+physical purpose). Thus, for the position vector $\FLPr$, $r_ir_j$ is
+a tensor, and since $\delta_{ij}$ is also, we see that the right side
+of Eq. (<a href="#mjx-eqn-EqII3120">31.20</a>) is indeed a tensor. Likewise
+Eq. (<a href="#mjx-eqn-EqII3122">31.22</a>) is a tensor, since the two terms on the
+right-hand side are tensors.</p>
+</div>
+</div>
+<div id="Ch31-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">31–6</span>The tensor of stress</h3>
+<div id="Ch31-S6-p1" class="para">
+<p class="p">The symmetric tensors we have described so far arose as coefficients
+in relating one vector to another. We would like to look now at a
+tensor which has a different physical significance—the tensor of
+<em class="emph">stress</em>. Suppose we have a solid object with various forces on
+it. We say that there are various “stresses” inside, by which we
+mean that there are internal forces between neighboring parts of the
+material. We have talked a little about such stresses in a
+two-dimensional case when we considered the surface tension in a
+stretched diaphragm in Section <a href="II_12.html#Ch12-S3">12–3</a>. We will now see
+that the internal forces in the material of a three-dimensional body
+can be described in terms of a tensor.</p>
+</div>
+<div id="Ch31-F5" class="figure">
+<img src="img/FLP_II/f31-05/f31-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 31–5.</span>The material to the left of the plane $\sigma$ exerts across
+the area $\Delta y\,\Delta z$ the force $\Delta\FigF_1$ on the material
+to the right of the plane.
+</div>
+</div>
+<div id="Ch31-S6-p2" class="para">
+<p class="p">Consider a body of some elastic material—say a block of jello. If we
+make a cut through the block, the material on each side of the cut
+will, in general, get displaced by the internal forces. Before the cut
+was made, there must have been forces between the two parts of the
+block that kept the material in place; we can define the stresses in
+terms of these forces. Suppose we look at an imaginary plane
+perpendicular to the $x$-axis—like the plane $\sigma$ in
+Fig. <a href="#Ch31-F5">31–5</a>—and ask about the force across a small
+area $\Delta y\,\Delta z$ in this plane. The material on the left of the area
+exerts the force $\Delta\FLPF_1$ on the material to the right, as shown
+in part (b) of the figure. There is, of course, the opposite reaction
+force $-\Delta\FLPF_1$ exerted on the material to the left of the
+surface. If the area is small enough, we expect that $\Delta\FLPF_1$ is
+proportional to the area $\Delta y\,\Delta z$.</p>
+</div>
+<div id="Ch31-S6-p3" class="para">
+<p class="p">You are already familiar with one kind of stress—the pressure in a
+static liquid. There the force is equal to the pressure times the area
+and is at right angles to the surface element. For solids—also for
+viscous liquids in motion—the force need not be normal to the
+surface; there are <em class="emph">shear</em> forces in addition to pressures
+(positive or negative). (By a “shear” force we mean the
+<em class="emph">tangential</em> components of the force across a surface.) All three
+components of the force must be taken into account. Notice also that
+if we make our cut on a plane with some other orientation, the forces
+will be different. A complete description of the internal stress
+requires a tensor.</p>
+</div>
+<div id="Ch31-F6" class="figure">
+<img src="img/FLP_II/f31-06/f31-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 31–6.</span>The force $\Delta\FigF_1$ across an element of area $\Delta
+y\,\Delta z$ perpendicular to the $x$-axis is resolved into three
+components $\Delta F_{x1}$, $\Delta F_{y1}$, and $\Delta F_{z1}$.
+</div>
+</div>
+<div id="Ch31-S6-p4" class="para">
+<p class="p">We define the stress tensor in the following way: First, we imagine a
+cut perpendicular to the $x$-axis and resolve the force $\Delta\FLPF_1$
+across the cut into its components $\Delta F_{x1}$, $\Delta F_{y1}$,
+$\Delta F_{z1}$, as in Fig. <a href="#Ch31-F6">31–6</a>. The ratio of these forces
+to the area $\Delta y\,\Delta z$, we call $S_{xx}$, $S_{yx}$,
+and $S_{zx}$. For example,
+\begin{equation*}
+S_{yx}=\frac{\Delta F_{y1}}{\Delta y\,\Delta z}.
+\end{equation*}
+
+The first index $y$ refers to the direction force component; the
+second index $x$ is normal to the area. If you wish, you can write the
+area $\Delta y\,\Delta z$ as $\Delta a_x$, meaning an element of area
+perpendicular to $x$. Then
+\begin{equation*}
+S_{yx}=\frac{\Delta F_{y1}}{\Delta a_x}.
+\end{equation*}
+
+Next, we think of an imaginary cut perpendicular to the $y$-axis. Across
+a small area $\Delta x\,\Delta z$ there will be a force $\Delta\FLPF_2$.
+Again we resolve this force into three components, as shown in
+Fig. <a href="#Ch31-F7">31–7</a>, and define the three components of the stress,
+$S_{xy}$, $S_{yy}$, $S_{zy}$, as the force per unit area in the three
+directions. Finally, we make an imaginary cut perpendicular to $z$ and
+define the three components $S_{xz}$, $S_{yz}$, and $S_{zz}$. So we have
+the nine numbers
+\begin{equation}
+\label{Eq:II:31:23}
+S_{ij}=\begin{bmatrix}
+S_{xx} & S_{xy} & S_{xz}\\
+S_{yx} & S_{yy} & S_{yz}\\
+S_{zx} & S_{zy} & S_{zz}\\
+\end{bmatrix}.
+\end{equation}
+</p>
+</div>
+<div id="Ch31-F7" class="figure">
+<img src="img/FLP_II/f31-07/f31-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 31–7.</span>The force across an element of area perpendicular to $y$ is
+resolved into three rectangular components.
+</div>
+</div>
+<div id="Ch31-S6-p5" class="para">
+<p class="p">We want to show now that these nine numbers are sufficient to describe
+completely the internal state of stress, and that $S_{ij}$ is indeed a
+tensor. Suppose we want to know the force across a surface oriented at
+some arbitrary angle. Can we find it from $S_{ij}$? Yes, in the
+following way: We imagine a little solid figure which has one face $N$
+in the new surface, and the other faces parallel to the coordinate axes.
+If the face $N$ happened to be parallel to the $z$-axis, we would have
+the triangular piece shown in Fig. <a href="#Ch31-F8">31–8</a>. (This is a
+somewhat special case, but will illustrate well enough the general
+method.) Now the stress forces on the little solid triangle in
+Fig. <a href="#Ch31-F8">31–8</a> are in equilibrium (at least in the limit of
+infinitesimal dimensions), so the total force on it must be zero. We
+know the forces on the faces parallel to the coordinate axes directly
+from $S_{ij}$. Their vector sum must equal the force on the face $N$, so
+we can express this force in terms of $S_{ij}$.</p>
+</div>
+<div id="Ch31-F8" class="figure">
+<img src="img/FLP_II/f31-08/f31-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 31–8.</span>The force $\FigF_n$ across the face $N$ (whose unit normal
+is $\Fign$) is resolved into components.
+</div>
+</div>
+<div id="Ch31-S6-p6" class="para">
+<p class="p">Our assumption that the <em class="emph">surface</em> forces on the small triangular
+volume are in equilibrium neglects any other <em class="emph">body</em> forces that
+might be present, such as gravity or pseudo forces if our coordinate
+system is not an inertial frame. Notice, however, that such body
+forces will be proportional to the <em class="emph">volume</em> of the little
+triangle and, therefore, to $\Delta x\,\Delta y\,\Delta z$, whereas
+all the surface forces are proportional to the areas such as $\Delta
+x\,\Delta y$, $\Delta y\,\Delta z$, etc. So if we take the scale of
+the little wedge small enough, the body forces can always be neglected
+in comparison with the surface forces.</p>
+</div>
+<div id="Ch31-S6-p7" class="para">
+<p class="p">Let’s now add up the forces on the little wedge. We take first the
+$x$-component, which is the sum of five parts—one from each
+face. However, if $\Delta z$ is small enough, the forces on the
+triangular faces (perpendicular to the $z$-axis) will be equal and
+opposite, so we can forget them. The $x$-component of the force on the
+bottom rectangle is
+\begin{equation*}
+\Delta F_{x2}=S_{xy}\,\Delta x\,\Delta z.
+\end{equation*}
+
+The $x$-component of the force on the vertical rectangle is
+\begin{equation*}
+\Delta F_{x1}=S_{xx}\,\Delta y\,\Delta z.
+\end{equation*}
+
+These two must be equal to the $x$-component of the force
+<em class="emph">outward</em> across the face $N$. Let’s call $\FLPn$ the unit vector
+normal to the face $N$, and the force on it $\FLPF_n$; then we have
+\begin{equation*}
+\Delta F_{xn}=S_{xx}\,\Delta y\,\Delta z+S_{xy}\,\Delta x\,\Delta z.
+\end{equation*}
+
+The $x$-component $S_{xn}$, of the stress across this plane is equal
+to $\Delta F_{xn}$ divided by the area, which is $\Delta z\sqrt{\Delta
+x^2+\Delta y^2}$, or
+\begin{equation*}
+S_{xn}=S_{xx}\,\frac{\Delta y}{\sqrt{\Delta x^2+\Delta y^2}}+
+S_{xy}\,\frac{\Delta x}{\sqrt{\Delta x^2+\Delta y^2}}.
+\end{equation*}
+
+Now $\Delta x/\sqrt{\Delta x^2+\Delta y^2}$ is the cosine of the
+angle $\theta$ between $\FLPn$ and the $y$-axis, as shown in
+Fig. <a href="#Ch31-F8">31–8</a>, so it can also be written as $n_y$, the
+$y$-component of $\FLPn$. Similarly, $\Delta y/\sqrt{\Delta x^2+\Delta
+y^2}$ is $\sin\theta=n_x$. We can write
+\begin{equation*}
+S_{xn}=S_{xx}n_x+S_{xy}n_y.
+\end{equation*}
+
+If we now generalize to an arbitrary surface element, we would get
+that
+\begin{equation*}
+S_{xn}=S_{xx}n_x+S_{xy}n_y+S_{xz}n_z
+\end{equation*}
+
+or, in general,
+\begin{equation}
+\label{Eq:II:31:24}
+S_{in}=\sum_jS_{ij}n_j.
+\end{equation}
+
+We <em class="emph">can</em> find the force across any surface element in terms of
+the $S_{ij}$, so it does describe completely the state of internal
+stress of the material.</p>
+</div>
+<div id="Ch31-S6-p8" class="para">
+<p class="p">Equation (<a href="#mjx-eqn-EqII3124">31.24</a>) says that the tensor $S_{ij}$ relates the
+stress $\FLPS_n$ to the unit vector $\FLPn$, just as $\alpha_{ij}$
+relates $\FLPP$ to $\FLPE$. Since $\FLPn$ and $\FLPS_n$ are vectors,
+the components of $S_{ij}$ must transform as a tensor with changes in
+coordinate axes. So $S_{ij}$ is indeed a tensor.</p>
+</div>
+<div id="Ch31-S6-p9" class="para">
+<p class="p">We can also show that $S_{ij}$ is a <em class="emph">symmetric</em> tensor by looking
+at the forces on a little cube of material. Suppose we take a little
+cube, oriented with its faces parallel to our coordinate axes, and
+look at it in cross section, as shown in Fig. <a href="#Ch31-F9">31–9</a>. If we let the
+edge of the cube be one unit, the $x$- and $y$-components of the
+forces on the faces normal to the $x$- and $y$-axes might be as shown
+in the figure. If the cube is small, the stresses do not change
+appreciably from one side of the cube to the opposite side, so the
+force components are equal and opposite as shown. Now there must be no
+torque on the cube, or it would start spinning. The total torque about
+the center is $(S_{yx}-S_{xy})$ (times the unit edge of the cube), and
+since the total is zero, $S_{yx}$ is equal to $S_{xy}$, and the stress
+tensor is symmetric.</p>
+</div>
+<div id="Ch31-F9" class="figure">
+<img src="img/FLP_II/f31-09/f31-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 31–9.</span>The $x$- and $y$-forces on four faces of a small unit cube.
+</div>
+</div>
+<div id="Ch31-S6-p10" class="para">
+<p class="p">Since $S_{ij}$ is a symmetric tensor, it can be described by an
+ellipsoid which will have three principal axes. For surfaces normal to
+these axes, the stresses are particularly simple—they correspond to
+pushes or pulls perpendicular to the surfaces. There are no shear
+forces along these faces. For <em class="emph">any</em> stress, we can always choose
+our axes so that the shear components are zero. If the ellipsoid is a
+sphere, there are only normal forces in <em class="emph">any</em> direction. This
+corresponds to a hydrostatic pressure (positive or negative). So for a
+hydrostatic pressure, the tensor is diagonal and all three components
+are equal; they are, in fact, just equal to the pressure $p$. We can
+write
+\begin{equation}
+\label{Eq:II:31:25}
+S_{ij}=p\delta_{ij}.
+\end{equation}
+</p>
+</div>
+<div id="Ch31-S6-p11" class="para">
+<p class="p">The stress tensor—and also its ellipsoid—will, in general, vary
+from point to point in a block of material; to describe the whole
+block we need to give the value of each component of $S_{ij}$ as a
+function of position. So the stress tensor is a <em class="emph">field</em>. We have
+had <em class="emph">scalar fields</em>, like the temperature $T(x,y,z)$, which give
+one number for each point in space, and <em class="emph">vector fields</em>
+like $\FLPE(x,y,z)$, which give three numbers for each point. Now we
+have a <em class="emph">tensor field</em> which gives nine numbers
+for each point in space—or really six for the symmetric
+tensor $S_{ij}$. A complete description of the internal forces in an
+arbitrarily distorted solid requires six functions of $x$, $y$, and $z$.</p>
+</div>
+</div>
+<div id="Ch31-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">31–7</span>Tensors of higher rank</h3>
+<div id="Ch31-S7-p1" class="para">
+<p class="p">The stress tensor $S_{ij}$ describes the internal <em class="emph">forces</em> of
+matter. If the material is elastic, it is convenient to describe the
+internal <em class="emph">distortion</em> in terms of another
+tensor $T_{ij}$—called the <em class="emph">strain</em> tensor. For a simple object like a bar of
+metal, you know that the change in length, $\Delta L$, is approximately
+proportional to the force, so we say it obeys Hooke’s
+law:
+\begin{equation*}
+\Delta L=\gamma F.
+\end{equation*}
+
+For a solid elastic body with arbitrary distortions, the strain $T_{ij}$
+is related to the stress $S_{ij}$ by a set of linear equations:
+\begin{equation}
+\label{Eq:II:31:26}
+T_{ij}=\sum_{k,l}\gamma_{ijkl}S_{kl}.
+\end{equation}
+
+Also, you know that the potential energy of a spring (or bar) is
+\begin{equation*}
+\tfrac{1}{2}F\,\Delta L=\tfrac{1}{2}\gamma F^2.
+\end{equation*}
+
+The generalization for the elastic energy <em class="emph">density</em> in a solid
+body is
+\begin{equation}
+\label{Eq:II:31:27}
+U_{\text{elastic}}=\sum_{ijkl}\tfrac{1}{2}\gamma_{ijkl}S_{ij}S_{kl}.
+\end{equation}
+
+The complete description of the elastic properties of a crystal must
+be given in terms of the coefficients $\gamma_{ijkl}$. This introduces
+us to a new beast. It is a tensor of the <em class="emph">fourth</em> rank. Since
+each index can take on any one of three values, $x$, $y$, or $z$,
+there are $3^4=81$ coefficients. But there are really only
+$21$ <em class="emph">different</em> numbers. First, since $S_{ij}$ is symmetric, it has
+only six different values, and only $36$ <em class="emph">different</em> coefficients
+are needed in Eq. (<a href="#mjx-eqn-EqII3127">31.27</a>). But also, $S_{ij}$ can be
+interchanged with $S_{kl}$ without changing the energy,
+so $\gamma_{ijkl}$ must be symmetric if we interchange $ij$
+and $kl$. This reduces the number of different coefficients to $21$. So to
+describe the elastic properties of a crystal of the lowest possible
+symmetry requires $21$ elastic constants! This number is, of course,
+reduced for crystals of higher symmetry. For example, a cubic crystal
+has only three elastic constants, and an isotropic substance has only
+two.</p>
+</div>
+<div id="Ch31-S7-p2" class="para">
+<p class="p">That the latter is true can be seen as follows. How can the components
+of $\gamma_{ijkl}$ be independent of the direction of the axes, as they
+must be if the material is isotropic? <em class="emph">Answer:</em> They can be
+independent <em class="emph">only</em> if they are expressible in terms of the
+tensor $\delta_{ij}$. There are two possible expressions,
+$\delta_{ij}\delta_{kl}$
+and $\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk}$, which have the
+required symmetry, so $\gamma_{ijkl}$ must be a linear combination of
+them. Therefore, for isotropic materials,
+\begin{equation*}
+\gamma_{ijkl}=a(\delta_{ij}\delta_{kl})+
+b(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk}),
+\end{equation*}
+
+and the material requires two constants, $a$ and $b$, to describe its
+elastic properties. We will leave it for you to show that a cubic
+crystal needs only three.</p>
+</div>
+<div id="Ch31-S7-p3" class="para">
+<p class="p">As a final example, this time of a third-rank tensor, we have the
+piezoelectric effect. Under stress, a crystal generates an electric
+field proportional to the stress; hence, in general, the law is
+\begin{equation*}
+E_i=\sum_{j,k}P_{ijk}S_{jk},
+\end{equation*}
+
+where $E_i$ is the electric field, and the $P_{ijk}$ are the
+piezoelectric coefficients—or the piezoelectric tensor. Can you show
+that if the crystal has a center of inversion (invariant
+under $x,y,z\to-x,-y,-z$) the piezoelectric coefficients are all zero?</p>
+</div>
+</div>
+<div id="Ch31-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">31–8</span>The four-tensor of electromagnetic momentum</h3>
+<div id="Ch31-S8-p1" class="para">
+<p class="p">All the tensors we have looked at so far in this chapter relate to the
+three dimensions of space; they are defined to have a certain
+transformation property under spatial rotations. In
+Chapter <a href="II_26.html">26</a> we had occasion to use a tensor in the four
+dimensions of relativistic space-time—the electromagnetic field
+tensor $F_{\mu\nu}$. The components of such a four-tensor transform under a
+Lorentz transformation of the coordinates in a special way that we
+worked out. (Although we did not do it that way, we could have
+considered the Lorentz transformation as a “rotation” in a
+four-dimensional “space” called Minkowski space; then the analogy with
+what we are doing here would have been clearer.)
+</p>
+</div>
+<div id="Ch31-S8-p2" class="para">
+<p class="p">As our last example, we want to consider another tensor in the four
+dimensions $(t,x,y,z)$ of relativity theory. When we wrote the stress
+tensor, we defined $S_{ij}$ as a component of a force across a unit
+area. But a force is equal to the time rate of change of a momentum.
+Therefore, instead of saying “$S_{xy}$ is the $x$-component of the
+force across a unit area perpendicular to $y$,” we could equally well
+say, “$S_{xy}$ is the rate of flow of the $x$-component of momentum
+through a unit area perpendicular to $y$.” In other words, each term
+of $S_{ij}$ also represents the flow of the $i$-component of momentum
+through a unit area perpendicular to the $j$-direction. These are pure
+space components, but they are parts of a “larger” tensor $S_{\mu\nu}$
+in four dimensions ($\mu$ and $\nu=t,x,y,z$) containing additional
+components like $S_{tx}$, $S_{yt}$, $S_{tt}$, etc. We will now try to
+find the physical meaning of these extra components.</p>
+</div>
+<div id="Ch31-S8-p3" class="para">
+<p class="p">We know that the space components represent flow of momentum. We can
+get a clue on how to extend this to the time dimension by studying
+another kind of “flow”—the flow of electric charge. For the
+<em class="emph">scalar</em> quantity, charge, the rate of flow (per unit area
+perpendicular to the flow) is a space <em class="emph">vector</em>—the current
+density vector $\FLPj$. We have seen that the time component of this
+flow vector is the density of the stuff that is flowing. For instance,
+$\FLPj$ can be combined with a time component, $j_t=\rho$, the charge
+density, to make the four-vector $j_\mu=(\rho,\FLPj)$; that is,
+the $\mu$ in $j_\mu$ takes on the values $t$, $x$, $y$, $z$ to mean
+“density, rate of flow in the $x$-direction, rate of flow in $y$,
+rate of flow in $z$” of the scalar charge.</p>
+</div>
+<div id="Ch31-S8-p4" class="para">
+<p class="p">Now by analogy with our statement about the time component of the flow
+of a scalar quantity, we might expect that with $S_{xx}$, $S_{xy}$,
+and $S_{xz}$, describing the flow of the $x$-component of momentum,
+there should be a time component $S_{xt}$ which would be the density
+of whatever is flowing; that is, $S_{xt}$ should be the density of
+$x$-momentum. So we can extend our tensor horizontally to include a
+$t$-component. We have
+\begin{equation*}
+\begin{aligned}
+S_{xt}&=\text{density of $x$-momentum},\\[1ex]
+S_{xx}&=\text{$x$-flow of $x$-momentum},\\[1ex]
+S_{xy}&=\text{$y$-flow of $x$-momentum},\\[1ex]
+S_{xz}&=\text{$z$-flow of $x$-momentum}.
+\end{aligned}
+\end{equation*}
+
+Similarly, for the $y$-component of momentum we have the three
+components of flow—$S_{yx}$, $S_{yy}$, $S_{yz}$—to which we should
+add a fourth term:
+\begin{equation*}
+S_{yt}=\text{density of $y$-momentum}.
+\end{equation*}
+
+And, of course, to $S_{zx}$, $S_{zy}$, $S_{zz}$ we would add
+\begin{equation*}
+S_{zt}=\text{density of $z$-momentum}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch31-S8-p5" class="para">
+<p class="p">In four dimensions there is also a $t$-component of momentum, which
+is, we know, energy. So the tensor $S_{ij}$ should be extended
+vertically with $S_{tx}$, $S_{ty}$, and $S_{tz}$, where
+\begin{equation}
+\label{Eq:II:31:28}
+\begin{aligned}
+S_{tx}&=\text{$x$-flow of energy},\\[1ex]
+S_{ty}&=\text{$y$-flow of energy},\\[1ex]
+S_{tz}&=\text{$z$-flow of energy};
+\end{aligned}
+\end{equation}
+
+that is, $S_{tx}$ is the flow of energy per unit area and per unit
+time across a surface perpendicular to the $x$-axis, and so
+on. Finally, to complete our tensor we need $S_{tt}$, which would be
+the <em class="emph">density</em> of <em class="emph">energy</em>. We have extended our stress
+tensor $S_{ij}$ of three dimensions to the four-dimensional
+<em class="emph">stress-energy tensor</em> $S_{\mu\nu}$. The index $\mu$ can take on
+the four values $t$, $x$, $y$, and $z$, meaning, respectively,
+“density,” “flow per unit area in the $x$-direction,” “flow per
+unit area in the $y$-direction,” and “flow per unit area in the
+$z$-direction.”  In the same way, $\nu$ takes on the four values
+$t$, $x$, $y$, $z$ to tell us <em class="emph">what</em> flows, namely, “energy,”
+“momentum in the $x$-direction,” “momentum in the $y$-direction,”
+and “momentum in the $z$-direction.”</p>
+</div>
+<div id="Ch31-S8-p6" class="para">
+<p class="p">As an example, we will discuss this tensor not in matter, but in a
+region of free space in which there is an electromagnetic field. We know
+that the flow of energy is the Poynting vector $\FLPS=\epsO
+c^2\FLPE\times\FLPB$. So the $x$-, $y$-, and $z$-components of $\FLPS$
+are, from the relativistic point of view, the components
+$S_{tx}$, $S_{ty}$, and $S_{tz}$ of our four-dimensional stress-energy
+tensor. The symmetry of the tensor $S_{ij}$ carries over into the time
+components as well, so the four-dimensional tensor $S_{\mu\nu}$ is
+symmetric:
+\begin{equation}
+\label{Eq:II:31:29}
+S_{\mu\nu}=S_{\nu\mu}.
+\end{equation}
+
+In other words, the components $S_{xt}$, $S_{yt}$, $S_{zt}$, which are
+the <em class="emph">densities</em> of $x$, $y$, and $z$ <em class="emph">momentum</em>, are also
+equal to the $x$-, $y$-, and $z$-components of the Poynting
+vector $\FLPS$, the <em class="emph">energy flow</em>—as we have already shown in an
+earlier chapter by a different kind of argument.</p>
+</div>
+<div id="Ch31-S8-p7" class="para">
+<p class="p">The remaining components of the electromagnetic stress tensor $S_{\mu\nu}$
+can also be expressed in terms of the electric and
+magnetic fields $\FLPE$ and $\FLPB$. That is to say, we must admit
+stress or, to put it less mysteriously, flow of momentum in the
+electromagnetic field. We discussed this in Chapter <a href="II_27.html">27</a> in
+connection with Eq. (<a href="II_27.html#mjx-eqn-EqII2721">27.21</a>), but did not work out the
+details.</p>
+</div>
+<div id="Ch31-S8-p8" class="para">
+<p class="p">Those who want to exercise their prowess in tensors in four dimensions
+might like to see the formula for $S_{\mu\nu}$ in terms of the fields:
+\begin{equation*}
+S_{\mu\nu}=-\epsO\biggl(
+\sum_\alpha F_{\mu\alpha}F_{\nu\alpha}-\tfrac{1}{4}\delta_{\mu\nu}
+\sum_{\alpha,\beta}F_{\beta\alpha}F_{\beta\alpha}
+\biggr),
+\end{equation*}
+
+where sums on $\alpha$, $\beta$ are on $t$, $x$, $y$, $z$ but (as
+usual in relativity) we adopt a special meaning for the sum
+sign $\sum$ and for the symbol $\delta$. In the sums the $x$, $y$, $z$
+terms are to be <em class="emph">subtracted</em> and $\delta_{tt}=+1$, while
+$\delta_{xx}=$ $\delta_{yy}=$ $\delta_{zz}=$ $-1$ and $\delta_{\mu\nu}=0$
+for $\mu\neq\nu$ ($c=1$). Can you verify that it gives the energy
+density $S_{tt}=(\epsO/2)\,(E^2+B^2)$ and the Poynting
+vector $\epsO\FLPE\times\FLPB$?  Can you show that in an electrostatic field
+with $\FLPB=\FLPzero$ the principal axes of stress are in the
+direction of the electric field, that there is a
+<em class="emph">tension</em> $(\epsO/2)E^2$ along the direction of the field, and that there
+is an
+equal <em class="emph">pressure</em> in directions perpendicular to the field
+direction?</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  In Chapter <a href="II_10.html">10</a>
+we followed the usual convention and wrote $P=\epsO\chi E$ and called
+$\chi$ (“khi”) the “susceptibility.” Here, it will be more
+convenient to use a single letter, so we write $\alpha$
+for $\epsO\chi$. For isotropic dielectrics, $\alpha=(\kappa-1)\epsO$,
+where $\kappa$ is the dielectric constant (see
+Section <a href="II_10.html#Ch10-S4">10–4</a>).
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  This work done in <em class="emph">producing</em> the polarization by
+an electric field is not to be confused with the potential
+energy $-\FLPp_0\cdot\FLPE$ of a permanent dipole moment $\FLPp_0$.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

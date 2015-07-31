@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 6: The Electric Field in Various Circumstances</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "6." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch6" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">6</span>The Electric Field in Various Circumstances</h2>
+
+<table class="table">
+	<tr>
+		<td class="ref">
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapter&nbsp;<a href="I_23.html">23</a>, Vol.&nbsp;I, <i>Resonance</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch6-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">6–1</span>Equations of the electrostatic potential</h3>
+<div id="Ch6-S1-p1" class="para">
+<p class="p">This chapter will describe the behavior of the electric field in a
+number of different circumstances. It will provide some experience
+with the way the electric field behaves, and will describe some of the
+mathematical methods which are used to find this field.</p>
+</div>
+<div id="Ch6-S1-p2" class="para">
+<p class="p">We begin by pointing out that the whole mathematical problem is the
+solution of two equations, the Maxwell equations for electrostatics:
+\begin{align}
+\label{Eq:II:6:1}
+\FLPdiv{\FLPE}&=\frac{\rho}{\epsO},\\[1ex]
+\label{Eq:II:6:2}
+\FLPcurl{\FLPE}&=\FLPzero.
+\end{align}
+
+In fact, the two can be combined into a single equation. From the
+second equation, we know at once that we can describe the field as the
+gradient of a scalar (see Section <a href="II_03.html#Ch3-S7">3–7</a>):
+\begin{equation}
+\label{Eq:II:6:3}
+\FLPE=-\FLPgrad{\phi}.
+\end{equation}
+</p>
+</div>
+<div id="Ch6-S1-p3" class="para">
+<p class="p">We may, if we wish, completely describe any particular electric field in terms
+of its potential $\phi$. We obtain the differential equation that $\phi$ must
+obey by substituting Eq. (<a href="#mjx-eqn-EqII63">6.3</a>) into (<a href="#mjx-eqn-EqII61">6.1</a>), to get
+\begin{equation}
+\label{Eq:II:6:4}
+\FLPdiv{\FLPgrad{\phi}}=-\frac{\rho}{\epsO}.
+\end{equation}
+
+The divergence of the gradient of $\phi$ is the same as $\nabla^2$
+operating on $\phi$:
+\begin{equation}
+\label{Eq:II:6:5}
+\FLPdiv{\FLPgrad{\phi}}=\nabla^2\phi=
+\frac{\partial^2\phi}{\partial x^2}+
+\frac{\partial^2\phi}{\partial y^2}+
+\frac{\partial^2\phi}{\partial z^2},
+\end{equation}
+
+so we write Eq. (<a href="#mjx-eqn-EqII64">6.4</a>) as
+\begin{equation}
+\label{Eq:II:6:6}
+\nabla^2\phi=-\frac{\rho}{\epsO}.
+\end{equation}
+
+The operator $\nabla^2$ is called the Laplacian, and
+Eq. (<a href="#mjx-eqn-EqII66">6.6</a>) is called the Poisson
+equation. The entire subject of
+electrostatics, from a mathematical point of view, is merely a study of
+the solutions of the single equation (<a href="#mjx-eqn-EqII66">6.6</a>). Once $\phi$ is
+obtained by solving Eq. (<a href="#mjx-eqn-EqII66">6.6</a>) we can find $\FLPE$
+immediately from Eq. (<a href="#mjx-eqn-EqII63">6.3</a>).
+</p>
+</div>
+<div id="Ch6-S1-p4" class="para">
+<p class="p">We take up first the special class of problems in which $\rho$ is
+given as a function of $x$, $y$, $z$. In that case the problem is
+almost trivial, for we already know the solution of
+Eq. (<a href="#mjx-eqn-EqII66">6.6</a>) for the general case. We have shown that if $\rho$
+is known at every point, the potential at point $(1)$ is
+\begin{equation}
+\label{Eq:II:6:7}
+\phi(1)=\int\frac{\rho(2)\,dV_2}{4\pi\epsO r_{12}},
+\end{equation}
+
+where $\rho(2)$ is the charge density, $dV_2$ is the volume element at
+point $(2)$, and $r_{12}$ is the distance between points $(1)$
+and $(2)$. The solution of the <em class="emph">differential</em>
+equation (<a href="#mjx-eqn-EqII66">6.6</a>) is reduced to an <em class="emph">integration</em> over
+space. The solution (<a href="#mjx-eqn-EqII67">6.7</a>) should be especially noted,
+because there are many situations in physics that lead to equations like
+\begin{equation*}
+\nabla^2(\text{something})=(\text{something else}),
+\end{equation*}
+
+and Eq. (<a href="#mjx-eqn-EqII67">6.7</a>) is a prototype of the solution for any of
+these problems.</p>
+</div>
+<div id="Ch6-S1-p5" class="para">
+<p class="p">The solution of electrostatic field problems is thus completely
+straightforward when the positions of all the charges are known. Let’s
+see how it works in a few examples.</p>
+</div>
+</div>
+<div id="Ch6-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">6–2</span>The electric dipole</h3>
+<div id="Ch6-F1" class="figure">
+<img src="img/FLP_II/f06-01/f06-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–1.</span>A dipole: two charges $+q$ and $-q$ the distance $d$ apart.
+</div>
+</div>
+<div id="Ch6-S2-p1" class="para">
+<p class="p">First, take two point charges, $+q$ and $-q$, separated by the
+distance $d$. Let the $z$-axis go through the charges, and pick the
+origin halfway between, as shown in Fig. <a href="#Ch6-F1">6–1</a>. Then,
+using (<a href="II_04.html#mjx-eqn-EqII424">4.24</a>), the potential from the two charges is given
+by
+<span class="eq-wide">
+\begin{align}
+\phi(x,y,z&)\notag\\
+\label{Eq:II:6:8}
+&=\frac{1}{4\pi\epsO}\biggl[
+\frac{q}{\sqrt{[z-(d/2)]^2+x^2+y^2}}+
+\frac{-q}{\sqrt{[z+(d/2)]^2+x^2+y^2}}
+\biggr].
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{alignat}{2}
+\phi(&x,y,z)\\[.5ex]
+\label{Eq:II:6:8}
+&=\frac{1}{4\pi\epsO}\!\biggl[
+&\frac{q}{\sqrt{[z\!-\!(d/2)]^2\!+\!x^2\!+\!y^2}}\,+\notag\\
+&\phantom{\frac{1}{4\pi\epsO}\biggl[}
+&\frac{-q}{\sqrt{[z\!+\!(d/2)]^2\!+\!x^2\!+\!y^2}}\biggr].\notag
+\end{alignat}
+</span>
+We are not going to write out the formula for the electric field, but
+we can always calculate it once we have the potential. So we have
+solved the problem of two charges.</p>
+</div>
+<div id="Ch6-S2-p2" class="para">
+<p class="p">There is an important special case in which the two charges are very
+close together—which is to say that we are interested in the fields
+only at distances from the charges large in comparison with their
+separation. We call such a close pair of charges a
+<em class="emph">dipole</em>. Dipoles are very common.</p>
+</div>
+<div id="Ch6-S2-p3" class="para">
+<p class="p">A “dipole” antenna can often be approximated by two charges
+separated by a small distance—if we don’t ask about the field too
+close to the antenna. (We are usually interested in antennas with
+<em class="emph">moving</em> charges; then the equations of statics do not really
+apply, but for some purposes they are an adequate approximation.)</p>
+</div>
+<div id="Ch6-S2-p4" class="para">
+<p class="p">More important perhaps, are atomic dipoles. If there is an electric
+field in any material, the electrons and protons feel opposite forces
+and are displaced relative to each other. In a conductor, you
+remember, some of the electrons move to the surfaces, so that the
+field inside becomes zero. In an insulator the electrons cannot move
+very far; they are pulled back by the attraction of the nucleus. They
+do, however, shift a little bit. So although an atom, or molecule,
+remains neutral in an external electric field, there is a very tiny
+separation of its positive and negative charges and it becomes a
+microscopic dipole. If we are interested in the fields of these atomic
+dipoles in the neighborhood of ordinary-sized objects, we are normally
+dealing with distances large compared with the separations of the
+pairs of charges.</p>
+</div>
+<div id="Ch6-F2" class="figure">
+<img src="img/FLP_II/f06-02/f06-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–2.</span>The water molecule H$_2$O. The hydrogen atoms have slightly
+less than their share of the electron cloud; the oxygen, slightly
+more.
+</div>
+</div>
+<div id="Ch6-S2-p5" class="para">
+<p class="p">In some molecules the charges are somewhat separated even in the
+absence of external fields, because of the form of the molecule. In a
+water molecule, for example, there is a net negative charge on the
+oxygen atom and a net positive charge on each of the two hydrogen
+atoms, which are not placed symmetrically but as in
+Fig. <a href="#Ch6-F2">6–2</a>. Although the charge of the whole molecule is
+zero, there is a charge distribution with a little more negative charge
+on one side and a little more positive charge on the other. This
+arrangement is certainly not as simple as two point charges, but when
+seen from far away the system acts like a dipole.  As we shall see a
+little later, the field at large distances is not sensitive to the fine
+details.</p>
+</div>
+<div id="Ch6-S2-p6" class="para">
+<p class="p">Let’s look, then, at the field of two opposite charges with a small
+separation $d$. If $d$ becomes zero, the two charges are on top of
+each other, the two potentials cancel, and there is no field. But if
+they are not exactly on top of each other, we can get a good
+approximation to the potential by expanding the terms
+of (<a href="#mjx-eqn-EqII68">6.8</a>) in a power series in the small quantity $d$ (using
+the binomial expansion). Keeping terms only to first order in $d$, we
+can write
+\begin{equation*}
+\biggl(z-\frac{d}{2}\biggr)^2\approx z^2-zd.
+\end{equation*}
+It is convenient to write
+\begin{equation*}
+x^2+y^2+z^2=r^2.
+\end{equation*}
+Then
+<span class="eq-wide">
+\begin{equation*}
+\biggl(z-\frac{d}{2}\biggr)^2+x^2+y^2\approx r^2-zd=
+r^2\biggl(1-\frac{zd}{r^2}\biggr),
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{gather*}
+\biggl(z-\frac{d}{2}\biggr)^2+x^2+y^2\approx r^2-zd\\[1ex]
+=r^2\biggl(1-\frac{zd}{r^2}\biggr),
+\end{gather*}
+</span>
+and
+<span class="eq-wide">
+\begin{equation*}
+\frac{1}{\sqrt{[z-(d/2)]^2+x^2+y^2}}\approx
+\frac{1}{\sqrt{r^2[1-(zd/r^2)]}}=
+\frac{1}{r}\biggl(1-\frac{zd}{r^2}\biggr)^{-1/2}.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{gather*}
+\frac{1}{\sqrt{[z-(d/2)]^2+x^2+y^2}}\approx
+\frac{1}{\sqrt{r^2[1-(zd/r^2)]}}\\[2ex]
+=\frac{1}{r}\biggl(1-\frac{zd}{r^2}\biggr)^{-1/2}.
+\end{gather*}
+</span>
+Using the binomial expansion again for $[1-(zd/r^2)]^{-1/2}$&mdash;and
+throwing away terms with the square or higher powers of&nbsp;$d$&mdash;we get
+\begin{equation*}
+\frac{1}{r}\biggl(1+\frac{1}{2}\,\frac{zd}{r^2}\biggr).
+\end{equation*}
+Similarly,
+\begin{equation*}
+\frac{1}{\sqrt{[z+(d/2)]^2+x^2+y^2}}\approx
+\frac{1}{r}\biggl(1-\frac{1}{2}\,\frac{zd}{r^2}\biggr).
+\end{equation*}
+The difference of these two terms gives for the potential
+\begin{equation}
+\label{Eq:II:6:9}
+\phi(x,y,z)=\frac{1}{4\pi\epsO}\,\frac{z}{r^3}\,qd.
+\end{equation}
+The potential, and hence the field, which is its derivative, is
+proportional to $qd$, the product of the charge and the separation. This
+product is defined as the <em class="emph">dipole moment</em> of the two charges, for which we
+will use the symbol $p$ (do <em class="emph">not</em> confuse with momentum!):
+\begin{equation}
+\label{Eq:II:6:10}
+p=qd.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch6-S2-p7" class="para">
+<p class="p">Equation (<a href="#mjx-eqn-EqII69">6.9</a>) can also be written as
+\begin{equation}
+\label{Eq:II:6:11}
+\phi(x,y,z)=\frac{1}{4\pi\epsO}\,\frac{p\cos\theta}{r^2},
+\end{equation}
+since $z/r=\cos\theta$, where $\theta$ is the angle between the axis
+of the dipole and the radius vector to the point $(x,y,z)$—see
+Fig. <a href="#Ch6-F1">6–1</a>. The <em class="emph">potential</em> of a dipole decreases
+as $1/r^2$ for a given direction from the axis (whereas for a point
+charge it goes as $1/r$). The electric field $\FLPE$ of the dipole will
+then decrease as $1/r^3$.</p>
+</div>
+
+<div id="Ch6-F3" class="figure">
+<img src="img/FLP_II/f06-03/f06-03_tc_big.svgz">
+<div class="caption">
+<span class="tag">Fig. 6–3.</span>Vector notation for a dipole.
+</div>
+</div>
+
+<div id="Ch6-S2-p8" class="para">
+<p class="p">We can put our formula into a vector form if we define $\FLPp$ as a
+vector whose magnitude is $p$ and whose direction is along the axis of
+the dipole, pointing from $-q$ toward $+q$. Then
+\begin{equation}
+\label{Eq:II:6:12}
+p\cos\theta=\FLPp\cdot\FLPe_r,
+\end{equation}
+where $\FLPe_r$ is the unit radial vector (Fig. <a href="#Ch6-F3">6–3</a>). We
+can also represent the point $(x,y,z)$ by $\FLPr$. Then
+<br><br>
+<em class="emph">&emsp;&emsp;Dipole potential:</em>
+\begin{equation}
+\label{Eq:II:6:13}
+\phi(\FLPr)=\frac{1}{4\pi\epsO}\,\frac{\FLPp\cdot\FLPe_r}{r^2}=
+\frac{1}{4\pi\epsO}\,\frac{\FLPp\cdot\FLPr}{r^3}
+\end{equation}
+This formula is valid for a dipole with any orientation and position
+if $\FLPr$ represents the vector from the dipole to the point of
+interest.</p>
+</div>
+
+<div id="Ch6-S2-p9" class="para">
+<p class="p">If we want the electric field of the dipole we can get it by taking
+the gradient of $\phi$. For example, the $z$-component of the field is
+$-\ddpl{\phi}{z}$. For a dipole oriented along the $z$-axis we can
+use (<a href="#mjx-eqn-EqII69">6.9</a>):
+\begin{equation}
+-\ddp{\phi}{z}=-\frac{p}{4\pi\epsO}\,\ddp{}{z}\biggl(\frac{z}{r^3}\biggr)
+=-\frac{p}{4\pi\epsO}\biggl(\frac{1}{r^3}-\frac{3z^2}{r^5}\biggr),\notag
+\end{equation}
+or
+\begin{equation}
+\label{Eq:II:6:14}
+E_z=\frac{p}{4\pi\epsO}\,\frac{3\cos^2\theta-1}{r^3}.
+\end{equation}
+
+The $x$- and $y$-components are
+\begin{equation*}
+E_x=\frac{p}{4\pi\epsO}\,\frac{3zx}{r^5},\quad
+E_y=\frac{p}{4\pi\epsO}\,\frac{3zy}{r^5}.
+\end{equation*}
+These two can be combined to give one component directed
+<em class="emph">perpendicular</em> to the $z$-axis, which we will call the
+transverse component $E_\perp$:
+\begin{equation}
+E_\perp=\sqrt{E_x^2+E_y^2}=\frac{p}{4\pi\epsO}\,\frac{3z}{r^5}
+\sqrt{x^2+y^2}\notag
+\end{equation}
+or
+\begin{equation}
+\label{Eq:II:6:15}
+E_\perp=\frac{p}{4\pi\epsO}\,\frac{3\cos\theta\sin\theta}{r^3}.
+\end{equation}
+
+The transverse component $E_\perp$ is in the $xy$-plane and points
+directly away from the <em class="emph">axis</em> of the dipole. The total field, of
+course, is
+\begin{equation*}
+E=\sqrt{E_z^2+E_\perp^2}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch6-S2-p10" class="para">
+<p class="p">The dipole field varies inversely as the cube of the distance from the
+dipole.  On the axis, at $\theta=0$, it is twice as strong as at
+$\theta=90^\circ$. At both of these special angles the electric field
+has only a $z$-component, but of opposite sign at the two places
+(Fig. <a href="#Ch6-F4">6–4</a>).</p>
+</div>
+
+<div id="Ch6-F4" class="figure">
+<img src="img/FLP_II/f06-04/f06-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–4.</span>The electric field of a dipole.
+</div>
+</div>
+</div>
+
+
+<div id="Ch6-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">6–3</span>Remarks on vector equations</h3>
+<div id="Ch6-S3-p1" class="para">
+<p class="p">This is a good place to make a general remark about vector
+analysis. The fundamental proofs can be expressed by elegant equations
+in a general form, but in making various calculations and analyses it
+is always a good idea to choose the axes in some convenient
+way. Notice that when we were finding the potential of a dipole we
+chose the $z$-axis along the direction of the dipole, rather than at
+some arbitrary angle. This made the work much easier. But then we
+wrote the equations in vector form so that they would no longer depend
+on any particular coordinate system. After that, we are allowed to
+choose any coordinate system we wish, knowing that the relation is, in
+general, true. It clearly doesn’t make any sense to bother with an
+arbitrary coordinate system at some complicated angle when you can
+choose a neat system for the particular problem—provided that the
+result can finally be expressed as a vector equation. So by all means
+take advantage of the fact that vector equations are independent of
+any coordinate system.</p>
+</div>
+<div id="Ch6-S3-p2" class="para">
+<p class="p">On the other hand, if you are trying to calculate the divergence of a
+vector, instead of just looking at $\FLPdiv{\FLPE}$ and wondering what
+it is, don’t forget that it can always be spread out as
+\begin{equation*}
+\ddp{E_x}{x}+\ddp{E_y}{y}+\ddp{E_z}{z}.
+\end{equation*}
+
+If you can then work out the $x$-, $y$-, and $z$-components of the
+electric field and differentiate them, you will have the
+divergence. There often seems to be a feeling that there is something
+inelegant—some kind of defeat involved—in writing out the
+components; that somehow there ought always to be a way to do
+everything with the vector operators. There is often no advantage to
+it. The first time we encounter a particular kind of problem, it
+usually helps to write out the components to be sure we understand
+what is going on. There is nothing inelegant about putting numbers
+into equations, and nothing inelegant about substituting the
+derivatives for the fancy symbols. In fact, there is often a certain
+cleverness in doing just that. Of course when you publish a paper in a
+professional journal it will look better—and be more easily
+understood—if you can write everything in vector form. Besides, it
+saves print.</p>
+</div>
+</div>
+<div id="Ch6-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">6–4</span>The dipole potential as a gradient</h3>
+<div id="Ch6-S4-p1" class="para">
+<p class="p">We would like to point out a rather amusing thing about the dipole
+formula, Eq. (<a href="#mjx-eqn-EqII613">6.13</a>). The potential can also be written
+as
+\begin{equation}
+\label{Eq:II:6:16}
+\phi=-\frac{1}{4\pi\epsO}\FLPp\cdot\FLPgrad{\biggl(\frac{1}{r}\biggr)}.
+\end{equation}
+
+If you calculate the gradient of $1/r$, you get
+\begin{equation*}
+\FLPgrad{\biggl(\frac{1}{r}\biggr)}=-\frac{\FLPr}{r^3}=
+-\frac{\FLPe_r}{r^2},
+\end{equation*}
+
+and Eq. (<a href="#mjx-eqn-EqII616">6.16</a>) is the same as Eq. (<a href="#mjx-eqn-EqII613">6.13</a>).</p>
+</div>
+<div id="Ch6-S4-p2" class="para">
+<p class="p">How did we think of that? We just remembered that $\FLPe_r/r^2$
+appeared in the formula for the <em class="emph">field</em> of a point charge, and
+that the field was the gradient of a <em class="emph">potential</em> which has
+a $1/r$ dependence.</p>
+</div>
+<div id="Ch6-F5" class="figure">
+<img src="img/FLP_II/f06-05/f06-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–5.</span>The potential at $P$ from a point charge at $\Delta z$ above
+the origin is the same as the potential at $P'$ ($\Delta z$ below
+$P$) from the same charge at the origin.
+</div>
+</div>
+<div id="Ch6-S4-p3" class="para">
+<p class="p">There is a <em class="emph">physical</em> reason for being able to write the dipole
+potential in the form of Eq. (<a href="#mjx-eqn-EqII616">6.16</a>). Suppose we have a
+point charge $q$ at the origin. The potential at the point $P$
+at $(x,y,z)$ is
+\begin{equation*}
+\phi_0=\frac{q}{r}.
+\end{equation*}
+
+(Let’s leave off the $1/4\pi\epsO$ while we make these arguments; we
+can stick it in at the end.) Now if we move the charge $+q$ up a
+distance $\Delta z$, the potential at $P$ will change a little, by,
+say, $\Delta\phi_+$. How much is $\Delta\phi_+$? Well, it is just the
+amount that the potential <em class="emph">would</em> change if we were to
+<em class="emph">leave</em> the charge at the origin and move $P$ <em class="emph">downward</em> by
+the same distance $\Delta z$ (Fig. <a href="#Ch6-F5">6–5</a>). That is,
+\begin{equation*}
+\Delta\phi_+=-\ddp{\phi_0}{z}\Delta z,
+\end{equation*}
+
+where by $\Delta z$ we mean the same as $d/2$. So, using $\phi_0=q/r$,
+we have that the potential from the positive charge is
+\begin{equation}
+\label{Eq:II:6:17}
+\phi_+=\frac{q}{r}-\ddp{}{z}\biggl(\frac{q}{r}\biggr)\frac{d}{2}.
+\end{equation}
+</p>
+</div>
+<div id="Ch6-S4-p4" class="para">
+<p class="p">Applying the same reasoning for the potential from the negative
+charge, we can write
+\begin{equation}
+\label{Eq:II:6:18}
+\phi_-=\frac{-q}{r}+\ddp{}{z}\biggl(\frac{-q}{r}\biggr)\frac{d}{2}.
+\end{equation}
+
+The total potential is the sum of (<a href="#mjx-eqn-EqII617">6.17</a>)
+and (<a href="#mjx-eqn-EqII618">6.18</a>):
+\begin{align}
+\label{Eq:II:6:19}
+\phi=\phi_++\phi_-&=-\ddp{}{z}\biggl(\frac{q}{r}\biggr)d\\[1ex]
+&=-\ddp{}{z}\biggl(\frac{1}{r}\biggr)qd\notag
+\end{align}
+</p>
+</div>
+<div id="Ch6-S4-p5" class="para">
+<p class="p">For other orientations of the dipole, we could represent the
+displacement of the positive charge by the vector $\Delta\FLPr_+$. We
+should then write the equation above Eq. (<a href="#mjx-eqn-EqII617">6.17</a>) as
+\begin{equation*}
+\Delta\phi_+=-\FLPgrad{\phi_0}\cdot\Delta\FLPr_+,
+\end{equation*}
+
+where $\Delta\FLPr_+$ is then to be replaced by $\FLPd/2$. Completing the
+derivation as before, Eq. (<a href="#mjx-eqn-EqII619">6.19</a>) would then become
+\begin{equation*}
+\phi=-\FLPgrad{\biggl(\frac{1}{r}\biggr)}\cdot q\FLPd.
+\end{equation*}
+
+This is the same as Eq. (<a href="#mjx-eqn-EqII616">6.16</a>), if we replace $q\FLPd=\FLPp$,
+and put back the $1/4\pi\epsO$. Looking at it another
+way, we see that the dipole potential, Eq. (<a href="#mjx-eqn-EqII613">6.13</a>), can
+be interpreted as
+\begin{equation}
+\label{Eq:II:6:20}
+\phi=-\FLPp\cdot\FLPgrad{\Phi_0},
+\end{equation}
+
+where $\Phi_0=1/4\pi\epsO r$ is the potential of a <em class="emph">unit</em> point
+charge.</p>
+</div>
+<div id="Ch6-S4-p6" class="para">
+<p class="p">Although we can always find the potential of a known charge
+distribution by an integration, it is sometimes possible to save time
+by getting the answer with a clever trick. For example, one can often
+make use of the superposition principle. If we are given a charge
+distribution that can be made up of the sum of two distributions for
+which the potentials are already known, it is easy to find the desired
+potential by just adding the two known ones. One example of this is
+our derivation of (<a href="#mjx-eqn-EqII620">6.20</a>), another is the following.</p>
+</div>
+<div id="Ch6-S4-p7" class="para">
+<p class="p">Suppose we have a spherical surface with a distribution of surface
+charge that varies as the cosine of the polar angle. The integration
+for this distribution is fairly messy. But, surprisingly, such a
+distribution can be analyzed by superposition. For imagine a sphere
+with a uniform <em class="emph">volume</em> density of positive charge, and another
+sphere with an equal uniform volume density of negative charge,
+originally superposed to make a neutral—that is,
+uncharged—sphere. If the positive sphere is then displaced slightly
+with respect to the negative sphere, the body of the uncharged sphere
+would remain neutral, but a little positive charge will appear on one
+side, and some negative charge will appear on the opposite side, as
+illustrated in Fig. <a href="#Ch6-F6">6–6</a>. If the relative displacement
+of the two spheres is small, the net charge is equivalent to a surface
+charge (on a spherical surface), and the surface charge density will
+be proportional to the cosine of the polar angle.</p>
+</div>
+<div id="Ch6-F6" class="figure">
+<img src="img/FLP_II/f06-06/f06-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–6.</span>Two uniformly charged spheres, superposed with a slight
+displacement, are equivalent to a nonuniform distribution of surface
+charge.
+</div>
+</div>
+<div id="Ch6-S4-p8" class="para">
+<p class="p">Now if we want the potential from this distribution, we do not need to
+do an integral. We know that the potential from each of the spheres of
+charge is—for points outside the sphere—the same as from a point
+charge. The two displaced spheres are like two point charges; the
+potential is just that of a dipole.</p>
+</div>
+<div id="Ch6-S4-p9" class="para">
+<p class="p">In this way you can show that a charge distribution on a sphere of
+radius $a$ with a surface charge density
+\begin{equation*}
+\sigma=\sigma_0\cos\theta
+\end{equation*}
+
+produces a field outside the sphere which is just that of a dipole
+whose moment is
+\begin{equation*}
+p=\frac{4\pi\sigma_0 a^3}{3}.
+\end{equation*}
+
+It can also be shown that inside the sphere the field is constant,
+with the value
+\begin{equation*}
+E=\frac{\sigma_0}{3\epsO}.
+\end{equation*}
+
+If $\theta$ is the angle from the positive $z$-axis, the electric
+field inside the sphere is in the <em class="emph">negative</em> $z$-direction. The
+example we have just considered is not as artificial as it may appear;
+we will encounter it again in the theory of dielectrics.</p>
+</div>
+</div>
+<div id="Ch6-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">6–5</span>The dipole approximation for an arbitrary distribution</h3>
+<div id="Ch6-S5-p1" class="para">
+<p class="p">The dipole field appears in another circumstance both interesting and
+important. Suppose that we have an object that has a complicated
+distribution of charge—like the water molecule
+(Fig. <a href="#Ch6-F2">6–2</a>)—and we are interested only in the fields far
+away. We will show that it is possible to find a relatively simple
+expression for the fields which is appropriate for distances large
+compared with the size of the object.</p>
+</div>
+<div id="Ch6-F7" class="figure">
+<img src="img/FLP_II/f06-07/f06-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–7.</span>Computation of the potential at a point $P$ at a large
+distance from a set of charges.
+</div>
+</div>
+<div id="Ch6-S5-p2" class="para">
+<p class="p">We can think of our object as an assembly of point charges $q_i$ in a
+certain limited region, as shown in Fig. <a href="#Ch6-F7">6–7</a>. (We can,
+later, replace $q_i$ by $\rho\,dV$ if we wish.) Let each charge $q_i$
+be located at the displacement $\FLPd_i$ from an origin chosen
+somewhere in the middle of the group of charges. What is the potential
+at the point $P$, located at $\FLPR$, where $\FLPR$ is much larger
+than the maximum $\FLPd_i$? The potential from the whole collection is
+given by
+\begin{equation}
+\label{Eq:II:6:21}
+\phi=\frac{1}{4\pi\epsO}\sum_i\frac{q_i}{r_i},
+\end{equation}
+
+where $r_i$ is the distance from $P$ to the charge $q_i$ (the length
+of the vector $\FLPR-\FLPd_i$). Now if the distance from the charges
+to $P$, the point of observation, is enormous, each of the $r_i$’s can
+be approximated by $R$. Each term becomes $q_i/R$, and we can
+take $1/R$ out as a factor in front of the summation. This gives us the
+simple result
+\begin{equation}
+\label{Eq:II:6:22}
+\phi=\frac{1}{4\pi\epsO}\,\frac{1}{R}\sum_iq_i=
+\frac{Q}{4\pi\epsO R},
+\end{equation}
+
+where $Q$ is just the total charge of the whole object. Thus we find
+that for points far enough from any lump of charge, the lump looks
+like a point charge. The result is not too surprising.</p>
+</div>
+<div id="Ch6-S5-p3" class="para">
+<p class="p">But what if there are equal numbers of positive and negative charges?
+Then the total charge $Q$ of the object is zero. This is not an
+unusual case; in fact, as we know, objects are usually neutral. The
+water molecule is neutral, but the charges are not all at one point,
+so if we are close enough we should be able to see some effects of the
+separate charges. We need a better approximation than (<a href="#mjx-eqn-EqII622">6.22</a>)
+for the potential from an arbitrary distribution of charge in a neutral
+object. Equation (<a href="#mjx-eqn-EqII621">6.21</a>) is still precise, but we can no
+longer just set $r_i=R$. We need a more accurate expression for $r_i$.
+If the point $P$ is at a large distance, $r_i$ will differ from $R$ to
+an excellent approximation by the projection of $\FLPd$ on $\FLPR$, as
+can be seen from Fig. <a href="#Ch6-F7">6–7</a>. (You should imagine that $P$
+is really farther away than is shown in the figure.) In other words,
+if $\FLPe_R$ is the unit vector in the direction of $\FLPR$, then our next
+approximation to $r_i$ is
+\begin{equation}
+\label{Eq:II:6:23}
+r_i\approx R-\FLPd_i\cdot\FLPe_R.
+\end{equation}
+
+What we really want is $1/r_i$, which, since $d_i\ll R$, can be
+written to our approximation as
+\begin{equation}
+\label{Eq:II:6:24}
+\frac{1}{r_i}\approx\frac{1}{R}\biggl(1+\frac{\FLPd_i\cdot\FLPe_R}{R}\biggr).
+\end{equation}
+
+Substituting this in (<a href="#mjx-eqn-EqII621">6.21</a>), we get that the potential is
+\begin{equation}
+\label{Eq:II:6:25}
+\phi=\frac{1}{4\pi\epsO}\biggl(\frac{Q}{R}+
+\sum_iq_i\frac{\FLPd_i\cdot\FLPe_R}{R^2}+\dotsb\biggr).
+\end{equation}
+
+The three dots indicate the terms of higher order in $d_i/R$ that we
+have neglected.  These, as well as the ones we have already obtained,
+are successive terms in a Taylor expansion of $1/r_i$
+about $1/R$ in powers of $d_i/R$.</p>
+</div>
+<div id="Ch6-S5-p4" class="para">
+<p class="p">The first term in (<a href="#mjx-eqn-EqII625">6.25</a>) is what we got before; it drops
+out if the object is neutral. The second term depends on $1/R^2$, just
+as for a dipole. In fact, if we <em class="emph">define</em>
+\begin{equation}
+\label{Eq:II:6:26}
+\FLPp=\sum_iq_i\FLPd_i
+\end{equation}
+
+as a property of the charge distribution, the second term of the
+potential (<a href="#mjx-eqn-EqII625">6.25</a>) is
+\begin{equation}
+\label{Eq:II:6:27}
+\phi=\frac{1}{4\pi\epsO}\,\frac{\FLPp\cdot\FLPe_R}{R^2},
+\end{equation}
+
+<em class="emph">precisely a dipole potential</em>. The quantity $\FLPp$ is called
+the dipole moment of the distribution. It is a generalization of our
+earlier definition, and reduces to it for the special case of two
+point charges.</p>
+</div>
+<div id="Ch6-S5-p5" class="para">
+<p class="p">Our result is that, far enough away from <em class="emph">any</em> mess of charges
+that is as a whole neutral, the potential is a dipole potential. It
+decreases as $1/R^2$ and varies as $\cos\theta$—and its strength
+depends on the dipole moment of the distribution of charge. It is for
+these reasons that dipole fields are important, since the simple case
+of a pair of point charges is quite rare.</p>
+</div>
+<div id="Ch6-S5-p6" class="para">
+<p class="p">The water molecule, for example, has a rather strong dipole
+moment. The electric fields that result from this moment are
+responsible for some of the important properties of water. For many
+molecules, for example CO$_2$, the dipole moment vanishes because of
+the symmetry of the molecule. For them we should expand still more
+accurately, obtaining another term in the potential which decreases
+as $1/R^3$, and which is called a quadrupole potential. We will discuss such
+cases later.
+</p>
+</div>
+</div>
+<div id="Ch6-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">6–6</span>The fields of charged conductors</h3>
+<div id="Ch6-S6-p1" class="para">
+<p class="p">We have now finished with the examples we wish to cover of situations
+in which the charge distribution is known from the start. It has been
+a problem without serious complications, involving at most some
+integrations. We turn now to an entirely new kind of problem, the
+determination of the fields near charged conductors.</p>
+</div>
+<div id="Ch6-S6-p2" class="para">
+<p class="p">Suppose that we have a situation in which a total charge $Q$ is placed
+on an arbitrary conductor. Now we will not be able to say exactly
+where the charges are. They will spread out in some way on the
+surface. How can we know how the charges have distributed themselves
+on the surface? They must distribute themselves so that the potential
+of the surface is constant. If the surface were not an equipotential,
+there would be an electric field inside the conductor, and the charges
+would keep moving until it became zero. The general problem of this
+kind can be solved in the following way. We guess at a distribution of
+charge and calculate the potential. If the potential turns out to be
+constant everywhere on the surface, the problem is finished. If the
+surface is not an equipotential, we have guessed the wrong
+distribution of charges, and should guess again—hopefully with an
+improved guess! This can go on forever, unless we are judicious about
+the successive guesses.</p>
+</div>
+<div id="Ch6-S6-p3" class="para">
+<p class="p">The question of how to guess at the distribution is mathematically
+difficult.  Nature, of course, has time to do it; the charges push and
+pull until they all balance themselves. When we try to solve the
+problem, however, it takes us so long to make each trial that that
+method is very tedious. With an arbitrary group of conductors and
+charges the problem can be very complicated, and in general it cannot
+be solved without rather elaborate numerical methods. Such numerical
+computations, these days, are set up on a computing machine that will
+do the work for us, once we have told it how to proceed.</p>
+</div>
+<div id="Ch6-S6-p4" class="para">
+<p class="p">On the other hand, there are a lot of little practical cases where it
+would be nice to be able to find the answer by some more direct
+method—without having to write a program for a
+computer. Fortunately, there are a number of cases where the answer
+can be obtained by squeezing it out of Nature by some trick or
+other. The first trick we will describe involves making use of
+solutions we have already obtained for situations in which charges
+have specified locations.</p>
+</div>
+</div>
+<div id="Ch6-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">6–7</span>The method of images</h3>
+<div id="Ch6-S7-p1" class="para">
+<p class="p">We have solved, for example, the field of two point charges.
+Figure <a href="#Ch6-F8">6–8</a> shows some of the field lines and equipotential
+surfaces we obtained by the computations in Chapter <a href="II_04.html">4</a>. Now
+consider the equipotential surface marked $A$. Suppose we were to shape
+a thin sheet of metal so that it just fits this surface. If we place it
+right at the surface and adjust its potential to the proper value, no
+one would ever know it was there, because nothing would be changed.</p>
+</div>
+<div id="Ch6-F8" class="figure">
+<img src="img/FLP_II/f06-08/f06-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–8.</span>The field lines and equipotentials for two point charges.
+</div>
+</div>
+<div id="Ch6-S7-p2" class="para">
+<p class="p">But notice! We have really solved a <em class="emph">new</em> problem. We have a
+situation in which the surface of a curved conductor with a given
+potential is placed near a point charge. If the metal sheet we placed
+at the equipotential surface eventually closes on itself (or, in
+practice, if it goes far enough) we have the kind of situation
+considered in Section <a href="II_05.html#Ch5-S10">5–10</a>, in which our space is
+divided into two regions, one inside and one outside a closed
+conducting shell. We found there that the fields in the two regions
+are quite independent of each other. So we would have the same fields
+outside our curved conductor no matter what is inside. We can even
+fill up the whole inside with conducting material. We have found,
+therefore, the fields for the arrangement of Fig. <a href="#Ch6-F9">6–9</a>. In
+the space outside the conductor the field is just like that of two point
+charges, as in Fig. <a href="#Ch6-F8">6–8</a>. Inside the conductor, it is zero.
+Also—as it must be—the electric field just outside the conductor is
+normal to the surface.</p>
+</div>
+<div id="Ch6-F9" class="figure">
+<img src="img/FLP_II/f06-09/f06-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–9.</span>The field outside a conductor shaped like the equipotential $A$ of
+Fig. <a href="#Ch6-F8">6–8</a>.
+</div>
+</div>
+<div id="Ch6-S7-p3" class="para">
+<p class="p">Thus we can compute the fields in Fig. <a href="#Ch6-F9">6–9</a> by computing
+the field due to $q$ and to an imaginary point charge $-q$ at a
+suitable point. The point charge we “imagine” existing behind the
+conducting surface is called an <em class="emph">image charge</em>.</p>
+</div>
+<div id="Ch6-S7-p4" class="para">
+<p class="p">In books you can find long lists of solutions for hyperbolic-shaped
+conductors and other complicated looking things, and you wonder how
+anyone ever solved these terrible shapes. They were solved backwards!
+Someone solved a simple problem with given charges. He then saw that
+some equipotential surface showed up in a new shape, and he wrote a
+paper in which he pointed out that the field outside that particular
+shape can be described in a certain way.</p>
+</div>
+</div>
+<div id="Ch6-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">6–8</span>A point charge near a conducting plane</h3>
+<div id="Ch6-S8-p1" class="para">
+<p class="p">As the simplest application of the use of this method, let’s make use
+of the plane equipotential surface $B$ of Fig. <a href="#Ch6-F8">6–8</a>. With
+it, we can solve the problem of a charge in front of a conducting sheet.
+We just cross out the left-hand half of the picture. The field lines for
+our solution are shown in Fig. <a href="#Ch6-F10">6–10</a>. Notice that the plane,
+since it was halfway between the two charges, has zero potential. We
+have solved the problem of a positive charge next to a grounded
+conducting sheet.</p>
+</div>
+<div id="Ch6-F10" class="figure">
+<img src="img/FLP_II/f06-10/f06-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–10.</span>The field of a charge near a plane conducting surface, found
+by the method of images.
+</div>
+</div>
+<div id="Ch6-S8-p2" class="para">
+<p class="p">We have now solved for the total field, but what about the <em class="emph">real</em>
+charges that are responsible for it? There are, in addition to our
+positive point charge, some induced negative charges on the conducting
+sheet that have been attracted by the positive charge (from large
+distances away). Now suppose that for some technical reason—or out
+of curiosity—you would like to know how the negative charges are
+distributed on the surface. You can find the surface charge density by
+using the result we worked out in Section <a href="II_05.html#Ch5-S9">5–9</a> with
+Gauss’ law. The normal component of the electric field just outside a
+conductor is equal to the density of surface charge $\sigma$ divided
+by $\epsO$. We can obtain the density of charge at any point on the
+surface by working backwards from the normal component of the electric
+field at the surface. We know that, because we know the field
+everywhere.</p>
+</div>
+<div id="Ch6-S8-p3" class="para">
+<p class="p">Consider a point on the surface at the distance $\rho$ from the point
+directly beneath the positive charge (Fig. <a href="#Ch6-F10">6–10</a>). The
+electric field at this point is normal to the surface and is directed
+into it. The component normal to the surface of the field from the
+<em class="emph">positive</em> point charge is
+\begin{equation}
+\label{Eq:II:6:28}
+E_{n+}=-\frac{1}{4\pi\epsO}\,\frac{aq}{(a^2+\rho^2)^{3/2}}.
+\end{equation}
+
+To this we must add the electric field produced by the negative image
+charge. That just doubles the normal component (and cancels all
+others), so the charge density $\sigma$ at any point on the surface is
+\begin{equation}
+\label{Eq:II:6:29}
+\sigma(\rho)=\epsO E(\rho)=-\frac{2aq}{4\pi(a^2+\rho^2)^{3/2}}.
+\end{equation}
+</p>
+</div>
+<div id="Ch6-S8-p4" class="para">
+<p class="p">An interesting check on our work is to integrate $\sigma$ over the
+whole surface. We find that the total induced charge is $-q$, as it
+should be.</p>
+</div>
+<div id="Ch6-S8-p5" class="para">
+<p class="p">One further question: Is there a force on the point charge? Yes,
+because there is an attraction from the induced negative surface
+charge on the plate. Now that we know what the surface charges are
+(from Eq. <a href="#mjx-eqn-EqII629">6.29</a>), we could compute the force on our
+positive point charge by an integral. But we also know that the force
+acting on the positive charge is exactly the same as it <em class="emph">would
+be</em> with the negative image charge instead of the plate, because the
+fields in the neighborhood are the same in both cases. The point
+charge feels a force toward the plate whose magnitude is
+\begin{equation}
+\label{Eq:II:6:30}
+F=\frac{1}{4\pi\epsO}\,\frac{q^2}{(2a)^2}.
+\end{equation}
+
+We have found the force much more easily than by integrating over all
+the negative charges.</p>
+</div>
+</div>
+<div id="Ch6-S9" class="section">
+<h3 class="title section-title">
+<span class="tag">6–9</span>A point charge near a conducting sphere</h3>
+<div id="Ch6-S9-p1" class="para">
+<p class="p">What other surfaces besides a plane have a simple solution? The next
+most simple shape is a sphere. Let’s find the fields around a grounded
+metal sphere which has a point charge $q$ near it, as shown in
+Fig. <a href="#Ch6-F11">6–11</a>. Now we must look for a simple physical situation
+which gives a sphere for an equipotential surface. If we look around at
+problems people have already solved, we find that someone has noticed
+that the field of two <em class="emph">unequal</em> point charges has an equipotential
+that is a sphere.  Aha! If we choose the location of an image
+charge—and pick the right amount of charge—maybe we can make the
+equipotential surface fit our sphere. Indeed, it can be done with the
+following prescription.</p>
+</div>
+<div id="Ch6-F11" class="figure">
+<img src="img/FLP_II/f06-11/f06-11_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–11.</span>The point charge $q$ induces charges on a grounded conducting
+sphere whose fields are those of an image charge $q'$ placed at the
+point shown.
+</div>
+</div>
+<div id="Ch6-S9-p2" class="para">
+<p class="p">Assume that you want the equipotential surface to be a sphere of
+radius $a$ with its center at the distance $b$ from the charge $q$.
+Put an image charge of strength $q'=-q(a/b)$ on the line from the
+charge to the center of the sphere, and at a distance $a^2/b$ from the
+center. The sphere will be at zero potential.</p>
+</div>
+<div id="Ch6-S9-p3" class="para">
+<p class="p">The mathematical reason stems from the fact that a sphere is the locus
+of all points for which the distances from two points are in a
+constant ratio. Referring to Fig. <a href="#Ch6-F11">6–11</a>, the potential
+at $P$ from $q$ and $q'$ is proportional to
+\begin{equation*}
+\frac{q}{r_1}+\frac{q'}{r_2}.
+\end{equation*}
+
+The potential will thus be zero at all points for which
+\begin{equation*}
+\frac{q'}{r_2}=-\frac{q}{r_1}\quad\text{or}\quad
+\frac{r_2}{r_1}=-\frac{q'}{q}.
+\end{equation*}
+
+If we place $q'$ at the distance $a^2/b$ from the center, the ratio
+$r_2/r_1$ has the constant value $a/b$. Then if
+\begin{equation}
+\label{Eq:II:6:31}
+\frac{q'}{q}=-\frac{a}{b}
+\end{equation}
+
+the sphere is an equipotential. Its potential is, in fact, zero.</p>
+</div>
+<div id="Ch6-S9-p4" class="para">
+<p class="p">What happens if we are interested in a sphere that is not at zero
+potential?  That would be so only if its total charge happens
+accidentally to be $q'$. Of course if it is grounded, the charges
+induced on it would have to be just that. But what if it is insulated,
+and we have put no charge on it? Or if we know that the total
+charge $Q$ has been put on it? Or just that it has a given potential
+<em class="emph">not</em> equal to zero? All these questions are easily answered. We
+can always add a point charge $q''$ at the center of the sphere. The
+sphere still remains an equipotential by superposition; only the
+magnitude of the potential will be changed.</p>
+</div>
+<div id="Ch6-S9-p5" class="para">
+<p class="p">If we have, for example, a conducting sphere which is initially
+uncharged and insulated from everything else, and we bring near to it
+the positive point charge $q$, the total charge of the sphere will
+remain zero. The solution is found by using an image charge $q'$ as
+before, but, in addition, adding a charge $q''$ at the center of the
+sphere, choosing
+\begin{equation}
+\label{Eq:II:6:32}
+q''=-q'=\frac{a}{b}\,q.
+\end{equation}
+
+The fields everywhere outside the sphere are given by the
+superposition of the fields of $q$, $q'$, and $q''$. The problem is
+solved.</p>
+</div>
+<div id="Ch6-S9-p6" class="para">
+<p class="p">We can see now that there will be a force of attraction between the
+sphere and the point charge $q$. It is not zero even though there is
+no charge on the neutral sphere. Where does the attraction come from?
+When you bring a positive charge up to a conducting sphere, the
+positive charge attracts negative charges to the side closer to itself
+and leaves positive charges on the surface of the far side. The
+attraction by the negative charges exceeds the repulsion from the
+positive charges; there is a net attraction. We can find out how large
+the attraction is by computing the force on $q$ in the field produced
+by $q'$ and $q''$. The total force is the sum of the attractive force
+between $q$ and a charge $q'=-(a/b)q$, at the distance $b-(a^2/b)$,
+and the repulsive force between $q$ and a charge $q''=+(a/b)q$ at the
+distance $b$.</p>
+</div>
+<div id="Ch6-S9-p7" class="para">
+<p class="p">Those who were entertained in childhood by the baking powder box which
+has on its label a picture of a baking powder box which has on its
+label a picture of a baking powder box which has … may be
+interested in the following problem.  Two equal spheres, one with a
+total charge of $+Q$ and the other with a total charge of $-Q$, are
+placed at some distance from each other. What is the force between
+them? The problem can be solved with an infinite number of images. One
+first approximates each sphere by a charge at its center. These
+charges will have image charges in the other sphere. The image charges
+will have images, etc., etc., etc.  The solution is like the picture
+on the box of baking powder—and it converges pretty fast.</p>
+</div>
+</div>
+<div id="Ch6-S10" class="section">
+<h3 class="title section-title">
+<span class="tag">6–10</span>Condensers; parallel plates</h3>
+<div id="Ch6-F12" class="figure">
+<img src="img/FLP_II/f06-12/f06-12_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–12.</span>A parallel-plate condenser.
+</div>
+</div>
+<div id="Ch6-S10-p1" class="para">
+<p class="p">We take up now another kind of a problem involving
+conductors. Consider two large metal plates which are parallel to each
+other and separated by a distance small compared with their
+width. Let’s suppose that equal and opposite charges have been put on
+the plates. The charges on each plate will be attracted by the charges
+on the other plate, and the charges will spread out uniformly on the
+inner surfaces of the plates. The plates will have surface charge
+densities $+\sigma$ and $-\sigma$, respectively, as in
+Fig. <a href="#Ch6-F12">6–12</a>. From Chapter <a href="II_05.html">5</a> we know that the
+field between the plates is $\sigma/\epsO$, and that the field outside
+the plates is zero. The plates will have different potentials $\phi_1$
+and $\phi_2$. For convenience we will call the difference $V$; it is
+often called the “voltage”:
+\begin{equation*}
+\phi_1-\phi_2=V.
+\end{equation*}
+
+(You will find that sometimes people use $V$ for the potential, but we
+have chosen to use $\phi$.)</p>
+</div>
+<div id="Ch6-S10-p2" class="para">
+<p class="p">The potential difference $V$ is the work per unit charge required to
+carry a small charge from one plate to the other, so that
+\begin{equation}
+\label{Eq:II:6:33}
+V=Ed=\frac{\sigma}{\epsO}\,d=\frac{d}{\epsO A}\,Q,
+\end{equation}
+
+where $\pm Q$ is the total charge on each plate, $A$ is the area of
+the plates, and $d$ is the separation.</p>
+</div>
+<div id="Ch6-S10-p3" class="para">
+<p class="p">We find that the voltage is proportional to the charge. Such a
+proportionality between $V$ and $Q$ is found for any two conductors in
+space if there is a plus charge on one and an equal minus charge on
+the other. The potential difference between them—that is, the
+voltage—will be proportional to the charge. (We are assuming that
+there are no other charges around.)</p>
+</div>
+<div id="Ch6-S10-p4" class="para">
+<p class="p">Why this proportionality? Just the superposition principle. Suppose we
+know the solution for one set of charges, and then we superimpose two
+such solutions. The charges are doubled, the fields are doubled, and
+the work done in carrying a unit charge from one point to the other is
+also doubled. Therefore the potential difference between any two
+points is proportional to the charges. In particular, the potential
+difference between the two conductors is proportional to the charges
+on them. Someone originally wrote the equation of proportionality the
+other way. That is, they wrote
+\begin{equation*}
+Q=CV,
+\end{equation*}
+
+where $C$ is a constant. This coefficient of proportionality is called
+the <em class="emph">capacity</em>, and such a system of two
+conductors is called a <em class="emph">condenser</em>.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> For our parallel-plate
+condenser
+\begin{equation}
+\label{Eq:II:6:34}
+C=\frac{\epsO A}{d}\quad(\text{parallel plates}).
+\end{equation}
+</p>
+</div>
+<div id="Ch6-F13" class="figure">
+<img src="img/FLP_II/f06-13/f06-13_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–13.</span>The electric field near the edge of two parallel plates.
+</div>
+</div>
+<div id="Ch6-S10-p5" class="para">
+<p class="p">This formula is not exact, because the field is not really uniform
+everywhere between the plates, as we assumed. The field does not just
+suddenly quit at the edges, but really is more as shown in
+Fig. <a href="#Ch6-F13">6–13</a>. The total charge is not $\sigma A$, as we have
+assumed—there is a little correction for the effects at the edges. To
+find out what the correction is, we will have to calculate the field
+more exactly and find out just what does happen at the edges. That is a
+complicated mathematical problem which can, however, be solved by
+techniques which we will not describe now. The result of such
+calculations is that the charge density rises somewhat near the edges of
+the plates. This means that the capacity of the plates is a little
+higher than we computed.</p>
+</div>
+<div id="Ch6-S10-p6" class="para">
+<p class="p">We have talked about the capacity for two conductors only. Sometimes
+people talk about the capacity of a single object. They say, for
+instance, that the capacity of a sphere of radius $a$ is $4\pi\epsO
+a$. What they imagine is that the other terminal is another sphere of
+infinite radius—that when there is a charge $+Q$ on the sphere, the
+opposite charge, $-Q$, is on an infinite sphere. One can also speak of
+capacities when there are three or more conductors, a discussion we
+shall, however, defer.</p>
+</div>
+<div id="Ch6-S10-p7" class="para">
+<p class="p">Suppose that we wish to have a condenser with a very large
+capacity. We could get a large capacity by taking a very big area and
+a very small separation. We could put waxed paper between sheets of
+aluminum foil and roll it up. (If we seal it in plastic, we have a
+typical radio-type condenser.) What good is it?  It is good for
+storing charge. If we try to store charge on a ball, for example, its
+potential rises rapidly as we charge it up. It may even get so high
+that the charge begins to escape into the air by way of sparks. But if
+we put the same charge on a condenser whose capacity is very large,
+the voltage developed across the condenser will be small.</p>
+</div>
+<div id="Ch6-S10-p8" class="para">
+<p class="p">In many applications in electronic circuits, it is useful to have
+something which can absorb or deliver large quantities of charge
+without changing its potential much. A condenser (or “capacitor”)
+does just that. There are also many applications in electronic
+instruments and in computers where a condenser is used to get a
+specified change in voltage in response to a particular change in
+charge. We have seen a similar application in Chapter <a href="I_23.html">23</a>,
+Vol. I, where we described the properties of resonant circuits.</p>
+</div>
+<div id="Ch6-S10.tab1" class="table">
+
+</div>
+<div id="Ch6-S10-p9" class="para">
+<p class="p">From the definition of $C$, we see that its unit is one coulomb/volt.
+This unit is also called a <em class="emph">farad</em>. Looking at
+Eq. (<a href="#mjx-eqn-EqII634">6.34</a>), we see that one can express the units of $\epsO$
+as farad/meter, which is the unit most commonly used. Typical sizes of
+condensers run from one micro-microfarad ($1$ picofarad) to millifarads.
+Small condensers of a few picofarads are used in high-frequency tuned
+circuits, and capacities up to hundreds or thousands of microfarads are
+found in power-supply filters. A pair of plates one square centimeter in
+area with a one millimeter separation have a capacity of roughly one
+micro-microfarad.</p>
+</div>
+</div>
+<div id="Ch6-S11" class="section">
+<h3 class="title section-title">
+<span class="tag">6–11</span>High-voltage breakdown</h3>
+<div id="Ch6-F14" class="figure">
+<img src="img/FLP_II/f06-14/f06-14_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–14.</span>The electric field near a sharp point on a conductor is very
+high.
+</div>
+</div>
+<div id="Ch6-S11-p1" class="para">
+<p class="p">We would like now to discuss qualitatively some of the characteristics
+of the fields around conductors. If we charge a conductor that is not
+a sphere, but one that has on it a point or a very sharp end, as, for
+example, the object sketched in Fig. <a href="#Ch6-F14">6–14</a>, the field
+around the point is much higher than the field in the other
+regions. The reason is, qualitatively, that charges try to spread out
+as much as possible on the surface of a conductor, and the tip of a
+sharp point is as far away as it is possible to be from most of the
+surface. Some of the charges on the plate get pushed all the way to
+the tip. A relatively <em class="emph">small</em> amount of charge on the tip can
+still provide a large surface <em class="emph">density</em>; a high charge density
+means a high field just outside.</p>
+</div>
+<div id="Ch6-F15" class="figure">
+<img src="img/FLP_II/f06-15/f06-15_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–15.</span>The field of a pointed object can be approximated by that of
+two spheres at the same potential.
+</div>
+</div>
+<div id="Ch6-S11-p2" class="para">
+<p class="p">One way to see that the field is highest at those places on a
+conductor where the radius of curvature is smallest is to consider the
+combination of a big sphere and a little sphere connected by a wire,
+as shown in Fig. <a href="#Ch6-F15">6–15</a>. It is a somewhat idealized
+version of the conductor of Fig. <a href="#Ch6-F14">6–14</a>. The wire will
+have little influence on the fields outside; it is there to keep the
+spheres at the same potential. Now, which ball has the biggest field
+at its surface? If the ball on the left has the radius $a$ and carries
+a charge $Q$, its potential is about
+\begin{equation*}
+\phi_1=\frac{1}{4\pi\epsO}\,\frac{Q}{a}.
+\end{equation*}
+
+(Of course the presence of one ball changes the charge distribution on
+the other, so that the charges are not really spherically symmetric on
+either. But if we are interested only in an estimate of the fields, we
+can use the potential of a spherical charge.) If the smaller ball,
+whose radius is $b$, carries the charge $q$, its potential is about
+\begin{equation*}
+\phi_2=\frac{1}{4\pi\epsO}\,\frac{q}{b}.
+\end{equation*}
+
+But $\phi_1=\phi_2$, so
+\begin{equation*}
+\frac{Q}{a}=\frac{q}{b}.
+\end{equation*}
+
+On the other hand, the field at the surface (see Eq. <a href="II_05.html#mjx-eqn-EqII58">5.8</a>) is
+proportional to the surface charge density, which is like the total
+charge over the radius squared. We get that
+\begin{equation}
+\label{Eq:II:6:35}
+\frac{E_a}{E_b}=\frac{Q/a^2}{q/b^2}=\frac{b}{a}.
+\end{equation}
+
+Therefore the field is higher at the surface of the small sphere. The
+fields are in the inverse proportion of the radii.</p>
+</div>
+<div id="Ch6-S11-p3" class="para">
+<p class="p">This result is technically very important, because air will break down
+if the electric field is too great. What happens is that a loose
+charge (electron, or ion) somewhere in the air is accelerated by the
+field, and if the field is very great, the charge can pick up enough
+speed before it hits another atom to be able to knock an electron off
+that atom. As a result, more and more ions are produced. Their motion
+constitutes a discharge, or spark. If you want to charge an object to
+a high potential and not have it discharge itself by sparks in the
+air, you must be sure that the surface is smooth, so that there is no
+place where the field is abnormally large.</p>
+</div>
+</div>
+<div id="Ch6-S12" class="section">
+<h3 class="title section-title">
+<span class="tag">6–12</span>The field-emission microscope</h3>
+<div id="Ch6-S12-p1" class="para">
+<p class="p">There is an interesting application of the extremely high electric
+field which surrounds any sharp protuberance on a charged
+conductor. The <em class="emph">field-emission microscope</em> depends for its
+operation on the high fields produced at a sharp metal
+point.<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a> It is built in the
+following way. A very fine needle, with a tip whose diameter is about
+$1000$ angstroms, is placed at the center of an evacuated glass
+sphere (Fig. <a href="#Ch6-F16">6–16</a>). The inner surface of the sphere is
+coated with a thin conducting layer of fluorescent material, and a
+very high potential difference is applied between the fluorescent
+coating and the needle.</p>
+</div>
+<div id="Ch6-F16" class="figure">
+<img src="img/FLP_II/f06-16/f06-16_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 6–16.</span>Field-emission microscope.
+</div>
+</div>
+<div id="Ch6-S12-p2" class="para">
+<p class="p">Let’s first consider what happens when the needle is negative with
+respect to the fluorescent coating. The field lines are highly
+concentrated at the sharp point.  The electric field can be as high as
+$40$ million volts per centimeter. In such intense fields, electrons
+are pulled out of the surface of the needle and accelerated across the
+potential difference between the needle and the fluorescent
+layer. When they arrive there they cause light to be emitted, just as
+in a television picture tube.</p>
+</div>
+<div id="Ch6-S12-p3" class="para">
+<p class="p">The electrons which arrive at a given point on the fluorescent surface
+are, to an excellent approximation, those which leave the other end of
+the radial field line, because the electrons will travel along the field
+line passing from the point to the surface. Thus we see on the surface
+some kind of an image of the tip of the needle.  More precisely, we see
+a picture of the <em class="emph">emissivity</em> of the surface of
+the needle—that is the ease with which electrons can leave the surface
+of the metal tip. If the resolution were high enough, one could hope to
+resolve the positions of the individual atoms on the tip of the needle.
+With electrons, this resolution is not possible for the following
+reasons. First, there is quantum-mechanical diffraction of the electron
+waves which blurs the image. Second, due to the internal motions of the
+electrons in the metal they have a small sideways initial velocity when
+they leave the needle, and this random transverse component of the
+velocity causes some smearing of the image. The combination of these two
+effects limits the resolution to $25$ Å or so.</p>
+</div>
+<div id="Ch6-S12-p4" class="para">
+<p class="p">If, however, we reverse the polarity and introduce a small amount of
+helium gas into the bulb, much higher resolutions are possible. When a
+helium atom collides with the tip of the needle, the intense field
+there strips an electron off the helium atom, leaving it positively
+charged. The helium ion is then accelerated outward along a field line
+to the fluorescent screen. Since the helium ion is so much heavier
+than an electron, the quantum-mechanical wavelengths are much smaller.
+If the temperature is not too high, the effect of the thermal
+velocities is also smaller than in the electron case. With less
+smearing of the image a much sharper picture of the point is
+obtained. It has been possible to obtain magnifications up to
+$2{,}000{,}000$ times with the positive ion field-emission
+microscope—a magnification ten times better than is obtained with
+the best electron microscope.</p>
+</div>
+<div id="Ch6-F17" class="figure">
+<img src="img/FLP_II/f06-17/f06-17_mg.jpg" width="475" height="586"><div class="caption">
+<span class="tag">Fig. 6–17.</span>Image produced by a field-emission microscope. [Courtesy of
+Erwin W. M&uuml;ller, Research Prof. of Physics, Pennsylvania State
+University.]
+</div>
+</div>
+<div id="Ch6-S12-p5" class="para">
+<p class="p">Figure <a href="#Ch6-F17">6–17</a> is an example of the results which were
+obtained with a field-ion microscope, using a tungsten needle. The
+center of a tungsten atom ionizes a helium atom at a slightly
+different rate than the spaces between the tungsten atoms. The pattern
+of spots on the fluorescent screen shows the arrangement of the
+<em class="emph">individual atoms</em> on the tungsten tip. The reason the spots
+appear in rings can be understood by visualizing a large box of balls
+packed in a rectangular array, representing the atoms in the metal. If
+you cut an approximately spherical section out of this box, you will
+see the ring pattern characteristic of the atomic structure.  The
+field-ion microscope provided human beings with the means of seeing
+atoms for the first time. This is a remarkable achievement,
+considering the simplicity of the instrument.</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  Some people think
+the words “capacitance” and “capacitor” should be used, instead of
+“capacity” and “condensor.”  We have decided to use the older
+terminology, because it is still more commonly heard in the physics
+laboratory—even if not in textbooks!
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  See E. W. M&uuml;ller: “The field-ion microscope,”
+<span class="text italic">Advances in Electronics and Electron Physics</span>, <span class="text bold">13</span>,
+83–179 (1960). Academic Press, New York.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

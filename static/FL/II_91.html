@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics: Feynman’s Preface</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+  <script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div>  <div class="main">
+    <div class="content">
+      <div class="document">
+        <div id="Ch91" class="chapter">
+        
+         <h2 style="line-height: 150%; margin-top: 0"><b><i>Feynman’s Preface</i></b></h2>
+        <div class="figure"><a target="_blank" href="http://www.wikipedia.org/wiki/Feynman"><span style=
+        "float: right; margin: 0 0 20px 15px"><img border="0" src="img/Feynman.jpg" width="393"><center>Richard Feynman</center></span></a></div>
+        
+        <div id="Ch91-S1" class="section">
+		<div id="Ch91-S1-p1" class="para">
+		<p class="p">
+		These are the lectures in physics that I gave last year and the year before to
+        the freshman and sophomore classes at Caltech. The lectures are, of course, not
+        verbatim—they have been edited, sometimes extensively and sometimes less so.
+        The lectures form only part of the complete course. The whole group of 180
+        students gathered in a big lecture room twice a week to hear these lectures and
+        then they broke up into small groups of 15 to 20 students in recitation sections
+        under the guidance of a teaching assistant. In addition, there was a laboratory
+        session once a week.
+		</p>
+		</div>
+		<div id="Ch91-S1-p2" class="para">
+		<p class="p">
+		The special problem we tried to get at with these lectures was to maintain the
+        interest of the very enthusiastic and rather smart students coming out of the
+        high schools and into Caltech. They have heard a lot about how interesting and
+        exciting physics is—the theory of relativity, quantum mechanics, and other
+        modern ideas. By the end of two years of our previous course, many would be very
+        discouraged because there were really very few grand, new, modern ideas presented
+        to them. They were made to study inclined planes, electrostatics, and so forth,
+        and after two years it was quite stultifying. The problem was whether or not we
+        could make a course which would save the more advanced and excited student by
+        maintaining his enthusiasm.
+		</p>
+		</div>
+		<div id="Ch91-S1-p3" class="para">
+		<p class="p">
+		The lectures here are not in any way meant to be a survey course, but are very
+        serious. I thought to address them to the most intelligent in the class and to
+        make sure, if possible, that even the most intelligent student was unable to
+        completely encompass everything that was in the lectures—by putting in
+        suggestions of applications of the ideas and concepts in various directions
+        outside the main line of attack. For this reason, though, I tried very hard to
+        make all the statements as accurate as possible, to point out in every case where
+        the equations and ideas fitted into the body of physics, and how—when they
+        learned more—things would be modified. I also felt that for such students it is
+        important to indicate what it is that they should—if they are sufficiently
+        clever—be able to understand by deduction from what has been said before, and
+        what is being put in as something new. When new ideas came in, I would try either
+        to deduce them if they were deducible, or to explain that it&nbsp;<i>was</i> a
+        new idea which hadn’t any basis in terms of things they had already learned and
+        which was not supposed to be provable—but was just added in.
+		</p>
+		</div>
+		<div id="Ch91-S1-p4" class="para">
+		<p class="p">
+		At the start of these lectures, I assumed that the students knew something
+        when they came out of high school—such things as geometrical optics, simple
+        chemistry ideas, and so on. I also didn’t see that there was any reason to make
+        the lectures in a definite order, in the sense that I would not be allowed to
+        mention something until I was ready to discuss it in detail. There was a great
+        deal of mention of things to come, without complete discussions. These more
+        complete discussions would come later when the preparation became more advanced.
+        Examples are the discussions of inductance, and of energy levels, which are at
+        first brought in in a very qualitative way and are later developed more
+        completely.
+		</p>
+		</div>
+		<div id="Ch91-S1-p5" class="para">
+		<p class="p">
+		At the same time that I was aiming at the more active student, I also wanted
+        to take care of the fellow for whom the extra fireworks and side applications are
+        merely disquieting and who cannot be expected to learn most of the material in
+        the lecture at all. For such students I wanted there to be at least a central
+        core or backbone of material which he <i>could</i> get. Even if he didn’t
+        understand everything in a lecture, I hoped he wouldn’t get nervous. I didn’t
+        expect him to understand everything, but only the central and most direct
+        features. It takes, of course, a certain intelligence on his part to see which
+        are the central theorems and central ideas, and which are the more advanced side
+        issues and applications which he may understand only in later years.
+		</p>
+		</div>
+		<div id="Ch91-S1-p6" class="para">
+		<p class="p">
+		In giving these lectures there was one serious difficulty: in the way the
+        course was given, there wasn’t any feedback from the students to the lecturer to
+        indicate how well the lectures were going over. This is indeed a very serious
+        difficulty, and I don’t know how good the lectures really are. The whole thing
+        was essentially an experiment. And if I did it again I wouldn’t do it the same
+        way—I hope I <i>don’t</i> have to do it again! I think, though, that things
+        worked out—so far as the physics is concerned—quite satisfactorily in the
+        first year.
+		</p>
+		</div>
+		<div id="Ch91-S1-p7" class="para">
+		<p class="p">
+		In the second year I was not so satisfied. In the first part of the course,
+        dealing with electricity and magnetism, I couldn’t think of any really unique or
+        different way of doing it—of any way that would be particularly more exciting
+        than the usual way of presenting it. So I don’t think I did very much in the
+        lectures on electricity and magnetism. At the end of the second year I had
+        originally intended to go on, after the electricity and magnetism, by giving some
+        more lectures on the properties of materials, but mainly to take up things like
+        fundamental modes, solutions of the diffusion equation, vibrating systems,
+        orthogonal functions,&nbsp;… developing the first
+        stages of what are usually called “the mathematical methods of physics.”
+        In retrospect, I think that if I were doing it again I would go back to that
+        original idea. But since it was not planned that I would be giving these lectures
+        again, it was suggested that it might be a good idea to try to give an
+        introduction to the quantum mechanics—what you will find in Volume III.
+		</p>
+		</div>
+		<div id="Ch91-S1-p8" class="para">
+		<p class="p">
+		It is perfectly clear that students who will major in physics can wait until
+        their third year for quantum mechanics. On the other hand, the argument was made
+        that many of the students in our course study physics as a background for their
+        primary interest in other fields. And the usual way of dealing with quantum
+        mechanics makes that subject almost unavailable for the great majority of
+        students because they have to take so long to learn it. Yet, in its real
+        applications—especially in its more complex applications, such as in electrical
+        engineering and chemistry—the full machinery of the differential equation
+        approach is not actually used. So I tried to describe the principles of quantum
+        mechanics in a way which wouldn’t require that one first know the mathematics of
+        partial differential equations. Even for a physicist I think that is an
+        interesting thing to try to do—to present quantum mechanics in this reverse
+        fashion—for several reasons which may be apparent in the lectures themselves.
+        However, I think that the experiment in the quantum mechanics part was not
+        completely successful—in large part because I really did not have enough time
+        at the end (I should, for instance, have had three or four more lectures in order
+        to deal more completely with such matters as energy bands and the spatial
+        dependence of amplitudes). Also, I had never presented the subject this way
+        before, so the lack of feedback was particularly serious. I now believe the
+        quantum mechanics should be given at a later time. Maybe I’ll have a chance to do
+        it again someday. Then I’ll do it right.
+		</p>
+		</div>
+		<div id="Ch91-S1-p9" class="para">
+		<p class="p">
+		The reason there are no lectures on how to solve problems is because there
+        were recitation sections. Although I did put in three lectures in the first year
+        on how to solve problems, they are not included here. Also there was a lecture on
+        inertial guidance which certainly belongs after the lecture on rotating systems,
+        but which was, unfortunately, omitted. The fifth and sixth lectures are actually
+        due to Matthew Sands, as I was out of town. The question, of course, is how well
+        this experiment has succeeded. My own point of view—which, however, does not
+        seem to be shared by most of the people who worked with the students—is
+        pessimistic. I don’t think I did very well by the students. When I look at the
+        way the majority of the students handled the problems on the examinations, I
+        think that the system is a failure. Of course, my friends point out to me that
+        there were one or two dozen students who—very surprisingly—understood almost
+        everything in all of the lectures, and who were quite active in working with the
+        material and worrying about the many points in an excited and interested way.
+        These people have now, I believe, a first-rate background in physics—and they
+        are, after all, the ones I was trying to get at. But then,&nbsp;"The power of
+        instruction is seldom of much efficacy except in those happy dispositions where
+        it is almost superfluous.”&nbsp;(Gibbon)
+		</p>
+		</div>
+		<div id="Ch91-S1-p10" class="para">
+		<p class="p">
+		Still, I didn’t want to leave any student completely behind, as perhaps I did.
+        I think one way we could help the students more would be by putting more hard
+        work into developing a set of problems which would elucidate some of the ideas in
+        the lectures. Problems give a good opportunity to fill out the material of the
+        lectures and make more realistic, more complete, and more settled in the mind the
+        ideas that have been exposed.
+		</p>
+		</div>
+		<div id="Ch91-S1-p11" class="para">
+		<p class="p">
+		I think, however, that there isn’t any solution to this problem of education
+        other than to realize that the best teaching can be done only when there is a
+        direct individual relationship between a student and a good teacher—a situation
+        in which the student discusses the ideas, thinks about the things, and talks
+        about the things. It’s impossible to learn very much by simply sitting in a
+        lecture, or even by simply doing problems that are assigned. But in our modern
+        times we have so many students to teach that we have to try to find some
+        substitute for the ideal. Perhaps my lectures can make some contribution. Perhaps
+        in some small place where there are individual teachers and students, they may
+        get some inspiration or some ideas from the lectures. Perhaps they will have fun
+        thinking them through—or going on to develop some of the ideas further.
+		</p>
+        </br>
+        <p align="right" style="line-height: 100%; margin-bottom: 0">Richard P.
+        Feynman<br>
+        June, 1963</p>
+        </div>
+  		</div>
+        
+      	<footer>
+         <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+         Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+      </footer>
+
+    </div>
+  </div>
+   </div>
+    </div>
+</body>
+</html>

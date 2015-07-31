@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 24: Transients</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "24." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch24" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">24</span>Transients</h2>
+<div id="Ch24-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">24–1</span>The energy of an oscillator</h3>
+<div id="Ch24-S1-p1" class="para">
+<p class="p">Although this chapter is entitled “transients,” certain
+parts of it are, in a way, part of the last chapter on forced
+oscillation. One of the features of a forced oscillation which we have
+not yet discussed is the <em class="emph">energy</em> in the oscillation. Let us now
+consider that energy.</p>
+</div>
+<div id="Ch24-S1-p2" class="para">
+<p class="p">In a mechanical oscillator, how much kinetic energy is there? It is
+proportional to the square of the velocity. Now we come to an
+important point. Consider an arbitrary quantity $A$, which may be the
+velocity or something else that we want to discuss. When we write $A =
+\hat{A}e^{i\omega t}$, a complex number, the true and honest $A$, in
+the physical world, is only the <em class="emph">real part</em>; therefore if, for
+some reason, we want to use the <em class="emph">square</em> of $A$, it is not right
+to square the complex number and then take the real part, because the
+real part of the square of a complex number is not just the square of
+the real part, but also involves the <em class="emph">imaginary</em> part. So when we
+wish to find the energy we have to get away from the complex notation
+for a while to see what the inner workings are.</p>
+</div>
+<div id="Ch24-S1-p3" class="para">
+<p class="p">Now the true physical $A$ is the real part of $A_0e^{i(\omega
+t+\Delta)}$, that is, $A = A_0 \cos\,(\omega t + \Delta)$, where
+$\hat{A}$, the complex number, is written as $A_0e^{i\Delta}$. Now the
+square of this real physical quantity is $A^2 = A_0^2 \cos^2\,(\omega
+t + \Delta)$. The square of the quantity, then, goes up and down from
+a maximum to zero, like the square of the cosine. The square of the
+cosine has a maximum of $1$ and a minimum of $0$, and its average
+value is $1/2$.</p>
+</div>
+<div id="Ch24-S1-p4" class="para">
+<p class="p">In many circumstances we are not interested in the energy at any
+specific moment during the oscillation; for a large number of
+applications we merely want the average of $A^2$, the <em class="emph">mean</em> of
+the square of $A$ over a period of time large compared with the period
+of oscillation. In those circumstances, the average of the cosine
+squared may be used, so we have the following theorem: if $A$ is
+represented by a complex number, then the mean of $A^2$ is equal
+to $\tfrac{1}{2}A_0^2$. Now $A_0^2$ is the square of the magnitude of the
+complex $\hat{A}$. (This can be written in many ways—some people
+like to write $\abs{\hat{A}}^2$; others write, $\hat{A}\hat{A}\cconj$,
+$\hat{A}$ times its complex conjugate.)  We shall use this theorem
+several times.</p>
+</div>
+<div id="Ch24-S1-p5" class="para">
+<p class="p">Now let us consider the energy in a forced oscillator. The equation
+for the forced oscillator is
+\begin{equation}
+\label{Eq:I:24:1}
+m\,d^2x/dt^2+\gamma m\,dx/dt+m\omega_0^2x=F(t).
+\end{equation}
+In our problem, of course, $F(t)$ is a cosine function of $t$. Now let
+us analyze the situation: how much work is done by the outside
+force $F$?  The work done by the force per second, i.e., the power, is the
+force times the velocity. (We know that the differential work in a
+time $dt$ is $F\,dx$, and the power is $F\,dx/dt$.) Thus
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:24:2}
+P=F\,\ddt{x}{t}=m\biggl[\biggl(\ddt{x}{t}\biggr)\biggl(
+\frac{d^2x}{dt^2}\biggr)+\omega_0^2x\biggl(\ddt{x}{t}\biggr)
+\biggr]+\gamma m\biggl(\ddt{x}{t}\biggr)^2.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+P=F\,&\ddt{x}{t}\notag\\[1.25ex]
+=m&\biggl[\biggl(\ddt{x}{t}\biggr)\biggl(
+\frac{d^2x}{dt^2}\biggr)+\omega_0^2x\biggl(\ddt{x}{t}\biggr)\biggr]\notag\\[.5ex]
+\label{Eq:I:24:2}
+&+\gamma m\biggl(\ddt{x}{t}\biggr)^2.
+\end{align}
+</span>
+But the first two terms on the right can also be written as
+$d/dt[\tfrac{1}{2}m(dx/dt)^2 + \tfrac{1}{2}m\omega_0^2x^2]$, as is
+immediately verified by differentiating. That is to say, the term in
+brackets is a pure derivative of two terms that are easy to
+understand—one is the kinetic energy of motion, and the other is the
+potential energy of the spring. Let us call this quantity the
+<em class="emph">stored energy</em>, that is, the energy stored in the
+oscillation. Suppose that we want the average power over many cycles
+when the oscillator is being forced and has been running for a long
+time. In the long run, the stored energy does not change—its
+derivative gives zero average effect. In other words, if we average
+the power in the long run, <em class="emph">all the energy ultimately ends up in
+the resistive term $\gamma m(dx/dt)^2$</em>. There is <em class="emph">some</em> energy
+stored in the oscillation, but that does not change with time, if we
+average over many cycles. Therefore the mean power $\avg{P}$ is
+\begin{equation}
+\label{Eq:I:24:3}
+\avg{P} = \avg{\gamma m(dx/dt)^2}.
+\end{equation}</p>
+</div>
+<div id="Ch24-S1-p6" class="para">
+<p class="p">Using our method of writing complex numbers, and our theorem that
+$\avg{A^2} = \tfrac{1}{2}A_0^2$, we may find this mean power. Thus if $x=
+\hat{x}e^{i\omega t}$, then $dx/dt = i\omega\hat{x}e^{i\omega
+t}$. Therefore, in these circumstances, the average power could be
+written as
+\begin{equation}
+\label{Eq:I:24:4}
+\avg{P} = \tfrac{1}{2}\gamma m\omega^2x_0^2.
+\end{equation}</p>
+</div>
+<div id="Ch24-S1-p7" class="para">
+<p class="p">In the notation for electrical circuits, $dx/dt$ is replaced by the
+current $I$ ($I$ is $dq/dt$, where $q$ corresponds to $x$), and
+$m\gamma$ corresponds to the resistance $R$. Thus the rate of the
+energy loss—the power used up by the forcing function—is the
+resistance in the circuit times the average square of the current:
+\begin{equation}
+\label{Eq:I:24:5}
+\avg{P} = R\avg{I^2} = 
+R\cdot\tfrac{1}{2}I_0^2.
+\end{equation}
+This energy, of course, goes into heating the resistor; it is
+sometimes called the heating loss or the Joule heating.</p>
+</div>
+<div id="Ch24-S1-p8" class="para">
+<p class="p">Another interesting feature to discuss is how much energy is
+<em class="emph">stored</em>. That is not the same as the power, because although
+power was at first used to store up some energy, after that the system
+keeps on absorbing power, insofar as there are any heating (resistive)
+losses. At any moment there is a certain amount of stored energy, so
+we would like to calculate the mean stored energy $\avg{E}$ also. We
+have already calculated what the average of $(dx/dt)^2$ is, so we find
+\begin{equation}
+\label{Eq:I:24:6}
+\begin{aligned}
+\avg{E} &= \tfrac{1}{2}m
+\avg{(dx/dt)^2} + \tfrac{1}{2}m\omega_0^2
+\avg{x^2}\\[1ex]
+&=\tfrac{1}{2}m(\omega^2+\omega_0^2)\tfrac{1}{2}x_0^2.
+\end{aligned}
+\end{equation}
+Now, when an oscillator is very efficient, and if $\omega$ is near
+$\omega_0$, so that $\abs{\hat{x}}$ is large, the stored energy is
+very high—we can get a large stored energy from a relatively small
+force. The force does a great deal of work in getting the oscillation
+going, but then to keep it steady, all it has to do is to fight the
+friction. The oscillator can have a great deal of energy if the
+friction is very low, and even though it is oscillating strongly, not
+much energy is being lost. The efficiency of an oscillator can be
+measured by how much energy is stored, compared with how much work the
+force does per oscillation.</p>
+</div>
+<div id="Ch24-S1-p9" class="para">
+<p class="p">How does the stored energy compare with the amount of work that is
+done in one cycle? This is called the $Q$ of the system, and $Q$ is
+defined as $2\pi$ times the mean stored energy, divided by the work
+done per cycle. (If we were to say the work done per <em class="emph">radian</em>
+instead of per cycle, then the $2\pi$ disappears.)
+\begin{equation}
+\label{Eq:I:24:7}
+Q=2\pi\,\frac{\tfrac{1}{2}m(\omega^2+\omega_0^2)\cdot
+\avg{x^2}}{\gamma m\omega^2\avg{x^2}\cdot
+2\pi/\omega}=\frac{\omega^2+\omega_0^2}{2\gamma\omega}.
+\end{equation}
+$Q$ is not a very useful number unless it is very large. When it is
+relatively large, it gives a measure of how good the oscillator
+is. People have tried to define $Q$ in the simplest and most useful
+way; various definitions differ a bit from one another, but if $Q$ is
+very large, all definitions are in agreement. The most generally
+accepted definition is Eq. (<a href="#mjx-eqn-EqI247">24.7</a>), which depends
+on $\omega$. For a good oscillator, close to resonance, we can
+simplify (<a href="#mjx-eqn-EqI247">24.7</a>) a little by setting $\omega=\omega_0$, and we
+then have $Q= \omega_0/\gamma$, which is the definition of $Q$ that we
+used before.</p>
+</div>
+<div id="Ch24-S1-p10" class="para">
+<p class="p">What is $Q$ for an electrical circuit? To find out, we merely have to
+translate $L$ for $m$, $R$ for $m\gamma$, and $1/C$ for $m\omega_0^2$
+(see Table <a href="I_23.html#Ch23-T1">23–1</a>). The $Q$ at resonance is $L\omega/R$,
+where $\omega$ is the resonance frequency. If we consider a circuit
+with a high $Q$, that means that the amount of energy stored in the
+oscillation is very large compared with the amount of work done per
+cycle by the machinery that drives the oscillations.</p>
+</div>
+</div>
+<div id="Ch24-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">24–2</span>Damped oscillations</h3>
+<div id="Ch24-S2-p1" class="para">
+<p class="p">We now turn to our main topic of discussion: transients. By a
+<em class="emph">transient</em> is meant a solution of the differential equation when
+there is no force present, but when the system is not simply at
+rest. (Of course, if it is standing still at the origin with no force
+acting, that is a nice problem—it stays there!) Suppose the
+oscillation starts another way: say it was driven by a force for a
+while, and then we turn off the force. What happens then? Let us first
+get a rough idea of what will happen for a very high $Q$ system. So
+long as a force is acting, the stored energy stays the same, and there
+is a certain amount of work done to maintain it. Now suppose we turn
+off the force, and no more work is being done; then the losses which
+are eating up the energy of the supply are no longer eating up its
+energy—there <em class="emph">is</em> no more driver. The losses will have to
+consume, so to speak, the energy that is stored. Let us suppose that
+$Q/2\pi = 1000$. Then the work done per cycle is $1/1000$ of the
+stored energy. Is it not reasonable, since it is oscillating with no
+driving force, that in one cycle the system will still lose a
+thousandth of its energy $E$, which ordinarily would have been
+supplied from the outside, and that it will continue oscillating,
+always losing $1/1000$ of its energy per cycle? So, as a guess, for a
+relatively high $Q$ system, we would suppose that the following
+equation might be roughly right (we will later do it exactly, and it
+will turn out that it <em class="emph">was</em> right!):
+\begin{equation}
+\label{Eq:I:24:8}
+dE/dt=-\omega E/Q.
+\end{equation}
+This is rough because it is true only for large $Q$. In each radian
+the system loses a fraction $1/Q$ of the stored energy $E$. Thus in a
+given amount of time $dt$ the energy will change by an
+amount $\omega\,dt/Q$, since the number of radians associated with the
+time $dt$ is $\omega\,dt$. What is the frequency? Let us suppose that the
+system moves so nicely, with hardly any force, that if we let go it
+will oscillate at essentially the same frequency all by itself. So we
+will guess that $\omega$ is the resonant frequency $\omega_0$. Then we
+deduce from Eq. (<a href="#mjx-eqn-EqI248">24.8</a>) that the stored energy will vary
+as
+\begin{equation}
+\label{Eq:I:24:9}
+E=E_0e^{-\omega_0t/Q}=E_0e^{-\gamma t}.
+\end{equation}
+This would be the measure of the <em class="emph">energy</em> at any moment. What
+would the formula be, roughly, for the amplitude of the oscillation as
+a function of the time? The same? No! The amount of energy in a
+spring, say, goes as the <em class="emph">square</em> of the displacement; the
+kinetic energy goes as the <em class="emph">square</em> of the velocity; so the total
+energy goes as the <em class="emph">square</em> of the displacement. Thus the
+displacement, the amplitude of oscillation, will decrease half as fast
+because of the square. In other words, we guess that the solution for
+the damped transient motion will be an oscillation of frequency close
+to the resonance frequency $\omega_0$, in which the amplitude of the
+sine-wave motion will diminish as $e^{-\gamma t/2}$:
+\begin{equation}
+\label{Eq:I:24:10}
+x=A_0e^{-\gamma t/2}\cos\omega_0 t.
+\end{equation}
+This equation and Fig. <a href="#Ch24-F1">24–1</a> give us an idea of what we
+should expect; now let us try to analyze the motion <em class="emph">precisely</em>
+by solving the differential equation of the motion itself.</p>
+</div>
+<div id="Ch24-F1" class="figure">
+<img src="img/FLP_I/f24-01/f24-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–1.</span>A damped cosine oscillation.
+</div>
+</div>
+<div id="Ch24-S2-p2" class="para">
+<p class="p">So, starting with Eq. (<a href="#mjx-eqn-EqI241">24.1</a>), with no outside force, how
+do we solve it? Being physicists, we do not have to worry about the
+<em class="emph">method</em> as much as we do about what the solution
+<em class="emph">is</em>. Armed with our previous experience, let us try as a
+solution an exponential curve, $x = Ae^{i\alpha t}$. (Why do we try
+this? It is the easiest thing to differentiate!) We put this
+into (<a href="#mjx-eqn-EqI241">24.1</a>) (with $F(t) = 0$), using the rule that each time
+we differentiate $x$ with respect to time, we multiply by $i\alpha$. So
+it is really quite simple to substitute. Thus our equation looks like
+this:
+\begin{equation}
+\label{Eq:I:24:11}
+(-\alpha^2+i\gamma\alpha+\omega_0^2)Ae^{i\alpha t}=0.
+\end{equation}
+The net result must be zero for <em class="emph">all times</em>, which is impossible
+unless (a) $A = 0$, which is no solution at all—it stands still, or
+(b)
+\begin{equation}
+\label{Eq:I:24:12}
+-\alpha^2+i\alpha\gamma+\omega_0^2=0.
+\end{equation}
+If we can solve this and find an $\alpha$, then we will have a
+solution in which $A$ need not be zero!
+\begin{equation}
+\label{Eq:I:24:13}
+\alpha=i\gamma/2\pm\sqrt{\omega_0^2-\gamma^2/4}.
+\end{equation}</p>
+</div>
+<div id="Ch24-S2-p3" class="para">
+<p class="p">For a while we shall assume that $\gamma$ is fairly small compared
+with $\omega_0$, so that $\omega_0^2-\gamma^2/4$ is definitely
+positive, and there is nothing the matter with taking the square
+root. The only bothersome thing is that we get <em class="emph">two</em> solutions!
+Thus
+\begin{equation}
+\label{Eq:I:24:14}
+\alpha_1 =i\gamma/2+\sqrt{\omega_0^2-\gamma^2/4}=
+i\gamma/2+\omega_\gamma
+\end{equation}
+and
+\begin{equation}
+\label{Eq:I:24:15}
+\alpha_2 =i\gamma/2-\sqrt{\omega_0^2-\gamma^2/4}=i\gamma/2-\omega_\gamma.
+\end{equation}
+Let us consider the first one, supposing that we had not noticed that
+the square root has two possible values. Then we know that a solution
+for $x$ is $x_1= Ae^{i\alpha_1t}$, where $A$ is any constant
+whatever. Now, in substituting $\alpha_1$, because it is going to come
+so many times and it takes so long to write, we shall call
+$\sqrt{\omega_0^2-\gamma^2/4}=\omega_\gamma$. Thus
+$i\alpha_1=-\gamma/2 + i\omega_\gamma$, and we get $x =
+Ae^{(-\gamma/2+i\omega_\gamma)t}$, or what is the same, because of the
+wonderful properties of an exponential,
+\begin{equation}
+\label{Eq:I:24:16}
+x_1=Ae^{-\gamma t/2}e^{i\omega_\gamma t}.
+\end{equation}
+First, we recognize this as an oscillation, an oscillation at a
+frequency $\omega_\gamma$, which is not <em class="emph">exactly</em> the
+frequency $\omega_0$, but is rather close to $\omega_0$ if it is a good
+system. Second, the amplitude of the oscillation is decreasing
+exponentially! If we take, for instance, the real part
+of (<a href="#mjx-eqn-EqI2416">24.16</a>), we get
+\begin{equation}
+\label{Eq:I:24:17}
+x_1=Ae^{-\gamma t/2}\cos\omega_\gamma t.
+\end{equation}
+This is very much like our guessed-at solution (<a href="#mjx-eqn-EqI2410">24.10</a>),
+except that the frequency really is $\omega_\gamma$. This is the only
+error, so it is the same thing—we have the right idea. But
+everything is <em class="emph">not</em> all right! What is not all right is that
+<em class="emph">there is another solution</em>.</p>
+</div>
+<div id="Ch24-S2-p4" class="para">
+<p class="p">The other solution is $\alpha_2$, and we see that the difference is
+only that the sign of $\omega_\gamma$ is reversed:
+\begin{equation}
+\label{Eq:I:24:18}
+x_2=Be^{-\gamma t/2}e^{-i\omega_\gamma t}.
+\end{equation}
+What does this mean? We shall soon prove that if $x_1$ and $x_2$ are
+each a possible solution of Eq. (<a href="#mjx-eqn-EqI241">24.1</a>) with $F = 0$, then
+$x_1 + x_2$ is also a solution of the same equation! So the general
+solution $x$ is of the mathematical form
+\begin{equation}
+\label{Eq:I:24:19}
+x=e^{-\gamma t/2}(Ae^{i\omega_\gamma t}+Be^{-i\omega_\gamma t}).
+\end{equation}
+Now we may wonder why we bother to give this other solution, since we
+were so happy with the first one all by itself. What is the extra one
+for, because of course we know we should only take the real part?
+<em class="emph">We</em> know that we must take the real part, but how did the
+<em class="emph">mathematics</em> know that we only wanted the real part? When we had
+a nonzero driving force $F(t)$, we put in an <em class="emph">artificial</em> force
+to go with it, and the <em class="emph">imaginary</em> part of the equation, so to
+speak, was driven in a definite way. But when we put $F(t) \equiv 0$,
+our convention that $x$ should be only the real part of whatever we
+write down is purely our own, and the mathematical equations do not
+know it yet. The physical world <em class="emph">has</em> a real solution, but the
+answer that we were so happy with before is not real, it is
+<em class="emph">complex</em>. The <em class="emph">equation</em> does not know that we are
+arbitrarily going to take the real part, so it has to present us, so
+to speak, with a complex conjugate type of solution, so that by
+putting them together we can <em class="emph">make a truly real</em> solution; that
+is what $\alpha_2$ is doing for us. In order for $x$ to be real,
+$Be^{-i\omega_\gamma t}$ will have to be the complex conjugate
+of $Ae^{i\omega_\gamma t}$ that the imaginary parts disappear. So it turns
+out that $B$ is the complex conjugate of $A$, and our real solution is
+\begin{equation}
+\label{Eq:I:24:20}
+x=e^{-\gamma t/2}(Ae^{i\omega_\gamma t}+A\cconj e^{-i\omega_\gamma
+t}).
+\end{equation}
+So our real solution is an oscillation with a <em class="emph">phase shift</em> and a
+damping—just as advertised.</p>
+</div>
+</div>
+<div id="Ch24-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">24–3</span>Electrical transients</h3>
+<div id="Ch24-F2" class="figure">
+<img src="img/FLP_I/f24-02/f24-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 24–2.</span>An electrical circuit for demonstrating transients.
+</div>
+</div>
+<div id="Ch24-S3-p1" class="para">
+<p class="p">Now let us see if the above really works. We construct the electrical circuit
+shown in Fig. <a href="#Ch24-F2">24–2</a>, in which we apply to an oscilloscope the voltage
+across the inductance $L$ after we suddenly turn on a voltage by closing the
+switch $S$. It is an oscillatory circuit, and it generates a transient of some
+kind. It corresponds to a circumstance in which we suddenly apply a force and
+the system starts to oscillate. It is the electrical analog of a damped
+mechanical oscillator, and we watch the oscillation on an oscilloscope, where we
+should see the curves that we were trying to analyze. (The horizontal motion of
+the oscilloscope is driven at a uniform speed, while the vertical motion is the
+voltage across the inductor. The rest of the circuit is only a technical detail.
+We would like to repeat the experiment many, many times, since the persistence
+of vision is not good enough to see only one trace on the screen. So we do the
+experiment again and again by closing the switch $60$ times a second; each time
+we close the switch, we also start the oscilloscope horizontal sweep, and it
+draws the curve over and over.) In Figs. <a href="#Ch24-F3">24–3</a>
+to <a href="#Ch24-F6">24–6</a> we see examples of damped oscillations, actually
+photographed on an oscilloscope  screen. Figure <a href="#Ch24-F3">24–3</a> shows a damped
+oscillation in a circuit which has a high $Q$, a small $\gamma$. It does not die
+out very fast; it oscillates many times on the way down.</p>
+</div>
+<div id="Ch24-F3" class="figure">
+<img src="img/FLP_I/f24-03/f24-03_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 24–3</span>
+</div>
+</div>
+<div id="Ch24-F4" class="figure">
+<img src="img/FLP_I/f24-04/f24-04_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 24–4</span>
+</div>
+</div>
+<div id="Ch24-F5" class="figure">
+<img src="img/FLP_I/f24-05/f24-05_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 24–5</span>
+</div>
+</div>
+<div id="Ch24-F6" class="figure">
+<img src="img/FLP_I/f24-06/f24-06_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 24–6</span>
+</div>
+</div>
+<div id="Ch24-S3-p2" class="para">
+<p class="p">But let us see what happens as we decrease $Q$, so that the
+oscillation dies out more rapidly. We can decrease $Q$ by increasing
+the resistance $R$ in the circuit. When we increase the resistance in
+the circuit, it dies out faster (Fig. <a href="#Ch24-F4">24–4</a>). Then if we
+increase the resistance in the circuit still more, it dies out faster
+still (Fig. <a href="#Ch24-F5">24–5</a>). But when we put in more than a
+certain amount, we cannot see any oscillation at all! The question is,
+is this because our eyes are not good enough? If we increase the
+resistance still more, we get a curve like that of
+Fig. <a href="#Ch24-F6">24–6</a>, which does not appear to have any oscillations,
+except perhaps one. Now, how can we explain that by mathematics?</p>
+</div>
+<div id="Ch24-S3-p3" class="para">
+<p class="p">The resistance is, of course, proportional to the $\gamma$ term in the
+mechanical device. Specifically, $\gamma$ is $R/L$. Now if we increase
+the $\gamma$ in the solutions (<a href="#mjx-eqn-EqI2414">24.14</a>) and (<a href="#mjx-eqn-EqI2415">24.15</a>)
+that we were so happy with before, chaos sets in when $\gamma/2$ exceeds
+$\omega_0$; we must write it a different way, as
+\begin{equation*}
+i\gamma/2+i\sqrt{\gamma^2/4-\omega_0^2}\quad
+\text{and}\quad
+i\gamma/2-i\sqrt{\gamma^2/4-\omega_0^2}.
+\end{equation*}
+Those are now the two solutions and, following the same line of
+mathematical reasoning as previously, we again find two solutions:
+$e^{i\alpha_1 t}$ and $e^{i\alpha_2 t}$. If we now substitute for
+$\alpha_1$, we get
+\begin{equation*}
+x=Ae^{-(\gamma/2+\sqrt{\gamma^2/4-\omega_0^2})t},
+\end{equation*}
+a nice exponential decay with no oscillations. Likewise, the other
+solution is
+\begin{equation*}
+x=Be^{-(\gamma/2-\sqrt{\gamma^2/4-\omega_0^2})t}.
+\end{equation*}
+Note that the square root cannot exceed $\gamma/2$, because even if
+$\omega_0=0$, one term just equals the other. But $\omega_0^2$ is
+taken away from $\gamma^2/4$, so the square root is less than
+$\gamma/2$, and the term in parentheses is, therefore, always a
+positive number. Thank goodness!  Why? Because if it were negative, we
+would find $e$ raised to a <em class="emph">positive</em> factor times $t$, which
+would mean it was exploding! In putting more and more resistance into
+the circuit, we know it is not going to explode—quite the
+contrary. So now we have two solutions, each one by itself a dying
+exponential, but one having a much faster “dying rate” than the
+other. The general solution is of course a combination of the two; the
+coefficients in the combination depending upon how the motion
+starts—what the initial conditions of the problem are. In the
+particular way this circuit happens to be starting, the $A$ is
+negative and the $B$ is positive, so we get the difference of two
+exponential curves.</p>
+</div>
+<div id="Ch24-S3-p4" class="para">
+<p class="p">Now let us discuss how we can find the two coefficients $A$ and $B$
+(or $A$ and $A\cconj$), if we know how the motion was started.</p>
+</div>
+<div id="Ch24-S3-p5" class="para">
+<p class="p">Suppose that at $t = 0$ we know that $x = x_0$, and $dx/dt = v_0$. If
+we put $t= 0$, $x = x_0$, and $dx/dt = v_0$ into the expressions
+<span class="eq-wide">
+\begin{align*}
+x&=e^{-\gamma t/2}(Ae^{i\omega_\gamma t}+
+A\cconj e^{-i\omega_\gamma t}),\\[1ex]
+dx/dt&=e^{-\gamma t/2}\bigl[
+(-\gamma/2+i\omega_\gamma)Ae^{i\omega_\gamma t}+
+(-\gamma/2-i\omega_\gamma)A\cconj e^{-i\omega_\gamma t}\,\bigr],
+\end{align*}
+</span>
+<span class="eq-narrow">
+
+\begin{align*}
+x=e^{-\gamma t/2}(&Ae^{i\omega_\gamma t}+
+A\cconj e^{-i\omega_\gamma t}),\\[1ex]
+dx/dt=e^{-\gamma t/2}\bigl[
+&(-\gamma/2+i\omega_\gamma)Ae^{i\omega_\gamma t}+\\
+&(-\gamma/2-i\omega_\gamma)A\cconj e^{-i\omega_\gamma t}\,\bigr],
+\end{align*}
+
+</span>
+we find, since $e^0 =$ $e^{i0} =$ $1$,
+\begin{align*}
+x_0&=A+A\cconj=2A_R,\\[1ex]
+v_0&=-(\gamma/2)(A+A\cconj)+i\omega_\gamma(A-A\cconj)\\[.5ex]
+&=-\gamma x_0/2+i\omega_\gamma(2iA_I),
+\end{align*}
+where $A = A_R + iA_I$, and $A\cconj = A_R - iA_I$. Thus we find
+\begin{equation}
+A_R =x_0/2\notag
+\end{equation}
+and
+\begin{equation}
+\label{Eq:I:24:21}
+A_I =-(v_0+\gamma x_0/2)/2\omega_\gamma.
+\end{equation}
+This completely determines $A$ and $A\cconj$, and therefore the
+complete curve of the transient solution, in terms of how it
+begins. Incidentally, we can write the solution another way if we note
+that
+\begin{equation*}
+e^{i\theta}+e^{-i\theta}=2\cos\theta
+\quad\text{and}\quad
+e^{i\theta}-e^{-i\theta}=2i\sin\theta.
+\end{equation*}
+We may then write the complete solution as
+\begin{equation}
+\label{Eq:I:24:22}
+x=e^{-\gamma t/2}\biggl[
+x_0\cos\omega_\gamma t+
+\frac{v_0+\gamma x_0/2}{\omega_\gamma}\sin\omega_\gamma t
+\biggr],
+\end{equation}
+where $\omega_\gamma=+\sqrt{\omega_0^2-\gamma^2/4}$. This is the
+mathematical expression for the way an oscillation dies out. We shall
+not make direct use of it, but there are a number of points we should
+like to emphasize that are true in more general cases.</p>
+</div>
+<div id="Ch24-S3-p6" class="para">
+<p class="p">First of all the behavior of such a system with no external force is
+expressed by a sum, or superposition, of pure exponentials in time
+(which we wrote as $e^{i\alpha t}$). This is a good solution to try in
+such circumstances. The values of $\alpha$ may be complex in general,
+the imaginary parts representing damping. Finally the intimate
+mathematical relation of the sinusoidal and exponential function
+discussed in Chapter <a href="I_22.html">22</a> often appears physically as a
+change from oscillatory to exponential behavior when some physical
+parameter (in this case resistance, $\gamma$) exceeds some critical
+value.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

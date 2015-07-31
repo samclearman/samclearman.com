@@ -1,0 +1,2811 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 19: The Hydrogen Atom and The Periodic Table</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "19." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0],
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+
+<div id="Ch19" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">19</span>The Hydrogen Atom and The Periodic Table</h2>
+
+
+<div id="Ch19-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">19–1</span>Schrödinger’s equation for the hydrogen atom</h3>
+
+<div id="Ch19-S1-p1" class="para">
+<p class="p">The most dramatic success in the history of the quantum
+mechanics was the understanding of the details of the spectra of some
+simple atoms and the understanding of the periodicities which are found
+in the table of chemical elements. In this chapter we will at last bring
+our quantum mechanics to the point of this important achievement,
+specifically to an understanding of the spectrum of the hydrogen atom.
+We will at the same time arrive at a qualitative explanation of the
+mysterious properties of the chemical elements. We will do this by
+studying in detail the behavior of the electron in a hydrogen atom&mdash;for
+the first time making a detailed calculation of a distribution-in-space
+according to the ideas we developed in Chapter&nbsp;<a href="III_16.html">16</a>.
+</p>
+</div>
+
+<div id="Ch19-S1-p2" class="para">
+<p class="p">For a complete description of the hydrogen atom we should describe the
+motions of both the proton and the electron. It is possible to do this
+in quantum mechanics in a way that is analogous to the classical idea of
+describing the motion of each particle relative to the center of
+gravity, but we will not do so. We will just discuss an approximation in
+which we consider the proton to be very heavy, so we can think of it as
+fixed at the center of the atom.
+</p>
+</div>
+
+<div id="Ch19-S1-p3" class="para">
+<p class="p">We will make another approximation by forgetting that the electron has a
+spin and should be described by relativistic laws of mechanics. Some
+small corrections to our treatment will be required since we will be
+using the nonrelativistic Schrödinger equation and will disregard
+magnetic effects. Small magnetic effects occur because from the
+electron’s point-of-view the proton is a circulating charge which
+produces a magnetic field. In this field the electron will have a
+different energy with its spin up than with it down. The energy of the
+atom will be shifted a little bit from what we will calculate. We will
+ignore this small energy shift. Also we will imagine that the electron
+is just like a gyroscope moving around in space always keeping the same
+direction of spin. Since we will be considering a free atom in space the
+total angular momentum will be conserved. In our approximation we will
+assume that the angular momentum of the electron spin stays constant, so
+all the rest of the angular momentum of the atom&mdash;what is usually
+called “orbital” angular momentum&mdash;will also be
+conserved. To an excellent approximation the electron moves in the
+hydrogen atom like a particle without spin&mdash;the angular momentum of the
+motion is a constant.
+</p>
+</div>
+
+<div id="Ch19-S1-p4" class="para">
+<p class="p">With these approximations the amplitude to find the electron at
+different places in space can be represented by a function of position
+in space and time. We let&nbsp;$\psi(x,y,z,t)$ be the amplitude to find the
+electron somewhere at the time&nbsp;$t$. According to the quantum mechanics
+the rate of change of this amplitude with time is given by the
+Hamiltonian operator working on the same function. From
+Chapter&nbsp;<a href="III_16.html">16</a>,
+\begin{equation}
+\label{Eq:III:19:1}
+i\hbar\,\ddp{\psi}{t}=\Hcalop\psi,
+\end{equation}
+with
+\begin{equation}
+\label{Eq:III:19:2}
+\Hcalop=-\frac{\hbar^2}{2m}\,\nabla^2+V(\FLPr).
+\end{equation}
+Here, $m$ is the electron mass, and $V(\FLPr)$ is the potential energy
+of the electron in the electrostatic field of the proton. Taking $V=0$
+at large distances from the proton we can write<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a>
+\begin{equation*}
+V=-\frac{e^2}{r}.
+\end{equation*}
+The wave function&nbsp;$\psi$ must then satisfy the equation
+\begin{equation}
+\label{Eq:III:19:3}
+i\hbar\,\ddp{\psi}{t}=-\frac{\hbar^2}{2m}\,\nabla^2\psi
+-\frac{e^2}{r}\,\psi.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch19-S1-p5" class="para">
+<p class="p">We want to look for definite energy states, so we try to find
+solutions which have the form
+\begin{equation}
+\label{Eq:III:19:4}
+\psi(\FLPr,t)=e^{-(i/\hbar)Et}\psi(\FLPr).
+\end{equation}
+The function&nbsp;$\psi(\FLPr)$ must then be a solution of
+\begin{equation}
+\label{Eq:III:19:5}
+-\frac{\hbar^2}{2m}\,\nabla^2\psi=
+\biggl(E+\frac{e^2}{r}\biggr)\psi,
+\end{equation}
+where $E$ is some constant&mdash;the energy of the atom.
+</p>
+</div>
+
+<div id="Ch19-S1-p6" class="para">
+<p class="p">Since the potential energy term depends only on the radius, it turns
+out to be much more convenient to solve this equation in polar
+coordinates rather than rectangular coordinates. The Laplacian is
+defined in rectangular coordinates by
+\begin{equation*}
+\nabla^2=\frac{\partial^2}{\partial x^2}+
+\frac{\partial^2}{\partial y^2}+
+\frac{\partial^2}{\partial z^2}.
+\end{equation*}
+We want to use instead the coordinates&nbsp;$r$, $\theta$, $\phi$ shown in
+Fig.&nbsp;<a href="#Ch19-F1">19–1</a>. These coordinates are related to&nbsp;$x$, $y$,
+$z$&nbsp;by
+\begin{equation*}
+x=r\sin\theta\cos\phi;\quad
+y=r\sin\theta\sin\phi;\quad
+z=r\cos\theta.
+\end{equation*}
+It’s a rather tedious mess to work through the algebra, but you can
+eventually show that for any function&nbsp;$f(\FLPr)=f(r,\theta,\phi)$,
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:19:6}
+\nabla^2f(r,\theta,\phi)=\frac{1}{r}\,\frac{\partial^2}{\partial r^2}\,
+(rf)+\frac{1}{r^2}\biggl\{
+\frac{1}{\sin\theta}\,\ddp{}{\theta}\biggl(
+\sin\theta\,\ddp{f}{\theta}\biggr)+\frac{1}{\sin^2\theta}\,
+\frac{\partial^2f}{\partial\phi^2}\biggr\}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:III:19:6}
+&\nabla^2f(r,\theta,\phi)=\\[1ex]
+&\frac{1}{r}\,\frac{\partial^2}{\partial r^2}\,(rf)\;+\notag\\[1ex]
+&\frac{1}{r^2}\biggl\{
+\frac{1}{\sin\theta}\,\ddp{}{\theta}\biggl(
+\sin\theta\,\ddp{f}{\theta}\biggr)+\frac{1}{\sin^2\theta}\,
+\frac{\partial^2f}{\partial\phi^2}\biggr\}.\notag
+\end{align}
+</span>
+So in terms of the polar coordinates, the equation which is to be
+satisfied by&nbsp;$\psi(r,\theta,\phi)$ is
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:19:7}
+\frac{1}{r}\,\frac{\partial^2}{\partial r^2}\,
+(r\psi)+\frac{1}{r^2}\biggl\{
+\frac{1}{\sin\theta}\,\ddp{}{\theta}\biggl(
+\sin\theta\,\ddp{\psi}{\theta}\biggr)+\frac{1}{\sin^2\theta}\,
+\frac{\partial^2\psi}{\partial \phi^2}\biggr\}=
+-\frac{2m}{\hbar^2}\biggl(E+\frac{e^2}{r}\biggr)\psi.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:III:19:7}
+&\frac{1}{r}\,\frac{\partial^2}{\partial r^2}\,
+(r\psi)\;+\\[1ex]
+&\frac{1}{r^2}\biggl\{
+\frac{1}{\sin\theta}\,\ddp{}{\theta}\biggl(
+\sin\theta\,\ddp{\psi}{\theta}\biggr)+\frac{1}{\sin^2\theta}\,
+\frac{\partial^2\psi}{\partial \phi^2}\biggr\}\notag\\[1.5ex]
+&=-\frac{2m}{\hbar^2}\biggl(E+\frac{e^2}{r}\biggr)\psi.\notag
+\end{align}
+</span>
+</p>
+</div>
+
+<div id="Ch19-F1" class="figure">
+<img src="img/FLP_III/f19-01/f19-01_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 19–1.</span>
+The spherical polar coordinates&nbsp;$r$, $\theta$, $\phi$ of the
+  point&nbsp;$P$.
+</div>
+</div>
+
+</div> <!-- end of section -->
+
+<div id="Ch19-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">19–2</span>Spherically symmetric solutions</h3>
+
+<div id="Ch19-S2-p1" class="para">
+<p class="p">Let’s first try to find some very simple function that satisfies the
+horrible equation in&nbsp;(<a href="#mjx-eqn-EqIII197">19.7</a>). Although the wave
+function&nbsp;$\psi$ will, in general, depend on the angles $\theta$ and&nbsp;$\phi$ as
+well as on the radius&nbsp;$r$, we can see whether there might be a special
+situation in which $\psi$ does <em class="emph">not</em> depend on the angles. For a
+wave function that doesn’t depend on the angles, none of the
+amplitudes will change in any way if you rotate the coordinate
+system. That means that all of the components of the angular momentum
+are zero. Such a&nbsp;$\psi$ must correspond to a state whose total angular
+momentum is zero. (Actually, it is only the orbital angular momentum
+which is zero because we still have the spin of the electron, but we
+are ignoring that part.) A state with zero orbital angular momentum is
+called by a special name. It is called an “$s$-state”&mdash;you can
+remember “$s$&nbsp;for spherically symmetric.”<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+</p>
+</div>
+
+<div id="Ch19-S2-p2" class="para">
+<p class="p">Now if $\psi$, is not going to depend on $\theta$ and&nbsp;$\phi$ then the
+entire Laplacian contains only the first term and
+Eq.&nbsp;(<a href="#mjx-eqn-EqIII197">19.7</a>) becomes much simpler:
+\begin{equation}
+\label{Eq:III:19:8}
+\frac{1}{r}\,\frac{d^2}{dr^2}\,(r\psi)=
+-\frac{2m}{\hbar^2}\biggl(E+\frac{e^2}{r}\biggr)\psi.
+\end{equation}
+Before you start to work on solving an equation like this, it’s a good
+idea to get rid of all excess constants like $e^2$,&nbsp;$m$, and&nbsp;$\hbar$,
+by making some scale changes. Then the algebra will be easier. If we
+make the following substitutions:
+\begin{equation}
+\label{Eq:III:19:9}
+r=\frac{\hbar^2}{me^2}\,\rho,
+\end{equation}
+and
+\begin{equation}
+\label{Eq:III:19:10}
+E=\frac{me^4}{2\hbar^2}\,\epsilon,
+\end{equation}
+then Eq.&nbsp;(<a href="#mjx-eqn-EqIII198">19.8</a>) becomes (after multiplying through by&nbsp;$\rho$)
+\begin{equation}
+\label{Eq:III:19:11}
+\frac{d^2(\rho\psi)}{d\rho^2}=
+-\biggl(\epsilon+\frac{2}{\rho}\biggr)\rho\psi.
+\end{equation}
+These scale changes mean that we are measuring the distance&nbsp;$r$ and
+energy&nbsp;$E$ as multiples of “natural” atomic units. That is,
+$\rho=r/r_B$, where $r_B=\hbar^2/me^2$, is called the “Bohr
+radius” and is about $0.528$&nbsp;angstroms.
+Similarly, $\epsilon=E/E_R$, with&nbsp;$E_R=me^4/2\hbar^2$. This energy is
+called the “Rydberg” and is about $13.6$&nbsp;electron volts.
+</p>
+</div>
+
+<div id="Ch19-S2-p3" class="para">
+<p class="p">Since the product&nbsp;$\rho\psi$ appears on both sides, it is convenient
+to work with it rather than with&nbsp;$\psi$ itself. Letting
+\begin{equation}
+\label{Eq:III:19:12}
+\rho\psi=f,
+\end{equation}
+we have the more simple-looking equation
+\begin{equation}
+\label{Eq:III:19:13}
+\frac{d^2f}{d\rho^2}=-\biggl(\epsilon+\frac{2}{\rho}\biggr)f.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch19-S2-p4" class="para">
+<p class="p">Now we have to find some function&nbsp;$f$ which satisfies
+Eq.&nbsp;(<a href="#mjx-eqn-EqIII1913">19.13</a>)&mdash;in other words, we just have to solve a
+differential equation. Unfortunately, there is no very useful, general
+method for solving any given differential equation. You just have to
+fiddle around. Our equation is not easy, but people have found that it
+can be solved by the following procedure. First, you replace&nbsp;$f$, which
+is some function of&nbsp;$\rho$, by a product of two functions
+\begin{equation}
+\label{Eq:III:19:14}
+f(\rho)=e^{-\alpha\rho}g(\rho).
+\end{equation}
+This just means that you are factoring&nbsp;$e^{-\alpha\rho}$ out
+of&nbsp;$f(\rho)$. You can certainly do that for any&nbsp;$f(\rho)$ at all. This
+just shifts our problem to finding the right function&nbsp;$g(\rho)$.
+</p>
+</div>
+
+<div id="Ch19-S2-p5" class="para">
+<p class="p">Sticking (<a href="#mjx-eqn-EqIII1914">19.14</a>) into&nbsp;(<a href="#mjx-eqn-EqIII1913">19.13</a>), we get the
+following equation for&nbsp;$g$:
+\begin{equation}
+\label{Eq:III:19:15}
+\frac{d^2g}{d\rho^2}-2\alpha\,\ddt{g}{\rho}+\biggl(
+\frac{2}{\rho}+\epsilon+\alpha^2\biggr)g=0.
+\end{equation}
+Since we are free to choose&nbsp;$\alpha$, let’s make
+\begin{equation}
+\label{Eq:III:19:16}
+\alpha^2=-\epsilon,
+\end{equation}
+and get
+\begin{equation}
+\label{Eq:III:19:17}
+\frac{d^2g}{d\rho^2}-2\alpha\,\ddt{g}{\rho}+
+\frac{2}{\rho}\,g=0.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch19-S2-p6" class="para">
+<p class="p">You may think we are no better off than we were at
+Eq.&nbsp;(<a href="#mjx-eqn-EqIII1913">19.13</a>), but the happy thing about our new equation is
+that it can be solved easily in terms of a power series in&nbsp;$\rho$. (It
+is possible, in principle, to solve&nbsp;(<a href="#mjx-eqn-EqIII1913">19.13</a>) that way too,
+but it is much harder.) We are saying that Eq.&nbsp;(<a href="#mjx-eqn-EqIII1917">19.17</a>)
+can be satisfied by some&nbsp;$g(\rho)$ which can be written as a series,
+\begin{equation}
+\label{Eq:III:19:18}
+g(\rho)=\sum_{k=1}^\infty a_k\rho^k,
+\end{equation}
+in which the $a_k$ are constant coefficients. Now all we have to do is
+find a suitable infinite set of coefficients! Let’s check to see that
+such a solution will work. The first derivative of this&nbsp;$g(\rho)$ is
+\begin{equation*}
+\ddt{g}{\rho}=\sum_{k=1}^\infty a_kk\rho^{k-1},
+\end{equation*}
+and the second derivative is
+\begin{equation*}
+\frac{d^2g}{d\rho^2}=\sum_{k=1}^\infty a_kk(k-1)\rho^{k-2}.
+\end{equation*}
+Using these expressions in&nbsp;(<a href="#mjx-eqn-EqIII1917">19.17</a>) we have
+\begin{equation}
+\label{Eq:III:19:19}
+\sum_{k=1}^\infty \!k(k\!-\!1)a_k\rho^{k\!-\!2}\!-\!\!
+\sum_{k=1}^\infty \!2\alpha ka_k\rho^{k\!-\!1}\!+\!\!
+\sum_{k=1}^\infty \!2a_k\rho^{k\!-\!1}\!= 0.
+\end{equation}
+It’s not obvious that we have succeeded; but we forge onward. It will
+all look better if we replace the first sum by an equivalent. Since
+the first term of the sum is zero, we can replace each $k$ by&nbsp;$k+1$
+without changing anything in the infinite series; with this change the
+first sum can equally well be written as
+\begin{equation*}
+\sum_{k=1}^\infty(k+1)ka_{k+1}\rho^{k-1}.
+\end{equation*}
+Now we can put all the sums together to get
+\begin{equation}
+\label{Eq:III:19:20}
+\sum_{k=1}^\infty[(k+1)ka_{k+1}-2\alpha ka_k+2a_k]\rho^{k-1}=0.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch19-S2-p7" class="para">
+<p class="p">This power series must vanish for all possible values of&nbsp;$\rho$. It
+can do that only if the coefficient of each power of&nbsp;$\rho$ is
+separately zero. We will have a solution for the hydrogen atom if we
+can find a set&nbsp;$a_k$ for which
+\begin{equation}
+\label{Eq:III:19:21}
+(k+1)ka_{k+1}-2(\alpha k-1)a_k=0
+\end{equation}
+for all&nbsp;$k\geq1$. That is certainly easy to arrange. Pick any&nbsp;$a_1$
+you like. Then generate all of the other coefficients from
+\begin{equation}
+\label{Eq:III:19:22}
+a_{k+1}=\frac{2(\alpha k-1)}{k(k+1)}\,a_k.
+\end{equation}
+With this you will get $a_2$, $a_3$, $a_4$, and so on, and
+each pair will certainly satisfy&nbsp;(<a href="#mjx-eqn-EqIII1921">19.21</a>). We get a series
+for&nbsp;$g(\rho)$ which satisfies&nbsp;(<a href="#mjx-eqn-EqIII1917">19.17</a>). With it we can make
+a&nbsp;$\psi$, that satisfies Schrödinger’s equation. Notice that the
+solutions depend on the assumed energy (through&nbsp;$\alpha$), but for each
+value of&nbsp;$\epsilon$, there is a corresponding series.
+</p>
+</div>
+
+<div id="Ch19-S2-p8" class="para">
+<p class="p">We have a solution, but what does it represent physically? We can get
+an idea by seeing what happens far from the proton&mdash;for large values
+of&nbsp;$\rho$. Out there, the high-order terms of the series are the most
+important, so we should look at what happens for large&nbsp;$k$. When
+$k\gg1$, Eq.&nbsp;(<a href="#mjx-eqn-EqIII1922">19.22</a>) is approximately the same as
+\begin{equation*}
+a_{k+1}=\frac{2\alpha}{k}\,a_k,
+\end{equation*}
+which means that
+\begin{equation}
+\label{Eq:III:19:23}
+a_{k+1}\approx\frac{(2\alpha)^k}{k!}.
+\end{equation}
+But these are just the coefficients of the series
+for&nbsp;$e^{+2\alpha\rho}$. The function of&nbsp;$g$ is a rapidly increasing
+exponential. Even coupled with&nbsp;$e^{-\alpha\rho}$ to
+produce&nbsp;$f(\rho)$&mdash;see Eq.&nbsp;(<a href="#mjx-eqn-EqIII1914">19.14</a>)&mdash;it still gives a solution
+for&nbsp;$f(\rho)$ which goes like&nbsp;$e^{\alpha\rho}$ for large&nbsp;$\rho$. We
+have found a mathematical solution but not a physical one. It
+represents a situation in which the electron is <em class="emph">least</em> likely to
+be near the proton!  It is always more likely to be found at a very
+large radius&nbsp;$\rho$. A wave function for a <em class="emph">bound</em> electron must
+go to zero for large&nbsp;$\rho$.
+</p>
+</div>
+
+<div id="Ch19-S2-p9" class="para">
+<p class="p">We have to think whether there is some way to beat the game, and there
+is. Observe! If it just happened by luck that $\alpha$ were equal
+to&nbsp;$1/n$, where $n$ is any positive integer, then Eq.&nbsp;(<a href="#mjx-eqn-EqIII1922">19.22</a>)
+would make&nbsp;$a_{n+1}=0$. All higher terms would also be zero. We wouldn’t
+have an infinite series but a finite polynomial. Any polynomial
+increases more slowly than&nbsp;$e^{\alpha\rho}$, so the
+term&nbsp;$e^{-\alpha\rho}$ will eventually beat it down, and the function&nbsp;$f$
+will go to zero for large&nbsp;$\rho$. The only <em class="emph">bound-state</em> solutions
+are those for which&nbsp;$\alpha=1/n$, with&nbsp;$n=1$, $2$, $3$, $4$, and so on.
+</p>
+</div>
+
+<div id="Ch19-S2-p10" class="para">
+<p class="p">Looking back to Eq.&nbsp;(<a href="#mjx-eqn-EqIII1916">19.16</a>), we see that the
+bound-state solutions to the spherically symmetric wave equation can
+exist only when
+\begin{equation*}
+-\epsilon=1,\,\frac{1}{4},\,\frac{1}{9},\,\frac{1}{16},\dotsc,
+\frac{1}{n^2},\dotsc
+\end{equation*}
+The allowed energies are just these fractions times the Rydberg,
+$E_R=me^4/2\hbar^2$, or the energy of the $n$th&nbsp;energy level is
+\begin{equation}
+\label{Eq:III:19:24}
+E_n=-E_R\,\frac{1}{n^2}.
+\end{equation}
+There is, incidentally, nothing mysterious about negative numbers for
+the energy. The energies are negative because when we chose to
+write&nbsp;$V=-e^2/r$, we picked our zero point as the energy of an electron
+located far from the proton. When it is close to the proton, its
+energy is less, so somewhat below zero. The energy is lowest (most
+negative) for&nbsp;$n=1$, and increases toward zero with increasing&nbsp;$n$.
+</p>
+</div>
+
+<div id="Ch19-S2-p11" class="para">
+<p class="p">Before the discovery of quantum mechanics, it was known from
+experimental studies of the spectrum of hydrogen that the energy
+levels could be described by Eq.&nbsp;(<a href="#mjx-eqn-EqIII1924">19.24</a>), where $E_R$
+was found from the observations to be about $13.6$&nbsp;electron volts.
+Bohr then devised a model which gave
+the same equation and predicted that $E_R$ should be&nbsp;$me^4/2\hbar^2$.
+But it was the first great success of the Schrödinger theory that it
+could reproduce this result from a basic equation of motion for the
+electron.
+</p>
+</div>
+
+<div id="Ch19-S2-p12" class="para">
+<p class="p">Now that we have solved our first atom, let’s look at the nature of
+the solution we got. Pulling all the pieces together, each solution
+looks like this:
+\begin{equation}
+\label{Eq:III:19:25}
+\psi_n=\frac{f_n(\rho)}{\rho}=\frac{e^{-\rho/n}}{\rho}\,g_n(\rho),
+\end{equation}
+where
+\begin{equation}
+\label{Eq:III:19:26}
+g_n(\rho)=\sum_{k=1}^na_k\rho^k
+\end{equation}
+and
+\begin{equation}
+\label{Eq:III:19:27}
+a_{k+1}=\frac{2(k/n-1)}{k(k+1)}\,a_k.
+\end{equation}
+So long as we are mainly interested in the relative probabilities of
+finding the electron at various places we can pick any number we wish
+for&nbsp;$a_1$. We may as well set&nbsp;$a_1=1$. (People often choose&nbsp;$a_1$ so
+that the wave function is “normalized,” that is, so that the
+integrated probability of finding the electron anywhere in the atom is
+equal to&nbsp;$1$. We have no need to do that just now.)
+</p>
+</div>
+
+<div id="Ch19-S2-p13" class="para">
+<p class="p">For the lowest energy state, $n=1$, and
+\begin{equation}
+\label{Eq:III:19:28}
+\psi_1(\rho)=e^{-\rho}.
+\end{equation}
+For a hydrogen atom in its ground (lowest-energy) state, the amplitude
+to find the electron at any point drops off exponentially with the
+distance from the proton. It is most likely to be found right at the
+proton, and the characteristic spreading distance is about one unit
+in&nbsp;$\rho$, or about one Bohr radius,&nbsp;$r_B$.
+</p>
+</div>
+
+<div id="Ch19-S2-p14" class="para">
+<p class="p">Putting $n=2$ gives the next higher level. The wave function for this
+state will have two terms. It is
+\begin{equation}
+\label{Eq:III:19:29}
+\psi_2(\rho)=\biggl(1-\frac{\rho}{2}\biggr)e^{-\rho/2}.
+\end{equation}
+The wave function for the next level is
+\begin{equation}
+\label{Eq:III:19:30}
+\psi_3(\rho)=\biggl(1-\frac{2\rho}{3}+\frac{2}{27}\,\rho^2\biggr)
+e^{-\rho/3}.
+\end{equation}
+The wave functions for these first three levels are plotted in
+Fig.&nbsp;<a href="#Ch19-F2">19–2</a>. You can see the general trend. All of the wave
+functions approach zero rapidly for large&nbsp;$\rho$ after oscillating a few
+times. In fact, the number of “bumps” is just equal to&nbsp;$n$&mdash;or, if
+you prefer, the number of zero-crossings of&nbsp;$\psi_n$ is&nbsp;$n-1$.
+</p>
+</div>
+
+
+<div id="Ch19-F2" class="figure">
+<img src="img/FLP_III/f19-02/f19-02_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 19–2.</span>
+The wave functions for the first three $l=0$&nbsp;states of the
+hydrogen atom. (The scales are chosen so that the total probabilities
+are equal.)
+</div>
+</div>
+
+
+</div> <!-- end of section -->
+
+<div id="Ch19-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">19–3</span>States with an angular dependence</h3>
+
+<div id="Ch19-S3-p1" class="para">
+<p class="p">In the states described by the&nbsp;$\psi_n(r)$ we have found that the
+probability amplitude for finding the electron is spherically
+symmetric&mdash;depending only on&nbsp;$r$, the distance for the proton. Such
+states have zero orbital angular momentum. We should now inquire about
+states which may have some angular dependences.
+</p>
+</div>
+
+<div id="Ch19-S3-p2" class="para">
+<p class="p">We could, if we wished, just investigate the strictly mathematical
+problem of finding the functions of $r$,&nbsp;$\theta$, and&nbsp;$\phi$ which
+satisfy the differential equation&nbsp;(<a href="#mjx-eqn-EqIII197">19.7</a>)&mdash;putting in the
+additional physical conditions that the only acceptable functions are
+ones which go to zero for large&nbsp;$r$. You will find this done in many
+books. We are going to take a short cut by using the knowledge we
+already have about how amplitudes depend on angles in space.
+</p>
+</div>
+
+<div id="Ch19-S3-p3" class="para">
+<p class="p">The hydrogen atom in any particular state is a particle with a certain
+“spin”&nbsp;$j$&mdash;the quantum number of the total angular momentum. Part
+of this spin comes from the electron’s intrinsic spin, and part from
+the electron’s motion. Since each of these two components acts
+independently (to an excellent approximation) we will again ignore the
+spin part and think only about the “orbital” angular momentum. This
+orbital motion behaves, however, just like a spin. For example, if the
+orbital quantum number is&nbsp;$l$, the $z$-component of angular momentum
+can be $l$,&nbsp;$l-1$, $l-2$, &hellip;,&nbsp;$-l$. (We are, as usual, measuring
+in units of&nbsp;$\hbar$.)  Also, all the rotation matrices and other
+properties we have worked out still apply. (From now on we will
+<em class="emph">really</em> ignore the electron’s spin; when we speak of “angular
+momentum” we will mean only the orbital part.)
+</p>
+</div>
+
+<div id="Ch19-S3-p4" class="para">
+<p class="p">Since the potential&nbsp;$V$ in which the electron moves depends only
+on&nbsp;$r$ and not on $\theta$ or&nbsp;$\phi$, the Hamiltonian is symmetric under
+all rotations. It follows that the angular momentum and all its
+components are conserved. (This is true for motion in <em class="emph">any</em>
+“central field”&mdash;one which depends only on&nbsp;$r$&mdash;so is not a
+special feature of the Coulomb $e^2/r$&nbsp;potential.)
+</p>
+</div>
+
+<div id="Ch19-S3-p5" class="para">
+<p class="p">Now let’s think of some possible state of the electron; its internal
+angular structure will be characterized by the quantum
+number&nbsp;$l$. Depending on the “orientation” of the total angular momentum
+with respect to the $z$-axis, the $z$-component of angular momentum
+will be&nbsp;$m$, which is one of the $2l+1$&nbsp;possibilities between $+l$
+and&nbsp;$-l$. Let’s say&nbsp;$m=1$. With what amplitude will the electron be found
+on the $z$-axis at some distance&nbsp;$r$? Zero. An electron on the
+$z$-axis <em class="emph">cannot</em> have any orbital angular momentum around that
+axis. Alright, suppose $m$ is zero, then there can be some nonzero
+amplitude to find the electron at each distance from the proton. We’ll
+call this amplitude&nbsp;$F_l(r)$. It is the amplitude to find the electron
+at the distance&nbsp;$r$ up along the $z$-axis, when the atom is in the
+state&nbsp;$\ket{l,0}$, by which we mean orbital spin&nbsp;$l$ and
+$z$-component&nbsp;$m=0$.
+</p>
+</div>
+
+<div id="Ch19-S3-p6" class="para">
+<p class="p">If we know $F_l(r)$ everything is known. For any state&nbsp;$\ket{l,m}$, we
+know the amplitude&nbsp;$\psi_{l,m}(\FLPr)$ to find the electron
+<em class="emph">anywhere</em> in the atom. How? Watch. Suppose we have the atom in the
+state&nbsp;$\ket{l,m}$, what is the amplitude to find the electron at the
+angle&nbsp;$\theta,\phi$ and the distance&nbsp;$r$ from the origin? Put a new
+$z$-axis, say&nbsp;$z'$, at that angle (see Fig.&nbsp;<a href="#Ch19-F3">19–3</a>), and ask
+what is the amplitude that the electron will be at the distance&nbsp;$r$
+along the new axis&nbsp;$z'$? We know that it cannot be found along&nbsp;$z'$
+unless its $z'$-component of angular momentum, say&nbsp;$m'$, is zero. When
+$m'$ is zero, however, the amplitude to find the electron along&nbsp;$z'$
+is&nbsp;$F_l(r)$. Therefore, the result is the product of two factors. The
+first is the amplitude that an atom in the state&nbsp;$\ket{l,m}$ along the
+$z$-axis will be in the state&nbsp;$\ket{l,m'=0}$ <em class="emph">with respect to the</em>
+$z'$-axis. Multiply that amplitude by&nbsp;$F_l(r)$ and you have the
+amplitude&nbsp;$\psi_{l,m}(\FLPr)$ to find the electron at&nbsp;$(r,\theta,\phi)$
+with respect to the original axes.
+</p>
+</div>
+
+<div id="Ch19-F3" class="figure">
+<img src="img/FLP_III/f19-03/f19-03_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 19–3.</span>
+The point&nbsp;$(r,\theta,\phi)$ is on the $z'$-axis of the
+$x',y',z'$&nbsp;coordinate frame.
+</div>
+</div>
+
+<div id="Ch19-S3-p7" class="para">
+<p class="p">Let’s write it out. We have worked out earlier the transformation
+matrices for rotations. To go from the frame&nbsp;$x,y,z$ to the
+frame&nbsp;$x',y',z'$ of Fig.&nbsp;<a href="#Ch19-F3">19–3</a>, we can rotate first around the
+$z$-axis by the angle&nbsp;$\phi$, and then rotate about the <em class="emph">new</em>
+$y$-axis&nbsp;($y'$) by the angle&nbsp;$\theta$. This combined rotation is the
+product
+\begin{equation*}
+R_y(\theta)R_z(\phi).
+\end{equation*}
+The amplitude to find the state&nbsp;$l,m'=0$ after the rotation is
+\begin{equation}
+\label{Eq:III:19:31}
+\bracket{l,0}{R_y(\theta)R_z(\phi)}{l,m}.
+\end{equation}
+Our result, then, is
+\begin{equation}
+\label{Eq:III:19:32}
+\psi_{l,m}(\FLPr)=\bracket{l,0}{R_y(\theta)R_z(\phi)}{l,m}F_l(r).
+\end{equation}
+</p>
+</div>
+
+
+<div id="Ch19-S3-p8" class="para">
+<p class="p">The orbital motion can have only integral values of&nbsp;$l$. (If the
+electron can be found anywhere at&nbsp;$r\neq0$, there is some amplitude to
+have&nbsp;$m=0$ in that direction. And $m=0$&nbsp;states exist only for integral
+spins.) The rotation matrices for&nbsp;$l=1$ are given in
+Table&nbsp;<a href="III_17.html#Ch17-T2">17–2</a>. For larger&nbsp;$l$ you can use the general
+formulas we worked out in Chapter&nbsp;<a href="III_18.html">18</a>. The matrices for
+$R_z(\phi)$ and&nbsp;$R_y(\theta)$ appear separately, but you know how to
+combine them. For the general case you would start with the
+state&nbsp;$\ket{l,m}$ and operate with&nbsp;$R_z(\phi)$ to get the new
+state&nbsp;$R_z(\phi)\,\ket{l,m}$ (which is just&nbsp;$e^{im\phi}\,\ket{l,m}$). Then you
+operate on this state with&nbsp;$R_y(\theta)$ to get the
+state&nbsp;$R_y(\theta)R_z(\phi)\,\ket{l,m}$. Multiplying by&nbsp;$\bra{l,0}$ gives the
+matrix element&nbsp;(<a href="#mjx-eqn-EqIII1931">19.31</a>).
+</p>
+</div>
+
+<div id="Ch19-S3-p9" class="para">
+<p class="p">The matrix elements of the rotation operation are functions of
+$\theta$ and&nbsp;$\phi$. The particular functions which appear
+in&nbsp;(<a href="#mjx-eqn-EqIII1931">19.31</a>) also show up in many kinds of problems which
+involve waves in spherical geometries and so has been given a special
+name. Not everyone uses the same convention; but one of the most common
+ones is
+\begin{equation}
+\label{Eq:III:19:33}
+\bracket{l,0}{R_y(\theta)R_z(\phi)}{l,m}\equiv a\,Y_{l,m}(\theta,\phi).
+\end{equation}
+
+The functions&nbsp;$Y_{l,m}(\theta,\phi)$ are called the <em class="emph">spherical
+harmonics</em>, and $a$ is just a numerical
+factor which depends on the definition chosen for&nbsp;$Y_{l,m}$. For the
+usual definition,
+\begin{equation}
+\label{Eq:III:19:34}
+a=\sqrt{\frac{4\pi}{2l+1}}.
+\end{equation}
+With this notation, the hydrogen wave functions can be written
+\begin{equation}
+\label{Eq:III:19:35}
+\psi_{l,m}(\FLPr)=a\,Y_{l,m}(\theta,\phi)F_l(r).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch19-S3-p10" class="para">
+<p class="p">The angle functions&nbsp;$Y_{l,m}(\theta,\phi)$ are important not only in
+many quantum-mechanical problems, but also in many areas of classical
+physics in which the $\nabla^2$&nbsp;operator appears, such as
+electromagnetism. As another example of their use in quantum
+mechanics, consider the disintegration of an excited state of
+Ne$^{20}$ (such as we discussed in the last chapter) which decays by
+emitting an $\alpha$-particle and going into O$^{16}$:
+\begin{equation*}
+\text{Ne}^{20*}\to\text{O}^{16}+\text{He}^4.
+\end{equation*}
+Suppose that the excited state has some spin&nbsp;$l$ (necessarily an
+integer) and that the $z$-component of angular momentum is&nbsp;$m$. We
+might now ask the following: given $l$ and&nbsp;$m$, what is the amplitude
+that we will find the $\alpha$-particle going off in a direction which
+makes the angle&nbsp;$\theta$ with respect to the $z$-axis and the
+angle&nbsp;$\phi$ with respect to the $xz$-plane&mdash;as shown in
+Fig.&nbsp;<a href="#Ch19-F4">19–4</a>.
+</p>
+</div>
+
+<div id="Ch19-F4" class="figure">
+<img src="img/FLP_III/f19-04/f19-04_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 19–4.</span>
+The decay of an excited state of Ne$^{20}$.
+</div>
+</div>
+
+<div id="Ch19-S3-p11" class="para">
+<p class="p">To solve this problem we make, first, the following observation. A
+decay in which the $\alpha$-particle goes straight up along&nbsp;$z$ must
+come from a state with&nbsp;$m=0$. This is so because both O$^{16}$ and the
+$\alpha$-particle have spin zero, and because their motion cannot have
+any angular momentum about the $z$-axis. Let’s call this amplitude&nbsp;$a$
+(per unit solid angle). Then, to find the amplitude for a decay at the
+arbitrary angle of Fig.&nbsp;<a href="#Ch19-F4">19–4</a>, all we need to know is
+what amplitude the given initial state has zero angular momentum about
+the decay direction. The amplitude for the decay at $\theta$ and&nbsp;$\phi$
+is then $a$&nbsp;times the amplitude that a state&nbsp;$\ket{l,m}$ with respect to
+the $z$-axis will be in the state&nbsp;$\ket{l,0}$ with respect to&nbsp;$z'$&mdash;the
+decay direction. This latter amplitude is just what we have written
+in&nbsp;(<a href="#mjx-eqn-EqIII1931">19.31</a>). The probability to see the $\alpha$-particle
+at&nbsp;$\theta,\phi$ is
+\begin{equation*}
+P(\theta,\phi)=a^2\abs{\bracket{l,0}{R_y(\theta)R_z(\phi)}{l,m}}^2.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch19-S3-p12" class="para">
+<p class="p">As an example, consider an initial state with&nbsp;$l=1$ and various values
+of&nbsp;$m$. From Table&nbsp;<a href="III_17.html#Ch17-T2">17–2</a> we know the necessary
+amplitudes. They are
+\begin{equation}
+\begin{aligned}
+\bracket{1,0}{R_y(\theta)R_z(\phi)}{1,+1}&=
+-\frac{1}{\sqrt{2}}\sin\theta e^{i\phi},\\[1ex]
+\bracket{1,0}{R_y(\theta)R_z(\phi)}{1,0}&=\cos\theta,\\[1ex]
+\bracket{1,0}{R_y(\theta)R_z(\phi)}{1,-1}&=
+\frac{1}{\sqrt{2}}\sin\theta e^{-i\phi}.
+\end{aligned}
+\label{Eq:III:19:36}
+\end{equation}
+These are the three possible angular distribution
+amplitudes&mdash;depending on the $m$-value of the initial nucleus.
+</p>
+</div>
+
+<div id="Ch19-S3-p13" class="para">
+<p class="p">Amplitudes such as the ones in&nbsp;(<a href="#mjx-eqn-EqIII1936">19.36</a>) appear so often
+and are sufficiently important that they are given <em class="emph">several</em>
+names. If the angular distribution amplitude is proportional to any
+one of the three functions or any linear combination of them, we say,
+“The system has an orbital angular momentum of one.” Or we may say,
+“The Ne$^{20*}$ emits a $p$-wave $\alpha$-particle.” Or we say,
+“The $\alpha$-particle is emitted in an $l=1$&nbsp;state.” Because there
+are so many ways of saying the same thing it is useful to have a
+dictionary. If you are going to understand what other physicists are
+talking about, you will just have to memorize the language. In
+Table&nbsp;<a href="#Ch19-T1">19–1</a> we give a dictionary of orbital angular
+momentum.
+</p>
+</div>
+
+<div id="Ch19-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 19–1</span>
+Dictionary of orbital angular momentum<br>
+($l=j=$ an integer)
+</div>
+<div align="center">
+<table style="width: 100px" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="l t center">
+		<p style="line-height: 125%; margin-bottom: 0">Orbital</p>
+		<p style="line-height: 125%; margin-bottom: 0">angular</p>
+		<p style="line-height: 125%; margin-bottom: 0">momentum,</p>
+		<p style="line-height: 125%; margin-bottom: 0">$l$</p>
+		</td>
+		<td class="l t center">
+		<p style="line-height: 125%; margin-bottom: 0">$z$-</p>
+		<p style="line-height: 125%; margin-bottom: 0">component,</p>
+		<p style="line-height: 125%; margin-bottom: 0">$m$</p>
+		</td>
+		<td class="l t center">
+		<p style="line-height: 125%; margin-bottom: 0">Angular dependence</p>
+		<p style="line-height: 125%; margin-bottom: 0">of amplitudes</p>
+		</td>
+		<td class="l t center">
+		<p style="line-height: 125%; margin-bottom: 0">Name</p>
+		</td>
+		<td class="l t center">
+		<p style="line-height: 125%; margin-bottom: 0">Number of</p>
+		<p style="line-height: 125%; margin-bottom: 0">States</p>
+		</td>
+		<td class="l t r center">
+		<p style="line-height: 125%; margin-bottom: 0">Orbital</p>
+		<p style="line-height: 125%; margin-bottom: 0">parity</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="l t center">
+		$0$</td>
+		<td class="l t center">
+		$0$</td>
+		<td class="l t center">
+		$1$</td>
+		<td class="l t center">
+		$s$</td>
+		<td class="l t center">
+		$1$</td>
+		<td class="l t r center">
+		$+$</td>
+	</tr>
+	<tr>
+		<td class="l center">
+		$1$</td>
+		<td class="l center">
+		\begin{equation*}
+		\left\{
+		\begin{aligned}
+		+&1\\\\
+		&0\\\\
+		-&1
+		\end{aligned}
+		\right.
+		\end{equation*}
+		</td>
+		<td class="l right">
+		\begin{equation*}
+		\left.
+		\begin{aligned}
+		-\dfrac{1}{\sqrt{2}}&\sin\theta e^{i\phi}\\
+		&\cos\theta\\
+		\dfrac{1}{\sqrt{2}}&\sin\theta e^{-i\phi}
+		\end{aligned}
+		\right\}
+		\end{equation*}
+		</td>
+		<td class="l center">
+		$p$</td>
+		<td class="l center">
+		$3$</td>
+		<td class="l r center">
+		$-$</td>
+	</tr>
+	<tr>
+		<td class="l center">
+		$2$</td>
+		<td class="l center">
+		\begin{equation*}
+		\left\{
+		\begin{aligned}
+		\\
+		+&2\\\\
+		+&1\\\\
+		&0\\\\
+		-&1\\\\
+		-&2\\
+		\\
+		\end{aligned}
+		\right.
+		\end{equation*} </td>
+		<td class="l right">
+		\begin{equation*}
+		\left.
+		\begin{aligned}
+		&\dfrac{\sqrt{6}}{4}\sin^2\theta e^{2i\phi}\\
+		&\dfrac{\sqrt{6}}{2}\sin\theta\cos\theta e^{i\phi}\\
+		&\tfrac{1}{2}(3\cos^2\theta-1)\\
+		-&\dfrac{\sqrt{6}}{2}\sin\theta\cos\theta e^{-i\phi}\\
+		&\dfrac{\sqrt{6}}{4}\sin^2\theta e^{-2i\phi}\\		
+		\end{aligned}
+		\right\}
+		\end{equation*}
+		</td>
+		<td class="l center">
+		$d$</td>
+		<td class="l center">
+		$5$</td>
+		<td class="l r center">
+		$+$</td>
+	</tr>
+	<tr>
+		<td class="l center">
+		$3\\4\\5$</td>
+		<td class="l center">
+		\begin{equation*}
+		\left\}
+		\begin{aligned}
+		\\
+		\quad&\phantom{3}\quad\\
+		\quad&\phantom{4}\quad\\
+		\quad&\phantom{5}\quad\\
+		\end{aligned}
+		\right\{
+		\end{equation*}
+		</td>
+		<td class="l right">
+		\begin{equation*}
+		\left.
+		\begin{aligned}
+		&\bracket{l,0}{R_y(\theta)R_z(\phi)}{l,m}\\
+		&=Y_{l,m}(\theta,\phi)\\
+		&=P_l^m(\cos\theta)e^{im\phi}\\
+		\end{aligned}
+		\right\}
+		\end{equation*}
+		</td>
+		<td class="l center">
+		$f\\g\\h$</td>
+		<td class="l center">
+		$2l+1$</td>
+		<td class="l r center">
+		$(-1)^l$</td>
+	</tr>
+	<tr>
+		<td class="l b center">
+		$\vdots$</td>
+		<td class="l b center">
+		&nbsp;</td>
+		<td class="l b center">
+		&nbsp;</td>
+		<td class="l b center">
+		$\vdots$</td>
+		<td class="l b center">
+		&nbsp;</td>
+		<td class="l b r center">
+		&nbsp;</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch19-S3-p14" class="para">
+<p class="p">If the orbital angular momentum is zero, then there is no change when
+you rotate the coordinate system and there is no variation with
+angle&mdash;the “dependence” on angle is as a constant, say&nbsp;$1$. This is
+also called an “$s$-state”, and there is only one such state&mdash;as
+far as angular dependence is concerned. If the orbital angular
+momentum is&nbsp;$1$, then the amplitude of the angular variation may be
+any one of the three functions given&mdash;depending on the value
+of&nbsp;$m$&mdash;or it may be a linear combination. These are called
+“$p$-states,” and there are three of them. If the orbital angular
+momentum is&nbsp;$2$ then there are the five functions shown. Any linear
+combination is called an “$l=2$,” or a “$d$-wave” amplitude. Now
+you can immediately guess what the next letter is&mdash;what should come
+after&nbsp;$s$, $p$, $d$? Well, of course, $f$, $g$, $h$, and so on down
+the alphabet!  The letters don’t mean anything. (They did once mean
+something&mdash;they meant “sharp” lines, “principal” lines,
+“diffuse” lines and “fundamental” lines of the optical spectra of
+atoms. But those were in the days when people did not know where the
+lines came from. After $f$ there were no special names, so we now just
+continue with $g$, $h$, and so on.)
+</p>
+</div>
+
+<div id="Ch19-S3-p15" class="para">
+<p class="p">The angular functions in the table go by several names&mdash;and are
+sometimes defined with slightly different conventions about the
+numerical factors that appear out in front. Sometimes they are called
+“spherical harmonics,” and written
+as&nbsp;$Y_{l,m}(\theta,\phi)$. Sometimes they are
+written&nbsp;$P_l^m(\cos\theta)e^{im\phi}$, and if $m=0$, simply
+as&nbsp;$P_l(\cos\theta)$. The functions&nbsp;$P_l(\cos\theta)$ are called the
+“Legendre polynomials” in $\cos\theta$, and the
+functions&nbsp;$P_l^m(\cos\theta)$ are called the “associated Legendre
+functions.” You will find tables of these functions in many books.
+</p>
+</div>
+
+<div id="Ch19-S3-p16" class="para">
+<p class="p">Notice, incidentally, that all the functions for a given&nbsp;$l$ have the
+property that they have the same parity&mdash;for odd&nbsp;$l$ they change sign
+under an inversion and for even&nbsp;$l$ they don’t change. So we can write
+that the parity of a state of orbital angular momentum&nbsp;$l$ is&nbsp;$(-1)^l$.
+</p>
+</div>
+
+<div id="Ch19-S3-p17" class="para">
+<p class="p">As we have seen, these angular distributions may refer to a nuclear
+disintegration or some other process, or to the distribution of the
+amplitude to find an electron at some place in the hydrogen atom. For
+instance, if an electron is in a $p$-state ($l=1$) the amplitude to
+find it can depend on the angle in many possible ways&mdash;but all are
+linear combinations of the three functions for&nbsp;$l=1$ in
+Table&nbsp;<a href="#Ch19-T1">19–1</a>. Let’s take the case&nbsp;$\cos\theta$. That’s
+interesting. That means that the amplitude is positive, say, in the
+upper part&nbsp;($\theta &lt; \pi/2$), is negative in the lower
+part&nbsp;($\theta &gt; \pi/2$), and is zero when $\theta$ is&nbsp;$90^\circ$. Squaring this
+amplitude we see that the probability of finding the electron varies
+with&nbsp;$\theta$ as shown in Fig.&nbsp;<a href="#Ch19-F5">19–5</a>&mdash;and is independent
+of&nbsp;$\phi$. This angular distribution is responsible for the fact that in
+molecular binding the attraction of an electron in an&nbsp;$l=1$ state for
+another atom depends on direction&mdash;it is the origin of the directed
+valences of chemical attraction.
+</p>
+</div>
+
+<div id="Ch19-F5" class="figure">
+<img src="img/FLP_III/f19-05/f19-05_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 19–5.</span>
+A polar graph of&nbsp;$\cos^2\theta$, which is the relative
+probability of finding an electron at various angles from the $z$-axis
+(for a given&nbsp;$r$) in an atomic state with $l=1$ and&nbsp;$m=0$.
+</div>
+</div>
+
+</div> <!-- end of section -->
+
+<div id="Ch19-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">19–4</span>The general solution for hydrogen</h3>
+
+<div id="Ch19-S4-p1" class="para">
+<p class="p">In Eq.&nbsp;(<a href="#mjx-eqn-EqIII1935">19.35</a>) we have written the wave functions for
+the hydrogen atom as
+\begin{equation}
+\label{Eq:III:19:37}
+\psi_{l,m}(\FLPr)=a\,Y_{l,m}(\theta,\phi)F_l(r).
+\end{equation}
+These wave functions must be solutions of the differential
+equation&nbsp;(<a href="#mjx-eqn-EqIII197">19.7</a>). Let’s see what that means. Put
+(<a href="#mjx-eqn-EqIII1937">19.37</a>) into&nbsp;(<a href="#mjx-eqn-EqIII197">19.7</a>); you get
+<span class="eq-wide">
+\begin{align}
+\frac{Y_{l,m}}{r}\,\frac{\partial^2}{\partial r^2}\,
+(rF_l)+\frac{F_l}{r^2\sin\theta}\,\ddp{}{\theta}&\biggl(
+\sin\theta\,\ddp{Y_{l,m}}{\theta}\biggr)+
+\frac{F_l}{r^2\sin^2\theta}\,\frac{\partial^2Y_{l,m}}
+{\partial\phi^2}\notag\\[1ex]
+\label{Eq:III:19:38}
+&=\;-\frac{2m}{\hbar^2}\biggl(E+\frac{e^2}{r}\biggr)
+Y_{l,m}F_l.
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\frac{Y_{l,m}}{r}\frac{\partial^2}{\partial r^2}
+(rF_l)\!&+\!\frac{F_l}{r^2\sin\theta}\ddp{}{\theta}\biggl(\!
+\sin\theta\ddp{Y_{l,m}}{\theta}\!\biggr)\notag\\[1ex]
+\label{Eq:III:19:38}
+&+\!\frac{F_l}{r^2\sin^2\theta}\frac{\partial^2Y_{l,m}}
+{\partial\phi^2}\\[1.5ex]
+&=-\frac{2m}{\hbar^2}\biggl(\!E+\!\frac{e^2}{r}\!\biggr)
+Y_{l,m}F_l.\notag
+\end{align}
+</span>
+Now multiply through by&nbsp;$r^2/F_l$ and rearrange terms. The result is
+<span class="eq-wide">
+\begin{align}
+\frac{1}{\sin\theta}\,\ddp{}{\theta}&\biggl(
+\sin\theta\,\ddp{Y_{l,m}}{\theta}\biggr)+
+\frac{1}{\sin^2\theta}\,\frac{\partial^2Y_{l,m}}
+{\partial\phi^2}\notag\\[1ex]
+\label{Eq:III:19:39}
+&=\;-\biggl[
+\frac{r^2}{F_l}\biggl\{
+\frac{1}{r}\,\frac{d^2}{dr^2}\,(rF_l)+\frac{2m}{\hbar^2}
+\biggl(E+\frac{e^2}{r}\biggr)F_l\biggr\}\biggr]Y_{l,m}.
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+\frac{1}{\sin\theta}\ddp{}{\theta}\biggl(\!
+\sin\theta\ddp{Y_{l,m}}{\theta}\!\biggr)\!+\!
+\frac{1}{\sin^2\theta}\frac{\partial^2Y_{l,m}}
+{\partial\phi^2}\\[2ex]
+=-\biggl[
+\frac{r^2}{F_l}\biggl\{\!
+\frac{1}{r}\frac{d^2}{dr^2}(rF_l)\!+\!\frac{2m}{\hbar^2}
+\biggl(\!E+\frac{e^2}{r}\!\biggr)F_l\!\biggr\}\biggr]Y_{l,m}.
+\end{gathered}
+\label{Eq:III:19:39}
+\end{equation}
+</span>
+The left-hand side of this equation depends on $\theta$ and&nbsp;$\phi$,
+<em class="emph">but not on</em>&nbsp;$r$. No matter what value we choose for&nbsp;$r$, the
+left side doesn’t change. <em class="emph">This must also be true for the
+right-hand side</em>. Although the quantity in the square brackets has
+$r$’s all over the place, the whole quantity cannot depend on&nbsp;$r$,
+otherwise we wouldn’t have an equation good for all&nbsp;$r$. As you can
+see, the bracket also does not depend on $\theta$ or&nbsp;$\phi$. It must
+be some constant. Its value may well depend on the $l$-value of the
+state we are studying, since the function&nbsp;$F_l$ must be the one
+appropriate to that state; we’ll call the constant&nbsp;$K_l$.
+Equation&nbsp;(<a href="#mjx-eqn-EqIII1939">19.39</a>) is therefore equivalent to <em class="emph">two</em>
+equations:
+<span class="eq-wide">
+\begin{gather}
+\label{Eq:III:19:40}
+\frac{1}{\sin\theta}\,\ddp{}{\theta}\biggl(
+\sin\theta\,\ddp{Y_{l,m}}{\theta}\biggr)+
+\frac{1}{\sin^2\theta}\,\frac{\partial^2Y_{l,m}}
+{\partial\phi^2}=-K_lY_{l,m},\\
+\notag\\[2pt]
+\label{Eq:III:19:41}
+\frac{1}{r}\,\frac{d^2}{dr^2}\,(rF_l)+
+\frac{2m}{\hbar^2}\biggl(E+\frac{e^2}{r}\biggr)F_l=
+K_l\,\frac{F_l}{r^2}.
+\end{gather}
+</span>
+<span class="eq-narrow">
+
+\begin{align}
+\frac{1}{\sin\theta}\ddp{}{\theta}\biggl(\!
+\sin\theta\ddp{Y_{l,m}}{\theta}\!\biggr)\!+\!
+\frac{1}{\sin^2\theta}\frac{\partial^2Y_{l,m}}
+{\partial\phi^2}&\notag\\[1.5ex]
+\label{Eq:III:19:40}
+=-K_lY_{l,m},&\\[2.5ex]
+\frac{1}{r}\frac{d^2}{dr^2}(rF_l)+
+\frac{2m}{\hbar^2}\biggl(\!E+\!\frac{e^2}{r}\!\biggr)F_l&\notag\\[.5ex]
+\label{Eq:III:19:41}
+=K_l\frac{F_l}{r^2}.&
+\end{align}
+
+</span>
+</p>
+</div>
+
+<div id="Ch19-S4-p2" class="para">
+<p class="p">Now look at what we’ve done. For any state described by $l$ and&nbsp;$m$,
+we know the functions&nbsp;$Y_{l,m}$; we can use Eq.&nbsp;(<a href="#mjx-eqn-EqIII1940">19.40</a>)
+to determine the constant&nbsp;$K_l$. Putting $K_l$ into
+Eq.&nbsp;(<a href="#mjx-eqn-EqIII1941">19.41</a>) we have a differential equation for the
+function&nbsp;$F_l(r)$. If we can solve that equation for&nbsp;$F_l(r)$, we have
+all of the pieces to put into&nbsp;(<a href="#mjx-eqn-EqIII1937">19.37</a>) to give&nbsp;$\psi(\FLPr)$.
+</p>
+</div>
+
+<div id="Ch19-S4-p3" class="para">
+<p class="p">What is&nbsp;$K_l$? First, notice that it must be the same for all&nbsp;$m$
+(which go with a particular&nbsp;$l$), so we can pick any&nbsp;$m$ we want
+for&nbsp;$Y_{l,m}$ and plug it into&nbsp;(<a href="#mjx-eqn-EqIII1940">19.40</a>) to solve
+for&nbsp;$K_l$. Perhaps the easiest one to use is&nbsp;$Y_{l,l}$. From
+Eq.&nbsp;(<a href="III_18.html#mjx-eqn-EqIII1824">18.24</a>),
+\begin{equation}
+\label{Eq:III:19:42}
+R_z(\phi)\,\ket{l,l}=e^{il\phi}\,\ket{l,l}.
+\end{equation}
+The matrix element for&nbsp;$R_y(\theta)$ is also quite simple:
+\begin{equation}
+\label{Eq:III:19:43}
+\bracket{l,0}{R_y(\theta)}{l,l}=b\,(\sin\theta)^l,
+\end{equation}
+where $b$ is some number.<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a>  Combining the two, we obtain
+\begin{equation}
+\label{Eq:III:19:44}
+Y_{l,l}\propto e^{il\phi}\sin^l\theta.
+\end{equation}
+Putting this function into&nbsp;(<a href="#mjx-eqn-EqIII1940">19.40</a>) gives
+\begin{equation}
+\label{Eq:III:19:45}
+K_l=l(l+1).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch19-S4-p4" class="para">
+<p class="p">Now that we have determined&nbsp;$K_l$, Eq.&nbsp;(<a href="#mjx-eqn-EqIII1941">19.41</a>) tells us
+about the radial function&nbsp;$F_l(r)$. It is, of course, just the
+Schrödinger equation with the angular part replaced by its
+equivalent&nbsp;$K_lF_l/r^2$. Let’s rewrite&nbsp;(<a href="#mjx-eqn-EqIII1941">19.41</a>) in the form
+we had in Eq.&nbsp;(<a href="#mjx-eqn-EqIII198">19.8</a>), as follows:
+\begin{equation}
+\label{Eq:III:19:46}
+\frac{1}{r}\frac{d^2}{dr^2}(rF_l)=
+-\frac{2m}{\hbar^2}\biggl\{\!
+E\!+\!\frac{e^2}{r}\!-\!\frac{l(l\!+\!1)\hbar^2}{2mr^2}
+\!\biggr\}F_l.
+\end{equation}
+A mysterious term has been added to the potential energy. Although we
+got this term by some mathematical shenanigan, it has a simple
+physical origin. We can give you an idea about where it comes from in
+terms of a semi-classical argument. Then perhaps you will not find it
+quite so mysterious.
+</p>
+</div>
+
+<div id="Ch19-S4-p5" class="para">
+<p class="p">Think of a classical particle moving around some center of force. The
+total energy is conserved and is the sum of the potential and kinetic
+energies
+\begin{equation*}
+U = V(r) + \tfrac{1}{2}mv^2 = \text{constant}.
+\end{equation*}
+In general, $v$ can be resolved into a radial component&nbsp;$v_r$ and a
+tangential component&nbsp;$r\dot{\theta}$; then
+\begin{equation*}
+v^2=v_r^2+(r\dot{\theta})^2.
+\end{equation*}
+Now the angular momentum&nbsp;$mr^2\dot{\theta}$ is also conserved; say it
+is equal to&nbsp;$L$. We can then write
+\begin{equation*}
+mr^2\dot{\theta}=L,\quad
+\text{or}\quad
+r\dot{\theta}=\frac{L}{mr},
+\end{equation*}
+and the energy is
+\begin{equation*}
+U = \tfrac{1}{2}mv_r^2+V(r)+\frac{L^2}{2mr^2}.
+\end{equation*}
+If there were no angular momentum we would have just the first two
+terms. Adding the angular momentum&nbsp;$L$ does to the energy just what
+adding a term&nbsp;$L^2/2mr^2$ to the potential energy would do. But this
+is almost exactly the extra term in&nbsp;(<a href="#mjx-eqn-EqIII1946">19.46</a>). The only
+difference is that $l(l+1)\hbar^2$ appears for the angular momentum
+instead of&nbsp;$l^2\hbar^2$ as we might expect. But we have seen before
+(for example, Volume&nbsp;II, Section&nbsp;<a href="II_34.html#Ch34-S7">34-7</a>) that this is just the substitution that is
+usually required to make a quasi-classical argument agree with a correct
+quantum-mechanical calculation. We can, then, understand the new term as
+a “pseudo-potential” which gives the “centrifugal
+force” term that
+appears in the equations of radial motion for a rotating system. (See
+the discussion of “pseudo-forces” in Volume&nbsp;I,
+Section&nbsp;<a href="I_12.html#Ch12-S5">12-5</a>.)
+</p>
+</div>
+
+<div id="Ch19-S4-p6" class="para">
+<p class="p">We are now ready to solve Eq.&nbsp;(<a href="#mjx-eqn-EqIII1946">19.46</a>) for&nbsp;$F_l(r)$. It
+is very much like Eq.&nbsp;(<a href="#mjx-eqn-EqIII198">19.8</a>), so the same technique
+will work again. Everything goes as before until you get to
+Eq.&nbsp;(<a href="#mjx-eqn-EqIII1919">19.19</a>) which will have the additional term
+\begin{equation}
+\label{Eq:III:19:47}
+-l(l+1)\sum_{k=1}^\infty a_k\rho^{k-2}.
+\end{equation}
+This term can also be written as
+\begin{equation}
+\label{Eq:III:19:48}
+-l(l+1)\biggl\{\frac{a_1}{\rho}+
+\sum_{k=1}^\infty a_{k+1}\rho^{k-1}\biggr\}.
+\end{equation}
+(We have taken out the first term and then shifted the running
+index&nbsp;$k$ down by&nbsp;$1$.) Instead of Eq.&nbsp;(<a href="#mjx-eqn-EqIII1920">19.20</a>) we have
+
+\begin{equation}
+\begin{aligned}
+\sum_{k=1}^\infty&[\{k(k+1)-l(l+1)\}a_{k+1}-2(\alpha k-1)a_k]\rho^{k-1}\\
+&-\frac{l(l+1)a_1}{\rho}=0.
+\end{aligned}
+\label{Eq:III:19:49}
+\end{equation}
+
+
+There is only one term in&nbsp;$\rho^{-1}$, so it must be zero. The
+coefficient&nbsp;$a_1$ must be zero (unless&nbsp;$l=0$ and we have our previous
+solution). Each of the other terms is made zero by having the square
+bracket come out zero for every&nbsp;$k$. This condition replaces
+Eq.&nbsp;(<a href="#mjx-eqn-EqIII1922">19.22</a>) by
+\begin{equation}
+\label{Eq:III:19:50}
+a_{k+1}=\frac{2(\alpha k-1)}{k(k+1)-l(l+1)}\,a_k.
+\end{equation}
+This is the only significant change from the spherically symmetric
+case.
+</p>
+</div>
+
+<div id="Ch19-S4-p7" class="para">
+<p class="p">As before the series must terminate if we are to have solutions which
+can represent bound electrons. The series will end at&nbsp;$k=n$ if $\alpha
+n=1$. We get again the same condition on&nbsp;$\alpha$, that it must be
+equal to&nbsp;$1/n$, where $n$ is some positive integer. However,
+Eq.&nbsp;(<a href="#mjx-eqn-EqIII1950">19.50</a>) also gives a new restriction. The index&nbsp;$k$
+cannot be equal to&nbsp;$l$, the denominator becomes zero and $a_{l+1}$ is
+infinite. That is, since&nbsp;$a_1=0$, Eq.&nbsp;(<a href="#mjx-eqn-EqIII1950">19.50</a>) implies
+that all successive&nbsp;$a_k$ are zero until we get to&nbsp;$a_{l+1}$, which can
+be nonzero. This means that $k$ must start at&nbsp;$l+1$ and end at&nbsp;$n$.
+</p>
+</div>
+
+<div id="Ch19-S4-p8" class="para">
+<p class="p">Our final result is that for any&nbsp;$l$ there are many possible solutions
+which we can call&nbsp;$F_{n,l}$ where&nbsp;$n\geq l+1$. Each solution has the
+energy
+\begin{equation}
+\label{Eq:III:19:51}
+E_n=-\frac{me^4}{2\hbar^2}\biggl(\frac{1}{n^2}\biggr).
+\end{equation}
+The wave function for the state of this energy with the angular
+quantum numbers $l$ and&nbsp;$m$ is
+\begin{equation}
+\label{Eq:III:19:52}
+\psi_{n,l,m}=a\,Y_{l,m}(\theta,\phi)F_{n,l}(\rho),
+\end{equation}
+with
+\begin{equation}
+\label{Eq:III:19:53}
+\rho F_{n,l}(\rho)=e^{-\alpha\rho}\sum_{k=l+1}^na_k\rho^k.
+\end{equation}
+The coefficients&nbsp;$a_k$ are obtained from&nbsp;(<a href="#mjx-eqn-EqIII1950">19.50</a>). We
+have, finally, a complete description of the states of a hydrogen
+atom.
+</p>
+</div>
+
+</div> <!-- end of section -->
+
+<div id="Ch19-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">19–5</span>The hydrogen wave functions</h3>
+
+<div id="Ch19-S5-p1" class="para">
+<p class="p">Let’s review what we have discovered. The states which satisfy
+Schrödinger’s equation for an electron in a Coulomb field are
+characterized by three quantum numbers&nbsp;$n$, $l$, $m$, all integers. The
+angular distribution of the electron amplitude can have only certain
+forms which we call&nbsp;$Y_{l,m}$. They are labeled by&nbsp;$l$, <em class="emph">the
+quantum number of total angular momentum</em>, and&nbsp;$m$, <em class="emph">the
+“magnetic” quantum number</em>, which can range from $-l$ to&nbsp;$+l$. For
+each angular configuration, various possible radial
+distributions&nbsp;$F_{n,l}(r)$ of the electron amplitude are possible; they
+are labeled by the <em class="emph">principal quantum number</em>&nbsp;$n$&mdash;which can range from $l+1$ to&nbsp;$\infty$. The energy of the state depends only on&nbsp;$n$, and increases with
+increasing&nbsp;$n$.
+</p>
+</div>
+
+<div id="Ch19-S5-p2" class="para">
+<p class="p">The lowest energy, or ground, state is an $s$-state. It has
+$l=0$,&nbsp;$n=1$, and&nbsp;$m=0$. It is a “nondegenerate” state&mdash;there is only one
+with this energy, and its wave function is spherically symmetric. The
+amplitude to find the electron is a maximum at the center, and falls
+off monotonically with increasing distance from the center. We can
+visualize the electron amplitude as a blob as shown in
+Fig.&nbsp;<a href="#Ch19-F6">19–6</a>(a).
+</p>
+</div>
+
+<div id="Ch19-F6" class="figure">
+<img class="first" src="img/FLP_III/f19-06/f19-06_tc_big_a.svgz"><img class="middle" src="img/FLP_III/f19-06/f19-06_tc_big_b.svgz"><img class="middle" src="img/FLP_III/f19-06/f19-06_tc_big_c.svgz"><img class="middle" src="img/FLP_III/f19-06/f19-06_tc_big_d.svgz"><img class="middle" src="img/FLP_III/f19-06/f19-06_tc_big_e.svgz"><img class="last" src="img/FLP_III/f19-06/f19-06_tc_big_f.svgz">
+<div class="caption"><span class="tag">Fig. 19–6.</span>
+Rough sketches showing the general nature of some of the
+hydrogen wave functions. The shaded regions show where the amplitudes
+are large. The plus and minus signs show the relative sign of the
+amplitude in each region.
+</div>
+</div>
+
+<div id="Ch19-S5-p3" class="para">
+<p class="p">There are other $s$-states with higher energies, for $n=2$,&nbsp;$3$,
+$4$,&nbsp;&hellip; For each energy there is only one version ($m=0$), and they
+are all spherically symmetric. These states have amplitudes which
+alternate in sign one or more times with increasing&nbsp;$r$. There are
+$n-1$&nbsp;spherical nodal surfaces&mdash;the places where $\psi$ goes through
+zero. The $2s$-state ($l=0$, $n=2$), for example, will look as
+sketched in Fig.&nbsp;<a href="#Ch19-F6">19–6</a>(b). (The dark areas indicate
+regions where the amplitude is large, and the plus and minus signs
+indicate the relative phases of the amplitude.) The energy levels of the
+$s$-states are shown in the first column of Fig.&nbsp;<a href="#Ch19-F7">19–7</a>.
+</p>
+</div>
+
+<div id="Ch19-F7" class="figure">
+<img src="img/FLP_III/f19-07/f19-07_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 19–7.</span>
+The energy level diagram for hydrogen.
+</div>
+</div>
+
+<div id="Ch19-S5-p4" class="para">
+<p class="p">Then there are the $p$-states&mdash;with&nbsp;$l=1$. For each&nbsp;$n$, which must
+be $2$&nbsp;or greater, there are three states of the same energy, one each
+for $m=+1$,&nbsp;$m=0$, and&nbsp;$m=-1$. The energy levels are as shown in
+Fig.&nbsp;<a href="#Ch19-F7">19–7</a>. The angular dependences of these states are
+given in Table&nbsp;<a href="#Ch19-T1">19–1</a>. For instance, for&nbsp;$m=0$, if the
+amplitude is positive for&nbsp;$\theta$ near zero, it will be negative
+for&nbsp;$\theta$ near&nbsp;$180^\circ$. There is a nodal plane coincident with the
+$xy$-plane. For&nbsp;$n>2$ there are also spherical nodes. The $n=2$,
+$m=0$&nbsp;amplitude is sketched in Fig.&nbsp;<a href="#Ch19-F6">19–6</a>(c), and the $n=3$,
+$m=0$&nbsp;wave function is sketched in Fig.&nbsp;<a href="#Ch19-F6">19–6</a>(d).
+</p>
+</div>
+
+<div id="Ch19-S5-p5" class="para">
+<p class="p">You might think that since $m$ represents a kind of “orientation” in
+space, there should be similar distributions with the peaks of
+amplitude along the $x$-axis or along the $y$-axis. Are these perhaps
+the $m=+1$ and&nbsp;$m=-1$ states? No. But since we have three states with
+equal energies, any linear combinations of the three will also be
+stationary states of the same energy. It turns out that the
+“$x$”-state&mdash;which corresponds to the “$z$”-state, or
+$m=0$&nbsp;state, of Fig.&nbsp;<a href="#Ch19-F6">19–6</a>(c)&mdash;is a linear combination of the
+$m=+1$ and&nbsp;$m=-1$ states. The corresponding “$y$”-state is another
+combination. Specifically, we mean that
+\begin{align*}
+\text{“$z$”}&=\ket{1,0},\\[1ex]
+\text{“$x$”}&=-\frac{\ket{1,+1}-\ket{1,-1}}{\sqrt{2}},\\[1ex]
+\text{“$y$”}&=-\frac{\ket{1,+1}+\ket{1,-1}}{i\sqrt{2}}.
+\end{align*}
+These states all look the same when referred to their particular axes.
+</p>
+</div>
+
+<div id="Ch19-S5-p6" class="para">
+<p class="p">The $d$-states ($l=2$) have five possible values of&nbsp;$m$ for each
+energy, the lowest energy has&nbsp;$n=3$. The levels go as shown in
+Fig.&nbsp;<a href="#Ch19-F7">19–7</a>. The angular dependences get more complicated.
+For instance the $m=0$&nbsp;states have two conical nodes, so the wave
+function reverses phase from $+$, to&nbsp;$-$, to&nbsp;$+$ as you go around from
+the north pole to the south pole. The rough form of the amplitude is
+sketched in (e) and&nbsp;(f) of Fig.&nbsp;<a href="#Ch19-F6">19–6</a> for the
+$m=0$&nbsp;states with $n=3$ and&nbsp;$n=4$. Again, the larger&nbsp;$n$’s have spherical
+nodes.
+</p>
+</div>
+
+<div id="Ch19-S5-p7" class="para">
+<p class="p">We will not try to describe any more of the possible states. You will
+find the hydrogen wave functions described in more detail in many books.
+Two good references are L. Pauling and E.&nbsp;B. Wilson,
+<span class="text italic">Introduction to Quantum Mechanics</span>, McGraw-Hill (1935); and
+R.&nbsp;B. Leighton, <span class="text italic">Principles of Modern Physics</span>,
+McGraw-Hill (1959). You will find in them graphs of some of the
+functions and pictorial representations of many states.
+</p>
+</div>
+
+<div id="Ch19-S5-p8" class="para">
+<p class="p">We would like to mention one particular feature of the wave functions
+for higher&nbsp;$l$: for&nbsp;$l>0$ the amplitudes are zero at the center. That
+is not surprising, since it’s hard for an electron to have angular
+momentum when its radius arm is very small. For this reason, the
+higher the&nbsp;$l$, the more the amplitudes are “pushed away” from the
+center. If you look at the way the radial functions&nbsp;$F_{n,l}(r)$ vary
+for small&nbsp;$r$, you find from&nbsp;(<a href="#mjx-eqn-EqIII1953">19.53</a>) that
+\begin{equation*}
+F_{n,l}(r)\approx r^l.
+\end{equation*}
+Such a dependence on&nbsp;$r$ means that for larger&nbsp;$l$’s you have to go
+farther from&nbsp;$r=0$ before you get an appreciable amplitude. This
+behavior is, incidentally, determined by the centrifugal
+force term in
+the radial equation, so the same thing will apply for any potential
+that varies slower than&nbsp;$1/r^2$ for small&nbsp;$r$&mdash;which most atomic
+potentials do.
+</p>
+</div>
+
+</div> <!-- end of section -->
+
+<div id="Ch19-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">19–6</span>The periodic table</h3>
+
+<div id="Ch19-S6-p1" class="para">
+<p class="p">We would like now to apply the theory of the hydrogen atom in an
+approximate way to get some understanding of the chemist’s periodic
+table of the elements. For an element with atomic number&nbsp;$Z$ there are
+$Z$&nbsp;electrons held together by the electric attraction of the nucleus
+but with mutual repulsion of the electrons. To get an exact solution we
+would have to solve Schrödinger’s equation for $Z$&nbsp;electrons in a
+Coulomb field. For helium the equation is
+
+\begin{equation*}
+-\frac{\hbar}{i}\ddp{\psi}{t}=-\frac{\hbar^2}{2m}
+(\nabla_1^2\psi\!+\!\nabla_2^2\psi)\!+\!\biggl(\!
+-\!\frac{2e^2}{r_1}\!-\!\frac{2e^2}{r_2}\!+\!\frac{e^2}{r_{12}}\!\biggr)\psi,
+\end{equation*}
+
+
+where $\nabla_1^2$ is a Laplacian which operates on&nbsp;$\FLPr_1$, the
+coordinate of one electron; $\nabla_2^2$ operates on&nbsp;$\FLPr_2$;
+and&nbsp;$r_{12}=\abs{\FLPr_1-\FLPr_2}$. (We are again neglecting the spin of
+the electrons.) To find the stationary states and energy levels we
+would have to find solutions of the form
+\begin{equation*}
+\psi=f(\FLPr_1,\FLPr_2)e^{-(i/\hbar)Et}.
+\end{equation*}
+The geometrical dependence is contained in&nbsp;$f$, which is a function of
+six variables&mdash;the simultaneous positions of the two electrons. No
+one has found an analytic solution, although solutions for the lowest
+energy states have been obtained by numerical methods.
+</p>
+</div>
+
+<div id="Ch19-S6-p2" class="para">
+<p class="p">With $3$,&nbsp;$4$, or&nbsp;$5$ electrons it is hopeless to try to obtain exact
+solutions, and it is going too far to say that quantum mechanics has
+given a precise understanding of the periodic table. It is possible,
+however, even with a sloppy approximation&mdash;and some fixing&mdash;to
+understand, at least qualitatively, many chemical properties which
+show up in the periodic table.
+</p>
+</div>
+
+<div id="Ch19-S6-p3" class="para">
+<p class="p">The chemical properties of atoms are determined primarily by their
+lowest energy states. We can use the following approximate theory to
+find these states and their energies. First, we neglect the electron
+spin, <em class="emph">except</em> that we adopt the exclusion principle and say that
+any particular electronic state can be occupied by only one electron.
+This means that any particular orbital configuration can have up to
+<em class="emph">two</em> electrons&mdash;one with spin up, the other with spin down. Next
+we disregard the <em class="emph">details</em> of the interactions between the
+electrons in our first approximation, and say that each electron moves
+in a <em class="emph">central field</em> which is the combined field of the nucleus and
+all the other electrons. For neon, which has $10$&nbsp;electrons, we say that
+one electron sees an average potential due to the nucleus plus the other
+nine electrons. We imagine then that in the Schrödinger equation for
+each electron we put a&nbsp;$V(r)$ which is a $1/r$&nbsp;field modified by a
+spherically symmetric charge density coming from the other electrons.
+</p>
+</div>
+
+<div id="Ch19-S6-p4" class="para">
+<p class="p">In this model each electron acts like an independent particle. The
+angular dependence of its wave function will be just the same as the
+ones we had for the hydrogen atom. There will be $s$-states,
+$p$-states, and so on; and they will have the various possible
+$m$-values. Since $V(r)$ no longer goes as&nbsp;$1/r$, the radial part of
+the wave functions will be somewhat different, but it will be
+qualitatively the same, so we will have the same radial quantum
+numbers,&nbsp;$n$. The energies of the states will also be somewhat
+different.
+</p>
+</div>
+
+<h7>H</h7>
+
+<div id="Ch19-S6-p5" class="para">
+<p class="p">With these ideas, let’s see what we get. The ground state of hydrogen
+has $l=m=0$ and&nbsp;$n=1$; we say the electron configuration is&nbsp;$1s$. The
+energy is $-13.6$&nbsp;eV. This means that it takes $13.6$&nbsp;electron volts
+to pull the electron off the atom. We call this the “ionization
+energy”,&nbsp;$W_I$. A large ionization energy means that it is harder to
+pull the electron off and, in general, that the material is chemically
+less active.
+</p>
+</div>
+
+<h7>He</h7>
+
+<div id="Ch19-S6-p6" class="para">
+<p class="p">Now take helium. Both electrons can be in the same lowest state (one
+spin up and the other spin down). In this lowest state the electron
+moves in a potential which is for small&nbsp;$r$ like a Coulomb field
+for&nbsp;$z=2$ and for large&nbsp;$r$ like a Coulomb field for&nbsp;$z=1$. The result is
+a “hydrogen-like” $1s$&nbsp;state with a somewhat lower energy. Both
+electrons occupy identical $1s$&nbsp;states ($l=0$, $m=0$). The observed
+ionization energy (to remove <em class="emph">one</em> electron) is $24.6$&nbsp;electron
+volts. Since the $1s$&nbsp;“shell” is now filled&mdash;we allow only two
+electrons&mdash;there is practically no tendency for an electron to be
+attracted from another atom. Helium is chemically inert.
+</p>
+</div>
+
+<h7>Li</h7>
+
+<div id="Ch19-S6-p7" class="para">
+<p class="p">The lithium nucleus has a charge of&nbsp;$3$. The electron states will
+again be hydrogen-like, and the three electrons will occupy the lowest
+three energy levels. Two will go into $1s$&nbsp;states and the third will
+go into an $n=2$&nbsp;state. But with $l=0$ or&nbsp;$l=1$? In hydrogen these
+states have the same energy, but in other atoms they don’t, for the
+following reason. Remember that a $2s$&nbsp;state has some amplitude to be
+near the nucleus while the $2p$&nbsp;state does not. That means that a
+$2s$&nbsp;electron will feel some of the triple electric charge of the Li
+nucleus, but that a $2p$&nbsp;electron will stay out where the field looks
+like the Coulomb field of a single charge. The extra attraction lowers
+the energy of the $2s$&nbsp;state relative to the $2p$&nbsp;state. The energy
+levels will be roughly as shown in Fig.&nbsp;<a href="#Ch19-F8">19–8</a>&mdash;which you
+should compare with the corresponding diagram for hydrogen in
+Fig.&nbsp;<a href="#Ch19-F7">19–7</a>. So the lithium atom will have two electrons in
+$1s$&nbsp;states and one in a&nbsp;$2s$. Since the $2s$&nbsp;electron has a higher
+energy than a $1s$&nbsp;electron it is relatively easily removed. The
+ionization energy of lithium is only $5.4$&nbsp;electron volts, and it is
+quite active chemically.
+</p>
+</div>
+
+<div id="Ch19-F8" class="figure">
+<img src="img/FLP_III/f19-08/f19-08_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 19–8.</span>
+Schematic energy level diagram for an atomic electron with other
+electrons present. (The scale is not the same as
+Fig.&nbsp;<a href="#Ch19-F7">19–7</a>.)
+</div>
+</div>
+
+<div id="Ch19-S6-p8" class="para">
+<p class="p">So you can see the patterns which develop; we have given in
+Table&nbsp;<a href="#Ch19-T2">19–2</a> a list of the first $36$&nbsp;elements, showing the
+states occupied by the electrons in the ground state of each atom. The
+Table gives the ionization energy for the most loosely bound electron,
+and the number of electrons occupying each “shell”&mdash;by which we mean
+states with the same&nbsp;$n$. Since the different $l$-states have different
+energies, each $l$-value corresponds to a sub-shell of
+$2(2l+1)$&nbsp;possible states (of different&nbsp;$m$ and electron spin). These
+all have the same energy&mdash;except for some very small effects we are
+neglecting.
+</p>
+</div>
+
+<div id="Ch19-T2" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 19–2</span>The electron configurations of the first 36 elements
+</div>
+<div align="center">
+<table class="framed" border="1" style="width: 75%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="right" rowspan="2">
+		<i>Z</i>&nbsp;
+		</td>
+		<td class="l center" colspan="2" rowspan="2">
+		Element</td>
+		<td class="l center" rowspan="2">
+		<i>W<sub>I</sub></i>(eV)</td>
+		<td class="l center" colspan="10">
+		Electron Configuration</td>
+	</tr>
+	<tr>
+		<td class="l t center">
+		1<i>s</i></td>
+		<td class="l t center">
+		2<i>s</i></td>
+		<td class="t center">
+		2<i>p</i></td>
+		<td class="l t center">
+		3<i>s</i></td>
+		<td class="t center">
+		3<i>p</i></td>
+		<td class="t center">
+		3<i>d</i></td>
+		<td class="l t center">
+		4<i>s</i></td>
+		<td class="t center">
+		4<i>p</i></td>
+		<td class="t center">
+		4<i>d</i></td>
+		<td class="t center">
+		4<i>f</i></td>
+	</tr>
+	<tr>
+		<td class="t right">
+		1</td>
+		<td class="l t left">
+		<b>H</b></td>
+		<td class="t left">
+		<i>hydrogen</i></td>
+		<td class="l t right">
+		13.6</td>
+		<td class="l t center">
+		1</td>
+		<td class="l t center" colspan="2" rowspan="2">
+		&nbsp;</td>
+		<td class="l t center" colspan="3" rowspan="5">
+		&nbsp;</td>
+		<td class="l t center" colspan="4" rowspan="5">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="right">
+		2</td>
+		<td class="l left">
+		<b>He</b></td>
+		<td class="left">
+		<i>helium</i></td>
+		<td class="l right">
+		24.6</td>
+		<td class="l center">
+		2</td>
+	</tr>
+	<tr>
+		<td class="t right">
+		3</td>
+		<td class="l t left">
+		<b>Li</b></td>
+		<td class="t left">
+		<i>lithium</i></td>
+		<td class="l t right">
+		5.4</td>
+		<td class="l t center" rowspan="8">
+		FILLED<p>(2)</p></td>
+		<td class="l right">
+		1</td>
+		<td class="center" rowspan="2">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="right">
+		4</td>
+		<td class="l left">
+		<b>Be</b></td>
+		<td class="left">
+		<i>beryllium</i></td>
+		<td class="l right">
+		9.3</td>
+		<td class="l right">
+		2</td>
+	</tr>
+	<tr>
+		<td class="right">
+		5</td>
+		<td class="l left">
+		<b>B</b></td>
+		<td class="left">
+		<i>boron</i></td>
+		<td class="l right">
+		8.3</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		1</td>
+	</tr>
+	<tr>
+		<td class="right">
+		6</td>
+		<td class="l left">
+		<b>C</b></td>
+		<td class="left">
+		<i>carbon</i></td>
+		<td class="l right">
+		11.3</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		2</td>
+		<td class="l center" colspan="7" rowspan="2">
+		<p style="line-height: 150%; margin-top: 0; margin-bottom: 0">Number of electrons</p>
+		<p style="line-height: 150%; margin-bottom: 0">in each state</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="right">
+		7</td>
+		<td class="l left">
+		<b>N</b></td>
+		<td class="left">
+		<i>nitrogen</i></td>
+		<td class="l right">
+		14.5</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		3</td>
+	</tr>
+	<tr>
+		<td class="right">
+		8</td>
+		<td class="l left">
+		<b>O</b></td>
+		<td class="left">
+		<i>oxygen</i></td>
+		<td class="l right">
+		13.6</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		4</td>
+		<td class="l center" colspan="3" rowspan="3">
+		&nbsp;</td>
+		<td class="l center" colspan="4" rowspan="11">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="right">
+		9</td>
+		<td class="l left">
+		<b>F</b></td>
+		<td class="left">
+		<i>fluorine</i></td>
+		<td class="l right">
+		17.4</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		5</td>
+	</tr>
+	<tr>
+		<td class="right">
+		10</td>
+		<td class="l left">
+		<b>Ne</b></td>
+		<td class="left">
+		<i>neon</i></td>
+		<td class="l right">
+		21.6</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		6</td>
+	</tr>
+	<tr>
+		<td class="t right">
+		11</td>
+		<td class="l t left">
+		<b>Na</b></td>
+		<td class="t left">
+		<i>sodium</i></td>
+		<td class="l t right">
+		5.1</td>
+		<td class="l t center" rowspan="3">
+		&nbsp;</td>
+		<td class="l t center" colspan="2" rowspan="3">
+		&nbsp;</td>
+		<td class="l right">
+		1</td>
+		<td class="r center" colspan="2" rowspan="2">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="right">
+		12</td>
+		<td class="l left">
+		<b>Mg</b></td>
+		<td class="left">
+		<i>magnesium</i></td>
+		<td class="l right">
+		7.6</td>
+		<td class="l right">
+		2</td>
+	</tr>
+	<tr>
+		<td class="right">
+		13</td>
+		<td class="l left">
+		<b>Al</b></td>
+		<td class="left">
+		<i>aluminum</i></td>
+		<td class="l right">
+		6.0</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		1</td>
+		<td class="center" rowspan="8">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="right">
+		14</td>
+		<td class="l left">
+		<b>Si</b></td>
+		<td class="left">
+		<i>silicon</i></td>
+		<td class="l right">
+		8.1</td>
+		<td class="l center" colspan="3" rowspan="2">
+		<font face="Georgia">—</font>FILLED<font face="Georgia">—</font></td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		2</td>
+	</tr>
+	<tr>
+		<td class="right">
+		15</td>
+		<td class="l left">
+		<b>P</b></td>
+		<td class="left">
+		<i>phosphorus</i></td>
+		<td class="l right">
+		10.5</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		3</td>
+	</tr>
+	<tr>
+		<td class="right">
+		16</td>
+		<td class="l left">
+		<b>S</b></td>
+		<td class="left">
+		<i>sulfur</i></td>
+		<td class="l right">
+		10.4</td>
+		<td class="l center">
+		(2)</td>
+		<td class="l center" colspan="2">
+		(8)</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		4</td>
+	</tr>
+	<tr>
+		<td class="right">
+		17</td>
+		<td class="l left">
+		<b>Cl</b></td>
+		<td class="left">
+		<i>chlorine</i></td>
+		<td class="l right">
+		13.0</td>
+		<td class="l center" rowspan="6">
+		&nbsp;</td>
+		<td class="l r center" colspan="2" rowspan="6">
+		&nbsp;</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		5</td>
+	</tr>
+	<tr>
+		<td class="right">
+		18</td>
+		<td class="l left">
+		<b>Ar</b></td>
+		<td class="left">
+		<i>argon</i></td>
+		<td class="l right">
+		15.8</td>
+		<td class="l b right">
+		2</td>
+		<td class="b right">
+		6</td>
+	</tr>
+	<tr>
+		<td class="t right">
+		19</td>
+		<td class="l t left">
+		<b>K</b></td>
+		<td class="t left">
+		<i>potassium</i></td>
+		<td class="l t right">
+		4.3</td>
+		<td class="r center" colspan="2" rowspan="4">
+		&nbsp;</td>
+		<td class="l right">
+		1</td>
+		<td class="center" colspan="3" rowspan="12">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="right">
+		20</td>
+		<td class="l left">
+		<b>Ca</b></td>
+		<td class="left">
+		<i>calcium</i></td>
+		<td class="l right">
+		6.1</td>
+		<td class="l right">
+		2</td>
+	</tr>
+	<tr>
+		<td class="right">
+		21</td>
+		<td class="l left">
+		<b>Sc</b></td>
+		<td class="left">
+		<i>scandium</i></td>
+		<td class="l right">
+		6.5</td>
+		<td class="l right">
+		1</td>
+		<td class="l right">
+		2</td>
+	</tr>
+	<tr>
+		<td class="right">
+		22</td>
+		<td class="l left">
+		<b>Ti</b></td>
+		<td class="left">
+		<i>titanium</i></td>
+		<td class="l right">
+		6.8</td>
+		<td class="l right">
+		2</td>
+		<td class="l right">
+		2</td>
+	</tr>
+	<tr>
+		<td class="right">
+		23</td>
+		<td class="l left">
+		<b>V</b></td>
+		<td class="left">
+		<i>vanadium</i></td>
+		<td class="l right">
+		6.7</td>
+		<td class="l center" colspan="5" rowspan="2">
+		<font face="Georgia">——</font>FILLED<font face="Georgia">——</font></td>
+		<td class="l right">
+		3</td>
+		<td class="l right">
+		2</td>
+	</tr>
+		<tr>
+		<td class="right">
+		24</td>
+		<td class="l left">
+		<b>Cr</b></td>
+		<td class="left">
+		<i>chromium</i></td>
+		<td class="l right">
+		6.8</td>
+		<td class="l right">
+		5</td>
+		<td class="l right">
+		1</td>
+	</tr>
+	<tr>
+		<td class="right">
+		25</td>
+		<td class="l left">
+		<b>Mn</b></td>
+		<td class="left">
+		<i>manganese</i></td>
+		<td class="l right">
+		7.4</td>
+		<td class="l center">
+		(2)</td>
+		<td class="l center" colspan="2">
+		(8)</td>
+		<td class="l center" colspan="2">
+		(8)</td>
+		<td class="l right">
+		5</td>
+		<td class="l right">
+		2</td>
+	</tr>
+	<tr>
+		<td class="right">
+		26</td>
+		<td class="l left">
+		<b>Fe</b></td>
+		<td class="left">
+		<i>iron</i></td>
+		<td class="l right">
+		7.9</td>
+		<td class="l center" rowspan="5">
+		&nbsp;</td>
+		<td class="l center" colspan="2" rowspan="5">
+		&nbsp;</td>
+		<td class="l center" colspan="2" rowspan="5">
+		&nbsp;</td>
+		<td class="l right">
+		6</td>
+		<td class="l right">
+		2</td>
+	</tr>
+	<tr>
+		<td class="right">
+		27</td>
+		<td class="l left">
+		<b>Co</b></td>
+		<td class="left">
+		<i>cobalt</i></td>
+		<td class="l right">
+		7.9</td>
+		<td class="l right">
+		7</td>
+		<td class="l right">
+		2</td>
+	</tr>
+	<tr>
+		<td class="right">
+		28</td>
+		<td class="l left">
+		<b>Ni</b></td>
+		<td class="left">
+		<i>nickel</i></td>
+		<td class="l right">
+		7.6</td>
+		<td class="l right">
+		8</td>
+		<td class="l right">
+		2</td>
+	</tr>
+	<tr>
+		<td class="right">
+		29</td>
+		<td class="l left">
+		<b>Cu</b></td>
+		<td class="left">
+		<i>copper</i></td>
+		<td class="l right">
+		7.7</td>
+		<td class="l right">
+		10</td>
+		<td class="l right">
+		1</td>
+	</tr>
+	<tr>
+		<td class="right">
+		30</td>
+		<td class="l left">
+		<b>Zn</b></td>
+		<td class="left">
+		<i>zinc</i></td>
+		<td class="l right">
+		9.4</td>
+		<td class="l right">
+		10</td>
+		<td class="l right">
+		2</td>
+	</tr>
+	<tr>
+		<td class="t right">
+		31</td>
+		<td class="l t left">
+		<b>Ga</b></td>
+		<td class="t left">
+		<i>gallium</i></td>
+		<td class="l t right">
+		6.0</td>
+		<td class="l t center">
+		&nbsp;</td>
+		<td class="l t center" colspan="2">
+		&nbsp;</td>
+		<td class="l t center" colspan="2">
+		&nbsp;</td>
+		<td class="t center">
+		&nbsp;</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		1</td>
+		<td class="center" colspan="2" rowspan="6">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="right">
+		32</td>
+		<td class="l left">
+		<b>Ge</b></td>
+		<td class="left">
+		<i>germanium</i></td>
+		<td class="l right">
+		7.9</td>
+		<td class="l center" colspan="6" rowspan="2">
+		<font face="Georgia">——</font>FILLED<font face="Georgia">——</font></td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		2</td>
+	</tr>
+	<tr>
+		<td class="right">
+		33</td>
+		<td class="l left">
+		<b>As</b></td>
+		<td class="left">
+		<i>arsenic</i></td>
+		<td class="l right">
+		9.8</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		3</td>
+	</tr>
+	<tr>
+		<td class="right">
+		34</td>
+		<td class="l left">
+		<b>Se</b></td>
+		<td class="left">
+		<i>selenium</i></td>
+		<td class="l right">
+		9.7</td>
+		<td class="l center">
+		(2)</td>
+		<td class="l center" colspan="2">
+		(8)</td>
+		<td class="l center" colspan="3">
+		(18)</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		4</td>
+	</tr>
+	<tr>
+		<td class="right">
+		35</td>
+		<td class="l left">
+		<b>Br</b></td>
+		<td class="left">
+		<i>bromine</i></td>
+		<td class="l right">
+		11.8</td>
+		<td class="l center" rowspan="2">
+		&nbsp;</td>
+		<td class="l center" colspan="2" rowspan="2">
+		&nbsp;</td>
+		<td class="l center" colspan="3" rowspan="2">
+		&nbsp;</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		5</td>
+	</tr>
+	<tr>
+		<td class="right">
+		36</td>
+		<td class="l left">
+		<b>Kr</b></td>
+		<td class="left">
+		<i>krypton</i></td>
+		<td class="l right">
+		14.0</td>
+		<td class="l right">
+		2</td>
+		<td class="right">
+		6</td>
+	</tr>
+
+</table>
+</div>
+</div>
+
+<h7>Be</h7>
+
+<div id="Ch19-S6-p9" class="para">
+
+<p class="p">Beryllium is like lithium except that it has two electrons in the
+$2s$&nbsp;state as well as two in the filled $1s$&nbsp;shell.
+</p>
+</div>
+
+<h7>B to Ne</h7>
+
+<div id="Ch19-S6-p10" class="para">
+<p class="p">Boron has $5$&nbsp;electrons. The fifth must go into a $2p$&nbsp;state. There
+are $2\times3=6$ different $2p$&nbsp;states, so we can keep adding
+electrons until we get to a total of&nbsp;$8$. This takes us to neon. As we
+add these electrons we are also increasing&nbsp;$Z$, so the whole electron
+distribution gets pulled in closer and closer to the nucleus and the
+energy of the $2p$&nbsp;states goes down. By the time we get to neon the
+ionization energy is up to $21.6$&nbsp;electron volts. Neon does not easily give up
+an electron. Also there are no more low-energy slots to be filled, so
+it won’t try to grab an extra electron. Neon is chemically
+inert. Fluorine, on the other hand, <em class="emph">does</em> have an empty position
+where an electron can drop into a state of low energy, so it is quite
+active in chemical reactions.
+</p>
+</div>
+
+<h7>Na to Ar</h7>
+
+<div id="Ch19-S6-p11" class="para">
+<p class="p">With sodium the eleventh electron must start a new shell&mdash;going into
+a $3s$&nbsp;state. The energy level of this state is much higher; the
+ionization energy jumps down; and sodium is an active chemical. From
+sodium to argon the $s$ and $p$&nbsp;states with&nbsp;$n=3$ are occupied in
+exactly the same sequence as for lithium to neon. Angular
+configurations of the electrons in the outer unfilled shell have the
+same sequence, and the progression of ionization energies is quite
+similar. You can see why the chemical properties repeat with
+increasing atomic number. Magnesium acts chemically much like
+beryllium, silicon like carbon, and chlorine like fluorine. Argon is
+inert like neon.
+</p>
+</div>
+
+<div id="Ch19-S6-p12" class="para">
+<p class="p">You may have noticed that there is a slight peculiarity in the
+sequence of ionization energies between lithium and neon, and a
+similar one between sodium and argon. The last electron is bound to
+the oxygen atom somewhat less than we might expect. And sulfur is
+similar. Why should that be? We can understand it if we put in just a
+little bit of the effects of the interactions between individual
+electrons. Think of what happens when we put the first $2p$&nbsp;electron
+onto the boron atom. It has six possibilities&mdash;three possible
+$p$-states, each with two spins. Imagine that the electron goes with
+spin up into the $m=0$&nbsp;state, which we have also called the
+“$z$”&nbsp;state because it hugs the $z$-axis. Now what will happen in carbon?
+There are now two $2p$&nbsp;electrons. If one of them goes into the
+“$z$”&nbsp;state, where will the second one go? It will have lower energy if it
+stays away from the first electron, which it can do by going into,
+say, the “$x$”&nbsp;state of the $2p$&nbsp;shell. (This state is, remember,
+just a linear combination of the $m=+1$ and $m=-1$&nbsp;states.) Next, when
+we go to nitrogen, the three $2p$&nbsp;electrons will have the lowest
+energy of mutual repulsion if they go one each into the “$x$,”&nbsp;“$y$,”
+and&nbsp;“$z$” configurations. For oxygen, however, the jig is
+up. The fourth electron must go into one of the filled states&mdash;with
+opposite spin. It is strongly repelled by the electron already in that
+state, so its energy will not be as low as it might otherwise be, and
+it is more easily removed. That explains the break in the sequence of
+binding energies which appears between nitrogen and oxygen, and
+between phosphorus and sulfur.
+</p>
+</div>
+
+<h7>K to Zn</h7>
+
+<div id="Ch19-S6-p13" class="para">
+<p class="p">After argon, you would, at first, think that the new electrons would
+start to fill up the $3d$&nbsp;states. But they don’t. As we described
+earlier&mdash;and illustrated in Fig.&nbsp;<a href="#Ch19-F8">19–8</a>&mdash;the higher
+angular momentum states get pushed up in energy. By the time we get to
+the $3d$&nbsp;states they are pushed to an energy a little bit above the
+energy of the $4s$&nbsp;state. So in potassium the last electron goes into
+the $4s$&nbsp;state. After this shell is filled (with two electrons) at
+calcium, the $3d$&nbsp;states begin to be filled for scandium, titanium, and
+vanadium.
+</p>
+</div>
+
+<div id="Ch19-S6-p14" class="para">
+<p class="p">The energies of the $3d$ and $4s$&nbsp;states are so close together that
+small effects can shift the balance either way. By the time we get to
+put four electrons into the $3d$&nbsp;states, their repulsion raises the
+energy of the $4s$&nbsp;state just enough that its energy is slightly above
+the $3d$&nbsp;energy, so one electron shifts over. For chromium we don’t
+get a $4$, $2$ combination as we would have expected, but instead a
+$5$, $1$ combination. The new electron added to get manganese fills up
+the $4s$&nbsp;shell again, and the states of the $3d$&nbsp;shell are then
+occupied one by one until we reach copper.
+</p>
+</div>
+
+<div id="Ch19-S6-p15" class="para">
+<p class="p">Since the outermost shell of manganese, iron, cobalt, and nickel have
+the same configurations, however, they all tend to have similar
+chemical properties. (This effect is much more pronounced in the
+rare-earth elements which all have the same outer shell but a
+progressively filling inner shell which has much less influence on
+their chemical properties.)
+</p>
+</div>
+
+<div id="Ch19-S6-p16" class="para">
+<p class="p">In copper an electron is robbed from the $4s$&nbsp;shell, finally
+completing the $3d$&nbsp;shell. The energy of the $10$, $1$ combination is,
+however, so close to the $9$, $2$ configuration for copper that just
+the presence of another atom nearby can shift the balance. For this
+reason the two last electrons of copper are nearly equivalent, and
+copper can have a valence of either $1$ or&nbsp;$2$. (It sometimes acts as
+though its electrons were in the $9$, $2$ combination.) Similar things
+happen at other places and account for the fact that other metals,
+such as iron, combine chemically with either of two valences. By zinc,
+both the $3d$ and $4s$&nbsp;shells are filled once and for all.
+</p>
+</div>
+
+<h7>Ga to Kr</h7>
+
+<div id="Ch19-S6-p17" class="para">
+<p class="p">From gallium to krypton the sequence proceeds normally again, filling
+the $4p$&nbsp;shell. The outer shells, the energies, and the chemical
+properties repeat the pattern of boron to neon and aluminum to argon.
+</p>
+</div>
+
+<div id="Ch19-S6-p18" class="para">
+<p class="p">Krypton, like argon and neon, is known as “noble” gas. All three are
+chemically “inert.” This means only that, having filled shells of
+relatively low energy, there are few situations in which there is an
+energy advantage for them to join in a simple combination with other
+elements. Having a filled shell is not enough. Beryllium and magnesium
+have filled $s$-shells, but the energy of these shells is too high to
+lead to stability. Similarly, one would have expected another
+“noble” element at nickel, if the energy of the $3d$&nbsp;shell had been
+lower (or the $4s$ higher). On the other hand, krypton is not
+completely inert; it will form a weakly-bound compound with chlorine.
+</p>
+</div>
+
+<div id="Ch19-S6-p19" class="para">
+<p class="p">Since our sample has turned up most of the main features of the
+periodic table, we stop our examination at element number&nbsp;$36$&mdash;there
+are still seventy or so more!
+</p>
+</div>
+
+<div id="Ch19-S6-p20" class="para">
+<p class="p">We would like to bring up only one more point&mdash;that we not only can
+understand the valences to some extent but also can say something
+about the directional properties of the chemical bonds. Take an atom
+like oxygen which has four $2p$&nbsp;electrons. The first three go into
+“$x$,”&nbsp;“$y$,” and&nbsp;“$z$” states and the fourth will double one of
+these states, leaving two&mdash;say “$x$” and&nbsp;“$y$”&mdash;vacant. Consider
+then what happens in H$_2$O. Each of the two hydrogens are willing to
+share an electron with the oxygen, helping the oxygen to fill a
+shell. These electrons will tend to go into the “$x$” and&nbsp;“$y$”
+vacancies. So the water molecule should have the two hydrogen atoms
+making a right angle with respect to the center of the oxygen. The
+angle is actually&nbsp;$105^\circ$. We can even understand why the angle is
+larger than&nbsp;$90^\circ$. In sharing their electrons the hydrogens end
+up with a net positive charge. The electric repulsion “strains” the
+wave functions and pushes the angle out to&nbsp;$105^\circ$. The same
+situation occurs in H$_2$S. But because the sulfur atom is larger,
+the two hydrogen atoms are farther apart, there is less repulsion, and
+the angle is only pushed out to about&nbsp;$93^\circ$. Selenium is even
+larger, so in H$_2$Se the angle is very nearly&nbsp;$90^\circ$.
+</p>
+</div>
+
+<div id="Ch19-S6-p21" class="para">
+<p class="p">We can use the same arguments to understand the geometry of ammonia,
+H$_3$N. Nitrogen has room for three more $2p$&nbsp;electrons, one each for
+the “$x$,”&nbsp;“$y$,” and&nbsp;“$z$” type states. The three hydrogens
+should join on at right angles to each other. The angles come out a
+little larger than&nbsp;$90^\circ$&mdash;again from the electric
+repulsion&mdash;but at least we see why the molecule of H$_3$N is not
+flat. The angles in phosphene, H$_3$P, are close to&nbsp;$90^\circ$, and in
+H$_3$As are still closer. We assumed that NH$_3$ was not flat when we
+described it as a two-state system. And the nonflatness is what makes
+the ammonia maser possible. Now we see that also that shape can be
+understood from our quantum mechanics.
+</p>
+</div>
+
+<div id="Ch19-S6-p22" class="para">
+<p class="p">The Schrödinger equation has been one of the great triumphs of
+physics. By providing the key to the underlying machinery of atomic
+structure it has given an explanation for atomic spectra, for
+chemistry, and for the nature of matter.
+</p>
+</div>
+
+</div> <!-- end of section -->
+
+<ol id="footnotes">
+	<li class="footnote">
+	  <a name="footnote_1"></a>
+		As usual, $e^2=q_e^2/4\pi\epsO$.
+	  <a href="#footnote_source_1">↩</a>
+	</li>	
+	<li class="footnote">
+	  <a name="footnote_2"></a>
+	  	Since these
+		special names are part of the common vocabulary of atomic physics, you
+		will just have to learn them. We will help out by putting them
+		together in a short “dictionary” later in the chapter.
+	  <a href="#footnote_source_2">↩</a>
+	</li>
+	<li class="footnote">
+	  <a name="footnote_3"></a>
+		You can with some work show that
+		this comes out of Eq.&nbsp;(<a href="III_18.html#mjx-eqn-EqIII1835">18.35</a>), but it is also easy to
+		work out from first principles following the ideas of
+		Section&nbsp;<a href="III_18.html#Ch18-S4">18-4</a>. A state&nbsp;$\ket{l,l}$ can be made out of
+		$2l$&nbsp;spin one-half particles all with spins up; while the state&nbsp;$\ket{l,0}$
+		would have $l$ up and $l$ down. Under the rotation the amplitude that an
+		up-spin remains up is&nbsp;$\cos\theta/2$, and that an up-spin goes down
+		is&nbsp;$-\sin\theta/2$. We are asking for the amplitude that $l$&nbsp;up-spins stay
+		up, while the other $l$&nbsp;up-spins go down. The amplitude for that
+		is&nbsp;$(-\cos\theta/2 \sin\theta/2)^l$ which is proportional
+		to&nbsp;$\sin^l\theta$.
+	  <a href="#footnote_source_3">↩</a>
+	</li>
+</ol>
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

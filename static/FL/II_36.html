@@ -1,0 +1,1824 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 36: Ferromagnetism</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "36." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch36" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">36</span>Ferromagnetism</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref" rowspan=2>
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapter&nbsp;<a href="II_10.html">10</a>, <i>Dielectrics</i>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Chapter&nbsp;<a href="II_17.html">17</a>, <i>The Laws of Induction</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch36-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">36–1</span>Magnetization currents</h3>
+<div id="Ch36-S1-p1" class="para">
+<p class="p">In this chapter we will discuss some materials in which the net
+effect
+of the magnetic moments in the material is much greater than in the
+case of paramagnetism or diamagnetism. The phenomenon is called
+<em class="emph">ferromagnetism</em>. In paramagnetic and diamagnetic materials the
+induced magnetic moments are usually so weak that we don’t have to
+worry about the additional fields produced by the magnetic
+moments. For <em class="emph">ferromagnetic</em> materials, however, the magnetic
+moments induced by applied magnetic fields are quite enormous and have
+a great effect on the fields themselves. In fact, the induced moments
+are so strong that they are often the dominant effect in producing the
+observed fields. So one of the things we will have to worry about is
+the mathematical theory of large induced magnetic moments. That is, of
+course, just a technical question. The real problem is, why are the
+magnetic moments so strong—how does it all work? We will come to
+that question in a little while.</p>
+</div>
+<div id="Ch36-S1-p2" class="para">
+<p class="p">Finding the magnetic fields of ferromagnetic materials is something like
+the problem of finding the electrostatic field in the presence of
+dielectrics. You will remember that we first described the internal
+properties of a dielectric in terms of a vector field $\FLPP$, the
+dipole moment per unit volume. Then we figured out that the effects of
+this polarization are equivalent to a charge density $\rho_{\text{pol}}$
+given by the divergence of $\FLPP$:
+\begin{equation}
+\label{Eq:II:36:1}
+\rho_{\text{pol}}=-\FLPdiv{\FLPP}.
+\end{equation}
+
+The total charge in any situation can be written as the sum of this
+polarization charge plus all other charges, whose density we
+write<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> $\rho_{\text{other}}$. Then the Maxwell
+equation
+which relates the divergence of $\FLPE$ to the charge density becomes
+\begin{equation*}
+\FLPdiv{\FLPE}=\frac{\rho}{\epsO}=
+\frac{\rho_{\text{pol}}+\rho_{\text{other}}}{\epsO},
+\end{equation*}
+
+or
+\begin{equation*}
+\FLPdiv{\FLPE}=-\frac{\FLPdiv{\FLPP}}{\epsO}+
+\frac{\rho_{\text{other}}}{\epsO}.
+\end{equation*}
+
+We can then pull out the polarization part of the charge and put it on
+the other side of the equation, to get the new law
+\begin{equation}
+\label{Eq:II:36:2}
+\FLPdiv{(\epsO\FLPE+\FLPP)}=\rho_{\text{other}}.
+\end{equation}
+
+The new law says the divergence of the quantity $(\epsO\FLPE+\FLPP)$
+is equal to the density of the other charges.</p>
+</div>
+<div id="Ch36-S1-p3" class="para">
+<p class="p">Pulling $\FLPE$ and $\FLPP$ together as in Eq. (<a href="#mjx-eqn-EqII362">36.2</a>),
+of course, is useful only if we know some relation between them. We
+have seen that the theory which relates the induced electric dipole
+moment to the field was a relatively complicated business and can
+really only be applied to certain simple situations, and even then as
+an approximation. We would like to remind you of one of the
+approximate ideas we used. To find the induced dipole moment of an
+atom inside a dielectric, it is necessary to know the electric field
+that acts on an individual atom. We made the approximation—which is
+not too bad in many cases—that the field on the atom is the same as
+it would be at the center of the small hole which would be left if we
+took out the atom (keeping the dipole moments of all the neighboring
+atoms the same). You will also remember that the electric field in a
+hole in a polarized dielectric depends on the shape of the hole. We
+summarize our earlier results in Fig. <a href="#Ch36-F1">36–1</a>. For a thin, disc-shaped
+hole perpendicular to the polarization, the electric field in the hole
+is given by
+\begin{equation*}
+\FLPE_{\text{hole}}=\FLPE_{\text{dielectric}}+\frac{\FLPP}{\epsO},
+\end{equation*}
+
+which we showed by using Gauss’ law. On the other hand, in a
+needle-shaped slot parallel to the polarization, we showed—by using
+the fact that the curl of $\FLPE$ is zero—that the electric fields
+inside and outside of the slot are the same. Finally, we found that
+for a spherical hole the electric field was one-third of the way
+between the field of the slot and the field of the disc:
+\begin{equation}
+\label{Eq:II:36:3}
+\FLPE_{\text{hole}}=\FLPE_{\text{dielectric}}+\frac{1}{3}\,
+\frac{\FLPP}{\epsO}\:(\text{spherical hole}).
+\end{equation}
+
+This was the field we used in thinking about what happens to an atom
+inside a polarized dielectric.</p>
+</div>
+<div id="Ch36-F1" class="figure">
+<img class="first" src="img/FLP_II/f36-01/f36-01_tc_big_a.svgz"><img class="middle" src="img/FLP_II/f36-01/f36-01_tc_big_b.svgz"><img class="last" src="img/FLP_II/f36-01/f36-01_tc_big_c.svgz"><div class="caption">
+<span class="tag">Fig. 36–1.</span>The electric field in a cavity in a dielectric depends on the
+shape of the cavity.
+</div>
+</div>
+<div id="Ch36-S1-p4" class="para">
+<p class="p">Now we have to discuss the analog of all this for the case of
+magnetism. One simple, short-cut way of doing this is to say the
+$\FLPM$, the magnetic moment per unit volume, is just like $\FLPP$,
+the electric dipole moment per unit volume, and that, therefore, the
+negative of the divergence of $\FLPM$ is equivalent to a “magnetic
+charge density” $\rho_m$—whatever that may mean. The trouble is, of
+course, that there isn’t any such thing as a “magnetic charge” in
+the physical world. As we know, the divergence of $\FLPB$ is always
+zero. But that does not stop us from making an artificial
+<em class="emph">analog</em> and writing
+\begin{equation}
+\label{Eq:II:36:4}
+\FLPdiv{\FLPM}=-\rho_m,
+\end{equation}
+
+where it is to be understood that $\rho_m$ is purely
+mathematical. Then we could make a complete analogy with the
+electrostatic case and use all our old equations from
+electrostatics. People have often done something like that. In fact,
+historically, people even believed that the analogy was right. They
+believed that the quantity $\rho_m$ represented the density of
+“magnetic poles.” These days, however, we know that the
+magnetization of materials comes from circulating currents within the
+atoms—either from the spinning electrons or from the motion of the
+electrons in the atom. It is therefore nicer from a physical point of
+view to describe things realistically in terms of the atomic
+currents, rather
+than in terms of a density of some mythical “magnetic poles.”
+Incidentally, these currents are sometimes called “Ampèrian”
+currents, because
+Ampère first suggested that the magnetism of matter came from
+circulating atomic currents.
+</p>
+</div>
+<div id="Ch36-S1-p5" class="para">
+<p class="p">The actual microscopic current density in magnetized matter is, of
+course, very complicated. Its value depends on where you look in the
+atom—it’s large in some places and small in others; it goes one way
+in one part of the atom and the opposite way in another part (just as
+the microscopic electric field varies enormously inside a
+dielectric). In many practical problems, however, we are interested
+only in the fields outside of the matter or in the <em class="emph">average</em>
+magnetic field inside of the matter—where we mean an average taken
+over many, many atoms. It is only for such <em class="emph">macroscopic</em> problems
+that it is convenient to describe the magnetic state of the matter in
+terms of $\FLPM$, the average dipole moment per unit volume. What we
+want to show now is that the atomic currents of magnetized matter can give
+rise to certain large-scale currents which are related to $\FLPM$.
+</p>
+</div>
+<div id="Ch36-S1-p6" class="para">
+<p class="p">What we are going to do, then, is to separate the current
+density $\FLPj$—which is the real source of the magnetic fields—into
+various parts: one part to describe the circulating currents of the
+atomic magnets, and the other parts to describe what other currents
+there may be. It is usually most convenient to separate the currents
+into three parts. In Chapter <a href="II_32.html">32</a> we made a distinction
+between the currents which flow freely on conductors and the ones
+which are due to the back and forth motions of the bound charges in
+dielectrics. In Section <a href="II_32.html#Ch32-S2">32–2</a> we wrote
+\begin{equation*}
+\FLPj=\FLPj_{\text{pol}}+\FLPj_{\text{other}},
+\end{equation*}
+
+where $\FLPj_{\text{pol}}$ represented the currents from the motion of
+the bound charges in dielectrics and $\FLPj_{\text{other}}$ took care
+of all other currents. Now we want to go further. We want to separate
+$\FLPj_{\text{other}}$ into one part, $\FLPj_{\text{mag}}$, which
+describes the average currents inside of magnetized materials, and an
+additional term which we can call $\FLPj_{\text{cond}}$ for whatever
+is left over. The last term will generally refer to currents in
+conductors, but it may also include other currents—for example the
+currents from charges moving freely through empty space. So we will
+write for the total current density:
+\begin{equation}
+\label{Eq:II:36:5}
+\FLPj=\FLPj_{\text{pol}}+\FLPj_{\text{mag}}+\FLPj_{\text{cond}}.
+\end{equation}
+
+Of course it is this total current which belongs in the Maxwell
+equation
+for the curl of $\FLPB$:
+\begin{equation}
+\label{Eq:II:36:6}
+c^2\FLPcurl{\FLPB}=\frac{\FLPj}{\epsO}+\ddp{\FLPE}{t}.
+\end{equation}
+
+</p>
+</div>
+<div id="Ch36-S1-p7" class="para">
+<p class="p">Now we have to relate the current $\FLPj_{\text{mag}}$ to the
+magnetization vector $\FLPM$. So that you can see where we are going,
+we will tell you that the result is going to be that
+\begin{equation}
+\label{Eq:II:36:7}
+\FLPj_{\text{mag}}=\FLPcurl{\FLPM}.
+\end{equation}
+
+If we are given the magnetization vector $\FLPM$ everywhere in a
+magnetic material, the circulation current density is given by the
+curl of $\FLPM$. Let’s see if we can understand why this is so.</p>
+</div>
+
+<div id="Ch36-F2" class="figure">
+<img src="img/FLP_II/f36-02/f36-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 36–2.</span>Schematic diagram of the circulating atomic currents as seen in
+a cross section of an iron rod magnetized in the $z$-direction.
+</div>
+</div>
+
+<div id="Ch36-S1-p8" class="para">
+<p class="p">First, let’s take the case of a cylindrical rod which has a uniform
+magnetization parallel to its axis. Physically, we know that such a
+uniform magnetization really means a uniform density of atomic
+circulating currents everywhere inside the material. Suppose we try to imagine what
+the actual currents would look like in a cross section of the material.
+We would expect to see currents something like those shown in
+Fig. <a href="#Ch36-F2">36–2</a>. Each atomic current goes around and around in a
+little circle, with all the circulating currents going around in the
+same direction. Now what is the effective current of such a thing? Well,
+in most of the bar there is no effect at all, because right next to each
+current there is another current going in the opposite direction. If we
+imagine a small surface—but one still quite a bit larger than a single
+atom—such as is indicated in Fig. <a href="#Ch36-F2">36–2</a> by the
+line $\overline{AB}$, the net current through such a surface is zero.
+There is no net current anywhere inside the material. Note, however,
+that at the surface of the material there are atomic
+currents which are
+not cancelled by neighboring currents going the other way. At the
+surface there is a net current always going in the same direction around
+the rod. Now you see why we said earlier that a uniformly magnetized rod
+is equivalent to a long solenoid carrying an electric current.
+</p>
+</div>
+
+<div id="Ch36-S1-p9" class="para">
+<p class="p">How does this view fit with Eq. (<a href="#mjx-eqn-EqII367">36.7</a>)? First, inside the
+material the magnetization $\FLPM$ is constant, so all its derivatives
+are zero. This agrees with our geometric picture. At the surface,
+however, $\FLPM$ is not really constant—it is constant up to the edge
+and then suddenly collapses to zero. So, right at the surface there are
+terrific gradients which, according to (<a href="#mjx-eqn-EqII367">36.7</a>), will give a
+high current density. Suppose we look at what happens near the point $C$
+in Fig. <a href="#Ch36-F2">36–2</a>. Taking the $x$- and $y$-directions as in the
+figure, the magnetization $\FLPM$ is in the $z$-direction. Writing out
+the components of Eq. (<a href="#mjx-eqn-EqII367">36.7</a>), we have
+\begin{equation}
+\begin{aligned}
+\ddp{M_z}{y}&=(j_{\text{mag}})_x,\\[1ex]
+-\ddp{M_z}{x}&=(j_{\text{mag}})_y.
+\end{aligned}
+\label{Eq:II:36:8}
+\end{equation}
+
+At the point $C$, the derivative $\ddpl{M_z}{y}$ is zero, but
+$\ddpl{M_z}{x}$ is large and positive. Equation (<a href="#mjx-eqn-EqII367">36.7</a>)
+says that there is a large current density in the minus
+$y$-direction. This agrees with our picture of a surface current going
+around the bar.</p>
+</div>
+
+<div id="Ch36-S1-p10" class="para">
+<p class="p">Now we want to find the current density for a more complicated case in
+which the magnetization varies from point to point in a material. It
+is easy to see qualitatively that if the magnetization is different in
+two neighboring regions, there will not be a perfect cancellation of
+the circulating currents so that there will be a net current in the
+volume of the material. It is this effect that we want to work out
+quantitatively.
+</p>
+</div>
+
+<div id="Ch36-F3" class="figure">
+<img src="img/FLP_II/f36-03/f36-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 36–3.</span>The dipole moment $\mu$ of a current loop is $IA$.
+</div>
+</div>
+
+<div id="Ch36-F4" class="figure">
+<img src="img/FLP_II/f36-04/f36-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 36–4.</span>A small magnetized block is equivalent to a circulating surface
+current.
+</div>
+</div>
+
+<div id="Ch36-S1-p11" class="para">
+<p class="p">First, we need to recall the results of Section <a href="II_14.html#Ch14-S5">14–5</a>
+that a circulating current $I$ has a magnetic moment $\mu$ given by
+\begin{equation}
+\label{Eq:II:36:9}
+\mu=IA,
+\end{equation}
+
+where $A$ is the area of the current loop (see Fig. <a href="#Ch36-F3">36–3</a>).
+Now let’s consider a small rectangular block inside of a magnetized
+material, as sketched in Fig. <a href="#Ch36-F4">36–4</a>. We take the block so
+small that we can consider that the magnetization is uniform inside it.
+If this block has a magnetization $M_z$ in the $z$-direction, the net
+effect will be the same as a surface current going around on the
+vertical faces, as shown. We can find the magnitude of these currents
+from Eq. (<a href="#mjx-eqn-EqII369">36.9</a>). The total magnetic moment of the block is
+equal to the magnetization times the volume:
+\begin{equation*}
+\mu=M_z(abc),
+\end{equation*}
+
+from which we get (remembering that the area of the loop is $ac$)
+\begin{equation*}
+I=M_zb.
+\end{equation*}
+
+In other words, the current per unit length (vertically) on each of
+the vertical surfaces is equal to $M_z$.</p>
+</div>
+
+<div id="Ch36-F5" class="figure">
+<img src="img/FLP_II/f36-05/f36-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 36–5.</span>If the magnetization of two neighboring blocks is not the same,
+there is a net surface current in between.
+</div>
+</div>
+
+<div id="Ch36-S1-p12" class="para">
+<p class="p">Now suppose that we imagine two such little blocks next to each other,
+as shown in Fig. <a href="#Ch36-F5">36–5</a>. Because block $2$ is slightly
+displaced from block $1$, it will have a slightly different vertical
+component of magnetization, which we call $M_z+\Delta M_z$. Now on the
+surface between the two blocks there will be two contributions to the
+total current. Block $1$ will produce a current $I_1$ flowing in the
+positive $y$-direction, and block $2$ will produce a surface
+current $I_2$ flowing in the negative $y$-direction. The total surface current
+in the positive $y$-direction is the sum:
+\begin{align*}
+I&=I_1-I_2=M_zb-(M_z+\Delta M_z)b\\[1ex]
+&=-\Delta M_zb.
+\end{align*}
+
+We can write $\Delta M_z$, as the derivative of $M_z$ in the
+$x$-direction times the displacement from block $1$ to block $2$,
+which is just $a$:
+\begin{equation*}
+\Delta M_z=\ddp{M_z}{x}\,a.
+\end{equation*}
+
+The current flowing between the two blocks is then
+\begin{equation*}
+I=-\ddp{M_z}{x}\,ab.
+\end{equation*}
+
+To relate the current $I$ to an average volume current
+density $\FLPj$, we must realize that this current $I$ is really spread over a
+certain cross-sectional area. If we imagine the whole volume of the
+material to be filled with such little blocks, one such side face
+(perpendicular to the $x$-axis) can be associated with each
+block.<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a> Then we see
+that the area to be associated with the current $I$ is just the
+area $ab$ of one of the front faces. We get the result
+\begin{equation*}
+j_y=\frac{I}{ab}=-\ddp{M_z}{x}.
+\end{equation*}
+
+We have at least the beginning of the curl of $\FLPM$.</p>
+</div>
+
+<div id="Ch36-F6" class="figure">
+<img src="img/FLP_II/f36-06/f36-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 36–6.</span>Two blocks, one above the other, may also contribute to $j_y$.
+</div>
+</div>
+
+<div id="Ch36-S1-p13" class="para">
+<p class="p">There should be another term in $j_y$ from the variation of the
+$x$-component of the magnetization with $z$. This contribution
+to $\FLPj$ will come from the surface between two little blocks stacked
+one on top of the other, as shown in Fig. <a href="#Ch36-F6">36–6</a>. Using the same
+arguments we have just made, you can show that this surface will
+contribute to $j_y$ the amount $\ddpl{M_x}{z}$. These are the only
+surfaces which can contribute to the $y$-component of the current so
+we have that the total current density in the $y$-direction is
+\begin{equation*}
+j_y=\ddp{M_x}{z}-\ddp{M_z}{x}.
+\end{equation*}
+
+Working out the currents on the remaining faces of a cube—or using
+the fact that our $z$-direction is completely arbitrary—we can
+conclude that the vector current density is indeed given by the
+equation
+\begin{equation*}
+\FLPj=\FLPcurl{\FLPM}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch36-S1-p14" class="para">
+<p class="p">So if we choose to describe the magnetic situation in matter in terms of the
+average magnetic moment per unit volume $\FLPM$, we find that the circulating
+atomic currents are equivalent to an average current density in matter given by
+Eq. (<a href="#mjx-eqn-EqII367">36.7</a>). If the material is also a dielectric, there may be, in
+addition, a polarization current $\FLPj_{\text{pol}}=\ddpl{\FLPP}{t}$. And if
+the material is also a conductor, we may have a conduction
+current $\FLPj_{\text{cond}}$ as well. We can write the total current as
+\begin{equation}
+\label{Eq:II:36:10}
+\FLPj=\FLPj_{\text{cond}}+\FLPcurl{\FLPM}+\ddp{\FLPP}{t}.
+\end{equation}
+</p>
+</div>
+</div>
+<div id="Ch36-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">36–2</span>The field $\FLPH$</h3>
+<div id="Ch36-S2-p1" class="para">
+<p class="p">Next, we want to insert the current as written in
+Eq. (<a href="#mjx-eqn-EqII3610">36.10</a>) into Maxwell’s
+equations. We get
+<span class="eq-wide">
+\begin{equation*}
+c^2\FLPcurl{\FLPB}=\frac{\FLPj}{\epsO}+\ddp{\FLPE}{t}=
+\frac{1}{\epsO}\biggl(
+\FLPj_{\text{cond}}+\FLPcurl{\FLPM}+\ddp{\FLPP}{t}
+\biggr)+\ddp{\FLPE}{t}.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+c^2\FLPcurl{\FLPB}&=\frac{\FLPj}{\epsO}+\ddp{\FLPE}{t}\\[1ex]
+&=\frac{1}{\epsO}\biggl(\!
+\FLPj_{\text{cond}}\!+\!\FLPcurl{\FLPM}\!+\!\ddp{\FLPP}{t}
+\!\biggr)\!+\!\ddp{\FLPE}{t}.
+\end{align*}
+</span>
+We can move the term in $\FLPM$ to the left-hand side:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:36:11}
+c^2\FLPcurl{\biggl(\FLPB-\frac{\FLPM}{\epsO c^2}\biggr)}=\,
+\frac{\FLPj_{\text{cond}}}{\epsO}+\ddp{}{t}\biggl(
+\FLPE+\frac{\FLPP}{\epsO}\biggr).
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\label{Eq:II:36:11}
+c^2\FLPcurl{\biggl(\!\FLPB\!-\!\frac{\FLPM}{\epsO c^2}\!\biggr)}\!=
+\frac{\FLPj_{\text{cond}}}{\epsO}\!+\!\ddp{}{t}\biggl(\!
+\FLPE\!+\!\frac{\FLPP}{\epsO}\!\biggr).
+\end{equation}
+</span>
+As we remarked in Chapter <a href="II_32.html">32</a>, many people like to
+write $(\FLPE+\FLPP/\epsO)$ as a new vector field $\FLPD/\epsO$. Similarly,
+it is often convenient to write $(\FLPB-\FLPM/\epsO c^2)$ as a single
+vector field. <em class="emph">We</em> choose to define a new vector field $\FLPH$ by
+\begin{equation}
+\label{Eq:II:36:12}
+\FLPH=\FLPB-\frac{\FLPM}{\epsO c^2}.
+\end{equation}
+Then Eq. (<a href="#mjx-eqn-EqII3611">36.11</a>) becomes
+\begin{equation}
+\label{Eq:II:36:13}
+\epsO c^2\FLPcurl{\FLPH}=\FLPj_{\text{cond}}+\ddp{\FLPD}{t}.
+\end{equation}
+
+It looks simple, but all the complexity is just hidden in the letters
+$\FLPD$ and $\FLPH$.</p>
+</div>
+<div id="Ch36-S2-p2" class="para">
+<p class="p">Now we have to give you a warning. Most people who use the mks units
+have chosen to use a different definition of $\FLPH$. Calling
+<em class="emph">their</em> field $\FLPH'$ (of course, they still call it $\FLPH$
+without the prime), it is defined by
+\begin{equation}
+\label{Eq:II:36:14}
+\FLPH'=\epsO c^2\FLPB-\FLPM.
+\end{equation}
+
+(Also, they usually write $\epsO c^2$ as a new number $1/\mu_0$; then
+they have one more constant to keep track of!) With this definition,
+Eq. (<a href="#mjx-eqn-EqII3613">36.13</a>) looks even simpler:
+\begin{equation}
+\label{Eq:II:36:15}
+\FLPcurl{\FLPH'}=\FLPj_{\text{cond}}+\ddp{\FLPD}{t}.
+\end{equation}
+
+But the difficulties with this definition of $\FLPH'$ are, first, that
+it doesn’t agree with the definition of people who don’t use the mks
+units, and second, that it makes $\FLPH'$ and $\FLPB$ have different
+units. We think it is more convenient for $\FLPH$ to have the same units
+as $\FLPB$—rather than the units of $\FLPM$, as $\FLPH'$ does. But if
+you are going to be an engineer and work on the design of transformers,
+magnets, and such, you will have to watch out. You will find many books
+which use for $\FLPH$ the definition of Eq. (<a href="#mjx-eqn-EqII3614">36.14</a>) rather
+than our definition of Eq. (<a href="#mjx-eqn-EqII3612">36.12</a>), and many other
+books—especially handbooks about magnetic materials—that relate
+$\FLPB$ and $\FLPH$ the way we have done. You’ll have to be careful to
+figure out which convention they are using.</p>
+</div>
+<div id="Ch36-S2-p3" class="para">
+<p class="p">One way to tell is by the units they use. Remember that in the mks
+system, $\FLPB$—and therefore <em class="emph">our</em> $\FLPH$—are measured with
+the unit: one weber per square meter, equal to $10{,}000$ gauss. In the
+mks system, a magnetic moment (a current times an area) has the unit:
+one ampere-meter$^2$. The magnetization $\FLPM$, then, has the unit: one
+ampere <em class="emph">per</em> meter. For $\FLPH'$ the units are the same as
+for $\FLPM$. You can see that this also agrees with Eq. (<a href="#mjx-eqn-EqII3615">36.15</a>),
+since $\FLPnabla$ has the dimensions of one over a length. People who
+are working with electromagnets also get in the habit of calling the
+unit of $\FLPH$ (with the $\FLPH'$ definition) “one ampere <em class="emph">turn</em>
+per meter”—thinking of the turns of wire on a winding. But a “turn”
+is really a dimensionless number, so that doesn’t need to confuse you.
+Since our $H$ is equal to $H'/\epsO c^2$, if you are using the mks
+system, $H$ (in webers/meter$^2$) is equal to $4\pi\times10^{-7}$
+times $H'$ (in amperes per meter). It is perhaps more convenient to remember
+that $H$ (in gauss)${}=0.0126H'$ (in amp/meter).</p>
+</div>
+<div id="Ch36-S2-p4" class="para">
+<p class="p">There is one more horrible thing. Many people who use <em class="emph">our</em>
+definition of $\FLPH$ have decided to call the units of $\FLPH$
+and $\FLPB$ by <em class="emph">different names</em>!  Even though they have the same
+dimensions, they call the unit of $\FLPB$ one <em class="emph">gauss</em>,
+and the unit
+of $\FLPH$ one <em class="emph">oersted</em> (after
+Gauss and
+Oersted, of
+course). So, in many books you will find graphs with $\FLPB$ plotted in
+gauss and $\FLPH$ in oersteds. They are really the same unit—$10^{-4}$ of
+the mks unit. We have summarized the confusion about magnetic units
+in Table <a href="#Ch36-T1">36–1</a>.</p>
+</div>
+
+<div id="Ch36-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 36–1</span>Units of magnetic quantities
+</div>
+<table class="tabular ltx_centering" style="width:200pt;">
+<tr class="tr">
+<td class="td" style="text-align:left;" align="right"><span class="text">$[B]=\text{weber/meter$^2$}=10^4\text{ gauss}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:left;" align="right"><span class="text">$[H]=\text{weber/meter$^2$}=10^4\text{ gauss}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:center;" align="right"><em class="emph">or</em><span class="text"> $10^4 \text{oersted}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:left;" align="right"><span class="text">$[M]=\text{ampere/meter}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:left;" align="right"><span class="text">$[H']=\text{ampere/meter}$</span></td>
+</tr>
+</table>
+<div class="caption ltx_centering">Convenient conversions
+</div>
+<table class="tabular" style="width:200pt;"><tr class="tr">
+<td class="td" style="text-align:left;" align="right">$B\text{ (gauss)}=10^4 B\text{ (weber/meter$^2$)}$</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:left;" align="right">$H\text{ (gauss)}=H\text{ (oersted)}$</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:right;" align="right">$=0.0126 H'\text{ (amp/meter)}$</td>
+</tr>
+</table>
+</div>
+
+
+</div>
+<div id="Ch36-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">36–3</span>The magnetization curve</h3>
+<div id="Ch36-S3-p1" class="para">
+<p class="p">Now we will look at some simple situations in which the magnetic field
+is constant, or in which the fields change slowly enough that we can
+neglect $\ddpl{\FLPD}{t}$ in comparison
+with $\FLPj_{\text{cond}}$. Then the fields obey the equations
+\begin{gather}
+\label{Eq:II:36:16}
+\FLPdiv{\FLPB}=0,\\[1.5ex]
+\label{Eq:II:36:17}
+\FLPcurl{\FLPH}=\FLPj_{\text{cond}}/\epsO c^2,\\[1.5ex]
+\label{Eq:II:36:18}
+\FLPH=\FLPB-\FLPM/\epsO c^2.
+\end{gather}
+</p>
+</div>
+<div id="Ch36-F7" class="figure">
+<img class="first" src="img/FLP_II/f36-07/f36-07_tc_big_a.svgz"><img class="last" src="img/FLP_II/f36-07/f36-07_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 36–7.</span>(a) A torus of iron wound with a coil of insulated wire.
+(b) Cross section of torus showing field lines.
+</div>
+</div>
+<div id="Ch36-S3-p2" class="para">
+<p class="p">Suppose we have a torus (a donut) of iron wrapped with a coil of copper
+wire, as shown in Fig. <a href="#Ch36-F7">36–7</a>(a). A current $I$ flows in the
+wire. What is the magnetic field? The magnetic field will be mainly
+inside the iron; there, the lines of $\FLPB$ will be circles, as drawn
+in Fig. <a href="#Ch36-F7">36–7</a>(b). Since the flux of $\FLPB$ is continuous,
+its divergence is zero, and Eq. (<a href="#mjx-eqn-EqII3616">36.16</a>) is satisfied. Next,
+we write Eq. (<a href="#mjx-eqn-EqII3617">36.17</a>) in another form by integrating around
+the closed loop $\Gamma$ drawn in Fig. <a href="#Ch36-F7">36–7</a>(b). From
+Stokes’ theorem, we have that
+\begin{equation}
+\label{Eq:II:36:19}
+\oint_\Gamma\FLPH\cdot d\FLPs=\frac{1}{\epsO c^2}
+\int_S\FLPj_{\text{cond}}\cdot\FLPn\,da,
+\end{equation}
+
+where the integral of $\FLPj$ is to be carried out over any surface $S$
+bounded by $\Gamma$. This surface is cut once by each turn of the
+winding. Each turn contributes the current $I$ to the integral, and,
+if there are $N$ turns in all, the integral is $NI$. From the symmetry
+of our problem, $\FLPB$ is the same all around the curve $\Gamma$; if
+we assume that the magnetization, and therefore, the field $H$ is also
+constant along $\Gamma$, Eq. (<a href="#mjx-eqn-EqII3619">36.19</a>) becomes
+\begin{equation*}
+Hl=\frac{NI}{\epsO c^2},
+\end{equation*}
+
+where $l$ is the length of the curve $\Gamma$. So,
+\begin{equation}
+\label{Eq:II:36:20}
+H=\frac{1}{\epsO c^2}\,\frac{NI}{l}.
+\end{equation}
+
+It is because $\FLPH$ is directly proportional to the magnetizing
+current in cases like this one that $\FLPH$ is sometimes called the
+<em class="emph">magnetizing field</em>.</p>
+</div>
+<div id="Ch36-S3-p3" class="para">
+<p class="p">Now all we need is an equation which relates $\FLPH$ to $\FLPB$. But
+there isn’t any such equation! There is, of course,
+Eq. (<a href="#mjx-eqn-EqII3618">36.18</a>), but it is no help because there is no direct
+relation between $\FLPM$ and $\FLPB$ for a ferromagnetic material like
+iron. The magnetization $\FLPM$ depends on the whole past history of the
+iron, and not only on what $\FLPB$ is at the moment.</p>
+</div>
+<div id="Ch36-S3-p4" class="para">
+<p class="p">All is not lost, though. We can get solutions in certain simple cases.
+If we start out with unmagnetized iron—let’s say with iron that has
+been annealed at high temperatures—then in the simple geometry of the
+torus, all the iron will have the same magnetic history. Then we can say
+something about $\FLPM$—and therefore about the relation between
+$\FLPB$ and $\FLPH$—from experimental measurements. The field $\FLPH$
+in the torus is, from Eq. (<a href="#mjx-eqn-EqII3620">36.20</a>), given as a constant times
+the current $I$ in the winding. The field $\FLPB$ can be measured by
+integrating over time the emf in the coil (or in an extra coil wound
+over the magnetizing coil shown in the figure). This emf is equal to the
+rate of change of the flux of $\FLPB$, so the integral of the emf with
+time is equal to $\FLPB$ times the cross-sectional area of the torus.</p>
+</div>
+<div id="Ch36-F8" class="figure">
+<img src="img/FLP_II/f36-08/f36-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 36–8.</span>Typical magnetization and hysteresis curve for soft iron.
+</div>
+</div>
+<div id="Ch36-S3-p5" class="para">
+<p class="p">Figure <a href="#Ch36-F8">36–8</a> shows the relation between $\FLPB$ and $\FLPH$,
+observed
+with a torus of soft iron. When the current is first turned on,
+$\FLPB$ increases with increasing $\FLPH$ along the curve $a$. Note
+the different scales on $\FLPB$ and $\FLPH$; initially, it takes only
+a relatively small $\FLPH$ to make a large $\FLPB$. Why is $\FLPB$ so
+much larger with the iron than it would be with air? Because there is
+a large magnetization $\FLPM$ which is equivalent to a large surface
+current on the iron—the field $\FLPB$ comes from the <em class="emph">sum</em> of
+this current and the conduction current in the winding. Why $\FLPM$
+should be so large, we will discuss later.
+</p>
+</div>
+<div id="Ch36-S3-p6" class="para">
+<p class="p">At higher values of $\FLPH$, the magnetization curve levels off. We
+say that the iron <em class="emph">saturates</em>. With the scales of our figure, the
+curve appears to become horizontal. Actually, it continues to rise
+slightly—for large fields, $\FLPB$ becomes proportional to $\FLPH$,
+and with a unit slope. There is no further increase of $\FLPM$.
+Incidentally, we should point out that if the torus were made
+of some nonmagnetic material, $\FLPM$ would be zero and $\FLPB$ would
+equal $\FLPH$ for all fields.</p>
+</div>
+<div id="Ch36-S3-p7" class="para">
+<p class="p">The first thing we notice is that curve $a$ in Fig. <a href="#Ch36-F8">36–8</a>—which is
+the so-called <em class="emph">magnetization curve</em>—is highly nonlinear. But
+it’s worse than that. If, after reaching saturation, we decrease the
+current in the coil to bring $\FLPH$ back to zero, the magnetic
+field $\FLPB$ falls along curve $b$. When $\FLPH$ reaches zero, there is
+still some $\FLPB$ left. Even with no magnetizing current there is a
+magnetic field in the iron—it has become permanently magnetized. If
+we now turn on a <em class="emph">negative</em> current in the coil, the
+$B$-$H$ curve continues along $b$ until the iron is saturated in the negative
+direction.  If we then bring the current back to zero again, $\FLPB$
+goes along curve $c$. If we alternate the current between large
+positive and negative values, the $B$-$H$ curve goes back and forth
+along very nearly the curves $b$ and $c$. If we vary $\FLPH$ in some
+arbitrary way, however, we can get more complicated curves which will,
+in general, lie somewhere between the curves $b$ and $c$. The loop
+made by repeated oscillation of the fields is called a
+<em class="emph">hysteresis</em> loop of the iron.
+</p>
+</div>
+<div id="Ch36-S3-p8" class="para">
+<p class="p">We see then that we cannot write a functional relationship
+like $B=f(H)$, because the value of $\FLPB$ at any instant depends not
+only on what $\FLPH$ is at that time, but on its whole past history.
+Naturally, the magnetization and hysteresis curves are different for
+different substances. The shape of the curves depends critically on the
+chemical composition of the material, and also on the details of its
+preparation and subsequent physical treatment. We will discuss some of
+the physical explanations for these complications in the next chapter.</p>
+</div>
+</div>
+<div id="Ch36-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">36–4</span>Iron-core inductances</h3>
+<div id="Ch36-S4-p1" class="para">
+<p class="p">One of the most important applications of magnetic materials is in
+electrical circuits—for example, in transformers, electric motors, and
+so on. One reason is that with iron we can control where the magnetic
+fields go, and also get much larger fields for a given electric current.
+For example, the typical “toroidal” inductance is made very much like
+the object shown in Fig. <a href="#Ch36-F7">36–7</a>. For a given inductance, it
+can be much smaller in volume and use much less copper than an
+equivalent “air-core” inductance. For a given inductance, we get a
+much smaller resistance in the winding, so the inductance is more nearly
+“ideal”—particularly for low frequencies. It is very easy to
+understand, qualitatively, how such an inductance works. If $I$ is the
+current in the winding, then the field $\FLPH$ which is produced in the
+inside is proportional to $I$—as given by Eq. (<a href="#mjx-eqn-EqII3620">36.20</a>). The
+voltage $\voltage$ across the terminals is related to the magnetic
+field $\FLPB$. Neglecting the resistance of the winding, the
+voltage $\voltage$ is proportional to $\ddpl{\FLPB}{t}$. The
+inductance $\selfInd$, which is the ratio of $\voltage$ to $dI/dt$ (see
+Section <a href="II_17.html#Ch17-S7">17–7</a>), thus involves the relation between $B$
+and $H$ in the iron. Since the $\FLPB$ is so much bigger than the $\FLPH$,
+we get a large factor in the inductance. Physically, what happens is
+that a small current in the coil, which would ordinarily produce a small
+magnetic field, causes the little “slave” magnets in the iron to line
+up and produce a tremendously greater “magnetic” current than the
+external current in the winding. It is as if we had a lot more current
+going through the coil than we really have. When we reverse the current,
+all the little magnets flip over—all those internal currents
+reverse—and we get a much higher induced emf than we would get without
+the iron. If we want to calculate the inductance, we can do so through
+the energy—as described in Section <a href="II_17.html#Ch17-S8">17–8</a>. The <em class="emph">rate</em>
+at which energy is delivered from the current source is $I\voltage$. The
+voltage $\voltage$ is the cross-sectional area $A$ of the core,
+times $N$, times $dB/dt$. From Eq. (<a href="#mjx-eqn-EqII3620">36.20</a>), $I=(\epsO c^2l/N)H$.
+So we have
+\begin{equation*}
+\ddt{U}{t}=\voltage I=(\epsO c^2lA)H\,\ddt{B}{t}.
+\end{equation*}
+
+Integrating over time, we have
+\begin{equation}
+\label{Eq:II:36:21}
+U=(\epsO c^2lA)\int H\,dB.
+\end{equation}
+
+Notice that $lA$ is the volume of the torus, so we have shown that the
+energy density $u=U/\text{vol}$ in a magnetic material is given by
+\begin{equation}
+\label{Eq:II:36:22}
+u=\epsO c^2\int H\,dB.
+\end{equation}
+</p>
+</div>
+<div id="Ch36-S4-p2" class="para">
+<p class="p">An interesting feature is involved here. When we use alternating
+currents, the iron is driven around a hysteresis loop. Since $B$ is
+not a single-valued function of $H$, the integral of $\int H\,dB$
+around one complete cycle is <em class="emph">not</em> equal to zero. It is the area
+enclosed inside the hysteresis curve. Thus, the driving source
+delivers a certain net energy each cycle—an energy proportional to
+the area inside the hysteresis loop. And that energy is “lost.” It
+is lost from the electromagnetic goings on, but turns up as heat in
+the iron. It is called the <em class="emph">hysteresis loss</em>. To keep such energy
+losses small, we would like the hysteresis loop to be as narrow as
+possible. One way to decrease the area of the loop is to reduce the
+maximum field that is reached during each cycle. For smaller maximum
+fields, we get a hysteresis curve like the one shown in
+Fig. <a href="#Ch36-F9">36–9</a>. Also, special materials are designed to have a
+very narrow loop. The so-called <em class="emph">transformer irons</em>—which are
+iron alloys with a small amount of silicon—have been developed to have
+this property.</p>
+</div>
+<div id="Ch36-F9" class="figure">
+<img src="img/FLP_II/f36-09/f36-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 36–9.</span>A hysteresis loop that doesn’t reach saturation.
+</div>
+</div>
+<div id="Ch36-S4-p3" class="para">
+<p class="p">When an inductance is run over a small hysteresis loop, the
+relationship between $B$ and $H$ can be approximated by a linear
+equation. People usually write
+\begin{equation}
+\label{Eq:II:36:23}
+B=\mu H.
+\end{equation}
+
+The constant $\mu$ is <em class="emph">not</em> the magnetic moment we have used
+before. It is called the <em class="emph">permeability</em> of the
+iron. (It is also sometimes called the “<em class="emph">relative
+permeability</em>.”) The permeability of ordinary irons is typically several
+thousand. There are special alloys alike
+“supermalloy” which can have permeabilities as high
+as a million.
+</p>
+</div>
+<div id="Ch36-S4-p4" class="para">
+<p class="p">If we use the approximation that $B=\mu H$ in Eq. (<a href="#mjx-eqn-EqII3621">36.21</a>),
+we can write the energy in a toroidal inductance as
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:36:24}
+U=(\epsO c^2lA)\mu\int H\,dH=(\epsO c^2lA)\,\frac{\mu H^2}{2}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+U&=(\epsO c^2lA)\mu\int H\,dH\notag\\[1ex]
+\label{Eq:II:36:24}
+&=(\epsO c^2lA)\,\frac{\mu H^2}{2}.
+\end{align}
+</span>
+So the energy density is approximately
+\begin{equation*}
+u\approx\frac{\epsO c^2}{2}\,\mu H^2.
+\end{equation*}
+
+We can now set the energy of Eq. (<a href="#mjx-eqn-EqII3624">36.24</a>) equal to the
+energy $\selfInd I^2/2$ of an inductance, and solve for $\selfInd$. We get
+\begin{equation*}
+\selfInd=(\epsO c^2lA)\mu\biggl(\frac{H}{I}\biggr)^2.
+\end{equation*}
+
+Using $H/I$ from Eq. (<a href="#mjx-eqn-EqII3620">36.20</a>), we have
+\begin{equation}
+\label{Eq:II:36:25}
+\selfInd=\frac{\mu N^2A}{\epsO c^2l}.
+\end{equation}
+
+The inductance is proportional to $\mu$. If you want inductances for
+such things as audio amplifiers, you will try to operate them on a
+hysteresis loop where the $B$-$H$ relationship is as linear as possible.
+(You will remember that we spoke in Chapter <a href="I_50.html">50</a>, Vol. I,
+about the generation of harmonics in nonlinear systems.) For such
+purposes, Eq. (<a href="#mjx-eqn-EqII3623">36.23</a>) is a useful approximation. On the
+other hand, if you <em class="emph">want</em> to generate harmonics, you may use an
+inductance which is intentionally operated in a highly nonlinear way.
+Then you will have to use the complete $B$-$H$ curves, and analyze what
+happens by graphical or numerical methods.</p>
+</div>
+<div id="Ch36-S4-p5" class="para">
+<p class="p">A “transformer” is often made by putting two coils on the same
+torus—or <em class="emph">core</em>—of a magnetic material. (For the larger
+transformers, the core is made with rectangular proportions for
+convenience.) Then a varying current in the “primary” winding causes
+the magnetic field in the core to change, which induces an emf in the
+“secondary” winding. Since the flux through <em class="emph">each turn</em> of both
+windings is the same, the emf’s in the two windings are in the same
+ratio as the number of turns on each. A voltage applied to the primary
+is transformed to a different voltage at the secondary. Since a
+certain <em class="emph">net</em> current around the core is needed to produce the
+required change in the magnetic field, the <em class="emph">algebraic</em> sum of the
+currents in the two windings will be fixed and equal to the required
+“magnetizing” current. If the current drawn from the secondary
+increases, the primary current must increase in proportion—there is
+a “transformation” of currents as well as voltage.</p>
+</div>
+</div>
+<div id="Ch36-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">36–5</span>Electromagnets</h3>
+<div id="Ch36-F10" class="figure">
+<img src="img/FLP_II/f36-10/f36-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 36–10.</span>An electromagnet.
+</div>
+</div>
+<div id="Ch36-S5-p1" class="para">
+<p class="p">Now let’s discuss a practical situation which is a little more
+complicated. Suppose we have an electromagnet of the rather standard
+form shown in Fig. <a href="#Ch36-F10">36–10</a>—there is a “C-shaped” yoke of iron,
+with a coil of many turns of wire wrapped around the yoke. What is the
+magnetic field $\FLPB$ in the gap?</p>
+</div>
+<div id="Ch36-S5-p2" class="para">
+<p class="p">If the gap thickness is small compared with all the other dimensions,
+we can, as a first approximation, assume that the lines of $\FLPB$
+will go around through the loop, just as they did in the torus. They
+will look more or less as shown in Fig. <a href="#Ch36-F11">36–11</a>(a). They tend to
+spread out somewhat in the gap, but if the gap is narrow, this will be
+a small effect. It is a fair approximation to assume that the flux
+of $\FLPB$ through any cross section of the yoke is a constant. If the
+yoke has a uniform cross-sectional area $A$—and if we neglect any edge
+effects at the gaps or at the corners—we can say that $\FLPB$ is
+uniform around the yoke.</p>
+</div>
+<div id="Ch36-F11" class="figure">
+<img class="first" src="img/FLP_II/f36-11/f36-11_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_II/f36-11/f36-11_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 36–11.</span>Cross section of an electromagnet.
+</div>
+</div>
+<div id="Ch36-S5-p3" class="para">
+<p class="p">Also, $\FLPB$ will have the same value in the gap. This follows from
+Eq. (<a href="#mjx-eqn-EqII3616">36.16</a>). Imagine the closed surface $S$, shown in
+Fig. <a href="#Ch36-F11">36–11</a>(b), which has one face in the gap and the other
+in the iron. The total flux of $\FLPB$ out of this surface must be zero.
+Calling $B_1$ the field in the gap and $B_2$ the field in the iron, we
+have (to our approximation) that
+\begin{equation*}
+B_1A-B_2A=0.
+\end{equation*}
+
+It follows that $B_1=B_2$.</p>
+</div>
+<div id="Ch36-S5-p4" class="para">
+<p class="p">Now let’s look at $H$. We can again use Eq. (<a href="#mjx-eqn-EqII3619">36.19</a>), taking
+the line integral around the curve $\Gamma$ in
+Fig. <a href="#Ch36-F11">36–11</a>(b). As before, the integral on the right-hand
+side is $NI$, the number of turns times the current. Now, however, $H$
+will be different in the iron and in the air. Calling $H_2$ the field in
+the iron and $l_2$ the path length around the yoke, this part of the
+curve will contribute the amount $H_2l_2$ to the integral. Calling $H_1$
+the field in the gap and $l_1$ the gap thickness, we get the
+contribution $H_1l_1$ from the gap. We have that
+\begin{equation}
+\label{Eq:II:36:26}
+H_1l_1+H_2l_2=\frac{NI}{\epsO c^2}.
+\end{equation}
+</p>
+</div>
+<div id="Ch36-S5-p5" class="para">
+<p class="p">Now we know something else: that in the air gap, the magnetization is
+negligible, so that $B_1=H_1$. Since $B_1=B_2$, Eq. (<a href="#mjx-eqn-EqII3626">36.26</a>)
+becomes
+\begin{equation}
+\label{Eq:II:36:27}
+B_2l_1+H_2l_2=\frac{NI}{\epsO c^2}.
+\end{equation}
+
+We still have two unknowns. To find $B_2$ and $H_2$, we need another
+relationship—namely, the one which relates $B$ to $H$ in the iron.</p>
+</div>
+<div id="Ch36-S5-p6" class="para">
+<p class="p">If we can make the approximation that $B_2=\mu H_2$, we can solve the
+equation algebraically. However, let’s do the general case, in which the
+magnetization curve of the iron is one like that shown in
+Fig. <a href="#Ch36-F8">36–8</a>. What we want is the simultaneous solution of
+this functional relationship together with Eq. (<a href="#mjx-eqn-EqII3627">36.27</a>). We
+can find it by plotting a graph of Eq. (<a href="#mjx-eqn-EqII3627">36.27</a>) on the same
+graph with the magnetization curve, as is done in
+Fig. <a href="#Ch36-F12">36–12</a>. Where the two curves intersect, we have our
+solution.</p>
+</div>
+<div id="Ch36-F12" class="figure">
+<img src="img/FLP_II/f36-12/f36-12_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 36–12.</span>Solving for the field in an electromagnet.
+</div>
+</div>
+<div id="Ch36-S5-p7" class="para">
+<p class="p">For a given current $I$, the function (<a href="#mjx-eqn-EqII3627">36.27</a>) is the
+straight line marked $I&gt;0$ in Fig. <a href="#Ch36-F12">36–12</a>. The line intersects the
+$H$-axis ($B_2=0$) at $H_2=NI/\epsO c^2l_2$, and the slope
+is $-l_2/l_1$. Different currents just shift the line horizontally. From
+Fig. <a href="#Ch36-F12">36–12</a>, we see that for a given current there are several
+different solutions, depending on how you got there. If you have just
+built the magnet and turned the current up to $I$, the field $B_2$
+(which is also $B_1$) will have the value given by point $a$. If you
+have run the current to some very high value and come down to $I$, the
+field will be given by point $b$. Or, if you have just had a high
+negative current in the magnet and then come <em class="emph">up</em> to $I$, the
+field is the one at point $c$. The field in the gap will depend on
+what you have done in the past.</p>
+</div>
+<div id="Ch36-S5-p8" class="para">
+<p class="p">When the current in the magnet is zero, the relation between $B_2$
+and $H_2$ in Eq. (<a href="#mjx-eqn-EqII3627">36.27</a>) is shown by the line marked $I=0$
+in the figure. There are still various possible solutions. If you have
+first saturated the iron, there may be a considerable residual field
+in the magnet as given by point $d$. You can take the coil off, and
+you have a permanent magnet. You can see that for a good permanent
+magnet, you would want a material with a <em class="emph">wide</em> hysteresis
+loop. Special alloys, such as Alnico V, have very wide loops.</p>
+</div>
+</div>
+<div id="Ch36-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">36–6</span>Spontaneous magnetization</h3>
+<div id="Ch36-S6-p1" class="para">
+<p class="p">We now turn to the question of why it is that in ferromagnetic
+materials a small magnetic field produces such a large
+magnetization. The magnetization of ferromagnetic materials like iron
+and nickel comes from the magnetic moment of the electrons in the
+inner shell of the atom. Each electron has a magnetic moment $\FLPmu$
+equal to $q/2m$ times its $g$-factor, times its angular
+momentum $\FLPJ$. For a single electron with no net orbital motion, $g=2$, and
+the component of $\FLPJ$ in any direction—say the
+$z$-direction—is $\pm\hbar/2$,
+so the component of $\FLPmu$ along the $z$-axis is
+\begin{equation}
+\label{Eq:II:36:28}
+\mu_z=\frac{q\hbar}{2m}=0.928\times10^{-23}\text{ amp$\cdot$m$^2$}.
+\end{equation}
+
+In an iron atom, there are actually two electrons that contribute to
+the ferromagnetism, so to keep the discussion simpler we will talk
+about nickel, which is ferromagnetic like iron but which has only one
+electron in the inner shell. (It is easy to extend the arguments to
+iron.)
+</p>
+</div>
+<div id="Ch36-S6-p2" class="para">
+<p class="p">Now the point is that in the presence of an external field $\FLPB$,
+the atomic magnets tend to line up with the field, but are knocked
+about by thermal motions just as we described for paramagnetic
+materials. In the last chapter we found out that the balance between a
+magnetic field trying to line up the atomic magnets and the thermal
+motions trying to derange them produced the result that the mean
+magnetic moment per unit volume will end up as
+\begin{equation}
+\label{Eq:II:36:29}
+M=N\mu\tanh\frac{\mu B_a}{kT}.
+\end{equation}
+
+By $\FLPB_a$ we mean the field acting at the atom, and $kT$ is the
+Boltzmann energy. In the theory
+of paramagnetism we used for $B_a$ just $B$ itself, neglecting the part
+of the field at any given atom contributed by the atoms nearby. In the
+ferromagnetic case, there is a complication. We shouldn’t use the
+average field in the iron for the $\FLPB_a$ acting on an individual
+atom. Instead, we must do as we did in the case of dielectrics—we have
+to find the <em class="emph">local</em> field acting at a single atom. For an exact
+calculation we should add up the fields at the atom in question
+contributed by all of the other atoms in the crystal lattice. But as we
+did for dielectrics, we will make the approximation that the field at an
+atom is the same as we would find in a small spherical hole in the
+material—assuming that the moments of the atoms in the neighborhood
+are not changed by the presence of the hole.</p>
+</div>
+<div id="Ch36-S6-p3" class="para">
+<p class="p">Following the arguments we made in Chapter <a href="II_11.html">11</a>, we might
+think that we could write
+\begin{equation*}
+\FLPB_{\text{hole}}=\FLPB+\frac{1}{3}\,\frac{\FLPM}{\epsO c^2}\quad
+(\text{wrong!}).
+\end{equation*}
+
+But that is not right. We <em class="emph">can</em>, however, make use of the results
+of Chapter <a href="II_11.html">11</a> if we make a careful comparison of the
+equations of Chapter <a href="II_11.html">11</a> with the equations for
+ferromagnetism in this chapter. Let’s put together the corresponding
+equations. For regions where there are no conduction currents or
+charges we have:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:36:30}
+\begin{alignedat}{2}
+&\text{Electrostatics}&\qquad
+&\text{Static ferromagnetism}\\
+&\FLPdiv{\biggl(\FLPE+\frac{\FLPP}{\epsO}\biggr)}=0&\qquad
+&\FLPdiv{\FLPB}=0\\
+&\FLPcurl{\FLPE}=\FLPzero&\qquad
+&\FLPcurl{\biggl(\FLPB-\frac{\FLPM}{\epsO c^2}\biggr)}=\FLPzero
+\end{alignedat}
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{equation}
+\begin{aligned}
+&\text{Electrostatics}\\[.5ex]
+&\FLPdiv{\biggl(\FLPE+\frac{\FLPP}{\epsO}\biggr)}=0\\[1ex]
+&\FLPcurl{\FLPE}=\FLPzero\\[2ex]
+&\text{Static ferromagnetism}\\[1ex]
+&\FLPdiv{\FLPB}=0\\[1ex]
+&\FLPcurl{\biggl(\FLPB-\frac{\FLPM}{\epsO c^2}\biggr)}=\FLPzero
+\end{aligned}
+\label{Eq:II:36:30}
+\end{equation}
+
+</span>
+These two sets of equations can be thought of as analogous if we make
+the following <em class="emph">purely mathematical</em> correspondences:
+\begin{equation*}
+\FLPE\to\FLPB-\frac{\FLPM}{\epsO c^2},\quad
+\FLPE+\frac{\FLPP}{\epsO}\to\FLPB.
+\end{equation*}
+
+This is the same as making the analogy
+\begin{equation}
+\label{Eq:II:36:31}
+\FLPE\to\FLPH,\quad\FLPP\to\FLPM/c^2.
+\end{equation}
+
+In other words, if we write the equations of ferromagnetism as
+\begin{equation}
+\label{Eq:II:36:32}
+\begin{aligned}
+&\FLPdiv{\biggl(\FLPH+\frac{\FLPM}{\epsO c^2}\biggr)}=0,\\[1ex]
+&\FLPcurl{\FLPH}=\FLPzero,
+\end{aligned}
+\end{equation}
+
+they <em class="emph">look like</em> the equations of electrostatics.</p>
+</div>
+<div id="Ch36-S6-p4" class="para">
+<p class="p">This purely algebraic correspondence has led to some confusion in the
+past. People tended to think that $\FLPH$ was “<em class="emph">the</em> magnetic
+field.” But, as we have seen, $\FLPB$ and $\FLPE$ are physically the
+fundamental fields, and $\FLPH$ is a derived idea. So although the
+<em class="emph">equations</em> are analogous, the <em class="emph">physics</em> is not
+analogous. However, that doesn’t need to stop us from using the
+principle that the same equations have the same solutions.
+</p>
+</div>
+<div id="Ch36-S6-p5" class="para">
+<p class="p">We can use our earlier results for the electric field inside of holes of
+various shapes in dielectrics—summarized in
+Fig. <a href="#Ch36-F1">36–1</a>—to find the field $\FLPH$ inside of
+corresponding holes. Knowing $\FLPH$, we can determine $\FLPB$. For
+instance (using the results we summarized in
+Section <a href="#Ch36-S1">36–1</a>), the field $\FLPH$ in a needle-shaped hole
+parallel to $\FLPM$ is the same as the $\FLPH$ in the material,
+\begin{equation*}
+\FLPH_{\text{hole}}=\FLPH_{\text{material}}.
+\end{equation*}
+
+But since $\FLPM$ in the hole is zero, we have
+\begin{equation}
+\label{Eq:II:36:33}
+\FLPB_{\text{hole}}=\FLPB_{\text{material}}-\frac{\FLPM}{\epsO c^2}.
+\end{equation}
+</p>
+</div>
+<div id="Ch36-S6-p6" class="para">
+<p class="p">On the other hand, for a disc-shaped hole, perpendicular to $\FLPM$,
+we have
+\begin{equation}
+\FLPE_{\text{hole}}=\FLPE_{\text{dielectric}}+\frac{\FLPP}{\epsO},\notag
+\end{equation}
+
+which translates into
+\begin{equation}
+\FLPH_{\text{hole}}=\FLPH_{\text{material}}+\frac{\FLPM}{\epsO c^2}.\notag
+\end{equation}
+
+Or, in terms of $\FLPB$,
+\begin{equation}
+\label{Eq:II:36:34}
+\FLPB_{\text{hole}}=\FLPB_{\text{material}}.
+\end{equation}
+
+Finally, for a spherical hole, by making our analogy with
+Eq. (<a href="#mjx-eqn-EqII363">36.3</a>) we would have
+\begin{equation}
+\FLPH_{\text{hole}}=\FLPH_{\text{material}}+\frac{\FLPM}{3\epsO c^2}\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:36:35}
+\FLPB_{\text{hole}}=\FLPB_{\text{material}}-\frac{2}{3}\,
+\frac{\FLPM}{\epsO c^2}.
+\end{equation}
+
+This result is quite different from what we got for $\FLPE$.</p>
+</div>
+<div id="Ch36-S6-p7" class="para">
+<p class="p">It is, of course, possible to get these results in a more physical way,
+by using the Maxwell equations directly. For example,
+Eq. (<a href="#mjx-eqn-EqII3634">36.34</a>) follows directly from $\FLPdiv{\FLPB}=0$. (You
+use a gaussian surface that is half in the material and half out.)
+Similarly, you can get Eq. (<a href="#mjx-eqn-EqII3633">36.33</a>) by using a line integral
+along a curve that goes up inside the hole and returns through the
+material. Physically, the field in the hole is reduced because of the
+surface currents—which are given by $\FLPcurl{\FLPM}$. We will leave
+it for you to show that Eq. (<a href="#mjx-eqn-EqII3635">36.35</a>) can also be obtained by
+considering the effects of the surface currents on the boundary of the
+spherical cavity.
+</p>
+</div>
+<div id="Ch36-S6-p8" class="para">
+<p class="p">In finding the equilibrium magnetization from Eq. (<a href="#mjx-eqn-EqII3629">36.29</a>),
+it turns out to be most convenient to deal with $\FLPH$; so write
+\begin{equation}
+\label{Eq:II:36:36}
+\FLPB_a=\FLPH+\lambda\,\frac{\FLPM}{\epsO c^2}.
+\end{equation}
+
+In the spherical hole approximation, we would have
+$\lambda=\tfrac{1}{3}$, but, as you will see, we will want later to
+use some other value, so we leave it as an adjustable parameter. Also,
+we will take all the fields in the same direction so that we won’t
+need to worry about the vector directions. If we were now to
+substitute Eq. (<a href="#mjx-eqn-EqII3636">36.36</a>) into Eq. (<a href="#mjx-eqn-EqII3629">36.29</a>),
+we would have one equation that relates the magnetization $M$ to the
+magnetizing field $H$:
+\begin{equation*}
+M=N\mu\tanh\biggl(\mu\,\frac{H+\lambda M/\epsO c^2}{kT}\biggr).
+\end{equation*}
+
+It is however, an equation that cannot be solved explicitly, so we
+will do it graphically.</p>
+</div>
+<div id="Ch36-S6-p9" class="para">
+<p class="p">Let’s put the problem in a generalized form by writing
+Eq. (<a href="#mjx-eqn-EqII3629">36.29</a>) as
+\begin{equation}
+\label{Eq:II:36:37}
+\frac{M}{M_{\text{sat}}}=\tanh x,
+\end{equation}
+
+where $M_{\text{sat}}$ is the saturation value of the magnetization,
+namely, $N\mu$, and $x$ represents $\mu B_a/kT$. The dependence
+of $M/M_{\text{sat}}$ on $x$ is shown by curve $a$ in
+Fig. <a href="#Ch36-F13">36–13</a>. We can also write $x$ as a function
+of $M$—using Eq. (<a href="#mjx-eqn-EqII3636">36.36</a>) for $B_a$—as
+\begin{equation}
+\label{Eq:II:36:38}
+x=\frac{\mu B_a}{kT}=\frac{\mu H}{kT}+\biggl(\frac{\mu\lambda M_{\text{sat}}}
+{\epsO c^2kT}\biggr)\frac{M}{M_{\text{sat}}}.
+\end{equation}
+
+For any given value of $H$, this is a straight-line relationship
+between $M/M_{\text{sat}}$ and $x$. The $x$ intercept is at $x=\mu
+H/kT$, and the slope is $\epsO c^2kT/\mu\lambda M_{\text{sat}}$. For
+any particular $H$, we would have a line like the one marked $b$ in
+Fig. <a href="#Ch36-F13">36–13</a>. The intersection of curves $a$ and $b$ gives us the
+solution for $M/M_{\text{sat}}$. We have solved the problem.</p>
+</div>
+<div id="Ch36-F13" class="figure">
+<img src="img/FLP_II/f36-13/f36-13_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 36–13.</span>A graphical solution of Eqs. (<a href="#mjx-eqn-EqII3637">36.37</a>)
+and (<a href="#mjx-eqn-EqII3638">36.38</a>).
+</div>
+</div>
+<div id="Ch36-S6-p10" class="para">
+<p class="p">Let’s look at how the solutions will go for various circumstances. We
+start with $H=0$. There are two possible situations, shown by the lines
+$b_1$ and $b_2$ in Fig. <a href="#Ch36-F14">36–14</a>. You will notice from
+Eq. (<a href="#mjx-eqn-EqII3638">36.38</a>) that the slope of the line is proportional to
+the absolute temperature $T$. So, at <em class="emph">high temperatures</em> we would
+have a line like $b_1$. The solution is $M/M_{\text{sat}}=0$. When the
+magnetizing field $H$ is zero, the magnetization is also zero. But at
+<em class="emph">low temperatures</em>, we would have a line like $b_2$, and there are
+<em class="emph">two solutions</em> for $M/M_{\text{sat}}$—one with
+$M/M_{\text{sat}}=0$ and one with $M/M_{\text{sat}}$ near one. It turns
+out that only the upper solution is stable—as you can see by
+considering small variations about these solutions.</p>
+</div>
+<div id="Ch36-F14" class="figure">
+<img src="img/FLP_II/f36-14/f36-14_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 36–14.</span>Finding the magnetization when $H=0$.
+</div>
+</div>
+<div id="Ch36-S6-p11" class="para">
+<p class="p">According to these ideas, then, a magnetic material should magnetize
+itself <em class="emph">spontaneously</em> at sufficiently low temperatures. In
+short, when the thermal motions are small enough, the coupling between
+the atomic magnets causes them all to line up parallel to each
+other—we have a permanently magnetized material analogous to the
+ferroelectrics we discussed in Chapter <a href="II_11.html">11</a>.</p>
+</div>
+<div id="Ch36-S6-p12" class="para">
+<p class="p">If we start at high temperatures and come down, there is a critical
+temperature, called the Curie temperature $T_c$, where the ferromagnetic
+behavior suddenly sets in. This temperature corresponds to the
+line $b_3$ of Fig. <a href="#Ch36-F14">36–14</a>, which is tangent to the
+curve $a$, and has, therefore, a slope of $1$. The Curie temperature is
+given by
+\begin{equation}
+\label{Eq:II:36:39}
+\frac{\epsO c^2kT_c}{\mu\lambda M_{\text{sat}}}=1.
+\end{equation}
+
+We can, if we wish, write Eq. (<a href="#mjx-eqn-EqII3638">36.38</a>) more simply in
+terms of $T_c$ as
+\begin{equation}
+\label{Eq:II:36:40}
+x=\frac{\mu H}{kT}+\frac{T_c}{T}\biggl(\frac{M}{M_{\text{sat}}}\biggr).
+\end{equation}
+</p>
+</div>
+<div id="Ch36-S6-p13" class="para">
+<p class="p">Now we want to see what happens for small magnetizing fields $H$. We
+can see from Fig. <a href="#Ch36-F14">36–14</a> how things will go if we shift our straight
+lines a little to the right. For the low-temperature case, the
+intersection point will move out a little bit along the low-slope part
+of curve $a$, and $M$ will change relatively little. For the
+high-temperature case, however, the intersection point runs up the
+steep part of curve $a$, and $M$ will change relatively rapidly. In
+fact, we can approximate this part of curve $a$ by a straight line of
+unit slope, and write:
+\begin{equation*}
+\frac{M}{M_{\text{sat}}}=x=\frac{\mu H}{kT}+
+\frac{T_c}{T}\biggl(\frac{M}{M_{\text{sat}}}\biggr).
+\end{equation*}
+
+Now we can solve for $M/M_{\text{sat}}$:
+\begin{equation}
+\label{Eq:II:36:41}
+\frac{M}{M_{\text{sat}}}=\frac{\mu H}{k(T-T_c)}.
+\end{equation}
+
+We have a law that is something like the one we had for
+paramagnetism. For paramagnetism, we had
+\begin{equation}
+\label{Eq:II:36:42}
+\frac{M}{M_{\text{sat}}}=\frac{\mu B}{kT}.
+\end{equation}
+
+One difference now is that we have the magnetization in terms of $H$,
+which includes some of the effects of the interaction of the atomic
+magnets, but the main difference is that the magnetization is inversely
+proportional to the <em class="emph">difference</em> between $T$ and $T_c$, instead of
+to the absolute temperate $T$, alone. Neglecting the interactions
+between neighboring atoms corresponds to taking $\lambda=0$, which from
+Eq. (<a href="#mjx-eqn-EqII3639">36.39</a>) means taking $T_c=0$. Then the results are just
+what we had in Chapter <a href="II_35.html">35</a>.</p>
+</div>
+<div id="Ch36-S6-p14" class="para">
+<p class="p">We can check our theoretical picture with the experimental data for
+nickel. It is observed experimentally that the ferromagnetic behavior of
+nickel disappears when its temperature is raised above $631^\circ$K. We
+can compare this with $T_c$ calculated from Eq. (<a href="#mjx-eqn-EqII3639">36.39</a>).
+Remembering that $M_{\text{sat}}=\mu N$, we have
+\begin{equation*}
+T_c=\lambda\,\frac{N\mu^2}{k\epsO c^2}.
+\end{equation*}
+
+From the density and atomic weight of nickel, we get
+\begin{equation*}
+N=9.1\times10^{28}\:\text{m}^{-3}.
+\end{equation*}
+
+Taking $\mu$ from Eq. (<a href="#mjx-eqn-EqII3628">36.28</a>), and setting
+$\lambda=\tfrac{1}{3}$, we get
+\begin{equation*}
+T_c=0.24^\circ\text{K}.
+\end{equation*}
+
+There is a discrepancy of a factor of about $2600$! Our theory of
+ferromagnetism fails completely.</p>
+</div>
+<div id="Ch36-S6-p15" class="para">
+<p class="p">We can try to “patch up” the theory as Weiss did by saying that for
+some unknown reason $\lambda$ is not one-third,
+but $(2600)\times\tfrac{1}{3}$—or about $900$. It turns out that one
+gets similar values for other ferromagnetic materials like iron. To
+see what this means, let’s go back to Eq. (<a href="#mjx-eqn-EqII3636">36.36</a>). We
+see that a large $\lambda$ means that $B_a$, the local field on the
+atom, appears to be much, much larger than we would think. In fact,
+writing $H=B-M/\epsO c^2$, we have
+\begin{equation*}
+B_a=B+\frac{(\lambda-1)M}{\epsO c^2}.
+\end{equation*}
+
+According to our original idea—with $\lambda=\tfrac{1}{3}$ the local
+magnetization $M$ <em class="emph">reduces</em> the effective field $B_a$ by the
+amount $-\tfrac{2}{3}M/\epsO c^2$. Even if our model of a spherical
+hole were not very good, we would still expect <em class="emph">some</em>
+reduction. Instead, to explain the phenomenon of ferromagnetism, we
+have to imagine that the magnetization of the field <em class="emph">enhances</em>
+the local field by some large factor—like one thousand or
+more. There doesn’t seem to be any reasonable way to manufacture such
+tremendous fields at an atom—nor even fields of the proper sign!
+Clearly, our “magnetic” theory of ferromagnetism is a dismal
+failure. We must conclude, then, that ferromagnetism has to do with
+some <em class="emph">nonmagnetic</em> interaction between the spinning electrons in
+neighboring atoms. This interaction must generate a strong tendency
+for all of the nearby spins to line up in one direction. We will see
+later that it has to do with quantum mechanics and the Pauli exclusion
+principle.
+</p>
+</div>
+<div id="Ch36-S6-p16" class="para">
+<p class="p">Finally, we look at what happens at low temperatures—for $T&lt;T_c$. We
+have seen that there will then be a spontaneous magnetization—even
+with $H=0$—given by the intersection of the curves $a$ and $b_2$ of
+Fig. <a href="#Ch36-F14">36–14</a>. If we solve for $M$ for various
+temperatures—by varying the slope of the line $b_2$—we get the
+theoretical curve shown in Fig. <a href="#Ch36-F15">36–15</a>. This curve should be
+the same for all ferromagnetic materials for which the atomic moment
+comes from a single electron. The curves for other materials are only
+slightly different.</p>
+</div>
+<div id="Ch36-F15" class="figure">
+<img src="img/FLP_II/f36-15/f36-15_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 36–15.</span>Spontaneous magnetization as a function of temperature for nickel.
+</div>
+</div>
+<div id="Ch36-S6-p17" class="para">
+<p class="p">In the limit, as $T$ goes to absolute zero, $M$ goes
+to $M_{\text{sat}}$. As the temperature is increased, the magnetization
+decreases, falling to zero at the Curie temperature. The points in
+Fig. <a href="#Ch36-F15">36–15</a> are the experimental observations for nickel.
+They fit the theoretical curve fairly well. Even though we don’t
+understand the basic mechanism, the general features of the theory seem
+to be correct.</p>
+</div>
+<div id="Ch36-S6-p18" class="para">
+<p class="p">Finally, there is one more disturbing discrepancy in our attempt to
+understand ferromagnetism. We have found that above some temperature
+the material should behave like a paramagnetic substance with a
+magnetization $M$ proportional to $H$ (or $B$), and that below that
+temperature it should become spontaneously magnetized. But that’s not
+what we found when we measured the magnetization curve for iron. It
+only became permanently magnetized <em class="emph">after</em> we had “magnetized”
+it. According to the ideas just discussed, it would magnetize itself!
+What is wrong? Well, it turns out that if you look at a <em class="emph">small
+enough crystal</em> of iron or nickel, it is indeed completely magnetized!
+But in large pieces of iron, there are many small regions or
+“domains” that are magnetized in different directions, so that on a
+large scale the <em class="emph">average</em> magnetization appears to be zero. In
+each small domain, however, the iron has a locked-in magnetization
+with $M$ nearly equal to $M_{\text{sat}}$. The consequences of this
+domain structure are that gross properties of large pieces of material
+are quite different from the microscopic properties that we have
+really been treating. We will take up in the next lecture the story of
+the practical behavior of bulk magnetic materials.</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  If all of the “other” charges were on conductors,
+$\rho_{\text{other}}$ would be the same as our $\rho_{\text{free}}$ of
+Chapter <a href="II_10.html">10</a>.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  Or, if you prefer, the current $I$ in each face should
+be split $50$–$50$ with the blocks on the two sides.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 21: Solutions of Maxwell’s Equations with Currents and Charges</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "21." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch21" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">21</span>Solutions of Maxwell’s Equations with Currents and Charges</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref" rowspan=3>
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapter&nbsp;<a href="I_28.html">28</a>, Vol.&nbsp;I, <i>Electromagnetic Radiation</i>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Chapter&nbsp;<a href="I_31.html">31</a>, Vol.&nbsp;I, <i>The Origin of the Refractive Index</i>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Chapter&nbsp;<a href="I_34.html">34</a>, Vol.&nbsp;I, <i>Relativistic Effects in Radiation</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch21-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">21–1</span>Light and electromagnetic waves</h3>
+
+<div id="Ch21-S1-p1" class="para">
+<p class="p">We saw in the last chapter that among their solutions, Maxwell’s
+equations have waves of electricity and magnetism. These waves correspond to the
+phenomena of radio, light, x-rays, and so on, depending on the wavelength. We
+have already studied light in great detail in Vol.&nbsp;I. In this chapter we want
+to tie together the two subjects—we want to show that Maxwell’s equations can
+indeed form the base for our earlier treatment of the phenomena of light.
+</p>
+</div>
+
+<div id="Ch21-S1-p2" class="para">
+<p class="p">When we studied light, we began by writing down equations for the electric and
+magnetic fields produced by a charge which moves in any arbitrary way. Those
+equations were
+\begin{equation}
+\label{Eq:II:21:1}
+\FLPE=\frac{q}{4\pi\epsO}\biggl[
+\frac{\FLPe_{r'}}{r'^2}+\frac{r'}{c}\,\ddt{}{t}\biggl(
+\frac{\FLPe_{r'}}{r'^2}\biggr)+\frac{1}{c^2}\,\frac{d^2}{dt^2}\,\FLPe_{r'}
+\biggr]
+\end{equation}
+and
+\begin{equation*}
+c\FLPB=\FLPe_{r'}\times\FLPE.
+\end{equation*}
+[See Eqs. (<a href="I_28.html#mjx-eqn-EqI283">28.3</a>) and&nbsp;(<a href="I_28.html#mjx-eqn-EqI284">28.4</a>), Vol.&nbsp;I. As
+explained below, the signs here are the negatives of the old ones.]
+</p>
+</div>
+
+<div id="Ch21-S1-p3" class="para">
+<p class="p">If a charge moves in an arbitrary way, the electric field we would find
+<em class="emph">now</em> at some point depends only on the position and motion of the
+charge not now, but at an <em class="emph">earlier</em> time—at an instant which is
+earlier by the time it would take light, going at the speed&nbsp;$c$, to
+travel the distance&nbsp;$r'$ from the charge to the field point. In other
+words, if we want the electric field at point&nbsp;$(1)$ at the time&nbsp;$t$, we
+must calculate the location&nbsp;$(2')$ of the charge and its motion at the
+time&nbsp;$(t-r'/c)$, where&nbsp;$r'$ is the distance to the point&nbsp;$(1)$ from the
+position of the charge&nbsp;$(2')$ at the time&nbsp;$(t-r'/c)$. The prime is to
+remind you that&nbsp;$r'$ is the so-called “retarded distance” from the
+point&nbsp;$(2')$ to the point&nbsp;$(1)$, and not the actual distance between
+point&nbsp;$(2)$, the position of the charge at the time&nbsp;$t$, and the field
+point&nbsp;$(1)$ (see Fig.&nbsp;<a href="#Ch21-F1">21-1</a>). Note that we are using a
+different convention now for the <em class="emph">direction</em> of the unit
+vector&nbsp;$\FLPe_r$. In Chapters <a href="I_28.html">28</a> and&nbsp;<a href="I_34.html">34</a> of Vol.&nbsp;I
+it was convenient to take&nbsp;$\FLPr$ (and hence&nbsp;$\FLPe_r$) pointing
+<em class="emph">toward</em> the source. Now we are following the definition we took
+for Coulomb’s law, in which&nbsp;$\FLPr$ is directed <em class="emph">from</em> the charge,
+at&nbsp;$(2)$, <em class="emph">toward</em> the field point at&nbsp;$(1)$. The only difference,
+of course, is that our new&nbsp;$\FLPr$ (and&nbsp;$\FLPe_r$) are the negatives of
+the old ones.
+</p>
+</div>
+
+<div id="Ch21-F1" class="figure">
+<img src="img/FLP_II/f21-01/f21-01_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 21–1.</span>
+The fields at&nbsp;$(1)$ at the time&nbsp;$t$ depend on the
+position&nbsp;$(2')$ occupied by the charge&nbsp;$q$ at the time&nbsp;$(t-r'/c)$.
+</div>
+</div>
+
+<div id="Ch21-S1-p4" class="para">
+<p class="p">We have also seen that if the velocity&nbsp;$v$ of a charge is always much
+less than&nbsp;$c$, and if we consider only points at large distances from
+the charge, so that only the last term of Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>) is
+important, the fields can also be written as
+<span class="eq-wide">
+\begin{equation*}
+\label{Eq:II:21:1s}
+\FLPE=\frac{q}{4\pi\epsO c^2r'}
+\begin{bmatrix}
+\text{acceleration of the charge at $(t-r'/c)$}\\[-.5ex]
+\text{projected at right angles to $r'$}\phantom{(t-r'/c)}
+\end{bmatrix}
+\tag{$21.1'$}
+\end{equation*}
+and
+\begin{equation*}
+c\FLPB=\FLPe_{r'}\times\FLPE.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{equation*}
+\label{Eq:II:21:1s}
+\FLPE=\frac{q}{4\pi\epsO c^2r'}
+\begin{bmatrix}
+\text{acceleration of the charge}\\[-.5ex]
+\text{at $(t-r'/c)$}\\[-.5ex]
+\text{projected at right angles to $r'$}
+\end{bmatrix}
+\tag{$21.1'$}
+\end{equation*}
+and
+\begin{equation*}
+c\FLPB=\FLPe_{r'}\times\FLPE.
+\end{equation*}
+</span>
+</p>
+</div>
+
+<div id="Ch21-S1-p5" class="para">
+<p class="p">Let’s look at what the complete equation, Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>),
+says in a little more detail. The vector&nbsp;$\FLPe_{r'}$ is the unit
+vector to point&nbsp;$(1)$ from the retarded position&nbsp;$(2')$. The first
+term, then, is what we would expect for the Coulomb field of the
+charge at its retarded position—we may call this “the retarded
+Coulomb field.”  The electric field depends inversely on the square
+of the distance and is directed away from the retarded position of the
+charge (that is, in the direction of&nbsp;$\FLPe_{r'}$).
+</p>
+</div>
+
+<div id="Ch21-S1-p6" class="para">
+<p class="p">But that is only the first term. The other terms tell us that the laws
+of electricity do <em class="emph">not</em> say that all the fields are the same as
+the static ones, but just retarded (which is what people sometimes
+like to say). To the “retarded Coulomb field” we must add the other
+two terms. The second term says that there is a “correction” to the
+retarded Coulomb field which is the <em class="emph">rate of change</em> of the
+retarded Coulomb field multiplied by&nbsp;$r'/c$, the retardation delay. In
+a way of speaking, this term tends to <em class="emph">compensate</em> for the
+retardation in the first term. The first <em class="emph">two</em> terms correspond
+to computing the “retarded Coulomb field” and then extrapolating it
+toward the future by the amount&nbsp;$r'/c$, that is, <em class="emph">right up to the
+time</em>&nbsp;$t$!  The extrapolation is linear, as if we were to assume that
+the “retarded Coulomb field” would continue to change at the rate
+computed for the charge at the point&nbsp;$(2')$. If the field is changing
+slowly, the effect of the retardation is almost completely removed by
+the correction term, and the two terms together give us an electric
+field that is the “instantaneous Coulomb field”—that is, the
+Coulomb field of the charge at the point&nbsp;$(2)$—to a very good
+approximation.
+</p>
+</div>
+
+<div id="Ch21-S1-p7" class="para">
+<p class="p">Finally, there is a third term in Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>) which is
+the second derivative of the unit vector&nbsp;$\FLPe_{r'}$. For our study
+of the phenomena of light, we made use of the fact that far away from
+the charge the first two terms went inversely as the square of the
+distance and, for large distances, became very weak in comparison to
+the last term, which decreases as&nbsp;$1/r$. So we concentrated entirely
+on the last term, and we showed that it is (again, for large
+distances) proportional to the component of the acceleration of the
+charge at right angles to the line of sight. (Also, for most of our
+work in Vol.&nbsp;I, we took the case in which the charges were moving
+nonrelativistically. We considered the relativistic effects in only
+one chapter, Chapter&nbsp;<a href="I_34.html">34</a>.)
+</p>
+</div>
+
+<div id="Ch21-S1-p8" class="para">
+<p class="p">Now we should try to connect the two things together. We have the
+Maxwell equations, and we have Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>) for the field
+of a point charge. We should certainly ask whether they are
+equivalent. If we can deduce Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>) from Maxwell’s
+equations, we will really understand the connection between light and
+electromagnetism. To make this connection is the main purpose of this
+chapter.
+</p>
+</div>
+
+<div id="Ch21-S1-p9" class="para">
+<p class="p">It turns out that we won’t quite make it—that the mathematical
+details get too complicated for us to carry through in all their gory
+details. But we will come close enough so that you should easily see
+how the connection could be made. The missing pieces will only be in
+the mathematical details. Some of you may find the mathematics in this
+chapter rather complicated, and you may not wish to follow the
+argument very closely. We think it is important, however, to make the
+connection between what you have learned earlier and what you are
+learning now, or at least to indicate how such a connection can be
+made. You will notice, if you look over the earlier chapters, that
+whenever we have taken a statement as a starting point for a
+discussion, we have carefully explained whether it is a new
+“assumption” that is a “basic law,” or whether it can ultimately
+be deduced from some other laws. We owe it to you in the spirit of
+these lectures to make the connection between light and Maxwell’s
+equations. If it gets difficult in places, well, that’s life—there
+is no other way.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch21-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">21–2</span>Spherical waves from a point source</h3>
+
+<div id="Ch21-S2-p1" class="para">
+<p class="p">In Chapter&nbsp;<a href="II_18.html">18</a> we found that Maxwell’s equations could be
+solved by letting
+\begin{equation}
+\label{Eq:II:21:2}
+\FLPE=-\FLPgrad{\phi}-\ddp{\FLPA}{t}
+\end{equation}
+and
+\begin{equation}
+\label{Eq:II:21:3}
+\FLPB=\FLPcurl{\FLPA},
+\end{equation}
+where $\phi$ and&nbsp;$\FLPA$ must then be solutions of the equations
+\begin{equation}
+\label{Eq:II:21:4}
+\nabla^2\phi-\frac{1}{c^2}\,\frac{\partial^2\phi}{\partial t^2}=
+-\frac{\rho}{\epsO}
+\end{equation}
+and
+\begin{equation}
+\label{Eq:II:21:5}
+\nabla^2\FLPA-\frac{1}{c^2}\,\frac{\partial^2\FLPA}{\partial t^2}=
+-\frac{\FLPj}{\epsO c^2},
+\end{equation}
+and must also satisfy the condition that
+\begin{equation}
+\label{Eq:II:21:6}
+\FLPdiv{\FLPA}=-\frac{1}{c^2}\,\ddp{\phi}{t}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch21-S2-p2" class="para">
+<p class="p">Now we will find the solution of Eqs. (<a href="#mjx-eqn-EqII214">21.4</a>)
+and&nbsp;(<a href="#mjx-eqn-EqII215">21.5</a>). To do that we have to find the solution&nbsp;$\psi$, of the
+equation
+\begin{equation}
+\label{Eq:II:21:7}
+\nabla^2\psi-\frac{1}{c^2}\,\frac{\partial^2\psi}{\partial t^2}=
+-s,
+\end{equation}
+where&nbsp;$s$, which we call the source, is known. Of course, $s$
+corresponds to&nbsp;$\rho/\epsO$ and&nbsp;$\psi$ to&nbsp;$\phi$ for
+Eq.&nbsp;(<a href="#mjx-eqn-EqII214">21.4</a>), or&nbsp;$s$ is&nbsp;$j_x/\epsO c^2$ if&nbsp;$\psi$ is&nbsp;$A_x$,
+etc., but we want to solve Eq.&nbsp;(<a href="#mjx-eqn-EqII217">21.7</a>) as a mathematical
+problem no matter what $\psi$ and&nbsp;$s$ are physically.
+</p>
+</div>
+
+<div id="Ch21-S2-p3" class="para">
+<p class="p">In places where $\rho$ and&nbsp;$\FLPj$ are zero—in what we have called
+“free” space—the potentials $\phi$ and&nbsp;$\FLPA$, and the fields
+$\FLPE$ and&nbsp;$\FLPB$, all satisfy the three-dimensional wave equation
+without sources, whose mathematical form is
+\begin{equation}
+\label{Eq:II:21:8}
+\nabla^2\psi-\frac{1}{c^2}\,\frac{\partial^2\psi}{\partial t^2}=
+0.
+\end{equation}
+In Chapter&nbsp;<a href="II_20.html">20</a> we saw that solutions of this equation can
+represent waves of various kinds: plane waves in the $x$-direction,
+$\psi=f(t-x/c)$; plane waves in the $y$- or&nbsp;$z$-direction, or in any
+other direction; or spherical waves of the form
+\begin{equation}
+\label{Eq:II:21:9}
+\psi(x,y,z,t)=\frac{f(t-r/c)}{r}.
+\end{equation}
+(The solutions can be written in still other ways, for example
+cylindrical waves that spread out from an axis.)
+</p>
+</div>
+
+<div id="Ch21-S2-p4" class="para">
+<p class="p">We also remarked that, physically, Eq.&nbsp;(<a href="#mjx-eqn-EqII219">21.9</a>) does not
+represent a wave in free space—that there must be charges at the
+origin to get the outgoing wave started. In other words,
+Eq.&nbsp;(<a href="#mjx-eqn-EqII219">21.9</a>) is a solution of Eq.&nbsp;(<a href="#mjx-eqn-EqII218">21.8</a>)
+everywhere except right near&nbsp;$r=0$, where it must be a solution of the
+complete equation&nbsp;(<a href="#mjx-eqn-EqII217">21.7</a>), including some sources. Let’s see
+how that works. What kind of a source $s$ in Eq.&nbsp;(<a href="#mjx-eqn-EqII217">21.7</a>)
+would give rise to a wave like Eq.&nbsp;(<a href="#mjx-eqn-EqII219">21.9</a>)?
+</p>
+</div>
+
+<div id="Ch21-S2-p5" class="para">
+<p class="p">Suppose we have the spherical wave of Eq.&nbsp;(<a href="#mjx-eqn-EqII219">21.9</a>) and
+look at what is happening for very small&nbsp;$r$. Then the
+retardation&nbsp;$-r/c$ in&nbsp;$f(t-r/c)$ can be neglected—provided&nbsp;$f$ is a smooth
+function—and&nbsp;$\psi$ becomes
+\begin{equation}
+\label{Eq:II:21:10}
+\psi=\frac{f(t)}{r}\quad(r\to0).
+\end{equation}
+So&nbsp;$\psi$ is just like a Coulomb field for a charge at the origin that
+varies with time. That is, if we had a little lump of charge, limited
+to a very small region near the origin, with a density&nbsp;$\rho$, we know
+that
+\begin{equation*}
+\phi=\frac{Q/4\pi\epsO}{r},
+\end{equation*}
+where $Q=\int\rho\,dV$. Now we know that such a&nbsp;$\phi$ satisfies the
+equation
+\begin{equation*}
+\nabla^2\phi=-\frac{\rho}{\epsO}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch21-S2-p6" class="para">
+<p class="p">Following the same mathematics, we would say that the&nbsp;$\psi$ of
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2110">21.10</a>) satisfies
+\begin{equation}
+\label{Eq:II:21:11}
+\nabla^2\psi=-s\quad(r\to0),
+\end{equation}
+where $s$ is related to&nbsp;$f$ by
+\begin{equation*}
+f=\frac{S}{4\pi},
+\end{equation*}
+with
+\begin{equation*}
+S=\int s\,dV.
+\end{equation*}
+The only difference is that in the general case, $s$, and
+therefore&nbsp;$S$, can be a function of time.
+</p>
+</div>
+
+<div id="Ch21-S2-p7" class="para">
+<p class="p">Now the important thing is that if&nbsp;$\psi$, satisfies
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2111">21.11</a>) for small&nbsp;$r$, it also satisfies
+Eq.&nbsp;(<a href="#mjx-eqn-EqII217">21.7</a>). As we go very close to the origin, the
+$1/r$&nbsp;dependence of&nbsp;$\psi$ causes the space derivatives to become very large.
+But the time derivatives keep their same values. [They are just the time
+derivatives of&nbsp;$f(t)$.] So as&nbsp;$r$ goes to zero, the
+term&nbsp;$\partial^2\psi/\partial t^2$ in Eq.&nbsp;(<a href="#mjx-eqn-EqII217">21.7</a>) can be neglected
+in comparison with&nbsp;$\nabla^2\psi$, and Eq.&nbsp;(<a href="#mjx-eqn-EqII217">21.7</a>) becomes
+equivalent to Eq.&nbsp;(<a href="#mjx-eqn-EqII2111">21.11</a>).
+</p>
+</div>
+
+<div id="Ch21-S2-p8" class="para">
+<p class="p">To summarize, then, if the source function&nbsp;$s(t)$ of
+Eq.&nbsp;(<a href="#mjx-eqn-EqII217">21.7</a>) is localized at the origin and has the total
+strength
+\begin{equation}
+\label{Eq:II:21:12}
+S(t)=\int s(t)\,dV,
+\end{equation}
+the solution of Eq.&nbsp;(<a href="#mjx-eqn-EqII217">21.7</a>) is
+\begin{equation}
+\label{Eq:II:21:13}
+\psi(x,y,z,t)=\frac{1}{4\pi}\,\frac{S(t-r/c)}{r}.
+\end{equation}
+The only effect of the term&nbsp;$\partial^2\psi/\partial t^2$ in
+Eq.&nbsp;(<a href="#mjx-eqn-EqII217">21.7</a>) is to introduce the retardation&nbsp;$(t-r/c)$ in the
+Coulomb-like potential.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch21-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">21–3</span>The general solution of Maxwell’s equations</h3>
+
+<div id="Ch21-S3-p1" class="para">
+<p class="p">We have found the solution of Eq.&nbsp;(<a href="#mjx-eqn-EqII217">21.7</a>) for a “point”
+source. The next question is: What is the solution for a spread-out
+source? That’s easy; we can think of any source&nbsp;$s(x,y,z,t)$ as made
+up of the sum of many “point” sources, one for each volume
+element&nbsp;$dV$, and each with the source strength $s(x,y,z,t)\,dV$. Since
+Eq.&nbsp;(<a href="#mjx-eqn-EqII217">21.7</a>) is linear, the resultant field is the
+superposition of the fields from all of such source elements.
+</p>
+</div>
+
+<div id="Ch21-S3-p2" class="para">
+<p class="p">Using the results of the preceding section [Eq.&nbsp;(<a href="#mjx-eqn-EqII2113">21.13</a>)]
+we know that the field&nbsp;$d\psi$ at the point&nbsp;$(x_1,y_1,z_1)$—or&nbsp;$(1)$
+for short—at the time&nbsp;$t$, from a source element&nbsp;$s\,dV$ at the
+point&nbsp;$(x_2,y_2,z_2)$—or&nbsp;$(2)$ for short—is given by
+\begin{equation*}
+d\psi(1,t)=\frac{s(2,t-r_{12}/c)\,dV_2}{4\pi r_{12}},
+\end{equation*}
+where&nbsp;$r_{12}$ is the distance from $(2)$ to&nbsp;$(1)$. Adding the
+contributions from all the pieces of the source means, of course,
+doing an integral over all regions where&nbsp;$s\neq0$; so we have
+\begin{equation}
+\label{Eq:II:21:14}
+\psi(1,t)=\int\frac{s(2,t-r_{12}/c)}{4\pi r_{12}}\,dV_2.
+\end{equation}
+That is, the field at&nbsp;$(1)$ at the time&nbsp;$t$ is the sum of all the
+spherical waves which leave the source elements at&nbsp;$(2)$ at the
+times&nbsp;$(t-r_{12}/c)$. This is the solution of our wave equation for any set
+of sources.
+</p>
+</div>
+
+<div id="Ch21-S3-p3" class="para">
+<p class="p">We see now how to obtain a general solution for Maxwell’s equations. If
+for&nbsp;$\psi$ we mean the scalar potential&nbsp;$\phi$, the source function&nbsp;$s$
+becomes&nbsp;$\rho/\epsO$. Or we can let&nbsp;$\psi$ represent any one of the three
+components of the vector potential&nbsp;$\FLPA$, replacing&nbsp;$s$ by the corresponding
+component of&nbsp;$\FLPj/\epsO c^2$. Thus, if we know the charge
+density&nbsp;$\rho(x,y,z,t)$ and the current density&nbsp;$\FLPj(x,y,z,t)$ everywhere, we
+can immediately write down the solutions of Eqs. (<a href="#mjx-eqn-EqII214">21.4</a>)
+and&nbsp;(<a href="#mjx-eqn-EqII215">21.5</a>). They are
+\begin{equation}
+\label{Eq:II:21:15}
+\phi(1,t)=\int\frac{\rho(2,t-r_{12}/c)}{4\pi\epsO r_{12}}\,dV_2
+\end{equation}
+and
+\begin{equation}
+\label{Eq:II:21:16}
+\FLPA(1,t)=\int\frac{\FLPj(2,t-r_{12}/c)}{4\pi\epsO c^2r_{12}}\,dV_2.
+\end{equation}
+The fields $\FLPE$ and&nbsp;$\FLPB$ can then be found by differentiating the
+potentials, using Eqs. (<a href="#mjx-eqn-EqII212">21.2</a>) and&nbsp;(<a href="#mjx-eqn-EqII213">21.3</a>).
+[Incidentally, it is possible to verify that the $\phi$ and&nbsp;$\FLPA$ obtained
+from Eqs. (<a href="#mjx-eqn-EqII2115">21.15</a>) and&nbsp;(<a href="#mjx-eqn-EqII2116">21.16</a>) do satisfy the
+equality&nbsp;(<a href="#mjx-eqn-EqII216">21.6</a>).]
+</p>
+</div>
+
+<div id="Ch21-S3-p4" class="para">
+<p class="p">We have solved Maxwell’s equations. Given the currents and charges in
+any circumstance, we can find the potentials directly from these
+integrals and then differentiate and get the fields. So we have
+finished with the Maxwell theory. Also this permits us to close the
+ring back to our theory of light, because to connect with our earlier
+work on light, we need only calculate the electric field from a moving
+charge. All that remains is to take a moving charge, calculate the
+potentials from these integrals, and then differentiate to
+find&nbsp;$\FLPE$ from&nbsp;$-\FLPgrad{\phi}-\ddpl{\FLPA}{t}$. We should get
+Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>). It turns out to be lots of work, but that’s the
+principle.
+</p>
+</div>
+
+<div id="Ch21-S3-p5" class="para">
+<p class="p">So here is the center of the universe of electromagnetism—the
+complete theory of electricity and magnetism, and of light; a complete
+description of the fields produced by any moving charges; and more. It
+is all here. Here is the structure built by
+Maxwell, complete in all
+its power and beauty. It is probably one of the greatest
+accomplishments of physics. To remind you of its importance, we will
+put it all together in a nice frame.
+</p>
+
+<div class="center">
+<div id="maxwell-table">
+<span class="eq-wide">
+                \begin{gather*}
+                \begin{aligned}
+                 \textbf{Maxwell’s equ}&\textbf{ations:}\\[1ex]
+                \FLPdiv{\FLPE}&=\frac{\rho}{\epsO}&
+                \FLPdiv{\FLPB}&=0\\[2ex]
+                \FLPcurl{\FLPE}&=-\ddp{\FLPB}{t}&
+                c^2\FLPcurl{\FLPB}&=\frac{\FLPj}{\epsO}+\ddp{\FLPE}{t}\\[2ex]
+                 \textbf{Their solution}&\textbf{s:}
+                 \end{aligned}\\
+                \FLPE=-\FLPgrad{\phi}-\ddp{\FLPA}{t}\\[1ex]
+                \FLPB=\FLPcurl{\FLPA}&\\[2.5ex]
+                \phi(1,t)=\int\frac{\rho(2,t-r_{12}/c)}{4\pi\epsO r_{12}}\,dV_2\\[1ex]
+                \FLPA(1,t)=\int\frac{\FLPj(2,t-r_{12}/c)}{4\pi\epsO c^2r_{12}}\,dV_2
+                \end{gather*}
+                
+</span>
+<span class="eq-narrow">
+\begin{gather*}
+                \begin{aligned}
+                 \textbf{Maxwell’s equ}&\textbf{ations:}\\
+                \FLPdiv{\FLPE}&=\frac{\rho}{\epsO}\\
+                \FLPcurl{\FLPE}&=-\ddp{\FLPB}{t}\\[1ex]
+                \FLPdiv{\FLPB}&=0\\[1ex]
+                c^2\FLPcurl{\FLPB}&=\frac{\FLPj}{\epsO}+\ddp{\FLPE}{t}\\[2.5ex]
+                 \textbf{Their solution}&\textbf{s:}
+                 \end{aligned}\\
+                \FLPE=-\FLPgrad{\phi}-\ddp{\FLPA}{t}\\
+                \FLPB=\FLPcurl{\FLPA}\\[1ex]
+                \phi(1,t)=\int\frac{\rho(2,t-r_{12}/c)}{4\pi\epsO r_{12}}\,dV_2\\[1ex]
+                \FLPA(1,t)=\int\frac{\FLPj(2,t-r_{12}/c)}{4\pi\epsO c^2r_{12}}\,dV_2
+\end{gather*}
+</span>
+</div>
+</div>
+
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch21-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">21–4</span>The fields of an oscillating dipole</h3>
+
+<div id="Ch21-S4-p1" class="para">
+<p class="p">We have still not lived up to our promise to derive Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>) for
+the electric field of a point charge in motion. Even with the results we already
+have, it is a relatively complicated thing to derive. We have not found
+Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>) anywhere in the published literature except in Vol.&nbsp;I of
+these lectures.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> So you can see that it is not easy to derive. (The
+fields of a moving charge have been written in many other forms that are
+equivalent, of course.) We will have to limit ourselves here just to showing
+that, in a few examples, Eqs. (<a href="#mjx-eqn-EqII2115">21.15</a>) and&nbsp;(<a href="#mjx-eqn-EqII2116">21.16</a>)
+give the same results as Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>). First, we will show that
+Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>) gives the correct fields with only the restriction that
+the motion of the charged particle is nonrelativistic. (Just this special case
+will take care of $90$&nbsp;percent, or more, of what we said about light.)
+</p>
+</div>
+
+<div id="Ch21-S4-p2" class="para">
+<p class="p">We consider a situation in which we have a blob of charge that is
+moving about in some way, in a small region, and we will find the
+fields far away. To put it another way, we are finding the field at
+any distance from a point charge that is shaking up and down in very
+small motion. Since light is usually emitted from neutral objects such
+as atoms, we will consider that our wiggling charge&nbsp;$q$ is located
+near an equal and opposite charge at rest. If the separation between
+the centers of the charges is&nbsp;$\FLPd$, the charges will have a dipole
+moment&nbsp;$\FLPp=q\FLPd$, which we take to be a function of time. Now we
+should expect that if we look at the fields close to the charges, we
+won’t have to worry about the delay; the electric field will be
+exactly the same as the one we have calculated earlier for an
+electrostatic dipole—using, of course, the instantaneous dipole
+moment&nbsp;$\FLPp(t)$. But if we go very far out, we ought to find a term
+in the field that goes as&nbsp;$1/r$ and depends on the acceleration of the
+charge perpendicular to the line of sight. Let’s see if we get such a
+result.
+</p>
+</div>
+
+<div id="Ch21-F2" class="figure">
+<img src="img/FLP_II/f21-02/f21-02_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 21–2.</span>
+The potential at&nbsp;$(1)$ are given by integrals over the charge
+  density&nbsp;$\rho$.
+</div>
+</div>
+
+<div id="Ch21-S4-p3" class="para">
+<p class="p">We begin by calculating the vector potential&nbsp;$\FLPA$, using
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2116">21.16</a>). Suppose that our moving charge is in a small
+blob whose charge density is given by&nbsp;$\rho(x,y,z)$, and the whole thing
+is moving at any instant with the velocity&nbsp;$\FLPv$. Then the current
+density&nbsp;$\FLPj(x,y,z)$ will be equal to&nbsp;$\FLPv\rho(x,y,z)$. It will be
+convenient to take our coordinate system so that the $z$-axis is in the
+direction of&nbsp;$\FLPv$; then the geometry of our problem is as shown in
+Fig.&nbsp;<a href="#Ch21-F2">21-2</a>. We want the integral
+\begin{equation}
+\label{Eq:II:21:17}
+\int\frac{\FLPj(2,t-r_{12}/c)}{r_{12}}\,dV_2.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch21-S4-p4" class="para">
+<p class="p">Now if the size of the charge-blob is really very small compared
+with&nbsp;$r_{12}$, we can set the&nbsp;$r_{12}$ term in the denominator equal
+to&nbsp;$r$, the distance to the center of the blob, and take&nbsp;$r$ outside the
+integral. Next, we are also going to set&nbsp;$r_{12}=r$ in the numerator,
+although that is not really quite right. It is not right because we
+should take&nbsp;$\FLPj$ at, say, the top of the blob at a slightly
+different time than we used for&nbsp;$\FLPj$ at the bottom of the
+blob. When we set $r_{12}=r$ in&nbsp;$\FLPj(t-r_{12}/c)$, we are taking the
+current density for the whole blob at the same time&nbsp;$(t-r/c)$. That is
+an approximation that will be good only if the velocity&nbsp;$v$ of the
+charge is much less than&nbsp;$c$. So we are making a nonrelativistic
+calculation. Replacing $\FLPj$ by&nbsp;$\rho\FLPv$, the
+integral&nbsp;(<a href="#mjx-eqn-EqII2117">21.17</a>) becomes
+\begin{equation*}
+\frac{1}{r}\int\FLPv\rho(2,t-r/c)\,dV_2.
+\end{equation*}
+Since all the charge has the same velocity, this integral is just
+$\FLPv/r$&nbsp;times the total charge&nbsp;$q$. But&nbsp;$q\FLPv$ is
+just&nbsp;$\ddpl{\FLPp}{t}$, the rate of change of the dipole moment—which is,
+of course, to be evaluated at the retarded time&nbsp;$(t-r/c)$. We will
+write it as&nbsp;$\dot{\FLPp}(t-r/c)$. So we get for the vector potential
+\begin{equation}
+\label{Eq:II:21:18}
+\FLPA(1,t)=\frac{1}{4\pi\epsO c^2}\,\frac{\dot{\FLPp}(t-r/c)}{r}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch21-S4-p5" class="para">
+<p class="p">Our result says that the current in a varying dipole produces a vector
+potential in the form of spherical waves whose source strength
+is&nbsp;$\dot{\FLPp}/\epsO c^2$.
+</p>
+</div>
+
+<div id="Ch21-S4-p6" class="para">
+<p class="p">We can now get the magnetic field from&nbsp;$\FLPB=\FLPcurl{\FLPA}$.
+Since&nbsp;$\dot{\FLPp}$ is totally in the $z$-direction, $\FLPA$ has only a
+$z$-component; there are only two nonzero derivatives in the curl. So
+$B_x=\ddpl{A_z}{y}$ and&nbsp;$B_y=-\ddpl{A_z}{x}$. Let’s first look at&nbsp;$B_x$:
+\begin{equation}
+\label{Eq:II:21:19}
+B_x=\ddp{A_z}{y}=\frac{1}{4\pi\epsO c^2}\,\ddp{}{y}\,
+\frac{\dot{p}(t-r/c)}{r}.
+\end{equation}
+To carry out the differentiation, we must remember that
+$r=\sqrt{x^2+y^2+z^2}$, so
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:21:20}
+B_x=\frac{1}{4\pi\epsO c^2}\,\dot{p}(t-r/c)\,\ddp{}{y}\,
+\biggl(\frac{1}{r}\biggr)+\frac{1}{4\pi\epsO c^2}\,\frac{1}{r}\,
+\ddp{}{y}\,\dot{p}(t-r/c).
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+B_x=\frac{1}{4\pi\epsO c^2}\,\dot{p}(t-r/c)\,&\ddp{}{y}\,
+\biggl(\frac{1}{r}\biggr)\,+\notag\\[1ex]
+\label{Eq:II:21:20}
+\frac{1}{4\pi\epsO c^2}\,\frac{1}{r}\,
+&\ddp{}{y}\,\dot{p}(t-r/c).
+\end{align}
+</span>
+Remembering that&nbsp;$\ddpl{r}{y}=y/r$, the first term gives
+\begin{equation}
+\label{Eq:II:21:21}
+-\frac{1}{4\pi\epsO c^2}\,\frac{y\dot{p}(t-r/c)}{r^3},
+\end{equation}
+which drops off as&nbsp;$1/r^2$ like the potential of a static dipole
+(because&nbsp;$y/r$ is constant for a given direction).
+</p>
+</div>
+
+<div id="Ch21-S4-p7" class="para">
+<p class="p">The second term in Eq.&nbsp;(<a href="#mjx-eqn-EqII2120">21.20</a>) gives us the new
+effects. Carrying out the differentiation, we get
+\begin{equation}
+\label{Eq:II:21:22}
+-\frac{1}{4\pi\epsO c^2}\,\frac{y}{cr^2}\,\ddot{p}(t-r/c),
+\end{equation}
+where&nbsp;$\ddot{p}$ means, of course, the second derivative of&nbsp;$p$ with
+respect to&nbsp;$t$. This term, which comes from differentiating the
+numerator, is responsible for radiation. First, it describes a field
+which decreases with distance only as&nbsp;$1/r$. Second, it depends on the
+<em class="emph">acceleration</em> of the charge. You can begin to see how we are
+going to get a result like Eq.&nbsp;(<a href="#mjx-eqn-EqII211s">21.1´</a>), which describes
+the radiation of light.
+</p>
+</div>
+
+<div id="Ch21-S4-p8" class="para">
+<p class="p">Let’s examine in a little more detail how this radiation term comes
+about—it is such an interesting and important result. We start with
+the expression&nbsp;(<a href="#mjx-eqn-EqII2118">21.18</a>), which has a&nbsp;$1/r$ dependence and
+is therefore like a Coulomb potential, except for the delay term in
+the numerator. Why is it then that when we differentiate with respect
+to space coordinates to get the fields, we don’t just get a&nbsp;$1/r^2$
+field—with, of course, the corresponding time delays?
+</p>
+</div>
+
+<div id="Ch21-S4-p9" class="para">
+<p class="p">We can see why in the following way: Suppose that we let our dipole
+oscillate up and down in a sinusoidal motion. Then we would have
+\begin{equation*}
+p=p_z=p_0\sin\omega t
+\end{equation*}
+and
+\begin{equation*}
+A_z=\frac{1}{4\pi\epsO c^2}\,\frac{\omega p_0\cos\omega(t-r/c)}{r}.
+\end{equation*}
+If we plot a graph of&nbsp;$A_z$ as a function of&nbsp;$r$ at a given instant,
+we get the curve shown in Fig.&nbsp;<a href="#Ch21-F3">21-3</a>. The peak amplitude
+decreases as&nbsp;$1/r$, but there is, in addition, an oscillation in
+space, bounded by the $1/r$&nbsp;envelope. When we take the spatial
+derivatives, they will be proportional to the <em class="emph">slope</em> of the
+curve. From the figure we see that there are slopes much steeper than
+the slope of the $1/r$&nbsp;curve itself. It is, in fact, evident that for
+a given frequency the peak slopes are proportional to the amplitude of
+the wave, which varies as&nbsp;$1/r$. So that explains the drop-off rate of
+the radiation term.
+</p>
+</div>
+
+<div id="Ch21-F3" class="figure">
+<img src="img/FLP_II/f21-03/f21-03_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 21–3.</span>
+The $z$-component of&nbsp;$\FigA$ as a function of&nbsp;$r$ at the
+  instant&nbsp;$t$ for the spherical wave from an oscillating dipole.
+</div>
+</div>
+
+<div id="Ch21-S4-p10" class="para">
+<p class="p">It all comes about because the variations <em class="emph">with time</em> at the
+source are translated into variations <em class="emph">in space</em> as the waves are
+propagated outward, and the magnetic fields depend on the
+<em class="emph">spatial</em> derivatives of the potential.
+</p>
+</div>
+
+<div id="Ch21-S4-p11" class="para">
+<p class="p">Let’s go back and finish our calculation of the magnetic field. We have
+for&nbsp;$B_x$ the two terms (<a href="#mjx-eqn-EqII2121">21.21</a>) and&nbsp;(<a href="#mjx-eqn-EqII2122">21.22</a>), so
+\begin{equation*}
+B_x=\frac{1}{4\pi\epsO c^2}\biggl[
+-\frac{y\dot{p}(t-r/c)}{r^3}-\frac{y\ddot{p}(t-r/c)}{cr^2}
+\biggr].
+\end{equation*}
+With the same kind of mathematics, we get
+\begin{equation*}
+B_y=\frac{1}{4\pi\epsO c^2}\biggl[
+\frac{x\dot{p}(t-r/c)}{r^3}+\frac{x\ddot{p}(t-r/c)}{cr^2}
+\biggr].
+\end{equation*}
+Or we can put it all together in a nice vector formula:
+\begin{equation}
+\label{Eq:II:21:23}
+\FLPB=\frac{1}{4\pi\epsO c^2}\,
+\frac{[\dot{\FLPp}+(r/c)\ddot{\FLPp}]_{t-r/c}\times\FLPr}{r^3}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch21-S4-p12" class="para">
+<p class="p">Now let’s look at this formula. First of all, if we go very far out
+in&nbsp;$r$, only the $\ddot{\FLPp}$&nbsp;term counts. The direction of&nbsp;$\FLPB$ is
+given by&nbsp;$\ddot{\FLPp}\times\FLPr$, which is at right angles to the
+radius&nbsp;$\FLPr$ and also at right angles to the acceleration, as in
+Fig.&nbsp;<a href="#Ch21-F4">21-4</a>. Everything is coming out right; that is also
+the result we get from Eq.&nbsp;(<a href="#mjx-eqn-EqII211s">21.1´</a>).
+</p>
+</div>
+
+<div id="Ch21-F4" class="figure">
+<img src="img/FLP_II/f21-04/f21-04_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 21–4.</span>
+The radiation fields $\FigB$ and $\FigE$ of an oscillating
+  dipole.
+</div>
+</div>
+
+<div id="Ch21-S4-p13" class="para">
+<p class="p">Now let’s look at what we are not used to—at what happens closer in.
+In Section&nbsp;<a href="II_14.html#Ch14-S7">14-7</a> we worked out the law of Biot and
+Savart for the
+magnetic field of an element of current. We found that a current
+element&nbsp;$\FLPj\,dV$ contributes to the magnetic field the amount
+\begin{equation}
+\label{Eq:II:21:24}
+d\FLPB=\frac{1}{4\pi\epsO c^2}\,
+\frac{\FLPj\times\FLPr}{r^3}\,dV.
+\end{equation}
+You see that this formula looks very much like the first term of
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2123">21.23</a>), if we remember that&nbsp;$\dot{\FLPp}$ is the
+current. But there is one difference. In Eq.&nbsp;(<a href="#mjx-eqn-EqII2123">21.23</a>), the
+current is to be evaluated at the time&nbsp;$(t-r/c)$, which doesn’t appear
+in Eq.&nbsp;(<a href="#mjx-eqn-EqII2124">21.24</a>). Actually, however, Eq.&nbsp;(<a href="#mjx-eqn-EqII2124">21.24</a>)
+is still very good for small&nbsp;$r$, because the <em class="emph">second</em> term of
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2123">21.23</a>) tends to cancel out the effect of the
+retardation in the first term. The two <em class="emph">together</em> give a result
+very near to Eq.&nbsp;(<a href="#mjx-eqn-EqII2124">21.24</a>) when $r$ is small.
+</p>
+</div>
+
+<div id="Ch21-S4-p14" class="para">
+<p class="p">We can see that this way: When $r$ is small, $(t-r/c)$ is not very
+different from&nbsp;$t$, so we can expand the bracket in
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2123">21.23</a>) in a Taylor series. For the first term,
+\begin{equation*}
+\dot{\FLPp}(t-r/c)=\dot{\FLPp}(t)-\frac{r}{c}\,\ddot{\FLPp}(t)+\text{etc.},
+\end{equation*}
+and to the same order in $r/c$,
+\begin{equation*}
+\frac{r}{c}\,\ddot{\FLPp}(t-r/c)=\frac{r}{c}\,\ddot{\FLPp}(t)+\text{etc.}
+\end{equation*}
+When we take the sum, the two terms in&nbsp;$\ddot{\FLPp}$ cancel, and we
+are left with the <em class="emph">unretarded</em> current&nbsp;$\dot{\FLPp}$: that is,
+$\dot{\FLPp}(t)$—plus terms of order&nbsp;$(r/c)^2$ or higher [e.g.,
+$\tfrac{1}{2}(r/c)^2\dddot{\FLPp}\,$] which will be very small for $r$
+small enough that $\dot{\FLPp}$ does not alter markedly in the time&nbsp;$r/c$.
+</p>
+</div>
+
+<div id="Ch21-S4-p15" class="para">
+<p class="p">So Eq.&nbsp;(<a href="#mjx-eqn-EqII2123">21.23</a>) gives fields very much like the
+instantaneous theory—much closer than the instantaneous theory with
+a delay; the first-order effects of the delay are taken out by the
+second term. The static formulas are very accurate, much more accurate
+than you might think. Of course, the compensation only works for
+points close in. For points far out the correction becomes very bad,
+because the time delays produce a very large effect, and we get the
+important $1/r$&nbsp;term of the radiation.
+</p>
+</div>
+
+<div id="Ch21-S4-p16" class="para">
+<p class="p">We still have the problem of computing the electric field and
+demonstrating that it is the same as Eq.&nbsp;(<a href="#mjx-eqn-EqII211s">21.1´</a>). For
+large distances we can see that the answer is going to come out all
+right. We know that far from the sources, where we have a propagating
+wave, $\FLPE$ is perpendicular to&nbsp;$\FLPB$ (and also to&nbsp;$\FLPr$), as in
+Fig.&nbsp;<a href="#Ch21-F4">21-4</a>, and that $cB=E$. So $\FLPE$ is proportional
+to the acceleration&nbsp;$\ddot{\FLPp}$, as expected from
+Eq.&nbsp;(<a href="#mjx-eqn-EqII211s">21.1´</a>).
+</p>
+</div>
+
+<div id="Ch21-S4-p17" class="para">
+<p class="p">To get the electric field completely for all distances, we need to
+solve for the electrostatic potential. When we computed the current
+integral for&nbsp;$\FLPA$ to get Eq.&nbsp;(<a href="#mjx-eqn-EqII2118">21.18</a>), we made an
+approximation by disregarding the slight variation of&nbsp;$r$ in the delay
+terms. This will not work for the electrostatic potential, because we
+would then get $1/r$&nbsp;times the integral of the charge density, which
+is a constant. This approximation is too rough. We need to go to one
+higher order. Instead of getting involved in that higher-order
+computation directly, we can do something else—we can determine the
+scalar potential from Eq.&nbsp;(<a href="#mjx-eqn-EqII216">21.6</a>), using the vector
+potential we have already found. The divergence of&nbsp;$\FLPA$, in our
+case, is just $\ddpl{A_z}{z}$—since $A_x$ and&nbsp;$A_y$ are identically
+zero. Differentiating in the same way that we did above to
+find&nbsp;$\FLPB$,
+\begin{align*}
+\FLPdiv{\FLPA}&=\frac{1}{4\pi\epsO c^2}\biggl[
+\dot{p}(t-r/c)\,\ddp{}{z}\,\biggl(\frac{1}{r}\biggr)+
+\frac{1}{r}\,\ddp{}{z}\,\dot{p}(t-r/c)
+\biggr]\\[2ex]
+&=\frac{1}{4\pi\epsO c^2}\biggl[
+-\frac{z\dot{p}(t-r/c)}{r^3}-\frac{z\ddot{p}(t-r/c)}{cr^2}
+\biggr].
+\end{align*}
+Or, in vector notation,
+\begin{equation*}
+\FLPdiv{\FLPA}=-\frac{1}{4\pi\epsO c^2}\,
+\frac{[\dot{\FLPp}+(r/c)\ddot{\FLPp}]_{t-r/c}\cdot\FLPr}{r^3}.
+\end{equation*}
+Using Eq.&nbsp;(<a href="#mjx-eqn-EqII216">21.6</a>), we have an equation for&nbsp;$\phi$:
+\begin{equation*}
+\ddp{\phi}{t}=\frac{1}{4\pi\epsO}\,
+\frac{[\dot{\FLPp}+(r/c)\ddot{\FLPp}]_{t-r/c}\cdot\FLPr}{r^3}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch21-S4-p18" class="para">
+<p class="p">Integrating with respect to&nbsp;$t$ just removes one dot from each of
+the&nbsp;$\FLPp$'s, so
+\begin{equation}
+\label{Eq:II:21:25}
+\phi(\FLPr,t)=\frac{1}{4\pi\epsO}\,
+\frac{[\FLPp+(r/c)\dot{\FLPp}]_{t-r/c}\cdot\FLPr}{r^3}.
+\end{equation}
+(The constant of integration would correspond to some superposed
+static field which could, of course, exist. For the oscillating dipole
+we have taken, there is no static field.)
+</p>
+</div>
+
+<div id="Ch21-S4-p19" class="para">
+<p class="p">We are now able to find the electric field&nbsp;$\FLPE$ from
+\begin{equation*}
+\FLPE=-\FLPgrad{\phi}-\ddp{\FLPA}{t}.
+\end{equation*}
+Since the steps are tedious but straightforward [providing you
+remember that $\FLPp(t-r/c)$ and its time derivatives depend on
+$x$,&nbsp;$y$, and&nbsp;$z$ through the retardation&nbsp;$r/c$], we will just give the
+result:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:21:26}
+\FLPE(\FLPr,t)=\frac{1}{4\pi\epsO r^3}\biggl[
+\frac{3(\FLPp\stared\cdot\FLPr)\FLPr}{r^2}-
+\FLPp\stared+\frac{1}{c^2}
+\{\ddot{\FLPp}(t-r/c)\times\FLPr\}\times\FLPr
+\biggr]
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{align}
+\FLPE(\FLPr,t)=\frac{1}{4\pi\epsO r^3}\biggl[
+&\frac{3(\FLPp\stared\cdot\FLPr)\FLPr}{r^2}-
+\FLPp\stared+\notag\\
+\label{Eq:II:21:26}
+&\frac{1}{c^2}
+\{\ddot{\FLPp}(t-r/c)\times\FLPr\}\times\FLPr
+\biggr]
+\end{align}
+
+</span>
+with
+\begin{equation}
+\label{Eq:II:21:27}
+\FLPp\stared=\FLPp(t-r/c)+\frac{r}{c}\,\dot{\FLPp}(t-r/c).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch21-S4-p20" class="para">
+<p class="p">Although it looks rather complicated, the result is easily
+interpreted. The vector&nbsp;$\FLPp\stared$ is the dipole moment retarded
+and then “corrected” for the retardation, so the two terms with
+$\FLPp\stared$ give just the static dipole field when $r$ is
+small. [See Chapter&nbsp;<a href="II_06.html">6</a>, Eq.&nbsp;(<a href="II_06.html#mjx-eqn-EqII614">6.14</a>).]  When
+$r$ is large, the term in $\ddot{\FLPp}$ dominates, and the electric
+field is proportional to the acceleration of the charges, at right
+angles to&nbsp;$\FLPr$, and, in fact, directed along the projection
+of&nbsp;$\ddot{\FLPp}$ in a plane perpendicular to&nbsp;$\FLPr$.
+</p>
+</div>
+
+<div id="Ch21-S4-p21" class="para">
+<p class="p">This result agrees with what we would have gotten using
+Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>). Of course, Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>) is more
+general; it works with any motion, while Eq.&nbsp;(<a href="#mjx-eqn-EqII2126">21.26</a>) is
+valid only for small motions for which we can take the retardation&nbsp;$r/c$
+as constant over the source. At any rate, we have now provided the
+underpinnings for our entire previous discussion of light (excepting
+some matters discussed in Chapter&nbsp;<a href="I_34.html">34</a> of Vol.&nbsp;I), for it
+all hinged on the last term of Eq.&nbsp;(<a href="#mjx-eqn-EqII2126">21.26</a>). We will discuss
+next how the fields can be obtained for more rapidly moving charges
+(leading to the relativistic effects of Chapter&nbsp;<a href="I_34.html">34</a> of
+Vol.&nbsp;I).
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch21-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">21–5</span>The potentials of a moving charge; the general solution of Liénard and
+Wiechert</h3>
+
+<div id="Ch21-S5-p1" class="para">
+<p class="p">In the last section we made a simplification in calculating our
+integral for&nbsp;$\FLPA$ by considering only low velocities. But in doing
+so we missed an important point and also one where it is easy to go
+wrong. We will therefore take up now a calculation of the potentials
+for a point charge moving in any way whatever—even with a
+relativistic velocity. Once we have this result, we will have the
+complete electromagnetism of electric charges. Even
+Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>) can then be derived by taking derivatives. The
+story will be complete. So bear with us.
+</p>
+</div>
+
+<div id="Ch21-S5-p2" class="para">
+<p class="p">Let’s try to calculate the scalar potential&nbsp;$\phi(1)$ at the
+point&nbsp;$(x_1,y_1,z_1)$ produced by a <em class="emph">point</em> charge, such as an
+electron, moving in any manner whatsoever. By a “point” charge we
+mean a very small ball of charge, shrunk down as small as you like,
+with a charge density&nbsp;$\rho(x,y,z)$. We can find $\phi$ from
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2115">21.15</a>):
+\begin{equation}
+\label{Eq:II:21:28}
+\phi(1,t)=\frac{1}{4\pi\epsO}
+\int\frac{\rho(2,t-r_{12}/c)}{r_{12}}\,dV_2.
+\end{equation}
+The answer would seem to be—and almost everyone would, at first,
+think—that the integral of&nbsp;$\rho$ over such a “point” charge is
+just the total charge&nbsp;$q$, so that
+\begin{equation*}
+\phi(1,t)=\frac{1}{4\pi\epsO}\,\frac{q}{r_{12}'}\quad(\text{wrong}).
+\end{equation*}
+By&nbsp;$\FLPr_{12}'$ we mean the radius vector from the charge at point&nbsp;$(2)$ to
+point&nbsp;$(1)$ at the retarded time&nbsp;$(t-r_{12}/c)$. It is wrong.
+</p>
+</div>
+<div id="Ch21-S5-p3" class="para">
+<p class="p">The correct answer is
+\begin{equation}
+\label{Eq:II:21:29}
+\phi(1,t)=\frac{1}{4\pi\epsO}\,\frac{q}{r_{12}'}\cdot
+\frac{1}{1-v_{r'}/c},
+\end{equation}
+where $v_{r'}$, is the component of the velocity of the charge
+parallel to&nbsp;$\FLPr_{12}'$—namely, toward point&nbsp;$(1)$. We will now
+show you why. To make the argument easier to follow, we will make the
+calculation first for a “point” charge which is in the form of a
+little cube of charge moving toward the point&nbsp;$(1)$ with the
+speed&nbsp;$v$, as shown in Fig.&nbsp;<a href="#Ch21-F5">21-5</a>(a). Let the length of a side
+of the cube be $a$, which we take to be much, much less than&nbsp;$r_{12}$,
+the distance from the center of the charge to the point&nbsp;$(1)$.
+</p>
+</div>
+<div id="Ch21-F5" class="figure">
+<img src="img/FLP_II/f21-05/f21-05_tc_iPad_big.svgz">
+<div class="caption"><span class="tag">Fig. 21–5.</span>
+(a)&nbsp;A “point” charge—considered as a small cubical
+distribution of charge—moving with the speed&nbsp;$v$ toward point&nbsp;$(1)$.
+(b)&nbsp;The volume element&nbsp;$\Delta V_i$ used for calculating the
+potentials.
+</div>
+</div>
+<div id="Ch21-S5-p4" class="para">
+<p class="p">Now to evaluate the integral of Eq.&nbsp;(<a href="#mjx-eqn-EqII2128">21.28</a>), we will
+return to basic principles; we will write it as the sum
+\begin{equation}
+\label{Eq:II:21:30}
+\sum_i\frac{\rho_i\,\Delta V_i}{r_i},
+\end{equation}
+where $r_i$ is the distance from point&nbsp;$(1)$ to the $i$th&nbsp;volume
+element&nbsp;$\Delta V_i$ and&nbsp;$\rho_i$ is the charge density at&nbsp;$\Delta
+V_i$ at the time&nbsp;$t_i=t-r_i/c$. Since $r_i\gg a$, always, it will be
+convenient to take our&nbsp;$\Delta V_i$ in the form of thin, rectangular
+slices perpendicular to&nbsp;$\FLPr_{12}$, as shown in
+Fig.&nbsp;<a href="#Ch21-F5">21-5</a>(b).
+</p>
+</div>
+
+<div id="Ch21-S5-p5" class="para">
+<p class="p">Suppose we start by taking the volume elements&nbsp;$\Delta V_i$ with some
+thickness&nbsp;$w$ much less than&nbsp;$a$. The individual elements will appear
+as shown in Fig.&nbsp;<a href="#Ch21-F6">21-6</a>(a), where we have put in more
+than enough to cover the charge. But we have <em class="emph">not</em> shown the
+charge, and for a good reason. Where should we draw it? For each
+volume element&nbsp;$\Delta V_i$ we are to take&nbsp;$\rho$ at the
+time&nbsp;$t_i=(t-r_i/c)$, but since the charge is <em class="emph">moving</em>, it is in a
+<em class="emph">different place for each volume element</em>&nbsp;$\Delta V_i$!
+</p>
+</div>
+<div id="Ch21-F6" class="figure">
+<img src="img/FLP_II/f21-06/f21-06_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 21–6.</span>
+Integrating&nbsp;$\rho(t-r'/c)\,dV$ for a moving charge.
+</div>
+</div>
+<div id="Ch21-S5-p6" class="para">
+<p class="p">Let’s say that we begin with the volume element labeled&nbsp;“1” in
+Fig.&nbsp;<a href="#Ch21-F6">21-6</a>(a), chosen so that at the
+time&nbsp;$t_1=(t-r_1/c)$ the “back” edge of the charge occupies&nbsp;$\Delta V_1$,
+as shown in Fig.&nbsp;<a href="#Ch21-F6">21-6</a>(b). Then when we
+evaluate&nbsp;$\rho_2\,\Delta V_2$, we must use the position of the charge at the
+slightly <em class="emph">later</em> time&nbsp;$t_2=(t-r_2/c)$, when the charge will be in
+the position shown in Fig.&nbsp;<a href="#Ch21-F6">21-6</a>(c). And so on, for
+$\Delta V_3$, $\Delta V_4$, etc. Now we can evaluate the sum.
+</p>
+</div>
+
+<div id="Ch21-S5-p7" class="para">
+<p class="p">Since the thickness of each&nbsp;$\Delta V_i$ is&nbsp;$w$, its volume
+is&nbsp;$wa^2$. Then each volume element that overlaps the charge distribution
+contains the amount of charge&nbsp;$wa^2\rho$, where $\rho$ is the density
+of charge within the cube—which we take to be uniform. When the
+distance from the charge to point&nbsp;$(1)$ is large, we will make a
+negligible error by setting all the&nbsp;$r_i$’s in the denominators equal
+to some average value, say the retarded position&nbsp;$r'$ of the center of
+the charge. Then the sum&nbsp;(<a href="#mjx-eqn-EqII2130">21.30</a>) is
+\begin{equation*}
+\sum_{i=1}^N\frac{\rho wa^2}{r'},
+\end{equation*}
+where $\Delta V_N$ is the last $\Delta V_i$ that overlaps the charge
+distributions, as shown in Fig.&nbsp;<a href="#Ch21-F6">21-6</a>(e). The sum is,
+clearly,
+\begin{equation*}
+N\,\frac{\rho wa^2}{r'}=\frac{\rho a^3}{r'}\biggl(\frac{Nw}{a}\biggr).
+\end{equation*}
+Now $\rho a^3$ is just the total charge&nbsp;$q$ and $Nw$ is the length&nbsp;$b$ shown
+in part&nbsp;(e) of the figure. So we have
+\begin{equation}
+\label{Eq:II:21:31}
+\phi=\frac{q}{4\pi\epsO r'}\biggl(\frac{b}{a}\biggr).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch21-S5-p8" class="para">
+<p class="p">What is&nbsp;$b$? It is the length of the cube of charge <em class="emph">increased</em>
+by the distance moved by the charge between $t_1=(t-r_1/c)$
+and&nbsp;$t_N=(t-r_N/c)$—which is the distance the charge moves in the time
+\begin{equation*}
+\Delta t=t_N-t_1=(r_1-r_N)/c=b/c.
+\end{equation*}
+Since the speed of the charge is&nbsp;$v$, the distance moved is&nbsp;$v\,\Delta
+t=vb/c$. But the length&nbsp;$b$ is this distance added to&nbsp;$a$:
+\begin{equation*}
+b=a+\frac{v}{c}\,b.
+\end{equation*}
+Solving for $b$, we get
+\begin{equation*}
+b=\frac{a}{1-(v/c)}.
+\end{equation*}
+Of course by&nbsp;$v$ we mean the velocity at the retarded
+time&nbsp;$t'=(t-r'/c)$, which we can indicate by
+writing&nbsp;$[1-v/c]_{\text{ret}}$, and Eq.&nbsp;(<a href="#mjx-eqn-EqII2131">21.31</a>) for the
+potential becomes
+\begin{equation*}
+\phi(1,t)=\frac{q}{4\pi\epsO r'}\,\frac{1}{[1-(v/c)]_{\text{ret}}}.
+\end{equation*}
+This result agrees with our assertion, Eq.&nbsp;(<a href="#mjx-eqn-EqII2129">21.29</a>). There is
+a correction term which comes about because the charge is moving as our
+integral “sweeps over the charge.”  When the charge is moving toward
+the point&nbsp;$(1)$, its contribution to the integral is increased by the
+ratio&nbsp;$b/a$. Therefore the correct integral is $q/r'$&nbsp;multiplied
+by&nbsp;$b/a$, which is $1/[1-v/c]_{\text{ret}}$.
+</p>
+</div>
+
+<div id="Ch21-S5-p9" class="para">
+<p class="p">If the velocity of the charge is not directed toward the observation
+point&nbsp;$(1)$, you can see that what matters is the <em class="emph">component</em> of
+its velocity toward point&nbsp;$(1)$.  Calling this velocity 
+component&nbsp;$v_r$, the correction factor is&nbsp;$1/[1-v_r/c]_{\text{ret}}$. Also, the
+analysis we have made goes exactly the same way for a charge
+distribution of <em class="emph">any</em> shape—it doesn’t have to be a
+cube. Finally, since the “size” of the charge&nbsp;$q$ doesn’t enter into
+the final result, the same result holds when we let the charge shrink
+to any size—even to a point. The general result is that the scalar
+potential for a point charge moving with any velocity is
+\begin{equation}
+\label{Eq:II:21:32}
+\phi(1,t)=\frac{q}{4\pi\epsO r'[1-(v_r/c)]_{\text{ret}}}.
+\end{equation}
+This equation is often written in the equivalent form
+\begin{equation}
+\label{Eq:II:21:33}
+\phi(1,t)=\frac{q}{4\pi\epsO[r-(\FLPv\cdot\FLPr/c)]_{\text{ret}}},
+\end{equation}
+where $\FLPr$ is the vector from the charge to the point&nbsp;$(1)$, where
+$\phi$ is being evaluated, and all the quantities in the bracket are
+to have their values at the retarded time&nbsp;$t'=t-r'/c$.
+</p>
+</div>
+
+<div id="Ch21-S5-p10" class="para">
+<p class="p">The same thing happens when we compute&nbsp;$\FLPA$ for a point charge,
+from Eq.&nbsp;(<a href="#mjx-eqn-EqII2116">21.16</a>). The current density is&nbsp;$\rho\FLPv$ and
+the integral over&nbsp;$\rho$ is the same as we found for&nbsp;$\phi$. The
+vector potential is
+\begin{equation}
+\label{Eq:II:21:34}
+\FLPA(1,t)=\frac{q\FLPv_{\text{ret}}}
+{4\pi\epsO c^2[r-(\FLPv\cdot\FLPr/c)]_{\text{ret}}}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch21-S5-p11" class="para">
+<p class="p">The potentials for a point charge were first deduced in this form by
+Liénard and
+Wiechert and are called
+the <em class="emph">Liénard-Wiechert potentials</em>.
+</p>
+</div>
+
+<div id="Ch21-S5-p12" class="para">
+<p class="p">To close the ring back to Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>) it is only
+necessary to compute $\FLPE$ and&nbsp;$\FLPB$ from these potentials (using
+$\FLPB=\FLPcurl{\FLPA}$
+and&nbsp;$\FLPE=-\FLPgrad{\phi}-\ddpl{\FLPA}{t}$). It is now only
+arithmetic. The arithmetic, however, is fairly involved, so we will
+not write out the details. Perhaps you will take our word for it that
+Eq.&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>) is equivalent to the Liénard-Wiechert
+potentials we have derived.<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch21-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">21–6</span>The potentials for a charge moving with constant velocity; the Lorentz formula</h3>
+
+<div id="Ch21-S6-p1" class="para">
+<p class="p">We want next to use the Liénard-Wiechert potentials for a special
+case—to find the fields of a charge moving with uniform velocity in
+a straight line. We will do it again later, using the principle of
+relativity. We already know what the potentials are when we are
+standing in the rest frame of a charge. When the charge is moving, we
+can figure everything out by a relativistic transformation from one
+system to the other. But relativity had its origin in the theory of
+electricity and magnetism. The formulas of the Lorentz transformation
+(Chapter&nbsp;<a href="I_15.html">15</a>, Vol.&nbsp;I) were discoveries made by
+Lorentz
+when he was studying the equations of electricity and magnetism. So
+that you can appreciate where things have come from, we would like to
+show that the Maxwell equations do lead to the Lorentz
+transformation. We begin by calculating the potentials of a charge
+moving with uniform velocity, directly from the electrodynamics of
+Maxwell’s equations. We have shown that Maxwell’s equations lead to
+the potentials for a moving charge that we got in the last section. So
+when we use these potentials, we are using Maxwell’s theory.
+</p>
+</div>
+
+<div id="Ch21-F7" class="figure">
+<img src="img/FLP_II/f21-07/f21-07_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 21–7.</span>
+Finding the potential at&nbsp;$P$ of a charge moving with uniform
+  velocity along the $x$-axis.
+</div>
+</div>
+
+<div id="Ch21-S6-p2" class="para">
+<p class="p">Suppose we have a charge moving along the $x$-axis with the
+speed&nbsp;$v$. We want the potentials at the point&nbsp;$P(x,y,z)$, as shown in
+Fig.&nbsp;<a href="#Ch21-F7">21-7</a>. If $t=0$ is the moment when the charge is at
+the origin, at the time&nbsp;$t$ the charge is at&nbsp;$x=vt$, $y=z=0$. What we
+need to know, however, is its position at the retarded time
+\begin{equation}
+\label{Eq:II:21:35}
+t'=t-\frac{r'}{c},
+\end{equation}
+where $r'$ is the distance to the point&nbsp;$P$ from the charge <em class="emph">at
+the retarded time</em>. At the earlier time&nbsp;$t'$, the charge was
+at&nbsp;$x=vt'$, so
+\begin{equation}
+\label{Eq:II:21:36}
+r'=\sqrt{(x-vt')^2+y^2+z^2}.
+\end{equation}
+To find $r'$ or&nbsp;$t'$ we have to combine this equation with
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2135">21.35</a>). First, we eliminate&nbsp;$r'$ by solving
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2135">21.35</a>) for&nbsp;$r'$ and substituting in
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2136">21.36</a>). Then, squaring both sides, we get
+\begin{equation*}
+c^2(t-t')^2=(x-vt')^2+y^2+z^2,
+\end{equation*}
+which is a quadratic equation in&nbsp;$t'$. Expanding the squared binomials
+and collecting like terms in&nbsp;$t'$, we get
+\begin{equation*}
+(v^2-c^2)t'^2-2(xv-c^2t)t'+x^2+y^2+z^2-(ct)^2=0.
+\end{equation*}
+Solving for $t'$,
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:21:37}
+\biggl(1-\frac{v^2}{c^2}\biggr)t'=t-\frac{vx}{c^2}-\frac{1}{c}
+\sqrt{(x-vt)^2+\biggl(1-\frac{v^2}{c^2}\biggr)(y^2+z^2)}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\label{Eq:II:21:37}
+\biggl(1-\frac{v^2}{c^2}\biggr)t'=\\[1.5ex]
+t-\frac{vx}{c^2}-\frac{1}{c}
+\sqrt{(x-vt)^2+\biggl(1-\frac{v^2}{c^2}\biggr)(y^2+z^2)}.\notag
+\end{gather}
+</span>
+To get $r'$ we have to substitute this expression for&nbsp;$t'$ into
+\begin{equation*}
+r'=c(t-t').
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch21-S6-p3" class="para">
+<p class="p">Now we are ready to find&nbsp;$\phi$ from Eq.&nbsp;(<a href="#mjx-eqn-EqII2133">21.33</a>), which,
+since&nbsp;$\FLPv$ is constant, becomes
+\begin{equation}
+\label{Eq:II:21:38}
+\phi(x,y,z,t)=\frac{q}{4\pi\epsO}\,
+\frac{1}{r'-(\FLPv\cdot\FLPr'/c)}.
+\end{equation}
+The component of&nbsp;$\FLPv$ in the direction of&nbsp;$\FLPr'$ is
+$v\times(x-vt')/r'$, so $\FLPv\cdot\FLPr'$ is just $v\times(x-vt')$,
+and the whole denominator is
+\begin{equation*}
+c(t-t')-\frac{v}{c}(x-vt')=c\biggl[
+t-\frac{vx}{c^2}-\biggl(
+1-\frac{v^2}{c^2}
+\biggr)t'
+\biggr].
+\end{equation*}
+Substituting for $(1-v^2/c^2)t'$ from Eq.&nbsp;(<a href="#mjx-eqn-EqII2137">21.37</a>), we
+get for&nbsp;$\phi$
+<span class="eq-wide">
+\begin{equation*}
+\phi(x,y,z,t)=\frac{q}{4\pi\epsO}\,\frac{1}
+{\sqrt{(x-vt)^2+\biggl(1-\dfrac{v^2}{c^2}\biggr)(y^2+z^2)}}.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+
+\begin{gather*}
+\phi(x,y,z,t)=\\[1ex]
+\frac{q}{4\pi\epsO}\,\frac{1}
+{\sqrt{(x-vt)^2+\biggl(1-\dfrac{v^2}{c^2}\biggr)(y^2+z^2)}}.
+\end{gather*}
+
+</span>
+</p>
+</div>
+
+<div id="Ch21-S6-p4" class="para">
+<p class="p">This equation is more understandable if we rewrite it as
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:21:39}
+\phi(x,y,z,t)=\frac{q}{4\pi\epsO}\,
+\frac{1}{\sqrt{1-\dfrac{v^2}{c^2}}}\,
+\frac{1}
+{\biggl[\biggl(
+\dfrac{x-vt}{\sqrt{1-v^2/c^2}}
+\biggr)^2+y^2+z^2
+\biggr]^{1/2}}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{gather}
+\label{Eq:II:21:39}
+\phi(x,y,z,t)=\\[1ex]
+\frac{q}{4\pi\epsO}
+\frac{1}{\sqrt{1\!-\!\dfrac{v^2}{c^2}}}
+\frac{1}
+{\biggl[\!\biggl(
+\dfrac{x-vt}{\sqrt{1\!-\!v^2/c^2}}\!
+\biggr)^2\kern{-1.75ex}+\!y^2\!+\!z^2
+\biggr]^{1/2}}.\notag
+\end{gather}
+
+</span>
+The vector potential&nbsp;$\FLPA$ is the same expression with an additional
+factor of&nbsp;$\FLPv/c^2$:
+\begin{equation*}
+\FLPA=\frac{\FLPv}{c^2}\,\phi.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch21-S6-p5" class="para">
+<p class="p">In Eq.&nbsp;(<a href="#mjx-eqn-EqII2139">21.39</a>) you can clearly see the beginning of the
+Lorentz transformation. If the charge were at the origin in its own
+rest frame, its potential would be
+\begin{equation*}
+\phi(x,y,z)=\frac{q}{4\pi\epsO}\,
+\frac{1}{[x^2+y^2+z^2]^{1/2}}.
+\end{equation*}
+We are seeing it in a moving coordinate system, and it appears that
+the coordinates should be transformed by
+\begin{align*}
+&x\to\frac{x-vt}{\sqrt{1-v^2/c^2}},\\
+&y\to y,\\
+&z\to z.
+\end{align*}
+That is just the Lorentz transformation, and what we have done is
+essentially the way Lorentz
+discovered it.
+</p>
+</div>
+
+<div id="Ch21-S6-p6" class="para">
+<p class="p">But what about that extra factor&nbsp;$1/\sqrt{1-v^2/c^2}$ that appears at the front
+of Eq.&nbsp;(<a href="#mjx-eqn-EqII2139">21.39</a>)? Also, how does the vector potential&nbsp;$\FLPA$ appear,
+when it is everywhere zero in the rest frame of the particle?  We will soon show
+that $\FLPA$ and&nbsp;$\phi$ <em class="emph">together</em> constitute a four-vector, like the
+momentum&nbsp;$\FLPp$ and the total energy&nbsp;$U$ of a particle. The
+extra&nbsp;$1/\sqrt{1-v^2/c^2}$ in Eq.&nbsp;(<a href="#mjx-eqn-EqII2139">21.39</a>) is the same factor that
+always comes in when one transforms the components of a four-vector—just as
+the charge density&nbsp;$\rho$ transforms to&nbsp;$\rho/\sqrt{1-v^2/c^2}$. In fact, it is
+almost apparent from Eqs. (<a href="#mjx-eqn-EqII214">21.4</a>) and&nbsp;(<a href="#mjx-eqn-EqII215">21.5</a>) that
+$\FLPA$ and&nbsp;$\phi$ are components of a four-vector, because we have already
+shown in Chapter&nbsp;<a href="II_13.html">13</a> that $\FLPj$ and&nbsp;$\rho$ are the components of a
+four-vector.
+</p>
+</div>
+
+<div id="Ch21-S6-p7" class="para">
+<p class="p">Later we will take up in more detail the relativity of
+electrodynamics; here we only wished to show how naturally the Maxwell
+equations lead to the Lorentz transformation. You will not, then, be
+surprised to find that the laws of electricity and magnetism are
+already correct for Einstein’s relativity. We will not have to “fix
+them up,” as we had to do for Newton’s laws of mechanics.
+</p>
+</div>
+
+</div> <!-- end of last section -->
+
+<ol id="footnotes">
+<li class="footnote">
+	<a name="footnote_1"></a>
+	The formula was first published by Oliver Heaviside in 1902. It was independently discovered
+	by R.&nbsp;P. Feynman, in about 1950, and given in some lectures as a good way of thinking 
+	about synchrotron radiation.
+	<a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  	<a name="footnote_2"></a>
+	If you have a lot of paper and
+	time you can try to work it through yourself. We would, then, make two
+	suggestions: First, don’t forget that the derivatives of&nbsp;$r'$ are
+	complicated, since it is a function of&nbsp;$t'$. Second, don’t try to
+	<em class="emph">derive</em>&nbsp;(<a href="#mjx-eqn-EqII211">21.1</a>), but carry out all of the derivatives
+	in it, and then compare what you get with the&nbsp;$\FLPE$ obtained from
+	the potentials (<a href="#mjx-eqn-EqII2133">21.33</a>) and&nbsp;(<a href="#mjx-eqn-EqII2134">21.34</a>).
+	<a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

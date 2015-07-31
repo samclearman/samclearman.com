@@ -1,0 +1,1218 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 43: Diffusion</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "43." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch43" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">43</span>Diffusion</h2>
+<div id="Ch43-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">43–1</span>Collisions between molecules</h3>
+<div id="Ch43-S1-p1" class="para">
+<p class="p">We have considered so far only the molecular motions in a gas which is
+in thermal equilibrium. We want now to discuss what happens when
+things are near, but not exactly in, equilibrium. In a situation far
+from equilibrium, things are extremely complicated, but in a situation
+very close to equilibrium we can easily work out what happens. To see
+what happens, we must, however, return to the kinetic
+theory. Statistical mechanics and thermodynamics deal with the
+equilibrium situation, but away from equilibrium we can only analyze
+what occurs atom by atom, so to speak.</p>
+</div>
+<div id="Ch43-S1-p2" class="para">
+<p class="p">As a simple example of a nonequilibrium circumstance, we shall
+consider the diffusion of ions in a gas. Suppose that in a gas there
+is a relatively small concentration of ions—electrically charged
+molecules. If we put an electric field on the gas, then each ion will
+have a force on it which is different from the forces on the neutral
+molecules of the gas. If there were no other molecules present, an ion
+would have a constant acceleration until it reached the wall of the
+container. But because of the presence of the other molecules, it
+cannot do that; its velocity increases only until it collides with a
+molecule and loses its momentum. It starts again to pick up more
+speed, but then it loses its momentum again. The net effect is that an
+ion works its way along an erratic path, but with a net motion in the
+direction of the electric force. We shall see that the ion has an
+average “drift” with a mean speed which is proportional to the
+electric field—the stronger the field, the faster it goes. While the
+field is on, and while the ion is moving along, it is, of course,
+<em class="emph">not</em> in thermal equilibrium, it is trying to get to equilibrium,
+which is to be sitting at the end of the container. By means of the
+kinetic theory we can compute the drift velocity.</p>
+</div>
+<div id="Ch43-S1-p3" class="para">
+<p class="p">It turns out that with our present mathematical abilities we cannot
+really compute <em class="emph">precisely</em> what will happen, but we can obtain
+approximate results which exhibit all the essential features. We can
+find out how things will vary with pressure, with temperature, and so
+on, but it will not be possible to get precisely the correct numerical
+factors in front of all the terms. We shall, therefore, in our
+derivations, not worry about the precise value of numerical
+factors. They can be obtained only by a very much more sophisticated
+mathematical treatment.
+</p>
+</div>
+<div id="Ch43-S1-p4" class="para">
+<p class="p">Before we consider what happens in nonequilibrium situations, we shall
+need to look a little closer at what goes on in a gas in thermal
+equilibrium. We shall need to know, for example, what the average time
+between successive collisions of a molecule is.</p>
+</div>
+<div id="Ch43-S1-p5" class="para">
+<p class="p">Any molecule experiences a sequence of collisions with other
+molecules—in a random way, of course. A particular molecule will, in
+a long period of time $T$, have a certain number, $N$, of hits. If we
+double the length of time, there will be twice as many hits. So the
+number of collisions is proportional to the time $T$. We would like to
+write it this way:
+\begin{equation}
+\label{Eq:I:43:1}
+N = T/\tau.
+\end{equation}
+We have written the constant of proportionality as $1/\tau$, where
+$\tau$ will have the dimensions of a time. The constant $\tau$ is the
+average time between collisions. Suppose, for example, that in an hour
+there are $60$ collisions; then $\tau$ is one minute. We would say
+that $\tau$ (one minute) is the <em class="emph">average time</em> between the
+collisions.</p>
+</div>
+<div id="Ch43-S1-p6" class="para">
+<p class="p">We may often wish to ask the following question: “What is the
+<em class="emph">chance</em> that a molecule will experience a collision during the
+next <em class="emph">small interval</em> of time $dt$?” The answer, we may
+intuitively understand, is $dt/\tau$. But let us try to make a more
+convincing argument. Suppose that there were a very large number $N$
+of molecules. How many will have collisions in the next interval of
+time $dt$? If there is equilibrium, nothing is changing <em class="emph">on the
+average</em> with time. So $N$ molecules waiting the time $dt$ will have
+the same number of collisions as <em class="emph">one</em> molecule waiting for the
+time $N\,dt$. That number we know is $N\,dt/\tau$. So the number of
+hits of $N$ molecules is $N\,dt/\tau$ in a time $dt$, and the chance,
+or probability, of a hit for any one molecule is just $1/N$ as large,
+or $(1/N)(N\,dt/\tau) = dt/\tau$, as we guessed above. That is to say,
+the fraction of the molecules which will suffer a collision in the
+time $dt$ is $dt/\tau$. To take an example, if $\tau$ is one minute,
+then in one second the fraction of particles which will suffer
+collisions is $1/60$. What this means, of course, is that $1/60$ of
+the molecules happen to be close enough to what they are going to hit
+next that <em class="emph">their</em> collisions will occur in the next second.</p>
+</div>
+<div id="Ch43-S1-p7" class="para">
+<p class="p">When we say that $\tau$, the mean time between collisions, is one
+minute, we do not mean that all the collisions will occur at times
+separated by exactly one minute. A particular particle does not have a
+collision, wait one minute, and then have another collision. The times
+between successive collisions are quite variable. We will not need it
+for our later work here, but we may make a small diversion to answer
+the question: “What <em class="emph">are</em> the times between collisions?” We
+know that for the case above, the <em class="emph">average</em> time is one minute,
+but we might like to know, for example, what is the chance that we get
+no collision for <em class="emph">two</em> minutes?</p>
+</div>
+<div id="Ch43-S1-p8" class="para">
+<p class="p">We shall find the answer to the general question: “What is the
+probability that a molecule will go for a time $t$ without having a
+collision?” At some arbitrary instant—that we call $t = 0$—we
+begin to watch a particular molecule. What is the chance that it gets
+by until $t$ without colliding with another molecule? To compute the
+probability, we observe what is happening to all $N_0$ molecules in a
+container. After we have waited a time $t$, some of them will have had
+collisions. We let $N(t)$ be the number that have <em class="emph">not</em> had
+collisions up to the time $t$. $N(t)$ is, of course, less than
+$N_0$. We can find $N(t)$ because we know how it changes with time. If
+we know that $N(t)$ molecules have got by until $t$, then $N(t + dt)$,
+the number which get by until $t + dt$, is <em class="emph">less</em> than $N(t)$ by
+the number that have collisions in $dt$. The number that collide
+in $dt$ we have written above in terms of the mean time $\tau$ as $dN =
+N(t)\,dt/\tau$. We have the equation
+\begin{equation}
+\label{Eq:I:43:2}
+N(t + dt) = N(t) - N(t)\,\frac{dt}{\tau}.
+\end{equation}
+The quantity on the left-hand side, $N(t + dt)$, can be written,
+according to the definitions of calculus, as $N(t) +
+(dN/dt)\,dt$. Making this substitution, Eq. (<a href="#mjx-eqn-EqI432">43.2</a>) yields
+\begin{equation}
+\label{Eq:I:43:3}
+\ddt{N(t)}{t} = -\frac{N(t)}{\tau}.
+\end{equation}
+The number that are being lost in the interval $dt$ is proportional to
+the number that are present, and inversely proportional to the mean
+life $\tau$. Equation (<a href="#mjx-eqn-EqI433">43.3</a>) is easily integrated if we
+rewrite it as
+\begin{equation}
+\label{Eq:I:43:4}
+\frac{dN(t)}{N(t)} = -\frac{dt}{\tau}.
+\end{equation}
+Each side is a perfect differential, so the integral is
+\begin{equation}
+\label{Eq:I:43:5}
+\ln N(t) = -t/\tau + (\text{a constant}),
+\end{equation}
+which says the same thing as
+\begin{equation}
+\label{Eq:I:43:6}
+N(t) = (\text{constant})e^{-t/\tau}.
+\end{equation}
+We know that the constant must be just $N_0$, the total number of
+molecules present, since all of them start at $t = 0$ to wait for
+their “next” collision. We can write our result as
+\begin{equation}
+\label{Eq:I:43:7}
+N(t) = N_0e^{-t/\tau}.
+\end{equation}
+If we wish the <em class="emph">probability</em> of no collision, $P(t)$, we can get
+it by dividing $N(t)$ by $N_0$, so
+\begin{equation}
+\label{Eq:I:43:8}
+P(t) = e^{-t/\tau}.
+\end{equation}
+Our result is: the probability that a particular molecule survives a
+time $t$ without a collision is $e^{-t/\tau}$, where $\tau$ is the
+mean time between collisions. The probability starts out at $1$ (or
+certainty) for $t = 0$, and gets less as $t$ gets bigger and
+bigger. The probability that the molecule avoids a collision for a
+time equal to $\tau$ is $e^{-1} \approx 0.37$. The chance is less than
+one-half that it will have a greater than average time between
+collisions. That is all right, because there are enough molecules
+which go collision-free for times much <em class="emph">longer</em> than the mean
+time before colliding, so that the average time can still be $\tau$.</p>
+</div>
+<div id="Ch43-S1-p9" class="para">
+<p class="p">We originally defined $\tau$ as the average time <em class="emph">between</em>
+collisions. The result we have obtained in Eq. (<a href="#mjx-eqn-EqI437">43.7</a>)
+also says that the mean time from an <em class="emph">arbitrary</em> starting instant
+to the <em class="emph">next</em> collision is <em class="emph">also</em> $\tau$. We can demonstrate
+this somewhat surprising fact in the following way. The number of
+molecules which experience their <em class="emph">next</em> collision in the
+interval $dt$ at the time $t$ after an arbitrarily chosen starting time
+is $N(t)\,dt/\tau$. Their “time until the next collision” is, of
+course, just $t$. The “average time until the next collision” is
+obtained in the usual way:
+\begin{equation*}
+\text{Average time until the next collision} =
+\frac{1}{N_0}\int_0^\infty t\,\frac{N(t)\,dt}{\tau}.
+\end{equation*}
+Using $N(t)$ obtained in (<a href="#mjx-eqn-EqI437">43.7</a>) and evaluating the
+integral, we find indeed that $\tau$ is the average time from
+<em class="emph">any</em> instant until the next collision.</p>
+</div>
+</div>
+<div id="Ch43-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">43–2</span>The mean free path</h3>
+<div id="Ch43-S2-p1" class="para">
+<p class="p">Another way of describing the molecular collisions is to talk not
+about the <em class="emph">time</em> between collisions, but about <em class="emph">how far</em> the
+particle moves between collisions. If we say that the average time
+between collisions is $\tau$, and that the molecules have a mean
+velocity $v$, we can expect that the average <em class="emph">distance</em> between
+collisions, which we shall call $l$, is just the product of $\tau$
+and $v$. This distance between collisions is usually called the <em class="emph">mean
+free path:</em>
+\begin{equation}
+\label{Eq:I:43:9}
+\text{Mean free path $l$} = \tau v.
+\end{equation}</p>
+</div>
+<div id="Ch43-S2-p2" class="para">
+<p class="p">In this chapter we shall be a little careless about <em class="emph">what kind of
+average</em> we mean in any particular case. The various possible
+averages—the mean, the root-mean-square, etc.—are all nearly equal
+and differ by factors which are near to one. Since a detailed analysis
+is required to obtain the correct numerical factors anyway, we need
+not worry about which average is required at any particular point. We
+may also warn the reader that the algebraic symbols we are using for
+some of the physical quantities (e.g., $l$ for the mean free path) do
+not follow a generally accepted convention, mainly because there is no
+general agreement.</p>
+</div>
+<div id="Ch43-S2-p3" class="para">
+<p class="p">Just as the chance that a molecule will have a collision in a short
+time $dt$ is equal to $dt/\tau$, the chance that it will have a
+collision in going a distance $dx$ is $dx/l$. Following the same line
+of argument used above, the reader can show that the probability that
+a molecule will go at least the distance $x$ before having its next
+collision is $e^{-x/l}$.</p>
+</div>
+<div id="Ch43-S2-p4" class="para">
+<p class="p">The average distance a molecule goes before colliding with another
+molecule—the mean free path $l$—will depend on how many molecules
+there are around and on the “size” of the molecules, i.e., how big a
+target they represent. The effective “size” of a target in a
+collision we usually describe by a “collision cross
+section,” the same idea that is used in nuclear physics, or in
+light-scattering problems.
+</p>
+</div>
+<div id="Ch43-F1" class="figure">
+<img class="first" src="img/FLP_I/f43-01/f43-01_tc_big_a.svgz"><img class="last" src="img/FLP_I/f43-01/f43-01_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 43–1.</span>Collision cross section.
+</div>
+</div>
+<div id="Ch43-S2-p5" class="para">
+<p class="p">Consider a moving particle which travels a distance $dx$ through a gas
+which has $n_0$ scatterers (molecules) per unit volume
+(Fig. <a href="#Ch43-F1">43–1</a>). If we look at each unit of area perpendicular
+to the direction of motion of our selected particle, we will find there
+$n_0\,dx$ molecules. If each one presents an effective collision area
+or, as it is usually called, “collision cross
+section,” $\sigma_c$, then the total area covered by the scatterers
+is $\sigma_cn_0\,dx$.
+</p>
+</div>
+<div id="Ch43-S2-p6" class="para">
+<p class="p">By “collision cross section” we mean the area within
+which the center of our particle must be located if it is to collide
+with a particular molecule. If molecules were little spheres (a
+classical picture) we would expect that $\sigma_c = \pi(r_1 + r_2)^2$,
+where $r_1$ and $r_2$ are the radii of the two colliding objects. The
+chance that our particle will have a collision is the ratio of the area
+covered by scattering molecules to the total area, which we have taken
+to be one. So the probability of a collision in going a distance $dx$ is
+just $\sigma_cn_0\,dx$:
+\begin{equation}
+\label{Eq:I:43:10}
+\text{Chance of a collision in $dx$} = \sigma_cn_0\,dx.
+\end{equation}
+</p>
+</div>
+<div id="Ch43-S2-p7" class="para">
+<p class="p">We have seen above that the chance of a collision in $dx$ can also be
+written in terms of the mean free path $l$ as $dx/l$. Comparing this
+with (<a href="#mjx-eqn-EqI4310">43.10</a>), we can relate the mean free path to the
+collision cross section:
+\begin{equation}
+\label{Eq:I:43:11}
+\frac{1}{l} = \sigma_cn_0,
+\end{equation}
+which is easier to remember if we write it as
+\begin{equation}
+\label{Eq:I:43:12}
+\sigma_cn_0l = 1.
+\end{equation}
+</p>
+</div>
+<div id="Ch43-S2-p8" class="para">
+<p class="p">This formula can be thought of as saying that there should be one
+collision, on the average, when the particle goes through a
+distance $l$ in which the scattering molecules <em class="emph">could</em> just cover the
+total area. In a cylindrical volume of length $l$ and a base of unit
+area, there are $n_0l$ scatterers; if each one has an area $\sigma_c$
+the total area covered is $n_0l\sigma_c$, which is just one unit of
+area. The whole area is <em class="emph">not</em> covered, of course, because some
+molecules are partly hidden behind others. That is why some molecules
+go farther than $l$ before having a collision. It is only <em class="emph">on the
+average</em> that the molecules have a collision by the time they go the
+distance $l$. From measurements of the mean free path $l$ we can
+determine the scattering cross section $\sigma_c$, and compare the
+result with calculations based on a detailed theory of atomic
+structure. But that is a different subject!  So we return to the
+problem of nonequilibrium states.</p>
+</div>
+</div>
+<div id="Ch43-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">43–3</span>The drift speed</h3>
+<div id="Ch43-S3-p1" class="para">
+<p class="p">We want to describe what happens to a molecule, or several molecules,
+which are different in some way from the large majority of the
+molecules in a gas. We shall refer to the “majority” molecules as
+the “background” molecules, and we shall call the molecules which
+are different from the background molecules “special” molecules or,
+for short, the $S$-molecules. A molecule could be special for any
+number of reasons: It might be heavier than the background
+molecules. It might be a different chemical. It might have an electric
+charge—i.e., be an ion in a background of uncharged
+molecules. Because of their different masses or charges the
+$S$-molecules may have forces on them which are different from the
+forces on the background molecules. By considering what happens to
+these $S$-molecules we can understand the basic effects which come
+into play in a similar way in many different phenomena. To list a few:
+the diffusion of gases, electric currents in batteries, sedimentation,
+centrifugal separation, etc.
+</p>
+</div>
+<div id="Ch43-S3-p2" class="para">
+<p class="p">We begin by concentrating on the basic process: an $S$-molecule in a
+background gas is acted on by some specific force $\FLPF$ (which might
+be, e.g., gravitational or electrical) and <em class="emph">in addition</em> by the
+not-so-specific forces due to collisions with the background
+molecules. We would like to describe the <em class="emph">general</em> behavior of
+the $S$-molecule. What happens to it, <em class="emph">in detail</em>, is that it
+darts around hither and yon as it collides over and over again with
+other molecules. But if we watch it carefully we see that it does make
+some net progress in the direction of the force $\FLPF$. We say that
+there is a <em class="emph">drift</em>, superposed on its random motion. We would
+like to know what the speed of its drift is—its <em class="emph">drift
+velocity</em>—due to the force $\FLPF$.</p>
+</div>
+<div id="Ch43-S3-p3" class="para">
+<p class="p">If we start to observe an $S$-molecule at some instant we may expect
+that it is somewhere between two collisions. In addition to the
+velocity it was left with after its last collision it is picking up
+some velocity component due to the force $\FLPF$. In a short time (on
+the average, in a time $\tau$) it will experience a collision and
+start out on a new piece of its trajectory. It will have a new
+starting velocity, but the same acceleration from $\FLPF$.</p>
+</div>
+<div id="Ch43-S3-p4" class="para">
+<p class="p">To keep things simple for the moment, we shall suppose that after each
+collision our $S$-molecule gets a completely “fresh” start. That is,
+that it keeps no remembrance of its past acceleration by $\FLPF$. This
+might be a reasonable assumption if our $S$-molecule were much lighter
+than the background molecules, but it is certainly not valid in
+general. We shall discuss later an improved assumption.</p>
+</div>
+<div id="Ch43-S3-p5" class="para">
+<p class="p">For the moment, then, our assumption is that the $S$-molecule leaves
+each collision with a velocity which may be in any direction with
+equal likelihood. The starting velocity will take it equally in all
+directions and will not contribute to any net motion, so we shall not
+worry further about its initial velocity after a collision. In
+addition to its random motion, each $S$-molecule will have, at any
+moment, an additional velocity in the direction of the force $\FLPF$,
+which it has picked up <em class="emph">since</em> its last collision. What is the
+<em class="emph">average</em> value of <em class="emph">this</em> part of the velocity? It is just
+the acceleration $\FLPF/m$ (where $m$ is the mass of the $S$-molecule)
+times the <em class="emph">average</em> time <em class="emph">since</em> the last collision. Now the
+average time <em class="emph">since</em> the <em class="emph">last</em> collision must be the same
+as the average time <em class="emph">until</em> the <em class="emph">next</em> collision, which we
+have called $\tau$, above. The <em class="emph">average</em> velocity from $\FLPF$,
+of course, is just what is called the drift velocity, so we have the
+relation
+\begin{equation}
+\label{Eq:I:43:13}
+v_{\text{drift}} = \frac{F\tau}{m}.
+\end{equation}
+This basic relation is the heart of our subject. There may be some
+complication in determining what $\tau$ is, but the basic process is
+defined by Eq. (<a href="#mjx-eqn-EqI4313">43.13</a>).</p>
+</div>
+<div id="Ch43-S3-p6" class="para">
+<p class="p">You will notice that the drift velocity is <em class="emph">proportional</em> to the
+force. There is, unfortunately, no generally used name for the
+constant of proportionality. Different names have been used for each
+different kind of force. If in an electrical problem the force is
+written as the charge times the electric field, $\FLPF = q\FLPE$, then
+the constant of proportionality between the velocity and the electric
+field $\FLPE$ is usually called the “mobility.” In spite of the
+possibility of some confusion, <em class="emph">we</em> shall use the term
+<em class="emph">mobility</em> for the ratio of the drift velocity to the force for
+<em class="emph">any</em> force. We write
+\begin{equation}
+\label{Eq:I:43:14}
+v_{\text{drift}} = \mu F.
+\end{equation}
+in general, and we shall call $\mu$ the mobility. We have from
+Eq. (<a href="#mjx-eqn-EqI4313">43.13</a>) that
+\begin{equation}
+\label{Eq:I:43:15}
+\mu = \tau/m.
+\end{equation}
+The mobility is proportional to the mean time between collisions
+(there are fewer collisions to slow it down) and inversely
+proportional to the mass (more inertia means less speed picked up
+between collisions).</p>
+</div>
+<div id="Ch43-S3-p7" class="para">
+<p class="p">To get the correct numerical coefficient in Eq. (<a href="#mjx-eqn-EqI4313">43.13</a>),
+which is correct as given, takes some care. Without intending to
+confuse, we should still point out that the arguments have a subtlety
+which can be appreciated only by a careful and detailed study. To
+illustrate that there are difficulties, in spite of appearances, we
+shall make over again the argument which led to Eq. (<a href="#mjx-eqn-EqI4313">43.13</a>)
+in a reasonable <em class="emph">but erroneous</em> way (and the way one will find in
+many textbooks!).</p>
+</div>
+<div id="Ch43-S3-p8" class="para">
+<p class="p">We might have said: The mean time between collisions is $\tau$. After
+a collision the particle starts out with a random velocity, but it
+picks up an additional velocity between collisions, which is equal to
+the acceleration times the time. Since it takes the time $\tau$ to
+arrive at the <em class="emph">next</em> collision it gets there with the
+velocity $(F/m)\tau$. At the beginning of the collision it had zero
+velocity. So between the two collisions it has, on the average, a
+velocity one-half of the final velocity, so the mean drift velocity
+is $\tfrac{1}{2}F\tau/m$. (Wrong!)  This result is wrong and the result
+in Eq. (<a href="#mjx-eqn-EqI4313">43.13</a>) is right, although the arguments may sound
+equally satisfactory. The reason the second result is wrong is
+somewhat subtle, and has to do with the following: The argument is
+made as though all collisions were separated by the mean
+time $\tau$. The fact is that some times are shorter and others are longer
+than the mean. Short times occur <em class="emph">more often</em> but make
+<em class="emph">less</em> contribution to the drift velocity because they have less
+chance “to really get going.” If one takes proper account of the
+<em class="emph">distribution</em> of free times between collisions, one can show
+that there should not be the factor $\tfrac{1}{2}$ that was obtained
+from the second argument. The error was made in trying to relate by a
+simple argument the <em class="emph">average final</em> velocity to the average
+velocity itself. This relationship is not simple, so it is best to
+concentrate on what is wanted: the average velocity itself. The first
+argument we gave determines the average velocity directly—and
+correctly! But we can perhaps see now why we shall not in general try
+to get all of the correct numerical coefficients in our elementary
+derivations!</p>
+</div>
+<div id="Ch43-S3-p9" class="para">
+<p class="p">We return now to our simplifying assumption that each collision knocks
+out all memory of the past motion—that a fresh start is made after
+each collision. Suppose our $S$-molecule is a heavy object in a
+background of lighter molecules. Then our $S$-molecule will not lose
+its “forward” momentum in each collision. It would take several
+collisions before its motion was “randomized” again. We should
+assume, instead, that at each collision—in each time $\tau$ on the
+average—it loses a certain fraction of its momentum. We shall not
+work out the details, but just state that the result is equivalent to
+replacing $\tau$, the average collision time, by a new—and
+longer—$\tau$ which corresponds to the average “forgetting time,”
+i.e., the average time to forget its forward momentum. With such an
+interpretation of $\tau$ we can use our formula (<a href="#mjx-eqn-EqI4315">43.15</a>) for
+situations which are not quite as simple as we first assumed.</p>
+</div>
+</div>
+<div id="Ch43-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">43–4</span>Ionic conductivity</h3>
+<div id="Ch43-S4-p1" class="para">
+<p class="p">We now apply our results to a special case. Suppose we have a gas in a
+vessel in which there are also some ions—atoms or molecules with a
+net electric charge. We show the situation schematically in
+Fig. <a href="#Ch43-F2">43–2</a>. If two opposite walls of the container are
+metallic plates, we can connect them to the terminals of a battery and
+thereby produce an electric field in the gas. The electric field will
+result in a force on the ions, so they will begin to drift toward one or
+the other of the plates. An electric current will be induced, and the
+gas with its ions will behave like a resistor. By computing the ion flow
+from the drift velocity we can compute the resistance. We ask,
+specifically: How does the flow of electric current depend on the
+voltage difference $V$ that we apply across the two plates?</p>
+</div>
+<div id="Ch43-F2" class="figure">
+<img src="img/FLP_I/f43-02/f43-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 43–2.</span>Electric current from an ionized gas.
+</div>
+</div>
+<div id="Ch43-S4-p2" class="para">
+<p class="p">We consider the case that our container is a rectangular box of
+length $b$ and cross-sectional area $A$ (Fig. <a href="#Ch43-F2">43–2</a>). If the
+potential difference, or voltage, from one plate to the other is $V$,
+the electric field $E$ between the plates is $V/b$. (The electric
+potential is the work done in carrying a unit charge from one plate to
+the other. The force on a unit charge is $\FLPE$. If $\FLPE$ is the
+same everywhere between the plates, which is a good enough
+approximation for now, the work done on a unit charge is just $Eb$,
+so $V = Eb$.) The special force on an ion of the gas is $q\FLPE$, where
+$q$ is the charge on the ion. The drift velocity of the ion is then
+$\mu$ times this force, or
+\begin{equation}
+\label{Eq:I:43:16}
+v_{\text{drift}} = \mu F = \mu qE = \mu q\,\frac{V}{b}.
+\end{equation}
+An electric current $I$ is the flow of charge in a unit time. The
+electric current to one of the plates is given by the total charge of
+the ions which arrive at the plate in a unit of time. If the ions
+drift toward the plate with the velocity $v_{\text{drift}}$, then
+those which are within a distance ($v_{\text{drift}}\cdot T$) will
+arrive at the plate in the time $T$. If there are $n_i$ ions per unit
+volume, the number which reach the plate in the time $T$ is ($n_i\cdot
+A\cdot v_{\text{drift}}\cdot T$). Each ion carries the charge $q$, so
+we have that
+\begin{equation}
+\label{Eq:I:43:17}
+\text{Charge collected in $T$} = qn_iAv_{\text{drift}}T.
+\end{equation}
+The current $I$ is the charge collected in $T$ divided by $T$, so
+\begin{equation}
+\label{Eq:I:43:18}
+I = qn_iAv_{\text{drift}}.
+\end{equation}
+Substituting $v_{\text{drift}}$ from (<a href="#mjx-eqn-EqI4316">43.16</a>), we have
+\begin{equation}
+\label{Eq:I:43:19}
+I = \mu q^2n_i\,\frac{A}{b}\,V.
+\end{equation}
+We find that the current is proportional to the voltage, which is just
+the form of Ohm’s law, and the
+resistance $R$ is the inverse of
+the proportionality constant:
+\begin{equation}
+\label{Eq:I:43:20}
+\frac{1}{R} = \mu q^2n_i\,\frac{A}{b}.
+\end{equation}
+We have a relation between the resistance and the molecular properties
+$n_i$, $q$, and $\mu$, which depends in turn on $m$ and $\tau$. If we
+know $n_i$ and $q$ from atomic measurements, a measurement of $R$
+could be used to determine $\mu$, and from $\mu$ also $\tau$.</p>
+</div>
+</div>
+<div id="Ch43-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">43–5</span>Molecular diffusion</h3>
+<div id="Ch43-S5-p1" class="para">
+<p class="p">We turn now to a different kind of problem, and a different kind of
+analysis: the theory of diffusion. Suppose that we have a container of
+gas in thermal equilibrium, and that we introduce a small amount of a
+different kind of gas at some place in the container. We shall call
+the original gas the “background” gas and the new one the
+“special” gas. The special gas will start to spread out through the
+whole container, but it will spread slowly because of the presence of
+the background gas. This slow spreading-out process is called
+<em class="emph">diffusion</em>. The diffusion is controlled mainly by the molecules
+of the special gas getting knocked about by the molecules of the
+background gas. After a large number of collisions, the special
+molecules end up spread out more or less evenly throughout the whole
+volume. We must be careful <em class="emph">not</em> to confuse diffusion of a gas
+with the gross transport that may occur due to convection
+currents. Most commonly, the mixing of two gases occurs by a
+combination of convection and diffusion. We are interested now only in
+the case that there are <em class="emph">no “wind” currents</em>. The gas is
+spreading only by molecular motions, by diffusion. We wish to compute
+how fast diffusion takes place.</p>
+</div>
+<div id="Ch43-S5-p2" class="para">
+<p class="p">We now compute the <em class="emph">net flow</em> of molecules of the “special” gas
+due to the molecular motions. There will be a net flow only when there
+is some nonuniform distribution of the molecules, otherwise all of the
+molecular motions would average to give no net flow. Let us consider
+first the flow in the $x$-direction. To find the flow, we consider an
+imaginary plane surface perpendicular to the $x$-axis and count the
+number of special molecules that cross this plane. To obtain the net
+flow, we must count as positive those molecules which cross in the
+direction of positive $x$ and <em class="emph">subtract</em> from this number the
+number which cross in the negative $x$-direction. As we have seen many
+times, the number which cross a surface area in a time $\Delta T$ is
+given by the number which start the interval $\Delta T$ in a volume
+which extends the distance $v\,\Delta T$ from the plane. (Note that
+$v$, here, is the actual molecular velocity, not the drift velocity.)</p>
+</div>
+<div id="Ch43-S5-p3" class="para">
+<p class="p">We shall simplify our algebra by giving our surface one unit of
+area. Then the number of special molecules which pass from left to
+right (taking the $+x$-direction to the right) is $n_-v\,\Delta T$,
+where $n_-$ is the number of special molecules per unit volume to the
+left (within a factor of $2$ or so, but we are ignoring such
+factors!). The number which cross from right to left is, similarly,
+$n_+v\,\Delta T$, where $n_+$ is the number density of special
+molecules on the right-hand side of the plane. If we call the
+molecular current $J$, by which we mean the net flow of molecules per
+unit area per unit time, we have
+\begin{equation}
+\label{Eq:I:43:21}
+J = \frac{n_-v\,\Delta T - n_+v\,\Delta T}{\Delta T},
+\end{equation}
+or
+\begin{equation}
+\label{Eq:I:43:22}
+J = (n_- - n_+)v.
+\end{equation}</p>
+</div>
+<div id="Ch43-S5-p4" class="para">
+<p class="p">What shall we use for $n_-$ and $n_+$? When we say “the density on the
+left,” how <em class="emph">far</em> to the left do we mean? We should choose the
+density at the place from which the molecules started their “flight,”
+because the number which <em class="emph">start</em> such trips is determined by the
+number present at that place. So by $n_-$ we should mean the density a
+distance to the left equal to the mean free path $l$, and by $n_+$, the
+density at the distance $l$ to the right of our imaginary surface.</p>
+</div>
+<div id="Ch43-S5-p5" class="para">
+<p class="p">It is convenient to consider that the distribution of our special
+molecules in space is described by a continuous function of $x$, $y$,
+and $z$ which we shall call $n_a$. By $n_a(x,y,z)$ we mean the number
+density of special molecules in a small volume element centered
+on $(x,y,z)$. In terms of $n_a$ we can express the difference $(n_+ -
+n_-)$ as
+\begin{equation}
+\label{Eq:I:43:23}
+(n_+ - n_-) = \ddt{n_a}{x}\,\Delta x = \ddt{n_a}{x}\cdot 2l.
+\end{equation}
+Substituting this result in Eq. (<a href="#mjx-eqn-EqI4322">43.22</a>) and neglecting
+the factor of $2$, we get
+\begin{equation}
+\label{Eq:I:43:24}
+J_x = -lv\,\ddt{n_a}{x}.
+\end{equation}
+We have found that the flow of special molecules is proportional to
+the derivative of the density, or to what is sometimes called the
+“gradient” of the density.</p>
+</div>
+<div id="Ch43-S5-p6" class="para">
+<p class="p">It is clear that we have made several rough approximations. Besides
+various factors of two we have left out, we have used $v$ where we
+should have used $v_x$, and we have assumed that $n_+$ and $n_-$ refer
+to places at the perpendicular distance $l$ from our surface, whereas
+for those molecules which do not travel perpendicular to the surface
+element, $l$ should correspond to the <em class="emph">slant</em> distance from the
+surface. All of these refinements can be made; the result of a more
+careful analysis shows that the right-hand side of
+Eq. (<a href="#mjx-eqn-EqI4324">43.24</a>) should be multiplied by $1/3$. So a better answer
+is
+\begin{equation}
+\label{Eq:I:43:25}
+J_x = -\frac{lv}{3}\,\ddt{n_a}{x}.
+\end{equation}
+Similar equations can be written for the currents in the $y$-
+and $z$-directions.</p>
+</div>
+<div id="Ch43-S5-p7" class="para">
+<p class="p">The current $J_x$ and the density gradient $dn_a/dx$ can be measured
+by macroscopic observations. Their experimentally determined ratio is
+called the “diffusion coefficient,” $D$. That is,
+\begin{equation}
+\label{Eq:I:43:26}
+J_x = -D\,\ddt{n_a}{x}.
+\end{equation}
+We have been able to show that for a gas we expect
+\begin{equation}
+\label{Eq:I:43:27}
+D = \tfrac{1}{3}lv.
+\end{equation}</p>
+</div>
+<div id="Ch43-S5-p8" class="para">
+<p class="p">So far in this chapter we have considered two distinct processes:
+<em class="emph">mobility</em>, the drift of molecules due to “outside” forces; and
+<em class="emph">diffusion</em>, the spreading determined only by the internal
+forces, the random collisions. There is, however, a relation between
+them, since they both depend basically on the thermal motions, and the
+mean free path $l$ appears in both calculations.</p>
+</div>
+<div id="Ch43-S5-p9" class="para">
+<p class="p">If, in Eq. (<a href="#mjx-eqn-EqI4325">43.25</a>), we substitute $l = v\tau$ and $\tau =
+\mu m$, we have
+\begin{equation}
+\label{Eq:I:43:28}
+J_x = -\tfrac{1}{3}mv^2\mu\,\ddt{n_a}{x}.
+\end{equation}
+But $mv^2$ depends only on the temperature. We recall that
+\begin{equation}
+\label{Eq:I:43:29}
+\tfrac{1}{2}mv^2 = \tfrac{3}{2}kT,
+\end{equation}
+so
+\begin{equation}
+\label{Eq:I:43:30}
+J_x = -\mu kT\,\ddt{n_a}{x}.
+\end{equation}
+We find that $D$, the <em class="emph">diffusion</em> coefficient, is just $kT$
+times $\mu$, the <em class="emph">mobility</em> coefficient:
+\begin{equation}
+\label{Eq:I:43:31}
+D = \mu kT.
+\end{equation}
+And it turns out that the numerical coefficient in (<a href="#mjx-eqn-EqI4331">43.31</a>)
+is exactly right—no extra factors have to be thrown in to adjust for
+our rough assumptions. We can show, in fact, that (<a href="#mjx-eqn-EqI4331">43.31</a>)
+must <em class="emph">always</em> be correct—even in complicated situations (for
+example, the case of a suspension in a liquid) where the details of
+our simple calculations would not apply at all.</p>
+</div>
+<div id="Ch43-S5-p10" class="para">
+<p class="p">To show that (<a href="#mjx-eqn-EqI4331">43.31</a>) must be correct in general, we shall
+derive it in a different way, using only our basic principles of
+statistical mechanics. Imagine a situation in which there is a
+gradient of “special” molecules, and we have a diffusion current
+proportional to the density gradient, according to
+Eq. (<a href="#mjx-eqn-EqI4326">43.26</a>). We now apply a force field in the $x$-direction,
+so that each special molecule feels the force $F$. According to the
+<em class="emph">definition</em> of the mobility $\mu$ there will be a drift velocity
+given by
+\begin{equation}
+\label{Eq:I:43:32}
+v_{\text{drift}} = \mu F.
+\end{equation}
+By our usual arguments, the <em class="emph">drift current</em> (the <em class="emph">net</em>
+number of molecules which pass a unit of area in a unit of time) will
+be
+\begin{equation}
+\label{Eq:I:43:33}
+J_{\text{drift}} = n_av_{\text{drift}},
+\end{equation}
+or
+\begin{equation}
+\label{Eq:I:43:34}
+J_{\text{drift}} = n_a\mu F.
+\end{equation}
+We now <em class="emph">adjust</em> the force $F$ so that the drift current due
+to $F$ just <em class="emph">balances</em> the diffusion, so that there is <em class="emph">no net
+flow</em> of our special molecules. We have $J_x + J_{\text{drift}} = 0$,
+or
+\begin{equation}
+\label{Eq:I:43:35}
+D\,\ddt{n_a}{x} = n_a\mu F.
+\end{equation}</p>
+</div>
+<div id="Ch43-S5-p11" class="para">
+<p class="p">Under the “balance” conditions we find a steady (with time) gradient
+of density given by
+\begin{equation}
+\label{Eq:I:43:36}
+\ddt{n_a}{x} = \frac{n_a\mu F}{D}.
+\end{equation}</p>
+</div>
+<div id="Ch43-S5-p12" class="para">
+<p class="p">But notice! We are describing an <em class="emph">equilibrium</em> condition, so our
+<em class="emph">equilibrium</em> laws of statistical mechanics apply. According to
+these laws the probability of finding a molecule at the coordinate $x$
+is proportional to $e^{-U/kT}$, where $U$ is the potential energy. In
+terms of the number density $n_a$, this means that
+\begin{equation}
+\label{Eq:I:43:37}
+n_a = n_0e^{-U/kT}.
+\end{equation}
+If we differentiate (<a href="#mjx-eqn-EqI4337">43.37</a>) with respect to $x$, we find
+\begin{equation}
+\label{Eq:I:43:38}
+\ddt{n_a}{x} = -n_0e^{-U/kT}\cdot\frac{1}{kT}\,\ddt{U}{x},
+\end{equation}
+or
+\begin{equation}
+\label{Eq:I:43:39}
+\ddt{n_a}{x} = -\frac{n_a}{kT}\,\ddt{U}{x}.
+\end{equation}
+In our situation, since the force $F$ is in the $x$-direction, the
+potential energy $U$ is just $-Fx$, and $-dU/dx = F$.
+Equation (<a href="#mjx-eqn-EqI4339">43.39</a>) then gives
+\begin{equation}
+\label{Eq:I:43:40}
+\ddt{n_a}{x} = \frac{n_aF}{kT}.
+\end{equation}
+[This is just exactly Eq. (<a href="I_40.html#mjx-eqn-EqI402">40.2</a>), from which we
+deduced $e^{-U/kT}$ in the first place, so we have come in a
+circle]. Comparing (<a href="#mjx-eqn-EqI4340">43.40</a>) with (<a href="#mjx-eqn-EqI4336">43.36</a>), we get
+exactly Eq. (<a href="#mjx-eqn-EqI4331">43.31</a>). We have shown that
+Eq. (<a href="#mjx-eqn-EqI4331">43.31</a>), which gives the diffusion current in terms of
+the mobility, has the correct coefficient and is very generally true.
+Mobility and diffusion are intimately connected. This relation was first
+deduced by Einstein.</p>
+</div>
+</div>
+<div id="Ch43-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">43–6</span>Thermal conductivity</h3>
+<div id="Ch43-S6-p1" class="para">
+<p class="p">The methods of the kinetic theory that we have been using above can be
+used also to compute the <em class="emph">thermal conductivity</em> of a gas. If the
+gas at the top of a container is hotter than the gas at the bottom,
+heat will flow from the top to the bottom.  (We think of the top being
+hotter because otherwise convection currents would be set up and the
+problem would no longer be one of heat <em class="emph">conduction</em>.) The
+transfer of heat from the hotter gas to the colder gas is by the
+diffusion of the “hot” molecules—those with more energy—downward
+and the diffusion of the “cold” molecules upward. To compute the
+flow of thermal energy we can ask about the energy carried downward
+across an element of area by the downward-moving molecules, and about
+the energy carried upward across the surface by the upward-moving
+molecules. The difference will give us the net downward flow of
+energy.</p>
+</div>
+<div id="Ch43-S6-p2" class="para">
+<p class="p">The thermal conductivity $\kappa$ is defined as the ratio of the rate
+at which thermal energy is carried across a unit surface area, to the
+temperature gradient:
+\begin{equation}
+\label{Eq:I:43:41}
+\frac{1}{A}\,\ddt{Q}{t} = -\kappa\,\ddt{T}{z}.
+\end{equation}
+Since the details of the calculations are quite similar to those we have
+done above in considering molecular diffusion, we shall leave it as an
+exercise for the reader to show that
+\begin{equation}
+\label{Eq:I:43:42}
+\kappa = \frac{knlv}{\gamma - 1},
+\end{equation}
+where $kT/(\gamma - 1)$ is the average energy of a molecule at the
+temperature $T$.</p>
+</div>
+<div id="Ch43-S6-p3" class="para">
+<p class="p">If we use our relation $nl\sigma_c = 1$, the heat conductivity can be
+written as
+\begin{equation}
+\label{Eq:I:43:43}
+\kappa = \frac{1}{\gamma - 1}\,\frac{kv}{\sigma_c}.
+\end{equation}</p>
+</div>
+<div id="Ch43-S6-p4" class="para">
+<p class="p">We have a rather surprising result. We know that the average velocity
+of gas molecules depends on the temperature but <em class="emph">not on the
+density</em>. We expect $\sigma_c$ to depend only on the <em class="emph">size</em> of
+the molecules. So our simple result says that the thermal
+conductivity $\kappa$ (and therefore the <em class="emph">rate</em> of flow of heat in any
+particular circumstance) is independent of the <em class="emph">density</em> of the
+gas! The change in the number of “carriers” of energy with a change
+in density is just compensated by the larger distance the “carriers”
+can go between collisions.</p>
+</div>
+<div id="Ch43-S6-p5" class="para">
+<p class="p">One may ask: “Is the heat flow independent of the gas density in the
+limit as the density goes to zero? When there is no gas at all?”
+Certainly not! The formula (<a href="#mjx-eqn-EqI4343">43.43</a>) was derived, as were all
+the others in this chapter, under the assumption that the mean free
+path between collisions is much smaller than any of the dimensions of
+the container. Whenever the gas density is so low that a molecule has
+a fair chance of crossing from one wall of its container to the other
+without having a collision, none of the calculations of this chapter
+apply. We must in such cases go back to kinetic theory and calculate
+again the details of what will occur.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

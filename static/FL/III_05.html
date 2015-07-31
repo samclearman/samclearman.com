@@ -1,0 +1,1950 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 5: Spin One</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "5." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div style="display: none;" >
+\begin{equation*}
+\newcommand \SG[1]
+  {
+    \begin{array}{c} 
+	\left\{ \!\!
+	\begin{array}{c}
+	+\\
+	0\\
+	-\\
+	\end{array}
+    \;\right\} &\\
+	#1
+	\end{array}   
+  }
+  \newcommand \SGP[1]
+  {
+    \begin{array}{c}
+	\left\{ \!\!
+	\begin{array}{ll}
+	\begin{array}{c}
+	+\\
+    \begin{array}{c}
+	0\\
+	-\\
+    \end{array}
+	\end{array} &
+	\kern{-1em}
+	\begin{array}{l}
+	\\
+ 	 \Rule{0.3em}{1.5em}{0.9em}
+ 	\end{array}
+	\end{array}
+	\!\!\right\} &\\
+	#1
+	\end{array}   
+  }
+  \newcommand \SGZ[1]
+  {
+    \begin{array}{c} 
+	\left\{ \!\!
+	\begin{array}{ll}
+	\begin{array}{c}
+	+\\
+	0\\
+	-\\
+	\end{array} &
+	\kern{-1em}
+	\begin{array}{l}
+	\Rule{0.3em}{0.8em}{0.2em} &\\
+	\\
+	\Rule{0.3em}{0.8em}{0.2em}
+	\end{array}
+	\end{array}
+	\!\!\!\!\!\!\!\right\} &\\
+	#1
+	\end{array}   
+  }
+  \newcommand \SGM[1]
+  {
+    \begin{array}{c} 
+	\left\{ \!\!
+	\begin{array}{ll}
+	\begin{array}{c}
+    \begin{array}{c}
+	+\\
+	0\\
+    \end{array}\\
+	-\\
+	\end{array} &
+	\kern{-1em}
+	\begin{array}{l}
+	\Rule{0.3em}{0.9em}{1.5em}\\
+	\\
+	\end{array}
+	\end{array}
+	\!\!\right\} &\\
+	#1
+	\end{array}   
+  } 
+  \newcommand \APPARAT[1]
+  {
+	\begin{array}{c} 
+	\left\{ \!\!
+		\begin{array}{c}
+		 \vphantom {\raise 3pt {+}}  &\\
+		#1 &\\
+	    \vphantom {\lower 6pt {-}}  &
+		\end{array}
+	\kern{-12pt} \right\} &\\
+	\vphantom S
+	\end{array}   
+  }
+\end{equation*}
+</div>
+<div id="Ch5" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">5</span>Spin One</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Review:</i>
+		</td>
+		<td>	
+		Chapter&nbsp;<a href="II_35.html">35</a>, Vol. II, <i>Paramagnetism and Magnetic Resonance</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch5-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">5–1</span>Filtering atoms with a Stern-Gerlach apparatus</h3>
+
+<div id="Ch5-S1-p1" class="para">
+<p class="p">In this chapter we really begin the quantum mechanics proper—in the
+sense that we are going to describe a quantum mechanical phenomenon in
+a completely quantum mechanical way. We will make no apologies and no
+attempt to find connections to classical mechanics. We want to talk
+about something new in a new language. The particular situation which
+we are going to describe is the behavior of the so-called quantization
+of the angular momentum, for a particle of <em class="emph">spin one</em>. But we
+won’t use words like “angular momentum” or other concepts of
+classical mechanics until later. We have chosen this particular
+example because it is relatively simple, although not the simplest
+possible example. It is sufficiently complicated that it can stand as
+a prototype which can be generalized for the description of all
+quantum mechanical phenomena. Thus, although we are dealing with a
+particular example, all the laws which we mention are immediately
+generalizable, and we will give the generalizations so that you will
+see the general characteristics of a quantum mechanical
+description. We begin with the phenomenon of the splitting of a beam
+of atoms into three separate beams in a Stern-Gerlach experiment.</p>
+</div>
+<div id="Ch5-S1-p2" class="para">
+<p class="p">You remember that if we have an inhomogeneous magnetic field made by a
+magnet with a pointed pole tip and we send a beam through the
+apparatus, the beam of particles may be split into a number of
+beams—the number depending on the particular kind of atom and its
+state. We are going to take the case of an atom which gives three
+beams, and we are going to call that a particle of <em class="emph">spin
+one</em>. You can do for yourself the case of five beams, seven beams, two
+beams, etc.—you just copy everything down and where we have three
+terms, you will have five terms, seven terms, and so on.</p>
+</div>
+<div id="Ch5-F1" class="figure">
+<img src="img/FLP_III/f05-01/f05-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–1.</span>In a Stern-Gerlach experiment, atoms of spin one are split into
+three beams.
+</div>
+</div>
+<div id="Ch5-S1-p3" class="para">
+<p class="p">Imagine the apparatus drawn schematically in Fig. <a href="#Ch5-F1">5–1</a>. A
+beam of atoms (or particles of any kind) is collimated by some slits and
+passes through a nonuniform field. Let’s say that the beam moves in the
+$y$-direction and that the magnetic field and its gradient are both in
+the $z$-direction. Then, looking from the side, we will see the beam
+split vertically into three beams, as shown in the figure. Now at the
+output end of the magnet we could put small counters which count the
+rate of arrival of particles in any one of the three beams. Or we can
+block off two of the beams and let the third one go on.</p>
+</div>
+<div id="Ch5-S1-p4" class="para">
+<p class="p">Suppose we block off the lower two beams and let the top-most beam go
+on and enter a second Stern-Gerlach apparatus of the same kind, as
+shown in Fig. <a href="#Ch5-F2">5–2</a>. What happens? There are <em class="emph">not</em>
+three beams in the second apparatus; there is only the top
+beam.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> This is what you would expect if you think of the second
+apparatus as simply an extension of the first. Those atoms which are
+being pushed upward continue to be pushed upward in the second magnet.</p>
+</div>
+<div id="Ch5-F2" class="figure">
+<img src="img/FLP_III/f05-02/f05-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–2.</span>The atoms from one of the beams are sent into a second
+identical apparatus.
+</div>
+</div>
+<div id="Ch5-S1-p5" class="para">
+<p class="p">You can see then that the first apparatus has produced a beam of
+“purified” objects—atoms that get bent upward in the particular
+inhomogeneous field. The atoms, as they enter the original
+Stern-Gerlach apparatus, are of three “varieties,” and the three
+kinds take different trajectories. By filtering out all but one of the
+varieties, we can make a beam whose future behavior in the same kind
+of apparatus is determined and predictable. We will call this a
+<em class="emph">filtered</em> beam, or a <em class="emph">polarized</em> beam, or a beam in which
+the atoms all are known to be in a <em class="emph">definite state</em>.</p>
+</div>
+<div id="Ch5-S1-p6" class="para">
+<p class="p">For the rest of our discussion, it will be more convenient if we
+consider a somewhat modified apparatus of the Stern-Gerlach type. The
+apparatus looks more complicated at first, but it will make all the
+arguments simpler. Anyway, since they are only “thought
+experiments,” it doesn’t cost anything to complicate the
+equipment. (Incidentally, no one has ever done all of the experiments
+we will describe in just this way, but we know what <em class="emph">would</em>
+happen from the laws of quantum mechanics, which are, of course, based
+on other similar experiments. These other experiments are harder to
+understand at the beginning, so we want to describe some
+idealized—but possible—experiments.)
+</p>
+</div>
+<div id="Ch5-F3" class="figure">
+<img src="img/FLP_III/f05-03/f05-03_tc.svgz"><div class="caption">
+<span class="tag">Fig. 5–3.</span>(a) An imagined modification of a Stern-Gerlach apparatus.
+(b) The paths of spin-one atoms.
+</div>
+</div>
+<div id="Ch5-S1-p7" class="para">
+<p class="p">Figure <a href="#Ch5-F3">5–3</a>(a) shows a drawing of the “modified
+Stern-Gerlach apparatus” we would like to use. It consists of a
+sequence of three high-gradient magnets. The first one (on the left) is
+just the usual Stern-Gerlach magnet and splits the incoming beam of
+spin-one particles into three separate beams. The second magnet has the
+same cross section as the first, but is twice as long <em class="emph">and</em> the
+polarity of its magnetic field is opposite the field in magnet $1$. The
+second magnet pushes in the opposite direction on the atomic magnets and
+bends their paths back toward the axis, as shown in the trajectories
+drawn in the lower part of the figure. The third magnet is just like the
+first, and brings the three beams back together again, so that leaves
+the exit hole along the axis. Finally, we would like to imagine that in
+front of the hole at $A$ there is some mechanism which can get the atoms
+started from rest and that after the exit hole at $B$ there is a
+decelerating mechanism that brings the atoms back to rest at $B$. That
+is not essential, but it will mean that in our analysis we won’t have to
+worry about including any effects of the motion as the atoms come out,
+and can concentrate on those matters having only to do with the spin.
+The whole purpose of the “improved” apparatus is just to bring all the
+particles to the same place, and with zero speed.</p>
+</div>
+<div id="Ch5-S1-p8" class="para">
+<p class="p">Now if we want to do an experiment like the one in
+Fig. <a href="#Ch5-F2">5–2</a>, we can first make a filtered beam by putting a
+plate in the middle of the apparatus that blocks two of the beams, as
+shown in Fig. <a href="#Ch5-F4">5–4</a>. If we now put the polarized atoms
+through a second identical apparatus, all the atoms will take the upper
+path, as can be verified by putting similar plates in the way of the
+various beams of the second $S$ filter and seeing whether particles get
+through.</p>
+</div>
+<div id="Ch5-F4" class="figure">
+<img src="img/FLP_III/f05-04/f05-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–4.</span>The “improved” Stern-Gerlach apparatus as a filter.
+</div>
+</div>
+<div id="Ch5-S1-p9" class="para">
+<p class="p">Suppose we call the first apparatus by the name $S$. (We are going to
+consider all sorts of combinations, and we will need labels to keep
+things straight.) We will say that the atoms which take the top path
+in $S$ are in the “plus state with respect to $S$”; the ones which
+take the middle path are in the “zero state with respect to $S$”;
+and the ones which take the lowest path are in the “minus state with
+respect to $S$.” (In the more usual language we would say that the
+$z$-component of the angular momentum was $+1\hbar$, $0$,
+and $-1\hbar$, but we are not using that language now.) Now in
+Fig. <a href="#Ch5-F4">5–4</a> the second apparatus is oriented just like the
+first, so the filtered atoms will all go on the upper path. Or if we had
+blocked off the upper and lower beams in the first apparatus and let
+only the zero state through, all the filtered atoms would go through the
+middle path of the second apparatus. And if we had blocked off all but
+the lowest beam in the first, there would be only a low beam in the
+second. We can say that in each case our first apparatus has produced a
+filtered beam in a <em class="emph">pure</em> state with respect to $S$ ($+$, $0$,
+or $-$), and we can test which state is present by putting the atoms
+through a second, identical apparatus.</p>
+</div>
+<div id="Ch5-S1-p10" class="para">
+<p class="p">We can make our second apparatus so that it transmits only atoms of a
+particular state—by putting masks inside it as we did for the first
+one—and then we can test the state of the incoming beam just by
+seeing whether anything comes out the far end. For instance, if we
+block off the two lower paths in the second apparatus, $100$ percent
+of the atoms will still come through; but if we block off the upper
+path, nothing will get through.</p>
+</div>
+<div id="Ch5-S1-p11" class="para">
+<p class="p">To make this kind of discussion easier, we are going to invent a
+shorthand symbol to represent one of our improved Stern-Gerlach
+apparatuses. We will let the symbol
+\begin{equation}
+\label{Eq:III:5:1}
+\SG{S}
+\end{equation}
+
+stand for one complete apparatus. (This is <em class="emph">not</em> a symbol you
+will ever find used in quantum mechanics; we’ve just invented it for
+this chapter. It is simply meant to be a shorthand picture of the
+apparatus of Fig. <a href="#Ch5-F3">5–3</a>.) Since we are going to want to
+use several apparatuses at once, and with various orientations, we will
+identify each with a letter underneath. So the symbol
+in (<a href="#mjx-eqn-EqIII51">5.1</a>) stands for the apparatus $S$. When we block off
+one or more of the beams inside, we will show that by some vertical bars
+indicating which beam is blocked, like this:
+\begin{equation}
+\label{Eq:III:5:2}
+\SGP{S}\!\!\!\cdotp
+\end{equation}
+
+The various possible combinations we will be using are shown in
+Fig. <a href="#Ch5-F5">5–5</a>.</p>
+</div>
+<div id="Ch5-F5" class="figure">
+<img class="first" src="img/FLP_III/f05-05/f05-05_tc_big_a.svgz"><img class="middle" src="img/FLP_III/f05-05/f05-05_tc_big_b.svgz"><img class="middle" src="img/FLP_III/f05-05/f05-05_tc_big_c.svgz"><img class="last" src="img/FLP_III/f05-05/f05-05_tc_big_d.svgz"><div class="caption">
+<span class="tag">Fig. 5–5.</span>Special shorthand symbols for Stern-Gerlach type filters.
+</div>
+</div>
+<div id="Ch5-S1-p12" class="para">
+<p class="p">If we have two filters in succession (as in Fig. <a href="#Ch5-F4">5–4</a>), we
+will put the two symbols next to each other, like this:
+\begin{equation}
+\label{Eq:III:5:3}
+\SGP{S} \!\! \SG{S} \!\!\!\cdotp
+\end{equation}
+
+For this setup, everything that comes through the first also gets
+through the second. In fact, even if we block off the “zero” and
+“minus” channels of the second apparatus, so that we have
+
+\begin{equation}
+\label{Eq:III:5:4}
+\SGP{S} \!\! \SGP{S} \!\!\!,
+\end{equation}
+
+we still get $100$ percent transmission through the second
+apparatus. On the other hand, if we have
+
+\begin{equation}
+\label{Eq:III:5:5}
+\SGP{S} \!\! \SGM{S} \!\!\!,
+\end{equation}
+
+nothing at all comes out of the far end. Similarly,
+
+\begin{equation}
+\label{Eq:III:5:6}
+\SGM{S} \!\! \SGP{S}
+\end{equation}
+
+would give nothing out. On the other hand,
+
+\begin{equation}
+\label{Eq:III:5:7}
+\begin{array}{cc}
+\SGM{S} \!\! \SGM{S}
+\end{array}
+\end{equation}
+
+would be just equivalent to
+
+\begin{equation*}
+\SGM{S}
+\end{equation*}
+
+by itself.</p>
+</div>
+<div id="Ch5-S1-p13" class="para">
+<p class="p">Now we want to describe these experiments quantum mechanically. We
+will say that an atom is in the $(+S)$ state if it has gone through
+the apparatus of Fig. <a href="#Ch5-F5">5–5</a>(b), that it is in a
+$(\OS)$ state if it has gone through (c), and in a $(-S)$ state if it has gone
+through (d).<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a> Then we let $\braket{b}{a}$ be the
+<em class="emph">amplitude</em> that an atom which is in state $a$ will get through an
+apparatus into the $b$ state. We can say: $\braket{b}{a}$ is the
+amplitude for an atom <em class="emph">in</em> the state $a$ to <em class="emph">get into</em> the
+state $b$. The experiment (<a href="#mjx-eqn-EqIII54">5.4</a>) gives us that
+\begin{equation*}
+\braket{+S}{+S}=1,
+\end{equation*}
+
+whereas (<a href="#mjx-eqn-EqIII55">5.5</a>) gives us
+\begin{equation*}
+\braket{-S}{+S}=0.
+\end{equation*}
+
+Similarly, the result of (<a href="#mjx-eqn-EqIII56">5.6</a>) is
+\begin{equation*}
+\braket{+S}{-S}=0,
+\end{equation*}
+
+and of (<a href="#mjx-eqn-EqIII57">5.7</a>) is
+\begin{equation*}
+\braket{-S}{-S}=1.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch5-S1-p14" class="para">
+<p class="p">As long as we deal only with “pure” states—that is, we have only
+one channel open—there are nine such amplitudes, and we can write
+them in a table:
+\begin{equation}
+\label{Eq:III:5:8}
+\text{to}\,
+\begin{array}{c}
+\begin{array}{c}
+    \text{from}
+\end{array}  \\[-.5ex]
+\begin{array}{c|ccc}
+&+S & 0S & -S  \\
+   \hline
++S&1 & 0 & 0\\
+0S&0 & 1 & 0\\
+-S&0 & 0 & 1
+\end{array}
+\end{array}
+\end{equation}
+
+This array of nine numbers—called a
+<em class="emph">matrix</em>—summarizes the phenomena we’ve been
+describing.</p>
+</div>
+</div>
+<div id="Ch5-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">5–2</span>Experiments with filtered atoms</h3>
+<div id="Ch5-F6" class="figure">
+<img src="img/FLP_III/f05-06/f05-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 5–6.</span>Two Stern-Gerlach type filters in series; the second is tilted
+at the angle $\alpha$ with respect to the first.
+</div>
+</div>
+<div id="Ch5-S2-p1" class="para">
+<p class="p">Now comes the big question: What happens if the second apparatus is
+tipped to a different angle, so that its field axis is no longer
+parallel to the first? It could be not only tipped, but also pointed
+in a different direction—for instance, it could take the beam off
+at $90^\circ$ with respect to the original direction. To take it easy at
+first, let’s first think about an arrangement in which the second
+Stern-Gerlach experiment is tilted by some angle $\alpha$ about the
+$y$-axis, as shown in Fig. <a href="#Ch5-F6">5–6</a>. We’ll call the second
+apparatus $T$. Suppose that we now set up the following experiment:
+\begin{equation*}
+\SGP{S} \!\! \SGP{T} \!\!\!\!,
+\end{equation*}
+
+or the experiment:
+
+\begin{equation*}
+\SGP{S} \!\! \SGZ{T} \!\!\!\!\cdotp
+\end{equation*}
+
+What comes out at the far end in these cases?</p>
+</div>
+<div id="Ch5-S2-p2" class="para">
+<p class="p">The answer is this: If the atoms are in a definite state with respect
+to $S$, they are <em class="emph">not</em> in the same state with respect to $T$—a
+$(+S)$ state is <em class="emph">not</em> also a $(+T)$ state. There <em class="emph">is</em>,
+however, a certain <em class="emph">amplitude</em> to find the atom in a
+$(+T)$ state—or a $(\OT)$ state or a $(-T)$ state.</p>
+</div>
+<div id="Ch5-S2-p3" class="para">
+<p class="p">In other words, as careful as we have been to make sure that we have
+the atoms in a definite condition, the fact of the matter is that if
+it goes through an apparatus which is tilted at a different angle it
+has, so to speak, to “reorient” itself—which it does, don’t
+forget, by luck. We can put only one particle through at a time, and
+then we can only ask the question: What is the probability that it
+gets through? Some of the atoms that have gone through $S$ will end in
+a $(+T)$ state, some of them will end in a $(\OT)$, and some in a
+$(-T)$ state—all with different odds. These odds can be calculated
+by the absolute squares of complex amplitudes; what we want is some
+mathematical method, or quantum mechanical description, for these
+amplitudes. What we need to know are various quantities like
+\begin{equation*}
+\braket{-T}{+S},
+\end{equation*}
+
+by which we mean the amplitude that an atom initially in the
+$(+S)$ state can get into the $(-T)$ condition (which is <em class="emph">not</em> zero
+unless $T$ and $S$ are lined up parallel to each other). There are
+other amplitudes like
+\begin{equation*}
+\braket{+T}{\OS},\quad
+\text{or}\quad
+\braket{\OT}{-S},\quad
+\text{etc}.
+\end{equation*}
+
+There are, in fact, nine such amplitudes—another matrix—that a
+theory of particles should tell us how to calculate. Just as $F=ma$
+tells us how to calculate what happens to a classical particle in any
+circumstance, the laws of quantum mechanics permit us to determine the
+amplitude that a particle will get through a particular apparatus. The
+central problem, then, is to be able to calculate—for any given tilt
+angle $\alpha$, or in fact for any orientation whatever—the nine
+amplitudes:
+\begin{equation}
+\label{Eq:III:5:9}
+\begin{alignedat}{3}
+\braket{+T}{+S}&,&\quad
+\braket{+T}{\OS}&,&\quad
+\braket{+T}{-S}&,\\
+\braket{\OT}{+S}&,&\quad
+\braket{\OT}{\OS}&,&\quad
+\braket{\OT}{-S}&,\\
+\braket{-T}{+S}&,&\quad
+\braket{-T}{\OS}&,&\quad
+\braket{-T}{-S}&.
+\end{alignedat}
+\end{equation}
+</p>
+</div>
+<div id="Ch5-S2-p4" class="para">
+<p class="p">We can already figure out some relations among these
+amplitudes. First, according to our definitions, the absolute square
+\begin{equation*}
+\abs{\braket{+T}{+S}}^2
+\end{equation*}
+
+is the <em class="emph">probability</em> that an atom in a $(+S)$ state will enter a
+$(+T)$ state. We will often find it more convenient to write such
+squares in the equivalent form
+\begin{equation*}
+\braket{+T}{+S}\braket{+T}{+S}\cconj.
+\end{equation*}
+
+In the same notation the number
+\begin{equation*}
+\braket{\OT}{+S}\braket{\OT}{+S}\cconj
+\end{equation*}
+
+is the probability that a particle in the $(+S)$ state will enter the
+$(\OT)$ state, and
+\begin{equation*}
+\braket{-T}{+S}\braket{-T}{+S}\cconj
+\end{equation*}
+
+is the probability that it will enter the $(-T)$ state. But the way
+our apparatuses are made, every atom which enters the $T$ apparatus
+must be found in <em class="emph">some</em> one of the three states of the
+$T$ apparatus—there’s nowhere else for a given kind of atom to go. So
+the sum of the three probabilities we’ve just written must be equal to
+$100$ percent. We have the relation
+\begin{equation}
+\begin{alignedat}{3}
+&\braket{+T}{+S}&\braket{+T}{+S}&\cconj\;&+&\\[.2ex]
+&\braket{\OT}{+S}&\,\braket{\OT}{+S}&\cconj&+&\\[.2ex]
+&\braket{-T}{+S}&\braket{-T}{+S}&\cconj&=&\;1.
+\end{alignedat}
+\label{Eq:III:5:10}
+\end{equation}
+
+There are, of course, two other such equations that we get if we start
+with a $(\OS)$ or a $(-S)$ state. But they are all we can easily get,
+so we’ll go on to some other general questions.</p>
+</div>
+</div>
+<div id="Ch5-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">5–3</span>Stern-Gerlach filters in series</h3>
+<div id="Ch5-S3-p1" class="para">
+<p class="p">Here is an interesting question: Suppose we had atoms filtered into
+the $(+S)$ state, then we put them through a second filter, say into a
+$(\OT)$ state, and <em class="emph">then</em> through <em class="emph">another</em> $+S$ filter.
+(We’ll call the last filter $S'$ just so we can distinguish it
+from the first $S$-filter.) Do the atoms remember that they were once
+in a $(+S)$ state? In other words, we have the following experiment:
+\begin{equation}
+\label{Eq:III:5:11}
+\SGP{S} \!\! \SGZ{T} \!\! \SGP{S'}\!\!\!\!\cdotp
+\end{equation}
+
+We want to know whether all those that get through $T$ also get
+through $S'$. <em class="emph">They do not</em>. Once they have been filtered by $T$,
+they <em class="emph">do not remember</em> in any way that they were in a
+$(+S)$ state when they entered $T$. Note that the second $S$ apparatus
+in (<a href="#mjx-eqn-EqIII511">5.11</a>) is oriented exactly the same as the first, so it
+is still an $S$-type filter. The states filtered by $S'$ are, of course,
+still $(+S)$, $(\OS)$, and $(-S)$.</p>
+</div>
+<div id="Ch5-S3-p2" class="para">
+<p class="p">The important point is this: <em class="emph">If the $T$ filter passes only one
+beam</em>, the <em class="emph">fraction</em> that gets through the second $S$ filter
+depends only on the setup of the $T$ filter, and is completely
+independent of what precedes it. The fact that the same atoms were
+once sorted by an $S$ filter has no influence whatever on what they
+will do once they have been sorted again into a pure beam by a
+$T$ apparatus. From then on, the probability for getting into different
+states is the same no matter what happened before they got into the
+$T$ apparatus.
+</p>
+</div>
+<div id="Ch5-S3-p3" class="para">
+<p class="p">As an example, let’s compare the experiment of (<a href="#mjx-eqn-EqIII511">5.11</a>)
+with the following experiment:
+\begin{equation}
+\label{Eq:III:5:12}
+\SGZ{S} \!\! \SGZ{T} \!\! \SGP{S'}
+\end{equation}
+
+in which only the first $S$ is changed. Let’s say that the
+angle $\alpha$ (between $S$ and $T$) is such that in
+experiment (<a href="#mjx-eqn-EqIII511">5.11</a>) one-third of the atoms that get
+through $T$ also get through $S'$. In experiment (<a href="#mjx-eqn-EqIII512">5.12</a>), although
+there will, in general, be a different number of atoms coming through $T$,
+the <em class="emph">same fraction of these</em>—one-third—will also get through $S'$.</p>
+</div>
+<div id="Ch5-S3-p4" class="para">
+<p class="p">We can, in fact, show from what you have learned earlier that the
+fraction of the atoms that come out of $T$ and get through any
+particular $S'$ depends only on $T$ and $S'$, not on anything that
+happened earlier. Let’s compare experiment (<a href="#mjx-eqn-EqIII512">5.12</a>) with
+\begin{equation}
+\label{Eq:III:5:13}
+\SGZ{S} \!\! \SGZ{T} \!\! \SGZ{S'}\!\!\!\!.
+\end{equation}
+
+The amplitude that an atom that comes out of $S$ will also get through
+both $T$ and $S'$ is, for the experiments of (<a href="#mjx-eqn-EqIII512">5.12</a>),
+\begin{equation*}
+\braket{+S}{\OT}\braket{\OT}{\OS}.
+\end{equation*}
+
+The corresponding probability is
+\begin{equation*}
+\abs{\braket{+S}{\OT}\braket{\OT}{\OS}}^2
+=\abs{\braket{+S}{\OT}}^2\abs{\braket{\OT}{\OS}}^2.
+\end{equation*}
+
+The probability for experiment (<a href="#mjx-eqn-EqIII513">5.13</a>) is
+\begin{equation*}
+\abs{\braket{\OS}{\OT}\braket{\OT}{\OS}}^2
+=\abs{\braket{\OS}{\OT}}^2\abs{\braket{\OT}{\OS}}^2.
+\end{equation*}
+
+The ratio is
+\begin{equation*}
+\frac{\abs{\braket{\OS}{\OT}}^2}
+{\abs{\braket{+S}{\OT}}^2}.
+\end{equation*}
+
+and depends only on $T$ and $S'$, and not at all on which beam $(+S)$, $(\OS)$,
+or $(-S)$ is selected by $S$. (The absolute numbers may go
+up and down together depending on how much gets through $T$.) We
+would, of course, find the same result if we compared the
+probabilities that the atoms would go into the plus or the minus
+states with respect to $S'$, or the ratio of the probabilities to go
+into the zero or minus states.</p>
+</div>
+<div id="Ch5-S3-p5" class="para">
+<p class="p">In fact, since these ratios depend only on which beam is allowed to
+pass through $T$, and not on the selection made by the first $S$ filter,
+it is clear that we would get the same result even if the last
+apparatus were not an $S$ filter. If we use for the third
+apparatus—which we will now call $R$—one rotated by some arbitrary
+angle with respect to $T$, we would find that a ratio such
+as $\abs{\braket{\OR}{\OT}}^2/\abs{\braket{+R}{\OT}}^2$ was
+independent of which beam was passed by the first filter $S$.</p>
+</div>
+</div>
+<div id="Ch5-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">5–4</span>Base states</h3>
+<div id="Ch5-S4-p1" class="para">
+<p class="p">These results illustrate one of the basic principles of quantum
+mechanics: Any atomic system can be separated by a filtering process
+into a certain set of what we will call <em class="emph">base states</em>, and the
+future behavior of the atoms in any single given base state depends
+only on the nature of the base state—it is independent of any
+previous history.<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a> The base
+states depend, of course, on the filter used; for instance, the three
+states $(+T)$, $(\OT)$, and $(-T)$ are one set of base states; the
+three states $(+S)$, $(\OS)$, and $(-S)$ are another. There are any
+number of possibilities each as good as any other.</p>
+</div>
+<div id="Ch5-S4-p2" class="para">
+<p class="p">We should be careful to say that we are considering <em class="emph">good</em>
+filters which do indeed produce “pure” beams. If, for instance, our
+Stern-Gerlach apparatus didn’t produce a good separation of the three
+beams so that we could not separate them cleanly by our masks, then we
+could not make a complete separation into base states. We can tell if
+we have pure base states by seeing whether or not the beams can be
+split again in another filter of the same kind. If we have a pure
+$(+T)$ state, for instance, all the atoms will go through
+
+\begin{equation*}
+\SGP{T}\!\!\!\!,
+\end{equation*}
+
+and none will go through
+
+\begin{equation*}
+\SGZ{T}\!\!\!\!,
+\end{equation*}
+
+or through
+
+\begin{equation*}
+\SGM{T}\!\!\!\!\cdotp
+\end{equation*}
+
+Our statement about base states means that it is <em class="emph">possible</em> to
+filter to some pure state, so that no further filtering by an
+identical apparatus is possible.</p>
+</div>
+<div id="Ch5-S4-p3" class="para">
+<p class="p">We must also point out that what we are saying is exactly true only in
+rather idealized situations. In any real Stern-Gerlach apparatus, we
+would have to worry about diffraction by the slits that could cause
+some atoms to go into states corresponding to different angles, or
+about whether the beams might contain atoms with different excitations
+of their internal states, and so on. We have idealized the situation
+so that we are talking only about the states that are split in a
+magnetic field; we are ignoring things having to do with position,
+momentum, internal excitations, and the like. In general, one would
+need to consider also base states which are sorted out with respect to
+such things also. But to keep the concepts simple, we are considering
+only our set of three states, which is sufficient for the exact
+treatment of the idealized situation in which the atoms don’t get torn
+up in going through the apparatus, or otherwise badly treated, and
+come to rest when they leave the apparatus.</p>
+</div>
+<div id="Ch5-S4-p4" class="para">
+<p class="p">You will note that we always begin our thought experiments by taking a
+filter with only one channel open, so that we start with some definite
+base state. We do this because atoms come out of a furnace in various
+states determined at random by the accidental happenings inside the
+furnace. (It gives what is called an “unpolarized” beam.) This
+randomness involves probabilities of the “classical” kind—as in
+coin tossing—which are different from the quantum mechanical
+probabilities we are worrying about now. Dealing with an unpolarized
+beam would get us into additional complications that are better to
+avoid until after we understand the behavior of polarized beams. So
+don’t try to consider at this point what happens if the <em class="emph">first</em>
+apparatus lets more than one beam through. (We will tell you how you
+can handle such cases at the end of the chapter.)</p>
+</div>
+<div id="Ch5-S4-p5" class="para">
+<p class="p">Let’s now go back and see what happens when we go from a base state
+for one filter to a base state for a different filter. Suppose we
+start again with
+\begin{equation*}
+\SGP{S} \!\! \SGZ{T}\!\!\!\!\cdotp
+\end{equation*}
+
+The atoms which come out of $T$ are in the base state $(\OT)$ and
+have no memory that they were once in the state $(+S)$. Some people
+would say that in the filtering by $T$ we have “lost the
+information” about the previous state $(+S)$ because we have
+“disturbed” the atoms when we separated them into three beams in the
+apparatus $T$. But that is not true. The past information is not lost
+by the <em class="emph">separation</em> into three beams, but by the <em class="emph">blocking
+masks</em> that are put in—as we can see by the following set of
+experiments.</p>
+</div>
+<div id="Ch5-S4-p6" class="para">
+<p class="p">We start with a $+S$ filter and will call $N$ the number of atoms that
+come through it. If we follow this by a $\OT$ filter, the number of
+atoms that come out is some fraction of the original number,
+say $\alpha N$. If we then put another $+S$ filter, only some
+fraction $\beta$ of these atoms will get to the far end. We can indicate this
+in the following way:
+
+\begin{equation}
+\label{Eq:III:5:14}
+\SGP{S}  
+\kern{-12pt} \raise{7pt} {\overset{N}{\longrightarrow}}\!
+\SGZ{T}  
+\kern{-12pt} \raise{7pt} {\overset{\alpha N}{\longrightarrow}}\!
+\SGP{S'} 
+\kern{-12pt} \raise{7pt} {\overset{\beta \alpha N}{\longrightarrow .}}
+\end{equation}
+
+If our third apparatus $S'$ selected a different state, say the
+$(\OS)$ state, a different fraction, say $\gamma$, would get
+through.<a name="footnote_source_4" href="#footnote_4"><sup class="mark">4</sup></a> We would have
+\begin{equation}
+\label{Eq:III:5:15}
+\SGP{S}  
+\kern{-12pt} \raise{7pt} {\overset{N}{\longrightarrow}}\!
+\SGZ{T}  
+\kern{-12pt} \raise{7pt} {\overset{\alpha N}{\longrightarrow}}\!
+\SGZ{S'} 
+\kern{-12pt} \raise{7pt} {\overset{\gamma \alpha N}{\longrightarrow .}}
+\end{equation}
+
+Now suppose we repeat these two experiments but remove all the masks
+from $T$. We would then find the remarkable results as follows:
+\begin{equation}
+\label{Eq:III:5:16}
+\SGP{S}  
+\kern{-12pt} \raise{7pt} {\overset{N}{\longrightarrow}}\!
+\SG{T}  
+\kern{-12pt} \raise{7pt} {\overset{N}{\longrightarrow}}\!
+\SGP{S'} 
+\kern{-12pt} \raise{7pt} {\overset{N}{\longrightarrow ,}}
+\end{equation}
+
+\begin{equation}
+\label{Eq:III:5:17}
+\SGP{S}  
+\kern{-12pt} \raise{7pt} {\overset{N}{\longrightarrow}}\!
+\SG{T}  
+\kern{-12pt} \raise{7pt} {\overset{N}{\longrightarrow}}\!
+\SGZ{S'} 
+\kern{-12pt} \raise{7pt} {\overset{0}{\longrightarrow .}}
+\end{equation}
+
+<em class="emph">All</em> the atoms get through $S'$ in the first case, but
+<em class="emph">none</em> in the second case! This is one of the great laws of
+quantum mechanics. That nature works this way is not self-evident, but
+the results we have given correspond for our idealized situation to
+the quantum mechanical behavior observed in innumerable experiments.</p>
+</div>
+</div>
+<div id="Ch5-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">5–5</span>Interfering amplitudes</h3>
+<div id="Ch5-S5-p1" class="para">
+<p class="p">How can it be that in going from (<a href="#mjx-eqn-EqIII515">5.15</a>)
+to (<a href="#mjx-eqn-EqIII517">5.17</a>)—by <em class="emph">opening more channels</em>—we let
+<em class="emph">fewer</em> atoms through? This is the old, deep mystery of quantum
+mechanics—the interference of amplitudes. It’s the same kind of thing
+we first saw in the two-slit interference experiment with electrons. We
+saw that we could get fewer electrons at some places with both slits
+open than we got with one slit open. It works quantitatively this way.
+We can write the amplitude that an atom will get through $T$ and $S'$ in
+the apparatus of (<a href="#mjx-eqn-EqIII517">5.17</a>) as the sum of three amplitudes, one
+for each of the three beams in $T$; the sum is equal to zero:
+\begin{equation}
+\begin{alignedat}{3}
+&\braket{\OS}{+T}&\braket{+T}{+S}&\;&+&\\[.2ex]
+&\braket{\OS}{\OT}&\,\braket{\OT}{+S}&&+&\\[.2ex]
+&\braket{\OS}{-T}&\braket{-T}{+S}&&=&\;0.
+\end{alignedat}
+\label{Eq:III:5:18}
+\end{equation}
+None of the three individual amplitudes is zero—for example, the
+absolute square of the second amplitude is $\gamma\alpha$,
+see (<a href="#mjx-eqn-EqIII515">5.15</a>)—but the <em class="emph">sum is zero</em>. We would have also
+the same answer if $S'$ were set to select the $(-S)$ state. However, in
+the setup of (<a href="#mjx-eqn-EqIII516">5.16</a>), the answer is different. If we call
+$a$ the amplitude to get through $T$ and $S'$, in this case we
+have<a name="footnote_source_5" href="#footnote_5"><sup class="mark">5</sup></a>
+\begin{equation}
+\begin{alignedat}{3}
+a\;=\;&\braket{+S}{+T}&\braket{+T}{+S}&\;&+&\\[.2ex]
+&\braket{+S}{\OT}&\,\braket{\OT}{+S}&&+&\\[.2ex]
+&\braket{+S}{-T}&\braket{-T}{+S}&&=&\;1.
+\end{alignedat}
+\label{Eq:III:5:19}
+\end{equation}
+</p>
+</div>
+<div id="Ch5-S5-p2" class="para">
+<p class="p">In the experiment (<a href="#mjx-eqn-EqIII516">5.16</a>) the beam has been split and
+recombined. Humpty Dumpty has been put back together again. The
+information about the original $(+S)$ state is retained—it is just
+as though the $T$ apparatus were not there at all. This is true
+whatever is put after the “wide-open” $T$ apparatus. We could follow
+it with an $R$ filter—a filter at some odd angle—or anything we
+want. The answer will always be the same as if the atoms were taken
+directly from the first $S$ filter.</p>
+</div>
+<div id="Ch5-S5-p3" class="para">
+<p class="p">So this is the important principle: A $T$ filter—or any
+filter—with wide-open masks produces no change at all. We should
+make one additional condition. The wide-open filter must not only
+transmit all three beams, but it must also <em class="emph">not</em> produce unequal
+disturbances on the three beams. For instance, it should not have a
+strong electric field near one beam and not the others. The reason is
+that even if this extra disturbance would still let all the atoms
+through the filter, it could change the <em class="emph">phases</em> of some of the
+amplitudes. Then the interference would be changed, and the amplitudes
+in Eqs. (<a href="#mjx-eqn-EqIII518">5.18</a>) and (<a href="#mjx-eqn-EqIII519">5.19</a>) would be
+different. We will always assume that there are no such extra
+disturbances.</p>
+</div>
+<div id="Ch5-S5-p4" class="para">
+<p class="p">Let’s rewrite Eqs. (<a href="#mjx-eqn-EqIII518">5.18</a>) and (<a href="#mjx-eqn-EqIII519">5.19</a>) in an
+improved notation. We will let $i$ stand for any one of the three
+states $(+T)$, $(\OT)$, or $(-T)$; then the equations can be written:
+\begin{equation}
+\label{Eq:III:5:20}
+\sum_{\text{all $i$}}\braket{\OS}{i}\braket{i}{+S}=0
+\end{equation}
+
+and
+\begin{equation}
+\label{Eq:III:5:21}
+\sum_{\text{all $i$}}\braket{+S}{i}\braket{i}{+S}=1.
+\end{equation}
+
+Similarly, for an experiment where $S'$ is replaced by a completely
+arbitrary filter $R$, we have
+\begin{equation}
+\label{Eq:III:5:22}
+\SGP{S} \!\! \SG{T} \!\! \SGP{R} \!\!\!\!\cdotp
+\end{equation}
+
+The results will always be the same as if the $T$ apparatus were left
+out and we had only
+\begin{equation*}
+\SGP{S} \!\! \SGP{R} \!\!\!\!\cdotp
+\end{equation*}
+
+Or, expressed mathematically,
+\begin{equation}
+\label{Eq:III:5:23}
+\sum_{\text{all $i$}}\braket{+R}{i}\braket{i}{+S}=
+\braket{+R}{+S}.
+\end{equation}
+
+This is our fundamental law, and it is generally true so long as $i$
+stands for the three base states of any filter.</p>
+</div>
+<div id="Ch5-S5-p5" class="para">
+<p class="p">You will notice that in the experiment (<a href="#mjx-eqn-EqIII522">5.22</a>) there is no
+special relation of $S$ and $R$ to $T$. Furthermore, the arguments
+would be the same no matter what states they selected. To write the
+equation in a general way, without having to refer to the specific
+states selected by $S$ and $R$, let’s call $\phi$ (“phi”) the state
+prepared by the first filter (in our special example, $+S$) and $\chi$
+(“khi”) the state tested by the final filter (in our example,
+$+R$). Then we can state our fundamental law of Eq. (<a href="#mjx-eqn-EqIII523">5.23</a>)
+in the form
+\begin{equation}
+\label{Eq:III:5:24}
+\braket{\chi}{\phi}=
+\sum_{\text{all $i$}}\braket{\chi}{i}\braket{i}{\phi},
+\end{equation}
+
+where $i$ is to range over the three base states of some particular
+filter.</p>
+</div>
+<div id="Ch5-S5-p6" class="para">
+<p class="p">We want to emphasize again what we mean by base states. They are like
+the three states which can be selected by one of our Stern-Gerlach
+apparatuses. One condition is that if you have a base state, then the
+future is independent of the past. Another condition is that if you
+have a complete set of base states, Eq. (<a href="#mjx-eqn-EqIII524">5.24</a>) is true
+for any set of beginning and ending states $\phi$ and $\chi$. There
+is, however, <em class="emph">no unique</em> set of base states. We began by
+considering base states <em class="emph">with respect to</em> a particular
+apparatus $T$. We could equally well consider a <em class="emph">different set</em> of base
+states with respect to an apparatus $S$, or with respect to $R$,
+etc.<a name="footnote_source_6" href="#footnote_6"><sup class="mark">6</sup></a> We usually speak of the base states “in a certain
+representation.”</p>
+</div>
+<div id="Ch5-S5-p7" class="para">
+<p class="p">Another condition on a set of base states in any particular
+representation is that they are all completely different. By that we
+mean that if we have a $(+T)$ state, there is no amplitude for it to
+go into a $(\OT)$ or a $(-T)$ state. If we let $i$ and $j$ stand for
+any two base states of a particular set, the general rules discussed
+in connection with (<a href="#mjx-eqn-EqIII58">5.8</a>) are that
+\begin{equation*}
+\braket{j}{i}=0
+\end{equation*}
+
+for all $i$ and $j$ that are not equal. Of course, we know that
+\begin{equation*}
+\braket{i}{i}=1.
+\end{equation*}
+
+These two equations are usually written as
+\begin{equation}
+\label{Eq:III:5:25}
+\braket{j}{i}=\delta_{ji},
+\end{equation}
+
+where $\delta_{ji}$ (the “Kronecker delta”) is a symbol that is
+defined to be zero for $i\neq j$, and to be one for $i=j$.</p>
+</div>
+<div id="Ch5-S5-p8" class="para">
+<p class="p">Equation (<a href="#mjx-eqn-EqIII525">5.25</a>) is not independent of the other laws we
+have mentioned. It happens that we are not particularly interested in
+the mathematical problem of finding the minimum set of independent
+axioms that will give all the laws as consequences.<a name="footnote_source_7" href="#footnote_7"><sup class="mark">7</sup></a> We are satisfied if we have a set that
+is complete and not apparently inconsistent. We can, however, show that
+Eqs. (<a href="#mjx-eqn-EqIII525">5.25</a>) and (<a href="#mjx-eqn-EqIII524">5.24</a>) are not
+independent. Suppose we let $\phi$ in Eq. (<a href="#mjx-eqn-EqIII524">5.24</a>)
+represent one of the base states of the same set as $i$, say the
+$j$th state; then we have
+\begin{equation*}
+\braket{\chi}{j}=
+\sum_i\braket{\chi}{i}\braket{i}{j}.
+\end{equation*}
+
+But Eq. (<a href="#mjx-eqn-EqIII525">5.25</a>) says that $\braket{i}{j}$ is zero
+unless $i=j$, so the sum becomes just $\braket{\chi}{j}$ and we have an
+identity, which shows that the two laws are not independent.</p>
+</div>
+<div id="Ch5-S5-p9" class="para">
+<p class="p">We can see that there must be another relation among the amplitudes if
+both Eqs. (<a href="#mjx-eqn-EqIII510">5.10</a>) and (<a href="#mjx-eqn-EqIII524">5.24</a>) are true.
+Equation (<a href="#mjx-eqn-EqIII510">5.10</a>) is
+\begin{alignat*}{3}
+&\braket{+T}{+S}&\braket{+T}{+S}&\cconj\;&+&\\[.2ex]
+&\braket{\OT}{+S}&\,\braket{\OT}{+S}&\cconj&+&\\[.2ex]
+&\braket{-T}{+S}&\braket{-T}{+S}&\cconj&=&\;1.
+\end{alignat*}
+
+If we write Eq. (<a href="#mjx-eqn-EqIII524">5.24</a>), letting both $\phi$ and $\chi$
+be the state $(+S)$, the left-hand side is $\braket{+S}{+S}$, which is
+clearly${}=1$; so we get once more Eq. (<a href="#mjx-eqn-EqIII519">5.19</a>),
+\begin{alignat*}{3}
+&\braket{+S}{+T}&\braket{+T}{+S}&\;&+&\\[.2ex]
+&\braket{+S}{\OT}&\,\braket{\OT}{+S}&&+&\\[.2ex]
+&\braket{+S}{-T}&\braket{-T}{+S}&&=&\;1.
+\end{alignat*}
+
+
+
+These two equations are consistent (for all relative orientations of
+the $T$ and $S$ apparatuses) only if
+\begin{align*}
+\braket{+S}{+T}&=\braket{+T}{+S}\cconj,\\[1ex]
+\braket{+S}{\OT}&=\braket{\OT}{+S}\cconj,\\[1ex]
+\braket{+S}{-T}&=\braket{-T}{+S}\cconj.
+\end{align*}
+
+And it follows that for any states $\phi$ and $\chi$,
+\begin{equation}
+\label{Eq:III:5:26}
+\braket{\phi}{\chi}=\braket{\chi}{\phi}\cconj.
+\end{equation}
+
+If this were not true, probability wouldn’t be “conserved,” and
+particles would get “lost.”</p>
+</div>
+<div id="Ch5-S5-p10" class="para">
+<p class="p">Before going on, we want to summarize the three important general laws
+about amplitudes. They are Eqs.
+(<a href="#mjx-eqn-EqIII524">5.24</a>), (<a href="#mjx-eqn-EqIII525">5.25</a>), and (<a href="#mjx-eqn-EqIII526">5.26</a>):
+\begin{equation}
+\label{Eq:III:5:27}
+\begin{alignedat}{2}
+&\text{$\phantom{II}$I}&\quad
+\braket{j}{i}&=\delta_{ji},\\[1ex]
+&\text{$\phantom{I}$II}&\quad
+\braket{\chi}{\phi}&=
+\sum_{\text{all $i$}}
+\braket{\chi}{i}\braket{i}{\phi},\\[1ex]
+&\text{III}&\quad
+\braket{\phi}{\chi}&=
+\braket{\chi}{\phi}\cconj.
+\end{alignedat}
+\end{equation}
+
+In these equations the $i$ and $j$ refer to <em class="emph">all</em> the base states
+of some <em class="emph">one</em> representation, while $\phi$ and $\chi$ represent
+any possible states of the atom. It is important to note that II is
+valid only if the sum is carried out over <em class="emph">all</em> the base states
+of the system (in our case, three: $+T$, $\OT$, $-T$). These laws say
+nothing about what we should choose for a base for our set of base
+states. We began by using a $T$ apparatus, which is a Stern-Gerlach
+experiment with some arbitrary orientation; but any other orientation,
+say $W$, would be just as good. We would have a different set of
+states to use for $i$ and $j$, but all the laws would still be
+good—there is no unique set. One of the great games of quantum
+mechanics is to make use of the fact that things can be calculated in
+more than one way.</p>
+</div>
+</div>
+<div id="Ch5-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">5–6</span>The machinery of quantum mechanics</h3>
+<div id="Ch5-S6-p1" class="para">
+<p class="p">We want to show you why these laws are useful. Suppose we have an atom
+in a given condition (by which we mean that it was prepared in a
+certain way), and we want to know what will happen to it in some
+experiment. In other words, we start with our atom in the state $\phi$
+and want to know what are the <em class="emph">odds</em> that it will go through some
+apparatus which accepts atoms only in the condition $\chi$. The laws
+say that we can describe the apparatus completely in terms of three
+complex numbers $\braket{\chi}{i}$, the amplitudes for each base state
+to be in the condition $\chi$; and that we can tell what will happen
+if an atom is put into the apparatus if we describe the state of the
+atom by giving three numbers $\braket{i}{\phi}$, the amplitudes for
+the atom in its original condition to be found in each of the three
+base states. This is an important idea.</p>
+</div>
+<div id="Ch5-S6-p2" class="para">
+<p class="p">Let’s consider another illustration. Think of the following problem:
+We start with an $S$ apparatus; then we have a complicated mess of
+junk, which we can call $A$, and then an $R$ apparatus—like this:
+\begin{equation}
+\label{Eq:III:5:28}
+\SGP{S} \!\! \APPARAT{A} \!\! \SGZ{R} \!\!\!\!\cdot
+\end{equation}
+
+By $A$ we mean any complicated arrangement of Stern-Gerlach
+apparatuses with masks or half-masks, oriented at peculiar angles,
+with odd electric and magnetic fields … almost anything you
+want to put. (It’s nice to do thought experiments—you don’t have to
+go to all the trouble of actually <em class="emph">building</em> the apparatus!) The
+problem then is: With what amplitude does a particle that enters the
+section $A$ in a $(+S)$ state come out of $A$ in the $(\OR)$ state, so
+that it will get through the last $R$ filter? There is a regular
+notation for such an amplitude; it is
+\begin{equation*}
+\bracket{\OR}{A}{+S}.
+\end{equation*}
+
+As usual, it is to be read from right to left (like Hebrew):
+\begin{equation*}
+\bracket{\text{finish}}{\text{through}}{\text{start}}.
+\end{equation*}
+
+If by chance $A$ doesn’t do anything—but is just an open
+channel—then we write
+\begin{equation}
+\label{Eq:III:5:29}
+\bracket{\OR}{1}{+S}=\braket{\OR}{+S};
+\end{equation}
+
+the two symbols are equivalent. For a more general problem, we might
+replace $(+S)$ by a general starting state $\phi$ and $(\OR)$ by a
+general finishing state $\chi$, and we would want to know the
+amplitude
+\begin{equation*}
+\bracket{\chi}{A}{\phi}.
+\end{equation*}
+
+A complete analysis of the apparatus $A$ would have to give the
+amplitude $\bracket{\chi}{A}{\phi}$ for every possible pair of states
+$\phi$ and $\chi$—an infinite number of combinations! How then can
+we give a concise description of the behavior of the apparatus $A$? We
+can do it in the following way. Imagine that the apparatus
+of (<a href="#mjx-eqn-EqIII528">5.28</a>) is modified to be
+\begin{equation}
+\label{Eq:III:5:30}
+\SGP{S} \!\! \SG{T} \!\! \APPARAT{A} \!\! \SG{T} \!\! \SGZ{R} \!\!\!\!\cdotp
+\end{equation}
+
+This is really no modification at all since the wide-open
+$T$ apparatuses don’t do anything. But they do suggest how we can analyze
+the problem. There is a certain set of amplitudes $\braket{i}{+S}$
+that the atoms from $S$ will get into the $i$ state of $T$. Then there
+is another set of amplitudes that an $i$ state (with respect to $T$)
+entering $A$ will come out as a $j$ state (with respect to $T$). And
+finally there is an amplitude that each $j$ state will get through the
+last filter as a $(\OR)$ state. For each possible alternative path,
+there is an amplitude of the form
+\begin{equation*}
+\braket{\OR}{j}
+\bracket{j}{A}{i}
+\braket{i}{+S},
+\end{equation*}
+
+and the total amplitude is the sum of the terms we can get with all
+possible combinations of $i$ and $j$. The amplitude we want is
+\begin{equation}
+\label{Eq:III:5:31}
+\sum_{ij}
+\braket{\OR}{j}
+\bracket{j}{A}{i}
+\braket{i}{+S}.
+\end{equation}
+
+If $(\OR)$ and $(+S)$ are replaced by general states $\chi$
+and $\phi$, we would have the same kind of expression; so we have the
+general result
+\begin{equation}
+\label{Eq:III:5:32}
+\bracket{\chi}{A}{\phi}=
+\sum_{ij}
+\braket{\chi}{j}
+\bracket{j}{A}{i}
+\braket{i}{\phi}.
+\end{equation}
+</p>
+</div>
+<div id="Ch5-S6-p3" class="para">
+<p class="p">Now notice that the right-hand side of Eq. (<a href="#mjx-eqn-EqIII532">5.32</a>) is
+really “simpler” than the left-hand side. The apparatus $A$ is
+completely described by the <em class="emph">nine</em> numbers $\bracket{j}{A}{i}$
+which tell the response of $A$ with respect to the three base states
+of the apparatus $T$. Once we know these nine numbers, we can handle
+any two incoming and outgoing states $\phi$ and $\chi$ if we define
+each in terms of the three amplitudes for going into, or from, each of
+the three base states. The result of an experiment is predicted using
+Eq. (<a href="#mjx-eqn-EqIII532">5.32</a>).</p>
+</div>
+<div id="Ch5-S6-p4" class="para">
+<p class="p">This then is the machinery of quantum mechanics for a spin-one
+particle. Every <em class="emph">state</em> is described by three numbers which are
+the amplitudes to be in each of some selected set of base
+states. Every apparatus is described by nine numbers which are the
+amplitudes to go from one base state to another in the apparatus. From
+these numbers anything can be calculated.</p>
+</div>
+<div id="Ch5-S6-p5" class="para">
+<p class="p">The nine amplitudes which describe the apparatus are often written as
+a square matrix—called the matrix $\bracket{j}{A}{i}$:
+\begin{equation}
+\raise{1.2ex}{\text{to}}\,
+\label{Eq:III:5:33}
+\begin{array}{l}
+\kern{22ex} \text{from} \\ % ebook remove
+% ebook insert: \kern 17ex  \text{from} \\
+\kern{9.5ex}+\kern{11ex}0\kern{10ex}-\\ % ebook remove
+% ebook insert: \kern 7.5ex +\kern 10ex 0\kern 9ex -\\
+        \begin{array}{c|ccc|}
+         + & \bracket{+}{A}{+} & \bracket{+}{A}{\OO} & \bracket{+}{A}{-}\\[1ex]
+         0 & \bracket{\OO}{A}{+} & \bracket{\OO}{A}{\OO} & \bracket{\OO}{A}{-}\\[1ex]
+         - & \bracket{-}{A}{+} & \bracket{-}{A}{\OO} & \bracket{-}{A}{-}
+        \end{array}
+\end{array}
+\end{equation}
+</p>
+</div>
+<div id="Ch5-S6-p6" class="para">
+<p class="p">The mathematics of quantum mechanics is just an extension of this
+idea. We will give you a simple illustration. Suppose we have an
+apparatus $C$ that we wish to analyze—that is, we want to calculate
+the various $\bracket{j}{C}{i}$. For instance, we might want to know
+what happens in an experiment like
+\begin{equation}
+\label{Eq:III:5:34}
+\SGP{S} \!\! \APPARAT{C} \!\! \SGZ{R} \!\!\!\!\cdotp
+\end{equation}
+
+But then we notice that $C$ is just built of two pieces of apparatus
+$A$ and $B$ in series—the particles go through $A$ and then
+through $B$—so we can write symbolically
+\begin{equation}
+\label{Eq:III:5:35}
+\APPARAT{C} \kern{-10pt} \raise{7pt}{=} \APPARAT{A} \kern{-12pt} \raise{7pt}{\cdot} \APPARAT{B} \!\!\!\!\cdotp
+\end{equation}
+
+
+We can call the $C$ apparatus the “product” of $A$ and $B$. Suppose
+also that we already know how to analyze the two parts; so we can get
+the matrices (with respect to $T$) of $A$ and $B$. Our problem is then
+solved. We can easily find
+\begin{equation*}
+\bracket{\chi}{C}{\phi}
+\end{equation*}
+
+for any input and output states. First we write that
+\begin{equation*}
+\bracket{\chi}{C}{\phi}=\sum_k
+\bracket{\chi}{B}{k}\bracket{k}{A}{\phi}.
+\end{equation*}
+
+Do you see why? (<em class="emph">Hint:</em> Imagine putting a $T$ apparatus between
+$A$ and $B$.)  Then if we consider the special case in which $\phi$
+and $\chi$ are also base states (of $T$), say $i$ and $j$, we have
+\begin{equation}
+\label{Eq:III:5:36}
+\bracket{j}{C}{i}=\sum_k
+\bracket{j}{B}{k}\bracket{k}{A}{i}.
+\end{equation}
+
+This equation gives the matrix for the “product” apparatus $C$ in
+terms of the two matrices of the apparatuses $A$ and $B$.
+Mathematicians call the new matrix $\bracket{j}{C}{i}$—formed
+from two matrices $\bracket{j}{B}{i}$ and $\bracket{j}{A}{i}$
+according to the sum specified in Eq. (<a href="#mjx-eqn-EqIII536">5.36</a>)—the
+“product” matrix $BA$ of the two matrices $B$ and $A$. (Note that
+the <em class="emph">order</em> is important, $AB\neq BA$.) Thus, we can say that the
+matrix for a succession of two pieces of apparatus is the matrix
+product of the matrices for the two apparatuses (putting the
+<em class="emph">first</em> apparatus on the <em class="emph">right</em> in the product). Anyone who
+knows matrix algebra
+then understands that we mean just Eq. (<a href="#mjx-eqn-EqIII536">5.36</a>).
+</p>
+</div>
+</div>
+<div id="Ch5-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">5–7</span>Transforming to a different base</h3>
+<div id="Ch5-S7-p1" class="para">
+<p class="p">We want to make one final point about the base states used in the
+calculations. Suppose we have chosen to work with some particular
+base—say the $S$ base—and another fellow decides to do the same
+calculations with a different base—say the $T$ base. To keep things
+straight let’s call our base states the $(iS)$ states, where $i=+$,
+$0$, $-$. Similarly, we can call his base states $(jT)$. How can we
+compare our work with his? The final answers for the result of any
+measurement should come out the same, but in the calculations the
+various amplitudes and matrices used will be different. How are they
+related?  For instance, if we both start with the same $\phi$, we will
+describe it in terms of the three amplitudes $\braket{iS}{\phi}$ that
+$\phi$ goes into our base states in the $S$ representation, whereas he
+will describe it by the amplitudes $\braket{jT}{\phi}$ that the
+state $\phi$ goes into the base states in his $T$ representation. How can we
+check that we are really both describing the same state $\phi$? We can
+do it with the general rule II in (<a href="#mjx-eqn-EqIII527">5.27</a>). Replacing
+$\chi$ by any one of his states $jT$, we have
+\begin{equation}
+\label{Eq:III:5:37}
+\braket{jT}{\phi}=\sum_i
+\braket{jT}{iS}\braket{iS}{\phi}.
+\end{equation}
+
+To relate the two representations, we need only give the nine complex
+numbers of the matrix $\braket{jT}{iS}$. This matrix can then be used
+to convert all of our equations to his form. It tells us how to
+<em class="emph">transform</em> from one set of base states to another. (For this
+reason $\braket{jT}{iS}$ is sometimes called “the transformation
+matrix from representation $S$ to representation $T$.” Big words!)</p>
+</div>
+<div id="Ch5-S7-p2" class="para">
+<p class="p">For the case of spin-one particles for which we have only three base
+states (for higher spins, there are more) the mathematical situation
+is analogous to what we have seen in vector
+algebra. Every vector can
+be represented by giving three numbers—the components along the axes
+$x$, $y$, and $z$. That is, every vector can be resolved into three
+“base” vectors which are vectors along the three axes. But suppose
+someone else chooses to use a different set of axes—$x'$, $y'$,
+and $z'$. He will be using different numbers to represent any particular
+vector. His calculations will look different, but the final results
+will be the same. We have considered this before and know the rules
+for transforming vectors from one set of axes to another.
+</p>
+</div>
+<div id="Ch5-S7-p3" class="para">
+<p class="p">You may want to see how the quantum mechanical transformations work by
+trying some out; so we will give here, without proof, the
+transformation matrices for converting the spin-one amplitudes in one
+representation $S$ to another representation $T$, for various special
+relative orientations of the $S$ and $T$ filters. (We will show you in
+a later chapter how to derive these same results.)</p>
+</div>
+<div id="Ch5-S7-p4" class="para">
+<p class="p"><em class="emph">First case:</em> The $T$ apparatus has the same $y$-axis (along
+which the particles move) as the $S$ apparatus, but is rotated about
+the common $y$-axis by the angle $\alpha$ (as in
+Fig. <a href="#Ch5-F6">5–6</a>). (To be specific, a set of coordinates $x'$,
+$y'$, $z'$ is fixed in the $T$ apparatus, related to the $x$, $y$, $z$
+coordinates of the $S$ apparatus by: $z'=z\cos\alpha+x\sin\alpha$,
+$x'=x\cos\alpha-z\sin\alpha$, $y'=y$.)  Then the transformation
+amplitudes are:
+\begin{equation}
+\label{Eq:III:5:38}
+\begin{aligned}
+\braket{+T}{+S}&=
+\tfrac{1}{2}(1+\cos\alpha),\\[.5ex]
+\braket{\OT}{+S}&=
+-\frac{1}{\sqrt{2}}\,\sin\alpha,\\[.5ex]
+\braket{-T}{+S}&=
+\tfrac{1}{2}(1-\cos\alpha),\\[.5ex]
+\braket{+T}{\OS}&=
++\frac{1}{\sqrt{2}}\,\sin\alpha,\\[.5ex]
+\braket{\OT}{\OS}&=
+\cos\alpha,\\[.5ex]
+\braket{-T}{\OS}&=
+-\frac{1}{\sqrt{2}}\,\sin\alpha,\\[.5ex]
+\braket{+T}{-S}&=
+\tfrac{1}{2}(1-\cos\alpha),\\[.5ex]
+\braket{\OT}{-S}&=
++\frac{1}{\sqrt{2}}\,\sin\alpha,\\[.5ex]
+\braket{-T}{-S}&=
+\tfrac{1}{2}(1+\cos\alpha).
+\end{aligned}
+\end{equation}
+</p>
+</div>
+<div id="Ch5-S7-p5" class="para">
+<p class="p"><em class="emph">Second case:</em> The $T$ apparatus has the same $z$-axis as $S$,
+but is rotated around the $z$-axis by the angle $\beta$. (The
+coordinate transformation is $z'=z$, $x'=x\cos\beta+y\sin\beta$,
+$y'=y\cos\beta-x\sin\beta$.) Then the transformation amplitudes are:
+\begin{equation}
+\label{Eq:III:5:39}
+\begin{aligned}
+\braket{+T}{+S}&=e^{+i\beta},\\[1ex]
+\braket{\OT}{\OS}&=1,\\[1ex]
+\braket{-T}{-S}&=e^{-i\beta},\\[1ex]
+\text{all others}&=0.
+\end{aligned}
+\end{equation}
+</p>
+</div>
+<div id="Ch5-S7-p6" class="para">
+<p class="p">Note that any rotations of $T$ whatever can be made up of the two
+rotations described.
+</p>
+</div>
+<div id="Ch5-S7-p7" class="para">
+<p class="p">If a state $\phi$ is defined by the three numbers
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:5:40}
+C_+=\braket{+S}{\phi},\quad
+C_0=\braket{\OS}{\phi},\quad
+C_-=\braket{-S}{\phi},
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{equation}
+\begin{aligned}
+C_+&=\braket{+S}{\phi},\\[1ex]
+C_0\,&=\braket{\OS}{\phi},\\[1ex]
+C_-&=\braket{-S}{\phi},
+\end{aligned}
+\label{Eq:III:5:40}
+\end{equation}
+</span>
+
+and the same state is described from the point of view of $T$ by the
+three numbers
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:5:41}
+C_+'=\braket{+T}{\phi},\quad
+C_0'=\braket{\OT}{\phi},\quad
+C_-'=\braket{-T}{\phi},
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{equation}
+\begin{aligned}
+C_+'&=\braket{+T}{\phi},\\[1ex]
+C_0'\,&=\braket{\OT}{\phi},\\[1ex]
+C_-'&=\braket{-T}{\phi},
+\end{aligned}
+\label{Eq:III:5:41}
+\end{equation}
+
+</span>
+
+then the coefficients $\braket{jT}{iS}$ of (<a href="#mjx-eqn-EqIII538">5.38</a>)
+or (<a href="#mjx-eqn-EqIII539">5.39</a>) give the transformation connecting $C_i$
+and $C_i'$. In other words, the $C_i$ are very much like the components of a
+vector that appear different from the point of view of $S$ and $T$.</p>
+</div>
+<div id="Ch5-S7-p8" class="para">
+<p class="p">For a spin-one particle <em class="emph">only</em>—because it requires <em class="emph">three</em>
+amplitudes—the correspondence with a vector is very close. In each
+case, there are three numbers that must transform with coordinate
+changes in a certain definite way. In fact, there is a set of base
+states <em class="emph">which transform just like the three components of a
+vector</em>. The three combinations
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:5:42}
+C_x=-\frac{1}{\sqrt{2}}\,(C_+-C_-),\quad
+C_y=-\frac{i}{\sqrt{2}}\,(C_++C_-),\quad
+C_z=C_0
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{equation}
+\begin{aligned}
+C_x&=-\frac{1}{\sqrt{2}}\,(C_+-C_-),\\[.7ex]
+C_y&=-\frac{i}{\sqrt{2}}\,(C_++C_-),\\[1.5ex]
+C_z&=C_0
+\end{aligned}
+\label{Eq:III:5:42}
+\end{equation}
+
+</span>
+
+transform to $C_x'$, $C_y'$, and $C_z'$ just the way that $x$, $y$,
+$z$ transform to $x'$, $y'$, $z'$. [You can check that this is so by
+using the transformation laws (<a href="#mjx-eqn-EqIII538">5.38</a>)
+and (<a href="#mjx-eqn-EqIII539">5.39</a>).] Now you see why a spin-one particle is often
+called a “vector particle.”</p>
+</div>
+</div>
+<div id="Ch5-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">5–8</span>Other situations</h3>
+<div id="Ch5-S8-p1" class="para">
+<p class="p">We began by pointing out that our discussion of spin-one particles
+would be a prototype for any quantum mechanical problem. The
+generalization has only to do with the numbers of states. Instead of
+only three base states, any particular situation may involve $n$ base
+states.<a name="footnote_source_8" href="#footnote_8"><sup class="mark">8</sup></a> Our basic laws in Eq. (<a href="#mjx-eqn-EqIII527">5.27</a>) have
+exactly the same form—with the understanding that $i$ and $j$ must
+range over all $n$ base states. Any phenomenon can be analyzed by
+giving the amplitudes that it starts in each one of the base states
+and ends in any other one of the base states, and then summing over
+the complete set of base states. Any proper set of base states can be
+used, and if someone wishes to use a different set, it is just as
+good; the two can be connected by using an $n$ by $n$ transformation
+matrix. We will have more to say later about such transformations.</p>
+</div>
+<div id="Ch5-S8-p2" class="para">
+<p class="p">Finally, we promised to remark on what to do if atoms come directly
+from a furnace, go through some apparatus, say $A$, and are then
+analyzed by a filter which selects the state $\chi$. You do not know
+what the state $\phi$ is that they start out in. It is perhaps best if
+you don’t worry about this problem just yet, but instead concentrate
+on problems that always start out with pure states. But if you insist,
+here is how the problem can be handled.</p>
+</div>
+<div id="Ch5-S8-p3" class="para">
+<p class="p">First, you have to be able to make some reasonable guess about the way
+the states are distributed in the atoms that come from the
+furnace. For example, if there were nothing “special” about the
+furnace, you might reasonably guess that atoms would leave the furnace
+with random “orientations.” Quantum mechanically, that corresponds
+to saying that you don’t know anything about the states, but that
+one-third are in the $(+S)$ state, one-third are in the
+$(\OS)$ state, and one-third are in the $(-S)$ state. For those that are in
+the $(+S)$ state the amplitude to get through
+is $\bracket{\chi}{A}{+S}$ and the probability
+is $\abs{\bracket{\chi}{A}{+S}}^2$, and similarly for the others. The
+overall probability is then
+\begin{equation*}
+\tfrac{1}{3}\abs{\bracket{\chi}{A}{+S}}^2\!+\!
+\tfrac{1}{3}\abs{\bracket{\chi}{A}{\OS}}^2\!+\!
+\tfrac{1}{3}\abs{\bracket{\chi}{A}{-S}}^2\!.
+\end{equation*}
+
+Why did we use $S$ rather than, say, $T$? The answer is, surprisingly,
+the same no matter what we choose for our initial resolution—so long
+as we are dealing with completely random orientations. It comes about
+in the same way that
+\begin{equation*}
+\sum_i\abs{\braket{\chi}{iS}}^2=
+\sum_j\abs{\braket{\chi}{jT}}^2
+\end{equation*}
+
+for any $\chi$. (We leave it for you to prove.)</p>
+</div>
+<div id="Ch5-S8-p4" class="para">
+<p class="p">Note that it is <em class="emph">not</em> correct to say that the input state has the
+amplitudes $\sqrt{1/3}$ to be in $(+S)$, $\sqrt{1/3}$ to be
+in $(\OS)$, and $\sqrt{1/3}$ to be in $(-S)$; that would imply that
+certain interferences might be possible. It is simply that you do not
+<em class="emph">know</em>, what the initial state is; you have to think in terms of
+the probability that the system starts out in the various possible
+initial states, and then you have to take a weighted average over the
+various possibilities.</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  We are assuming that the deflection angles are very
+small.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  Read: $(+S)=$ “plus-S”; $(\OS)=$ “zero-S”;
+$(-S)=$ “minus-S.”
+  <a href="#footnote_source_2">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_3"></a>
+  We do not intend the word “base state” to
+imply anything more than what is said here. They are not to be thought
+of as “basic” in any sense. We are using the word base with the
+thought of a <em class="emph">basis</em> for a description, somewhat in the sense
+that one speaks of “numbers to the <em class="emph">base</em> ten.”
+  <a href="#footnote_source_3">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_4"></a>
+  In terms of our earlier notation
+$\alpha=\abs{\braket{\OT}{+S}}^2$, $\beta=\abs{\braket{+S}{\OT}}^2$,
+and $\gamma=\abs{\braket{\OS}{\OT}}^2$.
+  <a href="#footnote_source_4">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_5"></a>
+  We really cannot conclude from the experiment that $a=1$,
+but only that $\abs{a}^2=1$, so $a$ might be $e^{i\delta}$, but it can
+be shown that the choice $\delta=0$ represents no real loss of
+generality.
+  <a href="#footnote_source_5">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_6"></a>
+  In fact, for atomic systems with three or more base
+states, there exist other kinds of filters—quite different from a
+Stern-Gerlach apparatus—which can be used to get more choices for
+the set of base states (each set with the same <em class="emph">number</em> of
+states).
+  <a href="#footnote_source_6">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_7"></a>
+  Redundant
+<em class="emph">truth</em> doesn’t bother us!
+  <a href="#footnote_source_7">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_8"></a>
+  The number of base states $n$ may be, and generally
+is, infinite.
+  <a href="#footnote_source_8">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div>
+
+</div>
+    
+  </body>
+</html>

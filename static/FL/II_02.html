@@ -1,0 +1,1570 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 2: Differential Calculus of Vector Fields</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "2." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch2" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">2</span>Differential Calculus of Vector Fields</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapter&nbsp;<a href="I_11.html">11</a>, Vol.&nbsp;I, <i>Vectors</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch2-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">2–1</span>Understanding physics</h3>
+
+<div id="Ch2-S1-p1" class="para">
+<p class="p">The physicist needs a facility in looking at problems from several
+points of view. The exact analysis of real physical problems is
+usually quite complicated, and any particular physical situation may
+be too complicated to analyze directly by solving the differential
+equation. But one can still get a very good idea of the behavior of a
+system if one has some feel for the character of the solution in
+different circumstances. Ideas such as the field lines, capacitance,
+resistance, and inductance are, for such purposes, very useful. So we
+will spend much of our time analyzing them. In this way we will get a
+feel as to what should happen in different electromagnetic
+situations. On the other hand, none of the heuristic models, such as
+field lines, is really adequate and accurate for all situations. There
+is only one precise way of presenting the laws, and that is by means
+of differential equations. They have the advantage of being
+fundamental and, so far as we know, precise. If you have learned the
+differential equations you can always go back to them. There is
+nothing to unlearn.
+</p>
+</div>
+
+<div id="Ch2-S1-p2" class="para">
+<p class="p">It will take you some time to understand what should happen in
+different circumstances. You will have to solve the equations. Each
+time you solve the equations, you will learn something about the
+character of the solutions. To keep these solutions in mind, it will
+be useful also to study their meaning in terms of field lines and of
+other concepts. This is the way you will really “understand” the
+equations. That is the difference between mathematics and
+physics. Mathematicians, or people who have very mathematical minds,
+are often led astray when “studying” physics because they lose sight
+of the physics. They say: “Look, these differential equations—the
+Maxwell equations—are all there is to electrodynamics; it is admitted by the
+physicists that there is nothing which is not contained in the
+equations. The equations are complicated, but after all they are only
+mathematical equations and if I understand them mathematically inside
+out, I will understand the physics inside out.” Only it doesn’t work
+that way. Mathematicians who study physics with that point of view—and
+there have been many of them—usually make little contribution to
+physics and, in fact, little to mathematics. They fail because the
+actual physical situations in the real world are so complicated that it
+is necessary to have a much broader understanding of the equations.
+</p>
+</div>
+
+<div id="Ch2-S1-p3" class="para">
+<p class="p">What it means really to understand an equation—that is, in more than
+a strictly mathematical sense—was described by
+Dirac. He said: “I
+understand what an equation means if I have a way of figuring out the
+characteristics of its solution without actually solving it.” So if
+we have a way of knowing what should happen in given circumstances
+without actually solving the equations, then we “understand” the
+equations, as applied to these circumstances. A physical understanding
+is a completely unmathematical, imprecise, and inexact thing, but
+absolutely necessary for a physicist.
+</p>
+</div>
+
+<div id="Ch2-S1-p4" class="para">
+<p class="p">Ordinarily, a course like this is given by developing gradually the
+physical ideas—by starting with simple situations and going on to
+more and more complicated situations. This requires that you
+continuously forget things you previously learned—things that are
+true in certain situations, but which are not true in general. For
+example, the “law” that the electrical force depends on the square
+of the distance is not <em class="emph">always</em> true. We prefer the opposite
+approach. We prefer to take first the <em class="emph">complete</em> laws, and then
+to step back and apply them to simple situations, developing the
+physical ideas as we go along. And that is what we are going to do.
+</p>
+</div>
+
+<div id="Ch2-S1-p5" class="para">
+<p class="p">Our approach is completely opposite to the historical approach in
+which one develops the subject in terms of the experiments by which
+the information was obtained. But the subject of physics has been
+developed over the past 200&nbsp;years by some very ingenious people, and
+as we have only a limited time to acquire our knowledge, we cannot
+possibly cover everything they did. Unfortunately one of the things
+that we shall have a tendency to lose in these lectures is the
+historical, experimental development. It is hoped that in the
+laboratory some of this lack can be corrected. You can also fill in
+what we must leave out by reading the Encyclopedia Britannica, which
+has excellent historical articles on electricity and on other parts of
+physics. You will also find historical information in many textbooks
+on electricity and magnetism.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch2-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">2–2</span>Scalar and vector fields—$\boldsymbol{T}$ and $\FLPh$</h3>
+
+<div id="Ch2-S2-p1" class="para">
+<p class="p">We begin now with the abstract, mathematical view of the theory of
+electricity and magnetism. The ultimate idea is to explain the meaning
+of the laws given in Chapter&nbsp;<a href="II_01.html">1</a>. But to do this we must
+first explain a new and peculiar notation that we want to use. So let
+us forget electromagnetism for the moment and discuss the mathematics
+of vector fields. It is of very great importance, not only for
+electromagnetism, but for all kinds of physical circumstances. Just as
+ordinary differential and integral calculus is so important to all
+branches of physics, so also is the differential calculus of
+vectors. We turn to that subject.
+</p>
+</div>
+
+<div id="Ch2-S2-p2" class="para">
+<p class="p">Listed below are a few facts from the algebra of vectors. It is
+assumed that you already know them.
+\begin{align}
+\label{Eq:II:2:1}
+&\FLPA\,\cdot\,\FLPB=\text{scalar}=A_xB_x+A_yB_y+A_zB_z\\[1ex]
+\label{Eq:II:2:2}
+&\FLPA\times\FLPB=\text{vector}\\[1pt]
+&\begin{alignedat}{5}
+% ebook insert: \label{Eq:II:0:0}
+&\qquad(\FLPA\times\FLPB)_z&&=A_x&&B_y&&-A_y&&B_x\\[.25ex]
+% ebook insert: \label{Eq:II:0:0}
+&\qquad(\FLPA\times\FLPB)_x&&=A_y&&B_z&&-A_z&&B_y\\[.25ex]
+% ebook insert: \label{Eq:II:0:0}
+&\qquad(\FLPA\times\FLPB)_y&&=A_z&&B_x&&-A_x&&B_z
+\end{alignedat}\notag\\[1ex]
+% ebook break
+\label{Eq:II:2:3}
+&\FLPA\times\FLPA=\FLPzero\\[1ex]
+\label{Eq:II:2:4}
+&\FLPA\cdot(\FLPA\times\FLPB)=0\\[1ex]
+\label{Eq:II:2:5}
+&\FLPA\cdot(\FLPB\times\FLPC)=(\FLPA\times\FLPB)\cdot\FLPC\\[1ex]
+\label{Eq:II:2:6}
+&\FLPA\times(\FLPB\times\FLPC)=\FLPB(\FLPA\cdot\FLPC)-\FLPC(\FLPA\cdot\FLPB)
+\end{align}
+</p>
+</div>
+
+<div id="Ch2-S2-p3" class="para">
+<p class="p">Also we will want to use the two following equalities from the calculus:
+\begin{gather}
+\label{Eq:II:2:7}
+\Delta f(x,y,z)=\ddp{f}{x}\,\Delta x+\ddp{f}{y}\,\Delta
+y+\ddp{f}{z}\,\Delta z,\\[1ex]
+\label{Eq:II:2:8}
+\frac{\partial^2f}{\partial x\,\partial y}=
+\frac{\partial^2f}{\partial y\,\partial x}.
+\end{gather}
+The first equation&nbsp;(<a href="#mjx-eqn-EqII27">2.7</a>) is, of course, true only in the
+limit that $\Delta x$,&nbsp;$\Delta y$, and&nbsp;$\Delta z$ go toward zero.
+</p>
+</div>
+
+<div id="Ch2-F0" class="figure">
+<img src="img/FLP_II/f02-00/f02-00_tc_big.svgz">
+</div>
+
+<div id="Ch2-S2-p4" class="para">
+<p class="p">The simplest possible physical field is a scalar field. By a field,
+you remember, we mean a quantity which depends upon position in
+space. By a <em class="emph">scalar field</em> we merely mean a field which is
+characterized at each point by a single number—a scalar. Of course
+the number may change in time, but we need not worry about that for
+the moment. We will talk about what the field looks like at a given
+instant. As an example of a scalar field, consider a solid block of
+material which has been heated at some places and cooled at others, so
+that the temperature of the body varies from point to point in a
+complicated way. Then the temperature will be a function of $x$,&nbsp;$y$,
+and&nbsp;$z$, the position in space measured in a rectangular coordinate
+system. Temperature is a scalar field.
+</p>
+</div>
+
+<div id="Ch2-F1" class="figure">
+<img src="img/FLP_II/f02-01/f02-01_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 2–1.</span>
+Temperature&nbsp;$T$ is an example of a scalar field. With each
+point&nbsp;$(x,y,z)$ in space there is associated a number&nbsp;$T(x,y,z)$. All
+points on the surface marked&nbsp;$T=20^\circ$ (shown as a curve at&nbsp;$z=0$)
+are at the same temperature. The arrows are samples of the heat flow
+vector&nbsp;$\Figh$.
+</div>
+</div>
+
+<div id="Ch2-S2-p5" class="para">
+<p class="p">One way of thinking about scalar fields is to imagine “contours” which
+are imaginary surfaces drawn through all points for which the field has
+the same value, just as contour lines on a map connect points with the
+same height. For a temperature field the contours are called
+“isothermal surfaces” or
+isotherms. Figure&nbsp;<a href="#Ch2-F1">2–1</a> illustrates a
+temperature field and shows the dependence of $T$ on $x$ and $y$ when
+$z=0$. Several isotherms are drawn.
+</p>
+</div>
+
+<div id="Ch2-F2" class="figure">
+<img src="img/FLP_II/f02-02/f02-02_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 2–2.</span>
+The velocity of the atoms in a rotating object is an example
+of a vector field.
+</div>
+</div>
+
+<div id="Ch2-S2-p6" class="para">
+<p class="p">There are also vector fields. The idea is very simple. A vector is
+given for each point in space. The vector varies from point to
+point. As an example, consider a rotating body. The velocity of the
+material of the body at any point is a vector which is a function of
+position (Fig.&nbsp;<a href="#Ch2-F2">2–2</a>). As a second example, consider the
+flow of heat in a block of material. If the temperature in the block
+is high at one place and low at another, there will be a flow of heat
+from the hotter places to the colder. The heat will be flowing in
+different directions in different parts of the block. The heat flow is
+a directional quantity which we call&nbsp;$\FLPh$. Its magnitude is a
+measure of how much heat is flowing. Examples of the heat flow vector
+are also shown in Fig.&nbsp;<a href="#Ch2-F1">2–1</a>.
+</p>
+</div>
+
+<div id="Ch2-F3" class="figure">
+<img src="img/FLP_II/f02-03/f02-03_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 2–3.</span>
+Heat flow is a vector field. The vector&nbsp;$\Figh$ points along
+the direction of the flow. Its magnitude is the energy transported per
+unit time across a surface element oriented perpendicular to the flow,
+divided by the area of the surface element.
+</div>
+</div>
+
+<div id="Ch2-S2-p7" class="para">
+<p class="p">Let’s make a more precise definition of&nbsp;$\FLPh$: The magnitude of the
+vector heat flow at a point is the amount of thermal energy that
+passes, per unit time and per unit area, through an infinitesimal
+surface element at right angles to the direction of flow. The vector
+points in the direction of flow (see Fig.&nbsp;<a href="#Ch2-F3">2–3</a>). In
+symbols: If&nbsp;$\Delta J$ is the thermal energy that passes per unit time
+through the surface element&nbsp;$\Delta a$, then
+\begin{equation}
+\label{Eq:II:2:9}
+\FLPh=\frac{\Delta J}{\Delta a}\,\FLPe_f,
+\end{equation}
+where&nbsp;$\FLPe_f$ is a <em class="emph">unit vector</em> in the direction of flow.
+</p>
+</div>
+
+<div id="Ch2-F4" class="figure">
+<img src="img/FLP_II/f02-04/f02-04_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 2–4.</span>
+The heat flow through&nbsp;$\Delta a_2$ is the same as
+through&nbsp;$\Delta a_1$.
+</div>
+</div>
+
+<div id="Ch2-S2-p8" class="para">
+<p class="p">The vector&nbsp;$\FLPh$ can be defined in another way—in terms of its
+components. We ask how much heat flows through a small surface at
+<em class="emph">any</em> angle with respect to the flow. In Fig.&nbsp;<a href="#Ch2-F4">2–4</a>
+we show a small surface&nbsp;$\Delta a_2$ inclined with respect to&nbsp;$\Delta
+a_1$, which is perpendicular to the flow. The <em class="emph">unit vector</em>&nbsp;$\FLPn$
+
+is normal to the surface&nbsp;$\Delta a_2$. The angle&nbsp;$\theta$ between
+$\FLPn$ and&nbsp;$\FLPh$ is the same as the angle between the surfaces
+(since&nbsp;$\FLPh$ is normal to&nbsp;$\Delta a_1$). Now what is the heat flow <em class="emph">per
+unit area</em> through&nbsp;$\Delta a_2$? The flow through&nbsp;$\Delta a_2$ is the
+same as through&nbsp;$\Delta a_1$; only the areas are different. In
+fact,&nbsp;$\Delta a_1=\Delta a_2\cos\theta$. The heat flow through&nbsp;$\Delta a_2$ is
+\begin{equation}
+\label{Eq:II:2:10}
+\frac{\Delta J}{\Delta a_2}=\frac{\Delta J}{\Delta a_1}\cos\theta=
+\FLPh\cdot\FLPn.
+\end{equation}
+We interpret this equation: the heat flow (per unit time and per unit
+area) through <em class="emph">any</em> surface element whose unit normal is&nbsp;$\FLPn$,
+is given by&nbsp;$\FLPh\cdot\FLPn$. Equally, we could say: the component of
+the heat flow perpendicular to the surface element&nbsp;$\Delta a_2$
+is&nbsp;$\FLPh\cdot\FLPn$. We can, if we wish, consider that these statements
+<em class="emph">define</em>&nbsp;$\FLPh$. We will be applying the same ideas to other
+vector fields.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch2-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">2–3</span>Derivatives of fields—the gradient</h3>
+
+<div id="Ch2-S3-p1" class="para">
+<p class="p">When fields vary in time, we can describe the variation by giving
+their derivatives with respect to&nbsp;$t$. We want to describe the
+variations with position in a similar way, because we are interested
+in the relationship between, say, the temperature in one place and the
+temperature at a nearby place. How shall we take the derivative of the
+temperature with respect to position? Do we differentiate the
+temperature with respect to&nbsp;$x$? Or with respect to&nbsp;$y$, or&nbsp;$z$?
+</p>
+</div>
+
+<div id="Ch2-S3-p2" class="para">
+<p class="p">Useful physical laws do not depend upon the orientation of the
+coordinate system. They should, therefore, be written in a form in
+which either both sides are scalars or both sides are vectors. What is
+the derivative of a scalar field, say&nbsp;$\ddpl{T}{x}$? Is it a scalar,
+or a vector, or what? It is neither a scalar nor a vector, as you can
+easily appreciate, because if we took a different $x$-axis,&nbsp;$\ddpl{T}{x}$
+would certainly be different. But notice: We have three
+possible derivatives: $\ddpl{T}{x}$,&nbsp;$\ddpl{T}{y}$, and&nbsp;$\ddpl{T}{z}$.
+Since there are three kinds of derivatives and we know
+that it takes three numbers to form a vector, perhaps these three
+derivatives are the components of a vector:
+\begin{equation}
+\label{Eq:II:2:11}
+\biggl(\ddp{T}{x},\ddp{T}{y},\ddp{T}{z}\biggr)\overset{?}{=}\text{a
+vector}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch2-S3-p3" class="para">
+<p class="p">Of course it is not generally true that <em class="emph">any</em> three numbers form
+a vector. It is true only if, when we rotate the coordinate system,
+the components of the vector transform among themselves in the correct
+way. So it is necessary to analyze how these derivatives are changed
+by a rotation of the coordinate system. We shall show
+that&nbsp;(<a href="#mjx-eqn-EqII211">2.11</a>) is indeed a vector. The derivatives do transform
+in the correct way when the coordinate system is rotated.
+</p>
+</div>
+
+<div id="Ch2-S3-p4" class="para">
+<p class="p">We can see this in several ways. One way is to ask a question whose
+answer is independent of the coordinate system, and try to express the
+answer in an “invariant” form. For instance, if&nbsp;$S=\FLPA\cdot\FLPB$,
+and if $\FLPA$ and&nbsp;$\FLPB$ are vectors, we know—because we proved it
+in Chapter&nbsp;<a href="I_11.html">11</a> of Vol.&nbsp;I—that&nbsp;$S$ is a scalar. We
+<em class="emph">know</em> that&nbsp;$S$ is a scalar without investigating whether it
+changes with changes in coordinate systems. It <em class="emph">can’t</em>, because
+it’s a dot product of two vectors. Similarly, if we
+have three numbers $B_1$,&nbsp;$B_2$, and&nbsp;$B_3$ and we find out that for
+<em class="emph">every</em> vector&nbsp;$\FLPA$
+\begin{equation}
+\label{Eq:II:2:12}
+A_xB_1+A_yB_2+A_zB_3=S,
+\end{equation}
+where&nbsp;$S$ is the same for any coordinate system, then it <em class="emph">must</em>
+be that the three numbers $B_1$,&nbsp;$B_2$,&nbsp;$B_3$ are the components
+$B_x$,&nbsp;$B_y$,&nbsp;$B_z$ of some vector&nbsp;$\FLPB$.
+</p>
+</div>
+
+<div id="Ch2-S3-p5" class="para">
+<p class="p">Now let’s think of the temperature field. Suppose we take two points
+$P_1$ and&nbsp;$P_2$, separated by the small interval&nbsp;$\Delta\FLPR$. The
+temperature at&nbsp;$P_1$ is&nbsp;$T_1$ and at&nbsp;$P_2$ is&nbsp;$T_2$, and the
+difference&nbsp;$\Delta T=T_2-T_1$. The temperatures at these real,
+physical points certainly do not depend on what axis we choose for
+measuring the coordinates. In particular,&nbsp;$\Delta T$ is a number
+independent of the coordinate system. It is a scalar.
+</p>
+</div>
+
+<div id="Ch2-F5" class="figure">
+<img src="img/FLP_II/f02-05/f02-05_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 2–5.</span>
+The vector&nbsp;$\Delta\FigR$, whose components are $\Delta
+x$,&nbsp;$\Delta y$, and&nbsp;$\Delta z$.
+</div>
+</div>
+
+<div id="Ch2-S3-p6" class="para">
+<p class="p">If we choose some convenient set of axes, we could write
+$T_1=T(x,y,z)$ and $T_2=T(x+\Delta x,y+\Delta y,z+\Delta z)$, where
+$\Delta x$,&nbsp;$\Delta y$, and&nbsp;$\Delta z$ are the components of the
+vector&nbsp;$\Delta\FLPR$ (Fig.&nbsp;<a href="#Ch2-F5">2–5</a>). Remembering
+Eq.&nbsp;(<a href="#mjx-eqn-EqII27">2.7</a>), we can write
+\begin{equation}
+\label{Eq:II:2:13}
+\Delta T=\ddp{T}{x}\,\Delta x+\ddp{T}{y}\,\Delta y+\ddp{T}{z}\,\Delta
+z.
+\end{equation}
+The left side of Eq.&nbsp;(<a href="#mjx-eqn-EqII213">2.13</a>) is a scalar. The right side
+is the sum of three products with $\Delta x$,&nbsp;$\Delta y$, and&nbsp;$\Delta
+z$, which are the components of a vector. It follows that the three
+numbers
+\begin{equation*}
+\ddp{T}{x},\ddp{T}{y},\ddp{T}{z}
+\end{equation*}
+are also the $x$-,&nbsp;$y$-, and&nbsp;$z$-components of a vector. We write this
+new vector with the symbol&nbsp;$\FLPgrad{T}$. The symbol&nbsp;$\FLPnabla$
+(called “del”) is an upside-down&nbsp;$\Delta$, and is supposed to remind
+us of differentiation. People read&nbsp;$\FLPgrad{T}$ in various ways:
+“del-$T$,” or “gradient of $T$,” or “$\grad T$;”<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a>
+\begin{equation}
+\label{Eq:II:2:14}
+\grad T=\FLPgrad{T}=\biggl(\ddp{T}{x},\ddp{T}{y},\ddp{T}{z}\biggr).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch2-S3-p7" class="para">
+<p class="p">Using this notation, we can rewrite Eq.&nbsp;(<a href="#mjx-eqn-EqII213">2.13</a>) in the
+more compact form
+\begin{equation}
+\label{Eq:II:2:15}
+\Delta T=\FLPgrad{T}\cdot\Delta\FLPR.
+\end{equation}
+In words, this equation says that the difference in temperature
+between two nearby points is the dot product of the gradient of&nbsp;$T$
+and the vector displacement between the points. The form of
+Eq.&nbsp;(<a href="#mjx-eqn-EqII215">2.15</a>) also illustrates clearly our proof above
+that&nbsp;$\FLPgrad{T}$ is indeed a vector.
+</p>
+</div>
+
+<div id="Ch2-S3-p8" class="para">
+<p class="p">Perhaps you are still not convinced? Let’s prove it in a different
+way. (Although if you look carefully, you may be able to see that it’s
+really the same proof in a longer-winded form!) We shall show that the
+components of&nbsp;$\FLPgrad{T}$ transform in just the same way that
+components of&nbsp;$\FLPR$ do. If they do,&nbsp;$\FLPgrad{T}$ is a vector
+according to our original definition of a vector in
+Chapter&nbsp;<a href="I_11.html">11</a> of Vol.&nbsp;I. We take a new coordinate system
+$x'$, $y'$,&nbsp;$z'$, and in this new system we calculate
+$\ddpl{T}{x'}$, $\ddpl{T}{y'}$, and&nbsp;$\ddpl{T}{z'}$. To make things a
+little simpler, we let&nbsp;$z=z'$, so that we can forget about the
+$z$-coordinate. (You can check out the more general case for yourself.)
+</p>
+</div>
+
+<div id="Ch2-F6" class="figure">
+<img class="first" src="img/FLP_II/f02-06/f02-06_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_II/f02-06/f02-06_tc_iPad_big_b.svgz"><div class="caption"><span class="tag">Fig. 2–6.</span>
+(a)&nbsp;Transformation to a rotated coordinate system. (b)&nbsp;Special
+case of an interval&nbsp;$\Delta\FigR$ parallel to the $x$-axis.
+</div>
+</div>
+
+<div id="Ch2-S3-p9" class="para">
+<p class="p">We take an $x'y'$-system rotated an angle&nbsp;$\theta$ with respect to the
+$xy$-system, as in Fig.&nbsp;<a href="#Ch2-F6">2–6</a>(a). For a point&nbsp;$(x,y)$ the
+coordinates in the prime system are
+
+\begin{alignat}{3}
+\label{Eq:II:2:16}
+&x'&&=\phantom{-}x\cos\theta&&+y\sin\theta,\\[1ex]
+\label{Eq:II:2:17}
+&y'&&=-x\sin\theta&&+y\cos\theta.
+\end{alignat}
+
+Or, solving for $x$ and&nbsp;$y$,
+
+\begin{alignat}{3}
+\label{Eq:II:2:18}
+&x&&=x'\cos\theta&&-y'\sin\theta,\\[1ex]
+\label{Eq:II:2:19}
+&y&&=x'\sin\theta&&+y'\cos\theta.
+\end{alignat}
+
+If any pair of numbers transforms with these equations in the same way
+that $x$ and&nbsp;$y$ do, they are the components of a vector.
+</p>
+</div>
+
+<div id="Ch2-S3-p10" class="para">
+<p class="p">Now let’s look at the difference in temperature between the two nearby
+points $P_1$ and&nbsp;$P_2$, chosen as in Fig.&nbsp;<a href="#Ch2-F6">2–6</a>(b). If we
+calculate with the $x$- and $y$-coordinates, we would write
+\begin{equation}
+\label{Eq:II:2:20}
+\Delta T=\ddp{T}{x}\,\Delta x
+\end{equation}
+—since&nbsp;$\Delta y$ is zero.
+</p>
+</div>
+
+<div id="Ch2-S3-p11" class="para">
+<p class="p">What would a computation in the prime system give? We would have
+written
+\begin{equation}
+\label{Eq:II:2:21}
+\Delta T=\ddp{T}{x'}\,\Delta x'+\ddp{T}{y'}\,\Delta y'.
+\end{equation}
+Looking at Fig.&nbsp;<a href="#Ch2-F6">2–6</a>(b), we see that
+
+\begin{equation}
+\label{Eq:II:2:22}
+\Delta x'=\phantom{-}\Delta x\cos\theta
+\end{equation}
+and
+\begin{equation}
+\label{Eq:II:2:23}
+\Delta y'=-\Delta x\sin\theta,
+\end{equation}
+
+since&nbsp;$\Delta y'$ is negative when&nbsp;$\Delta x$ is
+positive. Substituting these in Eq.&nbsp;(<a href="#mjx-eqn-EqII221">2.21</a>), we find that
+\begin{align}
+\label{Eq:II:2:24}
+\Delta T&=\ddp{T}{x'}\,\Delta x\cos\theta-\ddp{T}{y'}\,\Delta
+x\sin\theta\\[1ex]
+\label{Eq:II:2:25}
+&=\biggl(\ddp{T}{x'}\cos\theta-\ddp{T}{y'}\sin\theta\biggr)\Delta x.
+\end{align}
+Comparing Eq. (<a href="#mjx-eqn-EqII225">2.25</a>) with&nbsp;(<a href="#mjx-eqn-EqII220">2.20</a>), we see that
+\begin{equation}
+\label{Eq:II:2:26}
+\ddp{T}{x}=\ddp{T}{x'}\cos\theta-\ddp{T}{y'}\sin\theta.
+\end{equation}
+This equation says that&nbsp;$\ddpl{T}{x}$ is obtained from $\ddpl{T}{x'}$
+and&nbsp;$\ddpl{T}{y'}$, just as&nbsp;$x$ is obtained from $x'$ and&nbsp;$y'$ in
+Eq.&nbsp;(<a href="#mjx-eqn-EqII218">2.18</a>). So&nbsp;$\ddpl{T}{x}$ is the $x$-component of a
+vector. The same kind of arguments would show that $\ddpl{T}{y}$
+and&nbsp;$\ddpl{T}{z}$ are $y$- and $z$-components. So&nbsp;$\FLPgrad{T}$ is
+definitely a vector. It is a vector field derived from the scalar field&nbsp;$T$.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch2-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">2–4</span>The operator $\FLPnabla$</h3>
+
+<div id="Ch2-S4-p1" class="para">
+<p class="p">Now we can do something that is extremely amusing and ingenious—and
+characteristic of the things that make mathematics beautiful. The
+argument that $\grad T$, or&nbsp;$\FLPgrad{T}$, is a vector did not depend
+upon <em class="emph">what</em> scalar field we were differentiating. All the
+arguments would go the same if&nbsp;$T$ were replaced by <em class="emph">any scalar
+field</em>. Since the transformation equations are the same no matter what
+we differentiate, we could just as well omit the&nbsp;$T$ and replace
+Eq.&nbsp;(<a href="#mjx-eqn-EqII226">2.26</a>) by the operator equation
+\begin{equation}
+\label{Eq:II:2:27}
+\ddp{}{x}=\ddp{}{x'}\cos\theta-\ddp{}{y'}\sin\theta.
+\end{equation}
+We leave the operators, as Jeans
+said, “hungry for something to differentiate.”
+</p>
+</div>
+
+<div id="Ch2-S4-p2" class="para">
+<p class="p">Since the differential operators themselves transform as the components
+of a vector should, we can call them components of a <em class="emph">vector
+operator</em>. We can
+write
+\begin{equation}
+\label{Eq:II:2:28}
+\FLPnabla=\biggl(\ddp{}{x},\ddp{}{y},\ddp{}{z}\biggr),
+\end{equation}
+which means, of course,
+\begin{equation}
+\label{Eq:II:2:29}
+\nabla_x=\ddp{}{x},\quad\nabla_y=\ddp{}{y},\quad\nabla_z=\ddp{}{z}.
+\end{equation}
+We have abstracted the gradient away from the&nbsp;$T$—that is the
+wonderful idea.
+</p>
+</div>
+
+<div id="Ch2-S4-p3" class="para">
+<p class="p">You must always remember, of course, that&nbsp;$\FLPnabla$ is an
+operator. Alone, it means nothing. If&nbsp;$\FLPnabla$ by itself means
+nothing, what does it mean if we multiply <em class="emph">it</em> by a scalar—say&nbsp;$T$—to
+get the product&nbsp;$T\FLPnabla$? (One can always multiply a
+vector by a scalar.) It still does not mean anything. Its
+$x$-component is
+\begin{equation}
+\label{Eq:II:2:30}
+T\ddp{}{x},
+\end{equation}
+which is not a number, but is still some kind of operator. However,
+according to the algebra of vectors we would still call&nbsp;$T\FLPnabla$ a
+vector.
+</p>
+</div>
+
+<div id="Ch2-S4-p4" class="para">
+<p class="p">Now let’s multiply&nbsp;$\FLPnabla$ by a scalar on the other side, so that
+we have the product&nbsp;$(\FLPgrad{T})$. In ordinary algebra
+\begin{equation}
+\label{Eq:II:2:31}
+T\FLPA=\FLPA T,
+\end{equation}
+but we have to remember that operator algebra is a little different
+from ordinary vector algebra.
+With operators we must always keep the
+sequence right, so that the operations make proper sense. You will
+have no difficulty if you just remember that the operator&nbsp;$\FLPnabla$
+obeys the same convention as the derivative notation. What is to be
+differentiated must be placed on the right of the&nbsp;$\FLPnabla$. The
+order is important.
+</p>
+</div>
+
+<div id="Ch2-S4-p5" class="para">
+<p class="p">Keeping in mind this problem of order, we understand that&nbsp;$T\FLPnabla$
+is an operator, but the product&nbsp;$\FLPgrad{T}$ is no longer a hungry
+operator; the operator is completely satisfied. It is indeed a
+physical vector having a meaning. It represents the spatial rate of
+change of&nbsp;$T$. The $x$-component of&nbsp;$\FLPgrad{T}$ is how fast&nbsp;$T$
+changes in the $x$-direction. What is the direction of the
+vector&nbsp;$\FLPgrad{T}$? We know that the rate of change of&nbsp;$T$ in any direction
+is the component of&nbsp;$\FLPgrad{T}$ in that direction (see
+Eq.&nbsp;(<a href="#mjx-eqn-EqII215">2.15</a>)). It follows that the direction of&nbsp;$\FLPgrad{T}$ is
+that in which it has the largest possible component—in other words,
+the direction in which&nbsp;$T$ changes the fastest. The gradient of&nbsp;$T$ has
+the direction of the steepest uphill slope (in&nbsp;$T$).
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch2-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">2–5</span>Operations with $\FLPnabla$</h3>
+
+<div id="Ch2-S5-p1" class="para">
+<p class="p">Can we do any other algebra with the vector operator&nbsp;$\FLPnabla$? Let
+us try combining it with a vector. We can combine two vectors by
+making a dot product. We could make the products
+\begin{equation*}
+(\text{a vector})\cdot\FLPnabla,\quad\text{or}\quad\FLPdiv{(\text{a
+vector})}.
+\end{equation*}
+The first one doesn’t mean anything yet, because it is still an
+operator. What it might ultimately mean would depend on what it is
+made to operate on. The second product is some scalar
+field. ($\FLPA\cdot\FLPB$ is always a scalar.)
+</p>
+</div>
+
+<div id="Ch2-S5-p2" class="para">
+<p class="p">Let’s try the dot product of&nbsp;$\FLPnabla$ with a vector field we know,
+say&nbsp;$\FLPh$. We write out the components:
+
+\begin{equation}
+\label{Eq:II:2:32}
+\FLPdiv{\FLPh}=\nabla_xh_x+\nabla_yh_y+\nabla_zh_z
+\end{equation}
+or
+\begin{equation}
+\label{Eq:II:2:33}
+\FLPdiv{\FLPh}=\ddp{h_x}{x}+\ddp{h_y}{y}+\ddp{h_z}{z}.
+\end{equation}
+
+The sum is invariant under a coordinate transformation. If we were to
+choose a different system (indicated by primes), we would
+have<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+\begin{equation}
+\label{Eq:II:2:34}
+\FLPnabla'\cdot\FLPh=\ddp{h_{x'}}{x'}+\ddp{h_{y'}}{y'}+\ddp{h_{z'}}{z'},
+\end{equation}
+which is the <em class="emph">same</em> number as would be gotten from
+Eq.&nbsp;(<a href="#mjx-eqn-EqII233">2.33</a>), even though it looks different. That is,
+\begin{equation}
+\label{Eq:II:2:35}
+\FLPnabla'\cdot\FLPh=\FLPdiv{\FLPh}
+\end{equation}
+for every point in space. So&nbsp;$\FLPdiv{\FLPh}$ is a scalar field, which
+must represent some physical quantity. You should realize that the
+combination of derivatives in&nbsp;$\FLPdiv{\FLPh}$ is rather
+special. There are all sorts of other combinations like&nbsp;$\ddpl{h_y}{x}$,
+which are neither scalars nor components of vectors.
+</p>
+</div>
+
+<div id="Ch2-S5-p3" class="para">
+<p class="p">The scalar quantity $\FLPdiv{(\text{a vector})}$ is extremely useful in
+physics. It has been given the name the
+<em class="emph">divergence</em>. For example,
+\begin{equation}
+\label{Eq:II:2:36}
+\FLPdiv{\FLPh}=\ndiv\FLPh=\text{“divergence of $\FLPh$.”}
+\end{equation}
+As we did for&nbsp;$\FLPgrad{T}$, we can ascribe a physical significance
+to&nbsp;$\FLPdiv{\FLPh}$. We shall, however, postpone that until later.
+</p>
+</div>
+
+<div id="Ch2-S5-p4" class="para">
+<p class="p">First, we wish to see what else we can cook up with the vector
+operator&nbsp;$\FLPnabla$. What about a cross product? We must expect that
+\begin{equation}
+\label{Eq:II:2:37}
+\FLPcurl{\FLPh}=\text{a vector}.
+\end{equation}
+It is a vector whose components we can write by the usual rule for
+cross products (see Eq.&nbsp;(<a href="#mjx-eqn-EqII22">2.2</a>)):
+
+\begin{equation}
+\label{Eq:II:2:38}
+(\FLPcurl{\FLPh})_z=
+\nabla_x h_y -\nabla_y h_x =\ddp{h_y}{x} -\ddp{h_x}{y}.
+\end{equation}
+Similarly,
+\begin{equation}
+\label{Eq:II:2:39}
+(\FLPcurl{\FLPh})_x =
+\nabla_y h_z -\nabla_z h_y =\ddp{h_z}{y} -\ddp{h_y}{z}\phantom{.} 
+\end{equation}
+and
+\begin{equation}
+\label{Eq:II:2:40}
+(\FLPcurl{\FLPh})_y =
+\nabla_z h_x -\nabla_x h_z =\ddp{h_x}{z} -\ddp{h_z}{x}.
+\end{equation}
+
+</p>
+</div>
+
+<div id="Ch2-S5-p5" class="para">
+<p class="p">The combination&nbsp;$\FLPcurl{\FLPh}$ is called “the <em class="emph">curl</em> of&nbsp;$\FLPh$.” The reason for the
+name and the physical meaning of the combination will be discussed
+later.
+</p>
+</div>
+
+<div id="Ch2-S5-p6" class="para">
+<p class="p">Summarizing, we have three kinds of combinations with&nbsp;$\FLPnabla$:
+\begin{alignat*}{3}
+&\FLPgrad{T}&&=\grad T\;&&=\text{a vector},\\[1ex]
+&\FLPdiv{\FLPh}&&=\ndiv\FLPh&&=\text{a scalar},\\[1ex]
+&\FLPcurl{\FLPh}\;&&=\curl\FLPh&&=\text{a vector}.
+\end{alignat*}
+Using these combinations, we can write about the spatial variations of
+fields in a convenient way—in a way that is general, in that it
+doesn’t depend on any particular set of axes.
+</p>
+</div>
+
+<div id="Ch2-S5-p7" class="para">
+<p class="p">As an example of the use of our vector differential operator&nbsp;$\FLPnabla$,
+we write a set of vector equations which contain the same
+laws of electromagnetism that we gave in words in
+Chapter&nbsp;<a href="II_01.html">1</a>. They are called Maxwell’s
+equations.
+
+\begin{gather}
+\notag
+\textit{Maxwell’s Equations}\\[1ex]
+\label{Eq:II:2:41}
+\begin{alignedat}{2}
+&(1)&\quad
+\FLPdiv{\FLPE}\;&=\frac{\rho}{\epsO}\\[.5ex]
+&(2)&\quad\FLPcurl{\FLPE}\;&=-\ddp{\FLPB}{t}\\[.5ex]
+&(3)&\quad\FLPdiv{\FLPB}\;&=0\\[.5ex]
+&(4)&\quad c^2\,\FLPcurl{\FLPB}\;&=\ddp{\FLPE}{t}+\frac{\FLPj}{\epsO}
+\end{alignedat}
+\end{gather}
+where&nbsp;$\rho$ (rho), the “electric charge density,” is the amount of 
+charge per unit volume, and&nbsp;$\FLPj$, the
+“electric current density,” is the
+rate at which charge flows through a unit area per second. These four
+equations contain the complete classical theory of the electromagnetic
+field. You see what an elegantly simple form we can get with our new
+notation!
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch2-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">2–6</span>The differential equation of heat flow</h3>
+
+<div id="Ch2-S6-p1" class="para">
+<p class="p">Let us give another example of a law of physics written in vector
+notation. The law is not a precise one, but for many metals and a
+number of other substances that conduct heat it is quite accurate. You
+know that if you take a slab of material and heat one face to
+temperature&nbsp;$T_2$ and cool the other to a different temperature&nbsp;$T_1$
+the heat will flow through the material from $T_2$ to&nbsp;$T_1$
+[Fig.&nbsp;<a href="#Ch2-F7">2–7</a>(a)]. The heat flow is proportional to the
+area&nbsp;$A$ of the faces, and to the temperature difference. It is also
+inversely proportional to&nbsp;$d$, the distance between the plates. (For a
+given temperature difference, the thinner the slab the greater the heat
+flow.) Letting&nbsp;$J$ be the thermal energy that passes per unit time
+through the slab, we write
+\begin{equation}
+\label{Eq:II:2:42}
+J=\kappa(T_2-T_1)\,\frac{A}{d}.
+\end{equation}
+The constant of proportionality&nbsp;$\kappa$ (kappa) is called the
+<em class="emph">thermal conductivity</em>.
+</p>
+</div>
+
+<div id="Ch2-F7" class="figure">
+<img class="first" src="img/FLP_II/f02-07/f02-07_tc_big_a.svgz"><img class="last" src="img/FLP_II/f02-07/f02-07_tc_big_b.svgz"><div class="caption"><span class="tag">Fig. 2–7.</span>
+(a)&nbsp;Heat flow through a slab. (b)&nbsp;An infinitesimal slab
+  parallel to an isothermal surface in a large block.
+</div>
+</div>
+
+<div id="Ch2-S6-p2" class="para">
+<p class="p">What will happen in a more complicated case? Say in an odd-shaped
+block of material in which the temperature varies in peculiar ways?
+Suppose we look at a tiny piece of the block and imagine a slab like
+that of Fig.&nbsp;<a href="#Ch2-F7">2–7</a>(a) on a miniature scale. We orient the
+faces parallel to the isothermal surfaces, as in
+Fig.&nbsp;<a href="#Ch2-F7">2–7</a>(b), so that Eq.&nbsp;(<a href="#mjx-eqn-EqII242">2.42</a>) is correct
+for the small slab.
+</p>
+</div>
+
+<div id="Ch2-S6-p3" class="para">
+<p class="p">If the area of the small slab is&nbsp;$\Delta A$, the heat flow per unit
+time is
+\begin{equation}
+\label{Eq:II:2:43}
+\Delta J=\kappa\,\Delta T\,\frac{\Delta A}{\Delta s},
+\end{equation}
+where&nbsp;$\Delta s$ is the thickness of the slab. Now&nbsp;$\Delta J/\Delta A$
+we have defined earlier as the magnitude of&nbsp;$\FLPh$, whose direction
+is the heat flow. The heat flow will be from $T_1+\Delta T$
+toward&nbsp;$T_1$ and so it will be perpendicular to the isotherms, as drawn in
+Fig.&nbsp;<a href="#Ch2-F7">2–7</a>(b). Also,&nbsp;$\Delta T/\Delta s$ is just the rate
+of change of&nbsp;$T$ with position. And since the position change is
+perpendicular to the isotherms, our&nbsp;$\Delta T/\Delta s$ is the maximum
+rate of change. It is, therefore, just the magnitude of&nbsp;$\FLPgrad{T}$.
+Now since the direction of&nbsp;$\FLPgrad{T}$ is opposite to
+that of&nbsp;$\FLPh$, we can write&nbsp;(<a href="#mjx-eqn-EqII243">2.43</a>) as a vector equation:
+\begin{equation}
+\label{Eq:II:2:44}
+\FLPh=-\kappa\,\FLPgrad{T}.
+\end{equation}
+(The minus sign is necessary because heat flows “downhill” in
+temperature.) Equation&nbsp;(<a href="#mjx-eqn-EqII244">2.44</a>) is the differential equation
+of heat conduction in bulk materials. You see that it is a proper
+vector equation. Each side is a vector if&nbsp;$\kappa$ is just a
+number. It is the generalization to arbitrary cases of the special
+relation&nbsp;(<a href="#mjx-eqn-EqII242">2.42</a>) for rectangular slabs. Later we should
+learn to write all sorts of elementary physics relations
+like&nbsp;(<a href="#mjx-eqn-EqII242">2.42</a>) in the more sophisticated vector notation. This
+notation is useful not only because it makes the equations <em class="emph">look</em>
+simpler. It also shows most clearly the <em class="emph">physical content</em> of the
+equations without reference to any arbitrarily chosen coordinate system.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch2-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">2–7</span>Second derivatives of vector fields</h3>
+
+<div id="Ch2-S7-p1" class="para">
+<p class="p">So far we have had only first derivatives. Why not second derivatives?
+We could have several combinations:
+\begin{equation}
+\label{Eq:II:2:45}
+\begin{alignedat}{2}
+&(\text{a})&\quad&\FLPdiv{(\FLPgrad{T})}\\[.5ex]
+&(\text{b})&&\FLPcurl{(\FLPgrad{T})}\\[.5ex]
+&(\text{c})&&\FLPgrad{(\FLPdiv{\FLPh})}\\[.5ex]
+&(\text{d})&&\FLPdiv{(\FLPcurl{\FLPh})}\\[.5ex]
+&(\text{e})&&\FLPcurl{(\FLPcurl{\FLPh})}
+\end{alignedat}
+\end{equation}
+You can check that these are all the possible combinations.
+</p>
+</div>
+
+<div id="Ch2-S7-p2" class="para">
+<p class="p">Let’s look first at the second one,&nbsp;(b). It has the same form as
+\begin{equation*}
+\FLPA\times(\FLPA T)=(\FLPA\times\FLPA)T=\FLPzero,
+\end{equation*}
+since&nbsp;$\FLPA\times\FLPA$ is always zero. So we should have
+\begin{equation}
+\label{Eq:II:2:46}
+\curl(\grad T)=\FLPcurl{(\FLPgrad{T})}=\FLPzero.
+\end{equation}
+We can see how this equation comes about if we go through once with
+the components:
+\begin{align}
+[\FLPcurl{(\FLPgrad{T})}]_z&=
+\nabla_x(\FLPgrad{T})_y-\nabla_y(\FLPgrad{T})_x\notag\\[1ex]
+\label{Eq:II:2:47}
+&=\ddp{}{x}\biggl(\ddp{T}{y}\biggr)-\ddp{}{y}\biggl(\ddp{T}{x}\biggr),
+\end{align}
+which is zero (by Eq.&nbsp;(<a href="#mjx-eqn-EqII28">2.8</a>)). It goes the same for the
+other components. So $\FLPcurl{(\FLPgrad{T})}=\FLPzero$, for any
+temperature distribution—in fact, for <em class="emph">any</em> scalar function.
+</p>
+</div>
+
+<div id="Ch2-S7-p3" class="para">
+<p class="p">Now let us take another example. Let us see whether we can find
+another zero. The dot product of a vector with a cross product which
+contains that vector is zero:
+\begin{equation}
+\label{Eq:II:2:48}
+\FLPA\cdot(\FLPA\times\FLPB)=0,
+\end{equation}
+because&nbsp;$\FLPA\times\FLPB$ is perpendicular to&nbsp;$\FLPA$, and so has no
+components in the direction&nbsp;$\FLPA$. The same combination appears
+in&nbsp;(d) of&nbsp;(<a href="#mjx-eqn-EqII245">2.45</a>), so we have
+\begin{equation}
+\label{Eq:II:2:49}
+\FLPdiv{(\FLPcurl{\FLPh})}=\ndiv(\curl\FLPh)=0.
+\end{equation}
+Again, it is easy to show that it is zero by carrying through the
+operations with components.
+</p>
+</div>
+
+<div id="Ch2-S7-p4" class="para">
+<p class="p">Now we are going to state two mathematical theorems that we will not
+prove. They are very interesting and useful theorems for physicists to
+know.
+</p>
+</div>
+
+<div id="Ch2-S7-p5" class="para">
+<p class="p">In a physical problem we frequently find that the curl of some
+quantity—say of the vector field&nbsp;$\FLPA$—is zero. Now we have seen
+(Eq.&nbsp;(<a href="#mjx-eqn-EqII246">2.46</a>)) that the curl of a gradient is zero, which is
+easy to remember because of the way the vectors work. It could
+certainly be, then, that&nbsp;$\FLPA$ is the gradient of some quantity,
+because then its curl would necessarily be zero. The interesting
+theorem is that if the $\curl\FLPA$ is zero, then&nbsp;$\FLPA$ is
+<em class="emph">always</em> the gradient of <em class="emph">something</em>—there is some scalar
+field&nbsp;$\psi$ (psi) such that&nbsp;$\FLPA$ is equal to $\grad\psi$. In other
+words, we have the
+\begin{alignat}{2}
+\kern-6em\text{Theorem:}\notag\\[3pt]
+&\text{If}&\FLPnabla\times\FLPA&=\FLPzero\notag\\[3pt]
+&\text{there is a}&\psi&\notag\\[3pt]
+\label{Eq:II:2:50}
+&\text{such that}\quad&\FLPA=\FLPnabla\psi&.
+\end{alignat}
+
+</p>
+</div>
+
+<div id="Ch2-S7-p6" class="para">
+<p class="p">There is a similar theorem if the divergence of&nbsp;$\FLPA$ is zero. We
+have seen in Eq.&nbsp;(<a href="#mjx-eqn-EqII249">2.49</a>) that the divergence of a curl of
+something is always zero. If you come across a vector field&nbsp;$\FLPD$
+for which $\ndiv\FLPD$ is zero, then you can conclude that&nbsp;$\FLPD$ is
+the curl of some vector field&nbsp;$\FLPC$.
+\begin{alignat}{2}
+\kern-6em\text{Theorem:}\notag\\[3pt]
+&\text{If}&\FLPnabla\cdot\FLPD&=0\notag\\[3pt]
+&\text{there is a}&\FLPC&\notag\\[3pt]
+\label{Eq:II:2:51}
+&\text{such that}\quad&\FLPD=\FLPnabla&\times\FLPC.
+\end{alignat}
+
+</p>
+</div>
+
+<div id="Ch2-S7-p7" class="para">
+<p class="p">In looking at the possible combinations of two $\FLPnabla$&nbsp;operators,
+we have found that two of them always give zero. Now we look at the
+ones that are <em class="emph">not</em> zero. Take the combination
+$\FLPdiv{(\FLPgrad{T})}$, which was first on our list. It is not, in
+general, zero. We write out the components:
+
+\begin{equation*}
+\FLPgrad{T}=\FLPi\nabla_xT+\FLPj\nabla_yT+\FLPk\nabla_zT.
+\end{equation*}
+
+Then
+
+\begin{align}
+\FLPdiv{(\FLPgrad{T})}&=
+\nabla_x(\nabla_xT)+\nabla_y(\nabla_yT)+\nabla_z(\nabla_zT)\notag\\[1ex]
+\label{Eq:II:2:52}
+&=\frac{\partial^2T}{\partial x^2}+\frac{\partial^2T}{\partial y^2}+
+\frac{\partial^2T}{\partial z^2},
+\end{align}
+
+which would, in general, come out to be some number. It is a scalar
+field.
+</p>
+</div>
+
+<div id="Ch2-S7-p8" class="para">
+<p class="p">You see that we do not need to keep the parentheses, but can write,
+without any chance of confusion,
+\begin{equation}
+\label{Eq:II:2:53}
+\FLPdiv{(\FLPgrad{T})}=\FLPdiv{\FLPgrad{T}}=(\FLPdiv{\FLPnabla})T=\nabla^2T.
+\end{equation}
+We look at&nbsp;$\nabla^2$ as a new operator. It is a scalar operator.
+Because it appears often in physics, it has been given a special
+name—the <em class="emph">Laplacian</em>.
+
+\begin{equation}
+\label{Eq:II:2:54}
+\text{Laplacian}=\nabla^2=\frac{\partial^2}{\partial
+x^2}+\frac{\partial^2}{\partial y^2}+ \frac{\partial^2}{\partial z^2}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch2-S7-p9" class="para">
+<p class="p">Since the Laplacian is a scalar operator, we may operate with it on a
+vector—by which we mean the same operation on each component in
+rectangular coordinates:
+\begin{equation*}
+\nabla^2\FLPh=(\nabla^2h_x,\nabla^2h_y,\nabla^2h_z).
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch2-S7-p10" class="para">
+<p class="p">Let’s look at one more possibility: $\FLPcurl{(\FLPcurl{\FLPh})}$,
+which was&nbsp;(e) in the list&nbsp;(<a href="#mjx-eqn-EqII245">2.45</a>). Now the curl of the curl
+can be written differently if we use the vector
+equality&nbsp;(<a href="#mjx-eqn-EqII26">2.6</a>):
+\begin{equation}
+\label{Eq:II:2:55}
+\FLPA\times(\FLPB\times\FLPC)=\FLPB(\FLPA\cdot\FLPC)-\FLPC(\FLPA\cdot\FLPB).
+\end{equation}
+In order to use this formula, we should replace $\FLPA$ and&nbsp;$\FLPB$ by
+the operator&nbsp;$\FLPnabla$ and put&nbsp;$\FLPC=\FLPh$. If we do that, we get
+\begin{equation*}
+\FLPcurl{(\FLPcurl{\FLPh})}=\FLPgrad{(\FLPdiv{\FLPh})}-
+\FLPh(\FLPdiv{\FLPnabla})\ldots\text{???}
+\end{equation*}
+Wait a minute! Something is wrong. The first two terms are vectors all
+right (the operators are satisfied), but the last term doesn’t come
+out to anything. It’s still an operator. The trouble is that we
+haven’t been careful enough about keeping the order of our terms
+straight. If you look again at Eq.&nbsp;(<a href="#mjx-eqn-EqII255">2.55</a>), however, you
+see that we could equally well have written it as
+\begin{equation}
+\label{Eq:II:2:56}
+\FLPA\times(\FLPB\times\FLPC)=
+\FLPB(\FLPA\cdot\FLPC)-(\FLPA\cdot\FLPB)\FLPC.
+\end{equation}
+The order of terms looks better. Now let’s make our substitution
+in&nbsp;(<a href="#mjx-eqn-EqII256">2.56</a>). We get
+\begin{equation}
+\label{Eq:II:2:57}
+\FLPcurl{(\FLPcurl{\FLPh})}=\FLPgrad{(\FLPdiv{\FLPh})}-
+(\FLPdiv{\FLPnabla})\FLPh.
+\end{equation}
+This form looks all right. It is, in fact, correct, as you can verify
+by computing the components. The last term is the Laplacian, so we can
+equally well write
+\begin{equation}
+\label{Eq:II:2:58}
+\FLPcurl{(\FLPcurl{\FLPh})}=\FLPgrad{(\FLPdiv{\FLPh})}-\nabla^2\FLPh.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch2-S7-p11" class="para">
+<p class="p">We have had something to say about all of the combinations in our list
+of double&nbsp;$\FLPnabla$'s, except for&nbsp;(c),
+$\FLPgrad{(\FLPdiv{\FLPh})}$. It is a possible vector field, but there
+is nothing special to say about it. It’s just some vector field which
+may occasionally come up.
+</p>
+</div>
+
+<div id="Ch2-S7-p12" class="para">
+<p class="p">It will be convenient to have a table of our conclusions:
+\begin{equation}
+\label{Eq:II:2:59}
+\begin{alignedat}{2}
+&(\text{a})&&\FLPdiv{(\FLPgrad{T})}=\nabla^2T=\text{a scalar field}\\[.5ex]
+&(\text{b})&&\FLPcurl{(\FLPgrad{T})}=\FLPzero\\[.5ex]
+&(\text{c})&&\FLPgrad{(\FLPdiv{\FLPh})}=\text{a vector field}\\[.5ex]
+&(\text{d})&&\FLPdiv{(\FLPcurl{\FLPh})}=0\\[.5ex]
+&(\text{e})&&\FLPcurl{(\FLPcurl{\FLPh})}=
+\FLPgrad{(\FLPdiv{\FLPh})}-\nabla^2\FLPh\\[.5ex]
+&(\text{f})&\quad(&\FLPdiv{\FLPnabla})\FLPh=\nabla^2\FLPh=\text{a
+vector field}
+\end{alignedat}
+\end{equation}
+You may notice that we haven’t tried to invent a new vector
+operator&nbsp;$(\FLPcurl{\FLPnabla})$. Do you see why?
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch2-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">2–8</span>Pitfalls</h3>
+
+<div id="Ch2-S8-p1" class="para">
+<p class="p">We have been applying our knowledge of ordinary
+vector algebra to the
+algebra of the operator&nbsp;$\FLPnabla$. We have to be careful, though,
+because it is possible to go astray. There are two pitfalls which we
+will mention, although they will not come up in this course. What
+would you say about the following expression, that involves the two
+scalar functions $\psi$ and&nbsp;$\phi$ (phi):
+\begin{equation*}
+(\FLPgrad{\psi})\times(\FLPgrad{\phi})?
+\end{equation*}
+You might want to say: it must be zero because it’s just like
+\begin{equation*}
+(\FLPA a)\times(\FLPA b),
+\end{equation*}
+which is zero because the cross product of two <em class="emph">equal</em>
+vectors&nbsp;$\FLPA\times\FLPA$ is always zero. But in our example the two
+operators&nbsp;$\FLPnabla$ are not equal! The first one operates on one
+function,&nbsp;$\psi$; the other operates on a different function,&nbsp;$\phi$.
+So although we represent them by the same symbol&nbsp;$\FLPnabla$,
+they must be considered as different operators. Clearly, the direction
+of&nbsp;$\FLPgrad{\psi}$ depends on the function&nbsp;$\psi$, so it is not
+likely to be parallel to&nbsp;$\FLPgrad{\phi}$:
+\begin{equation*}
+(\FLPgrad{\psi})\times(\FLPgrad{\phi})\neq0\quad(\text{generally}).
+\end{equation*}
+Fortunately, we won’t have to use such expressions. (What we have said
+doesn’t change the fact that $\FLPcurl{\FLPgrad{\psi}}=\FLPzero$ for
+any scalar field, because here both&nbsp;$\FLPnabla$’s operate on the same
+function.)
+</p>
+</div>
+
+<div id="Ch2-S8-p2" class="para">
+<p class="p">Pitfall number two (which, again, we need not get into in our course)
+is the following: The rules that we have outlined here are simple and
+nice when we use rectangular coordinates. For example, if we
+have&nbsp;$\nabla^2\FLPh$ and we want the $x$-component, it is
+\begin{equation}
+\label{Eq:II:2:60}
+(\nabla^2\FLPh)_x=\biggl(\frac{\partial^2}{\partial
+x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial
+z^2}\biggr)h_x=\nabla^2h_x.
+\end{equation}
+The same expression would <em class="emph">not</em> work if we were to ask for the
+<em class="emph">radial</em> component of&nbsp;$\nabla^2\FLPh$. The radial component
+of&nbsp;$\nabla^2\FLPh$ is not equal to&nbsp;$\nabla^2h_r$. The reason is that when
+we are dealing with the algebra of
+vectors,
+the directions of the
+vectors are all quite definite. But when we are dealing with vector
+fields, their directions are different at different places. If we try
+to describe a vector field in, say, polar coordinates, what we call
+the “radial” direction varies from point to point. So we can get
+into a lot of trouble when we start to differentiate the
+components. For example, even for a <em class="emph">constant</em> vector field, the
+radial component changes from point to point.
+</p>
+</div>
+
+<div id="Ch2-S8-p3" class="para">
+<p class="p">It is usually safest and simplest just to stick to rectangular
+coordinates and avoid trouble, but there is one exception worth
+mentioning: Since the Laplacian&nbsp;$\nabla^2$, is a scalar, we can write
+it in any coordinate system we want to (for example, in polar
+coordinates). But since it is a differential operator, we should use
+it only on vectors whose components are in a fixed direction—that
+means rectangular coordinates. So we shall express all of our vector
+fields in terms of their $x$-,&nbsp;$y$-, and $z$-components when we write
+our vector differential equations out in components.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<ol id="footnotes">
+	<li class="footnote">
+		<a name="footnote_1"></a>
+		In our
+		notation, the expression&nbsp;$(a,b,c)$ represents a vector with components
+		$a$,&nbsp;$b$, and&nbsp;$c$. If you like to use the unit vectors $\FLPi$,&nbsp;$\FLPj$,
+		and&nbsp;$\FLPk$, you may write
+		\begin{equation*}
+		\FLPgrad{T}=\FLPi\ddp{T}{x}+\FLPj\ddp{T}{y}+\FLPk\ddp{T}{z}.
+		\end{equation*}
+        <a href="#footnote_source_1">↩</a>
+  </li>
+  <li class="footnote">
+	    <a name="footnote_2"></a>
+		We think of&nbsp;$\FLPh$ as a <em class="emph">physical</em> quantity that
+		depends on position in space, and not strictly as a mathematical
+		function of three variables. When&nbsp;$\FLPh$ is “differentiated” with
+		respect to $x$,&nbsp;$y$, and&nbsp;$z$, or with respect to $x'$,&nbsp;$y'$, and&nbsp;$z'$,
+		the mathematical expression for&nbsp;$\FLPh$ must first be expressed as a
+		function of the appropriate variables.
+	  <a href="#footnote_source_2">↩</a>
+  </li>
+</ol>
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 28: Electromagnetic Radiation</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "28." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div></div> <div class="main">
+    <div class="content">
+        <div class="document">
+            <div id="Ch28" class="chapter">
+                <h2 class="title chapter-title">
+                    <span class="tag">28</span>Electromagnetic Radiation</h2>
+                <div id="Ch28-S1" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">28–1</span>Electromagnetism</h3>
+                    <div id="Ch28-S1-p1" class="para">
+                        <p class="p">The most dramatic moments in the development of physics are those in
+                        which great syntheses take place, where phenomena which previously had
+                        appeared to be different are suddenly discovered to be but different
+                        aspects of the same thing. The history of physics is the history of
+                        such syntheses, and the basis of the success of physical science is
+                        mainly that we are <em class="emph">able</em> to synthesize.</p>
+                    </div>
+                    <div id="Ch28-S1-p2" class="para">
+                        <p class="p">Perhaps the most dramatic moment in the development of physics during the
+                        19th century occurred to J. C. Maxwell one day in the 1860s, when he combined the laws of electricity and
+                        magnetism with the laws of the behavior of light. As a result, the properties of
+                        light were partly unravelled—that old and subtle stuff that is so important
+                        and mysterious that it was felt necessary to arrange a special creation for
+                        it when writing Genesis. Maxwell
+                        could say, when he was finished with his discovery, “Let there be electricity
+                        and magnetism, and there is light!”</p>
+                    </div>
+                    <div id="Ch28-S1-p3" class="para">
+                        <p class="p">For this culminating moment there was a long preparation in the
+                        gradual discovery and unfolding of the laws of electricity and
+                        magnetism. This story we shall reserve for detailed study next
+                        year. However, the story is, briefly, as follows. The gradually
+                        discovered properties of electricity and magnetism, of electric forces
+                        of attraction and repulsion, and of magnetic forces, showed that
+                        although these forces were rather complex, they all fell off inversely
+                        as the square of the distance. We know, for example, that the simple
+                        Coulomb law
+                        for stationary charges is that the electric force field
+                        varies inversely as the square of the distance. As a consequence, for
+                        sufficiently great distances there is very little influence of one
+                        system of charges on another.
+                        Maxwell noted that the
+                        equations or the laws that had been discovered up to this time were
+                        mutually inconsistent when he tried to put them all together, and in
+                        order for the whole system to be consistent, he had to add another term
+                        to his equations. With this new term there came an amazing prediction,
+                        which was that a part of the electric and magnetic fields would fall off
+                        much more slowly with the distance than the inverse square, namely,
+                        inversely as the first power of the distance! And so he realized that
+                        electric currents in one place can affect other charges far away, and he
+                        predicted the basic effects with which we are familiar today—radio
+                        transmission, radar, and so on.</p>
+                    </div>
+                    <div id="Ch28-S1-p4" class="para">
+                        <p class="p">It seems a miracle that someone talking in Europe can, with mere
+                        electrical influences, be heard thousands of miles away in Los
+                        Angeles. How is it possible? It is because the fields do not vary as
+                        the inverse square, but only inversely as the first power of the
+                        distance. Finally, then, even light itself was recognized to be
+                        electric and magnetic influences extending over vast distances,
+                        generated by an almost incredibly rapid oscillation of the electrons
+                        in the atoms. All these phenomena we summarize by the word
+                        <em class="emph">radiation</em> or, more specifically, <em class="emph">electromagnetic
+                            radiation</em>, there being one or two other kinds of radiation
+                        also. Almost always, radiation means electromagnetic radiation.</p>
+                    </div>
+                    <div id="Ch28-S1-p5" class="para">
+                        <p class="p">And thus is the universe knit together. The atomic motions of a
+                        distant star still have sufficient influence at this great distance to
+                        set the electrons in our eye in motion, and so we know about the
+                        stars. If this law did not exist, we would all be literally in the
+                        dark about the exterior world! And the electric surgings in a galaxy
+                        five billion light years away—which is the farthest object we have
+                        found so far—can still influence in a significant and detectable way
+                        the currents in the great “dish” in front of a radio telescope. And
+                        so it is that we see the stars and the galaxies.</p>
+                    </div>
+                    <div id="Ch28-S1-p6" class="para">
+                        <p class="p">This remarkable phenomenon is what we shall discuss in the present
+                        chapter. At the beginning of this course in physics we outlined a
+                        broad picture of the world, but we are now better prepared to
+                        understand some aspects of it, and so we shall now go over some parts
+                        of it again in greater detail. We begin by describing the position of
+                        physics at the end of the 19th century. All that was then known about
+                        the fundamental laws can be summarized as follows.</p>
+                    </div>
+                    <div id="Ch28-S1-p7" class="para">
+                        <p class="p">First, there were laws of forces: one force was the law of
+                        gravitation, which we have written down several times; the force on an
+                        object of mass $m$, due to another of mass $M$, is given by
+                        \begin{equation}
+                        \label{Eq:I:28:1}
+                        \FLPF=GmM\FLPe_r/r^2,
+                        \end{equation}
+                        where $\FLPe_r$ is a unit vector directed from $m$ to $M$, and $r$ is
+                        the distance between them.</p>
+                    </div>
+                    <div id="Ch28-S1-p8" class="para">
+                        <p class="p">Next, the laws of electricity and magnetism, as known at the end of
+                        the 19th century, are these: the electrical forces acting on a
+                        charge $q$ can be described by two fields, called $\FLPE$ and $\FLPB$, and
+                        the velocity $\FLPv$ of the charge $q$, by the equation
+                        \begin{equation}
+                        \label{Eq:I:28:2}
+                        \FLPF=q(\FLPE+\FLPv\times\FLPB).
+                        \end{equation}
+                        To complete this law, we have to say what the formulas for $\FLPE$
+                        and $\FLPB$ are in a given circumstance: if a number of charges are
+                        present, $\FLPE$ and the $\FLPB$ are each the sum of contributions,
+                        one from each individual charge. So if we can find the $\FLPE$
+                        and $\FLPB$ produced by a single charge, we need only to add all the
+                        effects from all the charges in the universe to get the total $\FLPE$
+                        and $\FLPB$!  This is the principle of
+                        superposition.
+                        </p>
+                    </div>
+                    <div id="Ch28-S1-p9" class="para">
+                        <p class="p">What is the formula for the electric and magnetic field produced by
+                        one individual charge? It turns out that this is very complicated, and
+                        it takes a great deal of study and sophistication to appreciate
+                        it. But that is not the point. We write down the law now only to
+                        impress the reader with the beauty of nature, so to speak, i.e., that
+                        it is <em class="emph">possible</em> to summarize all the fundamental knowledge on
+                        one page, with notations that he is now familiar with. This law for
+                        the fields of an individual charge is complete and accurate, so far as
+                        we know (except for quantum mechanics) but it looks rather
+                        complicated. We shall not study all the pieces now; we only write it
+                        down to give an impression, to show that it can be written, and so
+                        that we can see ahead of time roughly what it looks like. As a matter
+                        of fact, the most <em class="emph">useful</em> way to write the correct laws of
+                        electricity and magnetism is not the way we shall now write them, but
+                        involves what are called <em class="emph">field equations</em>, which we shall learn
+                        about next year. But the mathematical notations for these are
+                        different and new, and so we write the law in an inconvenient form for
+                        calculation, but in notations that we now know.
+                        </p>
+                    </div>
+                    <div id="Ch28-S1-p10" class="para">
+                        <p class="p">The electric field, $\FLPE$, is given by
+                        \begin{equation}
+                        \label{Eq:I:28:3}
+                        \FLPE=\frac{-q}{4\pi\epsO}\biggl[
+                        \frac{\FLPe_{r'}}{r'^2}+\frac{r'}{c}\,\ddt{}{t}\biggl(
+                        \frac{\FLPe_{r'}}{r'^2}\biggr)+\frac{1}{c^2}\,\frac{d^2}{dt^2}\,\FLPe_{r'}
+                        \biggr].
+                        \end{equation}
+                        What do the various terms tell us? Take the first term,
+                        $\FLPE=-q\FLPe_{r'}/4\pi\epsO r'^2$. That, of course, is
+                        Coulomb’s law, which we
+                        already know: $q$ is the charge that is producing the
+                        field; $\FLPe_{r'}$ is the unit vector in the direction from the
+                        point $P$ where $\FLPE$ is measured, $r$ is the distance from $P$
+                        to $q$. But, Coulomb’s law is wrong.
+                        The discoveries of the 19th century
+                        showed that influences cannot travel faster than a certain fundamental
+                        speed $c$, which we now call the speed of light. It is not correct
+                        that the first term is Coulomb’s law,
+                        not only because it is not
+                        possible to know where the charge is <em class="emph">now</em> and at what distance
+                        it is <em class="emph">now</em>, but also because the only thing that can affect the
+                        field at a given place and time is the behavior of the charges in the
+                        <em class="emph">past</em>. How <em class="emph">far</em> in the past?  The time delay, or
+                        <em class="emph">retarded time</em>,
+                        so-called, is the time it takes, at speed $c$, to get from the charge to
+                        the field point $P$. The delay is $r'/c$.</p>
+                    </div>
+                    <div id="Ch28-S1-p11" class="para">
+                        <p class="p">So to allow for this time delay, we put a little prime on $r$, meaning
+                        how far away it <em class="emph">was</em> when the information now arriving at $P$
+                        left $q$. Just for a moment suppose that the charge carried a light,
+                        and that the light could only come to $P$ at the speed $c$. Then when
+                        we look at $q$, we would not see where it is now, of course, but where
+                        it <em class="emph">was</em> at some earlier time. What appears in our formula is the
+                        <em class="emph">apparent</em> direction&nbsp;$\FLPe_{r&#39;}$—the direction it used to
+                        be—the so-called <em class="emph">retarded</em> direction—and at the
+                        <em class="emph">retarded</em> distance $r'$. That would be easy enough to
+                        understand, too, but it is also wrong. The whole thing is much more
+                        complicated.</p>
+                    </div>
+                    <div id="Ch28-S1-p12" class="para">
+                        <p class="p">There are several more terms. The next term is as though nature were
+                        trying to allow for the fact that the effect is retarded, if we might
+                        put it very crudely. It suggests that we should calculate the delayed
+                        Coulomb field and add a correction to it, which is its rate of change
+                        times the time delay that we use. Nature seems to be attempting to
+                        guess what the field at the present time is going to be, by taking the
+                        rate of change and multiplying by the time that is delayed. But we are
+                        not yet through. There is a third term—the second derivative, with
+                        respect to $t$, of the unit vector in the direction of the charge. Now
+                        the formula <em class="emph">is</em> finished, and that is all there is to the
+                        electric field from an arbitrarily moving charge.</p>
+                    </div>
+                    <div id="Ch28-S1-p13" class="para">
+                        <p class="p">The magnetic field is given by
+                        \begin{equation}
+                        \label{Eq:I:28:4}
+                        \FLPB=-\FLPe_{r'}\times\FLPE/c.
+                        \end{equation}
+                        We have written these down only for the purpose of showing the beauty
+                        of nature or, in a way, the power of mathematics. We do not pretend to
+                        understand <em class="emph">why</em> it is possible to write so much in such a small
+                        space, but (<a href="#mjx-eqn-EqI283">28.3</a>) and (<a href="#mjx-eqn-EqI284">28.4</a>) contain the
+                        machinery by which electric generators work, how light operates, all
+                        the phenomena of electricity and magnetism. Of course, to complete the
+                        story we also need to know something about the behavior of the
+                        materials involved—the properties of matter—which are not
+                        described properly by (<a href="#mjx-eqn-EqI283">28.3</a>).</p>
+                    </div>
+                    <div id="Ch28-S1-p14" class="para">
+                        <p class="p">To finish with our description of the world of the 19th century we
+                        must mention one other great synthesis which occurred in that century,
+                        one with which Maxwell had a
+                        great deal to do also, and that was the synthesis of the phenomena of
+                        heat and mechanics. We shall study that subject soon.</p>
+                    </div>
+                    <div id="Ch28-S1-p15" class="para">
+                        <p class="p">What had to be added in the 20th century was that the dynamical laws of
+                        Newton were found to be all wrong, and quantum mechanics had to be
+                        introduced to correct them. Newton’s laws
+                        are approximately
+                        valid when the scale of things is sufficiently large. These
+                        quantum-mechanical laws, combined with the laws of electricity, have
+                        only recently been combined to form a set of laws called <em class="emph">quantum
+                            electrodynamics</em>. In addition, there were
+                        discovered a number of new phenomena, of which the first was
+                        radioactivity, discovered by
+                        Becquerel in
+                        1898—he just sneaked it in under the 19th century.
+                        This phenomenon of radioactivity was followed up to produce our
+                        knowledge of nuclei and new kinds of forces that are not gravitational
+                        and not electrical, but new particles with different interactions, a
+                        subject which has still not been unravelled.</p>
+                    </div>
+                    <div id="Ch28-S1-p16" class="para">
+                        <p class="p">For those purists who know more (the professors who happen to be
+                        reading this), we should add that when we say that (<a href="#mjx-eqn-EqI283">28.3</a>)
+                        is a complete expression of the knowledge of electrodynamics, we are
+                        not being entirely accurate. There was a problem that was not quite
+                        solved at the end of the 19th century. When we try to calculate the
+                        field from all the charges <em class="emph">including the charge itself that we
+                            want the field to act on</em>, we get into trouble trying to find the
+                        distance, for example, of a charge from itself, and dividing something
+                        by that distance, which is zero. The problem of how to handle the part
+                        of this field which is generated by the very charge on which we want
+                        the field to act is not yet solved today. So we leave it there; we do
+                        not have a complete solution to that puzzle yet, and so we shall avoid
+                        the puzzle for as long as we can.</p>
+                    </div>
+                </div>
+                <div id="Ch28-S2" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">28–2</span>Radiation</h3>
+                    <div id="Ch28-S2-p1" class="para">
+                        <p class="p">That, then, is a summary of the world picture. Now let us use it to
+                        discuss the phenomena called radiation. To discuss these phenomena, we
+                        must select from Eq. (<a href="#mjx-eqn-EqI283">28.3</a>) only that piece which varies
+                        inversely as the distance and not as the square of the distance. It
+                        turns out that when we finally do find that piece, it is so simple in
+                        its form that it is legitimate to study optics and electrodynamics in
+                        an elementary way by taking it as “the law” of the electric field
+                        produced by a moving charge far away. We shall take it temporarily as
+                        a given law which we will learn about in detail next year.</p>
+                    </div>
+                    <div id="Ch28-S2-p2" class="para">
+                        <p class="p">Of the terms appearing in (<a href="#mjx-eqn-EqI283">28.3</a>), the first one evidently
+                        goes inversely as the square of the distance, and the second is only a
+                        correction for delay, so it is easy to show that both of them vary
+                        inversely as the square of the distance. All of the effects we are
+                        interested in come from the third term, which is not very complicated,
+                        after all. What this term says is: look at the charge and note the
+                        direction of the unit vector (we can project the end of it onto the
+                        surface of a unit sphere). As the charge moves around, the unit vector
+                        wiggles, and <em class="emph">the acceleration of that unit vector is what we are
+                            looking for</em>. That is all. Thus
+                        \begin{equation}
+                        \label{Eq:I:28:5}
+                        \FLPE=\frac{-q}{4\pi\epsO c^2}\,
+                        \frac{d^2\FLPe_{r'}}{dt^2}
+                        \end{equation}
+                        is a statement of the laws of radiation, because that is the only
+                        important term when we get far enough away that the fields are varying
+                        inversely as the distance. (The parts that go as the square have
+                        fallen off so much that we are not interested in them.)</p>
+                    </div>
+                    <div id="Ch28-S2-p3" class="para">
+                        <p class="p">Now we can go a little bit further in studying (<a href="#mjx-eqn-EqI285">28.5</a>) to
+                        see what it means. Suppose a charge is moving in any manner
+                        whatsoever, and we are observing it from a distance. We imagine for a
+                        moment that in a sense it is “lit up” (although it is light that we
+                        are trying to explain); we imagine it as a little white dot. Then we
+                        would see this white dot running around. But we don’t see
+                        <em class="emph">exactly</em> how it is running around right <em class="emph">now</em>, because of
+                        the delay that we have been talking about. What counts is how it was
+                        moving <em class="emph">earlier</em>. The unit vector $\FLPe_{r'}$ is pointed toward
+                        the apparent position of the charge. Of course, the end
+                        of $\FLPe_{r'}$ goes on a slight curve, so that its acceleration has two
+                        components. One is the transverse piece, because the end of it goes up
+                        and down, and the other is a radial piece because it stays on a
+                        sphere. It is easy to demonstrate that the latter is much smaller and
+                        varies as the inverse square of $r$ when $r$ is very great. This is
+                        easy to see, for when we imagine that we move a given source farther
+                        and farther away, then the wigglings of $\FLPe_{r'}$ look smaller and
+                        smaller, inversely as the distance, but the radial component of
+                        acceleration is varying much more rapidly than inversely as the
+                        distance. So for practical purposes all we have to do is project the
+                        motion on a plane at unit distance. Therefore we find the following
+                        rule: Imagine that we look at the moving charge and that everything we
+                        see is delayed—like a painter trying to paint a scene on a screen at
+                        a unit distance. A real painter, of course, does not take into account
+                        the fact that light is going at a certain speed, but paints the world
+                        as he sees it. We want to see what his picture would look like. So we
+                        see a dot, representing the charge, moving about in the picture. The
+                        acceleration of that dot is proportional to the electric field. That
+                        is all—all we need.</p>
+                    </div>
+                    <div id="Ch28-S2-p4" class="para">
+                        <p class="p">Thus Eq. (<a href="#mjx-eqn-EqI285">28.5</a>) is the complete and correct formula for
+                        radiation; even relativity effects are all contained in it. However,
+                        we often want to apply it to a still simpler circumstance in which the
+                        charges are moving only a small distance at a relatively slow
+                        rate. Since they are moving slowly, they do not move an appreciable
+                        distance from where they start, so that the delay time is practically
+                        constant. Then the law is still simpler, because the delay time is
+                        fixed. Thus we imagine that the charge is executing a very tiny motion
+                        at an effectively constant distance. The delay at the distance $r$
+                        is $r/c$. Then our rule becomes the following: If the charged object is
+                        moving in a very small motion and it is laterally displaced by the
+                        distance $x(t)$, then the angle that the unit vector $\FLPe_{r'}$ is
+                        displaced is $x/r$, and since $r$ is practically constant, the
+                        $x$-component of $d^2\FLPe_{r'}/dt^2$ is simply the acceleration
+                        of $x$ itself at an earlier time divided by $r$, and so finally we get
+                        the law we want, which is
+                        \begin{equation}
+                        \label{Eq:I:28:6}
+                        E_x(t)=\frac{-q}{4\pi\epsO c^2r}\,a_x
+                        \Bigl(t-\frac{r}{c}\Bigr).
+                        \end{equation}
+                        </p>
+                    </div>
+                    <div id="Ch28-S2-p5" class="para">
+                        <p class="p">Only the component of $a_x$ perpendicular to the line of sight is
+                        important. Let us see why that is. Evidently, if the charge is moving
+                        in and out straight at us, the unit vector in that direction does not
+                        wiggle at all, and it has no acceleration. So it is only the sidewise
+                        motion which is important, only the acceleration that we see projected
+                        on the screen.</p>
+                    </div>
+                </div>
+                <div id="Ch28-S3" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">28–3</span>The dipole radiator</h3>
+                    <div id="Ch28-S3-p1" class="para">
+                        <p class="p">As our fundamental “law” of electromagnetic radiation, we are going
+                        to assume that (<a href="#mjx-eqn-EqI286">28.6</a>) is true, i.e., that the electric
+                        field produced by an accelerating charge which is moving
+                        nonrelativistically at a very large distance $r$ approaches that
+                        form. The electric field varies inversely as $r$ and is proportional
+                        to the acceleration of the charge, projected onto the “plane of
+                        sight,” and this acceleration is not today’s acceleration, but the
+                        acceleration that it had at an earlier time, the amount of delay being
+                        a time, $r/c$. In the remainder of this chapter we shall discuss this
+                        law so that we can understand it better physically, because we are
+                        going to use it to understand all of the phenomena of light and radio
+                        propagation, such as reflection, refraction, interference,
+                        diffraction, and scattering. It is the central law, and is all we
+                        need. All the rest of Eq. (<a href="#mjx-eqn-EqI283">28.3</a>) was written down only to
+                        set the stage, so that we could appreciate where (<a href="#mjx-eqn-EqI286">28.6</a>)
+                        fits and how it comes about.</p>
+                    </div>
+                    <div id="Ch28-F1" class="figure">
+                        <img src="img/FLP_I/f28-01/f28-01_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 28–1.</span>A high-frequency signal generator drives charges up and down
+                            on two wires.
+                        </div>
+                    </div>
+                    <div id="Ch28-S3-p2" class="para">
+                        <p class="p">We shall discuss (<a href="#mjx-eqn-EqI283">28.3</a>) further next year. In the meantime,
+                        we shall accept it as true, but not just on a theoretical basis. We
+                        may devise a number of experiments which illustrate the character of
+                        the law. In order to do so, we need an accelerating charge. It should
+                        be a single charge, but if we can make a great many charges move
+                        together, all the same way, we know that the field will be the sum of
+                        the effects of each of the individual charges; we just add them
+                        together. As an example, consider two pieces of wire connected to a
+                        generator, as shown in Fig. <a href="#Ch28-F1">28–1</a>. The idea is that the
+                        generator makes a potential difference, or a field, which pulls
+                        electrons away from piece $A$ and pushes them into $B$ at one moment,
+                        and then, an infinitesimal time later, it reverses the effect and
+                        pulls the electrons out of $B$ and pumps them back into $A$<span class="text italic">!</span>
+                        So in these two wires charges, let us say, are accelerating upward in
+                        wire $A$ and upward in wire $B$ for one moment, and a moment later
+                        they are accelerating downward in wire $A$ and downward in wire $B$.
+                        The fact that we need two wires and a generator is merely that
+                        this is a way of doing it. The net result is that we merely have a
+                        charge accelerating up and down as though $A$ and $B$ were one single
+                        wire. A wire that is very short compared with the distance light
+                        travels in one oscillation period is called an <em class="emph">electric dipole
+                            oscillator</em>. Thus we have the circumstance that we need to apply our
+                        law, which tells us that this charge makes an electric field, and so
+                        we need an instrument to detect an electric field, and the instrument
+                        we use is the same thing—a pair of wires like $A$ and $B$<span class="text italic">!</span>
+                        If an electric field is applied to such a device, it will produce a
+                        force which will pull the electrons up on both wires or down on both
+                        wires. This signal is detected by means of a rectifier mounted between
+                        $A$ and $B$, and a tiny, fine wire carries the information into an
+                        amplifier, where it is amplified so we can hear the audiofrequency
+                        tone with which the radiofrequency is modulated. When this probe feels
+                        an electric field, there will be a loud noise coming out of the
+                        loudspeaker, and when there is no electric field driving it, there
+                        will be no noise.</p>
+                    </div>
+                    <div id="Ch28-S3-p3" class="para">
+                        <p class="p">Because the room in which the waves we are measuring has other objects
+                        in it, our electric field will shake electrons in these other objects;
+                        the electric field makes these other charges go up and down, and in
+                        going up and down, these also produce an effect on our probe. Thus for
+                        a successful experiment we must hold things fairly close together, so
+                        that the influences from the walls and from ourselves—the reflected
+                        waves—are relatively small. So the phenomena will not turn out to
+                        appear to be precisely and perfectly in accord with
+                        Eq. (<a href="#mjx-eqn-EqI286">28.6</a>), but will be close enough that we shall be able to
+                        appreciate the law.</p>
+                    </div>
+                    <div id="Ch28-F2" class="figure">
+                        <img src="img/FLP_I/f28-02/f28-02_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 28–2.</span>The instantaneous electric field on a sphere centered at a
+                            localized, linearly oscillating charge.
+                        </div>
+                    </div>
+                    <div id="Ch28-S3-p4" class="para">
+                        <p class="p">Now we turn the generator on and hear the audio signal. We find a
+                        strong field when the detector $D$ is parallel to the generator $G$ at
+                        point $1$ (Fig. <a href="#Ch28-F2">28–2</a>). We find the same amount of field
+                        also at any other azimuth angle about the axis of $G$, because it has
+                        no directional effects. On the other hand, when the detector is at $3$
+                        the field is zero. That is all right, because our formula said that
+                        the field should be the acceleration of the charge <em class="emph">projected
+                            perpendicular</em> to the line of sight. Therefore when we look down
+                        on $G$, the charge is moving toward and away from $D$, and there is no
+                        effect. So that checks the first rule, that there is no effect when
+                        the charge is moving directly toward us. Secondly, the formula says
+                        that the electric field should be perpendicular to $r$ and in the
+                        plane of $G$ and $r$; so if we put $D$ at $1$ but rotate it
+                        $90^\circ$, we should get no signal. And this is just what we find,
+                        the electric field is indeed vertical, and not horizontal. When we
+                        move $D$ to some intermediate angle, we see that the strongest signal
+                        occurs when it is oriented as shown, because although $G$ is vertical,
+                        it does not produce a field that is simply parallel to itself—it is
+                        the <em class="emph">projection of the acceleration perpendicular to the line of
+                            sight</em> that counts. The signal is weaker at $2$ than it is at $1$,
+                        because of the projection effect.</p>
+                    </div>
+                </div>
+                <div id="Ch28-S4" class="section">
+                    <h3 class="title section-title">
+                        <span class="tag">28–4</span>Interference</h3>
+                    <div id="Ch28-S4-p1" class="para">
+                        <p class="p">Next, we may test what happens when we have two sources side by side
+                        several wavelengths apart (Fig. <a href="#Ch28-F3">28–3</a>). The law is that the
+                        two sources should add their effects at point $1$ when both of the
+                        sources are connected to the same generator and are both moving up and
+                        down the same way, so that the total electric field is the sum of the
+                        two and is twice as strong as it was before.</p>
+                    </div>
+                    <div id="Ch28-F3" class="figure">
+                        <img src="img/FLP_I/f28-03/f28-03_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 28–3.</span>Illustration of interference of sources.
+                        </div>
+                    </div>
+                    <div id="Ch28-S4-p2" class="para">
+                        <p class="p">Now comes an interesting possibility. Suppose we make the charges in
+                        $S_1$ and $S_2$ both accelerate up and down, but delay the timing
+                        of $S_2$ so that they are $180^\circ$ out of phase. Then the field
+                        produced by $S_1$ will be in one direction and the field produced
+                        by $S_2$ will be in the opposite direction at any instant, and therefore
+                        we should get <em class="emph">no</em> effect at point $1$. The phase of oscillation
+                        is neatly adjustable by means of a pipe which is carrying the signal
+                        to $S_2$. By changing the length of this pipe we change the time it
+                        takes the signal to arrive at $S_2$ and thus we change the phase of
+                        that oscillation. By adjusting this length, we can indeed find a place
+                        where there is no more signal left, in spite of the fact that both
+                        $S_1$ and $S_2$ are moving! The fact that they are both moving can be
+                        checked, because if we cut one out, we can see the motion of the
+                        other. So the two of them together can produce <em class="emph">zero</em> if
+                        everything is adjusted correctly.
+                        </p>
+                    </div>
+                    <div id="Ch28-S4-p3" class="para">
+                        <p class="p">Now, it is very interesting to show that the addition of the two
+                        fields is in fact a <em class="emph">vector</em> addition. We have just checked it
+                        for up and down motion, but let us check two nonparallel
+                        directions. First, we restore $S_1$ and $S_2$ to the same phase; that
+                        is, they are again moving together. But now we turn $S_1$ through
+                        $90^\circ$, as shown in Fig. <a href="#Ch28-F4">28–4</a>. Now we should have at
+                        point $1$ the sum of two effects, one of which is vertical and the
+                        other horizontal. The electric field is the vector sum of these two
+                        in-phase signals—they are both strong at the same time and go
+                        through zero together; the total field should be a signal $R$
+                        at $45^\circ$. If we turn $D$ to get the maximum noise, it should be at
+                        about $45^\circ$, and not vertical. And if we turn it at right angles
+                        to that direction, we should get zero, which is easy to
+                        measure. Indeed, we observe just such behavior!</p>
+                    </div>
+                    <div id="Ch28-F4" class="figure">
+                        <img src="img/FLP_I/f28-04/f28-04_tc_big.svgz"><div class="caption">
+                            <span class="tag">Fig. 28–4.</span>Illustration of the vector character of the combination of
+                            sources.
+                        </div>
+                    </div>
+                    <div id="Ch28-S4-p4" class="para">
+                        <p class="p">Now, how about the retardation? How can we demonstrate that the signal
+                        is retarded? We could, with a great deal of equipment, measure the
+                        time at which it arrives, but there is another, very simple
+                        way. Referring again to Fig. <a href="#Ch28-F3">28–3</a>, suppose that $S_1$
+                        and $S_2$ are in phase. They are both shaking together, and they
+                        produce equal electric fields at point $1$. But suppose we go to a
+                        certain place $2$ which is closer to $S_2$ and farther
+                        from $S_1$. Then, in accordance with the principle that the acceleration
+                        should be retarded by an amount equal to $r/c$, if the retardations
+                        are not equal, the signals are no longer in phase. Thus it should be
+                        possible to find a position at which the distances of $D$ from $S_1$
+                        and $S_2$ differ by some amount $\Delta$, in such a manner that there
+                        is no net signal. That is, the distance $\Delta$ is to be the distance
+                        light goes in one-half an oscillation of the generator. We may go
+                        still further, and find a point where the difference is greater by a
+                        whole cycle; that is to say, the signal from the first antenna reaches
+                        point $3$ with a delay in time that is greater than that of the second
+                        antenna by just the length of time it takes for the electric current
+                        to oscillate once, and therefore the two electric fields produced
+                        at $3$ are in phase again. At point $3$ the signal is strong again.</p>
+                    </div>
+                    <div id="Ch28-S4-p5" class="para">
+                        <p class="p">This completes our discussion of the experimental verification of some
+                        of the important features of Eq. (<a href="#mjx-eqn-EqI286">28.6</a>). Of course we
+                        have not really checked the $1/r$ variation of the electric field
+                        strength, or the fact that there is also a magnetic field that goes
+                        along with the electric field. To do so would require rather
+                        sophisticated techniques and would hardly add to our understanding at
+                        this point. In any case, we have checked those features that are of
+                        the greatest importance for our later applications, and we shall come
+                        back to study some of the other properties of electromagnetic waves
+                        next year.</p>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+                    Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+            </footer>
+        </div>
+    </div>
+    
+</div>    
+</body>
+</html>

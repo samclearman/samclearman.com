@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 7: The Dependence of Amplitudes on Time</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "7." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch7" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">7</span>The Dependence of Amplitudes on Time</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref" rowspan=2>
+		<i>Review:</i>
+		</td>
+		<td>	
+		Chapter&nbsp;<a href="I_17.html">17</a>, Vol. I, <i>Space-Time</i>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Chapter&nbsp;<a href="I_42.html">42</a>,Vol. I, <i>Beats</i>		
+		</td>
+	</tr>
+</table>
+
+<div id="Ch7-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">7–1</span>Atoms at rest; stationary states</h3>
+<div id="Ch7-S1-p1" class="para">
+<p class="p">We want now to talk a little bit about the behavior of probability
+amplitudes in time. We say a “little bit,” because the actual
+behavior in time necessarily involves the behavior in space as
+well. Thus, we get immediately into the most complicated possible
+situation if we are to do it correctly and in detail. We are always in
+the difficulty that we can either treat something in a logically
+rigorous but quite abstract way, or we can do something which is not
+at all rigorous but which gives us some idea of a real
+situation—postponing until later a more careful treatment. With
+regard to energy dependence, we are going to take the second
+course. We will make a number of statements. We will not try to be
+rigorous—but will just be telling you things that have been found
+out, to give you some feeling for the behavior of amplitudes as a
+function of time. As we go along, the precision of the description
+will increase, so don’t get nervous that we seem to be picking things
+out of the air. It is, of course, all out of the air—the air of
+experiment and of the imagination of people. But it would take us too
+long to go over the historical development, so we have to plunge in
+somewhere. We could plunge into the abstract and deduce
+everything—which you would not understand—or we could go through a
+large number of experiments to justify each statement. We choose to do
+something in between.</p>
+</div>
+<div id="Ch7-S1-p2" class="para">
+<p class="p">An electron alone in empty space can, under certain circumstances,
+have a certain definite energy. For example, if it is standing still
+(so it has no translational motion, no momentum, or kinetic energy),
+it has its rest energy. A more complicated object like an atom can
+also have a definite energy when standing still, but it could also be
+internally excited to another energy level. (We will describe later
+the machinery of this.) We can often think of an atom in an excited
+state as having a definite energy, but this is really only
+approximately true. An atom doesn’t stay excited forever because it
+manages to discharge its energy by its interaction with the
+electromagnetic field. So there is some amplitude that a new state is
+generated—with the atom in a lower state, and the electromagnetic
+field in a higher state, of excitation. The total energy of the system
+is the same before and after, but the energy of the <em class="emph">atom</em> is
+reduced. So it is not precise to say an excited atom has a
+<em class="emph">definite</em> energy; but it will often be convenient and not too
+wrong to say that it does.</p>
+</div>
+<div id="Ch7-S1-p3" class="para">
+<p class="p">[Incidentally, why does it go one way instead of the other way? Why
+does an atom radiate light? The answer has to do with entropy. When
+the energy is in the electromagnetic field, there are so many
+different ways it can be—so many different places where it can
+wander—that if we look for the equilibrium condition, we find that
+in the most probable situation the field is excited with a photon, and
+the atom is de-excited. It takes a very long time for the photon to
+come back and find that it can knock the atom back up again. It’s
+quite analogous to the classical problem: Why does an accelerating
+charge radiate? It isn’t that it “wants” to lose energy, because, in
+fact, when it radiates, the energy of the world is the same as it was
+before. Radiation or absorption goes in the direction of increasing
+<em class="emph">entropy</em>.]</p>
+</div>
+<div id="Ch7-S1-p4" class="para">
+<p class="p">Nuclei can also exist in different energy levels, and in an
+approximation which disregards the electromagnetic effects, we can say
+that a nucleus in an excited state stays there. Although we know that
+it doesn’t stay there forever, it is often useful to start out with an
+approximation which is somewhat idealized and easier to think
+about. Also it is often a legitimate approximation under certain
+circumstances. (When we first introduced the classical laws of a
+falling body, we did not include friction, but there is almost never a
+case in which there isn’t <em class="emph">some</em> friction.)</p>
+</div>
+<div id="Ch7-S1-p5" class="para">
+<p class="p">Then there are the subnuclear “strange particles,” which have
+various masses. But the heavier ones disintegrate into other light
+particles, so again it is not correct to say that they have a
+precisely definite energy. That would be true only if they lasted
+forever. So when we make the approximation that they have a definite
+energy, we are forgetting the fact that they must blow up. For the
+moment, then, we will intentionally forget about such processes and
+learn later how to take them into account.</p>
+</div>
+<div id="Ch7-S1-p6" class="para">
+<p class="p">Suppose we have an atom—or an electron, or any particle—which at
+rest would have a definite energy $E_0$. By the energy $E_0$ we mean
+the mass of the whole thing times $c^2$. This mass includes any
+internal energy; so an excited atom has a mass which is different from
+the mass of the same atom in the ground state. (The <em class="emph">ground</em> state means the
+state of lowest energy.) We will call $E_0$ the “energy at rest.”</p>
+</div>
+<div id="Ch7-S1-p7" class="para">
+<p class="p">For an atom <em class="emph">at rest</em>, the quantum mechanical <em class="emph">amplitude</em> to
+find an atom at a place is the <em class="emph">same everywhere</em>; it does
+<em class="emph">not</em> depend on position. This means, of course, that the
+<em class="emph">probability</em> of <em class="emph">finding</em> the atom anywhere is the
+same. But it means even more. The <em class="emph">probability</em> could be
+independent of position, and still the <em class="emph">phase</em> of the
+<em class="emph">amplitude</em> could vary from point to point. But for a particle at
+rest, the complete amplitude is identical everywhere. It does,
+however, depend on the <em class="emph">time</em>. For a particle in a state of
+definite energy $E_0$, the amplitude to find the particle at $(x,y,z)$
+at the time $t$ is
+\begin{equation}
+\label{Eq:III:7:1}
+ae^{-i(E_0/\hbar)t},
+\end{equation}
+
+where $a$ is some constant. The amplitude to be at any point in space
+is the same for all points, but depends on time according
+to (<a href="#mjx-eqn-EqIII71">7.1</a>). We shall simply assume this rule to be true.</p>
+</div>
+<div id="Ch7-S1-p8" class="para">
+<p class="p">Of course, we could also write (<a href="#mjx-eqn-EqIII71">7.1</a>) as
+\begin{equation}
+\label{Eq:III:7:2}
+ae^{-i\omega t},
+\end{equation}
+
+with
+\begin{equation*}
+\hbar\omega=E_0=Mc^2,
+\end{equation*}
+
+where $M$ is the rest mass of the atomic state, or particle. There are
+three different ways of specifying the energy: by the frequency of an
+amplitude, by the energy in the classical sense, or by the
+inertia. They are all equivalent; they are just different ways of
+saying the same thing.</p>
+</div>
+<div id="Ch7-S1-p9" class="para">
+<p class="p">You may be thinking that it is strange to think of a “particle”
+which has equal amplitudes to be found throughout all space. After
+all, we usually imagine a “particle” as a small object located
+“somewhere.”  But don’t forget the uncertainty principle. If a
+particle has a definite energy, it has also a definite momentum. If
+the uncertainty in momentum is zero, the uncertainty relation, $\Delta
+p\,\Delta x=\hbar$, tells us that the uncertainty in the position must
+be infinite, and that is just what we are saying when we say that
+there is the same amplitude to find the particle at all points in
+space.</p>
+</div>
+<div id="Ch7-S1-p10" class="para">
+<p class="p">If the internal parts of an atom are in a different state with a
+different total energy, then the variation of the amplitude with time
+is different. If you don’t know in which state it is, there will be a
+certain amplitude to be in one state and a certain amplitude to be in
+another—and each of these amplitudes will have a different
+frequency. There will be an interference between these different
+components—like a beat-note—which can show up as a varying
+probability. Something will be “going on” inside of the atom—even
+though it is “at rest” in the sense that its center of mass is not
+drifting. However, if the atom has one definite energy, the amplitude
+is given by (<a href="#mjx-eqn-EqIII71">7.1</a>), and the absolute square of this
+amplitude does not depend on time. You see, then, that if a thing has
+a definite energy and if you ask any <em class="emph">probability</em> question about
+it, the answer is independent of time. Although the <em class="emph">amplitudes</em>
+vary with time, if the energy is <em class="emph">definite</em> they vary as an
+imaginary exponential, and the absolute value doesn’t change.
+</p>
+</div>
+<div id="Ch7-S1-p11" class="para">
+<p class="p">That’s why we often say that an atom in a definite energy level is in
+a <em class="emph">stationary state</em>. If you make any measurements of the things
+inside, you’ll find that nothing (in probability) will change in
+time. In order to have the probabilities change in time, we have to
+have the interference of two amplitudes at two different frequencies,
+and that means that we cannot know what the energy is. The object will
+have one amplitude to be in a state of one energy and another
+amplitude to be in a state of another energy. That’s the quantum
+mechanical description of something when its <em class="emph">behavior</em> depends
+on time.</p>
+</div>
+<div id="Ch7-S1-p12" class="para">
+<p class="p">If we have a “condition” which is a mixture of two different states
+with different energies, then the amplitude for each of the two states
+varies with time according to Eq. (<a href="#mjx-eqn-EqIII72">7.2</a>), for instance,
+as
+\begin{equation}
+\label{Eq:III:7:3}
+e^{-i(E_1/\hbar)t}\quad
+\text{and}\quad
+e^{-i(E_2/\hbar)t}.
+\end{equation}
+
+And if we have some combination of the two, we will have an
+interference. But notice that if we added a constant to both energies,
+it wouldn’t make any difference. If somebody else were to use a
+different scale of energy in which all the energies were increased (or
+decreased) by a constant amount—say, by the amount $A$—then the
+amplitudes in the two states would, from his point of view, be
+\begin{equation}
+\label{Eq:III:7:4}
+e^{-i(E_1+A)t/\hbar}\quad
+\text{and}\quad
+e^{-i(E_2+A)t/\hbar}.
+\end{equation}
+
+All of his amplitudes would be multiplied by the same factor
+$e^{-i(A/\hbar)t}$, and all linear combinations, or interferences,
+would have the same factor. When we take the absolute squares to find
+the probabilities, all the answers would be the same. The choice of an
+origin for our energy scale makes no difference; we can measure energy
+from any zero we want. For relativistic purposes it is nice to measure
+the energy so that the rest mass is included, but for many purposes
+that aren’t relativistic it is often nice to subtract some standard
+amount from all energies that appear. For instance, in the case of an
+atom, it is usually convenient to subtract the energy $M_sc^2$, where
+$M_s$ is the mass of all the <em class="emph">separate</em> pieces—the nucleus and
+the electrons—which is, of course, different from the mass of the
+atom. For other problems it may be useful to subtract from all
+energies the amount $M_gc^2$, where $M_g$ is the mass of the whole
+atom <em class="emph">in the ground</em> state; then the energy that appears is just
+the excitation energy of the atom. So, sometimes we may shift our zero
+of energy by some very large constant, but it doesn’t make any
+difference, provided we shift all the energies in a particular
+calculation by the same constant. So much for a particle standing
+still.</p>
+</div>
+</div>
+<div id="Ch7-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">7–2</span>Uniform motion</h3>
+<div id="Ch7-S2-p1" class="para">
+<p class="p">If we suppose that the relativity theory is right, a particle at rest
+in one inertial system can be in uniform motion in another inertial
+system. In the rest frame of the particle, the probability amplitude
+is the same for all $x$, $y$, and $z$ but varies with $t$. The
+<em class="emph">magnitude</em> of the amplitude is the same for all $t$, but the
+<em class="emph">phase</em> depends on $t$. We can get a kind of a picture of the
+behavior of the amplitude if we plot lines of equal phase—say, lines
+of zero phase—as a function of $x$ and $t$. For a particle at rest,
+these equal-phase lines are parallel to the $x$-axis and are equally
+spaced in the $t$-coordinate, as shown by the dashed lines in
+Fig. <a href="#Ch7-F1">7–1</a>.</p>
+</div>
+<div id="Ch7-F1" class="figure">
+<img src="img/FLP_III/f07-01/f07-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–1.</span>Relativistic transformation of the amplitude of a particle at
+rest in the $x$-$t$ systems.
+</div>
+</div>
+<div id="Ch7-S2-p2" class="para">
+<p class="p">In a different frame—$x'$, $y'$, $z'$, $t'$—that is moving with
+respect to the particle in, say, the $x$-direction, the $x'$ and $t'$
+coordinates of any particular point in space are related to $x$ and $t$
+by the Lorentz transformation. This transformation can be represented
+graphically by drawing $x'$ and $t'$ axes, as is done in
+Fig. <a href="#Ch7-F1">7–1</a>. (See Chapter <a href="I_17.html">17</a>, Vol. I,
+Fig. <a href="I_17.html#Ch17-F2">17–2</a>) You can see that in the $x'$-$t'$ system,
+points of equal phase<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> have a different spacing along
+the $t'$-axis, so the frequency of the time variation is different. Also
+there is a variation of the phase with $x'$, so the probability
+amplitude must be a function of $x'$.</p>
+</div>
+<div id="Ch7-S2-p3" class="para">
+<p class="p">Under a Lorentz transformation for the velocity $v$, say along the
+negative $x$-direction, the time $t$ is related to the time $t'$ by
+\begin{equation*}
+t=\frac{t'-x'v/c^2}{\sqrt{1-v^2/c^2}},
+\end{equation*}
+
+so our amplitude now varies as
+\begin{equation*}
+e^{-(i/\hbar)E_0t}=
+e^{-(i/\hbar)(E_0t'/\sqrt{1-v^2/c^2}-E_0vx'/c^2\sqrt{1-v^2/c^2})}.
+\end{equation*}
+
+In the prime system it varies in space as well as in time. If we write
+the amplitude as
+\begin{equation*}
+e^{-(i/\hbar)(E_p't'-p'x')},
+\end{equation*}
+
+we see that $E_p'=E_0/\sqrt{1-v^2/c^2}$ is the energy computed
+classically for a particle of rest energy $E_0$ travelling at the
+velocity $v$, and $p'=E_p'v/c^2$ is the corresponding particle
+momentum.</p>
+</div>
+<div id="Ch7-S2-p4" class="para">
+<p class="p">You know that $x_\mu=(t,x,y,z)$ and $p_\mu=(E,p_x,p_y,p_z)$ are
+four-vectors, and that $p_\mu x_\mu=Et-\FLPp\cdot\FLPx$ is a scalar
+invariant. In the rest frame of the particle, $p_\mu x_\mu$ is
+just $Et$; so if we transform to another frame, $Et$ will be replaced by
+\begin{equation*}
+E't'-\FLPp'\cdot\FLPx'.
+\end{equation*}
+
+Thus, the probability amplitude of a particle which has the
+momentum $\FLPp$ will be proportional to
+\begin{equation}
+\label{Eq:III:7:5}
+e^{-(i/\hbar)(E_pt-\FLPp\cdot\FLPx)},
+\end{equation}
+
+where $E_p$ is the energy of the particle whose momentum is $p$, that
+is,
+\begin{equation}
+\label{Eq:III:7:6}
+E_p=\sqrt{(pc)^2+E_0^2},
+\end{equation}
+
+where $E_0$ is, as before, the rest energy. For nonrelativistic
+problems, we can write
+\begin{equation}
+\label{Eq:III:7:7}
+E_p=M_sc^2+W_p,
+\end{equation}
+
+where $W_p$ is the energy over and above the rest energy $M_sc^2$ of
+the parts of the atom. In general, $W_p$ would include both the
+kinetic energy of the atom as well as its binding or excitation
+energy, which we can call the “internal” energy. We would write
+\begin{equation}
+\label{Eq:III:7:8}
+W_p=W_{\text{int}}+\frac{p^2}{2M},
+\end{equation}
+
+and the amplitudes would be
+\begin{equation}
+\label{Eq:III:7:9}
+e^{-(i/\hbar)(W_pt-\FLPp\cdot\FLPx)}.
+\end{equation}
+
+Because we will generally be doing nonrelativistic calculations, we
+will use this form for the probability amplitudes.</p>
+</div>
+<div id="Ch7-S2-p5" class="para">
+<p class="p">Note that our relativistic transformation has given us the variation
+of the amplitude of an atom which moves in space without any
+additional assumptions. The wave number of the space variations is,
+from (<a href="#mjx-eqn-EqIII79">7.9</a>),
+\begin{equation}
+\label{Eq:III:7:10}
+k=\frac{p}{\hbar};
+\end{equation}
+
+so the wavelength is
+\begin{equation}
+\label{Eq:III:7:11}
+\lambda=\frac{2\pi}{k}=\frac{h}{p}.
+\end{equation}
+
+This is the same wavelength we have used before for particles with the
+momentum $p$. This formula was first arrived at by de Broglie in just
+this way. For a moving particle, the <em class="emph">frequency</em> of the amplitude
+variations is still given by
+\begin{equation}
+\label{Eq:III:7:12}
+\hbar\omega=W_p.
+\end{equation}
+</p>
+</div>
+<div id="Ch7-S2-p6" class="para">
+<p class="p">The absolute square of (<a href="#mjx-eqn-EqIII79">7.9</a>) is just $1$, so for a
+particle in motion with a <em class="emph">definite energy</em>, the probability of
+finding it is the same everywhere and does not change with time. (It
+is important to notice that the amplitude is a <em class="emph">complex</em> wave. If
+we used a real sine wave, the square would vary from point to point,
+which would not be right.)</p>
+</div>
+<div id="Ch7-S2-p7" class="para">
+<p class="p">We know, of course, that there are situations in which particles move
+from place to place so that the probability depends on position and
+changes with time. How do we describe such situations? We can do that
+by considering amplitudes which are a superposition of two or more
+amplitudes for states of definite energy. We have already discussed
+this situation in Chapter <a href="I_48.html">48</a> of Vol. I—even for probability
+amplitudes! We found that the sum of two amplitudes with different
+wave numbers $k$ (that is, momenta) and frequencies $\omega$ (that is,
+energies) gives interference humps, or beats, so that the square of
+the amplitude varies with space and time. We also found that these
+beats move with the so-called “group velocity” given by
+\begin{equation*}
+v_g=\frac{\Delta\omega}{\Delta k},
+\end{equation*}
+
+where $\Delta k$ and $\Delta\omega$ are the differences between the
+wave numbers and frequencies for the two waves. For more complicated
+waves—made up of the sum of many amplitudes all near the same
+frequency—the group velocity is
+\begin{equation}
+\label{Eq:III:7:13}
+v_g=\ddt{\omega}{k}.
+\end{equation}
+</p>
+</div>
+<div id="Ch7-S2-p8" class="para">
+<p class="p">Taking $\omega=E_p/\hbar$ and $k=p/\hbar$, we see that
+\begin{equation}
+\label{Eq:III:7:14}
+v_g=\ddt{E_p}{p}.
+\end{equation}
+
+Using Eq. (<a href="#mjx-eqn-EqIII76">7.6</a>), we have
+\begin{equation}
+\label{Eq:III:7:15}
+\ddt{E_p}{p}=c^2\,\frac{p}{E_p}.
+\end{equation}
+
+At nonrelativistic speeds $E_p\approx Mc^2$, so
+\begin{equation}
+\label{Eq:III:7:16}
+\ddt{E_p}{p}=\frac{p}{M},
+\end{equation}
+
+which is just the classical velocity of the particle. Alternatively,
+if we use the nonrelativistic expressions Eqs. (<a href="#mjx-eqn-EqIII77">7.7</a>)
+and (<a href="#mjx-eqn-EqIII78">7.8</a>), we have
+\begin{equation}
+\omega=\frac{W_p}{\hbar}\quad
+\text{and}\quad
+k=\frac{p}{\hbar},\notag
+\end{equation}
+
+and
+\begin{equation}
+\label{Eq:III:7:17}
+\ddt{\omega}{k}=\ddt{W_p}{p}=\ddt{}{p}\biggl(\frac{p^2}{2M}\biggr)=
+\frac{p}{M},
+\end{equation}
+
+which is again the classical velocity.</p>
+</div>
+<div id="Ch7-S2-p9" class="para">
+<p class="p">Our result, then, is that if we have several amplitudes for pure
+energy states of nearly the same energy, their interference gives
+“lumps” in the probability that move through space with a velocity
+equal to the velocity of a classical particle of that energy. We
+should remark, however, that when we say we can add two amplitudes of
+different wave number together to get a beat-note that will correspond
+to a moving particle, we have introduced something new—something
+that we cannot deduce from the theory of relativity. We said what the
+amplitude did for a particle standing still and then deduced what it
+would do if the particle were moving. But we <em class="emph">cannot</em> deduce from
+these arguments what would happen when there are <em class="emph">two</em> waves
+moving with different speeds. If we stop one, we cannot stop the
+other. So we have added tacitly the <em class="emph">extra</em> hypothesis that not
+only is (<a href="#mjx-eqn-EqIII79">7.9</a>) a <em class="emph">possible</em> solution, but that there
+can also be solutions with all kinds of $p$’s for the same system, and
+that the different terms will interfere.</p>
+</div>
+</div>
+<div id="Ch7-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">7–3</span>Potential energy; energy conservation</h3>
+<div id="Ch7-F2" class="figure">
+<img src="img/FLP_III/f07-02/f07-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–2.</span>A particle of mass $M$ and momentum $\Figp$ in a region of
+constant potential.
+</div>
+</div>
+<div id="Ch7-S3-p1" class="para">
+<p class="p">Now we would like to discuss what happens when the energy of a
+particle can change. We begin by thinking of a particle which moves in
+a force field described by a potential. We discuss first the effect of
+a constant potential. Suppose that we have a large metal can which we
+have raised to some electrostatic potential $\phi$, as in
+Fig. <a href="#Ch7-F2">7–2</a>. If there are charged objects inside the can,
+their potential energy will be $q\phi$, which we will call $V$, and will
+be absolutely independent of position. Then there can be no change in
+the physics inside, because the constant potential doesn’t make any
+difference so far as anything going on inside the can is concerned. Now
+there is no way we can deduce what the answer should be, so we must make
+a guess. The guess which works is more or less what you might expect:
+For the energy, we must use the sum of the potential energy $V$ and the
+energy $E_p$—which is itself the sum of the internal and kinetic
+energies. The amplitude is proportional to
+\begin{equation}
+\label{Eq:III:7:18}
+e^{-(i/\hbar)[(E_p+V)t-\FLPp\cdot\FLPx]}.
+\end{equation}
+
+The <em class="emph">general principle</em> is that the coefficient of $t$, which we
+may call $\omega$, is always given by the <em class="emph">total energy</em> of the
+system: internal (or “mass”) energy, plus kinetic energy, plus
+potential energy:
+\begin{equation}
+\label{Eq:III:7:19}
+\hbar\omega=E_p+V.
+\end{equation}
+
+Or, for nonrelativistic situations,
+\begin{equation}
+\label{Eq:III:7:20}
+\hbar\omega=W_{\text{int}}+\frac{p^2}{2M}+V.
+\end{equation}
+</p>
+</div>
+<div id="Ch7-S3-p2" class="para">
+<p class="p">Now what about physical phenomena inside the box? If there are several
+different energy states, what will we get? The amplitude for each
+state has the same additional factor
+\begin{equation*}
+e^{-(i/\hbar)Vt}
+\end{equation*}
+
+over what it would have with $V=0$. That is just like a change in the
+zero of our energy scale. It produces an equal phase change in all
+amplitudes, but as we have seen before, this doesn’t change any of the
+probabilities. All the physical phenomena are the same. (We have
+assumed that we are talking about different states of the same charged
+object, so that $q\phi$ is the same for all. If an object could change
+its charge in going from one state to another, we would have quite
+another result, but conservation of charge prevents this.)</p>
+</div>
+<div id="Ch7-S3-p3" class="para">
+<p class="p">So far, our assumption agrees with what we would expect for a change
+of energy reference level. But if it is really right, it should hold
+for a potential energy that is not just a constant. In general, $V$
+could vary in any arbitrary way with both time and space, and the
+complete result for the amplitude must be given in terms of a
+differential equation. We don’t want to get concerned with the general
+case right now, but only want to get some idea about how some things
+happen, so we will think only of a potential that is constant in time
+and varies very slowly in space. Then we can make a comparison between
+the classical and quantum ideas.</p>
+</div>
+<div id="Ch7-F3" class="figure">
+<img src="img/FLP_III/f07-03/f07-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–3.</span>The amplitude for a particle in transit from one potential to
+another.
+</div>
+</div>
+<div id="Ch7-S3-p4" class="para">
+<p class="p">Suppose we think of the situation in Fig. <a href="#Ch7-F3">7–3</a>, which has
+two boxes held at the constant potentials $\phi_1$ and $\phi_2$ and a
+region in between where we will assume that the potential varies
+smoothly from one to the other. We imagine that some particle has an
+amplitude to be found in any one of the regions. We also assume that the
+momentum is large enough so that in any small region in which there are
+many wavelengths, the potential is nearly constant. We would then think
+that in any part of the space the amplitude ought to look
+like (<a href="#mjx-eqn-EqIII718">7.18</a>) with the appropriate $V$ for that part of the
+space.</p>
+</div>
+<div id="Ch7-S3-p5" class="para">
+<p class="p">Let’s think of a special case in which $\phi_1=0$, so that the
+potential energy there is zero, but in which $q\phi_2$ is negative, so
+that classically the particle would have more energy in the second
+box. Classically, it would be going faster in the second box—it
+would have more energy and, therefore, more momentum. Let’s see how
+that might come out of quantum mechanics.</p>
+</div>
+<div id="Ch7-S3-p6" class="para">
+<p class="p">With our assumption, the amplitude in the first box would be
+proportional to
+\begin{equation}
+\label{Eq:III:7:21}
+e^{-(i/\hbar)[(W_{\text{int}}+p_1^2/2M+V_1)t-\FLPp_1\cdot\FLPx]},
+\end{equation}
+
+and the amplitude in the second box would be proportional to
+\begin{equation}
+\label{Eq:III:7:22}
+e^{-(i/\hbar)[(W_{\text{int}}+p_2^2/2M+V_2)t-\FLPp_2\cdot\FLPx]}.
+\end{equation}
+
+(Let’s say that the internal energy is not being changed, but remains
+the same in both regions.) The question is: How do these two
+amplitudes match together through the region between the boxes?</p>
+</div>
+<div id="Ch7-S3-p7" class="para">
+<p class="p">We are going to suppose that the potentials are all constant in
+time—so that nothing in the conditions varies. We will then suppose
+that the variations of the amplitude (that is, its phase) have the
+same <em class="emph">frequency</em> everywhere—because, so to speak, there is
+nothing in the “medium” that depends on time. If nothing in the
+space is changing, we can consider that the wave in one region
+“generates” subsidiary waves all over space which will all oscillate
+at the same frequency—just as light waves going through materials at
+rest do not change their frequency. If the frequencies in
+(<a href="#mjx-eqn-EqIII721">7.21</a>) and (<a href="#mjx-eqn-EqIII722">7.22</a>) are the same, we must have
+that
+\begin{equation}
+\label{Eq:III:7:23}
+W_{\text{int}}+\frac{p_1^2}{2M}+V_1=
+W_{\text{int}}+\frac{p_2^2}{2M}+V_2.
+\end{equation}
+
+Both sides are just the classical total energies, so
+Eq. (<a href="#mjx-eqn-EqIII723">7.23</a>) is a statement of the conservation of energy. In
+other words, the classical statement of the conservation of energy is
+equivalent to the quantum mechanical statement that the frequencies for
+a particle are everywhere the same if the conditions are not changing
+with time. It all fits with the idea that $\hbar\omega=E$.</p>
+</div>
+<div id="Ch7-S3-p8" class="para">
+<p class="p">In the special example that $V_1=0$ and $V_2$ is negative,
+Eq. (<a href="#mjx-eqn-EqIII723">7.23</a>) gives that $p_2$ is greater than $p_1$, so the
+wavelength of the waves is shorter in region $2$. The surfaces of equal
+phase are shown by the dashed lines in Fig. <a href="#Ch7-F3">7–3</a>. We have
+also drawn a graph of the real part of the amplitude, which shows again
+how the wavelength decreases in going from region $1$ to region $2$. The
+group velocity of the waves, which is $p/M$, also increases in the way
+one would expect from the classical energy conservation, since it is
+just the same as Eq. (<a href="#mjx-eqn-EqIII723">7.23</a>).</p>
+</div>
+<div id="Ch7-S3-p9" class="para">
+<p class="p">There is an interesting special case where $V_2$ gets so large that
+$V_2-V_1$ is greater than $p_1^2/2M$. Then $p_2^2$, which is given by
+\begin{equation}
+\label{Eq:III:7:24}
+p_2^2=2M\biggl[\frac{p_1^2}{2M}-V_2+V_1\biggr],
+\end{equation}
+
+is <em class="emph">negative</em>. That means that $p_2$ is an imaginary number, say,
+$ip'$. Classically, we would say that the particle never gets into
+region $2$—it doesn’t have enough energy to climb the potential
+hill. Quantum mechanically, however, the amplitude is still given by
+Eq. (<a href="#mjx-eqn-EqIII722">7.22</a>); its space variation still goes as
+\begin{equation*}
+e^{(i/\hbar)\FLPp_2\cdot\FLPx}.
+\end{equation*}
+
+But if $p_2$ is imaginary, the space dependence becomes a real
+exponential. Say that the particle was initially going in the
+$+x$-direction; then the amplitude would vary as
+\begin{equation}
+\label{Eq:III:7:25}
+e^{-p'x/\hbar}.
+\end{equation}
+
+The amplitude decreases rapidly with increasing $x$.</p>
+</div>
+<div id="Ch7-F4" class="figure">
+<img src="img/FLP_III/f07-04/f07-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–4.</span>The amplitude for a particle approaching a strongly repulsive
+potential.
+</div>
+</div>
+<div id="Ch7-S3-p10" class="para">
+<p class="p">Imagine that the two regions at different potentials were very close
+together, so that the potential energy changed suddenly from $V_1$
+to $V_2$, as shown in Fig. <a href="#Ch7-F4">7–4</a>(a). If we plot the real part
+of the probability amplitude, we get the dependence shown in part (b) of
+the figure. The wave in the first region corresponds to a particle
+trying to get into the second region, but the amplitude there falls off
+rapidly. There is some chance that it will be observed in the second
+region—where it could <em class="emph">never</em> get classically—but the amplitude
+is very small except right near the boundary. The situation is very much
+like what we found for the total internal reflection of light. The light
+doesn’t normally get out, but we can observe it if we put something
+within a wavelength or two of the surface.</p>
+</div>
+<div id="Ch7-F5" class="figure">
+<img src="img/FLP_III/f07-05/f07-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–5.</span>The penetration of the amplitude through a potential barrier.
+</div>
+</div>
+<div id="Ch7-S3-p11" class="para">
+<p class="p">You will remember that if we put a second surface close to the
+boundary where light was totally reflected, we could get some light
+transmitted into the second piece of material. The corresponding thing
+happens to particles in quantum mechanics. If there is a narrow region
+with a potential $V$, so great that the classical kinetic energy would
+be negative, the particle would classically never get past. But
+quantum mechanically, the exponentially decaying amplitude can reach
+across the region and give a small probability that the particle will
+be found on the other side where the kinetic energy is again
+positive. The situation is illustrated in Fig. <a href="#Ch7-F5">7–5</a>. This
+effect is called the quantum mechanical “penetration of a barrier.”
+</p>
+</div>
+<div id="Ch7-F6" class="figure">
+<img src="img/FLP_III/f07-06/f07-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–6.</span>(a) The potential function for an $\alpha$-particle in a
+uranium nucleus. (b) The qualitative form of the probability amplitude.
+</div>
+</div>
+<div id="Ch7-S3-p12" class="para">
+<p class="p">The barrier penetration by a quantum mechanical amplitude gives the
+explanation—or description—of the $\alpha$-particle decay of a
+uranium nucleus. The potential energy of an $\alpha$-particle, as a
+function of the distance from the center, is shown in
+Fig. <a href="#Ch7-F6">7–6</a>(a). If one tried to shoot an $\alpha$-particle
+with the energy $E$ <em class="emph">into</em> the nucleus, it would feel an
+electrostatic repulsion from the nuclear charge $z$ and would,
+classically, get no closer than the distance $r_1$ where its total
+energy is equal to the potential energy $V$. Closer in, however, the
+potential energy is much lower because of the strong attraction of the
+short-range nuclear forces. How is it then that in radioactive decay we
+find $\alpha$-particles which started out inside the nucleus coming out
+with the energy $E$? Because they start out with the energy $E$ inside
+the nucleus and “leak” through the potential barrier. The probability
+amplitude is roughly as sketched in part (b) of Fig. <a href="#Ch7-F6">7–6</a>,
+although actually the exponential decay is much larger than shown. It
+is, in fact, quite remarkable that the mean life of an $\alpha$-particle
+in the uranium nucleus is as long as $4\tfrac{1}{2}$ billion years, when
+the natural oscillations inside the nucleus are so extremely
+rapid—about $10^{22}$ per sec! How can one get a number like
+$10^9$ years from $10^{-22}$ sec? The answer is that the exponential gives the
+tremendously small factor of about $e^{-45}$—which gives the very
+small, though definite, probability of leakage. Once the
+$\alpha$-particle is in the nucleus, there is almost no amplitude at all
+for finding it outside; however, if you take many nuclei and wait long
+enough, you may be lucky and find one that has come out.</p>
+</div>
+</div>
+<div id="Ch7-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">7–4</span>Forces; the classical limit</h3>
+<div id="Ch7-F7" class="figure">
+<img src="img/FLP_III/f07-07/f07-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–7.</span>The deflection of a particle by a transverse potential
+gradient.
+</div>
+</div>
+<div id="Ch7-S4-p1" class="para">
+<p class="p">Suppose that we have a particle moving along and passing through a
+region where there is a potential that varies at right angles to the
+motion. Classically, we would describe the situation as sketched in
+Fig. <a href="#Ch7-F7">7–7</a>. If the particle is moving along the
+$x$-direction and enters a region where there is a potential that varies
+with $y$, the particle will get a transverse acceleration from the
+force $F=-\ddpl{V}{y}$. If the force is present only in a limited region of
+width $w$, the force will act only for the time $w/v$. The particle will
+be given the transverse momentum
+\begin{equation*}
+p_y=F\,\frac{w}{v}.
+\end{equation*}
+
+The angle of deflection $\delta\theta$ is then
+\begin{equation*}
+\delta\theta=\frac{p_y}{p}=\frac{Fw}{pv},
+\end{equation*}
+
+where $p$ is the initial momentum. Using $-\ddpl{V}{y}$ for $F$, we
+get
+\begin{equation}
+\label{Eq:III:7:26}
+\delta\theta=-\frac{w}{pv}\,\ddp{V}{y}.
+\end{equation}
+</p>
+</div>
+<div id="Ch7-S4-p2" class="para">
+<p class="p">It is now up to us to see if our idea that the waves go
+as (<a href="#mjx-eqn-EqIII720">7.20</a>) will explain the same result. We look at the same
+thing quantum mechanically, assuming that everything is on a very large
+scale compared with a wavelength of our probability amplitudes. In any
+small region we can say that the amplitude varies as
+\begin{equation}
+\label{Eq:III:7:27}
+e^{-(i/\hbar)[(W+p^2/2M+V)t-\FLPp\cdot\FLPx]}.
+\end{equation}
+
+Can we see that this will also give rise to a deflection of the particle
+when $V$ has a transverse gradient? We have sketched in
+Fig. <a href="#Ch7-F8">7–8</a> what the waves of probability amplitude will look
+like. We have drawn a set of “wave nodes” which you
+can think of as surfaces where the phase of the amplitude is zero. In
+every small region, the wavelength—the distance between successive
+nodes—is
+\begin{equation*}
+\lambda=\frac{h}{p},
+\end{equation*}
+
+where $p$ is related to $V$ through
+\begin{equation}
+\label{Eq:III:7:28}
+W+\frac{p^2}{2M}+V=\text{const}.
+\end{equation}
+
+In the region where $V$ is larger, $p$ is smaller, and the wavelength
+is longer. So the angle of the wave nodes gets changed as shown in the
+figure.
+</p>
+</div>
+<div id="Ch7-F8" class="figure">
+<img src="img/FLP_III/f07-08/f07-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–8.</span>The probability amplitude in a region with a transverse
+potential gradient.
+</div>
+</div>
+<div id="Ch7-S4-p3" class="para">
+<p class="p">To find the change in angle of the wave nodes we notice that for the
+two paths $a$ and $b$ in Fig. <a href="#Ch7-F8">7–8</a> there is a difference
+of potential $\Delta V=(\ddpl{V}{y})D$, so there is a difference $\Delta p$
+in the momentum along the two tracks which can be obtained
+from (<a href="#mjx-eqn-EqIII728">7.28</a>):
+\begin{equation}
+\label{Eq:III:7:29}
+\Delta\biggl(\frac{p^2}{2M}\biggr)=\frac{p}{M}\,\Delta p=
+-\Delta V.
+\end{equation}
+
+The wave number $p/\hbar$ is, therefore, different along the two
+paths, which means that the phase is advancing at a different
+rate. The difference in the rate of increase of phase is $\Delta
+k=\Delta p/\hbar$, so the accumulated phase difference in the total
+distance $w$ is
+\begin{equation}
+\label{Eq:III:7:30}
+\Delta(\text{phase})=\Delta k\cdot w=
+\frac{\Delta p}{\hbar}\cdot w=
+-\frac{M}{p\hbar}\,\Delta V\cdot w.
+\end{equation}
+
+This is the amount by which the phase on path $b$ is “ahead” of the
+phase on path $a$ as the wave leaves the strip. But outside the strip,
+a phase advance of this amount corresponds to the wave node being
+ahead by the amount
+\begin{equation}
+\Delta x=\frac{\lambda}{2\pi}\,\Delta(\text{phase})=
+\frac{\hbar}{p}\,\Delta(\text{phase})\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:III:7:31}
+\Delta x=-\frac{M}{p^2}\,\Delta V\cdot w.
+\end{equation}
+
+Referring to Fig. <a href="#Ch7-F8">7–8</a>, we see that the new wavefronts
+will be at the angle $\delta\theta$ given by
+\begin{equation}
+\label{Eq:III:7:32}
+\Delta x=D\,\delta\theta;
+\end{equation}
+
+so we have
+\begin{equation}
+\label{Eq:III:7:33}
+D\,\delta\theta=-\frac{M}{p^2}\,\Delta V\cdot w.
+\end{equation}
+
+This is identical to Eq. (<a href="#mjx-eqn-EqIII726">7.26</a>) if we replace $p/M$
+by $v$ and $\Delta V/D$ by $\ddpl{V}{y}$.</p>
+</div>
+<div id="Ch7-S4-p4" class="para">
+<p class="p">The result we have just got is correct only if the potential
+variations are slow and smooth—in what we call the <em class="emph">classical
+limit</em>. We have shown that under these conditions we will get the same
+particle motions we get from $F=ma$, provided we assume that a
+potential contributes a phase to the probability amplitude equal
+to $Vt/\hbar$. <em class="emph">In the classical limit, the quantum mechanics will
+agree with Newtonian mechanics</em>.</p>
+</div>
+</div>
+<div id="Ch7-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">7–5</span>The “precession” of a spin one-half particle</h3>
+<div id="Ch7-S5-p1" class="para">
+<p class="p">Notice that we have not assumed anything special about the potential
+energy—it is just that energy whose derivative gives a force. For
+instance, in the Stern-Gerlach experiment we had the
+energy $U=-\FLPmu\cdot\FLPB$, which gives a force if $\FLPB$ has a spatial
+variation. If we wanted to give a quantum mechanical description, we
+would have said that the particles in one beam had an energy that
+varied one way and that those in the other beam had an opposite energy
+variation. (We could put the magnetic energy $U$ into the potential
+energy $V$ or into the “internal” energy $W$; it doesn’t matter.)
+Because of the energy variation, the waves are refracted, and the
+beams are bent up or down. (We see now that quantum mechanics would
+give us the same bending as we would compute from the classical
+mechanics.)</p>
+</div>
+<div id="Ch7-S5-p2" class="para">
+<p class="p">From the dependence of the amplitude on potential energy we would also
+expect that if a particle sits in a uniform magnetic field along the
+$z$-direction, its probability amplitude must be changing with time
+according to
+\begin{equation*}
+e^{-(i/\hbar)(-\mu_zB)t}.
+\end{equation*}
+
+(We can consider that this is, in effect, a definition of $\mu_z$.) In
+other words, if we place a particle in a uniform field $B$ for a
+time $\tau$, its probability amplitude will be multiplied by
+\begin{equation*}
+e^{-(i/\hbar)(-\mu_zB)\tau}
+\end{equation*}
+
+over what it would be in no field. Since for a spin one-half particle,
+$\mu_z$ can be either plus or minus some number, say $\mu$, the two
+possible states in a uniform field would have their phases changing at
+the same rate but in opposite directions. The two amplitudes get
+multiplied by
+\begin{equation}
+\label{Eq:III:7:34}
+e^{\pm(i/\hbar)\mu B\tau}.
+\end{equation}
+</p>
+</div>
+<div id="Ch7-S5-p3" class="para">
+<p class="p">This result has some interesting consequences. Suppose we have a spin
+one-half particle in some state that is not purely spin up or spin
+down. We can describe its condition in terms of the amplitudes to be
+in the pure up and pure down states. But in a magnetic field, these
+two states will have phases changing at a different rate. So if we ask
+some question about the amplitudes, the answer will depend on how long
+it has been in the field.</p>
+</div>
+<div id="Ch7-S5-p4" class="para">
+<p class="p">As an example, we consider the disintegration of the muon in a
+magnetic field. When muons are produced as disintegration products of
+$\pi$-mesons, they are polarized (in other words, they have a
+preferred spin direction). The muons, in turn, disintegrate—in about
+$2.2$ microseconds on the average—emitting an electron and two
+neutrinos:
+\begin{equation*}
+\mu\to e+\nu+\bar{\nu}.
+\end{equation*}
+
+In this disintegration it turns out that (for at least the highest
+energies) the electrons are emitted preferentially in the direction
+opposite to the spin direction of the muon.</p>
+</div>
+<div id="Ch7-F9" class="figure">
+<img src="img/FLP_III/f07-09/f07-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–9.</span>A muon-decay experiment.
+</div>
+</div>
+<div id="Ch7-S5-p5" class="para">
+<p class="p">Suppose then that we consider the experimental arrangement shown in
+Fig. <a href="#Ch7-F9">7–9</a>. If polarized muons enter from the left and are
+brought to rest in a block of material at $A$, they will, a little while
+later, disintegrate. The electrons emitted will, in general, go off in
+all possible directions. Suppose, however, that the muons all enter the
+stopping block at $A$ with their spins in the $x$-direction. Without a
+magnetic field there would be some angular distribution of decay
+directions; we would like to know how this distribution is changed by
+the presence of the magnetic field. We expect that it may vary in some
+way with time. We can find out what happens by asking, for any moment,
+what the amplitude is that the muon will be found in the $(+x)$ state.</p>
+</div>
+<div id="Ch7-S5-p6" class="para">
+<p class="p">We can state the problem in the following way: A muon is known to have
+its spin in the $+x$-direction at $t=0$; what is the amplitude that it
+will be in the same state at the time $\tau$? Now we do not have any
+rule for the behavior of a spin one-half particle in a magnetic field
+at right angles to the spin, but we do know what happens to the spin
+up and spin down states with respect to the field—their amplitudes
+get multiplied by the factor (<a href="#mjx-eqn-EqIII734">7.34</a>). Our procedure then
+is to choose the representation in which the base states are spin up
+and spin down with respect to the $z$-direction (the field
+direction). Any question can then be expressed with reference to the
+amplitudes for these states.</p>
+</div>
+<div id="Ch7-S5-p7" class="para">
+<p class="p">Let’s say that $\psi(t)$ represents the muon state. When it enters the
+block $A$, its state is $\psi(0)$, and we want to know $\psi(\tau)$ at
+the later time $\tau$. If we represent the two base states by $(+z)$
+and $(-z)$ we know the two amplitudes $\braket{+z}{\psi(0)}$
+and $\braket{-z}{\psi(0)}$—we know these amplitudes because we know that
+$\psi(0)$ represents a state with the spin in the $(+x)$ state. From
+the results of the last chapter, these amplitudes are<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+\begin{equation}
+\begin{aligned}
+\braket{+z}{+x}&=C_+=\frac{1}{\sqrt{2}},\\[1ex]
+\braket{-z}{+x}&=C_-=\frac{1}{\sqrt{2}}.
+\end{aligned}
+\label{Eq:III:7:35}
+\end{equation}
+
+They happen to be equal. Since these amplitudes refer to the condition
+at $t=0$, let’s call them $C_+(0)$ and $C_-(0)$.</p>
+</div>
+<div id="Ch7-S5-p8" class="para">
+<p class="p">Now we know what happens to these two amplitudes with time.
+Using (<a href="#mjx-eqn-EqIII734">7.34</a>), we have
+\begin{equation}
+\begin{aligned}
+C_+(t)&=C_+(0)e^{-(i/\hbar)\mu Bt},\\[1ex]
+C_-(t)&=C_-(0)e^{+(i/\hbar)\mu Bt}.
+\end{aligned}
+\label{Eq:III:7:36}
+\end{equation}
+
+But if we know $C_+(t)$ and $C_-(t)$, we have all there is to know
+about the condition at $t$. The only trouble is that what we
+<em class="emph">want</em> to know is the probability that at $t$ the spin will be in
+the $+x$-direction. Our general rules can, however, take care of this
+problem. We write that the amplitude to be in the $(+x)$ state at
+time $t$, which we may call $A_+(t)$, is
+<span class="eq-wide">
+\begin{equation*}
+A_+(t)=\braket{+x}{\psi(t)}=
+\braket{+x}{+z}\braket{+z}{\psi(t)}+
+\braket{+x}{-z}\braket{-z}{\psi(t)}
+\end{equation*}
+</span>
+<span class="eq-narrow">
+
+\begin{align*}
+A_+(t)&=\braket{+x}{\psi(t)}\\[.5ex]
+&=\braket{+x}{+z}\braket{+z}{\psi(t)}+
+\braket{+x}{-z}\braket{-z}{\psi(t)}\notag
+\end{align*}
+</span>
+or
+\begin{equation}
+\label{Eq:III:7:37}
+A_+(t)=\braket{+x}{+z}C_+(t)+\braket{+x}{-z}C_-(t).
+\end{equation}
+
+Again using the results of the last chapter—or better the
+equality $\braket{\phi}{\chi}=\braket{\chi}{\phi}\cconj$ from
+Chapter <a href="III_05.html">5</a>—we know that
+\begin{equation*}
+\braket{+x}{+z}=\frac{1}{\sqrt{2}},\quad
+\braket{+x}{-z}=\frac{1}{\sqrt{2}}.
+\end{equation*}
+
+So we know all the quantities in Eq. (<a href="#mjx-eqn-EqIII737">7.37</a>). We get
+\begin{equation*}
+A_+(t)=\tfrac{1}{2}e^{(i/\hbar)\mu Bt}+
+\tfrac{1}{2}e^{-(i/\hbar)\mu Bt},
+\end{equation*}
+
+or
+\begin{equation*}
+A_+(t)=\cos\frac{\mu B}{\hbar}\,t.
+\end{equation*}
+
+A particularly simple result! Notice that the answer agrees with what
+we expect for $t=0$. We get $A_+(0)=1$, which is right, because we
+assumed that the muon was in the $(+x)$ state at $t=0$.</p>
+</div>
+<div id="Ch7-S5-p9" class="para">
+<p class="p">The probability $P_+$ that the muon will be found in the $(+x)$ state
+at $t$
+is $(A_+)^2$ or
+\begin{equation*}
+P_+=\cos^2\frac{\mu Bt}{\hbar}.
+\end{equation*}
+
+The probability oscillates between zero and one, as shown in
+Fig. <a href="#Ch7-F10">7–10</a>. Note that the probability returns to one
+for $\mu Bt/\hbar=\pi$ (<em class="emph">not</em> $2\pi$). Because we have squared the
+cosine function, the probability repeats itself with the frequency $2\mu
+B/\hbar$.</p>
+</div>
+<div id="Ch7-F10" class="figure">
+<img src="img/FLP_III/f07-10/f07-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–10.</span>Time dependence of the probability that a spin one-half
+particle will be in a $(+)$ state with respect to the $x$-axis.
+</div>
+</div>
+<div id="Ch7-S5-p10" class="para">
+<p class="p">Thus, we find that the chance of catching the decay electron in the
+electron counter of Fig. <a href="#Ch7-F9">7–9</a> varies periodically with
+the length of time the muon has been sitting in the magnetic field. The
+frequency depends on the magnetic moment $\mu$. The magnetic moment of
+the muon has, in fact, been measured in just this way.
+</p>
+</div>
+<div id="Ch7-S5-p11" class="para">
+<p class="p">We can, of course, use the same method to answer any other questions
+about the muon decay. For example, how does the chance of detecting a
+decay electron in the $y$-direction at $90^\circ$ to the $x$-direction
+but still at right angles to the field depend on $t$? If you work it
+out, the probability to be in the $(+y)$ state varies as $\cos^2\{(\mu
+Bt/\hbar)-\pi/4\}$, which oscillates with the same period but reaches
+its maximum one-quarter cycle later, when $\mu Bt/\hbar=\pi/4$. In
+fact, what is happening is that as time goes on, the muon goes through
+a succession of states which correspond to complete polarization in a
+direction that is continually rotating about the $z$-axis. We can
+describe this by saying that <em class="emph">the spin is precessing</em> at the
+frequency
+\begin{equation}
+\label{Eq:III:7:38}
+\omega_p=\frac{2\mu B}{\hbar}.
+\end{equation}
+</p>
+</div>
+<div id="Ch7-S5-p12" class="para">
+<p class="p">You can begin to see the form that our quantum mechanical description
+will take when we are describing how things behave in time.</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  We are assuming that the phase should
+have the same value at corresponding points in the two systems. This is
+a subtle point, however, since the phase of a quantum mechanical
+amplitude is, to a large extent, arbitrary. A complete justification of
+this assumption requires a more detailed discussion involving
+interferences of two or more amplitudes.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  If you
+skipped Chapter <a href="III_06.html">6</a>, you can just take (<a href="#mjx-eqn-EqIII735">7.35</a>)
+as an underived rule for now. We will give later (in
+Chapter <a href="III_10.html">10</a>) a more complete discussion of spin precession,
+including a derivation of these amplitudes.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div>
+
+</div>
+    
+  </body>
+</html>

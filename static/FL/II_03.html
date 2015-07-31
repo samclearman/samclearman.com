@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 3: Vector Integral Calculus</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "3." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch3" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">3</span>Vector Integral Calculus</h2>
+<div id="Ch3-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">3–1</span>Vector integrals; the line integral of $\FLPgrad{\boldsymbol{\psi}}$</h3>
+<div id="Ch3-S1-p1" class="para">
+<p class="p">We found in Chapter <a href="II_02.html">2</a> that there were various ways of
+taking derivatives of fields. Some gave vector fields; some gave
+scalar fields. Although we developed many different formulas,
+everything in Chapter <a href="II_02.html">2</a> could be summarized in one rule:
+the operators $\ddpl{}{x}$, $\ddpl{}{y}$, and $\ddpl{}{z}$ are the
+three components of a vector operator $\FLPnabla$. We would now like
+to get some understanding of the significance of the derivatives of
+fields. We will then have a better feeling for what a vector field
+equation means.
+</p>
+</div>
+<div id="Ch3-S1-p2" class="para">
+<p class="p">We have already discussed the meaning of the gradient
+operation
+($\FLPnabla$ on a scalar). Now we turn to the meanings of the
+divergence
+and curl operations.
+The interpretation of these quantities is best done in terms of certain
+vector integrals and equations relating such integrals. These equations
+cannot, unfortunately, be obtained from vector
+algebra by
+some easy substitution, so you will just have to learn them as something
+new. Of these integral formulas, one is practically trivial, but the
+other two are not. We will derive them and explain their implications.
+The equations we shall study are really mathematical theorems. They will
+be useful not only for interpreting the meaning and the content of the
+divergence and the curl, but also in working out general physical
+theories. These mathematical theorems are, for the theory of fields,
+what the theorem of the conservation of energy is to the mechanics of
+particles. General theorems like these are important for a deeper
+understanding of physics. You will find, though, that they are not very
+useful for solving problems—except in the simplest cases. It is
+delightful, however, that in the beginning of our subject there will be
+many simple problems which can be solved with the three integral
+formulas we are going to treat. We will see, however, as the problems
+get harder, that we can no longer use these simple methods.
+</p>
+</div>
+<div id="Ch3-F1" class="figure">
+<img src="img/FLP_II/f03-01/f03-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–1.</span>The terms used in Eq. (<a href="#mjx-eqn-EqII31">3.1</a>). The vector $\Fignabla\psi$ is
+evaluated at the line elements $d\Figs$.
+</div>
+</div>
+<div id="Ch3-S1-p3" class="para">
+<p class="p">We take up first an integral formula involving the gradient. The
+relation contains a very simple idea: Since the gradient represents the
+rate of change of a field quantity, if we integrate that rate of change,
+we should get the total change. Suppose we have the scalar
+field $\psi(x,y,z)$. At any two points $(1)$ and $(2)$, the
+function $\psi$ will have the values $\psi(1)$ and $\psi(2)$,
+respectively. [We use a convenient notation, in which $(2)$ represents
+the point $(x_2,y_2,z_2)$ and $\psi(2)$ means the same thing
+as $\psi(x_2,y_2,z_2)$.]  If $\Gamma$ (gamma) is any curve joining $(1)$
+and $(2)$, as in Fig. <a href="#Ch3-F1">3–1</a>, the following relation is true:
+<br><br>
+<span class="text smallcaps">&emsp;&emsp;Theorem 1.</span>
+\begin{equation}
+\label{Eq:II:3:1}
+\psi(2)-\psi(1)=
+\underset{\text{along $\Gamma$}}{\int_{(1)}^{(2)}}
+(\FLPgrad{\psi})\cdot d\FLPs\,.
+\end{equation}
+
+The integral is a <em class="emph">line integral</em>, from $(1)$ to $(2)$ along the
+curve $\Gamma$, of the dot product of $\FLPgrad{\psi}$—a
+vector—with $d\FLPs$—another vector which is an infinitesimal line
+element of the curve $\Gamma$ (directed away from $(1)$ and
+toward $(2)$).</p>
+</div>
+<div id="Ch3-F2" class="figure">
+<img src="img/FLP_II/f03-02/f03-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–2.</span>The line integral is the limit of a sum.
+</div>
+</div>
+<div id="Ch3-S1-p4" class="para">
+<p class="p">First, we should review what we mean by a line integral. Consider a
+scalar function $f(x,y,z)$, and the curve $\Gamma$ joining two points
+$(1)$ and $(2)$. We mark off the curve at a number of points and join
+these points by straight-line segments, as shown in
+Fig. <a href="#Ch3-F2">3–2</a>. Each segment has the length $\Delta s_i$, where $i$
+is an index that runs $1$, $2$, $3$, … By the line integral
+\begin{equation*}
+\underset{\text{along $\Gamma$}}{\int_{(1)}^{(2)}} f\,ds
+\end{equation*}
+
+we mean the limit of the sum
+\begin{equation*}
+\sum\nolimits_if_i\Delta s_i,
+\end{equation*}
+
+where $f_i$ is the value of the function at the $i$th segment. The
+limiting value is what the sum approaches as we add more and more
+segments (in a sensible way, so that the largest $\Delta s_i\to0$).</p>
+</div>
+<div id="Ch3-S1-p5" class="para">
+<p class="p">The integral in our theorem, Eq. (<a href="#mjx-eqn-EqII31">3.1</a>), means the same
+thing, although it looks a little different. Instead of $f$, we have
+another scalar—the component of $\FLPgrad{\psi}$ in the direction
+of $\Delta\FLPs$. If we write $(\FLPgrad{\psi})_t$ for this tangential
+component, it is clear that
+\begin{equation}
+\label{Eq:II:3:2}
+(\FLPgrad{\psi})_t\,\Delta s=(\FLPgrad{\psi})\cdot\Delta\FLPs.
+\end{equation}
+
+The integral in Eq. (<a href="#mjx-eqn-EqII31">3.1</a>) means the sum of such terms.</p>
+</div>
+<div id="Ch3-S1-p6" class="para">
+<p class="p">Now let’s see why Eq. (<a href="#mjx-eqn-EqII31">3.1</a>) is true. In
+Chapter <a href="II_02.html">2</a>, we showed that the component of $\FLPgrad{\psi}$
+along a small displacement $\Delta\FLPR$ was the rate
+of change of $\psi$ in the direction of $\Delta\FLPR$. Consider the line
+segment $\Delta\FLPs$ from $(1)$ to point $a$ in Fig. <a href="#Ch3-F2">3–2</a>.
+According to our definition,
+\begin{equation}
+\label{Eq:II:3:3}
+\Delta\psi_1=\psi(a)-\psi(1)=(\FLPgrad{\psi})_1\cdot\Delta\FLPs_1.
+\end{equation}
+
+Also, we have
+\begin{equation}
+\label{Eq:II:3:4}
+\psi(b)-\psi(a)=(\FLPgrad{\psi})_2\cdot\Delta\FLPs_2,
+\end{equation}
+
+where, of course, $(\FLPgrad{\psi})_1$ means the gradient evaluated at the segment $\Delta\FLPs_1$, and $(\FLPgrad{\psi})_2$, the gradient evaluated at $\Delta\FLPs_2$. If we add Eqs. (<a href="#mjx-eqn-EqII33">3.3</a>) and (<a href="#mjx-eqn-EqII34">3.4</a>), we get
+\begin{equation}
+\label{Eq:II:3:5}
+\psi(b)-\psi(1)=(\FLPgrad{\psi})_1\cdot\Delta\FLPs_1+
+(\FLPgrad{\psi})_2\cdot\Delta\FLPs_2.
+\end{equation}
+
+You can see that if we keep adding such terms, we get the result
+\begin{equation}
+\label{Eq:II:3:6}
+\psi(2)-\psi(1)=\sum\nolimits_i(\FLPgrad{\psi})_i\cdot\Delta\FLPs_i.
+\end{equation}
+
+The left-hand side doesn’t depend on how we choose our intervals—if
+$(1)$ and $(2)$ are kept always the same—so we can take the limit of
+the right-hand side. We have therefore proved Eq. (<a href="#mjx-eqn-EqII31">3.1</a>).</p>
+</div>
+<div id="Ch3-S1-p7" class="para">
+<p class="p">You can see from our proof that just as the equality doesn’t depend on
+how the points $a$ $b$, $c$, …, are chosen, similarly it doesn’t
+depend on what we choose for the curve $\Gamma$ to join $(1)$ and $(2)$.
+Our theorem is correct for <em class="emph">any</em> curve from $(1)$ to $(2)$.</p>
+</div>
+<div id="Ch3-S1-p8" class="para">
+<p class="p">One remark on notation: You will see that there is no confusion if we
+write, for convenience,
+\begin{equation}
+\label{Eq:II:3:7}
+(\FLPgrad{\psi})\cdot d\FLPs=\FLPgrad{\psi}\cdot d\FLPs.
+\end{equation}
+
+With this notation, our theorem is
+<br><br>
+<span class="text smallcaps">&emsp;&emsp;Theorem 1.</span>
+\begin{equation}
+\label{Eq:II:3:8}
+\psi(2)-\psi(1)=
+\underset{\substack{\text{any curve from}\\\text{$(1)$ to
+$(2)$}}}{\int_{(1)}^{(2)}} \FLPgrad{\psi}\cdot d\FLPs\,.
+\end{equation}
+</p>
+</div>
+</div>
+<div id="Ch3-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">3–2</span>The flux of a vector field</h3>
+<div id="Ch3-S2-p1" class="para">
+<p class="p">Before we consider our next integral theorem—a theorem about the
+divergence—we would like to study a certain idea which has
+an easily understood physical significance in the case of heat
+flow. We have defined the vector $\FLPh$, which represents the heat
+that flows through a unit area in a unit time. Suppose that inside a
+block of material we have some closed surface $S$ which encloses the
+volume $V$ (Fig. <a href="#Ch3-F3">3–3</a>). We would like to find out how
+much heat is flowing out of this <em class="emph">volume</em>. We can, of course,
+find it by calculating the total heat flow out of the
+<em class="emph">surface</em> $S$.</p>
+</div>
+<div id="Ch3-F3" class="figure">
+<img src="img/FLP_II/f03-03/f03-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–3.</span>The closed surface $S$ defines the volume $V$. The unit
+vector $\Fign$ is the outward normal to the surface element $da$,
+and $\Figh$ is the heat-flow vector at the surface element.
+</div>
+</div>
+<div id="Ch3-S2-p2" class="para">
+<p class="p">We write $da$ for the area of an element of the surface. The symbol
+stands for a two-dimensional differential. If, for instance, the area
+happened to be in the $xy$-plane we would have
+\begin{equation*}
+da=dx\,dy.
+\end{equation*}
+
+Later we shall have integrals over volume and for these it is
+convenient to consider a differential volume that is a little cube. So
+when we write $dV$ we mean
+\begin{equation*}
+dV=dx\,dy\,dz.
+\end{equation*}
+</p>
+</div>
+<div id="Ch3-S2-p3" class="para">
+<p class="p">Some people like to write $d^2a$ instead of $da$ to remind themselves
+that it is kind of a second-order quantity. They would also write $d^3V$
+instead of $dV$. We will use the simpler notation, and assume that you
+can remember that an area has two dimensions and a volume has three.</p>
+</div>
+<div id="Ch3-S2-p4" class="para">
+<p class="p">The heat flow out through the surface element $da$ is the area times
+the component of $\FLPh$ perpendicular to $da$. We have already
+defined $\FLPn$ as a unit vector pointing outward at right angles to
+the surface (Fig. <a href="#Ch3-F3">3–3</a>). The component of $\FLPh$ that
+we want is
+\begin{equation}
+\label{Eq:II:3:9}
+h_n=\FLPh\cdot\FLPn.
+\end{equation}
+
+The heat flow out through $da$ is then
+\begin{equation}
+\label{Eq:II:3:10}
+\FLPh\cdot\FLPn\,da.
+\end{equation}
+
+To get the total heat flow through any surface we sum the
+contributions from all the elements of the surface. In other words, we
+integrate (<a href="#mjx-eqn-EqII310">3.10</a>) over the whole surface:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:3:11}
+\text{Total heat flow outward through $S$}=\int_S\FLPh\cdot\FLPn\,da.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\label{Eq:II:3:11}
+\begin{pmatrix}
+\text{Total heat flow}\\[-.5ex]
+\text{outward through $S$}
+\end{pmatrix}
+=\int_S\FLPh\cdot\FLPn\,da.
+\end{equation}
+</span>
+</p>
+</div>
+<div id="Ch3-S2-p5" class="para">
+<p class="p">We are also going to call this surface integral “the flux of $\FLPh$
+through the surface.” Originally the word flux meant flow, so that
+the surface integral just means the flow of $\FLPh$ through the
+surface. We may think: $\FLPh$ is the “current density” of heat flow
+and the surface integral of it is the total heat current directed out
+of the surface; that is, the thermal energy per unit time (joules per
+second).</p>
+</div>
+<div id="Ch3-S2-p6" class="para">
+<p class="p">We would like to generalize this idea to the case where the vector
+does not represent the flow of anything; for instance, it might be the
+electric field. We can certainly still integrate the normal component
+of the electric field over an area if we wish. Although it is not the
+flow of anything, we still call it the “flux.” We say
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:3:12}
+\text{Flux of $\FLPE$ through the surface $S$}=\int_S\FLPE\cdot\FLPn\,da.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\label{Eq:II:3:12}
+\begin{pmatrix}
+\text{Flux of $\FLPE$}\\[-.5ex]
+\text{through the}\\[-.5ex]
+\text{surface $S$}
+\end{pmatrix}
+=\int_S\FLPE\cdot\FLPn\,da.
+\end{equation}
+</span>
+We generalize the word “flux” to mean the “surface integral of the
+normal component” of a vector. We will also use the same definition
+even when the surface considered is not a closed one, as it is here.</p>
+</div>
+<div id="Ch3-S2-p7" class="para">
+<p class="p">Returning to the special case of heat flow, let us take a situation in
+which <em class="emph">heat is conserved</em>. For example, imagine some material in
+which after an initial heating no further heat energy is generated or
+absorbed. Then, if there is a net heat flow out of a closed surface,
+the heat content of the volume inside must decrease. So, in
+circumstances in which heat would be conserved, we say that
+\begin{equation}
+\label{Eq:II:3:13}
+\int_S\FLPh\cdot\FLPn\,da=-\ddt{Q}{t},
+\end{equation}
+
+where $Q$ is the heat inside the surface. The heat flux out of $S$ is
+equal to minus the rate of change with respect to time of the total
+heat $Q$ inside of $S$. This interpretation is possible because we are
+speaking of heat flow and also because we supposed that the heat was
+conserved. We could not, of course, speak of the total heat inside the
+volume if heat were being generated there.</p>
+</div>
+<div id="Ch3-F4" class="figure">
+<img src="img/FLP_II/f03-04/f03-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–4.</span>A volume $V$ contained inside the surface $S$ is divided into
+two pieces by a “cut” at the surface $S_{ab}$. We now have the
+volume $V_1$ enclosed in the surface $S_1=S_a+S_{ab}$ and the
+volume $V_2$ enclosed in the surface $S_2=S_b+S_{ab}$.
+</div>
+</div>
+<div id="Ch3-S2-p8" class="para">
+<p class="p">Now we shall point out an interesting fact about the flux of any
+vector. You may think of the heat flow vector if you wish, but what we
+say will be true for any vector field $\FLPC$. Imagine that we have a
+closed surface $S$ that encloses the volume $V$. We now separate the
+volume into two parts by some kind of a “cut,” as in
+Fig. <a href="#Ch3-F4">3–4</a>. Now we have two closed surfaces and volumes. The
+volume $V_1$ is enclosed in the surface $S_1$, which is made up of part
+of the original surface $S_a$ and of the surface of the cut, $S_{ab}$.
+The volume $V_2$ is enclosed by $S_2$, which is made up of the rest of
+the original surface $S_b$ and closed off by the cut $S_{ab}$. Now
+consider the following question: Suppose we calculate the flux out
+through surface $S_1$ and add to it the flux through surface $S_2$. Does
+the sum equal the flux through the whole surface that we started with?
+The answer is yes. The flux through the part of the surfaces $S_{ab}$
+common to both $S_1$ and $S_2$ just exactly cancels out. For the flux of
+the vector $\FLPC$ out of $V_1$ we can write
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:3:14}
+\text{Flux through $S_1$}=\int_{S_a}\FLPC\cdot\FLPn\,da+
+\int_{S_{ab}}\FLPC\cdot\FLPn_1\,da,
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+\text{Flux through $S_1$}=\\[.75ex]
+\int_{S_a}\FLPC\cdot\FLPn\,da+
+\int_{S_{ab}}\FLPC\cdot\FLPn_1\,da,
+\end{gathered}
+\label{Eq:II:3:14}
+\end{equation}
+</span>
+and for the flux out of $V_2$,
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:3:15}
+\text{Flux through $S_2$}=\int_{S_b}\FLPC\cdot\FLPn\,da+
+\int_{S_{ab}}\FLPC\cdot\FLPn_2\,da.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+\text{Flux through $S_2$}=\\[.75ex]
+\int_{S_b}\FLPC\cdot\FLPn\,da+
+\int_{S_{ab}}\FLPC\cdot\FLPn_2\,da.
+\end{gathered}
+\label{Eq:II:3:15}
+\end{equation}
+</span>
+Note that in the second integral we have written $\FLPn_1$ for the
+outward normal for $S_{ab}$ when it belongs to $S_1$, and $\FLPn_2$
+when it belongs to $S_2$, as shown in Fig. <a href="#Ch3-F4">3–4</a>. Clearly,
+$\FLPn_1=-\FLPn_2$, so that
+\begin{equation}
+\label{Eq:II:3:16}
+\int_{S_{ab}}\FLPC\cdot\FLPn_1\,da=-\int_{S_{ab}}\FLPC\cdot\FLPn_2\,da.
+\end{equation}
+
+If we now add Eqs. (<a href="#mjx-eqn-EqII314">3.14</a>) and (<a href="#mjx-eqn-EqII315">3.15</a>), we see that the sum of the fluxes through $S_1$ and $S_2$ is just the sum of two integrals which, taken together, give the flux through the original surface $S=S_a+S_b$.</p>
+</div>
+<div id="Ch3-S2-p9" class="para">
+<p class="p">We see that the flux through the complete outer surface $S$ can be
+considered as the sum of the fluxes from the two pieces into which the
+volume was broken. We can similarly subdivide again—say by
+cutting $V_1$ into two pieces. You see that the same arguments apply. So
+for <em class="emph">any</em> way of dividing the original volume, it must be generally
+true that the flux through the outer surface, which is the original
+integral, is equal to a sum of the fluxes out of all the little interior
+pieces.</p>
+</div>
+</div>
+<div id="Ch3-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">3–3</span>The flux from a cube; Gauss’ theorem</h3>
+<div id="Ch3-F5" class="figure">
+<img src="img/FLP_II/f03-05/f03-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–5.</span>Computation of the flux of $\FigC$ out of a small cube.
+</div>
+</div>
+<div id="Ch3-S3-p1" class="para">
+<p class="p">We now take the special case of a small cube<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a>
+and find an interesting formula for the flux out of it. Consider a
+cube whose edges are lined up with the axes as in Fig. <a href="#Ch3-F5">3–5</a>.
+Let us suppose that the coordinates of the corner nearest the origin are
+$x$, $y$, $z$. Let $\Delta x$ be the length of the cube in the $x$-direction,
+$\Delta y$ be the length in the $y$-direction, and $\Delta z$ be the
+length in the $z$-direction. We wish to find the flux of a vector
+field $\FLPC$ through the surface of the cube. We shall do this by
+making a sum of the fluxes through each of the six faces. First,
+consider the face marked $1$ in the figure. The flux <em class="emph">outward</em> on
+this face is the negative of the $x$-component of $\FLPC$, integrated
+over the area of the face. This flux is
+\begin{equation*}
+-\int C_x\,dy\,dz.
+\end{equation*}
+
+Since we are considering a <em class="emph">small</em> cube, we can approximate this
+integral by the value of $C_x$ at the center of the face—which we
+call the point $(1)$—multiplied by the area of the face, $\Delta
+y\,\Delta z$:
+\begin{equation*}
+\text{Flux out of $1$}=-C_x(1)\,\Delta y\,\Delta z.
+\end{equation*}
+
+Similarly, for the flux out of face $2$, we write
+\begin{equation*}
+\text{Flux out of $2$}=C_x(2)\,\Delta y\,\Delta z.
+\end{equation*}
+
+Now $C_x(1)$ and $C_x(2)$ are, in general, slightly different.
+If $\Delta x$ is small enough, we can write
+\begin{equation*}
+C_x(2)=C_x(1)+\ddp{C_x}{x}\,\Delta x.
+\end{equation*}
+
+There are, of course, more terms, but they will involve $(\Delta x)^2$
+and higher powers, and so will be negligible if we consider only the
+limit of small $\Delta x$. So the flux through face $2$ is
+\begin{equation*}
+\text{Flux out of $2$}=\biggl[C_x(1)+\ddp{C_x}{x}\,\Delta
+x\biggr]\,\Delta y\,\Delta z.
+\end{equation*}
+
+Summing the fluxes for faces $1$ and $2$, we get
+\begin{equation*}
+\text{Flux out of $1$ and $2$}=\ddp{C_x}{x}\,\Delta x\,\Delta
+y\,\Delta z.
+\end{equation*}
+
+The derivative should really be evaluated at the center of face $1$;
+that is, at $[x,y+(\Delta y/2),z+(\Delta z/2)]$. But in the limit of
+an infinitesimal cube, we make a negligible error if we evaluate it at
+the corner $(x,y,z)$.</p>
+</div>
+<div id="Ch3-S3-p2" class="para">
+<p class="p">Applying the same reasoning to each of the other pairs of faces, we
+have
+\begin{equation*}
+\text{Flux out of $3$ and $4$}=\ddp{C_y}{y}\,\Delta x\,\Delta y\,\Delta z
+\end{equation*}
+and
+\begin{equation*}
+\text{Flux out of $5$ and $6$}=\ddp{C_z}{z}\,\Delta x\,\Delta y\,\Delta z.
+\end{equation*}
+</p>
+</div>
+<div id="Ch3-S3-p3" class="para">
+<p class="p">The total flux through all the faces is the sum of these terms. We
+find that
+\begin{equation*}
+\underset{\text{cube}}{\int}\FLPC\cdot\FLPn\,da=
+\biggl(\ddp{C_x}{x}+\ddp{C_y}{y}+\ddp{C_z}{z}\biggr)\Delta x\,\Delta
+y\,\Delta z,
+\end{equation*}
+
+and the sum of the derivatives is just $\FLPdiv{\FLPC}$. Also, $\Delta
+x\,\Delta y\,\Delta z=\Delta V$, the volume of the cube. So we can say
+that <em class="emph">for an infinitesimal cube</em>
+\begin{equation}
+\label{Eq:II:3:17}
+\underset{\text{surface}}{\int}\FLPC\cdot\FLPn\,da=
+(\FLPdiv{\FLPC})\,\Delta V.
+\end{equation}
+
+We have shown that the outward flux from the surface of an
+infinitesimal cube is equal to the divergence of the vector multiplied
+by the volume of the cube. We now see the “meaning” of the
+divergence of a vector. The divergence of a vector at the point $P$ is
+the flux—the outgoing “flow” of $\FLPC$—<em class="emph">per unit volume</em>,
+in the neighborhood of $P$.</p>
+</div>
+<div id="Ch3-S3-p4" class="para">
+<p class="p">We have connected the divergence of $\FLPC$ to the flux of $\FLPC$ out
+of each infinitesimal volume. For any finite volume we can use the
+fact we proved above—that the total flux from a volume is the sum of
+the fluxes out of each part. We can, that is, integrate the divergence
+over the entire volume. This gives us the theorem that the integral of
+the normal component of any vector over any closed surface can also be
+written as the integral of the divergence of the vector over the
+volume enclosed by the surface. This theorem is named after
+Gauss.
+<br><br>
+<span class="text smallcaps">&emsp;&emsp;Gauss’ Theorem</span>
+\begin{equation}
+\label{Eq:II:3:18}
+\int_S\FLPC\cdot\FLPn\,da=\int_V\FLPdiv{\FLPC}\,dV,
+\end{equation}
+
+where $S$ is any closed surface and $V$ is the volume inside it.</p>
+</div>
+</div>
+<div id="Ch3-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">3–4</span>Heat conduction; the diffusion equation</h3>
+<div id="Ch3-S4-p1" class="para">
+<p class="p">Let’s consider an example of the use of this theorem, just to get
+familiar with it. Suppose we take again the case of heat flow in, say,
+a metal. Suppose we have a simple situation in which all the heat has
+been previously put in and the body is just cooling off. There are no
+sources of heat, so that heat is conserved. Then how much heat is
+there inside some chosen volume at any time? It must be
+<em class="emph">decreasing</em> by just the amount that flows out of the surface of
+the volume. If our volume is a little cube, we would write, following
+Eq. (<a href="#mjx-eqn-EqII317">3.17</a>),
+\begin{equation}
+\label{Eq:II:3:19}
+\text{Heat out}=\underset{\text{cube}}{\int}\FLPh\cdot\FLPn\,da=
+\FLPdiv{\FLPh}\,\Delta V.
+\end{equation}
+
+But this must equal the rate of loss of the heat inside the cube. If $q$
+is the heat per unit volume, the heat in the cube is $q\,\Delta V$, and
+the rate of <em class="emph">loss</em> is
+\begin{equation}
+\label{Eq:II:3:20}
+-\ddp{}{t}(q\,\Delta V)=-\ddp{q}{t}\,\Delta V.
+\end{equation}
+
+Comparing (<a href="#mjx-eqn-EqII319">3.19</a>) and (<a href="#mjx-eqn-EqII320">3.20</a>), we see that
+\begin{equation}
+\label{Eq:II:3:21}
+-\ddp{q}{t}=\FLPdiv{\FLPh}.
+\end{equation}
+</p>
+</div>
+<div id="Ch3-S4-p2" class="para">
+<p class="p">Take careful note of the form of this equation; the form appears often
+in physics. It expresses a conservation law—here the conservation of
+heat. We have expressed the same physical fact in another way in
+Eq. (<a href="#mjx-eqn-EqII313">3.13</a>). Here we have the <em class="emph">differential</em> form of a
+conservation equation, while Eq. (<a href="#mjx-eqn-EqII313">3.13</a>) is the
+<em class="emph">integral</em> form.</p>
+</div>
+<div id="Ch3-S4-p3" class="para">
+<p class="p">We have obtained Eq. (<a href="#mjx-eqn-EqII321">3.21</a>) by applying
+Eq. (<a href="#mjx-eqn-EqII313">3.13</a>) to an infinitesimal cube. We can also go the
+other way. For a big volume $V$ bounded by $S$, Gauss’ law says that
+\begin{equation}
+\label{Eq:II:3:22}
+\int_S\FLPh\cdot\FLPn\,da=\int_V\FLPdiv{\FLPh}\,dV.
+\end{equation}
+
+Using (<a href="#mjx-eqn-EqII321">3.21</a>), the integral on the right-hand side is found
+to be just $-dQ/dt$, and again we have Eq. (<a href="#mjx-eqn-EqII313">3.13</a>).</p>
+</div>
+<div id="Ch3-S4-p4" class="para">
+<p class="p">Now let’s consider a different case. Imagine that we have a block of
+material and that inside it there is a very tiny hole in which some
+chemical reaction is taking place and generating heat. Or we could
+imagine that there are some wires running into a tiny resistor that is
+being heated by an electric current. We shall suppose that the heat is
+generated practically at a point, and let $W$ represent the energy
+liberated per second at that point. We shall suppose that in the rest
+of the volume heat is conserved, and that the heat generation has been
+going on for a long time—so that now the temperature is no longer
+changing anywhere. The problem is: What does the heat vector $\FLPh$
+look like at various places in the metal? How much heat flow is there
+at each point?</p>
+</div>
+<div id="Ch3-F6" class="figure">
+<img src="img/FLP_II/f03-06/f03-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–6.</span>In the region near a point source of heat, the heat flow is
+radially outward.
+</div>
+</div>
+<div id="Ch3-S4-p5" class="para">
+<p class="p">We know that if we integrate the normal component of $\FLPh$ over a
+closed surface that encloses the source, we will always get $W$. All
+the heat that is being generated at the point source must flow out
+through the surface, since we have supposed that the flow is
+steady. We have the difficult problem of finding a vector field which,
+when integrated over any surface, always gives $W$. We can, however,
+find the field rather easily by taking a somewhat special surface. We
+take a sphere of radius $R$, centered at the source, and assume that
+the heat flow is radial (Fig. <a href="#Ch3-F6">3–6</a>). Our intuition tells
+us that $\FLPh$ should be radial if the block of material is large and
+we don’t get too close to the edges, and it should also have the same
+magnitude at all points on the sphere. You see that we are adding a
+certain amount of guesswork—usually called “physical
+intuition”—to our mathematics in order to find the answer.</p>
+</div>
+<div id="Ch3-S4-p6" class="para">
+<p class="p">When $\FLPh$ is radial and spherically symmetric, the integral of the
+normal component of $\FLPh$ over the area is very simple, because the
+normal component is just the magnitude of $\FLPh$ and is constant. The
+area over which we integrate is $4\pi R^2$. We have then that
+\begin{equation}
+\label{Eq:II:3:23}
+\int_S\FLPh\cdot\FLPn\,da=h\cdot4\pi R^2
+\end{equation}
+
+(where $h$ is the magnitude of $\FLPh$). This integral should equal $W$,
+the rate at which heat is produced at the source. We get
+\begin{equation}
+h=\frac{W}{4\pi R^2},\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:3:24}
+\FLPh=\frac{W}{4\pi R^2}\,\FLPe_{r},
+\end{equation}
+where, as usual, $\FLPe_r$ represents a unit vector in the radial
+direction. Our result says that $\FLPh$ is proportional to $W$ and
+varies inversely as the square of the distance from the source.</p>
+</div>
+<div id="Ch3-S4-p7" class="para">
+<p class="p">The result we have just obtained applies to the heat flow in the
+vicinity of a point source of heat. Let’s now try to find the
+equations that hold in the most general kind of heat flow, keeping
+only the condition that heat is conserved. We will be dealing only
+with what happens at places outside of any sources or absorbers of
+heat.</p>
+</div>
+<div id="Ch3-S4-p8" class="para">
+<p class="p">The differential equation for the conduction of heat was derived in
+Chapter <a href="II_02.html">2</a>. According to Eq. (<a href="II_02.html#mjx-eqn-EqII244">2.44</a>),
+\begin{equation}
+\label{Eq:II:3:25}
+\FLPh=-\kappa\,\FLPgrad{T}.
+\end{equation}
+
+(Remember that this relationship is an approximate one, but fairly
+good for some materials like metals.) It is applicable, of course,
+only in regions of the material where there is no generation or
+absorption of heat. We derived above another relation,
+Eq. (<a href="#mjx-eqn-EqII321">3.21</a>), that holds when heat is conserved. If we combine
+that equation with (<a href="#mjx-eqn-EqII325">3.25</a>), we get
+\begin{equation}
+-\ddp{q}{t} =\FLPdiv{\FLPh}=-\FLPdiv{(\kappa\,\FLPgrad{T})},\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:3:26}
+\ddp{q}{t} =\kappa\,\FLPdiv{\FLPgrad{T}}=\kappa\,\nabla^2T,
+\end{equation}
+
+if $\kappa$ is a constant. You remember that $q$ is the amount of heat
+in a unit volume and $\FLPdiv{\FLPnabla}=\nabla^2$ is the Laplacian
+operator
+\begin{equation*}
+\nabla^2=\frac{\partial^2}{\partial
+x^2}+\frac{\partial^2}{\partial y^2}+ \frac{\partial^2}{\partial z^2}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch3-S4-p9" class="para">
+<p class="p">If we now make one more assumption we can obtain a very interesting
+equation. We assume that the temperature of the material is
+proportional to the heat content per unit volume—that is, that the
+material has a definite specific heat. When this assumption is valid
+(as it often is), we can write
+\begin{equation}
+\Delta q=c_v\,\Delta T\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:3:27}
+\ddp{q}{t}=c_v\,\ddp{T}{t}.
+\end{equation}
+
+The rate of change of heat is proportional to the rate of change of temperature. The constant of proportionality $c_v$ is, here, the specific heat per unit <em class="emph">volume</em> of the material. Using Eq. (<a href="#mjx-eqn-EqII327">3.27</a>) with (<a href="#mjx-eqn-EqII326">3.26</a>), we get \begin{equation}
+\label{Eq:II:3:28}
+\ddp{T}{t}=\frac{\kappa}{c_v}\,\nabla^2T.
+\end{equation}
+
+We find that the <em class="emph">time</em> rate of change of $T$—at every
+point—is proportional to the Laplacian of $T$, which is the second
+derivative of its spatial dependence. We have a differential
+equation—in $x$, $y$, $z$, and $t$—for the temperature $T$.</p>
+</div>
+<div id="Ch3-S4-p10" class="para">
+<p class="p">The differential equation (<a href="#mjx-eqn-EqII328">3.28</a>) is called the <em class="emph">heat
+diffusion equation</em>. It is often written as
+\begin{equation}
+\label{Eq:II:3:29}
+\ddp{T}{t}=D\,\nabla^2T,
+\end{equation}
+
+where $D$ is called the <em class="emph">diffusion</em> constant, and is here equal
+to $\kappa/c_v$.</p>
+</div>
+<div id="Ch3-S4-p11" class="para">
+<p class="p">The diffusion equation appears in many physical problems—in the
+diffusion of gases, in the diffusion of neutrons, and in others. We
+have already discussed the physics of some of these phenomena in
+Chapter <a href="I_43.html">43</a> of Vol. I. Now you have the complete
+equation that describes diffusion in the most general possible
+situation. At some later time we will take up ways of solving the
+diffusion equation to find how the temperature varies in particular
+cases. We turn back now to consider other theorems about vector
+fields.</p>
+</div>
+</div>
+<div id="Ch3-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">3–5</span>The circulation of a vector field</h3>
+<div id="Ch3-S5-p1" class="para">
+<p class="p">We wish now to look at the curl in somewhat the same way we looked at
+the divergence. We obtained Gauss’ theorem by considering the integral
+over a surface, although it was not obvious at the beginning that we
+were going to be dealing with the divergence. How did we know that we
+were supposed to integrate over a surface in order to get the
+divergence? It was not at all clear that this would be the result. And
+so with an apparent equal lack of justification, we shall calculate
+something else about a vector and show that it is related to the
+curl. This time we calculate what is called the circulation of a
+vector field. If $\FLPC$ is any vector field, we take its component
+along a curved line and take the integral of this component all the
+way around a complete loop. The integral is called the
+<em class="emph">circulation</em> of the vector field around the loop. We have
+already considered a line integral of $\FLPgrad{\psi}$ earlier in this
+chapter. Now we do the same kind of thing for <em class="emph">any</em> vector field $\FLPC$.</p>
+</div>
+<div id="Ch3-F7" class="figure">
+<img src="img/FLP_II/f03-07/f03-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–7.</span>The circulation of $\FigC$ around the curve $\Gamma$ is the
+line integral of $C_t$, the tangential component of $\FigC$.
+</div>
+</div>
+<div id="Ch3-S5-p2" class="para">
+<p class="p">Let $\Gamma$ be any closed loop in space—imaginary, of course. An
+example is given in Fig. <a href="#Ch3-F7">3–7</a>. The line integral of the
+tangential component of $\FLPC$ around the loop is written as
+\begin{equation}
+\label{Eq:II:3:30}
+\oint_\Gamma C_t\,ds=\oint_\Gamma \FLPC\cdot d\FLPs.
+\end{equation}
+
+You should note that the integral is taken all the way around, not
+from one point to another as we did before. The little circle on the
+integral sign is to remind us that the integral is to be taken all the
+way around. This integral is called the circulation of the vector
+field around the curve $\Gamma$. The name came originally from
+considering the circulation of a liquid. But the name—like
+flux—has been extended to apply to any field even when there is no
+material “circulating.”</p>
+</div>
+<div id="Ch3-S5-p3" class="para">
+<p class="p">Playing the same kind of game we did with the flux, we can show that
+the circulation around a loop is the sum of the circulations around
+two partial loops. Suppose we break up our curve of
+Fig. <a href="#Ch3-F7">3–7</a> into two loops, by joining two points $(1)$
+and $(2)$ on the original curve by some line that cuts across as shown
+in Fig. <a href="#Ch3-F8">3–8</a>. There are now two loops, $\Gamma_1$
+and $\Gamma_2$. $\Gamma_1$ is made up of $\Gamma_a$, which is that part
+of the original curve to the left of $(1)$ and $(2)$,
+plus $\Gamma_{ab}$, the “short cut.”  $\Gamma_2$ is made up of the
+rest of the original curve plus the short cut.</p>
+</div>
+<div id="Ch3-F8" class="figure">
+<img src="img/FLP_II/f03-08/f03-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–8.</span>The circulation around the whole loop is the sum of the
+circulations around the two loops: $\Gamma_1=\Gamma_a+\Gamma_{ab}$
+and $\Gamma_2=\Gamma_b+\Gamma_{ab}$.
+</div>
+</div>
+<div id="Ch3-S5-p4" class="para">
+<p class="p">The circulation around $\Gamma_1$ is the sum of an integral
+along $\Gamma_a$ and along $\Gamma_{ab}$. Similarly, the circulation
+around $\Gamma_2$ is the sum of two parts, one along $\Gamma_b$ and the
+other along $\Gamma_{ab}$. The integral along $\Gamma_{ab}$ will have,
+for the curve $\Gamma_2$, the opposite sign from what it has
+for $\Gamma_1$, because the direction of travel is opposite—we must
+take both our line integrals with the same “sense” of rotation.</p>
+</div>
+<div id="Ch3-S5-p5" class="para">
+<p class="p">Following the same kind of argument we used before, you can see that
+the sum of the two circulations will give just the line integral
+around the original curve $\Gamma$. The parts due to $\Gamma_{ab}$
+cancel. The circulation around the one part plus the circulation
+around the second part equals the circulation about the outer line. We
+can continue the process of cutting the original loop into any number
+of smaller loops. When we add the circulations of the smaller loops,
+there is always a cancellation of the parts on their adjacent
+portions, so that the sum is equivalent to the circulation around the
+original single loop.</p>
+</div>
+<div id="Ch3-F9" class="figure">
+<img src="img/FLP_II/f03-09/f03-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–9.</span>Some surface bounded by the loop $\Gamma$ is chosen. The
+surface is divided into a number of small areas, each approximately
+a square. The circulation around $\Gamma$ is the sum of the
+circulations around the little loops.
+</div>
+</div>
+<div id="Ch3-S5-p6" class="para">
+<p class="p">Now let us suppose that the original loop is the boundary of some
+surface. There are, of course, an infinite number of surfaces which
+all have the original loops as the boundary. Our results will not,
+however, depend on which surface we choose. First, we break our
+original loop into a number of small loops that all lie on the surface
+we have chosen, as in Fig. <a href="#Ch3-F9">3–9</a>. No matter what the
+shape of the surface, if we choose our small loops small enough, we
+can assume that each of the small loops will enclose an area which is
+essentially flat. Also, we can choose our small loops so that each is
+very nearly a square. Now we can calculate the circulation around the
+big loop $\Gamma$ by finding the circulations around all of the little
+squares and then taking their sum.</p>
+</div>
+</div>
+<div id="Ch3-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">3–6</span>The circulation around a square; Stokes’ theorem</h3>
+<div id="Ch3-S6-p1" class="para">
+<p class="p">How shall we find the circulation for each little square? One question
+is, how is the square oriented in space? We could easily make the
+calculation if it had a special orientation. For example, if it were
+in one of the coordinate planes. Since we have not assumed anything as
+yet about the orientation of the coordinate axes, we can just as well
+choose the axes so that the one little square we are concentrating on
+at the moment lies in the $xy$-plane, as in Fig. <a href="#Ch3-F10">3–10</a>. If
+our result is expressed in vector notation, we can say that it will be
+the same no matter what the particular orientation of the plane.</p>
+</div>
+<div id="Ch3-F10" class="figure">
+<img src="img/FLP_II/f03-10/f03-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–10.</span>Computing the circulation of $\FigC$ around a small square.
+</div>
+</div>
+<div id="Ch3-S6-p2" class="para">
+<p class="p">We want now to find the circulation of the field $\FLPC$ around our
+little square. It will be easy to do the line integral if we make the
+square small enough that the vector $\FLPC$ doesn’t change much along
+any one side of the square. (The assumption is better the smaller the
+square, so we are really talking about infinitesimal squares.)
+Starting at the point $(x,y)$—the lower left corner of the
+figure—we go around in the direction indicated by the arrows. Along
+the first side—marked $(1)$—the tangential component is $C_x(1)$
+and the distance is $\Delta x$. The first part of the integral
+is $C_x(1)\,\Delta x$. Along the second leg, we get $C_y(2)\,\Delta y$.
+Along the third, we get $-C_x(3)\,\Delta x$, and along the
+fourth, $-C_y(4)\,\Delta y$. The minus signs are required because we
+want the tangential component in the direction of travel. The whole line
+integral is then
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:3:31}
+\oint\FLPC\cdot d\FLPs=C_x(1)\,\Delta x+C_y(2)\,\Delta
+y-C_x(3)\,\Delta x-C_y(4)\,\Delta y.
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{alignat}{3}
+\oint\FLPC\cdot d\FLPs=\;&C_x(1)\,\Delta x&+&\,C_y(2)\,\Delta y\notag\\
+\label{Eq:II:3:31}
+-&C_x(3)\,\Delta x&-&\,C_y(4)\,\Delta y.
+\end{alignat}
+
+
+</span>
+</p>
+</div>
+<div id="Ch3-S6-p3" class="para">
+<p class="p">Now let’s look at the first and third pieces. Together they are
+\begin{equation}
+\label{Eq:II:3:32}
+[C_x(1)-C_x(3)]\,\Delta x.
+\end{equation}
+You might think that to our approximation the difference is zero. That
+is true to the first approximation. We can be more accurate, however,
+and take into account the rate of change of $C_x$. If we do, we may
+write
+\begin{equation}
+\label{Eq:II:3:33}
+C_x(3)=C_x(1)+\ddp{C_x}{y}\,\Delta y.
+\end{equation}
+
+If we included the next approximation, it would involve terms
+in $(\Delta y)^2$, but since we will ultimately think of the limit as
+$\Delta y\to0$, such terms can be neglected. Putting (<a href="#mjx-eqn-EqII333">3.33</a>)
+together with (<a href="#mjx-eqn-EqII332">3.32</a>), we find that
+\begin{equation}
+\label{Eq:II:3:34}
+[C_x(1)-C_x(3)]\,\Delta x=-\ddp{C_x}{y}\,\Delta x\,\Delta y.
+\end{equation}
+
+The derivative can, to our approximation, be evaluated at $(x,y)$.</p>
+</div>
+<div id="Ch3-S6-p4" class="para">
+<p class="p">Similarly, for the other two terms in the circulation, we may write
+\begin{equation}
+\label{Eq:II:3:35}
+C_y(2)\,\Delta y-C_y(4)\,\Delta y=\ddp{C_y}{x}\,\Delta x\,\Delta y.
+\end{equation}
+
+The circulation around our square is then
+\begin{equation}
+\label{Eq:II:3:36}
+\biggl(\ddp{C_y}{x}-\ddp{C_x}{y}\biggr)\Delta x\,\Delta y,
+\end{equation}
+
+which is interesting, because the two terms in the parentheses are
+just the $z$-component of the curl. Also, we note that $\Delta
+x\,\Delta y$ is the area of our square. So we can write our
+circulation (<a href="#mjx-eqn-EqII336">3.36</a>) as
+\begin{equation*}
+(\FLPcurl{\FLPC})_z\,\Delta a.
+\end{equation*}
+
+But the $z$-component really means the component <em class="emph">normal</em> to the
+surface element. We can, therefore, write the circulation around a
+differential square in an invariant vector form:
+\begin{equation}
+\label{Eq:II:3:37}
+\oint\FLPC\cdot d\FLPs=(\FLPcurl{\FLPC})_n\,\Delta
+a=(\FLPcurl{\FLPC})\cdot\FLPn\,\Delta a.
+\end{equation}
+
+</p>
+</div>
+<div id="Ch3-S6-p5" class="para">
+<p class="p">Our result is: the circulation of any vector $\FLPC$ around an
+infinitesimal square is the component of the curl of $\FLPC$ normal to
+the surface, times the area of the square.</p>
+</div>
+<div id="Ch3-F11" class="figure">
+<img src="img/FLP_II/f03-11/f03-11_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–11.</span>The circulation of $\FigC$ around $\Gamma$ is the surface
+integral of the normal component of $\Fignabla\times\FigC$.
+</div>
+</div>
+<div id="Ch3-S6-p6" class="para">
+<p class="p">The circulation around any loop $\Gamma$ can now be easily related to
+the curl of the vector field. We fill in the loop with any convenient
+surface $S$, as in Fig. <a href="#Ch3-F11">3–11</a>, and add the circulations
+around a set of infinitesimal squares in this surface. The sum can be
+written as an integral. Our result is a very useful theorem called
+Stokes’ theorem (after Mr. Stokes).
+<br><br>
+<span class="text smallcaps">&emsp;&emsp;Stokes’ Theorem</span>
+\begin{equation}
+\label{Eq:II:3:38}
+\oint_\Gamma\FLPC\cdot d\FLPs=\int_S(\FLPcurl{\FLPC})_n\,da,
+\end{equation}
+
+where $S$ is any surface bounded by $\Gamma$.</p>
+</div>
+<div id="Ch3-S6-p7" class="para">
+<p class="p">We must now speak about a convention of signs. In Fig. <a href="#Ch3-F10">3–10</a>
+the $z$-axis would point <em class="emph">toward</em> you in a “usual”—that is,
+“right-handed”—system of axes. When we took our line integral with a
+“positive” sense of rotation, we found that the circulation was equal
+to the $z$-component of $\FLPcurl{\FLPC}$. If we had gone around the
+other way, we would have gotten the opposite sign. Now how shall we
+know, in general, what direction to choose for the positive direction of
+the “normal” component of $\FLPcurl{\FLPC}$? The “positive” normal
+must always be related to the sense of rotation, as in
+Fig. <a href="#Ch3-F10">3–10</a>. It is indicated for the general case in
+Fig. <a href="#Ch3-F11">3–11</a>.</p>
+</div>
+<div id="Ch3-S6-p8" class="para">
+<p class="p">One way of remembering the relationship is by the “right-hand rule.”
+If you make the fingers of your <em class="emph">right</em> hand go around the
+curve $\Gamma$, with the fingertips pointed in the direction of the
+positive sense of $d\FLPs$, then your thumb points in the direction of
+the <em class="emph">positive</em> normal to the surface $S$.</p>
+</div>
+</div>
+<div id="Ch3-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">3–7</span>Curl-free and divergence-free fields</h3>
+<div id="Ch3-F12" class="figure">
+<img src="img/FLP_II/f03-12/f03-12_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–12.</span>If $\Fignabla\times\FigC$ is zero, the circulation around the
+closed curve $\Gamma$ is zero. The line integral from $(1)$ to $(2)$
+along $a$ must be the same as the line integral along $b$.
+</div>
+</div>
+<div id="Ch3-S7-p1" class="para">
+<p class="p">We would like, now, to consider some consequences of our new
+theorems. Take first the case of a vector whose curl is
+<em class="emph">everywhere</em> zero. Then Stokes’ theorem says that the circulation
+around any loop is zero. Now if we choose two points $(1)$ and $(2)$
+on a closed curve (Fig. <a href="#Ch3-F12">3–12</a>), it follows that the line
+integral of the tangential component from $(1)$ to $(2)$ is
+independent of which of the two possible paths is taken. We can
+conclude that the integral from $(1)$ to $(2)$ can depend only on the
+location of these points—that is to say, it is some function of
+position only. The same logic was used in Chapter <a href="I_14.html">14</a> of
+Vol. I, where we proved that if the integral around a closed loop of
+some quantity is always zero, then that integral can be represented as
+the difference of a function of the position of the two ends. This
+fact allowed us to invent the idea of a potential. We proved,
+furthermore, that the vector field was the gradient of this potential
+function (see Eq. (<a href="I_14.html#mjx-eqn-EqI1413">14.13</a>) of Vol. I).</p>
+</div>
+<div id="Ch3-S7-p2" class="para">
+<p class="p">It follows that any vector field whose curl is zero is equal to the
+gradient of some scalar function. That is, if
+$\FLPcurl{\FLPC}=\FLPzero$, everywhere, there is some $\psi$ (psi) for
+which $\FLPC=\FLPgrad{\psi}$—a useful idea. We can, if we wish,
+describe this special kind of vector field by means of a scalar field.</p>
+</div>
+<div id="Ch3-S7-p3" class="para">
+<p class="p">Let’s show something else. Suppose we have <em class="emph">any</em> scalar
+field $\phi$ (phi). If we take its gradient, $\FLPgrad{\phi}$, the
+integral of this vector around any closed loop must be zero. Its line
+integral from point $(1)$ to point $(2)$ is $[\phi(2)-\phi(1)]$. If
+$(1)$ and $(2)$ are the same points, our Theorem 1,
+Eq. (<a href="#mjx-eqn-EqII38">3.8</a>), tells us that the line integral is zero:
+\begin{equation*}
+\underset{\text{loop}}{\oint}\FLPgrad{\phi}\cdot d\FLPs=0.
+\end{equation*}
+
+Using Stokes’ theorem, we can conclude that
+\begin{equation*}
+\int(\FLPcurl{(\FLPgrad{\phi})})_n\,da=0
+\end{equation*}
+
+over <em class="emph">any</em> surface. But if the integral is zero over <em class="emph">any</em>
+surface, the integrand must be zero. So
+\begin{equation*}
+\FLPcurl{(\FLPgrad{\phi})}=\FLPzero,\quad\text{always}.
+\end{equation*}
+
+We proved the same result in Section <a href="II_02.html#Ch2-S7">2–7</a> by vector
+algebra.
+</p>
+</div>
+<div id="Ch3-F13" class="figure">
+<img src="img/FLP_II/f03-13/f03-13_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–13.</span>Going to the limit of a closed surface, we find that the
+surface integral of $(\Fignabla\times\FigC)_n$ must vanish.
+</div>
+</div>
+<div id="Ch3-S7-p4" class="para">
+<p class="p">Let’s look now at a special case in which we fill in a <em class="emph">small</em>
+loop $\Gamma$ with a <em class="emph">large</em> surface $S$, as indicated in
+Fig. <a href="#Ch3-F13">3–13</a>. We would like, in fact, to see what happens when
+the loop shrinks down to a point, so that the surface boundary
+disappears—the surface becomes closed. Now if the vector $\FLPC$ is
+everywhere finite, the line integral around $\Gamma$ must go to zero as
+we shrink the loop—the integral is roughly proportional to the
+circumference of $\Gamma$, which goes to zero. According to Stokes’
+theorem, the surface integral of $(\FLPcurl{\FLPC})_n$ must also vanish.
+Somehow, as we close the surface we add in contributions that cancel out
+what was there before. So we have a new theorem:
+\begin{equation}
+\label{Eq:II:3:39}
+\underset{\substack{\text{any closed}\\\text{surface}}}{\int}
+(\FLPcurl{\FLPC})_n\,da=0.
+\end{equation}
+</p>
+</div>
+<div id="Ch3-S7-p5" class="para">
+<p class="p">Now this is interesting, because we already have a theorem about the
+surface integral of a vector field. Such a surface integral is equal
+to the volume integral of the divergence of the vector, according to
+Gauss’ theorem (Eq. <a href="#mjx-eqn-EqII318">3.18</a>). Gauss’ theorem, applied
+to $\FLPcurl{\FLPC}$, says
+\begin{equation}
+\label{Eq:II:3:40}
+\underset{\substack{\text{closed}\\\text{surface}}}{\int}
+(\FLPcurl{\FLPC})_n\,da=
+\underset{\substack{\text{volume}\\\text{inside}}}{\int}
+\FLPdiv{(\FLPcurl{\FLPC})}\,dV.
+\end{equation}
+
+So we conclude that the second integral must also be zero:
+\begin{equation}
+\label{Eq:II:3:41}
+\underset{\substack{\text{any}\\\text{volume}}}{\int}
+\FLPdiv{(\FLPcurl{\FLPC})}\,dV=0,
+\end{equation}
+
+and this is true for any vector field $\FLPC$ whatever. Since
+Eq. (<a href="#mjx-eqn-EqII341">3.41</a>) is true for <em class="emph">any volume</em>, it must be true
+that at <em class="emph">every point</em> in space the integrand is zero. We have
+\begin{equation*}
+\FLPdiv{(\FLPcurl{\FLPC})}=0,\quad\text{always}.
+\end{equation*}
+
+But this is the same result we got from vector
+algebra in
+Section <a href="II_02.html#Ch2-S7">2–7</a>. Now we begin to see how everything fits
+together.
+</p>
+</div>
+</div>
+<div id="Ch3-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">3–8</span>Summary</h3>
+<div id="Ch3-S8-p1" class="para">
+<p class="p">Let us summarize what we have found about the vector calculus. These
+are really the salient points of Chapters <a href="II_02.html">2</a>
+and <a href="II_03.html">3</a>:</p>
+<ol id="Ch3-I1" class="enumerate">
+<li id="Ch3-I1.i1" class="item">The operators $\ddpl{}{x}$, $\ddpl{}{y}$, and $\ddpl{}{z}$ can
+be considered as the three components of a vector operator $\FLPnabla$,
+and the formulas which result from vector
+algebra by
+treating this operator as a vector are correct:
+\begin{equation*}
+\FLPnabla=\biggl(\ddp{}{x},\ddp{}{y},\ddp{}{z}\biggr).
+\end{equation*}
+</li>
+<li id="Ch3-I1.i2" class="item">The difference of the values of a scalar field at two points is
+equal to the line integral of the tangential component of the gradient
+of that scalar along any curve at all between the first and second
+points:
+\begin{equation}
+\label{Eq:II:3:42}
+\psi(2)-\psi(1)=\underset{\text{any curve}}{\int_{(1)}^{(2)}}
+\FLPgrad{\psi}\cdot d\FLPs.
+\end{equation}
+</li>
+<li id="Ch3-I1.i3" class="item">The surface integral of the normal component of an arbitrary
+vector over a closed surface is equal to the integral of the
+divergence of the vector over the volume interior to the surface:
+\begin{equation}
+\label{Eq:II:3:43}
+\underset{\substack{\text{closed}\\\text{surface}}}{\int}
+\FLPC\cdot\FLPn\,da=
+\underset{\substack{\text{volume}\\\text{inside}}}{\int}
+\FLPdiv{\FLPC}\,dV.
+\end{equation}
+</li>
+<li id="Ch3-I1.i4" class="item">The line integral of the tangential component of an arbitrary
+vector around a closed loop is equal to the surface integral of the
+normal component of the curl of that vector over any surface which is
+bounded by the loop:
+\begin{equation}
+\label{Eq:II:3:44}
+\underset{\text{boundary}}{\int}
+\FLPC\cdot d\FLPs=
+\underset{\text{surface}}{\int}
+(\FLPcurl{\FLPC})\cdot\FLPn\,da.
+\end{equation}
+</li>
+</ol>
+</div>
+</div>
+<ol id="footnotes"><li class="footnote">
+  <a name="footnote_1"></a>
+  The following
+development applies equally well to any rectangular parallelepiped.
+  <a href="#footnote_source_1">↩</a>
+</li></ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

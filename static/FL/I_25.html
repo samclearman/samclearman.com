@@ -1,0 +1,1182 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 25: Linear Systems and Review</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "25." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch25" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">25</span>Linear Systems and Review</h2>
+<div id="Ch25-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">25–1</span>Linear differential equations</h3>
+<div id="Ch25-S1-p1" class="para">
+<p class="p">In this chapter we shall discuss certain aspects of oscillating
+systems that are found somewhat more generally than just in the
+particular systems we have been discussing. For our particular system,
+the differential equation that we have been solving is
+\begin{equation}
+\label{Eq:I:25:1}
+m\,\frac{d^2x}{dt^2}+\gamma m\,\ddt{x}{t}+m\omega_0^2x=F(t).
+\end{equation}
+Now this particular combination of “operations” on the variable $x$
+has the interesting property that if we substitute $(x + y)$ for $x$,
+then we get the sum of the same operations on $x$ and $y$; or, if we
+multiply $x$ by $a$, then we get just $a$ times the same
+combination. This is easy to prove. Just as a “shorthand” notation,
+because we get tired of writing down all those letters
+in (<a href="#mjx-eqn-EqI251">25.1</a>), we shall use the symbol $\uL(x)$ instead. When we
+see this, it means the left-hand side of (<a href="#mjx-eqn-EqI251">25.1</a>), with $x$
+substituted in. With this system of writing, $\uL(x + y)$ would mean the
+following:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:25:2}
+\uL(x+y)=m\,\frac{d^2(x+y)}{dt^2}+\gamma m\,\ddt{(x+y)}{t}
++m\omega_0^2(x+y).
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\uL(x+y)=m\,\frac{d^2(x+y)}{dt^2}&+\gamma m\,\ddt{(x+y)}{t}\notag\\
+&+m\omega_0^2(x+y).
+\label{Eq:I:25:2}
+\end{align}
+</span>
+(We underline the $\uL$ so as to remind ourselves that it is not an
+ordinary function.) We sometimes call this an <em class="emph">operator
+notation</em>, but it makes no difference what we call it, it is just
+“shorthand.”</p>
+</div>
+<div id="Ch25-S1-p2" class="para">
+<p class="p">Our first statement was that
+\begin{equation}
+\label{Eq:I:25:3}
+\uL(x+y)=\uL(x)+\uL(y),
+\end{equation}
+which of course follows from the fact that $a(x + y) = ax + ay$, $d(x
++ y)/dt = dx/dt + dy/dt$, etc.</p>
+</div>
+<div id="Ch25-S1-p3" class="para">
+<p class="p">Our second statement was, for constant $a$,
+\begin{equation}
+\label{Eq:I:25:4}
+\uL(ax)=a\uL(x).
+\end{equation}
+[Actually, (<a href="#mjx-eqn-EqI253">25.3</a>) and (<a href="#mjx-eqn-EqI254">25.4</a>) are very closely
+related, because if we put $x + x$ into (<a href="#mjx-eqn-EqI253">25.3</a>), this is the
+same as setting $a = 2$ in (<a href="#mjx-eqn-EqI254">25.4</a>), and so on.]</p>
+</div>
+<div id="Ch25-S1-p4" class="para">
+<p class="p">In more complicated problems, there may be more derivatives, and more
+terms in $\uL$; the question of interest is whether the two
+equations (<a href="#mjx-eqn-EqI253">25.3</a>) and (<a href="#mjx-eqn-EqI254">25.4</a>) are maintained or not.
+If they are, we call such a problem a <em class="emph">linear</em> problem. In this
+chapter we shall discuss some of the properties that exist because the
+system is linear, to appreciate the generality of some of the results
+that we have obtained in our special analysis of a special equation.</p>
+</div>
+<div id="Ch25-S1-p5" class="para">
+<p class="p">Now let us study some of the properties of linear differential
+equations, having illustrated them already with the specific
+equation (<a href="#mjx-eqn-EqI251">25.1</a>) that we have studied so closely. The first
+property of interest is this: suppose that we have to solve the
+differential equation for a transient, the free oscillation with no
+driving force. That is, we want to solve
+\begin{equation}
+\label{Eq:I:25:5}
+\uL(x)=0.
+\end{equation}
+Suppose that, by some hook or crook, we have found a particular
+solution, which we shall call $x_1$. That is, we have an $x_1$ for
+which $\uL(x_1) = 0$. Now we notice that $ax_1$, is also a solution to
+the same equation; we can multiply this special solution by any
+constant whatever, and get a new solution. In other words, if we had a
+motion of a certain “size,” then a motion twice as “big” is again
+a solution. <em class="emph">Proof:</em> $\uL(ax_1) =$ $a\uL(x_1) =$ $a\cdot0 = 0$.</p>
+</div>
+<div id="Ch25-S1-p6" class="para">
+<p class="p">Next, suppose that, by hook or by crook, we have not only found
+<em class="emph">one</em> solution $x_1$, but also another solution, $x_2$. (Remember
+that when we substituted $x = e^{i\alpha t}$ for finding the
+transients, we found <em class="emph">two</em> values for $\alpha$, that is, two
+solutions, $x_1$ and $x_2$.) Now let us show that the combination
+$(x_1 + x_2)$ is also a solution. In other words, if we put $x = x_1 +
+x_2$, $x$ is again a solution of the equation. Why?  Because, if
+$\uL(x_1) = 0$ and $\uL(x_2) = 0$, then $\uL(x_1 + x_2) = \uL(x_1) +
+\uL(x_2) = 0 + 0 = 0$. So if we have found a number of solutions for
+the motion of a linear system we can add them together.</p>
+</div>
+<div id="Ch25-S1-p7" class="para">
+<p class="p">Combining these two ideas, we see, of course, that we can also add six
+of one and two of the other: if $x_1$ is a solution, so is $\alpha
+x_1$. Therefore any sum of these two solutions, such as $(\alpha x_1 +
+\beta x_2)$, is also a solution. If we happen to be able to find three
+solutions, then we find that any combination of the three solutions is
+again a solution, and so on. It turns out that the number of what we
+call <em class="emph">independent solutions</em><a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> that we have obtained for our oscillator problem is only
+<em class="emph">two</em>. The number of independent solutions that one finds in the
+general case depends upon what is called the number of <em class="emph">degrees
+of freedom</em>. We shall not discuss this in
+detail now, but if we have a second-order differential equation, there
+are only two independent solutions, and we have found both of them; so
+we have the most general solution.</p>
+</div>
+<div id="Ch25-S1-p8" class="para">
+<p class="p">Now let us go on to another proposition, which applies to the
+situation in which the system is subjected to an outside
+force. Suppose the equation is
+\begin{equation}
+\label{Eq:I:25:6}
+\uL(x)=F(t),
+\end{equation}
+and suppose that we have found a special solution of it. Let us say
+that Joe’s solution is $x_J$, and that $\uL(x_J) = F(t)$. Suppose we
+want to find yet another solution; suppose we add to Joe’s solution
+one of those that was a solution of the free equation (<a href="#mjx-eqn-EqI255">25.5</a>),
+say $x_1$. Then we see by (<a href="#mjx-eqn-EqI253">25.3</a>) that
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:25:7}
+\uL(x_J+x_1)=\uL(x_J)+\uL(x_1)=F(t)+0=F(t).
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+\uL(x_J+x_1)&=\uL(x_J)+\uL(x_1)\\[1ex]
+&=F(t)+0\\[.75ex]
+&=F(t).
+\end{aligned}
+\label{Eq:I:25:7}
+\end{equation}
+</span>
+Therefore, to the “forced” solution we can add any “free”
+solution, and we still have a solution. The free solution is called a
+<em class="emph">transient</em> solution.</p>
+</div>
+<div id="Ch25-S1-p9" class="para">
+<p class="p">When we have no force acting, and suddenly turn one on, we do not
+immediately get the steady solution that we solved for with the sine
+wave solution, but for a while there is a transient which sooner or
+later dies out, if we wait long enough. The “forced” solution does
+not die out, since it keeps on being driven by the force. Ultimately,
+for long periods of time, the solution is unique, but initially the
+motions are different for different circumstances, depending on how
+the system was started.</p>
+</div>
+</div>
+<div id="Ch25-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">25–2</span>Superposition of solutions</h3>
+<div id="Ch25-S2-p1" class="para">
+<p class="p">Now we come to another interesting proposition. Suppose that we have a
+certain particular driving force $F_a$ (let us say an oscillatory one
+with a certain $\omega = \omega_a$, but our conclusions will be true
+for any functional form of $F_a$) and we have solved for the forced
+motion (with or without the transients; it makes no difference). Now
+suppose some other force is acting, let us say $F_b$, and we solve the
+same problem, but for this different force. Then suppose someone comes
+along and says, “I have a new problem for you to solve; I have the
+force $F_a + F_b$.” Can we do it? Of course we can do it, because the
+solution is the sum of the two solutions $x_a$ and $x_b$ for the
+forces taken separately—a most remarkable circumstance indeed. If we
+use (<a href="#mjx-eqn-EqI253">25.3</a>), we see that
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:25:8}
+\uL(x_a+x_b)=\uL(x_a)+\uL(x_b)=F_a(t)+F_b(t).
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{equation}
+\begin{aligned}
+\uL(x_a+x_b)&=\uL(x_a)+\uL(x_b)\\[1ex]
+&=F_a(t)+F_b(t).
+\end{aligned}
+\label{Eq:I:25:8}
+\end{equation}
+
+</span>
+</p>
+</div>
+<div id="Ch25-S2-p2" class="para">
+<p class="p">This is an example of what is called the <em class="emph">principle of
+superposition</em> for linear systems, and it is very important. It means
+the following: if we have a complicated force which can be broken up
+in any convenient manner into a sum of separate pieces, each of which
+is in some way simple, in the sense that for each special piece into
+which we have divided the force we can solve the equation, then the
+answer is available for the <em class="emph">whole</em> force, because we may simply
+add the pieces of the <em class="emph">solution</em> back together, in the same
+manner as the total <em class="emph">force</em> is compounded out of pieces
+(Fig. <a href="#Ch25-F1">25–1</a>).</p>
+</div>
+<div id="Ch25-F1" class="figure">
+<img src="img/FLP_I/f25-01/f25-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 25–1.</span>An example of the principle of superposition for linear
+systems.
+</div>
+</div>
+<div id="Ch25-S2-p3" class="para">
+<p class="p">Let us give another example of the principle of superposition. In
+Chapter <a href="I_12.html">12</a> we said that it was one of the great facts of
+the laws of electricity that if we have a certain distribution of
+charges $q_a$ and calculate the electric field $\FLPE_a$ arising from
+these charges at a certain place $P$, and if, on the other hand, we
+have another set of charges $q_b$ and we calculate the field $\FLPE_b$
+due to these at the corresponding place, then if both charge
+distributions are present at the same time, the field $\FLPE$ at $P$
+is the <em class="emph">sum</em> of $\FLPE_a$ due to one set plus $\FLPE_b$ due to
+the other. In other words, if we know the field due to a certain
+charge, then the field due to many charges is merely the vector sum of
+the fields of these charges taken individually. This is exactly
+analogous to the above proposition that if we know the result of two
+given forces taken at one time, then if the force is considered as a
+sum of them, the response is a sum of the corresponding individual
+responses.</p>
+</div>
+<div id="Ch25-F2" class="figure">
+<img src="img/FLP_I/f25-02/f25-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 25–2.</span>The principle of superposition in electrostatics.
+</div>
+</div>
+<div id="Ch25-S2-p4" class="para">
+<p class="p">The reason why this is true in electricity is that the great laws of
+electricity, Maxwell’s equations, which determine the electric field,
+turn out to be differential equations which are <em class="emph">linear</em>, i.e.,
+which have the property (<a href="#mjx-eqn-EqI253">25.3</a>). What corresponds to the
+force is the <em class="emph">charge</em> generating the electric field, and the
+equation which determines the electric field in terms of the charge is
+linear.</p>
+</div>
+<div id="Ch25-S2-p5" class="para">
+<p class="p">As another interesting example of this proposition, let us ask how it is
+possible to “tune in” to a particular radio station at the same time
+as all the radio stations are broadcasting. The radio station transmits,
+fundamentally, an oscillating electric field of very high frequency
+which acts on our radio antenna. It is true that the amplitude of the
+oscillation of the field is changed, modulated, to carry the signal of
+the voice, but that is very slow, and we are not going to worry about
+it. When one hears “This station is broadcasting at a frequency of
+$780$ kilocycles,” this indicates that $780{,}000$ oscillations per
+second is the frequency of the electric field of the station antenna,
+and this drives the electrons up and down at that frequency in our
+antenna. Now at the same time we may have another radio station in the
+same town radiating at a different frequency, say $550$ kilocycles per
+second; then the electrons in our antenna are also being driven by that
+frequency.  Now the question is, how is it that we can separate the
+signals coming into the one radio at $780$ kilocycles from those coming
+in at $550$ kilocycles? We certainly do not hear both stations at the
+same time.</p>
+</div>
+<div id="Ch25-S2-p6" class="para">
+<p class="p">By the principle of superposition, the response of the electric
+circuit in the radio, the first part of which is a linear circuit, to
+the forces that are acting due to the electric field $F_a + F_b$,
+is $x_a + x_b$. It therefore looks as though we will never disentangle
+them. In fact, the very proposition of superposition seems to insist
+that we cannot <em class="emph">avoid</em> having both of them in our system. But
+remember, for a <em class="emph">resonant</em> circuit, the response curve, the
+amount of $x$ per unit $F$, as a function of the frequency, looks like
+Fig. <a href="#Ch25-F3">25–3</a>. If it were a very high $Q$ circuit, the
+response would show a very sharp maximum. Now suppose that the two
+stations are comparable in strength, that is, the two <em class="emph">forces</em>
+are of the same magnitude. The <em class="emph">response</em> that we get is the sum
+of $x_a$ and $x_b$. But, in Fig. <a href="#Ch25-F3">25–3</a>, $x_a$ is
+tremendous, while $x_b$ is small. So, in spite of the fact that the
+two signals are equal in strength, when they go through the sharp
+resonant circuit of the radio tuned for $\omega_a$, the frequency of
+the transmission of one station, then the response to this station is
+much greater than to the other. Therefore the complete response, with
+both signals acting, is almost all made up of $\omega_a$, and we have
+selected the station we want.</p>
+</div>
+<div id="Ch25-F3" class="figure">
+<img src="img/FLP_I/f25-03/f25-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 25–3.</span>A sharply tuned resonance curve.
+</div>
+</div>
+<div id="Ch25-S2-p7" class="para">
+<p class="p">Now what about the tuning? How do we tune it? We change $\omega_0$ by
+changing the $L$ or the $C$ of the circuit, because the frequency of
+the circuit has to do with the combination of $L$ and $C$. In
+particular, most radios are built so that one can change the
+capacitance. When we retune the radio, we can make a new setting of
+the dial, so that the natural frequency of the circuit is shifted,
+say, to $\omega_c$. In those circumstances we hear neither one station
+nor the other; we get silence, provided there is no other station at
+frequency $\omega_c$. If we keep on changing the capacitance until the
+resonance curve is at $\omega_b$, then of course we hear the other
+station. That is how radio tuning works; it is again the principle of
+superposition, combined with a resonant response.<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a></p>
+</div>
+<div id="Ch25-S2-p8" class="para">
+<p class="p">To conclude this discussion, let us describe qualitatively what
+happens if we proceed further in analyzing a linear problem with a
+given force, when the force is quite complicated. Out of the many
+possible procedures, there are two especially useful general ways that
+we can solve the problem. One is this: suppose that we can solve it
+for special known forces, such as sine waves of different
+frequencies. We know it is child’s play to solve it for sine waves. So
+we have the so-called “child’s play” cases. Now the question is
+whether our very complicated force can be represented as the sum of
+two or more “child’s play” forces. In Fig. <a href="#Ch25-F1">25–1</a> we
+already had a fairly complicated curve, and of course we can make it
+more complicated still if we add in more sine waves. So it is
+certainly possible to obtain very complicated curves. And, in fact,
+the reverse is also true: practically every curve can be obtained by
+adding together <em class="emph">infinite numbers</em> of sine waves of different
+wavelengths (or frequencies) for each one of which we know the
+answer. We just have to know how much of each sine wave to put in to
+make the given $F$, and then our answer, $x$, is the corresponding sum
+of the $F$ sine waves, each multiplied by its effective ratio of $x$
+to $F$. This method of solution is called the method of
+<em class="emph">Fourier transforms</em>
+or <em class="emph">Fourier analysis</em>. We are not going to actually carry
+out such an analysis just now; we only wish to describe the idea
+involved.</p>
+</div>
+<div id="Ch25-S2-p9" class="para">
+<p class="p">Another way in which our complicated problem can be solved is the
+following very interesting one. Suppose that, by some tremendous
+mental effort, it were possible to solve our problem for a special
+force, namely an <em class="emph">impulse</em>. The force is quickly turned on and
+then off; it is all over. Actually we need only solve for an impulse
+of some unit strength, any other strength can be gotten by
+multiplication by an appropriate factor. We know that the response $x$
+for an impulse is a damped oscillation. Now what can we say about some
+other force, for instance a force like that of Fig. <a href="#Ch25-F4">25–4</a>?</p>
+</div>
+<div id="Ch25-F4" class="figure">
+<img src="img/FLP_I/f25-04/f25-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 25–4.</span>A complicated force may be treated as a succession of sharp
+impulses.
+</div>
+</div>
+<div id="Ch25-S2-p10" class="para">
+<p class="p">Such a force can be likened to a succession of blows with a
+hammer. First there is no force, and all of a sudden there is a steady
+force—impulse, impulse, impulse, impulse, … and then it
+stops. In other words, we imagine the continuous force to be a series
+of impulses, very close together. Now, we know the result for an
+impulse, so the result for a whole series of impulses will be a whole
+series of damped oscillations: it will be the curve for the first
+impulse, and then (slightly later) we add to that the curve for the
+second impulse, and the curve for the third impulse, and so on. Thus
+we can represent, mathematically, the complete solution for arbitrary
+functions if we know the answer for an impulse. We get the answer for
+any other force simply by integrating. This method is called the
+<em class="emph">Green’s function method</em>. A Green’s function is a
+response to an impulse, and the method of analyzing any force by putting
+together the response of impulses is called the Green’s function
+method.</p>
+</div>
+<div id="Ch25-S2-p11" class="para">
+<p class="p">The physical principles involved in both of these schemes are so
+simple, involving just the linear equation, that they can be readily
+understood, but the <em class="emph">mathematical</em> problems that are involved,
+the complicated integrations and so on, are a little too advanced for
+us to attack right now. You will most likely return to this some day
+when you have had more practice in mathematics. But the <em class="emph">idea</em> is
+very simple indeed.</p>
+</div>
+<div id="Ch25-S2-p12" class="para">
+<p class="p">Finally, we make some remarks on why <em class="emph">linear</em> systems are so
+important. The answer is simple: because we can solve them! So most of
+the time we solve linear problems. Second (and most important), it
+turns out that <em class="emph">the fundamental laws of physics are often
+linear</em>. The Maxwell equations for the laws of
+electricity are linear,
+for example. The great laws of quantum mechanics turn out, so far as
+we know, to be linear equations. <em class="emph">That</em> is why we spend so much
+time on linear equations: because if we understand linear equations,
+we are ready, in principle, to understand a lot of things.</p>
+</div>
+<div id="Ch25-S2-p13" class="para">
+<p class="p">We mention another situation where linear equations are found. When
+displacements are small, many functions can be <em class="emph">approximated</em>
+linearly. For example, if we have a simple pendulum, the correct
+equation for its motion is
+\begin{equation}
+\label{Eq:I:25:9}
+d^2\theta/dt^2=-(g/L)\sin\theta.
+\end{equation}
+This equation can be solved by elliptic functions, but the easiest way
+to solve it is numerically, as was shown in Chapter <a href="I_09.html">9</a> on
+Newton’s Laws of Motion. A nonlinear equation cannot be solved,
+ordinarily, any other way <em class="emph">but</em> numerically. Now for small
+$\theta$, $\sin\theta$ is practically equal to $\theta$, and we have a
+linear equation. It turns out that there are many circumstances where
+small effects are linear: for the example here the swing of a pendulum
+through small arcs. As another example, if we pull a little bit on a
+spring, the force is proportional to the extension. If we pull hard,
+we break the spring, and the force is a completely different function
+of the distance!  Linear equations are important. In fact they are so
+important that perhaps fifty percent of the time we are solving linear
+equations in physics and in engineering.</p>
+</div>
+</div>
+<div id="Ch25-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">25–3</span>Oscillations in linear systems</h3>
+<div id="Ch25-S3-p1" class="para">
+<p class="p">Let us now review the things we have been talking about in the past
+few chapters. It is very easy for the physics of oscillators to become
+obscured by the mathematics. The physics is actually very simple, and
+if we may forget the mathematics for a moment we shall see that we can
+understand almost everything that happens in an oscillating
+system. First, if we have only the spring and the weight, it is easy
+to understand why the system oscillates—it is a consequence of
+inertia. We pull the mass down and the force pulls it back up; as it
+passes zero, which is the place it likes to be, it cannot just
+suddenly stop; because of its momentum it keeps on going and swings to
+the other side, and back and forth. So, if there were no friction, we
+would surely <i>expect</i> an oscillatory motion, and indeed we get one. But
+if there is even a little bit of friction, then on the return cycle,
+the swing will not be quite as high as it was the first time.</p>
+</div>
+<div id="Ch25-S3-p2" class="para">
+<p class="p">Now what happens, cycle by cycle? That depends on the kind and amount
+of friction. Suppose that we could concoct a kind of friction force
+that always remains in the same proportion to the other forces, of
+inertia and in the spring, as the amplitude of oscillation varies. In
+other words, for smaller oscillations the friction should be weaker
+than for big oscillations. Ordinary friction does not have this
+property, so a special kind of friction must be carefully invented for
+the very purpose of creating a friction that is directly proportional
+to the velocity—so that for big oscillations it is stronger and for
+small oscillations it is weaker. If we happen to have that kind of
+friction, then at the end of each successive cycle the system is in
+the same condition as it was at the start, except a little bit
+smaller. All the forces are smaller in the same proportion: the spring
+force is reduced, the inertial effects are lower because the
+accelerations are now weaker, and the friction is less too, by our
+careful design. When we actually have that kind of friction, we find
+that each oscillation is exactly the same as the first one, except
+reduced in amplitude. If the first cycle dropped the amplitude, say,
+to $90$ percent of what it was at the start, the next will drop it to
+$90$ percent of $90$ percent, and so on: <em class="emph">the sizes of the
+oscillations are reduced by the same fraction of themselves in every
+cycle</em>. An exponential function is a curve which does just that. It
+changes by the same factor in each equal interval of time. That is to
+say, if the amplitude of one cycle, relative to the preceding one, is
+called $a$, then the amplitude of the next is $a^2$, and of the next,
+$a^3$. So the amplitude is some constant raised to a power equal to
+the number of cycles traversed:
+\begin{equation}
+\label{Eq:I:25:10}
+A=A_0a^n.
+\end{equation}
+But of course $n\propto t$, so it is perfectly clear that the general
+solution will be some kind of an oscillation, sine or cosine $\omega
+t$, times an amplitude which goes as $b^t$ more or less. But $b$ can
+be written as $e^{-c}$, if $b$ is positive and less than $1$. So this
+is why the solution looks like $e^{-ct}\cos\omega_0 t$. It is very
+simple.</p>
+</div>
+<div id="Ch25-S3-p3" class="para">
+<p class="p">What happens if the friction is not so artificial; for example,
+ordinary rubbing on a table, so that the friction force is a certain
+constant amount, and is independent of the size of the oscillation
+that reverses its direction each half-cycle? Then the equation is no
+longer linear, it becomes hard to solve, and must be solved by the
+numerical method given in Chapter <a href="I_09.html">9</a>, or by considering
+each half-cycle separately. The numerical method is the most powerful
+method of all, and can solve any equation. It is only when we have a
+simple problem that we can use mathematical analysis.</p>
+</div>
+<div id="Ch25-S3-p4" class="para">
+<p class="p">Mathematical analysis is not the grand thing it is said to be; it
+solves only the simplest possible equations. As soon as the equations
+get a little more complicated, just a shade—they cannot be solved
+analytically. But the numerical method, which was advertised at the
+beginning of the course, can take care of any equation of physical
+interest.</p>
+</div>
+<div id="Ch25-S3-p5" class="para">
+<p class="p">Next, what about the resonance curve? Why is there a resonance? First,
+imagine for a moment that there is no friction, and we have something
+which could oscillate by itself. If we tapped the pendulum just right
+each time it went by, of course we could make it go like mad. But if
+we close our eyes and do not watch it, and tap at arbitrary equal
+intervals, what is going to happen? Sometimes we will find ourselves
+tapping when it is going the wrong way. When we happen to have the
+timing just right, of course, each tap is given at just the right
+time, and so it goes higher and higher and higher. So without friction
+we get a curve which looks like the solid curve in Fig. <a href="#Ch25-F5">25–5</a>
+for different frequencies. Qualitatively, we understand the resonance
+curve; in order to get the exact shape of the curve it is probably just
+as well to do the mathematics. The curve goes toward infinity
+as $\omega\to\omega_0$, where $\omega_0$ is the natural frequency of the
+oscillator.</p>
+</div>
+<div id="Ch25-F5" class="figure">
+<img src="img/FLP_I/f25-05/f25-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 25–5.</span>Resonance curves with various amounts of friction present.
+</div>
+</div>
+<div id="Ch25-S3-p6" class="para">
+<p class="p">Now suppose there is a little bit of friction; then when the
+displacement of the oscillator is small, the friction does not affect
+it much; the resonance curve is the same, except when we are near
+resonance. Instead of becoming infinite near resonance, the curve is
+only going to get so high that the work done by our tapping each time
+is enough to compensate for the loss of energy by friction during the
+cycle. So the top of the curve is rounded off—it does not go to
+infinity. If there is more friction, the top of the curve is rounded
+off still more. Now someone might say, “I thought the widths of the
+curves depended on the friction.” That is because the curve is
+usually plotted so that the top of the curve is called one
+unit. However, the mathematical expression is even simpler to
+understand if we just plot all the curves on the same scale; then all
+that happens is that the friction cuts down the top! If there is less
+friction, we can go farther up into that little pinnacle before the
+friction cuts it off, so it looks relatively narrow. That is, the
+higher the peak of the curve, the narrower the width at half the
+maximum height.</p>
+</div>
+<div id="Ch25-S3-p7" class="para">
+<p class="p">Finally, we take the case where there is an enormous amount of
+friction. It turns out that if there is too much friction, the system
+does not oscillate at all. The energy in the spring is barely able to
+move it against the frictional force, and so it slowly oozes down to
+the equilibrium point.</p>
+</div>
+</div>
+<div id="Ch25-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">25–4</span>Analogs in physics</h3>
+<div id="Ch25-S4-p1" class="para">
+<p class="p">The next aspect of this review is to note that masses and springs are
+not the only linear systems; there are others. In particular, there
+are electrical systems called linear circuits, in which we find a
+complete analog to mechanical systems. We did not learn exactly
+<em class="emph">why</em> each of the objects in an electrical circuit works in the
+way it does—that is not to be understood at the present moment; we
+may assert it as an experimentally verifiable fact that they behave as
+stated.</p>
+</div>
+<div id="Ch25-S4-p2" class="para">
+<p class="p">For example, let us take the simplest possible circumstance. We have a
+piece of wire, which is just a resistance, and we have applied to it a
+difference in potential, $V$. Now the $V$ means this: if we carry a
+charge $q$ through the wire from one terminal to another terminal, the
+work done is $qV$. The higher the voltage difference, the more work
+was done when the charge, as we say, “falls” from the high potential
+end of the terminal to the low potential end. So charges release
+energy in going from one end to the other. Now the charges do not
+simply fly from one end straight to the other end; the atoms in the
+wire offer some resistance to the current, and this resistance obeys
+the following law for almost all ordinary substances: if there is a
+current $I$, that is, so and so many charges per second tumbling down,
+the number per second that comes tumbling through the wire is
+proportional to how hard we push them—in other words, proportional
+to how much voltage there is:
+\begin{equation}
+\label{Eq:I:25:11}
+V=IR=R(dq/dt).
+\end{equation}
+The coefficient $R$ is called the <em class="emph">resistance</em>, and the equation is
+called Ohm’s Law. The unit of
+resistance is the
+ohm; it is equal to one volt per ampere. In mechanical
+situations, to get such a frictional force in proportion to the velocity
+is difficult; in an electrical system it is very easy, and this law is
+extremely accurate for most metals.
+</p>
+</div>
+<div id="Ch25-S4-p3" class="para">
+<p class="p">We are often interested in how much work is done per second, the power
+loss, or the energy liberated by the charges as they tumble down the
+wire. When we carry a charge $q$ through a voltage $V$, the work
+is $qV$, so the work done per second would be $V(dq/dt)$, which is the
+same as $VI$, or also $IR\cdot I= I^2 R$. This is called the
+<em class="emph">heating loss</em>—this is how much heat is generated in the
+resistance per second, by the conservation of energy. It is this heat
+that makes an ordinary incandescent light bulb work.</p>
+</div>
+<div id="Ch25-S4-p4" class="para">
+<p class="p">Of course, there are other interesting properties of mechanical systems,
+such as the mass (inertia), and it turns out that there is an electrical
+analog to inertia also. It is possible to make something called an
+<em class="emph">inductor</em>, having a property called
+<em class="emph">inductance</em>, such that a current, once started through the
+inductance, <em class="emph">does not want to stop</em>. It requires a voltage in order
+to change the current! If the current is constant, there is no voltage
+across an inductance. <span class="text smallcaps">dc</span> circuits do not know anything about
+inductance; it is only when we <em class="emph">change</em> the current that the
+effects of inductance show up. The equation is
+\begin{equation}
+\label{Eq:I:25:12}
+V=L(dI/dt)=L(d^2q/dt^2),
+\end{equation}
+and the unit of inductance, called the <em class="emph">henry</em>, is such that one volt applied to an inductance of one henry
+produces a change of one ampere per second in the current.
+Equation (<a href="#mjx-eqn-EqI2512">25.12</a>) is the analog of Newton’s law for
+electricity, if we wish: $V$ corresponds to $F$, $L$ corresponds to $m$,
+and $I$ corresponds to velocity! All of the consequent equations for the
+two kinds of systems will have the same derivations because, in all the
+equations, we can change any letter to its corresponding analog letter
+and we get the same equation; everything we deduce will have a
+correspondence in the two systems.</p>
+</div>
+<div id="Ch25-S4-p5" class="para">
+<p class="p">Now what electrical thing corresponds to the mechanical spring, in
+which there was a force proportional to the stretch? If we start with
+$F= kx$ and replace $F\to V$ and $x\to q$, we get $V = \alpha q$. It
+turns out that there <em class="emph">is</em> such a thing, in fact it is the only
+one of the three circuit elements we can really understand, because we
+did study a pair of parallel plates, and we found that if there were a
+charge of certain equal, opposite amounts on each plate, the electric
+field between them would be proportional to the size of the charge. So
+the work done in moving a unit charge across the gap from one plate to
+the other is precisely proportional to the charge. This work is the
+<em class="emph">definition</em> of the voltage difference, and it is the line
+integral of the electric field from one plate to another. It turns
+out, for historical reasons, that the constant of proportionality is
+not called $C$, but $1/C$. It could have been called $C$, but it was
+not. So we have
+\begin{equation}
+\label{Eq:I:25:13}
+V=q/C.
+\end{equation}
+The unit of capacitance, $C$, is the farad; a
+charge of one coulomb on each plate of a one-farad capacitor yields a
+voltage difference of one volt.
+</p>
+</div>
+<div id="Ch25-S4-p6" class="para">
+<p class="p">There are our analogies, and the equation corresponding to the
+oscillating circuit becomes the following, by direct substitution of
+$L$ for $m$, $q$ for $x$, etc:
+\begin{alignat}{2}
+\label{Eq:I:25:14}
+m(d^2x/dt^2)&\,+\,\gamma m(dx/dt)+kx&&=F,\\[1.5ex]
+\label{Eq:I:25:15}
+L(d^2q/dt^2)&\,+\,R(dq/dt)+q/C&&=V.
+\end{alignat}
+Now everything we learned about (<a href="#mjx-eqn-EqI2514">25.14</a>) can be transformed
+to apply to (<a href="#mjx-eqn-EqI2515">25.15</a>). Every <em class="emph">consequence</em> is the same;
+so much the same that there is a brilliant thing we can do.</p>
+</div>
+<div id="Ch25-S4-p7" class="para">
+<p class="p">Suppose we have a mechanical system which is quite complicated, not
+just one mass on a spring, but several masses on several springs, all
+hooked together. What do we do? Solve it? Perhaps; but look, we can
+make an <em class="emph">electrical</em> circuit which will have the same equations
+as the thing we are trying to analyze! For instance, if we wanted to
+analyze a mass on a spring, why can we not build an electrical circuit
+in which we use an inductance proportional to the mass, a resistance
+proportional to the corresponding $m\gamma$, $1/C$ proportional
+to $k$, all in the same ratio? Then, of course, this electrical circuit
+will be the exact analog of our mechanical one, in the sense that
+whatever $q$ does, in response to $V$ ($V$ also is made to correspond
+to the forces that are acting), so the $x$ would do in response to the
+force!  So if we have a complicated thing with a whole lot of
+interconnecting elements, we can interconnect a whole lot of
+resistances, inductances, and capacitances, to <em class="emph">imitate</em> the
+mechanically complicated system. What is the advantage to that? One
+problem is just as hard (or as easy) as the other, because they are
+exactly equivalent. The advantage is not that it is any easier to
+solve the <em class="emph">mathematical equations</em> after we discover that we have
+an electrical circuit (although that <em class="emph">is</em> the method used by
+electrical engineers!), but instead, the real reason for looking at
+the analog is that it is easier to <em class="emph">make</em> the electrical circuit,
+and to <em class="emph">change</em> something in the system.</p>
+</div>
+<div id="Ch25-S4-p8" class="para">
+<p class="p">Suppose we have designed an automobile, and want to know how much it
+is going to shake when it goes over a certain kind of bumpy road. We
+build an electrical circuit with inductances to represent the inertia
+of the wheels, spring constants as capacitances to represent the
+springs of the wheels, and resistors to represent the shock absorbers,
+and so on for the other parts of the automobile. Then we need a bumpy
+road. All right, we apply a <em class="emph">voltage</em> from a generator, which
+represents such and such a kind of bump, and then look at how the left
+wheel jiggles by measuring the charge on some capacitor. Having
+measured it (it is easy to do), we find that it is bumping too
+much. Do we need more shock absorber, or less shock absorber? With a
+complicated thing like an automobile, do we actually change the shock
+absorber, and solve it all over again? No!, we simply turn a dial;
+dial number ten is shock absorber number three, so we put in more
+shock absorber. The bumps are worse—all right, we try less. The
+bumps are still worse; we change the stiffness of the spring
+(dial $17$), and we adjust all these things <em class="emph">electrically</em>, with merely
+the turn of a knob.</p>
+</div>
+<div id="Ch25-S4-p9" class="para">
+<p class="p">This is called an <em class="emph">analog computer</em>.
+It is a device which
+imitates the problem that we want to solve by making another problem,
+which has the same equation, but in another circumstance of nature,
+and which is easier to build, to measure, to adjust, and to destroy!</p>
+</div>
+</div>
+<div id="Ch25-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">25–5</span>Series and parallel impedances</h3>
+<div id="Ch25-S5-p1" class="para">
+<p class="p">Finally, there is an important item which is not quite in the nature
+of review. This has to do with an electrical circuit in which there is
+more than one circuit element. For example, when we have an inductor,
+a resistor, and a capacitor connected as in Fig. <a href="I_24.html#Ch24-F2">24–2</a>,
+we note that all the charge went through every one of the three, so
+that the current in such a singly connected thing is the same at all
+points along the wire. Since the current is the same in each one, the
+voltage across $R$ is $IR$, the voltage across $L$ is $L(dI/dt)$, and
+so on. So, the total voltage drop is the sum of these, and this leads
+to Eq. (<a href="#mjx-eqn-EqI2515">25.15</a>). Using complex numbers, we found that we
+could solve the equation for the steady-state motion in response to a
+sinusoidal force. We thus found that $\hat{V}= \hat{Z}\hat{I}$. Now
+$\hat{Z}$ is called the <em class="emph">impedance</em> of this particular circuit. It
+tells us that if we apply a sinusoidal voltage, $\hat{V}$, we get a
+current $\hat{I}$.</p>
+</div>
+<div id="Ch25-F6" class="figure">
+<img class="first" src="img/FLP_I/f25-06/f25-06_tc_big_a.svgz"><img class="last" src="img/FLP_I/f25-06/f25-06_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 25–6.</span>Two impedances, connected in series and in parallel.
+</div>
+</div>
+<div id="Ch25-S5-p2" class="para">
+<p class="p">Now suppose we have a more complicated circuit which has two pieces,
+which by themselves have certain impedances, $\hat{Z}_1$
+and $\hat{Z}_2$ and we put them in <em class="emph">series</em> (Fig. <a href="#Ch25-F6">25–6</a>a)
+and apply a voltage. What happens?  It is now a little more complicated,
+but if $\hat{I}$ is the current through $\hat{Z}_1$, the voltage
+difference across $\hat{Z}_1$, is $\hat{V}_1=\hat{I}\hat{Z}_1$;
+similarly, the voltage across $\hat{Z}_2$
+is $\hat{V}_2=\hat{I}\hat{Z}_2$. <em class="emph">The same current goes through both</em>.
+Therefore the total voltage is the sum of the voltages across the two
+sections and is equal to $\hat{V}= \hat{V}_1 + \hat{V}_2 =(\hat{Z}_1 +
+\hat{Z}_2)\hat{I}$. This means that the voltage on the complete circuit
+can be written $\hat{V}=\hat{I}\hat{Z}_s$, where the $\hat{Z}_s$ of the
+combined system in series is the sum of the two $\hat{Z}$’s of the
+separate pieces:
+\begin{equation}
+\label{Eq:I:25:16}
+\hat{Z}_s=\hat{Z}_1 + \hat{Z}_2.
+\end{equation}</p>
+</div>
+<div id="Ch25-S5-p3" class="para">
+<p class="p">This is not the only way things may be connected. We may also connect
+them in another way, called a <em class="emph">parallel</em> connection
+(Fig. <a href="#Ch25-F6">25–6</a>b). Now we see that a given voltage across the
+terminals, if the connecting wires are perfect conductors, is
+effectively applied to both of the impedances, and will cause currents
+in each independently. Therefore the current through $\hat{Z}_1$ is
+equal to $\hat{I}_1 = \hat{V}/\hat{Z}_1$. The current in $\hat{Z}_2$
+is $\hat{I}_2 = \hat{V}/\hat{Z}_2$. It is the <em class="emph">same voltage</em>. Now the
+total current which is supplied to the terminals is the <em class="emph">sum</em> of
+the currents in the two sections: $\hat{I}= \hat{V}/\hat{Z}_1 +
+\hat{V}/\hat{Z}_2$. This can be written as
+\begin{equation}
+\hat{V}=\frac{\hat{I}}{(1/\hat{Z}_1)+(1/\hat{Z}_2)}=
+\hat{I}\hat{Z}_p.\notag
+\end{equation}
+Thus
+\begin{equation}
+\label{Eq:I:25:17}
+1/\hat{Z}_p=1/\hat{Z}_1 + 1/\hat{Z}_2.
+\end{equation}</p>
+</div>
+<div id="Ch25-S5-p4" class="para">
+<p class="p">More complicated circuits can sometimes be simplified by taking pieces of them,
+working out the succession of impedances of the pieces, and combining the
+circuit together step by step, using the above rules. If we have any kind of
+circuit with many impedances connected in all kinds of ways, and if we include
+the voltages in the form of little generators having no impedance (when we pass
+charge through it, the generator adds a voltage $V$), then the following
+principles apply: (1) At any junction, the sum of the currents into a junction
+is zero. That is, all the current which comes in must come back out. (2) If we
+carry a charge around any loop, and back to where it started, the net work done
+is zero. These rules are called <em class="emph">Kirchhoff’s
+laws</em> for electrical circuits. Their systematic
+application to complicated circuits often simplifies the analysis of such
+circuits. We mention them here in conjunction with Eqs.
+(<a href="#mjx-eqn-EqI2516">25.16</a>) and (<a href="#mjx-eqn-EqI2517">25.17</a>), in case you have already come across
+such circuits that you need to analyze in laboratory work. They will be
+discussed again in more detail next year.
+</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  Solutions which cannot be
+expressed as linear combinations of each other are called
+independent.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  In modern
+superheterodyne receivers the actual operation is more complex. The
+amplifiers are all tuned to a fixed frequency (called IF frequency)
+and an oscillator of variable tunable frequency is combined with the
+input signal in a <em class="emph">nonlinear</em> circuit to produce a new frequency
+(the difference of signal and oscillator frequency) equal to the IF
+frequency, which is then amplified. This will be discussed in
+Chapter <a href="I_50.html">50</a>.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

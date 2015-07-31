@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 30: Diffraction</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "30." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch30" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">30</span>Diffraction</h2>
+<div id="Ch30-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">30–1</span>The resultant amplitude due to $\boldsymbol{n}$ equal oscillators</h3>
+<div id="Ch30-S1-p1" class="para">
+<p class="p">This chapter is a direct continuation of the previous one, although
+the name has been changed from <em class="emph">Interference</em> to
+<em class="emph">Diffraction</em>. No one has ever been able to define the difference
+between interference and diffraction satisfactorily. It is just a
+question of usage, and there is no specific, important physical
+difference between them. The best we can do, roughly speaking, is to
+say that when there are only a few sources, say two, interfering, then
+the result is usually called interference, but if there is a large
+number of them, it seems that the word diffraction is more often
+used. So, we shall not worry about whether it is interference or
+diffraction, but continue directly from where we left off in the
+middle of the subject in the last chapter.
+</p>
+</div>
+<div id="Ch30-S1-p2" class="para">
+<p class="p">Thus we shall now discuss the situation where there are $n$ equally
+spaced oscillators, all of equal amplitude but different from one
+another in phase, either because they are driven differently in phase,
+or because we are looking at them at an angle such that there is a
+difference in time delay. For one reason or another, we have to add
+something like this:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:30:1}
+R=A[\cos\omega t+\cos\,(\omega t+\phi)+\cos\,(\omega t+2\phi)+\dotsb
++\cos\,(\omega t+(n-1)\phi)],
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+R=A[\cos\omega t&+\cos\,(\omega t+\phi)+\cos\,(\omega t+2\phi)+\notag\\
+\dotsb&+\cos\,(\omega t+(n-1)\phi)],
+\label{Eq:I:30:1}
+\end{align}
+</span>
+where $\phi$ is the phase difference between one oscillator and the
+next one, as seen in a particular direction. Specifically, $\phi =
+\alpha + 2\pi d\sin\theta/\lambda$. Now we must add all the terms
+together. We shall do this geometrically. The first one is of
+length $A$, and it has zero phase. The next is also of length $A$ and it has
+a phase equal to $\phi$. The next one is again of length $A$ and it
+has a phase equal to $2\phi$, and so on. So we are evidently going
+around an equiangular polygon with $n$ sides (Fig. <a href="#Ch30-F1">30–1</a>).</p>
+</div>
+<div id="Ch30-F1" class="figure">
+<img src="img/FLP_I/f30-01/f30-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 30–1.</span>The resultant amplitude of $n = 6$ equally spaced sources
+with net successive phase differences $\phi$.
+</div>
+</div>
+<div id="Ch30-S1-p3" class="para">
+<p class="p">Now the vertices, of course, all lie on a circle, and we can find the
+net amplitude most easily if we find the radius of that
+circle. Suppose that $Q$ is the center of the circle. Then we know
+that the angle $OQS$ is just a phase angle $\phi$. (This is because
+the radius $QS$ bears the same geometrical relation to $\FLPA_2$
+as $QO$ bears to $\FLPA_1$, so they form an angle $\phi$ between them.)
+Therefore the radius $r$ must be such that $A= 2r \sin \phi/2$, which
+fixes $r$. But the large angle $OQT$ is equal to $n\phi$, and we thus
+find that $A_R = 2r \sin n\phi/2$. Combining these two results to
+eliminate $r$, we get
+\begin{equation}
+\label{Eq:I:30:2}
+A_R=A\,\frac{\sin n\phi/2}{\sin \phi/2}.
+\end{equation}
+The resultant intensity is thus
+\begin{equation}
+\label{Eq:I:30:3}
+I=I_0\,\frac{\sin^2 n\phi/2}{\sin^2 \phi/2}.
+\end{equation}</p>
+</div>
+<div id="Ch30-S1-p4" class="para">
+<p class="p">Now let us analyze this expression and study some of its
+consequences. In the first place, we can check it for $n = 1$. It
+checks: $I = I_0$. Next, we check it for $n = 2$: writing $\sin \phi =
+2 \sin \phi/2 \cos \phi/2$, we find that $A_R = 2A \cos \phi/2$, which
+agrees with (<a href="I_29.html#mjx-eqn-EqI2912">29.12</a>).</p>
+</div>
+<div id="Ch30-S1-p5" class="para">
+<p class="p">Now the idea that led us to consider the addition of several sources
+was that we might get a much stronger intensity in one direction than
+in another; that the nearby maxima which would have been present if
+there were only two sources will have gone down in strength. In order
+to see this effect, we plot the curve that comes from (<a href="#mjx-eqn-EqI303">30.3</a>),
+taking $n$ to be enormously large and plotting the region near $\phi =
+0$. In the first place, if $\phi$ is exactly $0$, we have $0/0$, but if
+$\phi$ is infinitesimal, the ratio of the two sines squared is simply
+$n^2$, since the sine and the angle are approximately equal. Thus the
+intensity of the maximum of the curve is equal to $n^2$ times the
+intensity of one oscillator. That is easy to see, because if they are
+all in phase, then the little vectors have no relative angle and all $n$
+of them add up so the amplitude is $n$ times, and the intensity
+$n^2$ times, stronger.</p>
+</div>
+<div id="Ch30-S1-p6" class="para">
+<p class="p">As the phase $\phi$ increases, the ratio of the two sines begins to
+fall off, and the first time it reaches zero is when $n\phi/2 =\pi$,
+because $\sin \pi = 0$. In other words, $\phi = 2\pi/n$ corresponds to
+the first minimum in the curve (Fig. <a href="#Ch30-F2">30–2</a>). In terms of
+what is happening with the arrows in Fig. <a href="#Ch30-F1">30–1</a>, the
+first minimum occurs when all the arrows come back to the starting
+point; that means that the total accumulated angle in all the arrows,
+the total phase difference between the first and last oscillator, must
+be $2\pi$ to complete the circle.</p>
+</div>
+<div id="Ch30-F2" class="figure">
+<img src="img/FLP_I/f30-02/f30-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 30–2.</span>The intensity as a function of phase angle for a large number
+of oscillators of equal strength.
+</div>
+</div>
+<div id="Ch30-S1-p7" class="para">
+<p class="p">Now we go to the next maximum, and we want to see that it is really
+much smaller than the first one, as we had hoped. We shall not go
+precisely to the maximum position, because both the numerator and the
+denominator of (<a href="#mjx-eqn-EqI303">30.3</a>) are variant, but $\sin \phi/2$ varies
+quite slowly compared with $\sin n\phi/2$ when $n$ is large, so when
+$\sin^2 n\phi/2 = 1$ we are very close to the maximum. The next maximum
+of $\sin^2 n\phi/2$ comes at $n\phi/2 = 3\pi/2$, or $\phi =
+3\pi/n$. This corresponds to the arrows having traversed the circle
+one and a half times. On putting $\phi = 3\pi/n$ into the formula to
+find the size of the maximum, we find that $\sin^2 3\pi/2 = 1$ in the
+numerator (because that is why we picked this angle), and in the
+denominator we have $\sin^2 3\pi/2n$. Now if $n$ is sufficiently
+large, then this angle is very small and the sine is equal to the
+angle; so for all practical purposes, we can put $\sin 3\pi/2n =
+3\pi/2n$. Thus we find that the intensity at this maximum is $I=
+I_0(4n^2/9\pi^2)$. But $n^2I_0$ was the maximum intensity, and so we
+have $4/9\pi^2$ times the maximum intensity, which is about $0.045$,
+less than $5$ percent, of the maximum intensity! Of course there are
+decreasing intensities farther out. So we have a very sharp central
+maximum with very weak subsidiary maxima on the sides.</p>
+</div>
+<div id="Ch30-S1-p8" class="para">
+<p class="p">It is possible to prove that the area of the whole curve, including
+all the little bumps, is equal to $2\pi nI_0$, or twice the area of
+the dotted rectangle in Fig. <a href="#Ch30-F2">30–2</a>.</p>
+</div>
+<div id="Ch30-F3" class="figure">
+<img src="img/FLP_I/f30-03/f30-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 30–3.</span>A linear array of $n$ equal oscillators, driven with
+phases $\alpha_s = s\alpha$.
+</div>
+</div>
+<div id="Ch30-S1-p9" class="para">
+<p class="p">Now let us consider further how we may apply Eq. (<a href="#mjx-eqn-EqI303">30.3</a>)
+in different circumstances, and try to understand what is
+happening. Let us consider our sources to be all on a line, as drawn
+in Fig. <a href="#Ch30-F3">30–3</a>. There are $n$ of them, all spaced by a
+distance $d$, and we shall suppose that the intrinsic relative phase,
+one to the next, is $\alpha$. Then if we are observing in a given
+direction $\theta$ from the normal, there is an additional phase $2\pi
+d \sin \theta/\lambda$ because of the time delay between each
+successive two, which we talked about before. Thus
+\begin{equation}
+\label{Eq:I:30:4}
+\begin{aligned}
+\phi&=\alpha+2\pi d\sin\theta/\lambda\\
+&=\alpha+kd\sin\theta.
+\end{aligned}
+\end{equation}</p>
+</div>
+<div id="Ch30-S1-p10" class="para">
+<p class="p">First, we shall take the case $\alpha = 0$. That is, all oscillators
+are in phase, and we want to know what the intensity is as a function
+of the angle $\theta$. In order to find out, we merely have to put
+$\phi = kd \sin \theta$ into formula (<a href="#mjx-eqn-EqI303">30.3</a>) and see what
+happens. In the first place, there is a maximum when $\phi = 0$. That
+means that when all the oscillators are in phase there is a strong
+intensity in the direction $\theta = 0$. On the other hand, an
+interesting question is, where is the first minimum?  That occurs when
+$\phi = 2\pi/n$. In other words, when $2\pi d \sin \theta/\lambda =
+2\pi/n$, we get the first minimum of the curve. If we get rid of
+the $2\pi$’s so we can look at it a little better, it says that
+\begin{equation}
+\label{Eq:I:30:5}
+nd\sin\theta=\lambda.
+\end{equation}
+Now let us understand physically why we get a minimum at that
+position. $nd$ is the total length $L$ of the array. Referring to
+Fig. <a href="#Ch30-F3">30–3</a>, we see that $nd \sin \theta= L \sin \theta=
+\Delta$. What (<a href="#mjx-eqn-EqI305">30.5</a>) says is that when $\Delta$ is equal to
+<em class="emph">one wavelength</em>, we get a minimum. Now why do we get a minimum
+when $\Delta = \lambda$?  Because the contributions of the various
+oscillators are then uniformly distributed in phase from $0^\circ$
+to $360^\circ$. The arrows (Fig. <a href="#Ch30-F1">30–1</a>) are going around a
+whole circle—we are adding equal vectors in all directions, and such
+a sum is zero. So when we have an angle such that $\Delta = \lambda$,
+we get a minimum. That is the first minimum.</p>
+</div>
+<div id="Ch30-S1-p11" class="para">
+<p class="p">There is another important feature about formula (<a href="#mjx-eqn-EqI303">30.3</a>),
+which is that if the angle $\phi$ is increased by any multiple
+of $2\pi$, it makes no difference to the formula. So we will get other
+strong maxima at $\phi = 2\pi$, $4\pi$, $6\pi$, and so forth. Near
+each of these great maxima the pattern of Fig. <a href="#Ch30-F2">30–2</a> is
+repeated. We may ask ourselves, what is the geometrical circumstance
+that leads to these other great maxima?  The condition is that $\phi =
+2\pi m$, where $m$ is any integer. That is, $2\pi d \sin
+\theta/\lambda = 2\pi m$. Dividing by $2\pi$, we see that
+\begin{equation}
+\label{Eq:I:30:6}
+d\sin\theta=m\lambda.
+\end{equation}
+This looks like the other formula, (<a href="#mjx-eqn-EqI305">30.5</a>). No, that formula
+was $nd \sin \theta= \lambda$. The difference is that here we have to
+look at the <em class="emph">individual sources</em>, and when we say $d \sin \theta=
+m\lambda$, that means that we have an angle $\theta$ such that $\delta
+= m\lambda$. In other words, each source is now contributing a certain
+amount, and successive ones are out of phase by a whole multiple
+of $360^\circ$, and therefore are contributing <em class="emph">in phase</em>, because
+out of phase by $360^\circ$ is the same as being in phase. So they all
+contribute in phase and produce just as good a maximum as the one for
+$m = 0$ that we discussed before. The subsidiary bumps, the whole
+shape of the pattern, is just like the one near $\phi = 0$, with
+exactly the same minima on each side, etc. Thus such an array will
+send beams in various directions—each beam having a strong central
+maximum and a certain number of weak “side lobes.” The various
+strong beams are referred to as the zero-order beam, the first-order
+beam, etc., according to the value of $m$. $m$ is called the
+<em class="emph">order</em> of the beam.</p>
+</div>
+<div id="Ch30-S1-p12" class="para">
+<p class="p">We call attention to the fact that if $d$ is less than $\lambda$,
+Eq. (<a href="#mjx-eqn-EqI306">30.6</a>) can have no solution except $m = 0$, so that
+if the spacing is too small there is only one possible beam, the
+zero-order one centered at $\theta = 0$. (Of course, there is also a
+beam in the opposite direction.) In order to get subsidiary great
+maxima, we must have the spacing $d$ of the array greater than one
+wavelength.</p>
+</div>
+</div>
+<div id="Ch30-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">30–2</span>The diffraction grating</h3>
+<div id="Ch30-S2-p1" class="para">
+<p class="p">In technical work with antennas and wires it is possible to arrange
+that all the phases of the little oscillators, or antennas, are
+equal. The question is whether and how we can do a similar thing with
+light. We cannot at the present time literally make little
+optical-frequency radio stations and hook them up with infinitesimal
+wires and drive them all with a given phase. But there is a very easy
+way to do what amounts to the same thing.</p>
+</div>
+<div id="Ch30-S2-p2" class="para">
+<p class="p">Suppose that we had a lot of parallel wires, equally spaced at a
+spacing $d$, and a radiofrequency source very far away, practically at
+infinity, which is generating an electric field which arrives at each
+one of the wires at the same phase (it is so far away that the time
+delay is the same for all of the wires). (One can work out cases with
+curved arrays, but let us take a plane one.) Then the external
+electric field will drive the electrons up and down in each wire. That
+is, the field which is coming from the original source will shake the
+electrons up and down, and in moving, these represent <em class="emph">new
+generators</em>. This phenomenon is called scattering: a light wave from
+some source can induce a motion of the electrons in a piece of
+material, and these motions generate their own waves. Therefore all
+that is necessary is to set up a lot of wires, equally spaced, drive
+them with a radiofrequency source far away, and we have the situation
+that we want, without a whole lot of special wiring. If the incidence
+is normal, the phases will be equal, and we will get exactly the
+circumstance we have been discussing. Therefore, if the wire spacing
+is greater than the wavelength, we will get a strong intensity of
+scattering in the normal direction, and in certain other directions
+given by (<a href="#mjx-eqn-EqI306">30.6</a>).</p>
+</div>
+<div id="Ch30-S2-p3" class="para">
+<p class="p"><em class="emph">This can also be done with light!</em> Instead of wires, we use a
+flat piece of glass and make notches in it such that each of the
+notches scatters a little differently than the rest of the glass. If
+we then shine light on the glass, each one of the notches will
+represent a source, and if we space the lines very finely, but not
+closer than a wavelength (which is technically almost impossible
+anyway), then we would expect a miraculous phenomenon: the light not
+only will pass straight through, but there will also be a strong beam
+at a finite angle, depending on the spacing of the notches! Such
+objects have actually been made and are in common use—they are
+called <em class="emph">diffraction gratings</em>.</p>
+</div>
+<div id="Ch30-S2-p4" class="para">
+<p class="p">In one of its forms, a diffraction grating consists of nothing but a
+plane glass sheet, transparent and colorless, with scratches on
+it. There are often several hundred scratches to the millimeter,
+<em class="emph">very</em> carefully arranged so as to be equally spaced. The effect
+of such a grating can be seen by arranging a projector so as to throw
+a narrow, vertical line of light (the image of a slit) onto a
+screen. When we put the grating into the beam, with its scratches
+vertical, we see that the line is still there but, in addition, on
+each side we have <em class="emph">another</em> strong patch of light which is
+<em class="emph">colored</em>. This, of course, is the slit image spread out over a
+wide angular range, because the angle $\theta$ in (<a href="#mjx-eqn-EqI306">30.6</a>)
+depends upon $\lambda$, and lights of different colors, as we know,
+correspond to different frequencies, and therefore different
+wavelengths. The longest visible wavelength is red, and since $d \sin
+\theta=\lambda$, that requires a larger $\theta$. And we do, in fact,
+find that red is at a greater angle out from the central image! There
+should also be a beam on the other side, and indeed we see one on the
+screen. Then, there might be another solution of (<a href="#mjx-eqn-EqI306">30.6</a>)
+when $m= 2$. We do see that there is something vaguely there—very
+weak—and there are even other beams beyond.</p>
+</div>
+<div id="Ch30-S2-p5" class="para">
+<p class="p">We have just argued that all these beams ought to be of the same
+strength, but we see that they actually are not and, in fact, not even
+the first ones on the right and left are equal! The reason is that the
+grating has been carefully built to do just this. How? If the grating
+consists of very fine notches, infinitesimally wide, spaced evenly,
+then all the intensities would indeed be equal. But, as a matter of
+fact, although we have taken the simplest case, we could also have
+considered an array of <em class="emph">pairs</em> of antennas, in which each member
+of the pair has a certain strength and some relative phase. In this
+case, it is possible to get intensities which are different in the
+different orders. A grating is often made with little “sawtooth”
+cuts instead of little symmetrical notches. By carefully arranging
+the, “sawteeth,” more light may be sent into one particular order of
+spectrum than into the others. In a practical grating, we would like
+to have as much light as possible in one of the orders. This may seem
+a complicated point to bring in, but it is a very clever thing to do,
+because it makes the grating more useful.</p>
+</div>
+<div id="Ch30-F4" class="figure">
+<img src="img/FLP_I/f30-04/f30-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 30–4.</span>The path difference for rays scattered from adjacent rulings
+of a grating is $d\sin\theta_{\text{out}} -
+  d\sin\theta_{\text{in}}$.
+</div>
+</div>
+<div id="Ch30-S2-p6" class="para">
+<p class="p">So far, we have taken the case where all the phases of the sources are
+equal. But we also have a formula for $\phi$ when the phases differ
+from one to the next by an angle $\alpha$. That requires wiring up our
+antennas with a slight phase shift between each one. Can we do that
+with light?  Yes, we can do it very easily, for suppose that there
+were a source of light at infinity, <em class="emph">at an angle</em> such that the
+light is coming in at an angle $\theta_{\text{in}}$, and let us say
+that we wish to discuss the scattered beam, which is leaving at an
+angle $\theta_{\text{out}}$ (Fig. <a href="#Ch30-F4">30–4</a>). The
+$\theta_{\text{out}}$ is the same $\theta$ as we have had before, but
+the $\theta_{\text{in}}$ is merely a means for arranging that the phase
+of each source is different: the light coming from the distant driving
+source first hits one scratch, then the next, then the next, and so on,
+with a phase shift from one to the other, which, as we see, is $\alpha =
+-2\pi d \sin \theta_{\text{in}}/\lambda$. Therefore we have the formula
+for a grating in which light both comes in and goes out at an angle:
+\begin{equation}
+\label{Eq:I:30:7}
+\phi=2\pi d\sin\theta_{\text{out}}/\lambda -
+2\pi d \sin \theta_{\text{in}}/\lambda.
+\end{equation}
+Let us try to find out where we get strong intensity in these
+circumstances. The condition for strong intensities is, of course,
+that $\phi$ should be a multiple of $2\pi$. There are several
+interesting points to be noted.</p>
+</div>
+<div id="Ch30-S2-p7" class="para">
+<p class="p">One case of rather great interest is that which corresponds to $m =
+0$, where $d$ is less than $\lambda$; in fact, this is the only
+solution. In this case we see that $\sin\theta_{\text{out}} =
+\sin\theta_{\text{in}}$, which means that the light comes out in the
+<em class="emph">same direction</em> as the light which was exciting the grating. We
+might think that the light “goes right through.” No, it is
+<em class="emph">different light</em> that we are talking about. The light that goes
+right through is from the original source; what we are talking about
+is the new light <em class="emph">which is generated by scattering</em>. It turns out
+that the scattered light is going in the same direction as the
+original light, in fact it can interfere with it—a feature which we
+will study later.</p>
+</div>
+<div id="Ch30-S2-p8" class="para">
+<p class="p">There is another solution for this same case. For a given
+$\theta_{\text{in}}$, $\theta_{\text{out}}$ may be the
+<em class="emph">supplement</em> of $\theta_{\text{in}}$. So not only do we get a
+beam in the same direction as the incoming beam but also one in
+another direction, which, if we consider it carefully, is such that
+the <em class="emph">angle of incidence is equal to the angle of
+scattering</em>. This we call the <i>reflected beam</i>.</p>
+</div>
+<div id="Ch30-S2-p9" class="para">
+<p class="p">So we begin to understand the basic machinery of reflection: the light
+that comes in generates motions of the atoms in the reflector, and the
+reflector then regenerates a <em class="emph">new wave</em>, and one of the solutions
+for the direction of scattering, the <em class="emph">only</em> solution if the
+spacing of the scatterers is small compared with one wavelength, is
+that the angle at which the light comes out is equal to the angle at
+which it comes in!</p>
+</div>
+<div id="Ch30-S2-p10" class="para">
+<p class="p">Next, we discuss the special case when $d \to 0$. That is, we have
+just a solid piece of material, so to speak, but of finite length. In
+addition, we want the phase shift from one scatterer to the next to go
+to zero. In other words, we put more and more antennas between the
+other ones, so that each of the phase differences is getting smaller,
+but the number of antennas is increasing in such a way that the total
+phase difference, between one end of the line and the other, is
+constant. Let us see what happens to (<a href="#mjx-eqn-EqI303">30.3</a>) if we keep the
+difference in phase $n\phi$ from one end to the other constant (say
+$n\phi=\Phi$), letting the number go to infinity and the phase shift
+$\phi$ of each one go to zero. But now $\phi$ is so small that $\sin
+\phi = \phi$, and if we also recognize $n^2I_0$ as $I_m$, the maximum
+intensity at the center of the beam, we find
+\begin{equation}
+\label{Eq:I:30:8}
+I=4I_m\sin^2\tfrac{1}{2}\Phi/\Phi^2.
+\end{equation}
+This limiting case is what is shown in Fig. <a href="#Ch30-F2">30–2</a>.</p>
+</div>
+<div id="Ch30-S2-p11" class="para">
+<p class="p">In such circumstances we find the same general kind of a picture as
+for finite spacing with $d&lt;\lambda$; all the side lobes are
+practically the same as before, but there are no higher-order
+maxima. If the scatterers are all in phase, we get a maximum in the
+direction $\theta_{\text{out}} = 0$, and a minimum when the
+distance $\Delta$ is equal to $\lambda$, just as for finite $d$ and $n$. So we
+can even analyze a <em class="emph">continuous</em> distribution of scatterers or
+oscillators, by using integrals instead of summing.</p>
+</div>
+<div id="Ch30-F5" class="figure">
+<img src="img/FLP_I/f30-05/f30-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 30–5.</span>The intensity pattern of a continuous line of oscillators has
+a single strong maximum and many weak “side lobes.”
+</div>
+</div>
+<div id="Ch30-S2-p12" class="para">
+<p class="p">As an example, suppose there were a long line of oscillators, with the
+charge oscillating along the direction of the line
+(Fig. <a href="#Ch30-F5">30–5</a>). From such an array the greatest intensity is
+perpendicular to the line. There is a little bit of intensity up and
+down from the equatorial plane, but it is very slight. With this result,
+we can handle a more complicated situation. Suppose we have a set of
+such lines, each producing a beam only in a plane perpendicular to the
+line. To find the intensity in various directions from a series of long
+wires, instead of infinitesimal wires, is the same problem as it was for
+infinitesimal wires, so long as we are in the central plane
+perpendicular to the wires; we just add the contribution from each of
+the long wires. That is why, although we actually analyzed only tiny
+antennas, we might as well have used a grating with long, narrow slots.
+Each of the long slots produces an effect only in its own direction, not
+up and down, but they are all set next to each other horizontally, so
+they produce interference that way.</p>
+</div>
+<div id="Ch30-S2-p13" class="para">
+<p class="p">Thus we can build up more complicated situations by having various
+distributions of scatterers in lines, planes, or in space. The first
+thing we did was to consider scatterers in a line, and we have just
+extended the analysis to strips; we can work it out by just doing the
+necessary summations, adding the contributions from the individual
+scatterers. The principle is always the same.</p>
+</div>
+</div>
+<div id="Ch30-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">30–3</span>Resolving power of a grating</h3>
+<div id="Ch30-S3-p1" class="para">
+<p class="p">We are now in a position to understand a number of interesting
+phenomena.  For example, consider the use of a grating for separating
+wavelengths. We noticed that the whole spectrum was spread out on the
+screen, so a grating can be used as an instrument for separating light
+into its different wavelengths. One of the interesting questions is:
+supposing that there were two sources of slightly different frequency,
+or slightly different wavelength, how close together in wavelength
+could they be such that the grating would be unable to tell that there
+were really two different wavelengths there? The red and the blue were
+clearly separated. But when one wave is red and the other is slightly
+redder, very close, how close can they be? This is called the
+<em class="emph">resolving power</em> of the grating, and one way of analyzing the
+problem is as follows. Suppose that for light of a certain color we
+happen to have the maximum of the diffracted beam occurring at a
+certain angle. If we vary the wavelength the phase $2\pi d \sin
+\theta/\lambda$ is different, so of course the maximum occurs at a
+different angle. That is why the red and blue are spread out. How
+different in angle must it be in order for us to be able to see it? If
+the two maxima are exactly on top of each other, of course we cannot
+see them. If the maximum of one is far enough away from the other,
+then we can see that there is a double bump in the distribution of
+light. In order to be able to just make out the double bump, the
+following simple criterion, called <em class="emph">Rayleigh’s criterion</em>,
+is usually used (Fig. <a href="#Ch30-F6">30–6</a>). It is that the first minimum
+from one bump should sit at the maximum of the other. Now it is very
+easy to calculate, when one minimum sits on the other maximum, how much
+the difference in wavelength is. The best way to do it is geometrically.</p>
+</div>
+<div id="Ch30-F6" class="figure">
+<img src="img/FLP_I/f30-06/f30-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 30–6.</span>Illustration of the Rayleigh criterion. The maximum of one
+pattern falls on the first minimum of the other.
+</div>
+</div>
+<div id="Ch30-S3-p2" class="para">
+<p class="p">In order to have a maximum for wavelength $\lambda'$, the
+distance $\Delta$ (Fig. <a href="#Ch30-F3">30–3</a>) must be $n\lambda'$, and if we are
+looking at the $m$th-order beam, it is $mn\lambda'$. In other words,
+$2\pi d \sin \theta/\lambda' = 2\pi m$, so $nd \sin \theta$, which
+is $\Delta$, is $m\lambda'$ times $n$, or $mn\lambda'$. For the other
+beam, of wavelength $\lambda$, we want to have a <em class="emph">minimum</em> at
+this angle. That is, we want $\Delta$ to be exactly one
+wavelength $\lambda$ more than $mn\lambda$. That is, $\Delta = mn\lambda +
+\lambda = mn\lambda'$. Thus if $\lambda' = \lambda+ \Delta\lambda$, we
+find
+\begin{equation}
+\label{Eq:I:30:9}
+\Delta\lambda/\lambda = 1/mn.
+\end{equation}
+The ratio $\lambda/\Delta\lambda$ is called the <em class="emph">resolving power</em>
+of a grating; we see that it is equal to the total number of lines in
+the grating, times the order. It is not hard to prove that this
+formula is equivalent to the formula that the error in frequency is
+equal to the reciprocal time difference between extreme paths that are
+allowed to interfere:<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a>
+\begin{equation*}
+\Delta\nu=1/T.
+\end{equation*}
+In fact, that is the best way to remember it, because the general
+formula works not only for gratings, but for any other instrument
+whatsoever, while the special formula (<a href="#mjx-eqn-EqI309">30.9</a>) depends on the
+fact that we are using a grating.</p>
+</div>
+</div>
+<div id="Ch30-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">30–4</span>The parabolic antenna</h3>
+<div id="Ch30-S4-p1" class="para">
+<p class="p">Now let us consider another problem in resolving power. This has to do
+with the antenna of a radio telescope, used for determining the
+position of radio sources in the sky, i.e., how large they are in
+angle. Of course if we use any old antenna and find signals, we would
+not know from what direction they came. We are very interested to know
+whether the source is in one place or another. One way we can find out
+is to lay out a whole series of equally spaced dipole wires on the
+Australian landscape. Then we take all the wires from these antennas
+and feed them into the same receiver, in such a way that all the
+delays in the feed lines are equal. Thus the receiver receives signals
+from all of the dipoles in phase. That is, it adds all the waves from
+every one of the dipoles in the same phase. Now what happens? If the
+source is directly above the array, at infinity or nearly so, then its
+radiowaves will excite all the antennas in the same phase, so they all
+feed the receiver together.</p>
+</div>
+<div id="Ch30-S4-p2" class="para">
+<p class="p">Now suppose that the radio source is at a slight angle $\theta$ from
+the vertical. Then the various antennas are receiving signals a little
+out of phase. The receiver adds all these out-of-phase signals
+together, and so we get nothing, if the angle $\theta$ is too big. How
+big may the angle be? <em class="emph">Answer:</em> we get zero if the
+angle $\Delta/L = \theta$ (Fig. <a href="#Ch30-F3">30–3</a>) corresponds to a
+$360^\circ$ phase shift, that is, if $\Delta$ is the
+wavelength $\lambda$. This is because the vector contributions form together a
+complete polygon with zero resultant. The smallest angle that can be
+resolved by an antenna array of length $L$ is $\theta =
+\lambda/L$. Notice that the receiving pattern of an antenna such as
+this is exactly the same as the intensity distribution we would get if
+we turned the receiver around and made it into a transmitter. This is
+an example of what is called a <em class="emph">reciprocity
+principle</em>. It turns out, in fact, to be
+generally true for any arrangement of antennas, angles, and so on, that
+if we first work out what the relative intensities would be in various
+directions if the receiver were a transmitter instead, then the relative
+directional sensitivity of a receiver with the same external wiring, the
+same array of antennas, is the same as the relative intensity of
+emission would be if it were a transmitter.</p>
+</div>
+<div id="Ch30-S4-p3" class="para">
+<p class="p">Some radio antennas are made in a different way. Instead of having a
+whole lot of dipoles in a long line, with a lot of feed wires, we may
+arrange them not in a line but in a curve, and put the receiver at a
+certain point where it can detect the scattered waves. This curve is
+cleverly designed so that if the radiowaves are coming down from
+above, and the wires scatter, making a new wave, the wires are so
+arranged that the scattered waves reach the receiver all at the same
+time (Fig. <a href="I_26.html#Ch26-F12">26–12</a>). In other words, the curve is a
+<em class="emph">parabola</em>, and when the source is exactly on its axis, we get a
+very strong intensity at the focus. In this case we understand very
+clearly what the resolving power of such an instrument is. The
+arranging of the antennas on a parabolic curve is not an essential
+point. It is only a convenient way to get all the signals to the same
+point with no relative delay and without feed wires. The angle such an
+instrument can resolve is still $\theta = \lambda/L$, where $L$ is the
+separation of the first and last antennas. It does not depend on the
+spacing of the antennas and they may be very close together or in fact
+be all one piece of metal. Now we are describing a telescope mirror,
+of course. We have found the resolving power of a telescope!
+(Sometimes the resolving power is written $\theta = 1.22\lambda/L$,
+where $L$ is the diameter of the telescope. The reason that it is not
+exactly $\lambda/L$ is this: when we worked out that $\theta =
+\lambda/L$, we assumed that all the lines of dipoles were equal in
+strength, but when we have a circular telescope, which is the way we
+usually arrange a telescope, not as much signal comes from the outside
+edges, because it is not like a square, where we get the same
+intensity all along a side. We get somewhat less because we are using
+only part of the telescope there; thus we can appreciate that the
+effective diameter is a little shorter than the true diameter, and
+that is what the $1.22$ factor tells us. In any case, it seems a
+little pedantic to put such precision into the resolving power
+formula.<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>)</p>
+</div>
+</div>
+<div id="Ch30-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">30–5</span>Colored films; crystals</h3>
+<div id="Ch30-S5-p1" class="para">
+<p class="p">The above, then, are some of the effects of interference obtained by
+adding the various waves. But there are a number of other examples,
+and even though we do not understand the fundamental mechanism yet, we
+will some day, and we can understand even now how the interference
+occurs. For example, when a light wave hits a surface of a material
+with an index $n$, let us say at normal incidence, some of the light
+is reflected. The <em class="emph">reason</em> for the reflection we are not in a
+position to understand right now; we shall discuss it later. But
+suppose we know that some of the light is reflected both on entering
+and leaving a refracting medium. Then, if we look at the reflection of
+a light source in a thin film, we see the sum of two waves; if the
+thicknesses are small enough, these two waves will produce an
+interference, either constructive or destructive, depending on the
+signs of the phases. It might be, for instance, that for red light, we
+get an enhanced reflection, but for blue light, which has a different
+wavelength, perhaps we get a destructively interfering reflection, so
+that we see a bright red reflection. If we change the thickness, i.e.,
+if we look at another place where the film is thicker, it may be
+reversed, the red interfering and the blue not, so it is bright blue,
+or green, or yellow, or whatnot. So we see <em class="emph">colors</em> when we look
+at thin films and the colors change if we look at different angles,
+because we can appreciate that the timings are different at different
+angles. Thus we suddenly appreciate another hundred thousand
+situations involving the colors that we see on oil films, soap bubbles,
+etc. at different angles. But the principle is all the same: we are
+only adding waves at different phases.</p>
+</div>
+<div id="Ch30-S5-p2" class="para">
+<p class="p">As another important application of diffraction, we may mention the
+following. We used a grating and we saw the diffracted image on the
+screen. If we had used monochromatic light, it would have been at a
+certain specific place. Then there were various higher-order images
+also. From the positions of the images, we could tell how far apart
+the lines on the grating were, if we knew the wavelength of the
+light. From the difference in intensity of the various images, we
+could find out the shape of the grating scratches, whether the grating
+was made of wires, sawtooth notches, or whatever, <em class="emph">without being
+able to see them</em>. This principle is used to discover the positions of
+the <em class="emph">atoms in a crystal</em>. The only complication is that a crystal
+is three-dimensional; it is a repeating three-dimensional array of
+atoms. We cannot use ordinary light, because we must use something
+whose wavelength is less than the space between the atoms or we get no
+effect; so we must use radiation of very short wavelength, i.e.,
+x-rays. So, by
+shining x-rays into a crystal and by noticing how intense is the
+reflection in the various orders, we can determine the arrangement of
+the atoms inside without ever being able to see them with the eye! It is
+in this way that we know the arrangement of the atoms in various
+substances, which permitted us to draw those pictures in the first
+chapter, showing the arrangement of atoms in salt, and so on. We shall
+later come back to this subject and discuss it in more detail, and
+therefore we say no more about this most remarkable idea at present.
+</p>
+</div>
+</div>
+<div id="Ch30-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">30–6</span>Diffraction by opaque screens</h3>
+<div id="Ch30-S6-p1" class="para">
+<p class="p">Now we come to a very interesting situation. Suppose that we have an
+opaque sheet with holes in it, and a light on one side of it. We want
+to know what the intensity is on the other side. What most people say
+is that the light shines through the holes, and produces an effect on
+the other side. It will turn out that one gets the right answer, to an
+excellent approximation, if he assumes that there are sources
+distributed with uniform density across the open holes, and that the
+phases of these sources are the same as they would have been if the
+opaque material were absent. Of course, actually there are <em class="emph">no</em>
+sources at the holes, in fact that is the only place that there are
+<em class="emph">certainly</em> no sources. Nevertheless, we get the correct
+diffraction patterns by considering the holes to be the only places
+that there <em class="emph">are</em> sources; that is a rather peculiar fact. We
+shall explain later why this is true, but for now let us just suppose
+that it is.</p>
+</div>
+<div id="Ch30-S6-p2" class="para">
+<p class="p">In the theory of diffraction there is another kind of diffraction that
+we should briefly discuss. It is usually not discussed in an
+elementary course as early as this, only because the mathematical
+formulas involved in adding these little vectors are a little
+elaborate. Otherwise it is exactly the same as we have been doing all
+along. All the interference phenomena are the same; there is nothing
+very much more advanced involved, only the circumstances are more
+complicated and it is harder to add the vectors together, that is all.</p>
+</div>
+<div id="Ch30-F7" class="figure">
+<img src="img/FLP_I/f30-07/f30-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 30–7.</span>A distant light source casts a shadow of an opaque object on
+a screen.
+</div>
+</div>
+<div id="Ch30-S6-p3" class="para">
+<p class="p">Suppose that we have light coming in from infinity, casting a shadow
+of an object. Figure <a href="#Ch30-F7">30–7</a> shows a screen on which the
+shadow of an object $AB$ is made by a light source very far away
+compared with one wavelength. Now we would expect that outside the
+shadow, the intensity is all bright, and inside it, it is all dark. As
+a matter of fact, if we plot the intensity as a function of position
+near the shadow edge, the intensity rises and then overshoots, and
+wobbles, and oscillates about in a very peculiar manner near this edge
+(Fig. <a href="#Ch30-F9">30–9</a>). We now shall discuss the reason for
+this. If we use the theorem that we have not yet proved, then we can
+replace the actual problem by a set of effective sources uniformly
+distributed over the open space beyond the object.</p>
+</div>
+<div id="Ch30-S6-p4" class="para">
+<p class="p">We imagine a large number of very closely spaced antennas, and we want
+the intensity at some point $P$. That looks just like what we have
+been doing. Not quite; because our screen is not at infinity. We do
+not want the intensity at infinity, but at a finite point. To
+calculate the intensity at some particular place, we have to add the
+contributions from all the antennas. First there is an antenna at $D$,
+exactly opposite $P$; if we go up a little bit in angle, let us say a
+height $h$, then there is an increase in delay (there is also a change
+in amplitude because of the change in distance, but this is a very
+small effect if we are at all far away, and is much less important
+than the difference in the phases). Now the path difference $EP - DP$
+is approximately $h^2/2s$, so that the phase difference is proportional to the
+<em class="emph">square</em> of how far we go from $D$, while in our previous work
+$s$ was infinite, and the phase difference was <em class="emph">linearly</em>
+proportional to $h$. When the phases are linearly proportional, each
+vector adds at a constant angle to the next vector. What we now need
+is a curve which is made by adding a lot of infinitesimal vectors with
+the requirement that the angle they make shall increase, not linearly,
+but as the <em class="emph">square</em> of the length of the curve. To construct that
+curve involves slightly advanced mathematics, but we can always
+construct it by actually drawing the arrows and measuring the
+angles. In any case, we get the marvelous curve (called Cornu’s
+spiral) shown in Fig. <a href="#Ch30-F8">30–8</a>. Now how do we use this
+curve?</p>
+</div>
+<div id="Ch30-F8" class="figure">
+<img src="img/FLP_I/f30-08/f30-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 30–8.</span>The addition of amplitudes for many in-phase oscillators
+whose phase delays vary as the square of the distance from point $D$
+of the previous figure.
+</div>
+</div>
+<div id="Ch30-S6-p5" class="para">
+<p class="p">If we want the intensity, let us say, at point $P$, we add a lot of
+contributions of different phases from point $D$ on up to infinity,
+and from $D$ down only to point $B_P$. So we start at $B_P$ in
+Fig. <a href="#Ch30-F8">30–8</a>, and draw a series of arrows of ever-increasing
+angle. Therefore the total contribution above point $B_P$ all goes along
+the spiraling curve. If we were to stop integrating at some place, then
+the total amplitude would be a vector from $B$ to that point; in this
+particular problem we are going to infinity, so the total answer is the
+vector $\FLPB_{P\infty}$. Now the position on the curve which
+corresponds to point $B_P$ on the object depends upon where point $P$ is
+located, since point $D$, the inflection point, always corresponds to
+the position of point $P$. Thus, depending upon where $P$ is located
+above $B$, the beginning point will fall at various positions on the
+lower left part of the curve, and the resultant
+vector $\FLPB_{P\infty}$, will have many maxima and minima
+(Fig. <a href="#Ch30-F9">30–9</a>).</p>
+</div>
+<div id="Ch30-F9" class="figure">
+<img src="img/FLP_I/f30-09/f30-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 30–9.</span>The intensity near the edge of a shadow. The geometrical
+shadow edge is at $x_0$.
+</div>
+</div>
+<div id="Ch30-S6-p6" class="para">
+<p class="p">On the other hand, if we are at $Q$, on the other side of $P$, then we
+are using only one end of the spiral curve, and not the other end. In
+other words, we do not even start at $D$, but at $B_Q$, so on this
+side we get an intensity which continuously falls off as $Q$ goes
+farther into the shadow.</p>
+</div>
+<div id="Ch30-S6-p7" class="para">
+<p class="p">One point that we can immediately calculate with ease, to show that we
+really understand it, is the intensity exactly opposite the edge. The
+intensity here is $1/4$ that of the incident light. Reason: Exactly at
+the edge (so the endpoint $B$ of the arrow is at $D$ in
+Fig. <a href="#Ch30-F8">30–8</a>) we have half the curve that we would have had if
+we were far into the bright region. If our point $R$ is far into the
+light we go from one end of the curve to the other, that is, one full
+unit vector; but if we are at the edge of the shadow, we have only half
+the amplitude—$1/4$ the intensity.</p>
+</div>
+<div id="Ch30-S6-p8" class="para">
+<p class="p">In this chapter we have been finding the intensity produced in various
+directions from various distributions of sources. As a final example
+we shall derive a formula which we shall need for the next chapter on
+the theory of the index of refraction. Up to this point relative
+intensities have been sufficient for our purpose, but this time we
+shall find the complete formula for the field in the following
+situation.</p>
+</div>
+</div>
+<div id="Ch30-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">30–7</span>The field of a plane of oscillating charges</h3>
+<div id="Ch30-S7-p1" class="para">
+<p class="p">Suppose that we have a plane full of sources, all oscillating
+together, with their motion in the plane and all having the same
+amplitude and phase. What is the field at a finite, but very large,
+distance away from the plane? (We cannot get very close, of course,
+because we do not have the right formulas for the field close to the
+sources.) If we let the plane of the charges be the $xy$-plane, then
+we want to find the field at the point $P$ far out on the $z$-axis
+(Fig. <a href="#Ch30-F10">30–10</a>). We suppose that there are $\eta$ charges
+per unit area of the plane, and that each one of them has a
+charge $q$. All of the charges move with simple harmonic motion, with the
+same direction, amplitude, and phase. We let the motion of each
+charge, <em class="emph">with respect to its own average position</em>, be
+$x_0\cos\omega t$. Or, using the complex notation and remembering that
+the real part represents the actual motion, the motion can be
+described by $x_0e^{i\omega t}$.</p>
+</div>
+<div id="Ch30-F10" class="figure">
+<img src="img/FLP_I/f30-10/f30-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 30–10.</span>Radiation field of a sheet of oscillating charges.
+</div>
+</div>
+<div id="Ch30-S7-p2" class="para">
+<p class="p">Now we find the field at the point $P$ from all of the charges by
+finding the field there from each charge $q$, and then adding the
+contributions from all the charges. We know that the radiation field
+is proportional to the acceleration of the charge, which is
+$-\omega^2x_0e^{i\omega t}$ (and is the same for every charge). The
+electric field that we want at the point $P$ due to a charge at the
+point $Q$ is proportional to the acceleration of the charge $q$, but
+we have to remember that the field at the point $P$ at the instant $t$
+is given by the acceleration of the charge at the earlier time $t' = t
+- r/c$, where $r/c$ is the time it takes the waves to travel the
+distance $r$ from $Q$ to $P$. Therefore the field at $P$ is
+proportional to
+\begin{equation}
+\label{Eq:I:30:10}
+-\omega^2x_0e^{i\omega(t-r/c)}.
+\end{equation}
+Using this value for the acceleration as seen from $P$ in our formula
+for the electric field at large distances from a radiating charge, we
+get
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:30:11}
+\begin{pmatrix}
+\text{Electric field at $P$}\\
+\text{from charge at $Q$}
+\end{pmatrix}
+\approx\frac{q}{4\pi\epsO c^2}\,
+\frac{\omega^2x_0e^{i\omega(t-r/c)}}{r}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+\begin{pmatrix}
+\text{Electric field at $P$}\\
+\text{from charge at $Q$}
+\end{pmatrix}
+\approx\\[1.5ex]
+\frac{q}{4\pi\epsO c^2}\,
+\frac{\omega^2x_0e^{i\omega(t-r/c)}}{r}.
+\end{gathered}
+\label{Eq:I:30:11}
+\end{equation}
+</span>
+</p>
+</div>
+<div id="Ch30-S7-p3" class="para">
+<p class="p">Now this formula is not quite right, because we should have used
+<em class="emph">not</em> the acceleration of the charge but <em class="emph">its component</em>
+perpendicular to the line $QP$. We shall suppose, however, that the
+point $P$ is so far away, compared with the distance of the point $Q$
+from the axis (the distance $\rho$ in Fig. <a href="#Ch30-F10">30–10</a>), for
+those changes that we need to take into account, that we can leave out
+the cosine factor (which would be nearly equal to $1$ anyway).</p>
+</div>
+<div id="Ch30-S7-p4" class="para">
+<p class="p">To get the total field at $P$, we now add the effects of all the
+charges in the plane. We should, of course, make a <em class="emph">vector</em>
+sum. But since the direction of the electric field is nearly the same
+for all the charges, we may, in keeping with the approximation we have
+already made, just add the magnitudes of the fields. To our
+approximation the field at $P$ depends only on the distance $r$, so
+all charges at the same $r$ produce equal fields. So we add, first,
+the fields of those charges in a ring of width $d\rho$ and
+radius $\rho$. Then, by taking the integral over all $\rho$, we will obtain
+the total field.</p>
+</div>
+<div id="Ch30-S7-p5" class="para">
+<p class="p">The number of charges in the ring is the product of the surface area
+of the ring, $2\pi\rho\,d\rho$, and $\eta$, the number of charges per
+unit area. We have, then,
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:30:12}
+\text{Total field at $P$} =
+\int\frac{q}{4\pi\epsO c^2}\,
+\frac{\omega^2x_0e^{i\omega(t-r/c)}}{r}\cdot\eta\cdot
+2\pi\rho\,d\rho.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+\text{Total field at $P$} =\\[1.25ex]
+\int\frac{q}{4\pi\epsO c^2}\,
+\frac{\omega^2x_0e^{i\omega(t-r/c)}}{r}\cdot\eta\cdot
+2\pi\rho\,d\rho.
+\end{gathered}
+\label{Eq:I:30:12}
+\end{equation}
+</span>
+</p>
+</div>
+<div id="Ch30-S7-p6" class="para">
+<p class="p">We wish to evaluate this integral from $\rho = 0$ to $\rho =
+\infty$. The variable $t$, of course, is to be held fixed while we do
+the integral, so the only varying quantities are $\rho$
+and $r$. Leaving out all the constant factors, <em class="emph">including the
+factor</em> $e^{i\omega t}$, for the moment, the integral we wish is
+\begin{equation}
+\label{Eq:I:30:13}
+\int_{\rho=0}^{\rho=\infty}
+\frac{e^{-i\omega r/c}}{r}\,\rho\,d\rho.
+\end{equation}
+To do this integral we need to use the relation between $r$ and $\rho$:
+\begin{equation}
+\label{Eq:I:30:14}
+r^2=\rho^2+z^2.
+\end{equation}
+Since $z$ is independent of $\rho$, when we take the differential of
+this equation, we get
+\begin{equation*}
+2r\,dr=2\rho\,d\rho,
+\end{equation*}
+which is lucky, since in our integral we can replace $\rho\,d\rho$
+by $r\,dr$ and the $r$ will cancel the one in the denominator. The
+integral we want is then the simpler one
+\begin{equation}
+\label{Eq:I:30:15}
+\int_{r=z}^{r=\infty}
+e^{-i\omega r/c}\,dr.
+\end{equation}
+To integrate an exponential is very easy. We divide by the coefficient
+of $r$ in the exponent and evaluate the exponential at the limits. But
+the limits of $r$ are not the same as the limits of $\rho$. When $\rho
+= 0$, we have $r = z$, so the limits of $r$ are $z$ to infinity. We
+get for the integral
+\begin{equation}
+\label{Eq:I:30:16}
+-\frac{c}{i\omega}[e^{-i\infty}-e^{-(i\omega/c)z}],
+\end{equation}
+where we have written $\infty$ for $(\omega/c)\infty$, since they both just
+mean a very large number!</p>
+</div>
+<div id="Ch30-S7-p7" class="para">
+<p class="p">Now $e^{-i\infty}$ is a mysterious quantity. Its real part, for
+example, is $\cos\,(-\infty)$, which, mathematically speaking, is
+completely indefinite (although we would expect it to be
+somewhere—or everywhere (?)—between $+1$ and $-1$!). But in a
+<em class="emph">physical</em> situation, it can mean something quite reasonable, and
+usually can just be taken to be zero. To see that this is so in our
+case, we go back to consider again the original
+integral (<a href="#mjx-eqn-EqI3015">30.15</a>).</p>
+</div>
+<div id="Ch30-S7-p8" class="para">
+<p class="p">We can understand (<a href="#mjx-eqn-EqI3015">30.15</a>) as a sum of many small complex
+numbers, each of magnitude $\Delta r$, and with the angle $\theta =
+-\omega r/c$ in the complex plane. We can try to evaluate the sum by a
+graphical method. In Fig. <a href="#Ch30-F11">30–11</a> we have drawn the first
+five pieces of the sum. Each segment of the curve has the
+length $\Delta r$ and is placed at the angle $\Delta\theta = -\omega\,\Delta
+r/c$ with respect to the preceding piece. The sum for these first five
+pieces is represented by the arrow from the starting point to the end
+of the fifth segment. As we continue to add pieces we shall trace out
+a polygon until we get back to the starting point (approximately) and
+then start around once more. Adding more pieces, we just go round and
+round, staying close to a circle whose radius is easily shown to
+be $c/\omega$. We can see now why the integral does not give a definite
+answer!</p>
+</div>
+<div id="Ch30-F11" class="figure">
+<img src="img/FLP_I/f30-11/f30-11_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 30–11.</span>Graphical  solution  of $\int_z^\infty e^{-i\omega r/c}\,dr$.
+</div>
+</div>
+<div id="Ch30-S7-p9" class="para">
+<p class="p">But now we have to go back to the <em class="emph">physics</em> of the situation. In
+any real situation the plane of charges <em class="emph">cannot</em> be infinite in
+extent, but must sometime stop. If it stopped suddenly, and was
+exactly circular in shape, our integral would have some value on the
+circle in Fig. <a href="#Ch30-F11">30–11</a>. If, however, we let the number of
+charges in the plane gradually taper off at some large distance from
+the center (or else stop suddenly but in an irregular shape so for
+larger $\rho$ the entire ring of width $d\rho$ no longer contributes),
+then the coefficient $\eta$ in the exact integral would decrease
+toward zero. Since we are adding smaller pieces but still turning
+through the same angle, the graph of our integral would then become a
+curve which is a spiral. The spiral would eventually end up at the
+center of our original circle, as drawn in Fig. <a href="#Ch30-F12">30–12</a>. The
+<em class="emph">physically</em> correct integral is the complex number $A$ in the
+figure represented by the interval from the starting point to the center
+of the circle, which is just equal to
+\begin{equation}
+\label{Eq:I:30:17}
+\frac{c}{i\omega}\,e^{-i\omega z/c},
+\end{equation}
+as you can work out for yourself. This is the same result we would get
+from Eq. (<a href="#mjx-eqn-EqI3016">30.16</a>) if we set $e^{-i\infty} = 0$.</p>
+</div>
+<div id="Ch30-F12" class="figure">
+<img src="img/FLP_I/f30-12/f30-12_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 30–12.</span>Graphical  solution  of $\int_z^\infty\eta e^{-i\omega
+  r/c}\,dr$.
+</div>
+</div>
+<div id="Ch30-S7-p10" class="para">
+<p class="p">(There is also another reason why the contribution to the integral
+tapers off for large values of $r$, and that is the factor we have
+omitted for the projection of the acceleration on the plane
+perpendicular to the line $PQ$.)</p>
+</div>
+<div id="Ch30-S7-p11" class="para">
+<p class="p">We are, of course, interested only in physical situations, so we will
+take $e^{-i\infty}$ equal to zero. Returning to our original
+formula (<a href="#mjx-eqn-EqI3012">30.12</a>) for the field and putting back all of the
+factors that go with the integral, we have the result
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:30:18}
+\text{Total field at $P$} = -\frac{\eta q}{2\epsO c}\,
+i\omega x_0e^{i\omega(t-z/c)}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+\text{Total field at $P$} =\\[1.25ex]
+-\frac{\eta q}{2\epsO c}\,
+i\omega x_0e^{i\omega(t-z/c)}
+\end{gathered}
+\label{Eq:I:30:18}
+\end{equation}
+</span>
+(remembering that $1/i = -i$).</p>
+</div>
+<div id="Ch30-S7-p12" class="para">
+<p class="p">It is interesting to note that ($i\omega x_0e^{i\omega t}$) is just
+equal to the <em class="emph">velocity</em> of the charges, so that we can also write
+the equation for the field as
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:30:19}
+\text{Total field at $P$} = -\frac{\eta q}{2\epsO c}\,
+[\text{velocity of charges}]_{\text{at $t-z/c$}},
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+\text{Total field at $P$} =\\[1ex]
+-\frac{\eta q}{2\epsO c}\,
+[\text{velocity of charges}]_{\text{at $t-z/c$}},
+\end{gathered}
+\label{Eq:I:30:19}
+\end{equation}
+</span>
+which is a little strange, because the retardation is just by the
+distance $z$, which is the shortest distance from $P$ to the plane of
+charges. But that is the way it comes out—fortunately a rather
+simple formula. (We may add, by the way, that although our derivation
+is valid only for distances far from the plane of oscillatory charges,
+it turns out that the formula (<a href="#mjx-eqn-EqI3018">30.18</a>) or (<a href="#mjx-eqn-EqI3019">30.19</a>)
+is correct at any distance $z$, even for $z &lt; \lambda$.)</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  In our case $T = \Delta/c =
+mn\lambda/c$, where $c$ is the speed of light. The frequency $\nu =
+c/\lambda$, so $\Delta\nu = c\,\Delta\lambda/\lambda^2$.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  This is because Rayleigh’s criterion is a rough idea
+in the first place. It tells you where it begins to get very hard to
+tell whether the image was made by one or by two stars.  Actually, if
+sufficiently careful measurements of the exact intensity distribution
+over the diffracted image spot can be made, the fact that two sources
+make the spot can be proved even if $\theta$ is less than $\lambda/L$.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

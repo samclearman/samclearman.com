@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 12: Characteristics of Force</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "12." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch12" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">12</span>Characteristics of Force</h2>
+<div id="Ch12-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">12–1</span>What is a force?</h3>
+<div id="Ch12-S1-p1" class="para">
+<p class="p">Although it is interesting and worth while to study the physical laws
+simply because they help us to understand and to use nature, one ought
+to stop every once in a while and think, “What do they really mean?”
+The meaning of any statement is a subject that has interested and
+troubled philosophers from time immemorial, and the meaning of
+physical laws is even more interesting, because it is generally
+believed that these laws represent some kind of real knowledge. The
+meaning of knowledge is a deep problem in philosophy, and it is always
+important to ask, “What does it mean?”</p>
+</div>
+<div id="Ch12-S1-p2" class="para">
+<p class="p">Let us ask, “What is the meaning of the physical laws of
+Newton, which we write
+as $F=ma$? What is the meaning of force, mass, and acceleration?” Well,
+we can intuitively sense the meaning of mass, and we can <em class="emph">define</em>
+acceleration if we know the meaning of position and time. We shall not
+discuss those meanings, but shall concentrate on the new concept of
+<em class="emph">force</em>. The answer is equally simple: “If a body is accelerating,
+then there is a force on it.” That is what Newton’s
+laws say, so the most precise and beautiful
+definition of force imaginable might simply be to say that force is the
+mass of an object times the acceleration. Suppose we have a law which
+says that the conservation of momentum is valid if the sum of all the
+external forces is zero; then the question arises, “What does it
+<em class="emph">mean</em>, that the sum of all the external forces is zero?” A
+pleasant way to define that statement would be: “When the total
+momentum is a constant, then the sum of the external forces is zero.”
+There must be something wrong with that, because it is just not saying
+anything new. If we have discovered a fundamental law, which asserts
+that the force is equal to the mass times the acceleration, and then
+<em class="emph">define</em> the force to be the mass times the acceleration, we have
+found out nothing. We could also define force to mean that a moving
+object with no force acting on it continues to move with constant
+velocity in a straight line. If we then observe an object <em class="emph">not</em>
+moving in a straight line with a constant velocity, we might say that
+there is a force on it. Now such things certainly cannot be the content
+of physics, because they are definitions going in a circle. The
+Newtonian statement above, however, seems to be a most precise
+definition of force, and one that appeals to the mathematician;
+nevertheless, it is completely useless, because no prediction whatsoever
+can be made from a definition. One might sit in an armchair all day long
+and define words at will, but to find out what happens when two balls
+push against each other, or when a weight is hung on a spring, is
+another matter altogether, because the way the bodies <em class="emph">behave</em> is
+something completely outside any choice of definitions.</p>
+</div>
+<div id="Ch12-S1-p3" class="para">
+<p class="p">For example, if we were to choose to say that an object left to itself
+keeps its position and does not move, then when we see something
+drifting, we could say that must be due to a “gorce”—a gorce is the
+rate of change of position. Now we have a wonderful new law, everything
+stands still except when a gorce is acting. You see, that would be
+analogous to the above definition of force, and it would contain no
+information. The real content of Newton’s laws is this: that the
+force is supposed to have some <em class="emph">independent properties</em>, in
+addition to the law $F=ma$; but the <em class="emph">specific</em> independent
+properties that the force has were not completely described by
+Newton or by anybody else, and
+therefore the physical law $F=ma$ is an incomplete law. It implies that
+if we study the mass times the acceleration and call the product the
+force, i.e., if we study the characteristics of force as a program of
+interest, then we shall find that forces have some simplicity; the law
+is a good program for analyzing nature, it is a suggestion that the
+forces will be simple.</p>
+</div>
+<div id="Ch12-S1-p4" class="para">
+<p class="p">Now the first example of such forces was the complete law of
+gravitation, which was given by Newton, and in stating the law he answered the question, “What
+is the force?” If there were nothing but
+gravitation, then the combination of this law and the
+force law (second law of motion) would be a complete theory, but there
+is much more than gravitation, and we want to use Newton’s
+laws in many different situations.
+Therefore in order to proceed we have to tell something about the
+properties of force.
+</p>
+</div>
+<div id="Ch12-S1-p5" class="para">
+<p class="p">For example, in dealing with force the tacit assumption is always made
+that the force is equal to zero unless some physical body is present,
+that if we find a force that is not equal to zero we also find
+something in the neighborhood that is a source of the force. This
+assumption is entirely different from the case of the “gorce” that
+we introduced above. One of the most important characteristics of
+force is that it has a material origin, and this is <em class="emph">not</em> just a
+definition.</p>
+</div>
+<div id="Ch12-S1-p6" class="para">
+<p class="p">Newton also gave one rule about the
+force: that the forces between interacting bodies are equal and
+opposite—action equals reaction; that rule, it turns out, is not
+exactly true. In fact, the law $F=ma$ is not exactly true; if it were a
+definition we should have to say that it is <em class="emph">always</em> exactly true;
+but it is not.</p>
+</div>
+<div id="Ch12-S1-p7" class="para">
+<p class="p">The student may object, “I do not like this imprecision, I should
+like to have everything defined exactly; in fact, it says in some
+books that any science is an exact subject, in which <em class="emph">everything</em>
+is defined.”  If you insist upon a precise definition of force, you
+will never get it! First, because Newton’s Second Law is not exact,
+and second, because in order to understand physical laws you must
+understand that they are all some kind of approximation.</p>
+</div>
+<div id="Ch12-S1-p8" class="para">
+<p class="p">Any simple idea is approximate; as an illustration, consider an
+object, … what <i>is</i> an object? Philosophers are always saying,
+“Well, just take a chair for example.” The moment they say that, you
+know that they do not know what they are talking about any more. What
+<em class="emph">is</em> a chair? Well, a chair is a certain thing over there
+… certain?, how certain? The atoms are evaporating from it from
+time to time—not many atoms, but a few—dirt falls on it and gets
+dissolved in the paint; so to define a chair precisely, to say exactly
+which atoms are chair, and which atoms are air, or which atoms are
+dirt, or which atoms are paint that belongs to the chair is
+impossible. So the mass of a chair can be defined only
+approximately. In the same way, to define the mass of a single object
+is impossible, because there are not any single, left-alone objects in
+the world—every object is a mixture of a lot of things, so we can
+deal with it only as a series of approximations and idealizations.</p>
+</div>
+<div id="Ch12-S1-p9" class="para">
+<p class="p">The trick is the idealizations. To an excellent approximation of
+perhaps one part in $10^{10}$, the number of atoms in the chair does
+not change in a minute, and if we are not too precise we may idealize
+the chair as a definite thing; in the same way we shall learn about
+the characteristics of force, in an ideal fashion, if we are not too
+precise. One may be dissatisfied with the approximate view of nature
+that physics tries to obtain (the attempt is always to increase the
+accuracy of the approximation), and may prefer a mathematical
+definition; but mathematical definitions can never work in the real
+world. A mathematical definition will be good for mathematics, in
+which all the logic can be followed out completely, but the physical
+world is complex, as we have indicated in a number of examples, such
+as those of the ocean waves and a glass of wine. When we try to
+isolate pieces of it, to talk about one mass, the wine and the glass,
+how can we know which is which, when one dissolves in the other? The
+forces on a single thing already involve approximation, and if we have
+a system of discourse about the real world, then that system, at least
+for the present day, must involve approximations of some kind.</p>
+</div>
+<div id="Ch12-S1-p10" class="para">
+<p class="p">This system is quite unlike the case of mathematics, in which everything
+can be defined, and then we do not <em class="emph">know</em> what we are talking
+about. In fact, the glory of mathematics is that <em class="emph">we do not have to
+say what we are talking about</em>. The glory is that the laws, the
+arguments, and the logic are independent of what “it” is. If we have
+any other set of objects that obey the same system of axioms as Euclid’s
+geometry, then if we make new definitions and
+follow them out with correct logic, all the consequences will be
+correct, and it makes no difference what the subject was. In nature,
+however, when we draw a line or establish a line by using a light beam
+and a theodolite, as we do in surveying, are we measuring a line in the
+sense of Euclid? No, we are making an
+approximation; the cross hair has some width, but a geometrical line has
+no width, and so, whether Euclidean geometry can be used for
+surveying or not is a physical question, not a mathematical question.
+However, from an experimental standpoint, not a mathematical standpoint,
+we need to know whether the laws of Euclid apply to the kind of geometry that we use in measuring land; so we
+make a hypothesis that it does, and it works pretty well; but it is not
+precise, because our surveying lines are not really geometrical lines.
+Whether or not those lines of Euclid,
+which are really abstract, apply to the lines of experience is a
+question for experience; it is not a question that can be answered by
+sheer reason.</p>
+</div>
+<div id="Ch12-S1-p11" class="para">
+<p class="p">In the same way, we cannot just call $F=ma$ a definition, deduce
+everything purely mathematically, and make mechanics a mathematical
+theory, when mechanics is a description of nature. By establishing
+suitable postulates it is always possible to make a system of
+mathematics, just as Euclid did, but we
+cannot make a mathematics of the world, because sooner or later we have
+to find out whether the axioms are valid for the objects of nature. Thus
+we immediately get involved with these complicated and “dirty” objects
+of nature, but with approximations ever increasing in accuracy.</p>
+</div>
+</div>
+<div id="Ch12-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">12–2</span>Friction</h3>
+<div id="Ch12-S2-p1" class="para">
+<p class="p">The foregoing considerations show that a true understanding of
+Newton’s laws requires a discussion
+of forces, and it is the purpose of this chapter to introduce such a
+discussion, as a kind of completion of Newton’s
+laws. We have already studied the
+definitions of acceleration and related ideas, but now we have to study
+the properties of force, and this chapter, unlike the previous chapters,
+will not be very precise, because forces are quite complicated.
+</p>
+</div>
+<div id="Ch12-S2-p2" class="para">
+<p class="p">To begin with a particular force, let us consider the drag on an
+airplane flying through the air. What is the law for that force?
+(Surely there is a law for every force, we <em class="emph">must</em> have a law!)
+One can hardly think that the law for that force will be simple. Try
+to imagine what makes a drag on an airplane flying through the
+air—the air rushing over the wings, the swirling in the back, the
+changes going on around the fuselage, and many other complications,
+and you see that there is not going to be a simple law. On the other
+hand, it is a remarkable fact that the drag force on an airplane is
+approximately a constant times the square of the velocity, or $F\approx
+cv^2$.</p>
+</div>
+<div id="Ch12-S2-p3" class="para">
+<p class="p">Now what is the status of such a law, is it analogous to $F=ma$? Not at
+all, because in the first place this law is an empirical thing that is
+obtained roughly by tests in a wind tunnel. You say, “Well $F=ma$ might
+be empirical too.” That is not the reason that there is a difference.
+The difference is not that it is empirical, but that, as we understand
+nature, this law is the result of an enormous complexity of events and
+is not, fundamentally, a simple thing. If we continue to study it more
+and more, measuring more and more accurately, the law will continue to
+become <em class="emph">more</em> complicated, not <em class="emph">less</em>. In other words, as we
+study this law of the drag on an airplane more and more closely, we find
+out that it is “falser” and “falser,” and the more deeply we study
+it, and the more accurately we measure, the more complicated the truth
+becomes; so in that sense we consider it not to result from a simple,
+fundamental process, which agrees with our original surmise. For
+example, if the velocity is extremely low, so low that an ordinary
+airplane is not flying, as when the airplane is dragged slowly through
+the air, then the law changes, and the drag friction depends more nearly
+linearly on the velocity. To take another example, the frictional drag
+on a ball or a bubble or anything that is moving slowly through a
+viscous liquid like honey, is proportional to the velocity, but for
+motion so fast that the fluid swirls around (honey does not but water
+and air do) then the drag becomes more nearly proportional to the square
+of the velocity ($F=cv^2$), and if the velocity continues to increase,
+then even this law begins to fail. People who say, “Well the
+coefficient changes slightly,” are dodging the issue. Second, there are
+other great complications: can this force on the airplane be divided or
+analyzed as a force on the wings, a force on the front, and so on?
+Indeed, this can be done, if we are concerned about the torques here and
+there, but then we have to get special laws for the force on the wings,
+and so on. It is an amazing fact that the force on a wing depends upon
+the other wing: in other words, if we take the airplane apart and put
+just one wing in the air, then the force is not the same as if the rest
+of the plane were there. The reason, of course, is that some of the wind
+that hits the front goes around to the wings and changes the force on
+the wings. It seems a miracle that there is such a simple, rough,
+empirical law that can be used in the design of airplanes, but this law
+is not in the same class as the <em class="emph">basic</em> laws of physics, and
+further study of it will only make it more and more complicated. A study
+of how the coefficient $c$ depends on the shape of the front of the
+airplane is, to put it mildly, frustrating. There just is no simple law
+for determining the coefficient in terms of the shape of the airplane.
+In contrast, the law of gravitation is simple, and further study only
+indicates its greater simplicity.</p>
+</div>
+<div id="Ch12-S2-p4" class="para">
+<p class="p">We have just discussed two cases of friction, resulting from fast
+movement in air and slow movement in honey. There is another kind of
+friction, called dry friction or sliding friction, which occurs when
+one solid body slides on another. In this case a force is needed to
+maintain motion. This is called a frictional force, and its origin,
+also, is a very complicated matter. Both surfaces of contact are
+irregular, on an atomic level. There are many points of contact where
+the atoms seem to cling together, and then, as the sliding body is
+pulled along, the atoms snap apart and vibration ensues; something
+like that has to happen. Formerly the mechanism of this friction was
+thought to be very simple, that the surfaces were merely full of
+irregularities and the friction originated in lifting the slider over
+the bumps; but this cannot be, for there is no loss of energy in that
+process, whereas power is in fact consumed. The mechanism of power
+loss is that as the slider snaps over the bumps, the bumps deform and
+then generate waves and atomic motions and, after a while, heat, in
+the two bodies. Now it is very remarkable that again, empirically,
+this friction can be described approximately by a simple law. This law
+is that the force needed to overcome friction and to drag one object
+over another depends upon the normal force (i.e., perpendicular to the
+surface) between the two surfaces that are in contact. Actually, to a
+fairly good approximation, the frictional force is proportional to
+this normal force, and has a more or less constant coefficient; that
+is,
+\begin{equation}
+\label{Eq:I:12:1}
+F=\mu N,
+\end{equation}
+where $\mu$ is called the <em class="emph">coefficient of
+friction</em> (Fig. <a href="#Ch12-F1">12–1</a>). Although this coefficient is not
+exactly constant, the formula is a good empirical rule for judging
+approximately the amount of force that will be needed in certain
+practical or engineering circumstances. If the normal force or the speed
+of motion gets too big, the law fails because of the excessive heat
+generated. It is important to realize that each of these empirical laws
+has its limitations, beyond which it does not really work.</p>
+</div>
+<div id="Ch12-F1" class="figure">
+<img src="img/FLP_I/f12-01/f12-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 12–1.</span>The relation between frictional force and the normal force
+for sliding contact.
+</div>
+</div>
+<div id="Ch12-S2-p5" class="para">
+<p class="p">That the formula $F=\mu N$ is approximately correct can be
+demonstrated by a simple experiment. We set up a plane, inclined at a
+small angle $\theta$, and place a block of weight $W$ on the plane. We
+then tilt the plane at a steeper angle, until the block just begins to
+slide from its own weight. The component of the weight downward along
+the plane is $W\sin\theta$, and this must equal the frictional
+force $F$ when the block is sliding uniformly. The component of the weight
+normal to the plane is $W\cos\theta$, and this is the normal
+force $N$. With these values, the formula becomes $W\sin\theta=\mu
+W\cos\theta$, from which we get
+$\mu=$ $\sin\theta/\cos\theta=$ $\tan\theta$. If this law were exactly true,
+an object would start to slide at some definite inclination. If the
+same block is loaded by putting extra weight on it, then, although $W$
+is increased, all the forces in the formula are increased in the same
+proportion, and $W$ cancels out. If $\mu$ stays constant, the loaded
+block will slide again at the same slope. When the angle $\theta$ is
+determined by trial with the original weight, it is found that with
+the greater weight the block will slide at about the same angle. This
+will be true even when one weight is many times as great as the other,
+and so we conclude that the coefficient of friction is independent of
+the weight.</p>
+</div>
+<div id="Ch12-S2-p6" class="para">
+<p class="p">In performing this experiment it is noticeable that when the plane is
+tilted at about the correct angle $\theta$, the block does not slide
+steadily but in a halting fashion. At one place it may stop, at
+another it may move with acceleration. This behavior indicates that
+the coefficient of friction is only roughly a constant, and varies
+from place to place along the plane. The same erratic behavior is
+observed whether the block is loaded or not. Such variations are
+caused by different degrees of smoothness or hardness of the plane,
+and perhaps dirt, oxides, or other foreign matter. The tables that
+list purported values of $\mu$ for “steel on steel,” “copper on
+copper,” and the like, are all false, because they ignore the factors
+mentioned above, which really determine $\mu$. The friction is never
+due to “copper on copper,” etc., but to the impurities clinging to
+the copper.
+</p>
+</div>
+<div id="Ch12-S2-p7" class="para">
+<p class="p">In experiments of the type described above, the friction is nearly
+independent of the velocity. Many people believe that the friction to
+be overcome to get something started (static friction) exceeds the
+force required to keep it sliding (sliding friction), but with dry
+metals it is very hard to show any difference. The opinion probably
+arises from experiences where small bits of oil or lubricant are
+present, or where blocks, for example, are supported by springs or
+other flexible supports so that they appear to bind.</p>
+</div>
+<div id="Ch12-S2-p8" class="para">
+<p class="p">It is quite difficult to do accurate quantitative experiments in
+friction, and the laws of friction are still not analyzed very well,
+in spite of the enormous engineering value of an accurate
+analysis. Although the law $F=\mu N$ is fairly accurate once the
+surfaces are standardized, the reason for this form of the law is not
+really understood. To show that the coefficient $\mu$ is nearly
+independent of velocity requires some delicate experimentation,
+because the apparent friction is much reduced if the lower surface
+vibrates very fast. When the experiment is done at very high speed,
+care must be taken that the objects do not vibrate relative to one
+another, since apparent decreases of the friction at high speed are
+often due to vibrations. At any rate, this friction law is another of
+those semiempirical laws that are not thoroughly understood, and in
+view of all the work that has been done it is surprising that more
+understanding of this phenomenon has not come about. At the present
+time, in fact, it is impossible even to estimate the coefficient of
+friction between two substances.</p>
+</div>
+<div id="Ch12-S2-p9" class="para">
+<p class="p">It was pointed out above that attempts to measure $\mu$ by sliding
+pure substances such as copper on copper will lead to spurious
+results, because the surfaces in contact are not pure copper, but are
+mixtures of oxides and other impurities. If we try to get absolutely
+pure copper, if we clean and polish the surfaces, outgas the materials
+in a vacuum, and take every conceivable precaution, we still do not
+get $\mu$. For if we tilt the apparatus even to a vertical position,
+the slider will not fall off—the two pieces of copper stick
+together!  The coefficient $\mu$, which is ordinarily less than unity
+for reasonably hard surfaces, becomes several times unity! The reason
+for this unexpected behavior is that when the atoms in contact are all
+of the same kind, there is no way for the atoms to “know” that they
+are in different pieces of copper. When there are other atoms, in the
+oxides and greases and more complicated thin surface layers of
+contaminants in between, the atoms “know” when they are not on the
+same part. When we consider that it is forces between atoms that hold
+the copper together as a solid, it should become clear that it is
+impossible to get the right coefficient of friction for pure metals.</p>
+</div>
+<div id="Ch12-S2-p10" class="para">
+<p class="p">The same phenomenon can be observed in a simple home-made experiment
+with a flat glass plate and a glass tumbler. If the tumbler is placed
+on the plate and pulled along with a loop of string, it slides fairly
+well and one can feel the coefficient of friction; it is a little
+irregular, but it is a coefficient. If we now wet the glass plate and
+the bottom of the tumbler and pull again, we find that it binds, and
+if we look closely we shall find scratches, because the water is able
+to lift the grease and the other contaminants off the surface, and
+then we really have a glass-to-glass contact; this contact is so good
+that it holds tight and resists separation so much that the glass is
+torn apart; that is, it makes scratches.</p>
+</div>
+</div>
+<div id="Ch12-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">12–3</span>Molecular forces</h3>
+<div id="Ch12-F2" class="figure">
+<img src="img/FLP_I/f12-02/f12-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 12–2.</span>The force between two atoms as a function of their distance
+of separation.
+</div>
+</div>
+<div id="Ch12-S3-p1" class="para">
+<p class="p">We shall next discuss the characteristics of molecular forces. These
+are forces between the atoms, and are the ultimate origin of
+friction. Molecular forces have never
+been satisfactorily explained on a basis of classical physics; it takes
+quantum mechanics to understand them fully. Empirically, however, the
+force between atoms is illustrated schematically in
+Fig. <a href="#Ch12-F2">12–2</a>, where the force $F$ between two atoms is plotted
+as a function of the distance $r$ between them. There are different
+cases: in the water molecule, for example, the negative charges sit more
+on the oxygen, and the mean positions of the negative charges and of the
+positive charges are not at the same point; consequently, another
+molecule nearby feels a relatively large force, which is called a
+dipole-dipole force. However, for many systems the charges are very much
+better balanced, in particular for oxygen gas, which is perfectly
+symmetrical. In this case, although the minus charges and the plus
+charges are dispersed over the molecule, the distribution is such that
+the center of the minus charges and the center of the plus charges
+coincide. A molecule where the centers do not coincide is called a polar
+molecule, and charge times the separation between centers is called the
+dipole moment. A
+nonpolar molecule is one in which the centers of the charges coincide.
+For all nonpolar molecules, in which all the electrical forces are
+neutralized, it nevertheless turns out that the force at very large
+distances is an attraction and varies inversely as the seventh power of
+the distance, or $F=k/r^7$, where $k$ is a constant that depends on the
+molecules. Why this is we shall learn only when we learn quantum
+mechanics. When there are dipoles the forces are greater. When atoms or
+molecules get too close they repel with a very large repulsion; that is
+what keeps us from falling through the floor!</p>
+</div>
+<div id="Ch12-S3-p2" class="para">
+<p class="p">These molecular forces can be demonstrated in a fairly direct way: one
+of these is the friction experiment with a sliding glass tumbler;
+another is to take two very carefully ground and lapped surfaces which
+are very accurately flat, so that the surfaces can be brought very
+close together. An example of such surfaces is the Johansson blocks
+that are used in machine shops as standards for making accurate length
+measurements. If one such block is slid over another very carefully
+and the upper one is lifted, the other one will adhere and also be
+lifted by the molecular forces, exemplifying the direct attraction
+between the atoms on one block for the atoms on the other block.</p>
+</div>
+<div id="Ch12-S3-p3" class="para">
+<p class="p">Nevertheless these molecular forces of attraction are still not
+fundamental in the sense that gravitation is fundamental; they are due
+to the vastly complex interactions of all the electrons and nuclei in
+one molecule with all the electrons and nuclei in another. Any
+simple-looking formula we get represents a summation of complications,
+so we still have not got the fundamental phenomena.</p>
+</div>
+<div id="Ch12-S3-p4" class="para">
+<p class="p">Since the molecular forces attract at large distances and repel at
+short distances, as shown in Fig. <a href="#Ch12-F2">12–2</a>, we can make up
+solids in which all the atoms are held together by their attractions
+and held apart by the repulsion that sets in when they are too close
+together. At a certain distance $d$ (where the graph in
+Fig. <a href="#Ch12-F2">12–2</a> crosses the axis) the forces are zero, which means
+that they are all balanced, so that the molecules stay that distance
+apart from one another. If the molecules are pushed closer together than
+the distance $d$ they all show a repulsion, represented by the portion
+of the graph above the $r$-axis. To push the molecules only slightly
+closer together requires a great force, because the molecular repulsion
+rapidly becomes very great at distances less than $d$. If the molecules
+are pulled slightly apart there is a slight attraction, which increases
+as the separation increases. If they are pulled sufficiently hard, they
+will separate permanently—the bond is broken.</p>
+</div>
+<div id="Ch12-S3-p5" class="para">
+<p class="p">If the molecules are pushed only a <em class="emph">very small</em> distance closer, or
+pulled only a <em class="emph">very small</em> distance farther than $d$, the
+corresponding distance along the curve of Fig. <a href="#Ch12-F2">12–2</a> is also
+very small, and can then be approximated by a straight line. Therefore,
+in many circumstances, if the displacement is not too great <em class="emph">the
+force is proportional to the displacement</em>. This principle is known as
+Hooke’s law, or the law of elasticity,
+which says that the force in a body which tries to restore the body to
+its original condition when it is distorted is proportional to the
+distortion. This law, of course, holds true only if the distortion is
+relatively small; when it gets too large the body will be torn apart or
+crushed, depending on the kind of distortion. The amount of force for
+which Hooke’s law is valid depends
+upon the material; for instance, for dough or putty the force is very
+small, but for steel it is relatively large. Hooke’s
+law can be nicely demonstrated with a long
+coil spring, made of steel and suspended vertically. A suitable weight
+hung on the lower end of the spring produces a tiny twist throughout the
+length of the wire, which results in a small vertical deflection in each
+turn and adds up to a large displacement if there are many turns. If the
+total elongation produced, say, by a $100$-gram weight, is measured, it
+is found that additional weights of $100$ grams will each produce an
+additional elongation that is very nearly equal to the stretch that was
+measured for the first $100$ grams. This constant ratio of force to
+displacement begins to change when the spring is overloaded, i.e.,
+Hooke’s law no longer holds.
+</p>
+</div>
+</div>
+<div id="Ch12-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">12–4</span>Fundamental forces. Fields</h3>
+<div id="Ch12-S4-p1" class="para">
+<p class="p">We shall now discuss the only remaining forces that are
+fundamental. We call them fundamental in the sense that their laws are
+fundamentally simple. We shall first discuss electrical force. Objects
+carry electrical charges which consist simply of electrons or
+protons. If any two bodies are electrically charged, there is an
+electrical force between them, and if the magnitudes of the charges
+are $q_1$ and $q_2$, respectively, the force varies inversely as the
+square of the distance between the charges, or $F=(\text{const})
+q_1q_2/r^2$. For unlike charges, this law is like the law of
+gravitation, but for <em class="emph">like</em> charges the force is repulsive and
+the sign (direction) is reversed. The charges $q_1$ and $q_2$ can be
+intrinsically either positive or negative, and in any specific
+application of the formula the direction of the force will come out
+right if the $q$’s are given the proper plus or minus sign; the force
+is directed along the line between the two charges. The constant in
+the formula depends, of course, upon what units are used for the
+force, the charge, and the distance. In current practice the charge is
+measured in coulombs, the distance in meters, and the force in
+newtons. Then, in order to get the force to come out properly in
+newtons, the constant (which for historical reasons is
+written $1/4\pi\epsO$) takes the numerical value
+\begin{equation*}
+\epsO=8.854\times10^{-12}\text{ coul}^2/\text{newton}\cdot\text{m}^2
+\end{equation*}
+or
+\begin{equation*}
+1/4\pi\epsO=8.99\times10^9\text{ N}\cdot\text{m}^2/\text{coul}^2.
+\end{equation*}
+Thus the force law for static charges is
+\begin{equation}
+\label{Eq:I:12:2}
+\FLPF=q_1q_2\FLPr/4\pi\epsO r^3.
+\end{equation}
+In nature, the most important charge of all is the charge on a single
+electron,
+which is $1.60\times10^{-19}$ coulomb. In working with electrical forces
+between fundamental particles rather than with large charges, many
+people prefer the combination $(q_{\text{el}})^2/4\pi\epsO$, in which
+$q_{\text{el}}$ is defined as the charge on an electron. This
+combination occurs frequently, and to simplify calculations it has been
+defined by the symbol $e^2$; its numerical value in the mks system of
+units turns out to be $(1.52\times10^{-14})^2$. The advantage of using
+the constant in this form is that the force between two electrons in
+newtons can then be written simply as $e^2/r^2$, with $r$ in meters,
+without all the individual constants. Electrical forces are much more
+complicated than this simple formula indicates, since the formula gives
+the force between two objects only when the objects are standing still.
+We shall consider the more general case shortly.
+</p>
+</div>
+<div id="Ch12-S4-p2" class="para">
+<p class="p">In the analysis of forces of the more fundamental kinds (not such forces
+as friction, but the electrical force or the gravitational force), an
+interesting and very important concept has been developed. Since at
+first sight the forces are very much more complicated than is indicated
+by the inverse-square laws and these laws hold true only when the
+interacting bodies are standing still, an improved method is needed to
+deal with the very complex forces that ensue when the bodies start to
+move in a complicated way. Experience has shown that an approach known
+as the concept of a “field” is of great utility for the analysis of
+forces of this type. To illustrate the idea for, say, electrical force,
+suppose we have two electrical charges, $q_1$ and $q_2$, located at
+points $P$ and $R$ respectively. Then the force between the charges is
+given by
+\begin{equation}
+\label{Eq:I:12:3}
+\FLPF=q_1q_2\FLPr/4\pi\epsO r^3.
+\end{equation}
+To analyze this force by means of the field concept, we say that the
+charge $q_1$ at $P$ produces a “condition” at $R$, such that when
+the charge $q_2$ is placed at $R$ it “feels” the force. This is one
+way, strange perhaps, of describing it; we say that the force $\FLPF$
+on $q_2$ at $R$ can be written in two parts. It is $q_2$ multiplied by
+a quantity $\FLPE$ that would be there whether $q_2$ were there or not
+(provided we keep all the other charges in their right
+places). $\FLPE$ is the “condition” produced by $q_1$, we say,
+and $\FLPF$ is the response of $q_2$ to $\FLPE$. $\FLPE$ is called an
+<em class="emph">electric field</em>, and it is a vector. The formula for the
+electric field $\FLPE$ that is produced at $R$ by a charge $q_1$
+at $P$ is the charge $q_1$ times the constant $1/4\pi\epsO$ divided
+by $r^2$ ($r$ is the distance from $P$ to $R$), and it is acting in the
+direction of the radius vector (the radius vector $\FLPr$ divided by
+its own length). The expression for $\FLPE$ is thus
+\begin{equation}
+\label{Eq:I:12:4}
+\FLPE=q_1\FLPr/4\pi\epsO r^3.
+\end{equation}
+We then write
+\begin{equation}
+\label{Eq:I:12:5}
+\FLPF=q_2\,\FLPE,
+\end{equation}
+which expresses the force, the field, and the charge in the
+field. What is the point of all this? The point is to divide the
+analysis into two parts. One part says that something <em class="emph">produces</em>
+a field. The other part says that something is <em class="emph">acted on</em> by the
+field. By allowing us to look at the two parts independently, this
+separation of the analysis simplifies the calculation of a problem in
+many situations. If many charges are present, we first work out the
+total electric field produced at $R$ by all the charges, and then,
+knowing the charge that is placed at $R$, we find the force on it.</p>
+</div>
+<div id="Ch12-S4-p3" class="para">
+<p class="p">In the case of gravitation, we can do exactly the same thing. In this
+case, where the force $\FLPF=-Gm_1m_2\FLPr/r^3$, we can make an
+analogous analysis, as follows: the force on a body in a gravitational
+field is the mass of that body times the field $\FLPC$. The force
+on $m_2$ is the mass $m_2$ times the field $\FLPC$ produced by $m_1$;
+that is, $\FLPF=m_2\FLPC$. Then the field $\FLPC$ produced by a body
+of mass $m_1$ is $\FLPC=-Gm_1\FLPr/r^3$ and it is directed radially,
+as in the electrical case.</p>
+</div>
+<div id="Ch12-S4-p4" class="para">
+<p class="p">In spite of how it might at first seem, this separation of one part
+from another is not a triviality. It would be trivial, just another
+way of writing the same thing, if the laws of force were simple, but
+the laws of force are so complicated that it turns out that the fields
+have a reality that is almost independent of the objects which create
+them. One can do something like shake a charge and produce an effect,
+a field, at a distance; if one then stops moving the charge, the field
+keeps track of all the past, because the interaction between two
+particles is not instantaneous. It is desirable to have some way to
+remember what happened previously. If the force upon some charge
+depends upon where another charge was yesterday, which it does, then
+we need machinery to keep track of what went on yesterday, and that is
+the character of a field. So when the forces get more complicated, the
+field becomes more and more real, and this technique becomes less and
+less of an artificial separation.</p>
+</div>
+<div id="Ch12-S4-p5" class="para">
+<p class="p">In analyzing forces by the use of fields, we need two kinds of laws
+pertaining to fields. The first is the response to a field, and that
+gives the equations of motion. For example, the law of response of a
+mass to a gravitational field is that the force is equal to the mass
+times the gravitational field; or, if there is also a charge on the
+body, the response of the charge to the electric field equals the
+charge times the electric field. The second part of the analysis of
+nature in these situations is to formulate the laws which determine
+the strength of the field and how it is produced. These laws are
+sometimes called the <em class="emph">field equations</em>. We shall learn more about
+them in due time, but shall write down a few things about them now.</p>
+</div>
+<div id="Ch12-S4-p6" class="para">
+<p class="p">First, the most remarkable fact of all, which is true exactly and
+which can be easily understood, is that the total electric field
+produced by a number of sources is the vector sum of the electric
+fields produced by the first source, the second source, and so on. In
+other words, if we have numerous charges making a field, and if all by
+itself one of them would make the field $\FLPE_1$, another would make
+the field $\FLPE_2$, and so on, then we merely add the vectors to get
+the total field. This principle can be expressed as
+\begin{equation}
+\label{Eq:I:12:6}
+\FLPE=\FLPE_1+\FLPE_2+\FLPE_3+\dotsb
+\end{equation}
+or, in view of the definition given above,
+\begin{equation}
+\label{Eq:I:12:7}
+\FLPE=\sum_i\frac{q_i\FLPr_i}{4\pi\epsO r_i^3}.
+\end{equation}</p>
+</div>
+<div id="Ch12-S4-p7" class="para">
+<p class="p">Can the same methods be applied to gravitation? The force between two
+masses $m_1$ and $m_2$ was expressed by
+Newton
+as $\FLPF=-Gm_1m_2\FLPr/r^3$. But according to the field concept, we may
+say that $m_1$ creates a field $\FLPC$ in all the surrounding space,
+such that the force on $m_2$ is given by
+\begin{equation}
+\label{Eq:I:12:8}
+\FLPF=m_2\FLPC.
+\end{equation}
+By complete analogy with the electrical case,
+\begin{equation}
+\label{Eq:I:12:9}
+\FLPC_i=-Gm_i\FLPr_i/r_i^3
+\end{equation}
+and the gravitational field produced by several masses is
+\begin{equation}
+\label{Eq:I:12:10}
+\FLPC=\FLPC_1+\FLPC_2+\FLPC_3+\dotsb
+\end{equation}
+In Chapter <a href="I_09.html">9</a>, in working out a case of planetary motion,
+we used this principle in essence. We simply added all the force
+vectors to get the resultant force on a planet. If we divide out the
+mass of the planet in question, we get Eq. (<a href="#mjx-eqn-EqI1210">12.10</a>).</p>
+</div>
+<div id="Ch12-S4-p8" class="para">
+<p class="p">Equations (<a href="#mjx-eqn-EqI126">12.6</a>) and (<a href="#mjx-eqn-EqI1210">12.10</a>) express what is known
+as <em class="emph">the principle of superposition</em> of fields. This principle
+states that the total field due to all the sources is the sum of the
+fields due to each source. So far as we know today, for electricity this
+is an absolutely guaranteed law, which is true even when the force law
+is complicated because of the motions of the charges. There are apparent
+violations, but more careful analysis has always shown these to be due
+to the overlooking of certain moving charges. However, although the
+principle of superposition applies exactly for electrical forces, it is
+not exact for gravity if the field is too strong, and Newton’s
+equation (<a href="#mjx-eqn-EqI1210">12.10</a>) is only approximate, according to
+Einstein’s gravitational
+theory.</p>
+</div>
+<div id="Ch12-S4-p9" class="para">
+<p class="p">Closely related to electrical force is another kind, called magnetic
+force, and this too is analyzed in terms of a field. Some of the
+qualitative relations between electrical and magnetic forces can be
+illustrated by an experiment with an electron-ray tube
+(Fig. <a href="#Ch12-F3">12–3</a>). At one end of such a tube is a source that
+emits a stream of electrons. Within the tube are arrangements for
+accelerating the electrons to a high speed and sending some of them in a
+narrow beam to a fluorescent screen at the other end of the tube. A spot
+of light glows in the center of the screen where the electrons strike,
+and this enables us to trace the electron path. On the way to the screen
+the electron beam passes through a narrow space between a pair of
+parallel metal plates, which are arranged, say, horizontally. A voltage
+can be applied across the plates, so that either plate can be made
+negative at will. When such a voltage is present, there is an electric
+field between the plates.</p>
+</div>
+<div id="Ch12-F3" class="figure">
+<img src="img/FLP_I/f12-03/f12-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 12–3.</span>An electron-beam tube.
+</div>
+</div>
+<div id="Ch12-S4-p10" class="para">
+<p class="p">The first part of the experiment is to apply a negative voltage to the
+lower plate, which means that extra electrons have been placed on the
+lower plate. Since like charges repel, the light spot on the screen
+instantly shifts upward. (We could also say this in another way—that
+the electrons “felt” the field, and responded by deflecting upward.)
+We next reverse the voltage, making the <em class="emph">upper</em> plate
+negative. The light spot on the screen now jumps below the center,
+showing that the electrons in the beam were repelled by those in the
+plate above them. (Or we could say again that the electrons had
+“responded” to the field, which is now in the reverse direction.)</p>
+</div>
+<div id="Ch12-S4-p11" class="para">
+<p class="p">The second part of the experiment is to disconnect the voltage from
+the plates and test the effect of a magnetic field on the electron
+beam. This is done by means of a horseshoe magnet, whose poles are far
+enough apart to more or less straddle the tube. Suppose we hold the
+magnet below the tube in the same orientation as the letter U, with
+its poles up and part of the tube in between. We note that the light
+spot is deflected, say, upward, as the magnet approaches the tube from
+below. So it appears that the magnet repels the electron
+beam. However, it is not that simple, for if we invert the magnet
+without reversing the poles side-for-side, and now approach the tube
+from above, the spot still moves <em class="emph">upward</em>, so the electron beam
+is <em class="emph">not</em> repelled; instead, it appears to be attracted this
+time. Now we start again, restoring the magnet to its original U
+orientation and holding it below the tube, as before. Yes, the spot is
+still deflected upward; but now turn the magnet $180$ degrees around a
+vertical axis, so that it is still in the U position but the poles are
+reversed side-for-side. Behold, the spot now jumps downward, and stays
+down, even if we invert the magnet and approach from above, as before.</p>
+</div>
+<div id="Ch12-S4-p12" class="para">
+<p class="p">To understand this peculiar behavior, we have to have a new
+combination of forces. We explain it thus: Across the magnet from one
+pole to the other there is a <em class="emph">magnetic field</em>. This field has a
+direction which is always away from one particular pole (which we
+could mark) and toward the other. Inverting the magnet did not change
+the direction of the field, but reversing the poles side-for-side did
+reverse its direction. For example, if the electron velocity were
+horizontal in the $x$-direction and the magnetic field were also
+horizontal but in the $y$-direction, the magnetic force <em class="emph">on the
+moving electrons</em> would be in the $z$-direction, i.e., up or down,
+depending on whether the field was in the positive or negative
+$y$-direction.</p>
+</div>
+<div id="Ch12-S4-p13" class="para">
+<p class="p">Although we shall not at the present time give the correct law of
+force between charges moving in an arbitrary manner, one relative to
+the other, because it is too complicated, we shall give one aspect of
+it: the complete law of the forces <em class="emph">if the fields are known</em>. The
+force on a charged object depends upon its motion; if, when the object
+is standing still at a given place, there is some force, this is taken
+to be proportional to the charge, the coefficient being what we call
+the <em class="emph">electric field</em>.  When the object moves the force may be
+different, and the correction, the new “piece” of force, turns out
+to be dependent exactly <em class="emph">linearly on the velocity</em>, but at
+<em class="emph">right angles</em> to $\FLPv$ and to another vector quantity which we
+call the <em class="emph">magnetic induction</em> $\FLPB$. If
+the components of the electric field $\FLPE$ and the magnetic
+induction $\FLPB$ are, respectively, $(E_x,E_y,E_z)$
+and ($B_x,B_y,B_z)$, and if the velocity $\FLPv$ has the
+components ($v_x,v_y,v_z)$, then the total electric and magnetic force
+on a moving charge $q$ has the components
+\begin{equation}
+\label{Eq:I:12:11}
+\begin{alignedat}{7}
+&F_x&&=q(E_x&&+v_y&&B_z&&-v_z&&B_y&&),\\[.5ex]
+&F_y&&=q(E_y&&+v_z&&B_x&&-v_x&&B_z&&),\\[.5ex]
+&F_z&&=q(E_z&&+v_x&&B_y&&-v_y&&B_x&&).
+\end{alignedat}
+\end{equation}
+If, for instance, the only component of the magnetic field were $B_y$
+and the only component of the velocity were $v_x$, then the only term
+left in the magnetic force would be a force in the $z$-direction, at
+right angles to both $\FLPB$ and $\FLPv$.</p>
+</div>
+</div>
+<div id="Ch12-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">12–5</span>Pseudo forces</h3>
+<div id="Ch12-S5-p1" class="para">
+<p class="p">The next kind of force we shall discuss might be called a pseudo
+force. In Chapter <a href="I_11.html">11</a> we discussed the relationship between
+two people, Joe and Moe, who use different coordinate systems. Let us
+suppose that the positions of a particle as measured by Joe are $x$
+and by Moe are $x'$; then the laws are as follows:
+\begin{equation*}
+x=x'+s,\quad
+y=y',\quad
+z=z',
+\end{equation*}
+where $s$ is the displacement of Moe’s system relative to Joe’s. If we
+suppose that the laws of motion are correct for Joe, how do they look
+for Moe? We find first, that
+\begin{equation*}
+dx/dt=dx'/dt+ds/dt.
+\end{equation*}
+Previously, we considered the case where $s$ was constant, and we
+found that $s$ made no difference in the laws of motion, since $ds/dt
+= 0$; ultimately, therefore, the laws of physics were the same in both
+systems. But another case we can take is that $s = ut$, where $u$ is a
+uniform velocity in a straight line. Then $s$ is not constant, and
+$ds/dt$ is not zero, but is $u$, a constant. However, the
+acceleration $d^2x/dt^2$ is still the same as $d^2x'/dt^2$, because $du/dt =
+0$. This proves the law that we used in Chapter <a href="I_10.html">10</a>,
+namely, that if we move in a straight line with uniform velocity the
+laws of physics will look the same to us as when we are standing
+still. That is the Galilean
+transformation. But we wish to
+discuss the interesting case where $s$ is still more complicated, say $s
+= at^2/2$. Then $ds/dt = at$ and $d^2s/dt^2 = a$, a uniform
+acceleration; or in a still more complicated case, the acceleration
+might be a function of time. This means that although the laws of motion
+from the point of view of Joe would look like
+\begin{equation*}
+m\,\frac{d^2x}{dt^2}=F_x,
+\end{equation*}
+
+the laws of motion as looked upon by Moe would appear as
+\begin{equation*}
+m\,\frac{d^2x'}{dt^2}=F_{x'}=F_x-ma.
+\end{equation*}
+That is, since Moe’s coordinate system is accelerating with respect to
+Joe’s, the extra term $ma$ comes in, and Moe will have to correct his
+forces by that amount in order to get Newton’s laws to work. In other
+words, here is an apparent, mysterious new force of unknown origin
+which arises, of course, because Moe has the wrong coordinate
+system. This is an example of a pseudo force; other examples occur in
+coordinate systems that are <em class="emph">rotating</em>.
+</p>
+</div>
+<div id="Ch12-S5-p2" class="para">
+<p class="p">Another example of pseudo force is what is often called “centrifugal
+force.”
+An observer in a rotating coordinate system, e.g., in a
+rotating box, will find mysterious forces, not accounted for by any
+known origin of force, throwing things outward toward the walls. These
+forces are due merely to the fact that the observer does not have
+Newton’s coordinate system, which is the simplest coordinate system.
+</p>
+</div>
+<div id="Ch12-S5-p3" class="para">
+<p class="p">Pseudo force can be illustrated by an interesting experiment in which
+we push a jar of water along a table, with acceleration. Gravity, of
+course, acts downward on the water, but because of the horizontal
+acceleration there is also a pseudo force acting horizontally and in a
+direction opposite to the acceleration. The resultant of gravity and
+pseudo force makes an angle with the vertical, and during the
+acceleration the surface of the water will be perpendicular to the
+resultant force, i.e., inclined at an angle with the table, with the
+water standing higher in the rearward side of the jar. When the push
+on the jar stops and the jar decelerates because of friction, the
+pseudo force is reversed, and the water stands higher in the forward
+side of the jar (Fig. <a href="#Ch12-F4">12–4</a>).</p>
+</div>
+<div id="Ch12-F4" class="figure">
+<img src="img/FLP_I/f12-04/f12-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 12–4.</span>Illustration of a pseudo force.
+</div>
+</div>
+<div id="Ch12-S5-p4" class="para">
+<p class="p">One very important feature of pseudo forces is that they are always
+proportional to the masses; the same is true of gravity. The
+possibility exists, therefore, that <em class="emph">gravity itself is a pseudo
+force</em>. Is it not possible that perhaps gravitation is due simply to
+the fact that we do not have the right coordinate system? After all,
+we can always get a force proportional to the mass if we imagine that
+a body is accelerating. For instance, a man shut up in a box that is
+standing still on the earth finds himself held to the floor of the box
+with a certain force that is proportional to his mass. But if there
+were no earth at all and the box were standing still, the man inside
+would float in space. On the other hand, if there were no earth at all
+and something were <em class="emph">pulling</em> the box along with an
+acceleration $g$, then the man in the box, analyzing physics, would find a pseudo
+force which would pull him to the floor, just as gravity does.</p>
+</div>
+<div id="Ch12-S5-p5" class="para">
+<p class="p">Einstein put forward the famous hypothesis that accelerations give an
+imitation of gravitation, that the forces of acceleration (the pseudo
+forces) <em class="emph">cannot be distinguished</em> from those of gravity; it is not
+possible to tell how much of a given force is gravity and how much is
+pseudo force.</p>
+</div>
+<div id="Ch12-S5-p6" class="para">
+<p class="p">It might seem all right to consider gravity to be a pseudo force, to say
+that we are all held down because we are accelerating upward, but how
+about the people in Madagascar, on the other side of the earth—are
+they accelerating too? Einstein found that gravity could be considered a
+pseudo force only at one point at a time, and was led by his
+considerations to suggest that the <em class="emph">geometry of the world</em> is more
+complicated than ordinary Euclidean geometry. The present
+discussion is only qualitative, and does not pretend to convey anything
+more than the general idea. To give a rough idea of how gravitation
+could be the result of pseudo forces, we present an illustration which
+is purely geometrical and does not represent the real situation. Suppose
+that we all lived in two dimensions, and knew nothing of a third. We
+think we are on a plane, but suppose we are really on the surface of a
+sphere. And suppose that we shoot an object along the ground, with no
+forces on it. Where will it go? It will appear to go in a straight line,
+but it has to remain on the surface of a sphere, where the shortest
+distance between two points is along a great circle; so it goes along a
+great circle. If we shoot another object similarly, but in another
+direction, it goes along another great circle. Because we think we are
+on a plane, we expect that these two bodies will continue to diverge
+linearly with time, but careful observation will show that if they go
+far enough they move closer together again, as though they were
+attracting each other. But they are <em class="emph">not</em> attracting each
+other—there is just something “weird” about this geometry. This
+particular illustration does not describe correctly the way in which
+Einstein’s geometry is “weird,” but it illustrates that if we distort
+the geometry sufficiently it is possible that all gravitation is related
+in some way to pseudo forces; that is the general idea of the
+Einsteinian theory of gravitation.</p>
+</div>
+</div>
+<div id="Ch12-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">12–6</span>Nuclear forces</h3>
+<div id="Ch12-S6-p1" class="para">
+<p class="p">We conclude this chapter with a brief discussion of the only other
+known forces, which are called <em class="emph">nuclear forces</em>. These forces are
+within the nuclei of atoms, and although they are much discussed, no
+one has ever calculated the force between two nuclei, and indeed at
+present there is no known law for nuclear forces. These forces have a
+very tiny range which is just about the same as the size of the
+nucleus, perhaps $10^{-13}$ centimeter. With particles so small and at
+such a tiny distance, only the quantum-mechanical laws are valid, not
+the Newtonian laws. In nuclear analysis we no
+longer think in terms of forces, and in fact we can replace the force
+concept with a concept of the energy of interaction of two particles, a
+subject that will be discussed later. Any formula that can be written
+for nuclear forces is a rather crude approximation which omits many
+complications; one might be somewhat as follows: forces within a nucleus
+do not vary inversely as the square of the distance, but die off
+exponentially over a certain distance $r$, as expressed
+by $F=(1/r^2)\exp(-r/r_0)$, where the distance $r_0$ is of the order of
+$10^{-13}$ centimeter. In other words, the forces disappear as soon as
+the particles are any great distance apart, although they are very
+strong within the $10^{-13}$ centimeter range. So far as they are
+understood today, the laws of nuclear force are very complex; we do not
+understand them in any simple way, and the whole problem of analyzing
+the fundamental machinery behind nuclear forces is unsolved. Attempts at
+a solution have led to the discovery of numerous strange particles, the
+$\pi$-mesons, for example, but the origin of these forces remains
+obscure.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

@@ -1,0 +1,2868 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 11: More Two-State Systems</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "11." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], Kplus: ["\\text{K}^+", 0], Kminus: ["\\text{K}^-", 0], Kstar: ["\\text{K}^*", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+
+<div id="Ch11" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">11</span>More Two-State Systems</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Review:</i>
+		</td>
+		<td>	
+		Chapter&nbsp;<a href="I_33.html">33</a>, Vol. I, <i>Polarization</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch11-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">11–1</span>The Pauli spin matrices</h3>
+
+<div id="Ch11-S1-p1" class="para">
+<p class="p">We continue our discussion of two-state systems. At the end
+of the last chapter we were talking about a spin one-half particle in a
+magnetic field. We described the spin state by giving the
+amplitude $C_1$ that the $z$-component of spin angular momentum
+is $+\hbar/2$ and the amplitude $C_2$ that it is $-\hbar/2$. In earlier
+chapters we have called these base states $\ket{+}$ and $\ket{-}$. We
+will now go back to that notation, although we may occasionally find it
+convenient to use $\ket{+}$ or $\ket{\slOne}$, and $\ket{-}$
+or $\ket{\slTwo}$, interchangeably.
+</p>
+</div>
+
+<div id="Ch11-S1-p2" class="para">
+<p class="p">We saw in the last chapter that when a spin one-half particle with a
+magnetic moment $\mu$ is in a magnetic field $\FLPB=(B_x,B_y,B_z)$,
+the amplitudes $C_+$ ($=C_1$) and $C_-$ ($=C_2$) are connected by the
+following differential equations:
+\begin{equation}
+\begin{aligned}
+i\hbar\,\ddt{C_+}{t}&=-\mu[B_zC_+\!+(B_x\!-iB_y)C_-],\\[2ex]
+i\hbar\,\ddt{C_-}{t}&=-\mu[(B_x\!+iB_y)C_+\!-\!B_zC_-].
+\end{aligned}
+\label{Eq:III:11:1}
+\end{equation}
+In other words, the Hamiltonian matrix $H_{ij}$ is
+\begin{equation}
+\begin{alignedat}{2}
+H_{11}&=\!-\mu B_z,&\quad
+H_{12}&=\!-\mu(B_x\!-iB_y),\\[1ex]
+H_{21}&=\!-\mu(B_x\!+iB_y),&\quad
+H_{22}&=\!+\mu B_z.
+\end{alignedat}
+\label{Eq:III:11:2}
+\end{equation}
+And Eqs. (<a href="#mjx-eqn-EqIII111">11.1</a>) are, of course, the same as
+\begin{equation}
+\label{Eq:III:11:3}
+i\hbar\,\ddt{C_i}{t}=\sum_jH_{ij}C_{j},
+\end{equation}
+where $i$ and $j$ take on the values $+$ and $-$ (or $1$ and $2$).
+</p>
+</div>
+
+<div id="Ch11-S1-p3" class="para">
+<p class="p">The two-state system of the electron spin is so important that it is
+very useful to have a neater way of writing things. We will now make a
+little mathematical digression to show you how people usually write
+the equations of a two-state system. It is done this way: First, note
+that each term in the Hamiltonian is proportional to $\mu$ and to some
+component of $\FLPB$; we can then—<em class="emph">purely formally</em>—write
+that
+\begin{equation}
+\label{Eq:III:11:4}
+H_{ij}=-\mu[\sigma_{ij}^xB_x+\sigma_{ij}^yB_y+\sigma_{ij}^zB_z].
+\end{equation}
+There is no new physics here; this equation just means that the
+coefficients $\sigma_{ij}^x$, $\sigma_{ij}^y$,
+and $\sigma_{ij}^z$—there are $4\times3=12$ of them—can be figured out
+so that (<a href="#mjx-eqn-EqIII114">11.4</a>) is identical with (<a href="#mjx-eqn-EqIII112">11.2</a>).
+</p>
+</div>
+
+<div id="Ch11-S1-p4" class="para">
+<p class="p">Let’s see what they have to be. We start with $B_z$. Since $B_z$ appears
+only in $H_{11}$ and $H_{22}$, everything will be O.K. if
+\begin{alignat*}{2}
+\sigma_{11}^z&=1,&\quad
+\sigma_{12}^z&=0,\\[2ex]
+\sigma_{21}^z&=0,&\quad
+\sigma_{22}^z&=-1.
+\end{alignat*}
+We often write the matrix $H_{ij}$ as a little table like this:
+\begin{equation*}
+H_{ij}=
+\!\!\!\raise 10 pt {\scriptstyle i\downarrow \,\raise 10 pt \scriptstyle j\rightarrow}\kern -13pt % ebook remove
+% ebook insert: \raise{12pt}{\scriptstyle i\downarrow \,\raise{16pt}{\scriptstyle j\rightarrow}\kern -20pt}}
+\begin{pmatrix}
+H_{11} & H_{12}\\[1ex]
+H_{21} & H_{22}
+\end{pmatrix}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch11-S1-p5" class="para">
+<p class="p">For the Hamiltonian of a spin one-half particle in the magnetic
+field $B_z$, this is the same as
+\begin{equation*}
+H_{ij}=
+\!\!\!\raise 12 pt {\scriptstyle i\downarrow \,\raise 7 pt \scriptstyle j\rightarrow}\kern -13pt % ebook remove
+% ebook insert: \raise{12pt}{\scriptstyle i\downarrow \,\raise{16pt}{\scriptstyle j\rightarrow}\kern -20pt}
+\begin{pmatrix}
+-\mu B_z & -\mu(B_x-iB_y)\\[1ex]
+-\mu(B_x+iB_y) & +\mu B_z
+\end{pmatrix}.
+\end{equation*}
+In the same way, we can write the coefficients $\sigma_{ij}^z$ as the matrix
+\begin{equation}
+\label{Eq:III:11:5}
+\sigma_{ij}^z=
+\raise 10 pt {\scriptstyle i\downarrow \,\raise 7 pt \scriptstyle j\rightarrow}\kern -13pt % ebook remove
+% ebook insert: \raise{12pt}{\scriptstyle i\downarrow \,\raise{12pt}{\scriptstyle j\rightarrow}\kern -20pt}
+\begin{pmatrix}
+1 & \phantom{-}0\\
+0 & -1
+\end{pmatrix}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch11-S1-p6" class="para">
+<p class="p">Working with the coefficients of $B_x$, we get that the terms
+of $\sigma_x$ have to be
+\begin{equation*}
+\begin{alignedat}{2}
+\sigma_{11}^x&=0,&\quad
+\sigma_{12}^x&=1,\\[2ex]
+\sigma_{21}^x&=1,&\quad
+\sigma_{22}^x&=0.
+\end{alignedat}
+\end{equation*}
+Or, in shorthand,
+\begin{equation}
+\label{Eq:III:11:6}
+\sigma_{ij}^x=
+\begin{pmatrix}
+0 & 1\\
+1 & 0
+\end{pmatrix}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch11-S1-p7" class="para">
+<p class="p">Finally, looking at $B_y$, we get
+\begin{equation*}
+\begin{alignedat}{2}
+\sigma_{11}^y&=0,&\quad
+\sigma_{12}^y&=-i,\\[2ex]
+\sigma_{21}^y&=i,&\quad
+\sigma_{22}^y&=0;
+\end{alignedat}
+\end{equation*}
+or
+\begin{equation}
+\label{Eq:III:11:7}
+\sigma_{ij}^y=
+\begin{pmatrix}
+0 & -i\\
+i & \phantom{-}0
+\end{pmatrix}.
+\end{equation}
+With these three sigma matrices, Eqs.
+(<a href="#mjx-eqn-EqIII112">11.2</a>) and (<a href="#mjx-eqn-EqIII114">11.4</a>) are identical. To leave room
+for the subscripts $i$ and $j$, we have shown which $\sigma$ goes with
+which component of $\FLPB$ by putting $x$, $y$, and $z$ as superscripts.
+Usually, however, the $i$ and $j$ are omitted—it’s easy to imagine
+they are there—and the $x$, $y$, $z$ are written as subscripts. Then
+Eq. (<a href="#mjx-eqn-EqIII114">11.4</a>) is written
+\begin{equation}
+\label{Eq:III:11:8}
+H=-\mu[\sigma_xB_x+\sigma_yB_y+\sigma_zB_z].
+\end{equation}
+Because the sigma matrices are so important—they are used all the
+time by the professionals—we have gathered them together in
+Table <a href="#Ch11-T1">11–1</a>. (Anyone who is going to work in quantum
+physics really has to memorize them.) They are also called the
+<em class="emph">Pauli spin matrices</em>
+after the physicist who invented them.
+</p>
+</div>
+
+<div id="Ch11-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 11–1</span>The Pauli spin matrices
+</div>
+<div align="center">
+<table class="framed" style="width: 200px">
+	<tr>
+		<td class="center">
+		$\displaystyle\sigma_z=
+			\begin{pmatrix}
+			1 & \phantom{-}0\\
+			0 & -1
+			\end{pmatrix}$</td>
+	</tr>
+	<tr>
+		<td class="center">
+		$\displaystyle\sigma_x=
+			\begin{pmatrix}
+			0 & \phantom{-}1\\
+			1 & \phantom{-}0
+			\end{pmatrix}$</td>
+	</tr>
+	<tr>
+		<td class="center">
+		$\displaystyle\sigma_y=
+			\begin{pmatrix}
+			0 & -i\\
+			i & \phantom{-}0
+			\end{pmatrix}$</td>
+	</tr>
+	<tr>
+		<td class="center">
+		$\phantom{_y}\displaystyle1=
+			\begin{pmatrix}
+			1 & \phantom{-}0\\
+			0 & \phantom{-}1
+			\end{pmatrix}$</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch11-S1-p8" class="para">
+<p class="p">In the table we have included one more two-by-two matrix which is
+needed if we want to be able to take care of a system which has two
+spin states of the same energy, or if we want to choose a different
+zero energy. For such situations we must add $E_0C_+$ to the first
+equation in (<a href="#mjx-eqn-EqIII111">11.1</a>) and $E_0C_-$ to the second
+equation. We can include this in the new notation if we define the
+<em class="emph">unit matrix</em> “$1$” as $\delta_{ij}$,
+\begin{equation}
+\label{Eq:III:11:9}
+1=\delta_{ij}=
+\begin{pmatrix}
+1 & 0\\
+0 & 1
+\end{pmatrix},
+\end{equation}
+and rewrite Eq. (<a href="#mjx-eqn-EqIII118">11.8</a>) as
+\begin{equation}
+\label{Eq:III:11:10}
+H=E_0\delta_{ij}-\mu(\sigma_xB_x+\sigma_yB_y+\sigma_zB_z).
+\end{equation}
+Usually, it is <em class="emph">understood</em> that any constant like $E_0$ is
+automatically to be multiplied by the unit matrix; then one writes
+simply
+\begin{equation}
+\label{Eq:III:11:11}
+H=E_0-\mu(\sigma_xB_x+\sigma_yB_y+\sigma_zB_z).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch11-S1-p9" class="para">
+<p class="p">One reason the spin matrices are useful is that <em class="emph">any</em> two-by-two
+matrix at all can be written in terms of them. Any matrix you can
+write has four numbers in it, say,
+\begin{equation*}
+M=
+\begin{pmatrix}
+a & b\\
+c & d
+\end{pmatrix}.
+\end{equation*}
+It can always be written as a linear combination of four matrices. For
+example,
+\begin{equation*}
+M=a\!
+\begin{pmatrix}
+1&0\\
+0&0
+\end{pmatrix}
+\!+b\!
+\begin{pmatrix}
+0&1\\
+0&0
+\end{pmatrix}
+\!+c\!
+\begin{pmatrix}
+0&0\\
+1&0
+\end{pmatrix}
+\!+d\!
+\begin{pmatrix}
+0&0\\
+0&1
+\end{pmatrix}\!.
+\end{equation*}
+There are many ways of doing it, but one special way is to say that
+$M$ is a certain amount of $\sigma_x$, plus a certain amount
+of $\sigma_y$, and so on, like this:
+\begin{equation*}
+M=\alpha1+\beta\sigma_x+\gamma\sigma_y+\delta\sigma_z,
+\end{equation*}
+where the “amounts” $\alpha$, $\beta$, $\gamma$, and $\delta$ may,
+in general, be complex numbers.
+</p>
+</div>
+
+<div id="Ch11-S1-p10" class="para">
+<p class="p">Since any two-by-two matrix can be represented in terms of the unit
+matrix and the sigma matrices, we have all that we ever need for
+<em class="emph">any</em> two-state system. No matter what the two-state system—the
+ammonia molecule, the magenta dye, anything—the Hamiltonian equation
+can be written in terms of the sigmas. Although the sigmas seem to
+have a geometrical significance in the physical situation of an
+electron in a magnetic field, they can also be thought of as just
+useful matrices, which can be used for any two-state problem.
+</p>
+</div>
+
+<div id="Ch11-S1-p11" class="para">
+<p class="p">For instance, in one way of looking at things a proton and a neutron can
+be thought of as the same particle in either of two states. We say the
+<em class="emph">nucleon</em> (proton or neutron) is a two-state
+system—in this case, two states with respect to its charge. When
+looked at that way, the $\ket{\slOne}$ state can represent the proton
+and the $\ket{\slTwo}$ state can represent the neutron. People say that
+the nucleon has two “isotopic-spin” states.
+</p>
+</div>
+
+<div id="Ch11-S1-p12" class="para">
+<p class="p">Since we will be using the sigma matrices as the “arithmetic” of the
+quantum mechanics of two-state systems, let’s review quickly the
+conventions of matrix algebra. By the “sum” of any two or more matrices we mean just what
+was obvious in Eq. (<a href="#mjx-eqn-EqIII114">11.4</a>). In general, if we “add” two
+matrices $A$ and $B$, the “sum” $C$ means that each term $C_{ij}$ is
+given by
+\begin{equation*}
+C_{ij}=A_{ij}+B_{ij}.
+\end{equation*}
+Each term of $C$ is the sum of the terms in the same slots of $A$
+and $B$.
+</p>
+</div>
+
+<div id="Ch11-S1-p13" class="para">
+<p class="p">In Section <a href="III_05.html#Ch5-S6">5–6</a> we have already encountered the idea of
+a matrix “product.” The same idea will be useful in dealing with the
+sigma matrices. In general, the “product” of two matrices $A$
+and $B$ (in that order) is defined to be a matrix $C$ whose elements are
+\begin{equation}
+\label{Eq:III:11:12}
+C_{ij}=\sum_kA_{ik}B_{kj}.
+\end{equation}
+It is the sum of products of terms taken in pairs from the $i$th row
+of $A$ and the $j$th column of $B$. If the matrices are written out in
+tabular form as in Fig. <a href="#Ch11-F1">11-1</a>, there is a good “system”
+for getting the terms of the product matrix. Suppose you are
+calculating $C_{23}$. You run your left index finger <em class="emph">along</em> the
+<em class="emph">second row</em> of $A$ and your right index finger <em class="emph">down</em> the
+<em class="emph">third column</em> of $B$, multiplying each pair and adding as you go.
+We have tried to indicate how to do it in the figure.
+</p>
+</div>
+
+<div id="Ch11-F1" class="figure">
+<img src="img/FLP_III/f11-01/f11-01_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 11–1.</span>
+Multiplying two matrices.
+</div>
+</div>
+
+<div id="Ch11-S1-p14" class="para">
+<p class="p">It is, of course, particularly simple for two-by-two matrices. For
+instance, if we multiply $\sigma_x$ times $\sigma_x$, we get
+\begin{equation*}
+\sigma_x^2=\sigma_x\cdot\sigma_x=
+\begin{pmatrix}
+0&1\\
+1&0
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+0&1\\
+1&0
+\end{pmatrix}
+=
+\begin{pmatrix}
+1&0\\
+0&1
+\end{pmatrix},
+\end{equation*}
+which is just the unit matrix $1$. Or, for another example, let’s work
+out $\sigma_x\sigma_y$:
+\begin{equation*}
+\sigma_x\sigma_y=
+\begin{pmatrix}
+0&1\\
+1&0
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+0&-i\\
+i&\phantom{-}0
+\end{pmatrix}
+=
+\begin{pmatrix}
+i&\phantom{-}0\\
+0&-i
+\end{pmatrix}.
+\end{equation*}
+Referring to Table <a href="#Ch11-T1">11–1</a>, you see that the product is
+just $i$ times the matrix $\sigma_z$. (Remember that a number times a
+matrix just multiplies each term of the matrix.) Since the products of
+the sigmas taken two at a time are important—as well as rather
+amusing—we have listed them all in Table <a href="#Ch11-T2">11–2</a>. You can
+work them out as we have done for $\sigma_x^2$ and $\sigma_x\sigma_y$.
+</p>
+</div>
+
+<div id="Ch11-T2" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 11–2</span>Products of the spin matrices
+</div>
+<div align="center">
+<table class="framed" style="width: 200px">
+	<tr>
+		<td class="center">$\sigma_x^2=1$</td>
+	</tr>
+	<tr>
+		<td class="center">$\sigma_y^2=1$</td>
+	</tr>
+	<tr>
+		<td class="center">$\sigma_z^2=1$</td>
+	</tr>
+	<tr>
+		<td class="center">$\sigma_x\sigma_y=-\sigma_y\sigma_x=i\sigma_z$</td>
+	</tr>
+	<tr>
+		<td class="center">$\sigma_y\sigma_z=-\sigma_z\sigma_y=i\sigma_x$</td>
+	</tr>
+	<tr>
+		<td class="center">$\sigma_z\sigma_x=-\sigma_x\sigma_z=i\sigma_y$</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch11-S1-p15" class="para">
+<p class="p">There’s another very important and interesting point about these
+$\sigma$ matrices. We can imagine, if we wish, that the three matrices
+$\sigma_x$, $\sigma_y$, and $\sigma_z$ are analogous to the three
+components of a vector—it is sometimes called the “sigma
+vector” and is written $\FLPsigma$. It is really a
+“matrix vector” or a “vector matrix.” It is three different
+matrices—one matrix associated with each axis, $x$, $y$, and $z$. With
+it, we can write the Hamiltonian of the system in a nice form which
+works in any coordinate system:
+\begin{equation}
+\label{Eq:III:11:13}
+H=-\mu\FLPsigma\cdot\FLPB.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch11-S1-p16" class="para">
+<p class="p">Although we have written our three matrices in the representation in
+which “up” and “down” are in the $z$-direction—so that $\sigma_z$
+has a particular simplicity—we could figure out what the matrices
+would look like in some other representation.  Although it takes a lot
+of algebra, you can show that they change among themselves like the
+components of a vector. (We won’t, however, worry about proving it right
+now. You can check it if you want.) You can use $\FLPsigma$ in different
+coordinate systems as though it is a vector.
+</p>
+</div>
+
+<div id="Ch11-S1-p17" class="para">
+<p class="p">You remember that the $H$ is related to energy in quantum
+mechanics. It is, in fact, just equal to the energy in the simple
+situation where there is only one state. Even for two-state systems of
+the electron spin, when we write the Hamiltonian as in
+Eq. (<a href="#mjx-eqn-EqIII1113">11.13</a>), it looks very much like the <em class="emph">classical</em>
+formula for the energy of a little magnet with magnetic
+moment $\FLPmu$ in a magnetic field $\FLPB$.
+Classically, we would say
+\begin{equation}
+\label{Eq:III:11:14}
+U=-\FLPmu\cdot\FLPB,
+\end{equation}
+where $\FLPmu$ is the property of the object and $\FLPB$ is an
+external field. We can imagine that Eq. (<a href="#mjx-eqn-EqIII1114">11.14</a>) can be
+converted to (<a href="#mjx-eqn-EqIII1113">11.13</a>) if we replace the classical energy
+by the Hamiltonian and the classical $\FLPmu$ by the
+matrix $\mu\FLPsigma$. Then, after this purely formal substitution, we
+interpret the result as a matrix equation. It is sometimes said that
+to each quantity in classical physics there corresponds a matrix in
+quantum mechanics. It is really more correct to say that the
+Hamiltonian matrix corresponds to the energy, and any quantity that
+can be defined via energy has a corresponding matrix.
+</p>
+</div>
+
+<div id="Ch11-S1-p18" class="para">
+<p class="p">For example, the magnetic moment can be defined via energy by saying
+that the energy in an external field $\FLPB$ is $-\FLPmu\cdot\FLPB$.
+This <em class="emph">defines</em> the magnetic moment vector $\FLPmu$. Then we look at
+the formula for the Hamiltonian of a real (quantum) object in a magnetic
+field and try to identify whatever the matrices are that correspond to
+the various quantities in the classical formula. That’s the trick by
+which <em class="emph">sometimes</em> classical quantities have their quantum
+counterparts.
+</p>
+</div>
+
+<div id="Ch11-S1-p19" class="para">
+<p class="p">You may try, if you want, to understand how a classical vector is
+equal to a matrix $\mu\FLPsigma$, and maybe you will discover
+something—but don’t break your head on it. That’s not the
+idea—they are <em class="emph">not equal</em>. Quantum mechanics is a different
+kind of a theory to represent the world. It just happens that there
+are certain correspondences which are hardly more than mnemonic
+devices—things to remember with. That is, you remember
+Eq. (<a href="#mjx-eqn-EqIII1114">11.14</a>) when you learn classical physics; then if you
+remember the correspondence $\FLPmu\to\mu\FLPsigma$, you have a handle
+for remembering Eq. (<a href="#mjx-eqn-EqIII1113">11.13</a>). Of course, nature knows the
+quantum mechanics, and the classical mechanics is only an approximation;
+so there is no mystery in the fact that in classical mechanics there is
+some shadow of quantum mechanical laws—which are truly the ones
+underneath. To reconstruct the original object from the shadow is not
+possible in any direct way, but the shadow does help you to remember
+what the object looks like. Equation (<a href="#mjx-eqn-EqIII1113">11.13</a>) is the truth,
+and Eq. (<a href="#mjx-eqn-EqIII1114">11.14</a>) is the shadow. Because we learn classical
+mechanics first, we would like to be able to get the quantum formula
+from it, but there is no sure-fire scheme for doing that. We must always
+go back to the real world and discover the correct quantum mechanical
+equations. When they come out looking like something in classical
+physics, we are in luck.
+</p>
+</div>
+
+<div id="Ch11-S1-p20" class="para">
+<p class="p">If the warnings above seem repetitious and appear to you to be
+belaboring self-evident truths about the relation of classical physics
+to quantum physics, please excuse the conditioned reflexes of a
+professor who has usually taught quantum mechanics to students who
+hadn’t heard about Pauli spin matrices until they were in graduate
+school. Then they always seemed to be hoping that, somehow, quantum
+mechanics could be seen to follow as a logical consequence of
+classical mechanics which they had learned thoroughly years
+before. (Perhaps they wanted to avoid having to learn something new.)
+You have learned the classical formula, Eq. (<a href="#mjx-eqn-EqIII1114">11.14</a>),
+only a few months ago—and then with warnings that it was
+inadequate—so maybe you will not be so unwilling to take the quantum
+formula, Eq. (<a href="#mjx-eqn-EqIII1113">11.13</a>), as the basic truth.
+</p>
+</div>
+
+
+</div> <!-- end of section -->
+
+
+<div id="Ch11-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">11–2</span>The spin matrices as operators</h3>
+
+<div id="Ch11-S2-p1" class="para">
+<p class="p">While we are on the subject of mathematical notation, we would like to
+describe still <em class="emph">another</em> way of writing things—a way which is
+used very often because it is so compact. It follows directly from the
+notation introduced in Chapter <a href="III_08.html">8</a>. If we have a system
+in a state $\ket{\psi(t)}$, which varies with time, we can—as we did
+in Eq. (<a href="III_08.html#mjx-eqn-EqIII834">8.34</a>)—write the amplitude that the system
+would be in the state $\ket{i}$ at $t+\Delta t$ as
+\begin{equation*}
+\braket{i}{\psi(t+\Delta t)}=\sum_j
+\bracket{i}{U(t+\Delta t,t)}{j}
+\braket{j}{\psi(t)}
+\end{equation*}
+The matrix element $\bracket{i}{U(t+\Delta t,t)}{j}$ is the amplitude
+that the base state $\ket{j}$ will be converted into the base
+state $\ket{i}$ in the time interval $\Delta t$. We then
+<em class="emph">defined</em> $H_{ij}$ by writing
+\begin{equation*}
+\bracket{i}{U(t+\Delta t,t)}{j}=\delta_{ij}-\frac{i}{\hbar}\,
+H_{ij}(t)\,\Delta t,
+\end{equation*}
+and we showed that the amplitudes $C_i(t)=\braket{i}{\psi(t)}$ were
+related by the differential equations
+\begin{equation}
+\label{Eq:III:11:15}
+i\hbar\,\ddt{C_i}{t}=\sum_jH_{ij}C_j.
+\end{equation}
+If we write out the amplitudes $C_i$ explicitly, the same equation
+appears as
+\begin{equation}
+\label{Eq:III:11:16}
+i\hbar\,\ddt{}{t}\,\braket{i}{\psi}=\sum_jH_{ij}\braket{j}{\psi}.
+\end{equation}
+Now the matrix elements $H_{ij}$ are also amplitudes which we can
+write as $\bracket{i}{H}{j}$; our differential equation looks like
+this:
+\begin{equation}
+\label{Eq:III:11:17}
+i\hbar\,\ddt{}{t}\,\braket{i}{\psi}=
+\sum_j\bracket{i}{H}{j}\braket{j}{\psi}.
+\end{equation}
+We see that $-i/\hbar\,\bracket{i}{H}{j}\,dt$ is the amplitude
+that—under the physical conditions described by $H$—a
+state $\ket{j}$ will, during the time $dt$, “generate” the
+state $\ket{i}$. (All of this is implicit in the discussion of
+Section <a href="III_08.html#Ch8-S4">8–4</a>.)
+</p>
+</div>
+
+<div id="Ch11-S2-p2" class="para">
+<p class="p">Now following the ideas of Section <a href="III_08.html#Ch8-S2">8–2</a>, we can drop
+out the common term $\bra{i}$ in Eq. (<a href="#mjx-eqn-EqIII1117">11.17</a>)—since it
+is true for any state $\ket{i}$—and write that equation simply as
+\begin{equation}
+\label{Eq:III:11:18}
+i\hbar\,\ddt{}{t}\,\ket{\psi}=
+\sum_jH\,\ket{j}\braket{j}{\psi}.
+\end{equation}
+Or, going one step further, we can also remove the $j$ and write
+\begin{equation}
+\label{Eq:III:11:19}
+i\hbar\,\ddt{}{t}\,\ket{\psi}=H\,\ket{\psi}.
+\end{equation}
+In Chapter <a href="III_08.html">8</a> we pointed out that when things are written
+this way, the $H$ in $H\,\ket{j}$ or $H\,\ket{\psi}$ is called an
+<em class="emph">operator</em>. From now on we will put the little
+hat ($\op{\enspace}$) over an operator to remind you that it <em class="emph">is</em>
+an operator and not just a number. We will write $\Hop\,\ket{\psi}$.
+Although the two equations (<a href="#mjx-eqn-EqIII1118">11.18</a>) and (<a href="#mjx-eqn-EqIII1119">11.19</a>)
+<em class="emph">mean exactly the same thing</em> as Eq. (<a href="#mjx-eqn-EqIII1117">11.17</a>) or
+Eq. (<a href="#mjx-eqn-EqIII1115">11.15</a>), we can <em class="emph">think</em> about them in a different
+way. For instance, we would describe Eq. (<a href="#mjx-eqn-EqIII1118">11.18</a>) in this
+way: “The time derivative of the <em class="emph">state vector</em> $\ket{\psi}$
+times $i\hbar$ is equal to what you get by operating with the
+Hamiltonian <em class="emph">operator</em> $\Hop$ on each base state, multiplying by
+the amplitude $\braket{j}{\psi}$ that $\psi$ is in the state $j$, and
+summing over all $j$.”  Or Eq. (<a href="#mjx-eqn-EqIII1119">11.19</a>) is described this
+way. “The time derivative (times $i\hbar$) of a state $\ket{\psi}$ is
+equal to what you get if you operate with the Hamiltonian $\Hop$ on the
+state vector $\ket{\psi}$.” It’s just a shorthand way of saying what is
+in Eq. (<a href="#mjx-eqn-EqIII1117">11.17</a>), but, as you will see, it can be a great
+convenience.
+</p>
+</div>
+
+<div id="Ch11-S2-p3" class="para">
+<p class="p">If we wish, we can carry the “abstraction” idea one more step.
+Equation (<a href="#mjx-eqn-EqIII1119">11.19</a>) is true for <em class="emph">any state</em> $\ket{\psi}$.
+Also the left-hand side, $i\hbar\,d/dt$, is also an operator—it’s the
+operation “differentiate by $t$ and multiply by $i\hbar$.”  Therefore,
+Eq. (<a href="#mjx-eqn-EqIII1119">11.19</a>) can also be thought of as an equation between
+operators—the operator equation
+\begin{equation*}
+i\hbar\,\ddt{}{t}=\Hop.
+\end{equation*}
+The Hamiltonian operator (within a constant) produces the same result
+as does $d/dt$ when acting on any state. Remember that this
+equation—as well as Eq. (<a href="#mjx-eqn-EqIII1119">11.19</a>)—is <em class="emph">not</em> a
+statement that the $\Hop$ operator is just the identical
+<em class="emph">operation</em> as $i\hbar\,d/dt$. The equations are the dynamical
+law of nature—the law of motion—for a quantum system.
+</p>
+</div>
+
+<div id="Ch11-S2-p4" class="para">
+<p class="p">Just to get some practice with these ideas, we will show you another
+way we could get to Eq. (<a href="#mjx-eqn-EqIII1118">11.18</a>). You know that we can
+write any state $\ket{\psi}$ in terms of its projections into some
+base set [see Eq. (<a href="III_08.html#mjx-eqn-EqIII88">8.8</a>)],
+\begin{equation}
+\label{Eq:III:11:20}
+\ket{\psi}=\sum_i\ket{i}\braket{i}{\psi}.
+\end{equation}
+How does $\ket{\psi}$ change with time? Well, just take its
+derivative:
+\begin{equation}
+\label{Eq:III:11:21}
+\ddt{}{t}\,\ket{\psi}=\ddt{}{t}\sum_i\ket{i}\braket{i}{\psi}.
+\end{equation}
+Now the base states $\ket{i}$ do not change with time (at least
+<em class="emph">we</em> are always taking them as definite fixed states), but the
+amplitudes $\braket{i}{\psi}$ are numbers which may vary. So
+Eq. (<a href="#mjx-eqn-EqIII1121">11.21</a>) becomes
+\begin{equation}
+\label{Eq:III:11:22}
+\ddt{}{t}\,\ket{\psi}=\sum_i\ket{i}\,\ddt{}{t}\,\braket{i}{\psi}.
+\end{equation}
+Since we know $d\braket{i}{\psi}/dt$ from Eq. (<a href="#mjx-eqn-EqIII1116">11.16</a>),
+we get
+<span class="eq-wide">
+\begin{align*}
+\ddt{}{t}\,\ket{\psi}&=-\frac{i}{\hbar}
+\sum_i\ket{i}\sum_jH_{ij}\braket{j}{\psi}\\[1ex]
+&=-\frac{i}{\hbar}\sum_{ij}\ket{i}\bracket{i}{H}{j}\braket{j}{\psi}=
+-\frac{i}{\hbar}\sum_jH\,\ket{j}\braket{j}{\psi}.
+\end{align*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+\ddt{}{t}\,\ket{\psi}&=-\frac{i}{\hbar}
+\sum_i\ket{i}\sum_jH_{ij}\braket{j}{\psi}\\[1ex]
+&=-\frac{i}{\hbar}\sum_{ij}\ket{i}\bracket{i}{H}{j}\braket{j}{\psi}\\[1ex]
+&=-\frac{i}{\hbar}\sum_jH\,\ket{j}\braket{j}{\psi}.
+\end{align*}
+</span>
+This is Eq. (<a href="#mjx-eqn-EqIII1118">11.18</a>) all over again.
+</p>
+</div>
+
+<div id="Ch11-S2-p5" class="para">
+<p class="p">So we have many ways of looking at the Hamiltonian. We can think of the
+set of coefficients $H_{ij}$ as just a bunch of numbers, or we can think
+of the “amplitudes” $\bracket{i}{H}{j}$, or we can think of the
+“matrix” $H_{ij}$, or we can think of the “operator” $\Hop$. It all
+means the same thing.
+</p>
+</div>
+
+<div id="Ch11-S2-p6" class="para">
+<p class="p">Now let’s go back to our two-state systems. If we write the Hamiltonian
+in terms of the sigma matrices (with suitable numerical coefficients
+like $B_x$, etc.), we can clearly also think of $\sigma_{ij}^x$ as an
+amplitude $\bracket{i}{\sigma_x}{j}$ or, for short, as the
+operator $\sigmaop_x$. If we use the operator idea, we can write the
+equation of motion of a state $\ket{\psi}$ in a magnetic field as
+\begin{equation}
+\label{Eq:III:11:23}
+i\hbar\,\ddt{}{t}\,\ket{\psi}=
+-\mu(B_x\sigmaop_x+B_y\sigmaop_y+B_z\sigmaop_z)\,\ket{\psi}.
+\end{equation}
+When we want to “use” such an equation we will normally have to
+express $\ket{\psi}$ in terms of base vectors (just as we have to find
+the components of space vectors when we want specific numbers). So we
+will usually want to put Eq. (<a href="#mjx-eqn-EqIII1123">11.23</a>) in the somewhat
+expanded form:
+\begin{equation}
+\label{Eq:III:11:24}
+i\hbar\ddt{}{t}\ket{\psi}\!=\!-\mu\!
+\sum_i(B_x\sigmaop_x\!+\!B_y\sigmaop_y\!+\!B_z\sigmaop_z)\ket{i}
+\braket{i}{\psi}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch11-S2-p7" class="para">
+<p class="p">Now you will see why the operator idea is so neat. To use
+Eq. (<a href="#mjx-eqn-EqIII1124">11.24</a>) we need to know what happens when the
+$\sigmaop$ operators work on each of the base states. Let’s find out.
+Suppose we have $\sigmaop_z\,\ket{+}$; it is some vector $\ket{?}$, but
+what? Well, let’s multiply it on the left by $\bra{+}$; we have
+\begin{equation*}
+\bracket{+}{\sigmaop_z}{+}=\sigma_{11}^z=1
+\end{equation*}
+(using Table <a href="#Ch11-T1">11–1</a>). So we know that
+\begin{equation}
+\label{Eq:III:11:25}
+\braket{+}{?}=1.
+\end{equation}
+Now let’s multiply $\sigmaop_z\,\ket{+}$ on the left by $\bra{-}$. We
+get
+\begin{equation*}
+\bracket{-}{\sigmaop_z}{+}=\sigma_{21}^z=0;
+\end{equation*}
+so
+\begin{equation}
+\label{Eq:III:11:26}
+\braket{-}{?}=0.
+\end{equation}
+There is only one state vector that satisfies both
+(<a href="#mjx-eqn-EqIII1125">11.25</a>) and (<a href="#mjx-eqn-EqIII1126">11.26</a>); it is $\ket{+}$. We
+discover then that
+\begin{equation}
+\label{Eq:III:11:27}
+\sigmaop_z\,\ket{+}=\ket{+}.
+\end{equation}
+By this kind of argument you can easily show that all of the
+properties of the sigma matrices can be described in the operator
+notation by the set of rules given in Table <a href="#Ch11-T3">11–3</a>.
+</p>
+</div>
+
+<div id="Ch11-T3" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 11–3</span>Properties of the $\boldsymbol{\sigmaop}$-operator
+</div>
+<div align="center">
+<table class="framed" style="width: 200px">
+	<tr>
+		<td class="center">
+		\begin{align*}
+		\sigmaop_z&\ket{+}=\ket{+}\\[.5ex]
+		\sigmaop_z&\ket{-}=-\ket{-}\\[.5ex]
+		\sigmaop_x&\ket{+}=\ket{-}\\[.5ex]
+		\sigmaop_x&\ket{-}=\ket{+}\\[.5ex]
+		\sigmaop_y&\ket{+}=i\ket{-}\\[.5ex]
+		\sigmaop_y&\ket{-}=-i\ket{+}
+		\end{align*}
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch11-S2-p8" class="para">
+<p class="p">If we have products of sigma matrices, they go over into products of
+operators. When two operators appear together as a product, you carry
+out first the operation with the operator which is farthest to the
+right. For instance, by $\sigmaop_x\sigmaop_y\,\ket{+}$ we are to
+understand $\sigmaop_x(\sigmaop_y\,\ket{+})$. From
+Table <a href="#Ch11-T3">11–3</a>, we get $\sigmaop_y\,\ket{+}=i\,\ket{-}$, so
+\begin{equation}
+\label{Eq:III:11:28}
+\sigmaop_x\sigmaop_y\,\ket{+}=\sigmaop_x(i\,\ket{-}).
+\end{equation}
+Now any number—like $i$—just moves through an operator (operators
+work only on state vectors); so Eq. (<a href="#mjx-eqn-EqIII1128">11.28</a>) is the same
+as
+\begin{equation*}
+\sigmaop_x\sigmaop_y\,\ket{+}=i\sigmaop_x\,\ket{-}=i\,\ket{+}.
+\end{equation*}
+If you do the same thing for $\sigmaop_x\sigmaop_y\,\ket{-}$, you will
+find that
+\begin{equation*}
+\sigmaop_x\sigmaop_y\,\ket{-}=-i\,\ket{-}.
+\end{equation*}
+Looking at Table <a href="#Ch11-T3">11–3</a>, you see that
+$\sigmaop_x\sigmaop_y$ operating on $\ket{+}$ or $\ket{-}$ gives just
+what you get if you operate with $\sigmaop_z$ and multiply by $i$. We
+can, therefore, say that the operation $\sigmaop_x\sigmaop_y$ is
+identical with the operation $i\sigmaop_z$ and write this statement as
+an operator equation:
+\begin{equation}
+\label{Eq:III:11:29}
+\sigmaop_x\sigmaop_y=i\sigmaop_z.
+\end{equation}
+Notice that this equation is identical with one of our matrix
+equations of Table <a href="#Ch11-T2">11–2</a>. So again we see the
+correspondence between the matrix and operator points of view. Each of
+the equations in Table <a href="#Ch11-T2">11–2</a> can, therefore, also be
+considered as equations about the sigma operators. You can check that
+they do indeed follow from Table <a href="#Ch11-T3">11–3</a>. It is best, when
+working with these things, <em class="emph">not</em> to keep track of whether a
+quantity like $\sigma$ or $H$ is an operator or a matrix. All the
+equations are the same either way, so Table <a href="#Ch11-T2">11–2</a> is for
+sigma operators, or for sigma matrices, as you wish.
+</p>
+</div>
+
+
+</div> <!-- end of section -->
+
+
+<div id="Ch11-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">11–3</span>The solution of the two-state equations</h3>
+
+<div id="Ch11-S3-p1" class="para">
+<p class="p">We can now write our two-state equation in various forms, for example,
+either as
+\begin{equation*}
+i\hbar\,\ddt{C_i}{t}=\sum_jH_{ij}C_j
+\end{equation*}
+or
+\begin{equation}
+\label{Eq:III:11:30}
+i\hbar\,\ddt{\,\ket{\psi}}{t}=\Hop\,\ket{\psi}.
+\end{equation}
+They both mean the same thing. For a spin one-half particle in a
+magnetic field, the Hamiltonian $H$ is given by Eq. (<a href="#mjx-eqn-EqIII118">11.8</a>)
+or by Eq. (<a href="#mjx-eqn-EqIII1113">11.13</a>).
+</p>
+</div>
+
+<div id="Ch11-S3-p2" class="para">
+<p class="p">If the field is in the $z$-direction, then—as we have seen several
+times by now—the solution is that the state $\ket{\psi}$, whatever it
+is, precesses around the $z$-axis (just as if you were to take the
+physical object and rotate it bodily around the $z$-axis) at an angular
+velocity equal to twice the magnetic field times $\mu/\hbar$. The same
+is true, of course, for a magnetic field along any other direction,
+because the physics is independent of the coordinate system. If we have
+a situation where the magnetic field varies from time to time in a
+complicated way, then we can analyze the situation in the following way.
+Suppose you start with the spin in the $+z$-direction and you have an
+$x$-magnetic field. The spin starts to turn. Then if the $x$-field is
+turned off, the spin stops turning. Now if a $z$-field is turned on, the
+spin precesses about $z$, and so on. So depending on how the fields vary
+in time, you can figure out what the final state is—along what axis it
+will point. Then you can refer that state back to the original $\ket{+}$
+and $\ket{-}$ with respect to $z$ by using the projection formulas we
+had in Chapter <a href="III_10.html">10</a> (or Chapter <a href="III_06.html">6</a>). If the
+state ends up with its spin in the direction $(\theta,\phi)$, it will
+have an up-amplitude $\cos\,(\theta/2)e^{-i\phi/2}$ and a
+down-amplitude $\sin\,(\theta/2)e^{+i\phi/2}$. That solves any problem.
+It is a word description of the solution of the differential equations.
+</p>
+</div>
+
+<div id="Ch11-S3-p3" class="para">
+<p class="p">The solution just described is sufficiently general to take care of
+<em class="emph">any two-state system</em>. Let’s take our example of the ammonia
+molecule—including the effects of an electric field. If we describe
+the system in terms of the states $\ket{\slI}$ and $\ket{\slII}$, the
+equations (<a href="III_09.html#mjx-eqn-EqIII938">9.38</a>) and (<a href="III_09.html#mjx-eqn-EqIII939">9.39</a>) look like this:
+\begin{equation}
+\begin{aligned}
+i\hbar\,\ddt{C_{\slI}}{t}&=
++AC_{\slI}+\mu\Efield C_{\slII},\\[2ex]
+i\hbar\,\ddt{C_{\slII}}{t}&=
+-AC_{\slII}+\mu\Efield C_{\slI}.
+\end{aligned}
+\label{Eq:III:11:31}
+\end{equation}
+You say, “No, I remember there was an $E_0$ in there.” Well, we have
+shifted the origin of energy to make the $E_0$ zero. (You can always do
+that by changing both amplitudes by the same
+factor—$e^{iE_0T/\hbar}$—and get rid of any constant energy.) Now if
+corresponding equations always have the same solutions, then we really
+don’t have to do it twice. If we look at these equations and look at
+Eq. (<a href="#mjx-eqn-EqIII111">11.1</a>), then we can make the following identification.
+Let’s call $\ket{\slI}$ the state $\ket{+}$ and $\ket{\slII}$ the
+state $\ket{-}$. That <em class="emph">does not mean</em> that we are lining-up the
+ammonia in space, or that $\ket{+}$ and $\ket{-}$ has anything to do
+with the $z$-axis. It is purely artificial. We have an artificial space
+that we might call the “ammonia molecule representative space,” or
+something—a three-dimensional “diagram” in which being “up”
+corresponds to having the molecule in the state $\ket{\slI}$ and being
+“down” along this false $z$-axis represents having a molecule in the
+state $\ket{\slII}$. Then, the equations will be identified as follows.
+First of all, you see that the Hamiltonian can be written in terms of
+the sigma matrices as
+\begin{equation}
+\label{Eq:III:11:32}
+H=+A\sigma_z+\mu\Efield\sigma_x.
+\end{equation}
+Or, putting it another way, $\mu B_z$ in Eq. (<a href="#mjx-eqn-EqIII111">11.1</a>)
+corresponds to $-A$ in Eq. (<a href="#mjx-eqn-EqIII1132">11.32</a>), and $\mu B_x$
+corresponds to $-\mu\Efield$. In our “model” space, then, we have a
+constant $B$ field along the $z$-direction. If we have an electric
+field $\Efield$ which is changing with time, then we have a $B$ field
+along the $x$-direction which varies in proportion. <em class="emph">So the
+behavior of an electron in a magnetic field with a constant component in
+the $z$-direction and an oscillating component in the $x$-direction is
+mathematically analogous and corresponds exactly to the behavior of an
+ammonia molecule in an oscillating electric field</em>. Unfortunately, we do
+not have the time to go any further into the details of this
+correspondence, or to work out any of the technical details. We only
+wished to make the point that <em class="emph">all</em> systems of two states can be
+made analogous to a spin one-half object precessing in a magnetic field.
+</p>
+</div>
+
+
+</div> <!-- end of section -->
+
+
+<div id="Ch11-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">11–4</span>The polarization states of the photon</h3>
+
+<div id="Ch11-S4-p4" class="para">
+<p class="p">There are a number of other two-state systems which are interesting to
+study, and the first new one we would like to talk about is the
+photon. To describe a photon we must first give its vector
+momentum. For a free photon, the frequency is determined by the
+momentum, so we don’t have to say also what the frequency is. After
+that, though, we still have a property called the
+polarization. Imagine that there is a photon coming at you with a
+definite monochromatic frequency (which will be kept the same
+throughout all this discussion so that we don’t have a variety of
+momentum states). Then there are two directions of polarization. In
+the classical theory, light can be described as having an electric
+field which oscillates horizontally or an electric field which
+oscillates vertically (for instance); these two kinds of light are
+called $x$-polarized and $y$-polarized light. The light can also be
+polarized in some other direction, which can be made up from the
+superposition of a field in the $x$-direction and one in the
+$y$-direction. Or if you take the $x$- and the $y$-components out of
+phase by $90^\circ$, you get an electric field that rotates—the
+light is elliptically polarized. (This is just a quick reminder of the
+classical theory of polarized light that we studied in
+Chapter <a href="I_33.html">33</a>, Vol. I.)
+</p>
+</div>
+
+<div id="Ch11-S4-p5" class="para">
+<p class="p">Now, however, suppose we have a <em class="emph">single</em> photon—just one. There
+is no electric field that we can discuss in the same way. All we have
+is <em class="emph">one photon</em>. But a photon has to have the analog of the
+classical phenomena of polarization. There must be at least two
+different kinds of photons. At first, you might think there should be
+an infinite variety—after all, the electric vector can point in all
+sorts of directions. We can, however, describe the polarization of a
+photon as a two-state system. A photon can be in the state $\ket{x}$
+or in the state $\ket{y}$. By $\ket{x}$ we mean the polarization state
+of each one of the photons in a beam of light which <em class="emph">classically</em>
+is $x$-polarized light. On the other hand, by $\ket{y}$ we mean the
+polarization state of each of the photons in a $y$-polarized beam. And
+we can take $\ket{x}$ and $\ket{y}$ as our base states of a photon of
+given momentum pointing at you—in what we will call the
+$z$-direction. So there are two base states $\ket{x}$ and $\ket{y}$,
+and they are all that are needed to describe any photon at all.
+</p>
+</div>
+
+<div id="Ch11-S4-p6" class="para">
+<p class="p">For example, if we have a piece of polaroid set with its axis to pass
+light polarized in what we call the $x$-direction, and we send in a
+photon which we know is in the state $\ket{y}$, it will be absorbed by
+the polaroid. If we send in a photon which we know is in the
+state $\ket{x}$, it will come right through as $\ket{x}$. If we take a
+piece of calcite which takes a beam of polarized light and splits it
+into an $\ket{x}$ beam and a $\ket{y}$ beam, that piece of calcite is
+the complete analog of a Stern-Gerlach apparatus which splits a beam of
+silver atoms into the two states $\ket{+}$ and $\ket{-}$. So everything
+we did before with particles and Stern-Gerlach apparatuses, we can do
+again with light and pieces of calcite. And what about light filtered
+through a piece of polaroid set at an angle $\theta$? Is that another
+state? Yes, indeed, it <em class="emph">is</em> another state. Let’s call the axis of
+the polaroid $x'$ to distinguish it from the axes of our base states.
+See Fig. <a href="#Ch11-F2">11-2</a>. A photon that comes out will be in the
+state $\ket{x'}$. However, any state can be represented as a linear
+combination of base states, and the formula for the combination is,
+here,
+\begin{equation}
+\label{Eq:III:11:33}
+\ket{x'}=\cos\theta\,\ket{x}+\sin\theta\,\ket{y}.
+\end{equation}
+That is, if a photon comes through a piece of polaroid set at the
+angle $\theta$ (with respect to $x$), it can still be resolved into
+$\ket{x}$ and $\ket{y}$ beams—by a piece of calcite, for example. Or
+you can, if you wish, just analyze it into $x$- and $y$-components in
+your imagination. Either way, you will find the amplitude $\cos\theta$
+to be in the $\ket{x}$ state and the amplitude $\sin\theta$ to be in
+the $\ket{y}$ state.
+</p>
+</div>
+
+<div id="Ch11-F2" class="figure">
+<img src="img/FLP_III/f11-02/f11-02_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 11–2.</span>
+Coordinates at right angles to the momentum vector of the photon.
+</div>
+</div>
+
+<div id="Ch11-S4-p7" class="para">
+<p class="p">Now we ask this question: Suppose a photon is polarized in the
+$x'$-direction by a piece of polaroid set at the angle $\theta$ and
+arrives at a polaroid at the angle zero—as in Fig. <a href="#Ch11-F3">11-3</a>;
+what will happen? With what probability will it get through? The answer
+is the following. After it gets through the first polaroid, it is
+definitely in the state $\ket{x'}$. The second polaroid will let the
+photon through if it is in the state $\ket{x}$ (but absorb it if it is
+the state $\ket{y}$). So we are asking with what probability does the
+photon appear to be in the state $\ket{x}$? We get that probability from
+the absolute square of amplitude $\braket{x}{x'}$ that a photon in the
+state $\ket{x'}$ is also in the state $\ket{x}$. What
+is $\braket{x}{x'}$? Just multiply Eq. (<a href="#mjx-eqn-EqIII1133">11.33</a>) by $\bra{x}$
+to get
+\begin{equation*}
+\braket{x}{x'}=\cos\theta\,\braket{x}{x}+\sin\theta\,\braket{x}{y}.
+\end{equation*}
+Now $\braket{x}{y}=0$, from the physics—as they <em class="emph">must</em> be if
+$\ket{x}$ and $\ket{y}$ are base states—and $\braket{x}{x}=1$. So we
+get
+\begin{equation*}
+\braket{x}{x'}=\cos\theta,
+\end{equation*}
+and the probability is $\cos^2\theta$. For example, if the first
+polaroid is set at $30^\circ$, a photon will get through $3/4$ of the
+time, and $1/4$ of the time it will heat the polaroid by being
+absorbed therein.
+</p>
+</div>
+
+<div id="Ch11-F3" class="figure">
+<img src="img/FLP_III/f11-03/f11-03_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 11–3.</span>
+Two sheets of polaroid with angle $\theta$ between planes of polarization.
+</div>
+</div>
+
+<div id="Ch11-S4-p8" class="para">
+<p class="p">Now let us see what happens classically in the same situation. We
+would have a beam of light with an electric field which is varying in
+some way or another—say “unpolarized.” After it gets through the
+first polaroid, the electric field is oscillating in the
+$x'$-direction with a size $\Efield$; we would draw the field as an
+oscillating vector with a peak value $\Efield_0$ in a diagram like
+Fig. <a href="#Ch11-F4">11-4</a>. Now when the light arrives at the second
+polaroid, only the $x$-component, $\Efield_0\cos\theta$, of the electric
+field gets through. The <em class="emph">intensity</em> is proportional to the square
+of the field and, therefore, to $\Efield_0^2\cos^2\theta$. So the energy
+coming through is $\cos^2\theta$ weaker than the energy which was
+entering the last polaroid.
+</p>
+</div>
+
+<div id="Ch11-F4" class="figure">
+<img src="img/FLP_III/f11-04/f11-04_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 11–4.</span>
+The classical picture of the electric vector $\Efieldvec$.
+</div>
+</div>
+
+<div id="Ch11-S4-p9" class="para">
+<p class="p">The classical picture and the quantum picture give similar results. If
+you were to throw $10$ billion photons at the second polaroid, and the
+average probability of each one going through is, say, $3/4$, you
+would expect $3/4$ of $10$ billion would get through. Likewise, the
+energy that they would carry would be $3/4$ of the energy that you
+attempted to put through. The classical theory says nothing about the
+statistics of the thing—it simply says that the energy that comes
+through will be precisely $3/4$ of the energy which you were sending
+in. That is, of course, impossible if there is only one photon. There
+is no such thing as $3/4$ of a photon. It is either <em class="emph">all</em> there,
+or it isn’t there at all. Quantum mechanics tells us it is <em class="emph">all</em>
+there $3/4$ <em class="emph">of the time</em>. The relation of the two theories is
+clear.
+</p>
+</div>
+
+<div id="Ch11-S4-p10" class="para">
+<p class="p">What about the other kinds of polarization? For example, right-hand
+circular polarization? In the classical theory, right-hand circular
+polarization has equal components in $x$ and $y$ which are
+$90^\circ$ out of phase. In the quantum theory, a right-hand circularly
+polarized (RHC) photon has equal amplitudes to be polarized $\ket{x}$
+or $\ket{y}$, and the <em class="emph">amplitudes</em> are $90^\circ$ out of phase.
+Calling a RHC photon a state $\ket{R}$ and a LHC photon a
+state $\ket{L}$, we can write (see Vol. I, Section <a href="I_33.html#Ch33-S1">33-1</a>)
+\begin{equation}
+\begin{aligned}
+\ket{R}&=\frac{1}{\sqrt{2}}\,(\ket{x}+i\,\ket{y}),\\[4ex]
+\ket{L}&=\frac{1}{\sqrt{2}}\,(\ket{x}-i\,\ket{y}).
+\end{aligned}
+\label{Eq:III:11:34}
+\end{equation}
+—the $1/\sqrt{2}$ is put in to get normalized states. With these
+states you can calculate any filtering or interference effects you
+want, using the laws of quantum theory. If you want, you can also
+choose $\ket{R}$ and $\ket{L}$ as base states and represent
+everything in terms of them. You only need to show first
+that $\braket{R}{L}=0$—which you can do by taking the conjugate
+form of the first equation above [see Eq. (<a href="III_08.html#mjx-eqn-EqIII813">8.13</a>)] and
+multiplying it by the other. You can resolve light into $x$- and
+$y$-polarizations, or into $x'$- and $y'$-polarizations, or into right
+and left polarizations as a basis.
+</p>
+</div>
+
+<div id="Ch11-S4-p11" class="para">
+<p class="p">Just as an example, let’s try to turn our formulas around. Can we
+represent the state $\ket{x}$ as a linear combination of right and
+left?  Yes, here it is:
+\begin{equation}
+\begin{aligned}
+\ket{x}&=\frac{1}{\sqrt{2}}\,
+(\ket{R}+\ket{L}),\\[4ex]
+\ket{y}&=-\frac{i}{\sqrt{2}}\,
+(\ket{R}-\ket{L}).
+\end{aligned}
+\label{Eq:III:11:35}
+\end{equation}
+</p>
+</div>
+
+<div id="Ch11-S4-p12" class="para">
+<p class="p"><em class="emph">Proof:</em> Add and subtract the two equations
+in (<a href="#mjx-eqn-EqIII1134">11.34</a>). It is easy to go from one base to the other.
+</p>
+</div>
+
+<div id="Ch11-S4-p13" class="para">
+<p class="p">One curious point has to be made, though. If a photon is right
+circularly polarized, it shouldn’t have anything to do with the $x$- and
+$y$-axes. If we were to look at the same thing from a coordinate system
+turned at some angle about the direction of flight, the light would
+still be right circularly polarized—and similarly for left. The right
+and left circularly polarized light are the same for any such rotation;
+the definition is independent of any choice of the $x$-direction (except
+that the photon direction is given). Isn’t that nice—it doesn’t take
+any axes to define it. Much better than $x$ and $y$. On the other hand,
+isn’t it rather a miracle that when you <em class="emph">add</em> the right and left
+together you can find out which direction $x$ was? If “right” and
+“left” do not depend on $x$ in any way, how is it that we can put them
+back together again and get $x$? We can answer that question in part by
+writing out the state $\ket{R'}$, which represents a photon RHC
+polarized in the frame $x',y'$. In that frame, you would write
+\begin{equation*}
+\ket{R'}=\frac{1}{\sqrt{2}}\,(\ket{x'}+i\,\ket{y'}).
+\end{equation*}
+How does such a state look in the frame $x,y$? Just
+substitute $\ket{x'}$ from Eq. (<a href="#mjx-eqn-EqIII1133">11.33</a>) and the
+corresponding $\ket{y'}$—we didn’t write it down, but it
+is $(-\sin\theta)\,\ket{x}+(\cos\theta)\,\ket{y}$. Then
+
+
+
+\begin{align*}
+\ket{R'}\!&=\!\frac{1}{\sqrt{2}}[
+\cos\theta\,\ket{x}\!+\sin\theta\,\ket{y}\!-
+i\sin\theta\,\ket{x}\!+i\cos\theta\,\ket{y}]\\[2ex]
+&=\frac{1}{\sqrt{2}}[
+(\cos\theta-i\sin\theta)\ket{x}\!+
+i(\cos\theta-i\sin\theta)\ket{y}]\\[2ex]
+&=\frac{1}{\sqrt{2}}(\ket{x}\!+i\ket{y})
+(\cos\theta-i\sin\theta).
+\end{align*}
+
+
+
+The first term is just $\ket{R}$, and the second is $e^{-i\theta}$;
+our result is that
+\begin{equation}
+\label{Eq:III:11:36}
+\ket{R'}=e^{-i\theta}\,\ket{R}.
+\end{equation}
+The states $\ket{R'}$ and $\ket{R}$ are the same except for the
+phase factor $e^{-i\theta}$. If you work out the same thing
+for $\ket{L'}$, you get that<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a>
+\begin{equation}
+\label{Eq:III:11:37}
+\ket{L'}=e^{+i\theta}\,\ket{L}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch11-S4-p14" class="para">
+<p class="p">Now you see what happens. If we add $\ket{R}$ and $\ket{L}$, we get
+something different from what we get when we add $\ket{R'}$
+and $\ket{L'}$. For instance, an $x$-polarized photon is
+[Eq. (<a href="#mjx-eqn-EqIII1135">11.35</a>)] the sum of $\ket{R}$ and $\ket{L}$, but a
+$y$-polarized photon is the sum with the phase of one shifted
+$90^\circ$ backward and the other $90^\circ$ forward. That is just what
+we would get from the sum of $\ket{R'}$ and $\ket{L'}$ for the special
+angle $\theta=90^\circ$, and that’s right. An $x$-polarization in the
+<em class="emph">prime</em> frame is the same as a $y$-polarization in the original
+frame. So it is not exactly true that a circularly polarized photon
+looks the same for any set of axes. Its <em class="emph">phase</em> (the phase relation
+of the right and left circularly polarized states) keeps track of the
+$x$-direction.
+</p>
+</div>
+
+
+</div> <!-- end of section -->
+
+
+<div id="Ch11-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">11–5</span>The neutral K-meson<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a></h3>
+
+<div id="Ch11-S5-p1" class="para">
+<p class="p">We will now describe a two-state system in the world of the strange
+particles—a system for which quantum mechanics gives a most
+remarkable prediction. To describe it completely would involve us in a
+lot of stuff about strange particles, so we will, unfortunately, have
+to cut some corners. We can only give an outline of how a certain
+discovery was made—to show you the kind of reasoning that was
+involved. It begins with the discovery by Gell-Mann and Nishijima of
+the concept of <em class="emph">strangeness</em> and of a new law of
+<em class="emph">conservation of strangeness</em>. It was when
+Gell-Mann and Pais were analyzing the consequences of these
+new ideas that they came across the prediction of a most remarkable
+phenomenon we are going to describe. First, though, we have to tell you
+a little about “strangeness.”
+</p>
+</div>
+
+<div id="Ch11-S5-p2" class="para">
+<p class="p">We must begin with what are called the <em class="emph">strong interactions</em> of
+nuclear particles. These are the interactions which are responsible
+for the strong nuclear forces—as distinct, for instance, from the
+relatively weaker electromagnetic interactions. The interactions are
+“strong” in the sense that if two particles get close enough to
+interact at all, they interact in a big way and produce other
+particles very easily. The nuclear particles have also what is called
+a “weak interaction” by which certain things can happen, such as
+beta decay, but always very slowly on a nuclear time scale—the weak
+interactions are many, many orders of magnitude weaker than the strong
+interactions and even much weaker than electromagnetic interactions.
+</p>
+</div>
+
+<div id="Ch11-S5-p3" class="para">
+<p class="p">When the strong interactions were being studied with the big
+accelerators, people were surprised to find that certain things that
+“should” happen—that were expected to happen—did not occur. For
+instance, in some interactions a particle of a certain type did not
+appear when it was expected.
+Gell-Mann
+and Nishijima noticed that many
+of these peculiar happenings could be explained at once by inventing a
+new conservation law: the <em class="emph">conservation of strangeness</em>. They
+proposed that there was a new kind of attribute associated with each
+particle—which they called its “strangeness” number—and that in
+any strong interaction the “quantity of strangeness” is conserved.
+</p>
+</div>
+
+<div id="Ch11-S5-p4" class="para">
+<p class="p">Suppose, for instance, that a high-energy negative K-meson—with, say,
+an energy of many GeV—collides with a proton. Out of the interaction
+may come many other particles: $\pi$-mesons, K-mesons, lambda particles,
+sigma particles—any of the mesons or baryons listed in
+Table <a href="I_02.html#Ch2-T2">2–2</a> of Vol. I. It is observed, however, that
+only <em class="emph">certain combinations</em> appear, and never others. Now certain
+conservation laws were already known to apply. First, energy and
+momentum are always conserved. The total energy and momentum after an
+event must be the same as before the event. Second, there is the
+conservation of electric charge which says that the total charge of the
+outgoing particles must be equal to the total charge carried by the
+original particles. In our example of a K-meson and a proton coming
+together, the following reactions <em class="emph">do</em> occur:
+\begin{align}
+&\Kminus+\text{p}\to\text{p}+\Kminus+\pi^++\pi^-+\pi^0\notag \\
+\label{Eq:III:11:38}
+\kern{-3em}\text{or}\\ % ebook remove
+% ebook insert: \makebox[0em]{\kern{-5em}\text{or}}\\
+&\Kminus+\text{p}\to\Sigma^-+\pi^+.\notag
+\end{align}
+We would never get:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:11:39}
+\Kminus+\text{p}\to\text{p}+\Kminus+\pi^+
+\quad\text{or}\quad
+\Kminus+\text{p}\to\Lambda^0+\pi^+,
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+&\Kminus+\text{p}\to\text{p}+\Kminus+\pi^+\notag\\
+\label{Eq:III:11:39}
+\kern{-3em}\text{or}\\ % ebook remove
+% ebook insert: \makebox[0em]{\kern{-5em}\text{or}}\\
+&\Kminus+\text{p}\to\Lambda^0+\pi^+,\notag
+\end{align}
+</span>
+because of the conservation of charge. It was also known that the
+<em class="emph">number</em> of <em class="emph">baryons</em> is
+conserved. The number of baryons
+<em class="emph">out</em> must be equal to the number of baryons <em class="emph">in</em>. For this
+law, an <em class="emph">antiparticle</em> of a baryon is counted
+as <em class="emph">minus</em> one baryon. This means that we can—and <em class="emph">do</em>—see
+\begin{align}
+&\Kminus+\text{p}\to\Lambda^0+\pi^0\notag \\
+\label{Eq:III:11:40}
+\kern{-3em}\text{or}\\ % ebook remove
+% ebook insert: \makebox[0em]{\kern{-5em}\text{or}}\\
+&\Kminus+\text{p}\to\text{p}+\Kminus+\text{p}+\overline{\text{p}}\notag
+\end{align}
+(where $\overline{\text{p}}$ is the antiproton, which
+carries a negative charge). But we <em class="emph">never</em> see
+\begin{align}
+&\Kminus+\text{p}\to\Kminus+\pi^++\pi^0\notag \\
+\label{Eq:III:11:41}
+\kern{-3em}\text{or}\\ % ebook remove
+% ebook insert: \makebox[0em]{\kern{-5em}\text{or}}\\
+&\Kminus+\text{p}\to\text{p}+\Kminus+\text{n}\notag
+\end{align}
+(even when there is plenty of energy), because baryons would not be
+conserved.
+</p>
+</div>
+
+<div id="Ch11-S5-p5" class="para">
+<p class="p">These laws, however, do <em class="emph">not</em> explain the strange fact that the
+following reactions—which do not immediately appear to be especially
+different from some of those in (<a href="#mjx-eqn-EqIII1138">11.38</a>)
+or (<a href="#mjx-eqn-EqIII1140">11.40</a>)—are also never observed:
+\begin{align}
+&\Kminus+\text{p}\to\text{p}+\Kminus+\Kzero\notag \\
+\kern{-3em}\text{or}\notag\\ % ebook remove
+% ebook insert: \makebox[0em]{\kern{-5em}\text{or}}\notag\\
+\label{Eq:III:11:42}
+&\Kminus+\text{p}\to\text{p}+\pi^-\\
+\kern{-3em}\text{or}\notag\\ % ebook remove
+% ebook insert: \makebox[0em]{\kern{-5em}\text{or}}\notag\\
+&\Kminus+\text{p}\to\Lambda^0+\Kzero.\notag
+\end{align}
+The explanation is the conservation of strangeness. With each particle
+goes a number—its <em class="emph">strangeness</em> $S$—and there is a law that in
+any <em class="emph">strong</em> interaction, the total strangeness <em class="emph">out</em> must
+equal the total strangeness that went <em class="emph">in</em>. The proton and
+antiproton ($\text{p}$, $\overline{\text{p}}$), the neutron and
+antineutron ($\text{n}$, $\overline{\text{n}}$), and the $\pi$-mesons
+($\pi^+$, $\pi^0$, $\pi^-$) all have the strangeness number <em class="emph">zero</em>;
+the $\Kplus$ and $\Kzero$ mesons have strangeness $+1$; the
+$\Kminus$ and $\Kzerobar$ (the anti-$\Kzero$),<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a> the $\Lambda^0$ and the
+$\Sigma$-particles ($+$, $0$, $-$) have strangeness $-1$. There is also
+a particle with strangeness $-2$—the $\Xi$-particle (capital
+“ksi”)—and perhaps others as yet unknown. We have made a list of
+these strangenesses in Table <a href="#Ch11-T4">11–4</a>.
+</p>
+</div>
+
+<div id="Ch11-T4" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 11-4</span>The strangeness numbers of the strongly interacting particles
+</div>
+<div align="center">
+<table border="1" style="width: 50%" height="10%">
+	<tr>
+		<td class="l t center">&nbsp;</td>
+		<td class="l t r center" colspan="4">$S$</td>
+	</tr>
+	<tr>
+		<td class="l center">&nbsp;</td>
+		<td class="l center">$-2$</td>
+		<td class="center">$-1$</td>
+		<td class="center">$0$</td>
+		<td class="r center">$+1$</td>
+	</tr>
+	<tr>
+		<td class="l tt center">Baryons</td>
+		<td class="l tt center">&nbsp;</td>
+		<td class="tt center">$\Sigma^+$</td>
+		<td class="tt center">$\text{p}$</td>
+		<td class="tt r center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="l center">&nbsp;</td>
+		<td class="l center">$\Xi^0$ </td>
+		<td class="center">&nbsp;$\Lambda^0$, $\Sigma^0$ </td>
+		<td class="center">$\text{n}$</td>
+		<td class="r center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="l center">&nbsp;</td>
+		<td class="l center">&nbsp;$\Xi^-$</td>
+		<td class="center">&nbsp;$\Sigma^-$</td>
+		<td class="center">&nbsp;</td>
+		<td class="r center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="l t center">Mesons</td>
+		<td class="l t center">&nbsp;</td>
+		<td class="t center">&nbsp;</td>
+		<td class="t center">$\pi^+$</td>
+		<td class="t r center">$\Kplus$</td>
+	</tr>
+	<tr>
+		<td class="l center">&nbsp;</td>
+		<td class="l center">&nbsp;</td>
+		<td class="center">$\Kzerobar$</td>
+		<td class="center">$\pi^0$</td>
+		<td class="r center">&nbsp;$\Kzero$</td>
+	</tr>
+	<tr>
+		<td class="l b center">&nbsp;</td>
+		<td class="l b center">&nbsp;</td>
+		<td class="b center">$\Kminus$&nbsp; </td>
+		<td class="b center">$\pi^-$</td>
+		<td class="b r center">&nbsp;</td>
+	</tr>
+	<tfoot>
+    <tr>
+		<td colspan="5"><em class="emph">Note</em>: The $\pi^-$ is the antiparticle of the $\pi^+$ (or <em class="emph">vice versa</em>).</td>
+	</tr>
+	</tfoot>
+</table>
+</div>
+</div>
+
+<div id="Ch11-S5-p6" class="para">
+<p class="p">Let’s see how the strangeness conservation works in some of the
+reactions we have written down. If we start with a $\Kminus$ and a
+proton, we have a total strangeness of $(-1+0)=-1$. The conservation
+of strangeness says that the strangeness of products <em class="emph">after</em> the
+reaction must also add up to $-1$. You see that that is so for the
+reactions of (<a href="#mjx-eqn-EqIII1138">11.38</a>) and (<a href="#mjx-eqn-EqIII1140">11.40</a>). But in the
+reactions of (<a href="#mjx-eqn-EqIII1142">11.42</a>) the strangeness of the right-hand
+side is <em class="emph">zero</em> in each case. Such reactions do not conserve
+strangeness, and do not occur. Why? Nobody knows. Nobody knows any
+more than what we have just told you about this. Nature just works
+that way.
+</p>
+</div>
+
+<div id="Ch11-S5-p7" class="para">
+<p class="p">Now let’s look at the following reaction: a $\pi^-$ hits a proton. You
+might, for instance, get a $\Lambda^0$ particle plus a neutral
+K-particle—two neutral particles. Now which neutral K do you get?
+Since the $\Lambda$-particle has a strangeness $-1$ and the $\pi$
+and $\text{p}^+$ have a strangeness zero, and since this is a fast
+production reaction, the strangeness must not change. The K-particle
+must have strangeness $+1$—it must therefore be the $\Kzero$. The
+reaction is
+\begin{equation*}
+\pi^-+\text{p}\to\Lambda^0+\Kzero,
+\end{equation*}
+with
+\begin{equation*}
+S=0+0=-1++1\quad(\text{conserved}).
+\end{equation*}
+If the $\Kzerobar$ were there instead of the $\Kzero$, the strangeness
+on the right would be $-2$—which nature does not permit, since the
+strangeness on the left side is zero. On the other hand, a $\Kzerobar$
+can be produced in other reactions, such as
+\begin{gather*}
+\text{n}+\text{n}\to\text{n}+\overline{\text{p}}+\Kzerobar+\Kplus,\\
+\\
+S=0+0=0+0+-1++1
+\end{gather*}
+or
+\begin{gather*}
+\Kminus+\text{p}\to\text{n}+\Kzerobar,\\
+\\
+S=-1+0=0+-1.
+\end{gather*}
+</p>
+</div>
+
+<div id="Ch11-S5-p8" class="para">
+<p class="p">You may be thinking, “That’s all a lot of stuff, because how do you
+<em class="emph">know</em> whether it is a $\Kzerobar$ or a $\Kzero$?  They look
+exactly the same. They are antiparticles of each other, so they have
+exactly the same mass, and both have zero electric charge. How do you
+distinguish them?” By the reactions <em class="emph">they</em> produce. For example,
+a $\Kzerobar$ can interact with matter to produce a
+$\Lambda$-particle, like this:
+\begin{equation*}
+\Kzerobar+\text{p}\to\Lambda^0+\pi^+,
+\end{equation*}
+but a $\Kzero$ cannot. There is <em class="emph">no</em> way a $\Kzero$ can produce a
+$\Lambda$-particle when it interacts with ordinary matter (protons and
+neutrons).<a name="footnote_source_4" href="#footnote_4"><sup class="mark">4</sup></a> So the
+experimental distinction between the $\Kzero$ and the $\Kzerobar$
+would be that one of them will and one of them will not
+produce $\Lambda$'s.
+</p>
+</div>
+
+<div id="Ch11-S5-p9" class="para">
+<p class="p">One of the predictions of the strangeness theory is then this—if, in
+an experiment with high-energy pions, a $\Lambda$-particle is produced
+with a neutral K-meson, then <em class="emph">that</em> neutral K-meson going into
+other pieces of matter will never produce a $\Lambda$. The experiment
+might run something like this. You send a beam of $\pi^-$-mesons into a
+large hydrogen bubble chamber. A $\pi^-$ track disappears, but somewhere
+else a pair of tracks appear (a proton and a $\pi^-$) indicating that a
+$\Lambda$-particle has disintegrated<a name="footnote_source_5" href="#footnote_5"><sup class="mark">5</sup></a>
+—see Fig. <a href="#Ch11-F5">11-5</a>. Then you
+know that there is a $\Kzero$ somewhere which you cannot see.
+</p>
+</div>
+
+<div id="Ch11-F5" class="figure">
+<img class="first" src="img/FLP_III/f11-05/f11-05_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_III/f11-05/f11-05_tc_iPad_big_b.svgz">
+<div class="caption"><span class="tag">Fig. 11–5.</span>
+High-energy events as seen in a hydrogen bubble chamber. (a) A
+$\pi^-$ meson interacts with a hydrogen nucleus (proton) producing a
+$\Lambda^0$ particle and a $\Kzero$ meson. Both particles decay in
+the chamber. (b) A $\Kzerobar$ meson interacts with a
+proton producing a $\pi^+$ meson and a $\Lambda^0$ particle which then
+decays. (The neutral particles leave no tracks. Their inferred
+trajectories are indicated here by light dashed lines.)
+</div>
+</div>
+
+<div id="Ch11-S5-p10" class="para">
+<p class="p">You can, however, figure out where it is going by using the
+conservation of momentum and energy. [It could reveal itself later by
+disintegrating into two charged particles, as shown in
+Fig. <a href="#Ch11-F5">11-5</a>(a).]  As the $\Kzero$ goes flying along, it may
+interact with one of the hydrogen nuclei (protons), producing perhaps
+some other particles. The prediction of the strangeness theory is that
+it will <em class="emph">never</em> produce a $\Lambda$-particle in a simple reaction
+like, say,
+\begin{equation*}
+\Kzero+\text{p}\to\Lambda^0+\pi^+,
+\end{equation*}
+although a $\Kzerobar$ can do just that. That is, in a bubble chamber
+a $\Kzerobar$ might produce the event sketched in
+Fig. <a href="#Ch11-F5">11-5</a>(b)—in which the $\Lambda^0$ is seen because it
+decays—but a $\Kzero$ will not. That’s the first part of our story.
+That’s the conservation of strangeness.
+</p>
+</div>
+
+<div id="Ch11-S5-p11" class="para">
+<p class="p">The conservation of strangeness is, however, <em class="emph">not perfect</em>. There
+are very slow disintegrations of the strange particles—decays taking
+a long<a name="footnote_source_6" href="#footnote_6"><sup class="mark">6</sup></a> 
+time like $10^{-10}$ second in which the strangeness
+is <em class="emph">not</em> conserved. These are called the “weak” decays. For
+example, the $\Kzero$ disintegrates into a pair of $\pi$-mesons ($+$
+and $-$) with a lifetime of $10^{-10}$ second. That was, in fact, the
+way K-particles were first seen. Notice that the decay reaction
+\begin{equation*}
+\Kzero\to\pi^++\pi^-
+\end{equation*}
+does not conserve strangeness, so it cannot go “fast” by the strong
+interaction; it can only go through the weak decay process.
+</p>
+</div>
+
+<div id="Ch11-S5-p12" class="para">
+<p class="p">Now the $\Kzerobar$ also disintegrates <em class="emph">in the same way</em>—into
+a $\pi^+$ and a $\pi^-$—and also with the same lifetime
+\begin{equation*}
+\Kzerobar\to\pi^-+\pi^+.
+\end{equation*}
+Again we have a weak decay because it does not conserve strangeness.
+There is a principle that for any reaction there is the corresponding
+reaction with “matter” replaced by “antimatter”
+and <em class="emph">vice versa</em>. Since the $\Kzerobar$ is the antiparticle of
+the $\Kzero$, it should decay into the antiparticles of the $\pi^+$
+and $\pi^-$, but the antiparticle of a $\pi^+$ is the $\pi^-$. (Or, if you
+prefer, <em class="emph">vice versa</em>. It turns out that for the $\pi$-mesons it
+doesn’t matter which one you call “matter.”) So as a consequence of
+the weak decays, the $\Kzero$ and $\Kzerobar$ can go into the same final
+products. When “seen” through their decays—as in a bubble
+chamber—they look like the same particle. Only their strong
+interactions are different.
+</p>
+</div>
+
+<div id="Ch11-S5-p13" class="para">
+<p class="p">At last we are ready to describe the work of
+Gell-Mann and
+Pais. They
+first noticed that since the $\Kzero$ and the $\Kzerobar$ can both
+turn into states of two $\pi$-mesons there must be some amplitude that
+a $\Kzero$ can turn into a $\Kzerobar$, and also that a $\Kzerobar$
+can turn into a $\Kzero$. Writing the reactions as one does in
+chemistry, we would have
+\begin{equation}
+\label{Eq:III:11:43}
+\Kzero\rightleftharpoons\pi^-+\pi^+\rightleftharpoons\Kzerobar.
+\end{equation}
+These reactions imply that there is some amplitude per unit time, say
+$-i/\hbar$ times $\bracket{\Kzerobar}{\text{W}}{\Kzero}$, that
+a $\Kzero$ will turn into a $\Kzerobar$ through the weak interaction
+responsible for the decay into two $\pi$-mesons. And there is the
+corresponding amplitude $\bracket{\Kzero}{\text{W}}{\Kzerobar}$ for
+the reverse process. Because matter and antimatter behave in exactly
+the same way, these two amplitudes are numerically equal; we’ll call
+them both $A$:
+\begin{equation}
+\label{Eq:III:11:44}
+\bracket{\Kzerobar}{\text{W}}{\Kzero}=
+\bracket{\Kzero}{\text{W}}{\Kzerobar}=A.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch11-S5-p14" class="para">
+<p class="p">Now—said Gell-Mann and Pais—here is an
+interesting situation. What people have been calling two distinct states
+of the world—the $\Kzero$ and the $\Kzerobar$—should really be
+considered as <em class="emph">one</em> two-state <em class="emph">system</em>, because there is an
+amplitude to go from one state to the other. For a complete treatment,
+one would, of course, have to deal with more than two states, because
+there are also the states of $2\pi$'s, and so on; but since they were
+mainly interested in the relation of $\Kzero$ and $\Kzerobar$, they did
+not have to complicate things and could make the approximation of a
+two-state system. The other states <em class="emph">were</em> taken into account to the
+extent that their effects appeared implicitly in the amplitudes of
+Eq. (<a href="#mjx-eqn-EqIII1144">11.44</a>).
+</p>
+</div>
+
+<div id="Ch11-S5-p15" class="para">
+<p class="p">Accordingly, Gell-Mann and Pais analyzed the neutral
+particle as a two-state system. They began by choosing as their two base
+states the states $\ket{\Kzero}$ and $\ket{\Kzerobar}$. (From here on,
+the story goes very much as it did for the ammonia molecule.) Any
+state $\ket{\psi}$ of the neutral K-particle could then be described by
+giving the amplitudes that it was in either base state. We’ll call these
+amplitudes
+\begin{equation}
+\label{Eq:III:11:45}
+C_+=\braket{\Kzero}{\psi},\quad
+C_-=\braket{\Kzerobar}{\psi}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch11-S5-p16" class="para">
+<p class="p">The next step was to write the Hamiltonian equations for this
+two-state system. If there were no coupling between the $\Kzero$ and
+the $\Kzerobar$, the equations would be simply
+\begin{equation}
+\begin{aligned}
+i\hbar\,\ddt{C_+}{t}&=E_0C_+,\\[2ex]
+i\hbar\,\ddt{C_-}{t}&=E_0C_-.
+\end{aligned}
+\label{Eq:III:11:46}
+\end{equation}
+But since there is the amplitude $\bracket{\Kzero}{\text{W}}{\Kzerobar}$
+for the $\Kzerobar$ to turn into a $\Kzero$ there should be the
+additional term
+\begin{equation*}
+\bracket{\Kzero}{\text{W}}{\Kzerobar}C_-=AC_-
+\end{equation*}
+added to the right-hand side of the first equation. And similarly, the
+term $AC_+$ should be inserted in the equation for the rate of change
+of $C_-$.
+</p>
+</div>
+
+<div id="Ch11-S5-p17" class="para">
+<p class="p">But that’s not all. When the two-pion effect is taken into account
+there is an <em class="emph">additional</em> amplitude for the $\Kzero$ to turn into
+<em class="emph">itself</em> through the process
+\begin{equation*}
+\Kzero\to\pi^-+\pi^+\to\Kzero.
+\end{equation*}
+The additional amplitude, which we would
+write $\bracket{\Kzero}{\text{W}}{\Kzero}$, is just equal to the
+amplitude $\bracket{\Kzerobar}{\text{W}}{\Kzero}$, since the amplitudes
+to go to and from a pair of $\pi$-mesons are identical for the $\Kzero$
+and the $\Kzerobar$. If you wish, the argument can be written out in
+detail like this. First write<a name="footnote_source_7" href="#footnote_7"><sup class="mark">7</sup></a>
+\begin{equation*}
+\bracket{\Kzerobar}{\text{W}}{\Kzero}=
+\bracket{\Kzerobar}{\text{W}}{2\pi}
+\bracket{2\pi}{\text{W}}{\Kzero}
+\end{equation*}
+and
+\begin{equation*}
+\bracket{\Kzero}{\text{W}}{\Kzero}=
+\bracket{\Kzero}{\text{W}}{2\pi}
+\bracket{2\pi}{\text{W}}{\Kzero}.
+\end{equation*}
+Because of the symmetry of matter and antimatter
+\begin{equation*}
+\bracket{2\pi}{\text{W}}{\Kzero}=
+\bracket{2\pi}{\text{W}}{\Kzerobar},
+\end{equation*}
+and also
+\begin{equation*}
+\bracket{\Kzero}{\text{W}}{2\pi}=
+\bracket{\Kzerobar}{\text{W}}{2\pi}.
+\end{equation*}
+It then follows that $\bracket{\Kzero}{\text{W}}{\Kzero}=
+\bracket{\Kzerobar}{\text{W}}{\Kzero}$, and also that
+$\bracket{\Kzerobar}{\text{W}}{\Kzero}=
+\bracket{\Kzero}{\text{W}}{\Kzerobar}$, as we said earlier. Anyway,
+there are the two additional amplitudes
+$\bracket{\Kzero}{\text{W}}{\Kzero}$
+and $\bracket{\Kzerobar}{\text{W}}{\Kzerobar}$, both equal to $A$, which
+should be included in the Hamiltonian equations. The first gives a
+term $AC_+$ on the right-hand side of the equation for $dC_+/dt$, and the
+second gives a new term $AC_-$ in the equation for $dC_-/dt$. Reasoning
+this way, Gell-Mann and
+Pais concluded that the
+Hamiltonian equations for the $\Kzero\,\Kzerobar$ system should be
+\begin{equation}
+\begin{aligned}
+i\hbar\,\ddt{C_+}{t}&=E_0C_++AC_-+AC_+,\\[2ex]
+i\hbar\,\ddt{C_-}{t}&=E_0C_-+AC_++AC_-.
+\end{aligned}
+\label{Eq:III:11:47}
+\end{equation}
+</p>
+</div>
+
+<div id="Ch11-S5-p18" class="para">
+<p class="p">We must now correct something we have said in earlier chapters: that two
+amplitudes like $\bracket{\Kzero}{\text{W}}{\Kzerobar}$
+and $\bracket{\Kzerobar}{\text{W}}{\Kzero}$ which are the reverse of
+each other, are always complex conjugates. That was true when we were
+talking about particles that did not decay. But if particles can
+decay—and can, therefore, become “lost”—the two amplitudes are not
+necessarily complex conjugates. So the equality of (<a href="#mjx-eqn-EqIII1144">11.44</a>)
+does not mean that the amplitudes are real numbers; they are in fact
+complex numbers. The coefficient $A$ is, therefore, complex; and we
+can’t just incorporate it into the energy $E_0$.
+</p>
+</div>
+
+<div id="Ch11-S5-p19" class="para">
+<p class="p">Having played often with electron spins and such, our heroes knew that
+the Hamiltonian equations of (<a href="#mjx-eqn-EqIII1147">11.47</a>) meant that there was
+<em class="emph">another</em> pair of base states which could also be used to
+represent the K-particle system and which would have especially simple
+behaviors. They said, “Let’s take the sum and difference of these two
+equations. Also, let’s measure all our energies from $E_0$, and use
+units for energy and time that make $\hbar=1$.” (That’s what modern
+theoretical physicists always do. It doesn’t change the physics but
+makes the equations take on a simple form.) Their result:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:11:48}
+i\,\ddt{}{t}\,(C_++C_-)=2A(C_++C_-),\quad
+i\,\ddt{}{t}\,(C_+-C_-)=0.
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{equation}
+\begin{aligned}
+i\,\ddt{}{t}\,(C_++C_-)&=2A(C_++C_-),\\[2ex]
+i\,\ddt{}{t}\,(C_+-C_-)&=0.
+\end{aligned}
+\label{Eq:III:11:48}
+\end{equation}
+
+</span>
+</p>
+</div>
+
+<div id="Ch11-S5-p20" class="para">
+<p class="p">It is apparent that the combinations of amplitudes $(C_++C_-)$
+and $(C_+-C_-)$ act independently from each other (corresponding, of
+course, to the stationary states we have been studying earlier). So
+they concluded that it would be more convenient to use a different
+representation for the K-particle. They defined the two states
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:11:49}
+\ket{\text{K}_1}=\frac{1}{\sqrt{2}}\,
+(\ket{\Kzero}+\ket{\Kzerobar}),\quad
+\ket{\text{K}_2}=\frac{1}{\sqrt{2}}\,
+(\ket{\Kzero}-\ket{\Kzerobar}).
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{equation}
+\begin{aligned}
+\ket{\text{K}_1}&=\frac{1}{\sqrt{2}}\,
+(\ket{\Kzero}+\ket{\Kzerobar}),\\[2ex]
+\ket{\text{K}_2}&=\frac{1}{\sqrt{2}}\,
+(\ket{\Kzero}-\ket{\Kzerobar}).
+\end{aligned}
+\label{Eq:III:11:49}
+\end{equation}
+
+</span>
+They said that instead of thinking of the $\Kzero$ and $\Kzerobar$
+mesons, we can equally well think in terms of the two “particles”
+(that is, “states”) K$_1$ and K$_2$. (These correspond, of course,
+to the states we have usually called $\ket{\slI}$
+and $\ket{\slII}$. We are not using our old notation because we want now
+to follow the notation of the original authors—and the one you will
+see in physics seminars.)
+</p>
+</div>
+
+<div id="Ch11-S5-p21" class="para">
+<p class="p">Now Gell-Mann and Pais didn’t do all this just to get different names
+for the particles—there is also some strange new physics in
+it. Suppose that $C_1$ and $C_2$ are the amplitudes that some
+state $\ket{\psi}$ will be either a K$_1$ or a K$_2$ meson:
+\begin{equation*}
+C_1=\braket{\text{K}_1}{\psi},\quad
+C_2=\braket{\text{K}_2}{\psi}.
+\end{equation*}
+From the equations of (<a href="#mjx-eqn-EqIII1149">11.49</a>),
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:11:50}
+C_1=\frac{1}{\sqrt{2}}\,(C_++C_-),\quad
+C_2=\frac{1}{\sqrt{2}}\,(C_+-C_-).
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+C_1&=\frac{1}{\sqrt{2}}\,(C_++C_-),\\[2ex]
+C_2&=\frac{1}{\sqrt{2}}\,(C_+-C_-).
+\end{aligned}
+\label{Eq:III:11:50}
+\end{equation}
+</span>
+Then the Eqs. (<a href="#mjx-eqn-EqIII1148">11.48</a>) become
+\begin{equation}
+\label{Eq:III:11:51}
+i\,\ddt{C_1}{t}=2AC_1,\quad
+i\,\ddt{C_2}{t}=0.
+\end{equation}
+The solutions are
+\begin{equation}
+\label{Eq:III:11:52}
+C_1(t)=C_1(0)e^{-i2At},\quad
+C_2(t)=C_2(0),
+\end{equation}
+where, of course, $C_1(0)$ and $C_2(0)$ are the amplitudes at $t=0$.
+</p>
+</div>
+
+<div id="Ch11-S5-p22" class="para">
+<p class="p">These equations say that if a neutral K-particle starts out in the
+state $\ket{\text{K}_1}$ at $t=0$ [then $C_1(0)=1$ and $C_2(0)=0$],
+the amplitudes at the time $t$ are
+\begin{equation*}
+C_1(t)=e^{-i2At},\quad
+C_2(t)=0.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch11-S5-p23" class="para">
+<p class="p">Remembering that $A$ is a complex number, it is convenient to
+take $2A=\alpha-i\beta$. (Since the imaginary part of $2A$ turns out to
+be negative, we write it as <em class="emph">minus</em> $i\beta$.) With this
+substitution, $C_1(t)$ reads
+\begin{equation}
+\label{Eq:III:11:53}
+C_1(t)=C_1(0)e^{-\beta t}e^{-i\alpha t}.
+\end{equation}
+The probability of finding a K$_1$ particle at $t$ is the absolute
+square of this amplitude, which is $e^{-2\beta t}$. And, from
+Eqs. (<a href="#mjx-eqn-EqIII1152">11.52</a>), the probability of finding the K$_2$ state at
+any time is zero. That means that if you make a K-particle in the
+state $\ket{\text{K}_1}$, the probability of finding it in the same
+state decreases exponentially with time—but you will never find it in
+state $\ket{\text{K}_2}$. Where does it go?  It disintegrates into two
+$\pi$-mesons with the mean life $\tau=1/2\beta$ which is,
+experimentally, $10^{-10}$ sec. We made provisions for that when we said
+that $A$ was complex.
+</p>
+</div>
+
+<div id="Ch11-S5-p24" class="para">
+<p class="p">On the other hand, Eq. (<a href="#mjx-eqn-EqIII1152">11.52</a>) says that if we make a
+K-particle completely in the K$_2$ state, it stays that way
+forever. Well, that’s not really true. It is observed experimentally
+to disintegrate into <em class="emph">three</em> $\pi$-mesons, but $600$ times slower
+than the two-pion decay we have described. So there are some other
+small terms we have left out in our approximation. But so long as we
+are considering only the two-pion decay, the K$_2$ lasts “forever.”
+</p>
+</div>
+
+<div id="Ch11-S5-p25" class="para">
+<p class="p">Now to finish the story of Gell-Mann
+and Pais. They went on to
+consider what happens when a K-particle is produced <em class="emph">with a
+$\Lambda^0$ particle</em> in a <em class="emph">strong</em> interaction. Since it must
+then have a strangeness of $+1$, it must be produced in the
+$\Kzero$ state. So at $t=0$ it is neither a K$_1$ nor a K$_2$ but a
+<em class="emph">mixture</em>. The initial conditions are
+\begin{equation*}
+C_+(0)=1,\quad
+C_-(0)=0.
+\end{equation*}
+But that means—from Eq. (<a href="#mjx-eqn-EqIII1150">11.50</a>)—that
+\begin{equation*}
+C_1(0)=\frac{1}{\sqrt{2}},\quad
+C_2(0)=\frac{1}{\sqrt{2}},
+\end{equation*}
+and—from Eqs. (<a href="#mjx-eqn-EqIII1152">11.52</a>) and (<a href="#mjx-eqn-EqIII1153">11.53</a>)—that
+\begin{equation}
+\label{Eq:III:11:54}
+C_1(t)=\frac{1}{\sqrt{2}}\,
+e^{-\beta t}e^{-i\alpha t},\quad
+C_2(t)=\frac{1}{\sqrt{2}}.
+\end{equation}
+Now remember that $\Kzero$ and $\Kzerobar$ are each linear combinations
+of K$_1$ and K$_2$. In Eqs. (<a href="#mjx-eqn-EqIII1154">11.54</a>) the amplitudes have
+been chosen so that at $t=0$ the $\Kzerobar$ parts cancel each other out
+by interference, leaving only a $\Kzero$ state. But the
+$\ket{\text{K}_1}$ state <em class="emph">changes with time</em>, and the
+$\ket{\text{K}_2}$ state <em class="emph">does not</em>. After $t=0$ the interference
+of $C_1$ and $C_2$ will give finite amplitudes for both $\Kzero$
+and $\Kzerobar$.
+</p>
+</div>
+
+<div id="Ch11-S5-p26" class="para">
+<p class="p">What does all this mean? Let’s go back and think of the experiment we
+sketched in Fig. <a href="#Ch11-F5">11-5</a>. A $\pi^-$ meson has produced a
+$\Lambda^0$ particle and a $\Kzero$ meson which is tooting along through
+the hydrogen in the chamber. As it goes along, there is some small but
+uniform chance that it will collide with a hydrogen nucleus. At first,
+we thought that strangeness conservation would prevent the K-particle
+from making a $\Lambda^0$ in such an interaction. Now, however, we see
+that that is not right. For although our K-particle <em class="emph">starts out</em> as
+a $\Kzero$—which cannot make a $\Lambda^0$—it does not <em class="emph">stay</em>
+this way. After a while, there <em class="emph">is some amplitude</em> that it will
+have flipped to the $\Kzerobar$ state. We can, therefore, sometimes
+expect to see a $\Lambda^0$ produced along the K-particle track. The
+chance of this happening is given by the amplitude $C_-$, which we can
+[by using Eq. (<a href="#mjx-eqn-EqIII1150">11.50</a>)) backwards] relate to $C_1$
+and $C_2$. The relation is
+\begin{equation}
+\label{Eq:III:11:55}
+C_-=\frac{1}{\sqrt{2}}\,(C_1-C_2)=
+\tfrac{1}{2}(e^{-\beta t}e^{-i\alpha t}-1).
+\end{equation}
+As our K-particle goes along, the probability that it will “act
+like” a $\Kzerobar$ is equal to $\abs{C_-}^2$, which is
+\begin{equation}
+\label{Eq:III:11:56}
+\abs{C_-}^2=\tfrac{1}{4}
+(1+e^{-2\beta t}-2e^{-\beta t}\cos\alpha t).
+\end{equation}
+A complicated and strange result!
+</p>
+</div>
+
+<div id="Ch11-S5-p27" class="para">
+<p class="p">This, then, is the remarkable prediction of
+Gell-Mann and Pais: when a $\Kzero$ is produced, the chance
+that it will turn into a $\Kzerobar$—as it can demonstrate by being
+able to produce a $\Lambda^0$—varies with time according to
+Eq. (<a href="#mjx-eqn-EqIII1156">11.56</a>). This prediction came from using only sheer
+logic and the basic principles of the quantum mechanics—with no
+knowledge at all of the inner workings of the K-particle. Since nobody
+knows anything about the inner machinery, that is as far as
+Gell-Mann and Pais could go. They could not give any
+theoretical values for $\alpha$ and $\beta$. And nobody has been able to
+do so to this date. They were able to give a value of $\beta$ obtained
+from the experimentally observed rate of decay into two $\pi$'s
+($2\beta=10^{10}$ sec$^{-1}$), but they could say nothing
+about $\alpha$.
+</p>
+</div>
+
+<div id="Ch11-S5-p28" class="para">
+<p class="p">We have plotted the function of Eq. (<a href="#mjx-eqn-EqIII1156">11.56</a>) for two
+values of $\alpha$ in Fig. <a href="#Ch11-F6">11-6</a>. You can see that the
+form depends very much on the ratio of $\alpha$ to $\beta$. There is no
+$\Kzerobar$ probability at first; then it builds up. If $\alpha$ is
+large, the probability would have large oscillations. If $\alpha$ is
+small, there will be little or no oscillation—the probability will
+just rise smoothly to $1/4$.
+</p>
+</div>
+
+<div id="Ch11-F6" class="figure">
+<img class="first" src="img/FLP_III/f11-06/f11-06_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_III/f11-06/f11-06_tc_iPad_big_b.svgz">
+<div class="caption"><span class="tag">Fig. 11–6.</span>
+The function of Eq. ((<a href="#mjx-eqn-EqIII1156">11.56</a>)): (a) for $\alpha=4\pi\beta$,
+(b) for $\alpha=\pi\beta$ (with $2\beta=10^{10}$ sec$^{-1}$).
+</div>
+</div>
+
+<div id="Ch11-S5-p29" class="para">
+<p class="p">Now, typically, the K-particle will be travelling at a constant speed
+near the speed of light. The curves of Fig. <a href="#Ch11-F6">11-6</a> then
+also represent the probability along the track of observing
+a $\Kzerobar$—with typical distances of several centimeters. You can see
+why this prediction is so remarkably peculiar. You produce a single
+particle and instead of just disintegrating, it does something else.
+Sometimes it disintegrates, and other times it turns into a different
+kind of a particle. Its characteristic probability of producing an
+effect varies in a strange way as it goes along. There is nothing else
+quite like it in nature. And this most remarkable prediction was made
+solely by arguments about the interference of amplitudes.
+</p>
+</div>
+
+<div id="Ch11-S5-p30" class="para">
+<p class="p">If there is any place where we have a chance to test the main
+principles of quantum mechanics in the purest way—does the
+superposition of amplitudes work or doesn’t it?—this is it. In spite
+of the fact that this effect has been predicted now for several years,
+there is no experimental determination that is very clear. There are
+some rough results which indicate that the $\alpha$ is not zero, and
+that the effect really occurs—they indicate that $\alpha$ is between
+$2\beta$ and $4\beta$. That’s all there is, experimentally. It would
+be very beautiful to check out the curve exactly to see if the
+principle of superposition really still works in such a mysterious
+world as that of the strange particles—with unknown reasons for the
+decays, and unknown reasons for the strangeness.
+</p>
+</div>
+
+<div id="Ch11-S5-p31" class="para">
+<p class="p">The analysis we have just described is very characteristic of the way
+quantum mechanics is being used today in the search for an
+understanding of the strange particles. All the complicated theories
+that you may hear about are no more and no less than this kind of
+elementary hocus-pocus using the principles of superposition and other
+principles of quantum mechanics of that level. Some people claim that
+they have theories by which it is possible to calculate the $\beta$
+and $\alpha$, or at least the $\alpha$ given the $\beta$, but these
+theories are completely useless. For instance, the theory that
+predicts the value of $\alpha$, given the $\beta$, tells us that the
+value of $\alpha$ should be infinite. The set of equations with which
+they originally start involves two $\pi$-mesons and then goes from the
+two $\pi$’s back to a $\Kzero$, and so on. When it’s all worked out,
+it does indeed produce a pair of equations like the ones we have here;
+but because there are an infinite number of states of two $\pi$'s,
+depending on their momenta, integrating over all the possibilities
+gives an $\alpha$ which is infinite. But nature’s $\alpha$ is
+<em class="emph">not</em> infinite. So the dynamical theories are wrong. It is really
+quite remarkable that the phenomena which can be predicted <em class="emph">at
+all</em> in the world of the strange particles come from the principles of
+quantum mechanics at the level at which you are learning them now.
+</p>
+</div>
+
+
+</div> <!-- end of section -->
+
+
+<div id="Ch11-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">11–6</span>Generalization to $\boldsymbol{N}$-state systems</h3>
+
+<div id="Ch11-S6-p1" class="para">
+<p class="p">We have finished with all the two-state systems we wanted to talk
+about. In the following chapters we will go on to study systems with
+more states. The extension to $N$-state systems of the ideas we have
+worked out for two states is pretty straightforward. It goes like
+this.
+</p>
+</div>
+
+<div id="Ch11-S6-p2" class="para">
+<p class="p">If a system has $N$ distinct states, we can represent any
+state $\ket{\psi(t)}$ as a linear combination of any set of base
+states $\ket{i}$, where $i=1$, $2$, $3$, $\ldots$, $N$;
+\begin{equation}
+\label{Eq:III:11:57}
+\ket{\psi(t)}=\sum_{\text{all $i$}}\ket{i}C_i(t).
+\end{equation}
+The coefficients $C_i(t)$ are the amplitudes $\braket{i}{\psi(t)}$. The
+behavior of the amplitudes $C_i$ with time is governed by the equations
+\begin{equation}
+\label{Eq:III:11:58}
+i\hbar\,\ddt{C_i(t)}{t}=\sum_jH_{ij}C_j,
+\end{equation}
+where the energy matrix $H_{ij}$ describes the physics of the problem.
+It looks the same as for two states. Only now, both $i$ and $j$ must
+range over all $N$ base states, and the energy matrix $H_{ij}$—or, if
+you prefer, the Hamiltonian—is an $N$ by $N$ matrix with
+$N^2$ numbers. As before, $H_{ij}\cconj=H_{ji}$—so long as particles
+are conserved—and the diagonal elements $H_{ii}$ are real numbers.
+</p>
+</div>
+
+<div id="Ch11-S6-p3" class="para">
+<p class="p">We have found a general solution for the $C$’s of a two-state system
+when the energy matrix is constant (doesn’t depend on $t$). It is also
+not difficult to solve Eq. (<a href="#mjx-eqn-EqIII1158">11.58</a>) for an $N$-state
+system when $H$ is not time dependent. Again, we begin by looking for
+a possible solution in which the amplitudes all have the <em class="emph">same</em>
+time dependence. We try
+\begin{equation}
+\label{Eq:III:11:59}
+C_i=a_ie^{-(i/\hbar)Et}.
+\end{equation}
+When these $C_i$’s are substituted into (<a href="#mjx-eqn-EqIII1158">11.58</a>), the
+derivatives $dC_i(t)/dt$ become just $(-i/\hbar)EC_i$. Canceling the
+common exponential factor from all terms, we get
+\begin{equation}
+\label{Eq:III:11:60}
+Ea_i=\sum_jH_{ij}a_j.
+\end{equation}
+This is a set of $N$ linear algebraic equations for the $N$ unknowns
+$a_1$, $a_2$, $\ldots$, $a_N$, and there is a solution only if you are
+lucky—only if the determinant of the coefficients of all the $a$'s
+is zero. But it’s not necessary to be that sophisticated; you can just
+start to solve the equations any way you want, and you will find that
+they can be solved only for certain values of $E$. (Remember that $E$
+is the only adjustable thing we have in the equations.)
+</p>
+</div>
+
+<div id="Ch11-S6-p4" class="para">
+<p class="p">If you want to be formal, however, you can write
+Eq. (<a href="#mjx-eqn-EqIII1160">11.60</a>) as
+\begin{equation}
+\label{Eq:III:11:61}
+\sum_j(H_{ij}-\delta_{ij}E)a_j=0.
+\end{equation}
+Then you can use the rule—if you know it—that these equations will
+have a solution only for those values of $E$ for which
+\begin{equation}
+\label{Eq:III:11:62}
+\Det\,(H_{ij}-\delta_{ij}E)=0.
+\end{equation}
+Each term of the determinant is just $H_{ij}$, except that $E$ is
+subtracted from every diagonal element. That is, (<a href="#mjx-eqn-EqIII1162">11.62</a>)
+means just
+\begin{equation}
+\label{Eq:III:11:63}
+\Det
+\!\! % ebook remove
+\begin{pmatrix}
+H_{11}\!-\!E & H_{12} & H_{13} & \dots\\[1ex]
+H_{21} & H_{22}\!-\!E & H_{23} & \dots\\[1ex]
+H_{31} & H_{32} & H_{33}\!-\!E & \dots\\[1ex]
+\dots & \dots & \dots & \dots
+\end{pmatrix}
+\!\!=0.% ebook remove
+% ebook insert: =0.
+\end{equation}
+This is, of course, just a special way of writing an algebraic
+equation for $E$ which is the sum of a bunch of products of all the
+terms taken a certain way. These products will give all the powers
+of $E$ up to $E^N$.
+</p>
+</div>
+
+<div id="Ch11-S6-p5" class="para">
+<p class="p">So we have an $N$th order polynomial equal to zero, and there are, in
+general, $N$ roots. (We must remember, however, that some of them may
+be multiple roots—meaning that two or more roots are equal.) Let’s
+call the $N$ roots
+\begin{equation}
+\label{Eq:III:11:64}
+E_{\slI},E_{\slII},E_{\slIII},\dotsc,E_{\bldn},\dotsc,
+E_{\bldN}.
+\end{equation}
+(We will use $\bldn$ to represent the $n$th Roman numeral, so that
+$\bldn$ takes on the values $\slI$, $\slII$, $\ldots$, $\bldN$.)  It may
+be that some of these energies are
+equal—say $E_{\slII}=E_{\slIII}$—but we will still choose to call
+them by different names.
+</p>
+</div>
+
+<div id="Ch11-S6-p6" class="para">
+<p class="p">The equations (<a href="#mjx-eqn-EqIII1160">11.60</a>)—or (<a href="#mjx-eqn-EqIII1161">11.61</a>)—have one
+solution for each value of $E$. If you put any one of
+the $E$'s—say $E_{\bldn}$—into (<a href="#mjx-eqn-EqIII1160">11.60</a>) and solve for
+the $a_i$, you get a set which belongs to the energy $E_{\bldn}$. We
+will call this set $a_i(\bldn)$.
+</p>
+</div>
+
+<div id="Ch11-S6-p7" class="para">
+<p class="p">Using these $a_i(\bldn)$ in Eq. (<a href="#mjx-eqn-EqIII1159">11.59</a>), we have the
+amplitudes $C_i(\bldn)$ that the definite energy states are in the
+base state $\ket{i}$. Letting $\ket{\bldn}$ stand for the state vector
+of the definite energy state at $t=0$, we can write
+\begin{equation*}
+C_i(\bldn)=\braket{i}{\bldn}e^{-(i/\hbar)E_{\bldn}t},
+\end{equation*}
+with
+\begin{equation}
+\label{Eq:III:11:65}
+\braket{i}{\bldn}=a_i(\bldn).
+\end{equation}
+The complete definite energy state $\ket{\psi_{\bldn}(t)}$ can then be written as
+\begin{equation*}
+\ket{\psi_{\bldn}(t)}=\sum_i\ket{i}a_i(\bldn)e^{-(i/\hbar)E_{\bldn}t},
+\end{equation*}
+or
+\begin{equation}
+\label{Eq:III:11:66}
+\ket{\psi_{\bldn}(t)}=\ket{\bldn}e^{-(i/\hbar)E_{\bldn}t}.
+\end{equation}
+The state vectors $\ket{\bldn}$ describe the configuration of the
+definite energy states, but have the time dependence factored
+out. Then they are constant vectors which can be used as a new base
+set if we wish.
+</p>
+</div>
+
+<div id="Ch11-S6-p8" class="para">
+<p class="p">Each of the states $\ket{\bldn}$ has the property—as you can easily
+show—that when operated on by the Hamiltonian operator $\Hop$ it
+gives just $E_{\bldn}$ times the same state:
+\begin{equation}
+\label{Eq:III:11:67}
+\Hop\,\ket{\bldn}=E_{\bldn}\,\ket{\bldn}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch11-S6-p9" class="para">
+<p class="p">The energy $E_{\bldn}$ is, then, a number which is a characteristic of
+the Hamiltonian operator $\Hop$. As we have seen, a Hamiltonian will, in
+general, have several characteristic energies. In the mathematician’s
+world these would be called the “characteristic values” of the
+matrix $H_{ij}$. Physicists usually call them the
+“eigenvalues” of $\Hop$. (“Eigen” is the German
+word for “characteristic” or “proper.”) With each eigenvalue
+of $\Hop$—in other words, for each energy—there is the state of
+definite energy, which we have called the “stationary
+state.”
+Physicists usually call the states $\ket{\bldn}$ “the
+eigenstates of $\Hop$.”
+Each eigenstate corresponds to a particular eigenvalue $E_{\bldn}$.
+</p>
+</div>
+
+<div id="Ch11-S6-p10" class="para">
+<p class="p">Now, generally, the states $\ket{\bldn}$—of which there are $N$—can
+also be used as a base set. For this to be true, all of the states must
+be orthogonal, meaning that for any two of them, say $\ket{\bldn}$
+and $\ket{\bldm}$,
+\begin{equation}
+\label{Eq:III:11:68}
+\braket{\bldn}{\bldm}=0.
+\end{equation}
+This will be true automatically if all the energies are
+different. Also, we can multiply all the $a_i(\bldn)$ by a suitable
+factor so that all the states are normalized—by which we mean that
+\begin{equation}
+\label{Eq:III:11:69}
+\braket{\bldn}{\bldn}=1
+\end{equation}
+for all $\bldn$.
+</p>
+</div>
+
+<div id="Ch11-S6-p11" class="para">
+<p class="p">When it happens that Eq. (<a href="#mjx-eqn-EqIII1163">11.63</a>) accidentally has two
+(or more) roots with the same energy, there are some minor
+complications. First, there are still two different sets of $a_i$'s
+which go with the two equal energies, but the states they give may
+<em class="emph">not</em> be orthogonal. Suppose you go through the normal procedure
+and find two stationary states with equal energies—let’s call them
+$\ket{\mu}$ and $\ket{\nu}$. Then it will not necessarily be so that
+they are orthogonal—if you are unlucky,
+\begin{equation*}
+\braket{\mu}{\nu}\neq0.
+\end{equation*}
+It is, however, always true that you can cook up two new states, which
+we will call $\ket{\mu'}$ and $\ket{\nu'}$, that have the same
+energies and are also orthogonal, so that
+\begin{equation}
+\label{Eq:III:11:70}
+\braket{\mu'}{\nu'}=0.
+\end{equation}
+You can do this by making $\ket{\mu'}$ and $\ket{\nu'}$ a suitable
+linear combination of $\ket{\mu}$ and $\ket{\nu}$, with the
+coefficients chosen to make it come out so that Eq. (<a href="#mjx-eqn-EqIII1170">11.70</a>)
+is true. It is always convenient to do this. We will generally assume
+that this has been done so that we can always assume that our proper
+energy states $\ket{\bldn}$ are all orthogonal.
+</p>
+</div>
+
+<div id="Ch11-S6-p12" class="para">
+<p class="p">We would like, for fun, to prove that when two of the stationary
+states have different energies they are indeed orthogonal. For the
+state $\ket{\bldn}$ with the energy $E_{\bldn}$, we have that
+\begin{equation}
+\label{Eq:III:11:71}
+\Hop\,\ket{\bldn}=E_{\bldn}\,\ket{\bldn}.
+\end{equation}
+This operator equation really means that there is an equation between
+numbers. Filling the missing parts, it means the same as
+\begin{equation}
+\label{Eq:III:11:72}
+\sum_j\bracket{i}{\Hop}{j}\braket{j}{\bldn}=
+E_{\bldn}\braket{i}{\bldn}.
+\end{equation}
+If we take the complex conjugate of this equation, we get
+\begin{equation}
+\label{Eq:III:11:73}
+\sum_j\bracket{i}{\Hop}{j}\cconj\braket{j}{\bldn}\cconj=
+E_{\bldn}\cconj\braket{i}{\bldn}\cconj.
+\end{equation}
+Remember now that the complex conjugate of an amplitude is the reverse
+amplitude, so (<a href="#mjx-eqn-EqIII1173">11.73</a>) can be rewritten as
+\begin{equation}
+\label{Eq:III:11:74}
+\sum_j\braket{\bldn}{j}\bracket{j}{\Hop}{i}=
+E_{\bldn}\cconj\braket{\bldn}{i}.
+\end{equation}
+Since this equation is valid for <em class="emph">any</em> $i$, its “short form” is
+\begin{equation}
+\label{Eq:III:11:75}
+\bra{\bldn}\,\Hop=E_{\bldn}\cconj\bra{\bldn},
+\end{equation}
+which is called the <em class="emph">adjoint</em> to Eq. (<a href="#mjx-eqn-EqIII1171">11.71</a>).
+</p>
+</div>
+
+<div id="Ch11-S6-p13" class="para">
+<p class="p">Now we can easily prove that $E_{\bldn}$ is a real number. We multiply
+Eq. (<a href="#mjx-eqn-EqIII1171">11.71</a>) by $\bra{\bldn}$ to get
+\begin{equation}
+\label{Eq:III:11:76}
+\bracket{\bldn}{\Hop}{\bldn}=E_{\bldn},
+\end{equation}
+since $\braket{\bldn}{\bldn}=1$. Then we multiply
+Eq. (<a href="#mjx-eqn-EqIII1175">11.75</a>) on the right by $\ket{\bldn}$ to get
+\begin{equation}
+\label{Eq:III:11:77}
+\bracket{\bldn}{\Hop}{\bldn}=E_{\bldn}\cconj.
+\end{equation}
+Comparing (<a href="#mjx-eqn-EqIII1176">11.76</a>) with (<a href="#mjx-eqn-EqIII1177">11.77</a>) it is clear
+that
+\begin{equation}
+\label{Eq:III:11:78}
+E_{\bldn}=E_{\bldn}\cconj,
+\end{equation}
+which means that $E_{\bldn}$ is real. We can erase the star
+on $E_{\bldn}$ in Eq. (<a href="#mjx-eqn-EqIII1175">11.75</a>).
+</p>
+</div>
+
+<div id="Ch11-S6-p14" class="para">
+<p class="p">Finally we are ready to show that the different energy states are
+orthogonal. Let $\ket{\bldn}$ and $\ket{\bldm}$ be any two of the
+definite energy base states. Using Eq. (<a href="#mjx-eqn-EqIII1175">11.75</a>) for the
+state $\bldm$, and multiplying it by $\ket{\bldn}$, we get that
+\begin{equation*}
+\bracket{\bldm}{\Hop}{\bldn}=E_{\bldm}\braket{\bldm}{\bldn}.
+\end{equation*}
+But if we multiply (<a href="#mjx-eqn-EqIII1171">11.71</a>) by $\bra{\bldm}$, we get
+\begin{equation*}
+\bracket{\bldm}{\Hop}{\bldn}=E_{\bldn}\braket{\bldm}{\bldn}.
+\end{equation*}
+Since the left sides of these two equations are equal, the right sides
+are, also:
+\begin{equation}
+\label{Eq:III:11:79}
+E_{\bldm}\braket{\bldm}{\bldn}=E_{\bldn}\braket{\bldm}{\bldn}.
+\end{equation}
+If $E_{\bldm}=E_{\bldn}$ the equation does not tell us anything. But
+if the energies of the two states $\ket{\bldm}$ and $\ket{\bldn}$
+<em class="emph">are different</em> ($E_{\bldm}\neq E_{\bldn}$),
+Eq. (<a href="#mjx-eqn-EqIII1179">11.79</a>) says that $\braket{\bldm}{\bldn}$ must be zero,
+as we wanted to prove. The two states are necessarily orthogonal so long
+as $E_{\bldn}$ and $E_{\bldm}$ are numerically different.
+</p>
+</div>
+
+
+</div> <!--end of section -->
+
+
+ <!-- HOW AND WHERE TO MAKE FOOTNOTES -->
+<ol id="footnotes">
+
+	<li class="footnote">
+	  <a name="footnote_1"></a>
+It’s similar to what we found (in
+Chapter <a href="III_06.html">6</a>) for a spin one-half particle when we rotated
+the coordinates about the $z$-axis—then we got the phase
+factors $e^{\pm i\phi/2}$. It is, in fact, exactly what we wrote down in
+Section <a href="III_05.html#Ch5-S7">5–7</a> for the $\ket{+}$ and $\ket{-}$ states of
+a spin-one particle—which is no coincidence. The photon is a
+spin-one particle which has, however, no “zero” state.
+	  <a href="#footnote_source_1">↩</a>
+	</li>
+	
+	<li class="footnote">
+	  <a name="footnote_2"></a>
+We now feel that the material of this
+section is longer and harder than is appropriate at this point in our
+development. We suggest that you skip it and continue with
+Section <a href="III_11.html#Ch11-S6">11–6</a>. If you are ambitious and have time you may
+wish to come back to it later. We leave it here, because it is a
+beautiful example—taken from recent work in high-energy physics—of
+what can be done with our formulation of the quantum mechanics of
+two-state systems.
+	  <a href="#footnote_source_2">↩</a>
+	</li>
+	
+	<li class="footnote">
+	  <a name="footnote_3"></a>
+Read as: “K-naught-bar,” or “K-zero-bar.”
+	  <a href="#footnote_source_3">↩</a>
+	</li>
+	
+	
+	<li class="footnote">
+	  <a name="footnote_4"></a>
+Except, of course, if it <em class="emph">also</em> produces
+<em class="emph">two</em> $\Kplus$’s or other particles with a total strangeness
+of $+2$. We can think here of reactions in which there is insufficient
+energy to produce these additional strange particles.
+	  <a href="#footnote_source_4">↩</a>
+	</li>
+	
+	<li class="footnote">
+	  <a name="footnote_5"></a>
+The free
+$\Lambda$-particle decays slowly via a <em class="emph">weak</em> interaction (so
+strangeness need not be conserved). The decay products are either a p
+and a $\pi^-$, or an n and a $\pi^0$. The lifetime
+is $2.2\times10^{-10}$ sec.
+	  <a href="#footnote_source_5">↩</a>
+	</li>
+	
+	
+	
+	<li class="footnote">
+	  <a name="footnote_6"></a>
+A typical time for strong interactions is more like
+$10^{-23}$ sec.
+	  <a href="#footnote_source_6">↩</a>
+	</li>
+	
+	<li class="footnote">
+	  <a name="footnote_7"></a>
+We are making a simplification
+here. The $2\pi$-system can have many states corresponding to various
+momenta of the $\pi$-mesons, and we should make the right-hand side of
+this equation into a sum over the various base states of the $\pi$'s.
+The complete treatment still leads to the same conclusions.
+	  <a href="#footnote_source_7">↩</a>
+	</li>
+	
+</ol>
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

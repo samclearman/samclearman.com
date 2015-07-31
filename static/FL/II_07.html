@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 7: The Electric Field in Various Circumstances (Continued)</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "7." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch7" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">7</span>The Electric Field in Various Circumstances (Continued)</h2>
+<div id="Ch7-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">7–1</span>Methods for finding the electrostatic field</h3>
+<div id="Ch7-S1-p1" class="para">
+<p class="p">This chapter is a continuation of our consideration of the
+characteristics of electric fields in various particular
+situations. We shall first describe some of the more elaborate methods
+for solving problems with conductors. It is not expected that these
+more advanced methods can be mastered at this time. Yet it may be of
+interest to have some idea about the kinds of problems that can be
+solved, using techniques that may be learned in more advanced
+courses. Then we take up two examples in which the charge distribution
+is neither fixed nor is carried by a conductor, but instead is
+determined by some other law of physics.
+</p>
+</div>
+<div id="Ch7-S1-p2" class="para">
+<p class="p">As we found in Chapter <a href="II_06.html">6</a>, the problem of the
+electrostatic field is fundamentally simple when the distribution of
+charges is specified; it requires only the evaluation of an
+integral. When there are conductors present, however, complications
+arise because the charge distribution on the conductors is not
+initially known; the charge must distribute itself on the surface of
+the conductor in such a way that the conductor is an
+equipotential. The solution of such problems is neither direct nor
+simple.</p>
+</div>
+<div id="Ch7-S1-p3" class="para">
+<p class="p">We have looked at an indirect method of solving such problems, in
+which we find the equipotentials for some specified charge
+distribution and replace one of them by a conducting surface. In this
+way we can build up a catalog of special solutions for conductors in
+the shapes of spheres, planes, etc. The use of images, described in
+Chapter <a href="II_06.html">6</a>, is an example of an indirect method. We shall
+describe another in this chapter.</p>
+</div>
+<div id="Ch7-S1-p4" class="para">
+<p class="p">If the problem to be solved does not belong to the class of problems
+for which we can construct solutions by the indirect method, we are
+forced to solve the problem by a more direct method. The mathematical
+problem of the direct method is the solution of Laplace’s
+equation,
+\begin{equation}
+\label{Eq:II:7:1}
+\nabla^2\phi=0,
+\end{equation}
+
+subject to the condition that $\phi$ is a suitable constant on certain
+boundaries—the surfaces of the conductors. Problems which involve
+the solution of a differential field equation subject to certain
+<em class="emph">boundary conditions</em> are called <em class="emph">boundary-value</em>
+problems. They have been the object of
+considerable mathematical study. In the case of conductors having
+complicated shapes, there are no general analytical methods. Even such
+a simple problem as that of a charged cylindrical metal can closed at
+both ends—a beer can—presents formidable mathematical
+difficulties. It can be solved only approximately, using numerical
+methods. The <em class="emph">only</em> general methods of solution are numerical.</p>
+</div>
+<div id="Ch7-S1-p5" class="para">
+<p class="p">There are a few problems for which Eq. (<a href="#mjx-eqn-EqII71">7.1</a>) can be
+solved directly. For example, the problem of a charged conductor
+having the shape of an ellipsoid of revolution can be solved exactly
+in terms of known special functions. The solution for a thin disc can
+be obtained by letting the ellipsoid become infinitely oblate.  In a
+similar manner, the solution for a needle can be obtained by letting
+the ellipsoid become infinitely prolate. However, it must be stressed
+that the only direct methods of general applicability are the
+numerical techniques.</p>
+</div>
+<div id="Ch7-S1-p6" class="para">
+<p class="p">Boundary-value problems can also be solved by measurements of a
+physical analog. Laplace’s equation arises in many different physical
+situations: in steady-state heat flow, in irrotational fluid flow, in
+current flow in an extended medium, and in the deflection of an elastic
+membrane. It is frequently possible to set up a physical model which is
+analogous to an electrical problem which we wish to solve.  By the
+measurement of a suitable analogous quantity on the model, the solution
+to the problem of interest can be determined. An example of the analog
+technique is the use of the electrolytic tank for the solution of
+two-dimensional problems in electrostatics. This works because the
+differential equation for the potential in a uniform conducting medium
+is the same as it is for a vacuum.</p>
+</div>
+<div id="Ch7-S1-p7" class="para">
+<p class="p">There are many physical situations in which the variations of the
+physical fields in one direction are zero, or can be neglected in
+comparison with the variations in the other two directions. Such
+problems are called two-dimensional; the field depends on two
+coordinates only. For example, if we place a long charged wire along
+the $z$-axis, then for points not too far from the wire the electric
+field depends on $x$ and $y$, but not on $z$; the problem is
+two-dimensional. Since in a two-dimensional problem
+$\ddpl{\phi}{z}=0$, the equation for $\phi$ in free space is
+\begin{equation}
+\label{Eq:II:7:2}
+\frac{\partial^2\phi}{\partial x^2}+
+\frac{\partial^2\phi}{\partial y^2}=0.
+\end{equation}
+
+Because the two-dimensional equation is comparatively simple, there is
+a wide range of conditions under which it can be solved
+analytically. There is, in fact, a very powerful indirect mathematical
+technique which depends on a theorem from the mathematics of functions
+of a complex variable, and which we will now describe.
+</p>
+</div>
+</div>
+<div id="Ch7-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">7–2</span>Two-dimensional fields; functions of the complex variable</h3>
+<div id="Ch7-S2-p1" class="para">
+<p class="p">The complex variable $\frakz$ is defined as
+\begin{equation*}
+\frakz=x+iy.
+\end{equation*}
+
+(Do not confuse $\frakz$ with the $z$-coordinate, which we
+ignore in the following discussion because we assume there is no
+$z$-dependence of the fields.) Every point in $x$ and $y$ then
+corresponds to a complex number $\frakz$. We can use $\frakz$
+as a single (complex) variable, and with it write the
+usual kinds of mathematical functions $F(\frakz)$. For example,
+\begin{equation*}
+F(\frakz) =\frakz^2,
+\end{equation*}
+
+or
+\begin{equation*}
+F(\frakz) =1/\frakz^3,
+\end{equation*}
+
+or
+\begin{equation*}
+F(\frakz) =\frakz\ln\frakz,
+\end{equation*}
+
+and so forth.</p>
+</div>
+<div id="Ch7-S2-p2" class="para">
+<p class="p">Given any particular $F(\frakz)$ we can substitute $\frakz=x+iy$,
+and we have a function of $x$ and $y$—with real
+and imaginary parts. For example,
+\begin{equation}
+\label{Eq:II:7:3}
+\frakz^2=(x+iy)^2=x^2-y^2+2ixy.
+\end{equation}
+</p>
+</div>
+<div id="Ch7-S2-p3" class="para">
+<p class="p">Any function $F(\frakz)$ can be written as a sum of a pure real
+part and a pure imaginary part, each part a function of $x$ and $y$:
+\begin{equation}
+\label{Eq:II:7:4}
+F(\frakz)=U(x,y)+iV(x,y),
+\end{equation}
+
+where $U(x,y)$ and $V(x,y)$ are real functions. Thus from any complex
+function $F(\frakz)$ two new functions $U(x,y)$ and $V(x,y)$ can
+be derived. For example, $F(\frakz)=\frakz^2$ gives us the
+two functions
+\begin{equation}
+\label{Eq:II:7:5}
+U(x,y) =x^2-y^2,
+\end{equation}
+
+and
+\begin{equation}
+\label{Eq:II:7:6}
+V(x,y) =2xy.
+\end{equation}
+</p>
+</div>
+<div id="Ch7-S2-p4" class="para">
+<p class="p">Now we come to a miraculous mathematical theorem which is so
+delightful that we shall leave a proof of it for one of your courses
+in mathematics. (We should not reveal all the mysteries of
+mathematics, or that subject matter would become too dull.) It is
+this. For any “ordinary function” (mathematicians will define it
+better) the functions $U$ and $V$ <em class="emph">automatically</em> satisfy the
+relations
+\begin{align}
+\label{Eq:II:7:7}
+\ddp{U}{x}&=\ddp{V}{y},\\[1ex]
+\label{Eq:II:7:8}
+\ddp{V}{x}&=-\ddp{U}{y}.
+\end{align}
+
+It follows immediately that each of the functions $U$ and $V$ satisfy
+Laplace’s equation:
+\begin{align}
+\label{Eq:II:7:9}
+\frac{\partial^2 U}{\partial x^2}+
+\frac{\partial^2 U}{\partial y^2}&=0,\\[1ex]
+\label{Eq:II:7:10}
+\frac{\partial^2 V}{\partial x^2}+
+\frac{\partial^2 V}{\partial y^2}&=0,
+\end{align}
+
+These equations are clearly true for the functions of (<a href="#mjx-eqn-EqII75">7.5</a>)
+and (<a href="#mjx-eqn-EqII76">7.6</a>).</p>
+</div>
+<div id="Ch7-S2-p5" class="para">
+<p class="p">Thus, starting with any ordinary function, we can arrive at two
+functions $U(x,y)$ and $V(x,y)$, which are both solutions of Laplace’s
+equation in two dimensions. Each function represents a possible
+electrostatic potential. We can pick <em class="emph">any</em> function $F(\frakz)$
+and it should represent <em class="emph">some</em> electric field
+problem—in fact, <em class="emph">two</em> problems, because $U$ and $V$
+<em class="emph">each</em> represent solutions. We can write down as many solutions
+as we wish—by just making up functions—then we just have to find
+the <em class="emph">problem</em> that goes with each solution. It may sound
+backwards, but it’s a possible approach.</p>
+</div>
+<div id="Ch7-S2-p6" class="para">
+<p class="p">As an example, let’s see what physics the function $F(\frakz)=\frakz^2$
+gives us. From it we get the two
+potential functions of (<a href="#mjx-eqn-EqII75">7.5</a>) and (<a href="#mjx-eqn-EqII76">7.6</a>). To see
+what problem the function $U$ belongs to, we solve for the
+equipotential surfaces by setting $U=A$, a constant:
+\begin{equation*}
+x^2-y^2=A.
+\end{equation*}
+
+This is the equation of a rectangular hyperbola. For various values of $A$,
+we get the hyperbolas shown in Fig. <a href="#Ch7-F1">7–1</a>. When $A=0$, we get
+the special case of diagonal straight lines through the
+origin.</p>
+</div>
+<div id="Ch7-F1" class="figure">
+<img src="img/FLP_II/f07-01/f07-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–1.</span>Two sets of orthogonal curves which can represent
+equipotentials in a two-dimensional electrostatic field.
+</div>
+</div>
+<div id="Ch7-S2-p7" class="para">
+<p class="p">Such a set of equipotentials corresponds to the field at an inside
+right-angle corner of a conductor. If we have two electrodes shaped like those in
+Fig. <a href="#Ch7-F2">7–2</a>, which are held at different potentials, the field
+near the corner marked $C$ will look just like the field above the
+origin in Fig. <a href="#Ch7-F1">7–1</a>. The solid lines are the equipotentials,
+and the broken lines at right angles correspond to lines of $\FLPE$.
+Whereas at points or protuberances the electric field tends to be high,
+it tends to be <em class="emph">low</em> in dents or hollows.</p>
+</div>
+<div id="Ch7-F2" class="figure">
+<img src="img/FLP_II/f07-02/f07-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–2.</span>The field near the point $C$ is the same as that in
+Fig. <a href="#Ch7-F1">7–1</a>.
+</div>
+</div>
+<div id="Ch7-S2-p8" class="para">
+<p class="p">The solution we have found also corresponds to that for a
+hyperbola-shaped electrode near a right-angle corner, or for two
+hyperbolas at suitable potentials. You will notice that the field of
+Fig. <a href="#Ch7-F1">7–1</a> has an interesting property. The $x$-component
+of the electric field, $E_x$, is given by
+\begin{equation*}
+E_x=-\ddp{\phi}{x}=-2x.
+\end{equation*}
+
+The electric field is proportional to the distance from the axis. This
+fact is used to make devices (called quadrupole lenses) that are useful for focusing
+particle beams (see Section <a href="II_29.html#Ch29-S7">29–7</a>). The desired field is
+usually obtained by using four hyperbola shaped electrodes, as shown in
+Fig. <a href="#Ch7-F3">7–3</a>. For the electric field lines in
+Fig. <a href="#Ch7-F3">7–3</a>, we have simply copied from Fig. <a href="#Ch7-F1">7–1</a>
+the set of broken-line curves that represent $V=\text{constant}$. We
+have a bonus! The curves for $V=\text{constant}$ are orthogonal to the
+ones for $U=\text{constant}$ because of the equations (<a href="#mjx-eqn-EqII77">7.7</a>)
+and (<a href="#mjx-eqn-EqII78">7.8</a>). Whenever we choose a function $F(\frakz)$, we get
+from $U$ and $V$ both the equipotentials and field lines. And you will
+remember that we have solved either of two problems, depending on which
+set of curves we call the equipotentials.
+</p>
+</div>
+<div id="Ch7-F3" class="figure">
+<img src="img/FLP_II/f07-03/f07-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–3.</span>The field in a quadrupole lens.
+</div>
+</div>
+<div id="Ch7-S2-p9" class="para">
+<p class="p">As a second example, consider the function
+\begin{equation}
+\label{Eq:II:7:11}
+F(\frakz)=\sqrt{\frakz}.
+\end{equation}
+
+If we write
+\begin{equation}
+\frakz=x+iy=\rho e^{i\theta},\notag
+\end{equation}
+
+where
+\begin{equation}
+\rho=\sqrt{x^2+y^2}\notag
+\end{equation}
+
+and
+\begin{equation}
+\tan\theta=y/x,\notag
+\end{equation}
+
+then
+\begin{equation}
+\begin{aligned}
+F(\frakz)&=\rho^{1/2}e^{i\theta/2}\\
+&=\rho^{1/2}\biggl(\cos\frac{\theta}{2}+i\sin\frac{\theta}{2}\biggr),
+\end{aligned}\notag
+\end{equation}
+
+from which
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:7:12}
+F(\frakz)=\biggl[\frac{(x^2+y^2)^{1/2}+x}{2}\biggr]^{1/2}\kern{-1.5ex}+
+i\biggl[\frac{(x^2+y^2)^{1/2}-x}{2}\biggr]^{1/2}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+F(\frakz)=&\biggl[\frac{(x^2\!+y^2)^{1/2}\!+x}{2}\biggr]^{1/2}\notag\\[1ex]
+&+\,i\biggl[\frac{(x^2\!+y^2)^{1/2}\!-x}{2}\biggr]^{1/2}\!.
+\end{aligned}
+\label{Eq:II:7:12}
+\end{equation}
+
+</span>
+</p>
+</div>
+<div id="Ch7-F4" class="figure">
+<img src="img/FLP_II/f07-04/f07-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–4.</span>Curves of constant $U(x,y)$ and $V(x,y)$ from Eq. (<a href="#mjx-eqn-EqII712">7.12</a>).
+</div>
+</div>
+<div id="Ch7-S2-p10" class="para">
+<p class="p">The curves for $U(x,y)=A$ and $V(x,y)=B$, using $U$ and $V$ from
+Eq. (<a href="#mjx-eqn-EqII712">7.12</a>), are plotted in Fig. <a href="#Ch7-F4">7–4</a>. Again,
+there are many possible situations that could be described by these
+fields. One of the most interesting is the field near the edge of a thin
+plate. If the line $B=0$—to the right of the $y$-axis—represents a
+thin charged plate, the field lines near it are given by the curves for
+various values of $A$. The physical situation is shown in
+Fig. <a href="#Ch7-F5">7–5</a>.</p>
+</div>
+<div id="Ch7-F5" class="figure">
+<img src="img/FLP_II/f07-05/f07-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–5.</span>The electric field near the edge of a thin grounded plate.
+</div>
+</div>
+<div id="Ch7-S2-p11" class="para">
+<p class="p">Further examples are
+\begin{equation}
+\label{Eq:II:7:13}
+F(\frakz)=\frakz^{2/3},
+\end{equation}
+
+which yields the field <em class="emph">outside</em> a rectangular corner
+\begin{equation}
+\label{Eq:II:7:14}
+F(\frakz)=\ln\frakz,
+\end{equation}
+
+which yields the field for a line charge, and
+\begin{equation}
+\label{Eq:II:7:15}
+F(\frakz)=1/\frakz,
+\end{equation}
+
+which gives the field for the two-dimensional analog of an electric
+dipole, i.e., two parallel line charges with opposite polarities, very
+close together.</p>
+</div>
+<div id="Ch7-S2-p12" class="para">
+<p class="p">We will not pursue this subject further in this course, but should
+emphasize that although the complex variable technique is often
+powerful, it is limited to two-dimensional problems; and also, it is
+an indirect method.</p>
+</div>
+</div>
+<div id="Ch7-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">7–3</span>Plasma oscillations</h3>
+<div id="Ch7-S3-p1" class="para">
+<p class="p">We consider now some physical situations in which the field is
+determined neither by fixed charges nor by charges on conducting
+surfaces, but by a combination of two physical phenomena. In other
+words, the field will be governed simultaneously by two sets of
+equations: (1) the equations from electrostatics relating electric
+fields to charge distribution, and (2) an equation from another part
+of physics that determines the positions or motions of the charges in
+the presence of the field.</p>
+</div>
+<div id="Ch7-S3-p2" class="para">
+<p class="p">The first example that we will discuss is a dynamic one in which the
+motion of the charges is governed by Newton’s
+laws. A simple example of such a situation
+occurs in a plasma, which is an ionized gas consisting of
+ions and free electrons distributed over a region in space. The
+ionosphere—an upper layer of the atmosphere—is an
+example of such a plasma. The ultraviolet rays from the sun knock
+electrons off the molecules of the air, creating free electrons and
+ions. In such a plasma the positive ions are very much heavier than the
+electrons, so we may neglect the ionic motion, in comparison to that of
+the electrons.
+</p>
+</div>
+<div id="Ch7-S3-p3" class="para">
+<p class="p">Let $n_0$ be the density of electrons in the undisturbed, equilibrium
+state. Assuming the molecules are singly ionized, this must also be the
+density of positive ions, since the plasma is electrically neutral (when
+undisturbed). Now we suppose that the electrons are somehow moved from
+equilibrium and ask what happens. If the density of the electrons in one
+region is increased, they will repel each other and tend to return to
+their equilibrium positions. As the electrons move toward their original
+positions they pick up kinetic energy, and instead of coming to rest in
+their equilibrium configuration, they overshoot the mark. They will
+oscillate back and forth. The situation is similar to what occurs in
+sound waves, in which the restoring force is the gas pressure. In a
+plasma, the restoring force is the electrical force on the electrons.</p>
+</div>
+<div id="Ch7-F6" class="figure">
+<img src="img/FLP_II/f07-06/f07-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–6.</span>Motion in a plasma wave. The electrons at the plane $a$ move
+to $a'$, and those at $b$ move to $b'$.
+</div>
+</div>
+<div id="Ch7-S3-p4" class="para">
+<p class="p">To simplify the discussion, we will worry only about a situation in
+which the motions are all in one dimension, say $x$. Let us suppose
+that the electrons originally at $x$ are, at the instant $t$,
+displaced from their equilibrium positions by a small amount $s(x,t)$.
+Since the electrons have been displaced, their density will,
+in general, be changed. The change in density is easily
+calculated. Referring to Fig. <a href="#Ch7-F6">7–6</a>, the electrons
+initially contained between the two planes $a$ and $b$ have moved and
+are now contained between the planes $a'$ and $b'$. The number of
+electrons that were between $a$ and $b$ is proportional to $n_0\Delta
+x$; the <em class="emph">same</em> number are now contained in the space whose width
+is $\Delta x+\Delta s$. The density has changed to
+\begin{equation}
+\label{Eq:II:7:16}
+n=\frac{n_0\Delta x}{\Delta x+\Delta s}=\frac{n_0}{1+(\Delta s/\Delta x)}.
+\end{equation}
+
+If the change in density is small, we can write [using the binomial
+expansion for $(1+\epsilon)^{-1}$]
+\begin{equation}
+\label{Eq:II:7:17}
+n=n_0\biggl(1-\frac{\Delta s}{\Delta x}\biggr).
+\end{equation}
+
+We assume that the positive ions do not move appreciably (because of
+the much larger inertia), so their density remains $n_0$. Each
+electron carries the charge $-q_e$, so the average charge density at
+any point is given by
+\begin{equation}
+\rho =-(n-n_0)q_e,\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:7:18}
+\rho =n_0q_e\,\frac{ds}{dx}
+\end{equation}
+(where we have written the differential form for $\Delta s/\Delta x$).</p>
+</div>
+<div id="Ch7-S3-p5" class="para">
+<p class="p">The charge density is related to the electric field by Maxwell’s
+equations, in particular,
+\begin{equation}
+\label{Eq:II:7:19}
+\FLPdiv{\FLPE}=\frac{\rho}{\epsO}.
+\end{equation}
+
+If the problem is indeed one-dimensional (and if there are no other
+fields but the one due to the displacements of the electrons), the
+electric field $\FLPE$ has a single component $E_x$.
+Equation (<a href="#mjx-eqn-EqII719">7.19</a>), together with (<a href="#mjx-eqn-EqII718">7.18</a>), gives
+\begin{equation}
+\label{Eq:II:7:20}
+\ddp{E_x}{x}=\frac{n_0q_e}{\epsO}\,\ddp{s}{x}.
+\end{equation}
+
+Integrating Eq. (<a href="#mjx-eqn-EqII720">7.20</a>) gives
+\begin{equation}
+\label{Eq:II:7:21}
+E_x=\frac{n_0q_e}{\epsO}\,s+K.
+\end{equation}
+
+Since $E_x=0$ when $s=0$, the integration constant $K$ is zero.</p>
+</div>
+<div id="Ch7-S3-p6" class="para">
+<p class="p">The force on an electron in the displaced position is
+\begin{equation}
+\label{Eq:II:7:22}
+F_x=-\frac{n_0q_e^2}{\epsO}\,s,
+\end{equation}
+
+a restoring force proportional to the displacement $s$ of the
+electron. This leads to a harmonic oscillation of the electrons. The
+equation of motion of a displaced electron is
+\begin{equation}
+\label{Eq:II:7:23}
+m_e\frac{d^2s}{dt^2}=-\frac{n_0q_e^2}{\epsO}\,s.
+\end{equation}
+
+We find that $s$ will vary harmonically. Its time variation will be as
+$\cos\omega_pt$, or—using the exponential notation of Vol. I—as
+\begin{equation}
+\label{Eq:II:7:24}
+e^{i\omega_pt}.
+\end{equation}
+
+The frequency of oscillation $\omega_p$ is determined
+from (<a href="#mjx-eqn-EqII723">7.23</a>):
+\begin{equation}
+\label{Eq:II:7:25}
+\omega_p^2=\frac{n_0q_e^2}{\epsO m_e},
+\end{equation}
+
+and is called the <em class="emph">plasma frequency</em>. It is a characteristic number
+of the plasma.</p>
+</div>
+<div id="Ch7-S3-p7" class="para">
+<p class="p">When dealing with electron charges many people prefer to express their
+answers in terms of a quantity $e^2$ defined by
+\begin{equation}
+\label{Eq:II:7:26}
+e^2=\frac{q_e^2}{4\pi\epsO}=
+2.3068\times10^{-28}\text{ newton$\cdot$meter$^2$}.
+\end{equation}
+
+Using this convention, Eq. (<a href="#mjx-eqn-EqII725">7.25</a>) becomes
+\begin{equation}
+\label{Eq:II:7:27}
+\omega_p^2=\frac{4\pi e^2n_0}{m_e},
+\end{equation}
+
+which is the form you will find in most books.</p>
+</div>
+<div id="Ch7-S3-p8" class="para">
+<p class="p">Thus we have found that a disturbance of a plasma will set up free
+oscillations of the electrons about their equilibrium positions at the
+natural frequency $\omega_p$, which is proportional to the square root
+of the density of the electrons. The plasma electrons behave like a
+resonant system, such as those we described in Chapter <a href="I_23.html">23</a>
+of Vol. I.</p>
+</div>
+<div id="Ch7-S3-p9" class="para">
+<p class="p">This natural resonance of a plasma has some interesting effects. For
+example, if one tries to propagate a radiowave through the
+ionosphere, one finds that it can penetrate only if
+its frequency is higher than the plasma frequency. Otherwise the signal is
+reflected back. We must use high frequencies if we wish to communicate
+with a satellite in space. On the other hand, if we wish to communicate
+with a radio station beyond the horizon, we must use frequencies lower
+than the plasma frequency, so that the signal will be reflected back to
+the earth.
+</p>
+</div>
+<div id="Ch7-S3-p10" class="para">
+<p class="p">Another interesting example of plasma oscillations occurs in metals. In a metal
+we have a contained plasma of positive ions, and free electrons. The
+density $n_0$ is very high, so $\omega_p$ is also. But it should still be
+possible to observe the electron oscillations. Now, according to quantum
+mechanics, a harmonic oscillator with a natural frequency $\omega_p$ has energy
+levels which are separated by the energy increment $\hbar\omega_p$. If, then,
+one shoots electrons through, say, an aluminum foil, and makes very careful
+measurements of the electron energies on the other side, one might expect to
+find that the electrons sometimes lose the energy $\hbar\omega_p$ to the plasma
+oscillations. This does indeed happen. It was first observed experimentally in
+1936 that electrons with energies of a few hundred to a few thousand electron
+volts lost energy in jumps when scattering from or going through a thin metal
+foil. The effect was not understood until 1953 when Bohm and Pines<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> showed that the
+observations could be explained in terms of quantum excitations of the plasma
+oscillations in the metal.</p>
+</div>
+</div>
+<div id="Ch7-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">7–4</span>Colloidal particles in an electrolyte</h3>
+<div id="Ch7-S4-p1" class="para">
+<p class="p">We turn to another phenomenon in which the locations of charges are
+governed by a potential that arises in part from the same charges. The
+resulting effects influence in an important way the behavior of
+colloids. A colloid consists of a suspension in water of small charged
+particles which, though microscopic, from an atomic point of view are
+still very large. If the colloidal particles were not charged, they
+would tend to coagulate into large lumps; but because of their charge,
+they repel each other and remain in suspension.</p>
+</div>
+<div id="Ch7-S4-p2" class="para">
+<p class="p">Now if there is also some salt dissolved in the water, it will be
+dissociated into positive and negative ions. (Such a solution of ions
+is called an electrolyte.) The negative ions are attracted to the
+colloid particles (assuming their charge is positive) and the positive
+ions are repelled. We will determine how the ions which surround such
+a colloidal particle are distributed in space.</p>
+</div>
+<div id="Ch7-S4-p3" class="para">
+<p class="p">To keep the ideas simple, we will again solve only a one-dimensional
+case.  If we think of a colloidal particle as a sphere having a very
+large radius—on an atomic scale!—we can then treat a small part of
+its surface as a plane. (Whenever one is trying to understand a new
+phenomenon it is a good idea to take a somewhat oversimplified model;
+then, having understood the problem with that model, one is better
+able to proceed to tackle the more exact calculation.)</p>
+</div>
+<div id="Ch7-S4-p4" class="para">
+<p class="p">We suppose that the distribution of ions generates a charge density $\rho(x)$,
+and an electrical potential $\phi$, related by the
+electrostatic law $\nabla^2\phi=-\rho/\epsO$ or, for fields that vary
+in only one dimension, by
+\begin{equation}
+\label{Eq:II:7:28}
+\frac{d^2\phi}{dx^2}=-\frac{\rho}{\epsO}.
+\end{equation}
+</p>
+</div>
+<div id="Ch7-S4-p5" class="para">
+<p class="p">Now supposing there were such a potential $\phi(x)$, how would the
+ions distribute themselves in it? This we can determine by the
+principles of statistical mechanics. Our problem then is to
+determine $\phi$ so that the resulting charge density from statistical mechanics
+<em class="emph">also</em> satisfies (<a href="#mjx-eqn-EqII728">7.28</a>).
+</p>
+</div>
+<div id="Ch7-S4-p6" class="para">
+<p class="p">According to statistical mechanics (see Chapter <a href="I_40.html">40</a>,
+Vol. I), particles in thermal equilibrium in a force field are
+distributed in such a way that the density $n$ of particles at the
+position $x$ is given by
+\begin{equation}
+\label{Eq:II:7:29}
+n(x)=n_0e^{-U(x)/kT},
+\end{equation}
+
+where $U(x)$ is the potential energy, $k$ is Boltzmann’s
+constant, and $T$ is the absolute
+temperature.
+</p>
+</div>
+<div id="Ch7-S4-p7" class="para">
+<p class="p">We assume that the ions carry one electronic charge, positive or
+negative. At the distance $x$ from the surface of a colloidal
+particle, a positive ion will have potential energy $q_e\phi(x)$, so
+that
+\begin{equation*}
+U(x)=q_e\phi(x).
+\end{equation*}
+
+The density of positive ions, $n_+$, is then
+\begin{equation*}
+n_+(x)=n_0e^{-q_e\phi(x)/kT}.
+\end{equation*}
+
+Similarly, the density of negative ions is
+\begin{equation*}
+n_-(x)=n_0e^{+q_e\phi(x)/kT}.
+\end{equation*}
+
+The total charge density is
+\begin{equation}
+\rho =q_en_+-q_en_-,\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:7:30}
+\rho =q_en_0(e^{-q_e\phi/kT}-e^{+q_e\phi/kT}).
+\end{equation}
+
+Combining this with Eq. (<a href="#mjx-eqn-EqII728">7.28</a>), we find that the
+potential $\phi$ must satisfy
+\begin{equation}
+\label{Eq:II:7:31}
+\frac{d^2\phi}{dx^2}=-\frac{q_en_0}{\epsO}
+(e^{-q_e\phi/kT}-e^{+q_e\phi/kT}).
+\end{equation}
+
+This equation is readily solved in general [multiply both sides by
+$2(d\phi/dx)$, and integrate with respect to $x$], but to keep the
+problem as simple as possible, we will consider here only the limiting
+case in which the potentials are small or the temperature $T$ is
+high. The case where $\phi$ is small corresponds to a dilute
+solution. For these cases the exponent is small, and we can
+approximate
+\begin{equation}
+\label{Eq:II:7:32}
+e^{\pm q_e\phi/kT}=1\pm\frac{q_e\phi}{kT}.
+\end{equation}
+
+Equation (<a href="#mjx-eqn-EqII731">7.31</a>) then gives
+\begin{equation}
+\label{Eq:II:7:33}
+\frac{d^2\phi}{dx^2}=+\frac{2n_0q_e^2}{\epsO kT}\phi(x).
+\end{equation}
+
+Notice that this time the sign on the right is positive. The solutions
+for $\phi$ are not oscillatory, but exponential.</p>
+</div>
+<div id="Ch7-S4-p8" class="para">
+<p class="p">The general solution of Eq. (<a href="#mjx-eqn-EqII733">7.33</a>) is
+\begin{equation}
+\label{Eq:II:7:34}
+\phi=Ae^{-x/D}+Be^{+x/D},
+\end{equation}
+
+with
+\begin{equation}
+\label{Eq:II:7:35}
+D^2=\frac{\epsO kT}{2n_0q_e^2}.
+\end{equation}
+
+The constants $A$ and $B$ must be determined from the conditions of
+the problem. In our case, $B$ must be zero; otherwise the potential
+would go to infinity for large $x$. So we have that
+\begin{equation}
+\label{Eq:II:7:36}
+\phi=Ae^{-x/D},
+\end{equation}
+
+in which $A$ is the potential at $x=0$, the surface of the colloidal
+particle.</p>
+</div>
+<div id="Ch7-F7" class="figure">
+<img src="img/FLP_II/f07-07/f07-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–7.</span>The variation of the potential near the surface of a colloidal
+particle. $D$ is the Debye length.
+</div>
+</div>
+<div id="Ch7-S4-p9" class="para">
+<p class="p">The potential decreases by a factor $1/e$ each time the distance
+increases by $D$, as shown in the graph of Fig. <a href="#Ch7-F7">7–7</a>. The
+number $D$ is called the <em class="emph">Debye length</em>, and is a measure of the
+thickness of the ion sheath that surrounds a large charged particle in
+an electrolyte. Equation (<a href="#mjx-eqn-EqII735">7.35</a>) says that the sheath gets
+thinner with increasing concentration of the ions ($n_0$) or with
+decreasing temperature.</p>
+</div>
+<div id="Ch7-S4-p10" class="para">
+<p class="p">The constant $A$ in Eq. (<a href="#mjx-eqn-EqII736">7.36</a>) is easily obtained if we
+know the surface charge density $\sigma$ on the colloid particle. We
+know that
+\begin{equation}
+\label{Eq:II:7:37}
+E_n=E_x(0)=\frac{\sigma}{\epsO}.
+\end{equation}
+
+But $\FLPE$ is also the gradient of $\phi$:
+\begin{equation}
+\label{Eq:II:7:38}
+E_x(0)=-\left.\ddp{\phi}{x}\right|_0=+\frac{A}{D},
+\end{equation}
+
+from which we get
+\begin{equation}
+\label{Eq:II:7:39}
+A=\frac{\sigma D}{\epsO}.
+\end{equation}
+
+Using this result in (<a href="#mjx-eqn-EqII736">7.36</a>), we find (by taking $x=0$)
+that the potential of the colloidal particle is
+\begin{equation}
+\label{Eq:II:7:40}
+\phi(0)=\frac{\sigma D}{\epsO}.
+\end{equation}
+
+You will notice that this potential is the same as the potential
+difference across a condenser with a plate spacing $D$ and a surface
+charge density $\sigma$.</p>
+</div>
+<div id="Ch7-S4-p11" class="para">
+<p class="p">We have said that the colloidal particles are kept apart by their
+electrical repulsion. But now we see that the field a little way from
+the surface of a particle is reduced by the ion sheath that collects
+around it. If the sheaths get thin enough, the particles have a good
+chance of knocking against each other. They will then stick, and the
+colloid will coagulate and precipitate out of the liquid. From our
+analysis, we understand why adding enough salt to a colloid should
+cause it to precipitate out. The process is called “salting out a
+colloid.”</p>
+</div>
+<div id="Ch7-S4-p12" class="para">
+<p class="p">Another interesting example is the effect that a salt solution has on
+protein molecules. A protein molecule is a long, complicated, and
+flexible chain of amino acids. The molecule has various charges on it,
+and it sometimes happens that there is a net charge, say negative,
+which is distributed along the chain. Because of mutual repulsion of
+the negative charges, the protein chain is kept stretched out.  Also,
+if there are other similar chain molecules present in the solution,
+they will be kept apart by the same repulsive effects. We can,
+therefore, have a suspension of chain molecules in a liquid. But if we
+add salt to the liquid we change the properties of the suspension. As
+salt is added to the solution, decreasing the Debye distance, the
+chain molecules can approach one another, and can also coil up. If
+enough salt is added to the solution, the chain molecules will
+precipitate out of the solution. There are many chemical effects of
+this kind that can be understood in terms of electrical forces.</p>
+</div>
+</div>
+<div id="Ch7-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">7–5</span>The electrostatic field of a grid</h3>
+<div id="Ch7-S5-p1" class="para">
+<p class="p">As our last example, we would like to describe another interesting
+property of electric fields. It is one which is made use of in the
+design of electrical instruments, in the construction of vacuum tubes,
+and for other purposes. This is the character of the electric field
+near a grid of charged wires. To make the problem as simple as
+possible, let us consider an array of parallel wires lying in a plane,
+the wires being infinitely long and with a uniform spacing between
+them.</p>
+</div>
+<div id="Ch7-S5-p2" class="para">
+<p class="p">If we look at the field a large distance above the plane of the wires,
+we see a constant electric field, just as though the charge were
+uniformly spread over a plane. As we approach the grid of wires, the
+field begins to deviate from the uniform field we found at large
+distances from the grid. We would like to estimate how close to the
+grid we have to be in order to see appreciable variations in the
+potential. Figure <a href="#Ch7-F8">7–8</a> shows a rough sketch of the
+equipotentials at various distances from the grid. The closer we get
+to the grid, the larger the variations.  As we travel parallel to the
+grid, we observe that the field fluctuates in a periodic manner.</p>
+</div>
+<div id="Ch7-F8" class="figure">
+<img src="img/FLP_II/f07-08/f07-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 7–8.</span>Equipotential surfaces above a uniform grid of charged wires.
+</div>
+</div>
+<div id="Ch7-S5-p3" class="para">
+<p class="p">Now we have seen (Chapter <a href="I_50.html">50</a>, Vol. I) that any periodic
+quantity can be expressed as a sum of sine waves (Fourier’s
+theorem). Let’s see
+if we can find a suitable harmonic function that satisfies our field
+equations.</p>
+</div>
+<div id="Ch7-S5-p4" class="para">
+<p class="p">If the wires lie in the $xy$-plane and run parallel to the $y$-axis,
+then we might try terms like
+\begin{equation}
+\label{Eq:II:7:41}
+\phi(x,z)=F_n(z)\cos\frac{2\pi nx}{a},
+\end{equation}
+
+where $a$ is the spacing of the wires and $n$ is the harmonic
+number. (We have assumed long wires, so there should be no variation
+with $y$.) A complete solution would be made up of a sum of such terms
+for $n=1$, $2$, $3$, $\dotsc$.</p>
+</div>
+<div id="Ch7-S5-p5" class="para">
+<p class="p">If this is to be a valid potential, it must satisfy Laplace’s equation
+in the region above the wires (where there are no charges). That is,
+\begin{equation*}
+\frac{\partial^2\phi}{\partial x^2}+
+\frac{\partial^2\phi}{\partial z^2}=0.
+\end{equation*}
+
+Trying this equation on the $\phi$ in (<a href="#mjx-eqn-EqII741">7.41</a>), we find that
+\begin{equation}
+\label{Eq:II:7:42}
+-\frac{4\pi^2n^2}{a^2}F_n(z)\cos\frac{2\pi nx}{a}+
+\frac{d^2F_n}{dz^2}\cos\frac{2\pi nx}{a}=0,
+\end{equation}
+
+or that $F_n(z)$ must satisfy
+\begin{equation}
+\label{Eq:II:7:43}
+\frac{d^2F_n}{dz^2}=\frac{4\pi^2 n^2}{a^2}\,F_n.
+\end{equation}
+
+So we must have
+\begin{equation}
+\label{Eq:II:7:44}
+F_n=A_ne^{-z/z_0},
+\end{equation}
+
+where
+\begin{equation}
+\label{Eq:II:7:45}
+z_0=\frac{a}{2\pi n}.
+\end{equation}
+
+We have found that if there is a Fourier component of the field of
+harmonic $n$, <em class="emph">that</em> component will decrease exponentially with a
+characteristic distance $z_0=a/2\pi n$. For the first harmonic
+($n=1$), the amplitude falls by the factor $e^{-2\pi}$ (a large
+decrease) each time we increase $z$ by one grid spacing $a$. The other
+harmonics fall off even more rapidly as we move away from the grid. We
+see that if we are only a few times the distance $a$ away from the
+grid, the field is very nearly uniform, i.e., the oscillating terms
+are small. There would, of course, always remain the “zero harmonic”
+field
+\begin{equation*}
+\phi_0=-E_0z
+\end{equation*}
+
+to give the uniform field at large $z$. For a complete solution, we
+would combine this term with a sum of terms like (<a href="#mjx-eqn-EqII741">7.41</a>)
+with $F_n$ from (<a href="#mjx-eqn-EqII744">7.44</a>). The coefficients $A_n$ would be
+adjusted so that the total sum would, when differentiated, give an
+electric field that would fit the charge density $\lambda$ of the grid
+wires.</p>
+</div>
+<div id="Ch7-S5-p6" class="para">
+<p class="p">The method we have just developed can be used to explain why
+electrostatic shielding by means of a screen is often just as good as
+with a solid metal sheet. Except within a distance from the screen a
+few times the spacing of the screen wires, the fields inside a closed
+screen are zero. We see why copper screen—lighter and cheaper than
+copper sheet—is often used to shield sensitive electrical equipment
+from external disturbing fields.</p>
+</div>
+</div>
+<ol id="footnotes"><li class="footnote">
+  <a name="footnote_1"></a>
+  For some recent
+work and a bibliography see C. J. Powell and J. B. Swann,
+<span class="text italic">Phys. Rev.</span> <span class="text bold">115</span>, 869  (1959).
+  <a href="#footnote_source_1">↩</a>
+</li></ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 13: Work and Potential Energy (A)</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "13." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch13" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">13</span>Work and Potential Energy (A)</h2>
+<div id="Ch13-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">13–1</span>Energy of a falling body</h3>
+<div id="Ch13-S1-p1" class="para">
+<p class="p">In Chapter <a href="I_04.html">4</a> we discussed the conservation of
+energy. In that discussion, we did not use Newton’s
+laws, but it is, of course, of great
+interest to see how it comes about that energy is in fact conserved in
+accordance with these laws. For clarity we shall start with the simplest
+possible example, and then develop harder and harder examples.
+</p>
+</div>
+<div id="Ch13-S1-p2" class="para">
+<p class="p">The simplest example of the conservation of energy is a vertically
+falling object, one that moves only in a vertical direction. An object
+which changes its height under the influence of gravity alone has a
+kinetic energy $T$ (or K.E.) due to its motion during the fall, and a
+potential energy $mgh$, abbreviated $U$ (or P.E.), whose sum is
+constant:
+\begin{equation}
+\underset{\text{K.E.}}{\tfrac{1}{2}mv^2}+
+\underset{\text{P.E.}}{\vphantom{\tfrac{1}{2}}mgh}=\text{const},\notag
+\end{equation}
+or
+\begin{equation}
+\label{Eq:I:13:1}
+T+U=\text{const}.
+\end{equation}
+Now we would like to show that this statement is true. What do we
+mean, show it is true? From Newton’s Second Law we can easily tell how
+the object moves, and it is easy to find out how the velocity varies
+with time, namely, that it increases proportionally with the time, and
+that the height varies as the square of the time. So if we measure the
+height from a zero point where the object is stationary, it is no
+miracle that the height turns out to be equal to the square of the
+velocity times a number of constants. However, let us look at it a
+little more closely.</p>
+</div>
+<div id="Ch13-S1-p3" class="para">
+<p class="p">Let us find out <em class="emph">directly</em> from Newton’s Second Law how the
+kinetic energy should change, by taking the derivative of the kinetic
+energy with respect to time and then using Newton’s
+laws. When we
+differentiate $\tfrac{1}{2}mv^2$ with respect to time, we obtain
+\begin{equation}
+\label{Eq:I:13:2}
+\ddt{T}{t}=\ddt{}{t}\,(\tfrac{1}{2}mv^2)=
+\tfrac{1}{2}m2v\,\ddt{v}{t}=mv\,\ddt{v}{t},
+\end{equation}
+since $m$ is assumed constant. But from Newton’s Second Law,
+$m(dv/dt)=F$, so that
+\begin{equation}
+\label{Eq:I:13:3}
+dT/dt = Fv.
+\end{equation}
+In general, it will come out to be $\FLPF\cdot\FLPv$, but in our
+one-dimensional case let us leave it as the force times the velocity.</p>
+</div>
+<div id="Ch13-S1-p4" class="para">
+<p class="p">Now in our simple example the force is constant, equal to $-mg$, a
+vertical force (the minus sign means that it acts downward), and the
+velocity, of course, is the rate of change of the vertical position,
+or height $h$, with time. Thus the rate of change of the kinetic
+energy is $-mg(dh/dt)$, which quantity, miracle of miracles, is minus
+the rate of change of something else! It is minus the time rate of
+change of $mgh$!  Therefore, as time goes on, the changes in kinetic
+energy and in the quantity $mgh$ are equal and opposite, so that the
+sum of the two quantities remains constant. Q.E.D.</p>
+</div>
+<div id="Ch13-F1" class="figure">
+<img src="img/FLP_I/f13-01/f13-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–1.</span>An object moving on a frictionless curve under the influence
+of gravity.
+</div>
+</div>
+<div id="Ch13-S1-p5" class="para">
+<p class="p">We have shown, from Newton’s second law of motion, that energy is
+conserved for constant forces when we add the potential energy $mgh$
+to the kinetic energy $\tfrac{1}{2}mv^2$. Now let us look into this
+further and see whether it can be generalized, and thus advance our
+understanding. Does it work only for a freely falling body, or is it
+more general? We expect from our discussion of the conservation of
+energy that it would work for an object moving from one point to
+another in some kind of frictionless curve, under the influence of
+gravity (Fig. <a href="#Ch13-F1">13–1</a>). If the object reaches a certain
+height $h$ from the original height $H$, then the same formula should
+again be right, even though the velocity is now in some direction
+other than the vertical. We would like to understand <em class="emph">why</em> the
+law is still correct. Let us follow the same analysis, finding the
+time rate of change of the kinetic energy. This will again
+be $mv(dv/dt)$, but $m(dv/dt)$ is the rate of change of the magnitude of
+the momentum, i.e., the <em class="emph">force in the direction of motion</em>—the
+tangential force $F_t$. Thus
+\begin{equation*}
+\ddt{T}{t}=mv\,\ddt{v}{t}=F_tv.
+\end{equation*}
+Now the speed is the rate of change of distance along the curve,
+$ds/dt$, and the tangential force $F_t$ is not $-mg$ but is weaker by
+the ratio of the vertical distance $dh$ to the distance $ds$ along the
+path. In other words,
+\begin{equation*}
+F_t=-mg\sin\theta=-mg\,\ddt{h}{s},
+\end{equation*}
+so that
+\begin{equation*}
+F_t\,\ddt{s}{t}=-mg\biggl(\ddt{h}{s}\biggr)
+\biggl(\ddt{s}{t}\biggr)=-mg\,\ddt{h}{t},
+\end{equation*}
+since the $ds$’s cancel. Thus we get $-mg(dh/dt)$, which is equal to
+the rate of change of $-mgh$, as before.</p>
+</div>
+<div id="Ch13-S1-p6" class="para">
+<p class="p">In order to understand exactly how the conservation of energy works in
+general in mechanics, we shall now discuss a number of concepts which
+will help us to analyze it.</p>
+</div>
+<div id="Ch13-S1-p7" class="para">
+<p class="p">First, we discuss the rate of change of kinetic energy in general in
+three dimensions. The kinetic energy in three dimensions is
+\begin{equation*}
+T=\tfrac{1}{2}m(v_x^2+v_y^2+v_z^2).
+\end{equation*}
+When we differentiate this with respect to time, we get three
+terrifying terms:
+\begin{equation}
+\label{Eq:I:13:4}
+\ddt{T}{t}=m\biggl(
+v_x\,\ddt{v_x}{t}+
+v_y\,\ddt{v_y}{t}+
+v_z\,\ddt{v_z}{t}
+\biggr).
+\end{equation}
+But $m(dv_x/dt)$ is the force $F_x$ acting on the object in the
+$x$-direction. Thus the right side of Eq. (<a href="#mjx-eqn-EqI134">13.4</a>)
+is $F_xv_x + F_yv_y + F_zv_z$. We recall our vector analysis and
+recognize this as $\FLPF\cdot\FLPv$; therefore
+\begin{equation}
+\label{Eq:I:13:5}
+dT/dt=\FLPF\cdot\FLPv.
+\end{equation}
+This result can be derived more quickly as follows: if $\FLPa$
+and $\FLPb$ are two vectors, both of which may depend upon the time, the
+derivative of $\FLPa\cdot\FLPb$ is, in general,
+\begin{equation}
+\label{Eq:I:13:6}
+d(\FLPa\cdot\FLPb)/dt=\FLPa\cdot(d\FLPb/dt)+(d\FLPa/dt)\cdot\FLPb.
+\end{equation}
+We then use this in the form $\FLPa =$ $\FLPb =$ $\FLPv$:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:13:7}
+\ddt{(\tfrac{1}{2}mv^2)}{t}=\ddt{(\tfrac{1}{2}m\FLPv\cdot\FLPv)}{t}=
+m\,\ddt{\FLPv}{t}\cdot\FLPv=\FLPF\cdot\FLPv=\FLPF\cdot\ddt{\FLPs}{t}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+\ddt{(\tfrac{1}{2}mv^2)}{t}&=\ddt{(\tfrac{1}{2}m\FLPv\cdot\FLPv)}{t}
+=m\,\ddt{\FLPv}{t}\cdot\FLPv\\[1.5ex]
+&=\FLPF\cdot\FLPv=\FLPF\cdot\ddt{\FLPs}{t}.
+\end{aligned}
+\label{Eq:I:13:7}
+\end{equation}
+</span>
+</p>
+</div>
+<div id="Ch13-S1-p8" class="para">
+<p class="p">Because the concepts of kinetic energy, and energy in general, are so
+important, various names have been given to the important terms in
+equations such as these. $\tfrac{1}{2}mv^2$ is, as we know, called
+<em class="emph">kinetic energy</em>. $\FLPF\cdot\FLPv$ is called
+<em class="emph">power</em>: the force acting on an object times the
+velocity of the object (vector “dot” product) is the power being
+delivered to the object by that force. We thus have a marvelous theorem:
+<em class="emph">the rate of change of kinetic energy of an object is equal to the
+power expended by the forces acting on it</em>.</p>
+</div>
+<div id="Ch13-S1-p9" class="para">
+<p class="p">However, to study the conservation of energy, we want to analyze this
+still more closely. Let us evaluate the change in kinetic energy in a
+very short time $dt$. If we multiply both sides of Eq. (<a href="#mjx-eqn-EqI137">13.7</a>)
+by $dt$, we find that the differential change in the kinetic energy is
+the force “dot” the differential distance moved:
+\begin{equation}
+\label{Eq:I:13:8}
+dT=\FLPF\cdot d\FLPs.
+\end{equation}
+If we now integrate, we get
+\begin{equation}
+\label{Eq:I:13:9}
+\Delta T=\int_1^2\FLPF\cdot d\FLPs.
+\end{equation}
+What does this mean? It means that if an object is moving <em class="emph">in any way</em>
+under the influence of a force, moving in some kind of curved path, then the
+change in K.E. when it goes from one point to another along the curve is
+equal to the integral of the component of the force along the curve times the
+differential displacement $ds$, the integral being carried out from one point to
+the other. This integral also has a name; it is called the <em class="emph">work done by
+the force on the object</em>. We see immediately that <em class="emph">power equals work done
+per second</em>. We also see that it is only a component of force <em class="emph">in the
+direction of motion</em> that contributes to the work done. In our simple example
+the forces were only vertical, and had only a single component, say $F_z$, equal
+to $-mg$. No matter how the object moves in those circumstances, falling in a
+parabola for example, $\FLPF\cdot\FLPs$, which can be written as $F_x\,dx +
+F_y\,dy + F_z\,dz$, has nothing left of it but $F_z\,dz = -mg\,dz$, because the
+other components of force are zero. Therefore, in our simple case,
+\begin{equation}
+\label{Eq:I:13:10}
+\int_1^2\FLPF\cdot d\FLPs=\int_{z_1}^{z_2}-mg\,dz=-mg(z_2-z_1),
+\end{equation}
+so again we find that it is only the <em class="emph">vertical height</em> from which the
+object falls that counts toward the potential energy.</p>
+</div>
+<div id="Ch13-S1-p10" class="para">
+<p class="p">A word about units. Since forces are measured in newtons, and we
+multiply by a distance in order to obtain work, work is measured in
+<em class="emph">newton</em>${}\cdot{}$<em class="emph">meters</em>
+(N${}\cdot{}$m), but people do
+not like to say newton-meters, they prefer to say
+<em class="emph">joules</em> (J). A newton-meter is called a
+joule; work is measured in joules. Power, then, is joules per second,
+and that is also called a <em class="emph">watt</em> (W). If we
+multiply watts by time, the result is the work done. The work done by
+the electrical company in our houses, technically, is equal to the watts
+times the time. That is where we get things like kilowatt hours,
+$1000$ watts times $3600$ seconds, or $3.6\times10^6$ joules.
+</p>
+</div>
+<div id="Ch13-S1-p11" class="para">
+<p class="p">Now we take another example of the law of conservation of
+energy. Consider an object which initially has kinetic energy and is
+moving very fast, and which slides against the floor with friction. It
+stops. At the start the kinetic energy is <em class="emph">not</em> zero, but at the
+end it <em class="emph">is</em> zero; there is work done by the forces, because
+whenever there is friction there is always a component of force in a
+direction opposite to that of the motion, and so energy is steadily
+lost. But now let us take a mass on the end of a pivot swinging in a
+vertical plane in a gravitational field with no friction. What happens
+here is different, because when the mass is going up the force is
+downward, and when it is coming down, the force is also downward. Thus
+$\FLPF\cdot d\FLPs$ has one sign going up and another sign coming
+down. At each corresponding point of the downward and upward paths the
+values of $\FLPF\cdot d\FLPs$ are exactly equal in size but of
+opposite sign, so the net result of the integral will be zero for this
+case. Thus the kinetic energy with which the mass comes back to the
+bottom is the same as it had when it left; that is the principle of
+the conservation of energy. (Note that when there are friction forces
+the conservation of energy seems at first sight to be invalid. We have
+to find another <em class="emph">form</em> of energy. It turns out, in fact, that
+<em class="emph">heat</em> is generated in an object when it rubs another with
+friction, but at the moment we supposedly do not know that.)</p>
+</div>
+</div>
+<div id="Ch13-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">13–2</span>Work done by gravity</h3>
+<div id="Ch13-S2-p1" class="para">
+<p class="p">The next problem to be discussed is much more difficult than the
+above; it has to do with the case when the forces are not constant, or
+simply vertical, as they were in the cases we have worked out. We want
+to consider a planet, for example, moving around the sun, or a
+satellite in the space around the earth.</p>
+</div>
+<div id="Ch13-S2-p2" class="para">
+<p class="p">We shall first consider the motion of an object which starts at some
+point $1$ and falls, say, <em class="emph">directly</em> toward the sun or toward the
+earth (Fig. <a href="#Ch13-F2">13–2</a>). Will there be a law of conservation
+of energy in these circumstances? The only difference is that in this
+case, the force is <em class="emph">changing</em> as we go along, it is not just a
+constant. As we know, the force is $-GM/r^2$ times the mass $m$, where
+$m$ is the mass that moves. Now certainly when a body falls toward the
+earth, the kinetic energy increases as the distance fallen increases,
+just as it does when we do not worry about the variation of force with
+height. The question is whether it is possible to find another formula
+for potential energy different from $mgh$, a different function of
+distance away from the earth, so that conservation of energy will
+still be true.</p>
+</div>
+<div id="Ch13-F2" class="figure">
+<img src="img/FLP_I/f13-02/f13-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–2.</span>A small mass $m$ falls under the influence of gravity toward
+a large mass $M$.
+</div>
+</div>
+<div id="Ch13-S2-p3" class="para">
+<p class="p">This one-dimensional case is easy to treat because we know that the
+change in the kinetic energy is equal to the integral, from one end of
+the motion to the other, of $-GMm/r^2$ times the displacement $dr$:
+\begin{equation}
+\label{Eq:I:13:11}
+T_2-T_1=-\int_1^2GMm\,\frac{dr}{r^2}.
+\end{equation}
+There are no cosines needed for this case because the force and the
+displacement are in the same direction. It is easy to
+integrate $dr/r^2$; the result is $-1/r$, so Eq. (<a href="#mjx-eqn-EqI1311">13.11</a>) becomes
+\begin{equation}
+\label{Eq:I:13:12}
+T_2-T_1=+GMm\biggr(\frac{1}{r_2}-\frac{1}{r_1}\biggr).
+\end{equation}
+Thus we have a different formula for potential energy.
+Equation (<a href="#mjx-eqn-EqI1312">13.12</a>) tells us that the
+quantity $(\tfrac{1}{2}mv^2 - GMm/r)$ calculated at point $1$, at point $2$, or
+at any other place, has a constant value.</p>
+</div>
+<div id="Ch13-S2-p4" class="para">
+<p class="p">We now have the formula for the potential energy in a gravitational
+field for vertical motion. Now we have an interesting problem. Can we
+make <em class="emph">perpetual motion</em> in a gravitational field? The
+gravitational field varies; in different places it is in different
+directions and has different strengths. Could we do something like
+this, using a fixed, frictionless track: start at some point and lift
+an object out to some other point, then move it around an arc to a
+third point, then lower it a certain distance, then move it in at a
+certain slope and pull it out some other way, so that when we bring it
+back to the starting point, a certain amount of work has been done by
+the gravitational force, and the kinetic energy of the object is
+increased? Can we design the curve so that it comes back moving a
+little bit faster than it did before, so that it goes around and
+around and around, and gives us perpetual motion? Since perpetual
+motion is impossible, we ought to find out that this is also
+impossible. We ought to discover the following proposition: since
+there is no friction the object should come back with neither higher
+nor lower velocity—it should be able to keep going around and around
+any closed path. Stated in another way, <em class="emph">the total work done in
+going around a complete cycle should be zero</em> for gravity forces,
+because if it is not zero we can get energy out by going around. (If
+the work turns out to be less than zero, so that we get less speed
+when we go around one way, then we merely go around the other way,
+because the forces, of course, depend only upon the position, not upon
+the direction; if one way is plus, the other way would be minus, so
+unless it is zero we will get perpetual motion by going around either
+way.)</p>
+</div>
+<div id="Ch13-F3" class="figure">
+<img src="img/FLP_I/f13-03/f13-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–3.</span>A closed path in a gravitational field.
+</div>
+</div>
+<div id="Ch13-S2-p5" class="para">
+<p class="p">Is the work really zero? Let us try to demonstrate that it is. First
+we shall explain more or less why it is zero, and then we shall
+examine it a little better mathematically. Suppose that we use a
+simple path such as that shown in Fig. <a href="#Ch13-F3">13–3</a>, in which a
+small mass is carried from point $1$ to point $2$, and then is made to
+go around a circle to $3$, back to $4$, then to $5$, $6$, $7$,
+and $8$, and finally back to $1$. All of the lines are either purely
+radial or circular, with $M$ as the center. How much work is done in
+carrying $m$ around this path?  Between points $1$ and $2$, it is
+$GMm$ times the difference of $1/r$ between these two points:
+\begin{equation*}
+W_{12}=\int_1^2\FLPF\cdot d\FLPs=\int_1^2-GMm\,\frac{dr}{r^2}=
+GMm\biggr(\frac{1}{r_2}-\frac{1}{r_1}\biggr).
+\end{equation*}
+From $2$ to $3$ the force is exactly at right angles to the curve, so
+that $W_{23}\equiv0$. The work from $3$ to $4$ is
+\begin{equation*}
+W_{34}=\int_3^4\FLPF\cdot d\FLPs=
+GMm\biggr(\frac{1}{r_4}-\frac{1}{r_3}\biggr).
+\end{equation*}
+In the same fashion, we find that $W_{45} = 0$, $W_{56} =GMm(1/r_6 -
+1/r_5)$, $W_{67} = 0$, $W_{78} =GMm(1/r_8 - 1/r_7)$, and $W_{81} =
+0$. Thus
+\begin{equation*}
+W=GMm\biggl(
+\frac{1}{r_2}-\frac{1}{r_1}+
+\frac{1}{r_4}-\frac{1}{r_3}+
+\frac{1}{r_6}-\frac{1}{r_5}+
+\frac{1}{r_8}-\frac{1}{r_7}
+\biggr).
+\end{equation*}
+But we note that $r_2 = r_3$, $r_4 = r_5$, $r_6 = r_7$, and $r_8 =
+r_1$. Therefore $W=0$.</p>
+</div>
+<div id="Ch13-F4" class="figure">
+<img src="img/FLP_I/f13-04/f13-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–4.</span>A “smooth” closed path, showing a magnified segment of it
+approximated by a series of radial and circumferential steps, and an
+enlarged view of one step.
+</div>
+</div>
+<div id="Ch13-S2-p6" class="para">
+<p class="p">Of course we may wonder whether this is too trivial a curve. What if
+we use a <em class="emph">real</em> curve? Let us try it on a real curve. First of
+all, we might like to assert that a real curve could always be
+imitated sufficiently well by a series of sawtooth jiggles like those
+of Fig. <a href="#Ch13-F4">13–4</a>, and that therefore, etc., Q.E.D., but
+without a little analysis, it is not obvious at first that the work
+done going around even a small triangle is zero. Let us magnify one of
+the triangles, as shown in Fig. <a href="#Ch13-F4">13–4</a>. Is the work done
+in going from $a$ to $b$ and $b$ to $c$ on a triangle the same as the
+work done in going directly from $a$ to $c$?  Suppose that the force
+is acting in a certain direction; let us take the triangle such that
+the side $bc$ is in this direction, just as an example. We also
+suppose that the triangle is so small that the force is essentially
+constant over the entire triangle. What is the work done in going from
+$a$ to $c$? It is
+\begin{equation*}
+W_{ac}=\int_a^c\FLPF\cdot d\FLPs=Fs\cos\theta,
+\end{equation*}
+since the force is constant. Now let us calculate the work done in
+going around the other two sides of the triangle. On the vertical
+side $ab$ the force is perpendicular to $d\FLPs$, so that here the work is
+zero. On the horizontal side $bc$,
+\begin{equation*}
+W_{bc}=\int_b^c\FLPF\cdot d\FLPs=Fx.
+\end{equation*}
+Thus we see that the work done in going along the sides of a small
+triangle is the same as that done going on a slant, because
+$s\cos\theta$ is equal to $x$. We have proved previously that the
+answer is zero for any path composed of a series of notches like those
+of Fig. <a href="#Ch13-F3">13–3</a>, and also that we do the same work if we
+cut across the corners instead of going along the notches (so long as
+the notches are fine enough, and we can always make them very fine);
+therefore, <em class="emph">the work done in going around any path in a
+gravitational field is zero</em>.
+</p>
+</div>
+<div id="Ch13-S2-p7" class="para">
+<p class="p">This is a very remarkable result. It tells us something we did not
+previously know about planetary motion. It tells us that when a planet
+moves around the sun (without any other objects around, no other forces)
+it moves in such a manner that the square of the speed at any point
+minus some constants divided by the radius at that point is always the
+same at every point on the orbit. For example, the closer the planet is
+to the sun, the faster it is going, but by how much? By the following
+amount: if instead of letting the planet go around the sun, we were to
+change the direction (but not the magnitude) of its velocity and make it
+move radially, and then we let it fall from some special radius to the
+radius of interest, the new speed would be the same as the speed it had
+in the actual orbit, because this is just another example of a
+complicated path. So long as we come back to the same distance, the
+kinetic energy will be the same. So, whether the motion is the real,
+undisturbed one, or is changed in direction by channels, by frictionless
+constraints, the kinetic energy with which the planet arrives at a point
+will be the same.
+</p>
+</div>
+<div id="Ch13-S2-p8" class="para">
+<p class="p">Thus, when we make a numerical analysis of the motion of the planet in
+its orbit, as we did earlier, we can check whether or not we are
+making appreciable errors by calculating this constant quantity, the
+energy, at every step, and it should not change. For the orbit of
+Table <a href="I_09.html#Ch9-T2">9–2</a> the energy does change,<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> it changes by some $1.5$ percent from the
+beginning to the end. Why? Either because for the numerical method we
+use finite intervals, or else because we made a slight mistake somewhere
+in arithmetic.</p>
+</div>
+<div id="Ch13-S2-p9" class="para">
+<p class="p">Let us consider the energy in another case: the problem of a mass on a
+spring. When we displace the mass from its balanced position, the
+restoring force is proportional to the displacement. In those
+circumstances, can we work out a law for conservation of energy? Yes,
+because the work done by such a force is
+\begin{equation}
+\label{Eq:I:13:13}
+W=\int_0^xF\,dx=\int_0^x-kx\,dx=-\tfrac{1}{2}kx^2.
+\end{equation}
+Therefore, for a mass on a spring we have that the kinetic energy of
+the oscillating mass plus $\tfrac{1}{2}kx^2$ is a constant. Let us see
+how this works. We pull the mass down; it is standing still and so its
+speed is zero. But $x$ is not zero, $x$ is at its maximum, so there is
+some energy, the potential energy, of course. Now we release the mass
+and things begin to happen (the details not to be discussed), but at
+any instant the kinetic plus potential energy must be a constant. For
+example, after the mass is on its way past the original equilibrium
+point, the position $x$ equals zero, but that is when it has its
+biggest $v^2$, and as it gets more $x^2$ it gets less $v^2$, and so
+on. So the balance of $x^2$ and $v^2$ is maintained as the mass goes
+up and down. Thus we have another rule now, that the potential energy
+for a spring is $\tfrac{1}{2}kx^2$, if the force is $-kx$.</p>
+</div>
+</div>
+<div id="Ch13-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">13–3</span>Summation of energy</h3>
+<div id="Ch13-S3-p1" class="para">
+<p class="p">Now we go on to the more general consideration of what happens when
+there are large numbers of objects. Suppose we have the complicated
+problem of many objects, which we label $i = 1$, $2$, $3$, …, all
+exerting gravitational pulls on each other. What happens then? We
+shall prove that if we add the kinetic energies of all the particles,
+and add to this the sum, over all <em class="emph">pairs</em> of particles, of their
+mutual gravitational potential energy, $-GMm/r_{ij}$, the total is a
+constant:
+\begin{equation}
+\label{Eq:I:13:14}
+\sum_i\tfrac{1}{2}m_iv_i^2\;+\!\!\sum_{(\text{pairs $ij$})}
+\!\!-\frac{Gm_im_j}{r_{ij}}=\text{const}.
+\end{equation}
+How do we prove it? We differentiate each side with respect to time
+and get zero. When we differentiate $\tfrac{1}{2}m_iv_i^2$, we find
+derivatives of the velocity that are the forces, just as in
+Eq. (<a href="#mjx-eqn-EqI135">13.5</a>). We replace these forces by the law of force that
+we know from Newton’s law of gravity and then we notice that what is
+left is minus the time derivative of
+\begin{equation*}
+\sum_{\text{pairs}}
+-\frac{Gm_im_j}{r_{ij}}.
+\end{equation*}
+The time derivative of the kinetic energy is
+\begin{equation}
+\begin{aligned}
+\ddt{}{t}\sum_i\tfrac{1}{2}m_iv_i^2
+&=\sum_im_i\,\ddt{\FLPv_i}{t}\cdot\FLPv_i\\[.5ex]
+&=\sum_i\FLPF_i\cdot\FLPv_i\\[-.5ex]
+&=\sum_i\Biggl(
+\sum_j-\frac{Gm_im_j\FLPr_{ij}}{r_{ij}^3}
+\Biggr)\cdot\FLPv_i.
+\end{aligned}
+\label{Eq:I:13:15}
+\end{equation}
+The time derivative of the potential energy is
+\begin{equation*}
+\ddt{}{t}\sum_{\text{pairs}}
+-\frac{Gm_im_j}{r_{ij}}=
+\sum_{\text{pairs}}
+\Biggl(+\frac{Gm_im_j}{r_{ij}^2}\Biggr)
+\biggl(\ddt{r_{ij}}{t}\biggr).
+\end{equation*}
+But
+\begin{equation*}
+r_{ij}=\sqrt{(x_i-x_j)^2+(y_i-y_j)^2+(z_i-z_j)^2},
+\end{equation*}
+so that
+\begin{align*}
+\ddt{r_{ij}}{t}&=
+\begin{alignedat}[t]{5}
+\frac{1}{2r_{ij}}\biggl[
+&2(x_i&&-x_j&&)\biggl(\ddt{x_i}{t}&&-\ddt{x_j}{t}&&\biggr)\\
+{}+{}&2(y_i&&-y_j&&)\biggl(\ddt{y_i}{t}&&-\ddt{y_j}{t}&&\biggr)\\
+{}+{}&2(z_i&&-z_j&&)\biggl(\ddt{z_i}{t}&&-\ddt{z_j}{t}&&\biggr)
+\biggr]
+\end{alignedat}\\[1ex]
+&=\FLPr_{ij}\cdot\frac{\FLPv_i-\FLPv_j}{r_{ij}}\\[.5ex]
+&=\FLPr_{ij}\cdot\frac{\FLPv_i}{r_{ij}}+
+\FLPr_{ji}\cdot\frac{\FLPv_j}{r_{ji}},
+\end{align*}
+since $\FLPr_{ij} = -\FLPr_{ji}$, while $r_{ij} = r_{ji}$. Thus
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:13:16}
+\ddt{}{t}\sum_{\text{pairs}}-\frac{Gm_im_j}{r_{ij}}=
+\sum_{\text{pairs}}\biggl[
+\frac{Gm_im_j\FLPr_{ij}}{r_{ij}^3}\cdot\FLPv_i+
+\frac{Gm_jm_i\FLPr_{ji}}{r_{ji}^3}\cdot\FLPv_j\biggr].
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+\ddt{}{t}\sum_{\text{pairs}}-\frac{Gm_im_j}{r_{ij}}=\\[2ex]
+\sum_{\text{pairs}}\biggl[
+\frac{Gm_im_j\FLPr_{ij}}{r_{ij}^3}\cdot\FLPv_i+
+\frac{Gm_jm_i\FLPr_{ji}}{r_{ji}^3}\cdot\FLPv_j\biggr].
+\end{gathered}
+\label{Eq:I:13:16}
+\end{equation}
+</span>
+Now we must note carefully what $\sum\limits_i\{\sum\limits_j\}$
+and $\sum\limits_{\text{pairs}}$ mean. In Eq. (<a href="#mjx-eqn-EqI1315">13.15</a>),
+$\sum\limits_i\{\sum\limits_j\}$ means that $i$ takes on all values
+$i=1$, $2$, $3$, … in turn, and for each value of $i$, the
+index $j$ takes on all values except $i$. Thus if $i = 3$, $j$ takes
+on the values $1$, $2$, $4$, …</p>
+</div>
+<div id="Ch13-S3-p2" class="para">
+<p class="p">In Eq. (<a href="#mjx-eqn-EqI1316">13.16</a>), on the other hand, $\sum\limits_{\text{pairs}}$ means
+that given values of $i$ and $j$ occur only once. Thus the particle pair $1$
+and $3$ contributes only one term to the sum. To keep track of this, we might
+agree to let $i$ range over all values $1$, $2$, $3$, …, and for each $i$
+let $j$ range only over values <em class="emph">greater</em> than $i$. Thus if $i = 3$, $j$
+could only have values $4$, $5$, $6$, … But we notice that for each
+$i,j$ value there are two contributions to the sum, one involving $\FLPv_i$, and
+the other $\FLPv_j$, and that these terms have the same appearance as those of
+Eq. (<a href="#mjx-eqn-EqI1315">13.15</a>), where <em class="emph">all</em> values of $i$ and $j$ (except $i = j$)
+are included in the sum. Therefore, by matching the terms one by one, we see
+that Eqs. (<a href="#mjx-eqn-EqI1316">13.16</a>) and (<a href="#mjx-eqn-EqI1315">13.15</a>) are precisely the
+same, but of opposite sign, so that the time derivative of the kinetic plus
+potential energy is indeed zero. Thus we see that, for many objects, <em class="emph">the
+kinetic energy is the sum of the contributions from each individual object</em>, and
+that the potential energy is also simple, it being also just a sum of
+contributions, the energies between all the pairs. We can understand <em class="emph">why</em>
+it should be the energy of every pair this way: Suppose that we want to find the
+total amount of work that must be done to bring the objects to certain distances
+from each other. We may do this in several steps, bringing them in from infinity
+where there is no force, one by one. First we bring in number one, which
+requires no work, since no other objects are yet present to exert force on it.
+Next we bring in number two, which does take some work,
+namely $W_{12}=-Gm_1m_2/r_{12}$. Now, and this is an important point, suppose we
+bring in the next object to position three. At any moment the force on
+number $3$ can be written as the sum of two forces—the force exerted by
+number $1$ and that exerted by number $2$. Therefore <em class="emph">the work done is the
+sum of the works done by each</em>, because if $\FLPF_3$ can be resolved into the
+sum of two forces,
+\begin{equation*}
+\FLPF_3=\FLPF_{13}+\FLPF_{23},
+\end{equation*}
+then the work is
+\begin{equation*}
+\int\FLPF_3\cdot d\FLPs=
+\int\FLPF_{13}\cdot d\FLPs+\int\FLPF_{23}\cdot d\FLPs=
+W_{13}+W_{23}.
+\end{equation*}
+That is, the work done is the sum of the work done against the first
+force and the second force, as if each acted independently. Proceeding
+in this way, we see that the total work required to assemble the given
+configuration of objects is precisely the value given in
+Eq. (<a href="#mjx-eqn-EqI1314">13.14</a>) as the potential energy. It is because gravity
+obeys the principle of superposition of forces that we can write the
+potential energy as a sum over each pair of particles.</p>
+</div>
+</div>
+<div id="Ch13-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">13–4</span>Gravitational field of large objects</h3>
+<div id="Ch13-F5" class="figure">
+<img src="img/FLP_I/f13-05/f13-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–5.</span>The gravitational field $\FigC$ at a mass point produced by
+an infinite plane sheet of matter.
+</div>
+</div>
+<div id="Ch13-S4-p1" class="para">
+<p class="p">Now we shall calculate the fields which are met in a few physical
+circumstances involving <em class="emph">distributions of mass</em>. We have not so
+far considered distributions of mass, only particles, so it is
+interesting to calculate the forces when they are produced by more
+than just one particle. First we shall find the gravitational force on
+a mass that is produced by a plane sheet of material, infinite in
+extent. The force on a unit mass at a given point $P$, produced by
+this sheet of material (Fig. <a href="#Ch13-F5">13–5</a>), will of course be
+directed toward the sheet. Let the distance of the point from the
+sheet be $a$, and let the amount of mass per unit area of this huge
+sheet be $\mu$. We shall suppose $\mu$ to be constant; it is a uniform
+sheet of material. Now, what small field $d\FLPC$ is produced by the
+mass $dm$ lying between $\rho$ and $\rho + d\rho$ from the point $O$
+of the sheet nearest point $P$?  Answer: $d\FLPC =
+-G(dm\,\FLPr/r^3)$. But this field is directed along $\FLPr$, and we
+know that only the $x$-component of it will remain when we add all the
+little vector $d\FLPC$’s to produce $\FLPC$. The $x$-component
+of $d\FLPC$ is
+\begin{equation*}
+dC_x=-G\,\frac{dm\,r_x}{r^3}=-G\,\frac{dm\,a}{r^3}.
+\end{equation*}
+Now all masses $dm$ which are at the same distance $r$ from $P$ will
+yield the same $dC_x$, so we may at once write for $dm$ the total mass
+in the <em class="emph">ring</em> between $\rho$ and $\rho+d\rho$, namely $dm =
+\mu2\pi\rho\,d\rho$ ($2\pi\rho\,d\rho$ is the area of a ring of
+radius $\rho$ and width $d\rho$, if $d\rho\ll\rho$). Thus
+\begin{equation*}
+dC_x=-G\mu2\pi\rho\,\frac{d\rho\,a}{r^3}.
+\end{equation*}
+Then, since $r^2 = \rho^2 + a^2$, $\rho\,d\rho = r\,dr$. Therefore,
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:13:17}
+C_x=-2\pi G\mu a\int_a^\infty\frac{dr}{r^2}=
+-2\pi G\mu a\Bigl(\frac{1}{a}-\frac{1}{\infty}\Bigr)=-2\pi G\mu.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+C_x&=-2\pi G\mu a\int_a^\infty\frac{dr}{r^2}\\[1ex]
+&= -2\pi G\mu a\Bigl(\frac{1}{a}-\frac{1}{\infty}\Bigr)=-2\pi G\mu.
+\end{aligned}
+\label{Eq:I:13:17}
+\end{equation}
+</span>
+Thus the force is independent of distance $a$! Why? Have we made a
+mistake? One might think that the farther away we go, the weaker the
+force would be. But no! If we are close, most of the matter is pulling
+at an unfavorable angle; if we are far away, more of the matter is
+situated more favorably to exert a pull toward the plane. At any
+distance, the matter which is most effective lies in a certain
+cone. When we are farther away the force is smaller by the inverse
+square, but in the same cone, in the same angle, there is much
+<em class="emph">more matter</em>, larger by just the square of the distance! This
+analysis can be made rigorous by just noticing that the differential
+contribution in any given cone is in fact independent of the distance,
+because of the reciprocal variation of the strength of the force from
+a given mass, and the amount of mass included in the cone, with
+changing distance. The force is not really constant of course, because
+when we go on the other side of the sheet it is reversed in sign.</p>
+</div>
+<div id="Ch13-S4-p2" class="para">
+<p class="p">We have also, in effect, solved an electrical problem: if we have an
+electrically charged plate, with an amount $\sigma$ of charge per unit
+area, then the electric field at a point outside the sheet is equal
+to $\sigma/2\epsO$, and is in the outward direction if the sheet is
+positively charged, and inward if the sheet is negatively charged. To
+prove this, we merely note that $-G$, for gravity, plays the same role
+as $1/4\pi\epsO$ for electricity.</p>
+</div>
+<div id="Ch13-S4-p3" class="para">
+<p class="p">Now suppose that we have two plates, with a positive charge $+\sigma$
+on one and a negative charge $-\sigma$ on another at a distance $D$
+from the first. What is the field? Outside the two plates it is
+zero. Why?  Because one attracts and the other repels, the force being
+<em class="emph">independent of distance</em>, so that the two balance out! Also, the
+field <em class="emph">between</em> the two plates is clearly twice as great as that
+from one plate, namely $E=\sigma/\epsO$, and is directed from the
+positive plate to the negative one.</p>
+</div>
+<div id="Ch13-S4-p4" class="para">
+<p class="p">Now we come to a most interesting and important problem, whose
+solution we have been assuming all the time, namely, that the force
+produced by the earth at a point on the surface or outside it is the
+same as if all the mass of the earth were located at its center. The
+validity of this assumption is not obvious, because when we are close,
+some of the mass is very close to us, and some is farther away, and so
+on. When we add the effects all together, it seems a miracle that the
+net force is exactly the same as we would get if we put all the mass
+in the middle!</p>
+</div>
+<div id="Ch13-F6" class="figure">
+<img src="img/FLP_I/f13-06/f13-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 13–6.</span>A thin spherical shell of mass or charge.
+</div>
+</div>
+<div id="Ch13-S4-p5" class="para">
+<p class="p">We now demonstrate the correctness of this miracle. In order to do so, however,
+we shall consider a thin uniform hollow shell instead of the whole earth. Let
+the total mass of the shell be $m$, and let us calculate the <em class="emph">potential
+energy</em> of a particle of mass $m'$ a distance $R$ away from the center of the
+sphere (Fig. <a href="#Ch13-F6">13–6</a>) and show that the potential energy is the same as
+it would be if the mass $m$ were a point at the center. (The potential energy is
+easier to work with than is the field because we do not have to worry about
+angles, we merely add the potential energies of all the pieces of mass.) If we
+call $x$ the distance of a certain plane section from the center, then all the
+mass that is in a slice $dx$ is at the same distance $r$ from $P$, and the
+potential energy due to this ring is $-Gm'\,dm/r$. How much mass is in the small
+slice $dx$? An amount
+\begin{equation*}
+dm=2\pi y\mu\,ds=\frac{2\pi y\mu\,dx}{\sin\theta}=
+\frac{2\pi y\mu\,dx\,a}{y}=2\pi a\mu\,dx,
+\end{equation*}
+where $\mu=m/4\pi a^2$ is the surface density of mass on the spherical
+shell. (It is a general rule that the area of a zone of a sphere is
+proportional to its axial width.) Therefore the potential energy due
+to $dm$ is
+\begin{equation*}
+dW=-\frac{Gm'\,dm}{r}=-\frac{Gm'2\pi a\mu\,dx}{r}.
+\end{equation*}
+But we see that
+\begin{equation*}
+\begin{aligned}
+r^2=y^2+(R-x)^2&=y^2+x^2+R^2-2Rx\\[.5ex]
+&=a^2+R^2-2Rx.
+\end{aligned}
+\end{equation*}
+Thus
+\begin{equation*}
+2r\,dr=-2R\,dx
+\end{equation*}
+or
+\begin{equation*}
+\frac{dx}{r}=-\frac{dr}{R}.
+\end{equation*}
+Therefore,
+\begin{equation*}
+dW=\frac{Gm'2\pi a\mu\,dr}{R},
+\end{equation*}
+and so
+\begin{align}
+W&=\frac{Gm'2\pi a\mu}{R}\int_{R+a}^{R-a}dr\notag\\[1ex]
+&=-\frac{Gm'2\pi a\mu}{R}\,2a=
+-\frac{Gm'(4\pi a^2\mu)}{R}\notag\\[2ex]
+\label{Eq:I:13:18}
+&=-\frac{Gm'm}{R}.
+\end{align}
+Thus, for a thin spherical shell, the potential energy of a mass $m'$, external
+to the shell, is the same as though the mass of the shell were concentrated at
+its center. The earth can be imagined as a series of spherical shells, each one
+of which contributes an energy which depends only on its mass and the distance from its center to
+the particle; adding them all together we get the <em class="emph">total mass</em>, and
+therefore the earth acts as though all the material were at the center!</p>
+</div>
+<div id="Ch13-S4-p6" class="para">
+<p class="p">But notice what happens if our point is on the <em class="emph">inside</em> of the
+shell. Making the same calculation, but with $P$ on the inside, we
+still get the difference of the two $r$’s, but now in the form $a - R
+- (a + R) = -2R$, or minus twice the distance from the center. In
+other words, $W$ comes out to be $W=-Gm'm/a$, which is
+<em class="emph">independent</em> of $R$ and independent of position, i.e., the same
+energy no matter <em class="emph">where</em> we are inside. Therefore no force; no
+work is done when we move about inside. If the potential energy is the
+same no matter where an object is placed inside the sphere, there can
+be no force on it. So there is no force inside, there is only a force
+outside, and the force outside is the same as though the mass were all
+at the center.</p>
+</div>
+</div>
+<ol id="footnotes"><li class="footnote">
+  <a name="footnote_1"></a>
+  The energy per
+unit mass is $\tfrac{1}{2}(v_x^2 + v_y^2) - 1/r$ in the units of
+Table <a href="I_09.html#Ch9-T2">9–2</a>.
+  <a href="#footnote_source_1">↩</a>
+</li></ol>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

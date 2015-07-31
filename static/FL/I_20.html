@@ -1,0 +1,1122 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 20: Rotation in space</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "20." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch20" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">20</span>Rotation in space</h2>
+<div id="Ch20-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">20–1</span>Torques in three dimensions</h3>
+<div id="Ch20-S1-p1" class="para">
+<p class="p">In this chapter we shall discuss one of the most remarkable and
+amusing consequences of mechanics, the behavior of a rotating
+wheel. In order to do this we must first extend the mathematical
+formulation of rotational motion, the principles of angular
+momentum, torque,
+and so on, to three-dimensional space. We shall not <em class="emph">use</em> these
+equations in all their generality and study all their consequences,
+because this would take many years, and we must soon turn to other
+subjects. In an introductory course we can present only the fundamental
+laws and apply them to a very few situations of special interest.</p>
+</div>
+<div id="Ch20-S1-p2" class="para">
+<p class="p">First, we notice that if we have a rotation in three dimensions, whether
+of a rigid body or any other system, what we deduced
+for two dimensions is still right. That is, it is still true that $xF_y
+- yF_x$ is the torque “in the $xy$-plane,” or the torque “around the
+$z$-axis.” It also turns out that this torque is still equal to the
+rate of change of $xp_y - yp_x$, for if we go back over the derivation
+of Eq. (<a href="I_18.html#mjx-eqn-EqI1815">18.15</a>) from Newton’s laws we see that we did
+not have to assume that the motion was in a plane; when we differentiate
+$xp_y - yp_x$, we get $xF_y - yF_x$, so this theorem is still right. The
+quantity $xp_y - yp_x$, then, we call the angular momentum belonging to
+the $xy$-plane, or the angular momentum about the $z$-axis. This being
+true, we can use any other pair of axes and get another equation. For
+instance, we can use the $yz$-plane, and it is clear from symmetry that
+if we just substitute $y$ for $x$ and $z$ for $y$, we would find $yF_z -
+zF_y$ for the torque and $yp_z - zp_y$ would be the angular momentum
+associated with the $yz$-plane. Of course we could have another plane,
+the $zx$-plane, and for this we would find $zF_x - xF_z = d/dt\,(zp_x -
+xp_z)$.
+</p>
+</div>
+<div id="Ch20-S1-p3" class="para">
+<p class="p">That these three equations can be deduced for the motion of a single
+particle is quite clear. Furthermore, if we added such things as $xp_y
+- yp_x$ together for many particles and called it the total angular
+momentum, we would have three kinds for the three planes $xy$, $yz$,
+and $zx$, and if we did the same with the forces, we would talk about
+the torque in the planes $xy$, $yz$, and $zx$ also. Thus we would have
+laws that the external torque associated with any plane is equal to
+the rate of change of the angular momentum associated with that
+plane. This is just a generalization of what we wrote in two
+dimensions.</p>
+</div>
+<div id="Ch20-S1-p4" class="para">
+<p class="p">But now one may say, “Ah, but there are more planes; after all, can
+we not take some other plane at some angle, and calculate the torque
+on that plane from the forces? Since we would have to write another
+set of equations for every such plane, we would have a lot of
+equations!”  Interestingly enough, it turns out that if we were to
+work out the combination $x'F_{y'} - y'F_{x'}$ for another plane,
+measuring the $x'$, $F_{y'}$, etc., in that plane, the result can be
+written as some <em class="emph">combination</em> of the three expressions for the
+$xy$-, $yz$- and $zx$-planes. There is nothing new. In other words, if
+we know what the three torques in the $xy$-, $yz$-, and $zx$-planes
+are, then the torque in any other plane, and correspondingly the
+angular momentum also, can be written as some combination of these:
+six percent of one and ninety-two percent of another, and so on. This
+property we shall now analyze.</p>
+</div>
+<div id="Ch20-S1-p5" class="para">
+<p class="p">Suppose that in the $xyz$-axes, Joe has worked out all his torques and
+his angular momenta in his planes. But Moe has axes $x',y',z'$ in some
+other direction. To make it a little easier, we shall suppose that
+only the $x$- and $y$-axes have been turned. Moe’s $x'$ and $y'$ are
+new, but his $z'$ happens to be the same. That is, he has new planes,
+let us say, for $yz$ and $zx$. He therefore has new torques and
+angular momenta which he would work out. For example, his torque in
+the $x'y'$-plane would be equal to $x'F_{y'} - y'F_{x'}$ and so
+forth. What we must now do is to find the relationship between the new
+torques and the old torques, so we will be able to make a connection
+from one set of axes to the other. Someone may say, “That looks just
+like what we did with vectors.” And indeed, that is exactly what we
+are intending to do. Then he may say, “Well, isn’t torque just a
+vector?” It <em class="emph">does</em> turn out to be a vector, but we do not know
+that right away without making an analysis. So in the following steps
+we shall make the analysis. We shall not discuss every step in detail,
+since we only want to illustrate how it works. The torques calculated
+by Joe are
+\begin{equation}
+\begin{alignedat}{6}
+&\tau_{xy}~&&=x&&F_y&&-y&&F_x&&,\\[.5ex]
+&\tau_{yz}~&&=y&&F_z&&-z&&F_y&&,\\[.5ex]
+&\tau_{zx}~&&=z&&F_x&&-x&&F_z&&.
+\end{alignedat}
+\label{Eq:I:20:1}
+\end{equation}</p>
+</div>
+
+<center><hr class="sep"></center>
+
+<div id="Ch20-S1-p6" class="para">
+<p class="p"><span class="text small">We digress at this point to note that in such cases as this one may
+get the wrong sign for some quantity if the coordinates are not
+handled in the right way. Why not write $\tau_{yz}= zF_y - yF_z$? The
+problem arises from the fact that a coordinate system may be either
+“right-handed” or “left-handed.” Having chosen (arbitrarily) a
+sign for, say $\tau_{xy}$, then the correct expressions for the other
+two quantities may always be found by interchanging the letters $xyz$
+in either order</span></p>
+<p align="center"><span class="text small"><img src="img/torque_clockwise.svgz" class="torque_clockwise">
+  or
+  <img src="img/torque_counterclockwise.svgz" class="torque_counterclockwise"></span></p>
+</div>
+
+<center><hr class="sep"></center>
+
+<div id="Ch20-S1-p7" class="para">
+<p class="p">Moe now calculates the torques in his system:
+\begin{equation}
+\begin{alignedat}{6}
+&\tau_{x'y'}~&&=x'&&F_{y'}&&-y'&&F_{x'}&&,\\[.5ex]
+&\tau_{y'z'}~&&=y'&&F_{z'}&&-z'&&F_{y'}&&,\\[.5ex]
+&\tau_{z'x'}~&&=z'&&F_{x'}&&-x'&&F_{z'}&&.
+\end{alignedat}
+\label{Eq:I:20:2}
+\end{equation}
+Now we suppose that one coordinate system is rotated by a fixed
+angle $\theta$, such that the $z$- and $z'$-axes are the same. (This
+angle $\theta$ has nothing to do with rotating objects or what is going on
+inside the coordinate system. It is merely the relationship between
+the axes used by one man and the axes used by the other, and is
+supposedly constant.) Thus the coordinates of the two systems are
+related by
+\begin{equation}
+\begin{alignedat}{4}
+&x'~&&=x&&\cos\theta+y&&\sin\theta,\\[.5ex]
+&y'~&&=y&&\cos\theta-x&&\sin\theta,\\[.5ex]
+&z'~&&=z&&.
+\end{alignedat}
+\label{Eq:I:20:3}
+\end{equation}
+Likewise, because force is a vector it transforms into the new system
+in the same way as do $x$, $y$, and $z$, since a thing is a vector if
+and only if the various components transform in the same way as $x$, $y$,
+and $z$:
+\begin{equation}
+\begin{alignedat}{4}
+&F_{x'}~&&=F_x&&\cos\theta+F_y&&\sin\theta,\\[.5ex]
+&F_{y'}~&&=F_y&&\cos\theta-F_x&&\sin\theta,\\[.5ex]
+&F_{z'}~&&=F_z&&.
+\end{alignedat}
+\label{Eq:I:20:4}
+\end{equation}</p>
+</div>
+<div id="Ch20-S1-p8" class="para">
+<p class="p">Now we can find out how the torque transforms by merely substituting
+for $x'$, $y'$, and $z'$ the expressions (<a href="#mjx-eqn-EqI203">20.3</a>), and for
+$F_{x'}$, $F_{y'}$, $F_{z'}$ those given by (<a href="#mjx-eqn-EqI204">20.4</a>), all
+into (<a href="#mjx-eqn-EqI202">20.2</a>). So, we have a rather long string of terms for
+$\tau_{x'y'}$ and (rather surprisingly at first) it turns out that it
+comes right down to $xF_y - yF_x$, which we recognize to be the torque
+in the $xy$-plane:
+<span class="eq-wide">
+\begin{align}
+\tau_{x'y'}&=\!
+\begin{aligned}[t]
+&(x\cos\theta+y\sin\theta)(F_y\cos\theta-F_x\sin\theta)\\
+&-~(y\cos\theta-x\sin\theta)(F_x\cos\theta+F_y\sin\theta)
+\end{aligned}\notag\\[2ex]
+&=\!
+\begin{aligned}[t]
+&xF_y(\cos^2\theta+\sin^2\theta)-yF_x(\sin^2\theta+\cos^2\theta)\\
+&+~xF_x(-\sin\theta\cos\theta+\sin\theta\cos\theta)\\
+&+~yF_y(\sin\theta\cos\theta-\sin\theta\cos\theta)
+\end{aligned}\notag\\[2ex]
+\label{Eq:I:20:5}
+&=xF_y - yF_x = \tau_{xy}.
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\tau_{x'y'}&=\!
+\begin{aligned}[t]
+&(x\cos\theta+y\sin\theta)(F_y\cos\theta-F_x\sin\theta)\\
+-&(y\cos\theta-x\sin\theta)(F_x\cos\theta+F_y\sin\theta)
+\end{aligned}\notag\\[2ex]
+&=\!
+\begin{aligned}[t]
+&xF_y(\cos^2\theta+\sin^2\theta)\\
+-&yF_x(\sin^2\theta+\cos^2\theta)\\
++&xF_x(-\sin\theta\cos\theta+\sin\theta\cos\theta)\\
++&yF_y(\sin\theta\cos\theta-\sin\theta\cos\theta)
+\end{aligned}\notag\\[2ex]
+\label{Eq:I:20:5}
+&=xF_y - yF_x = \tau_{xy}.
+\end{align}
+</span>
+That result is clear, for if we only turn our axes <em class="emph">in the
+plane</em>, the twist around $z$ in that plane is no different than it was
+before, because it is the same plane! What will be more interesting is
+the expression for $\tau_{y'z'}$, because that is a new plane. We now
+do exactly the same thing with the $y'z'$-plane, and it comes out as
+follows:
+\begin{align}
+\tau_{y'z'}&=\!
+\begin{aligned}[t]
+&(y\cos\theta-x\sin\theta)F_z\\
+&-~z(F_y\cos\theta-F_x\sin\theta)
+\end{aligned}\notag\\[1ex]
+&=(yF_z - zF_y)\cos\theta+(zF_x - xF_z)\sin\theta\notag\\[1ex]
+\label{Eq:I:20:6}
+&=\tau_{yz}\cos\theta+\tau_{zx}\sin\theta.
+\end{align}
+Finally, we do it for $z'x'$:
+\begin{align}
+\tau_{z'x'}&=\!
+\begin{aligned}[t]
+&z(F_x\cos\theta+F_y\sin\theta)\\
+&-(x\cos\theta+y\sin\theta)F_z
+\end{aligned}\notag\\[1ex]
+&=(zF_x - xF_z)\cos\theta-(yF_z - z F_y)\sin\theta\notag\\[1ex]
+\label{Eq:I:20:7}
+&=\tau_{zx}\cos\theta-\tau_{yz}\sin\theta.
+\end{align}</p>
+</div>
+<div id="Ch20-S1-p9" class="para">
+<p class="p">We wanted to get a rule for finding torques in new axes in terms of
+torques in old axes, and now we have the rule. How can we ever
+remember that rule? If we look carefully
+at (<a href="#mjx-eqn-EqI205">20.5</a>), (<a href="#mjx-eqn-EqI206">20.6</a>), and (<a href="#mjx-eqn-EqI207">20.7</a>), we see
+that there is a close relationship between these equations and the
+equations for $x$, $y$, and $z$. If, somehow, we could call $\tau_{xy}$
+the $z$-<em class="emph">component</em> of something, let us call it the $z$-component
+of $\FLPtau$, then it would be all right; we would
+understand (<a href="#mjx-eqn-EqI205">20.5</a>) as a vector transformation, since the
+$z$-component would be unchanged, as it should be. Likewise, if we
+associate with the $yz$-plane the $x$-component of our newly invented
+vector, and with the $zx$-plane, the $y$-component, then these
+transformation expressions would read
+\begin{equation}
+\begin{alignedat}{4}
+&\tau_{z'}~&&=\tau_z&&,\\[.5ex]
+&\tau_{x'}~&&=\tau_x&&\cos\theta+\tau_y&&\sin\theta,\\[.5ex]
+&\tau_{y'}~&&=\tau_y&&\cos\theta-\tau_x&&\sin\theta,
+\end{alignedat}
+\label{Eq:I:20:8}
+\end{equation}
+which is just the rule for vectors!
+</p>
+</div>
+<div id="Ch20-S1-p10" class="para">
+<p class="p">Therefore we have proved that we may identify the combination of $xF_y
+- yF_x$ with what we ordinarily call the $z$-component of a certain
+artificially invented vector. Although a torque is a twist on a plane,
+and it has no <em class="emph">a priori</em> vector character, mathematically it does
+behave like a vector. This vector is at right angles to the plane of
+the twist, and its length is proportional to the strength of the
+twist. The three components of such a quantity will transform like a
+real vector.</p>
+</div>
+<div id="Ch20-S1-p11" class="para">
+<p class="p">So we represent torques by vectors; with each plane on which the
+torque is supposed to be acting, we associate a line at right angles,
+by a rule. But “at right angles” leaves the sign unspecified. To get
+the sign right, we must adopt a rule which will tell us that if the
+torque were in a certain sense on the $xy$-plane, then the axis that
+we want to associate with it is in the “up” $z$-direction. That is,
+somebody has to define “right” and “left” for us. Supposing that
+the coordinate system is $x$, $y$, $z$ in a right-hand system, then
+the rule will be the following: if we think of the twist as if we were
+turning a screw having a right-hand thread, then the direction of the
+vector that we will associate with that twist is in the direction that
+the screw would advance.</p>
+</div>
+<div id="Ch20-S1-p12" class="para">
+<p class="p">Why is torque a vector? It is a miracle of good luck that we can
+associate a single axis with a plane, and therefore that we can
+associate a vector with the torque; it is a special property of
+three-dimensional space. In two dimensions, the torque is an ordinary
+scalar, and there need be no direction associated with it. In three
+dimensions, it is a vector. If we had four dimensions, we would be in
+great difficulty, because (if we had time, for example, as the fourth
+dimension) we would not only have planes like $xy$, $yz$, and $zx$, we
+would also have $tx$-, $ty$-, and $tz$-planes. There would be
+<em class="emph">six</em> of them, and one cannot represent six quantities as one
+vector in four dimensions.</p>
+</div>
+<div id="Ch20-S1-p13" class="para">
+<p class="p">We will be living in three dimensions for a long time, so it is well
+to notice that the foregoing mathematical treatment did not depend
+upon the fact that $x$ was position and $F$ was force; it only
+depended on the transformation laws for vectors. Therefore if, instead
+of $x$, we used the $x$-component of some other vector, it is not
+going to make any difference. In other words, if we were to calculate
+$a_xb_y - a_yb_x$, where $\FLPa$ and $\FLPb$ are vectors, and call it
+the $z$-component of some new quantity $c$, then these new quantities
+form a vector $\FLPc$. We need a mathematical notation for the
+relationship of the new vector, with its three components, to the
+vectors $\FLPa$ and $\FLPb$. The notation that has been devised for
+this is $\FLPc = \FLPa\times\FLPb$. We have then, in addition to the
+ordinary scalar product in the theory of vector analysis, a new kind
+of product, called the <em class="emph">vector product</em>.
+Thus, if $\FLPc = \FLPa\times\FLPb$, this is the same as writing
+\begin{equation}
+\begin{alignedat}{6}
+&c_x~&&=a_y&&b_z&&-a_z&&b_y&&,\\[.5ex]
+&c_y~&&=a_z&&b_x&&-a_x&&b_z&&,\\[.5ex]
+&c_z~&&=a_x&&b_y&&-a_y&&b_x&&.
+\end{alignedat}
+\label{Eq:I:20:9}
+\end{equation}
+If we reverse the order of $\FLPa$ and $\FLPb$, calling
+$\FLPa$, $\FLPb$ and $\FLPb$, $\FLPa$, we would have the sign of $\FLPc$
+reversed, because $c_z$ would be $b_xa_y - b_ya_x$. Therefore the
+cross product is unlike ordinary multiplication, where $ab = ba$; for
+the cross product, $\FLPb\times\FLPa = -\FLPa\times\FLPb$. From this,
+we can prove at once that if $\FLPa = \FLPb$, the cross product is
+zero. Thus, $\FLPa\times\FLPa = 0$.</p>
+</div>
+<div id="Ch20-S1-p14" class="para">
+<p class="p">The cross product is very important for representing the features of
+rotation, and it is important that we understand the geometrical
+relationship of the three vectors $\FLPa$, $\FLPb$, and $\FLPc$. Of
+course the relationship in components is given in Eq. (<a href="#mjx-eqn-EqI209">20.9</a>)
+and from that one can determine what the relationship is in geometry.
+The answer is, first, that the vector $\FLPc$ is perpendicular to both
+$\FLPa$ and $\FLPb$. (Try to calculate $\FLPc\cdot\FLPa$, and see if it
+does not reduce to zero.) Second, the magnitude of $\FLPc$ turns out to
+be the magnitude of $\FLPa$ times the magnitude of $\FLPb$ times the
+sine of the angle between the two. In which direction does $\FLPc$
+point?  Imagine that we turn $\FLPa$ into $\FLPb$ through an angle less
+than $180^\circ$; a screw with a right-hand thread turning in this way
+will advance in the direction of $\FLPc$. The fact that we say a
+<em class="emph">right</em>-hand screw instead of a <em class="emph">left</em>-hand screw is a
+convention, and is a perpetual reminder that if $\FLPa$ and $\FLPb$ are
+“honest” vectors in the ordinary sense, the new kind of “vector”
+which we have created by $\FLPa\times\FLPb$ is artificial, or slightly
+different in its character from $\FLPa$ and $\FLPb$, because it was made
+up with a special rule. If $\FLPa$ and $\FLPb$ are called ordinary
+vectors, we have a special name for them, we call them <em class="emph">polar
+vectors</em>. Examples of
+such vectors are the coordinate $\FLPr$, force $\FLPF$,
+momentum $\FLPp$, velocity $\FLPv$, electric field $\FLPE$, etc.; these
+are ordinary polar vectors. Vectors which involve just one cross product
+in their definition are called <em class="emph">axial vectors</em> or <em class="emph">pseudo vectors</em>. Examples of
+pseudo vectors are, of course, torque $\FLPtau$ and the angular
+momentum $\FLPL$.
+It also turns out that the angular
+velocity $\FLPomega$ is a pseudo vector, as is the magnetic
+field $\FLPB$.</p>
+</div>
+<div id="Ch20-S1-p15" class="para">
+<p class="p">In order to complete the mathematical properties of vectors, we should
+know all the rules for their multiplication, using dot and cross
+products. In our applications at the moment, we will need very little
+of this, but for the sake of completeness we shall write down all of
+the rules for vector multiplication so that we can use the results
+later. These are
+\begin{equation}
+\begin{alignedat}{2}
+&(\text{a})&\quad
+\FLPa\times(\FLPb+\FLPc)&\;=\FLPa\times\FLPb+\FLPa\times\FLPc,\\[.5ex]
+&(\text{b})&\quad
+(\alpha\FLPa)\times\FLPb&\;=\alpha(\FLPa\times\FLPb),\\[.5ex]
+&(\text{c})&\quad
+\FLPa\cdot(\FLPb\times\FLPc)&\;=(\FLPa\times\FLPb)\cdot\FLPc,\\[.5ex]
+&(\text{d})&\quad
+\FLPa\times(\FLPb\times\FLPc)&\;=\FLPb(\FLPa\cdot\FLPc)-
+\FLPc(\FLPa\cdot\FLPb),\\[.5ex]
+&(\text{e})&\;\quad
+\FLPa\times\FLPa&\;=0,\\[.5ex]
+&(\text{f})&\;\quad
+\FLPa\cdot(\FLPa\times\FLPb)&\;=0.
+\end{alignedat}
+\label{Eq:I:20:10}
+\end{equation}</p>
+</div>
+</div>
+<div id="Ch20-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">20–2</span>The rotation equations using cross products</h3>
+<div id="Ch20-S2-p1" class="para">
+<p class="p">Now let us ask whether any equations in physics can be written using
+the cross product. The answer, of course, is that a great many
+equations can be so written. For instance, we see immediately that the
+torque is equal to the position vector cross the force:
+\begin{equation}
+\label{Eq:I:20:11}
+\FLPtau=\FLPr\times\FLPF.
+\end{equation}
+This is a vector summary of the three equations $\tau_x = yF_z -
+zF_y$, etc. By the same token, the angular momentum vector, if there
+is only one particle present, is the distance from the origin
+multiplied by the vector momentum:
+\begin{equation}
+\label{Eq:I:20:12}
+\FLPL=\FLPr\times\FLPp.
+\end{equation}
+For three-dimensional space rotation, the dynamical law analogous to
+the law $\FLPF = d\FLPp/dt$ of Newton, is that the torque vector is
+the rate of change with time of the angular momentum vector:
+\begin{equation}
+\label{Eq:I:20:13}
+\FLPtau=d\FLPL/dt.
+\end{equation}
+
+If we sum (<a href="#mjx-eqn-EqI2013">20.13</a>) over many particles, the external torque
+on a system is the rate of change of the total angular momentum:
+\begin{equation}
+\label{Eq:I:20:14}
+\FLPtau_{\text{ext}}=d\FLPL_{\text{tot}}/dt.
+\end{equation}</p>
+</div>
+<div id="Ch20-S2-p2" class="para">
+<p class="p">Another theorem: If the total external torque is zero, then the total
+vector angular momentum of the system is a constant. This is called the
+law of <em class="emph">conservation of angular momentum</em>. If there
+is no torque on a given system, its angular momentum cannot change.</p>
+</div>
+<div id="Ch20-S2-p3" class="para">
+<p class="p">What about angular velocity? Is it a vector? We have already discussed
+turning a solid object about a fixed axis, but for a moment suppose
+that we are turning it simultaneously about <em class="emph">two</em> axes. It might
+be turning about an axis inside a box, while the box is turning about
+some other axis. The net result of such combined motions is that the
+object simply turns about some new axis! The wonderful thing about
+this new axis is that it can be figured out this way. If the rate of
+turning in the $xy$-plane is written as a vector in the $z$-direction
+whose length is equal to the rate of rotation in the plane, and if
+another vector is drawn in the $y$-direction, say, which is the rate
+of rotation in the $zx$-plane, then if we add these together as a
+vector, the magnitude of the result tells us how fast the object is
+turning, and the direction tells us in what plane, by the rule of the
+parallelogram. That is to say, simply, angular velocity <em class="emph">is</em> a
+vector, where we draw the magnitudes of the rotations in the three
+planes as projections at right angles to those planes.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a></p>
+</div>
+<div id="Ch20-S2-p4" class="para">
+<p class="p">As a simple application of the use of the angular velocity vector, we
+may evaluate the power being expended by the torque acting on a rigid
+body. The power, of course, is the rate of change of work with time;
+in three dimensions, the power turns out to be $P =
+\FLPtau\cdot\FLPomega$.</p>
+</div>
+<div id="Ch20-S2-p5" class="para">
+<p class="p">All the formulas that we wrote for plane rotation can be generalized
+to three dimensions. For example, if a rigid body is turning about a
+certain axis with angular velocity $\FLPomega$, we might ask, “What
+is the velocity of a point at a certain radial position $\FLPr$?” We
+shall leave it as a problem for the student to show that the velocity
+of a particle in a rigid body is given by $\FLPv=
+\FLPomega\times\FLPr$, where $\FLPomega$ is the angular velocity and
+$\FLPr$ is the position. Also, as another example of cross products,
+we had a formula for Coriolis force,
+which can also be written using cross products: $\FLPF_c =
+2m\FLPv\times\FLPomega$. That is, if a particle is moving with
+velocity $\FLPv$ in a coordinate system which is, in fact, rotating with angular
+velocity $\FLPomega$, and we want to think in terms of the rotating
+coordinate system, then we have to add the pseudo force $\FLPF_c$.</p>
+</div>
+</div>
+<div id="Ch20-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">20–3</span>The gyroscope</h3>
+<div id="Ch20-F1" class="figure">
+<img class="first" src="img/FLP_I/f20-01/f20-01_tc_big_a.svgz"><img class="last" src="img/FLP_I/f20-01/f20-01_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 20–1.</span><span class="text italic">Before:</span> axis is horizontal; moment about vertical
+axis${}= 0$. <span class="text italic">After:</span> axis is vertical; momentum about
+vertical axis is still zero; man and chair spin in direction
+opposite to spin of the wheel.
+</div>
+</div>
+<div id="Ch20-S3-p1" class="para">
+<p class="p">Let us now return to the law of conservation of angular momentum. This
+law may be demonstrated with a rapidly spinning wheel, or gyroscope,
+as follows (see Fig. <a href="#Ch20-F1">20–1</a>). If we sit on a swivel chair
+and hold the spinning wheel with its axis horizontal, the wheel has an
+angular momentum about the horizontal axis.  Angular momentum around a
+<em class="emph">vertical</em> axis cannot change because of the (frictionless) pivot
+of the chair, so if we turn the axis of the wheel into the vertical,
+then the wheel would have angular momentum about the vertical axis,
+because it is now spinning about this axis. But the <em class="emph">system</em>
+(wheel, ourself, and chair) <em class="emph">cannot</em> have a vertical component,
+so we and the chair have to turn in the direction opposite to the spin
+of the wheel, to balance it.</p>
+</div>
+<div id="Ch20-F2" class="figure">
+<img src="img/FLP_I/f20-02/f20-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–2.</span>A gyroscope.
+</div>
+</div>
+<div id="Ch20-S3-p2" class="para">
+<p class="p">First let us analyze in more detail the thing we have just
+described. What is surprising, and what we must understand, is the
+origin of the forces which turn us and the chair around as we turn the
+axis of the gyroscope toward the vertical. Figure <a href="#Ch20-F2">20–2</a>
+shows the wheel spinning rapidly about the $y$-axis. Therefore its
+angular velocity is about that axis and, it turns out, its angular
+momentum is likewise in that direction. Now suppose that we wish to
+rotate the wheel about the $x$-axis at a small angular
+velocity $\Omega$; what forces are required? After a short
+time $\Delta t$, the
+axis has turned to a new position, tilted at an angle $\Delta\theta$
+with the horizontal. Since the major part of the angular momentum is
+due to the spin on the axis (very little is contributed by the slow
+turning), we see that the angular momentum vector has changed. What is
+the change in angular momentum?  The angular momentum does not change
+in <em class="emph">magnitude</em>, but it does change in <em class="emph">direction</em> by an
+amount $\Delta\theta$. The magnitude of the vector $\Delta\FLPL$ is
+thus $\Delta L = L_0\,\Delta\theta$, so that the torque, which is the
+time rate of change of the angular momentum, is $\tau= \Delta L/\Delta
+t = L_0\,\Delta\theta/\Delta t = L_0\Omega$. Taking the directions of
+the various quantities into account, we see that
+\begin{equation}
+\label{Eq:I:20:15}
+\FLPtau=\FLPOmega\times\FLPL_0.
+\end{equation}
+Thus, if $\FLPOmega$ and $\FLPL_0$ are both horizontal, as shown in
+the figure, $\FLPtau$ is <em class="emph">vertical</em>. To produce such a torque,
+horizontal forces $\FLPF$ and $-\FLPF$ must be applied at the ends of
+the axle. How are these forces applied? By our hands, as we try to
+rotate the axis of the wheel into the vertical direction. But Newton’s
+Third Law demands that equal and opposite forces (and equal and
+opposite <em class="emph">torques</em>) act on <em class="emph">us</em>. This causes us to rotate in
+the opposite sense about the vertical axis $z$.</p>
+</div>
+<div id="Ch20-F3" class="figure">
+<img src="img/FLP_I/f20-03/f20-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–3.</span>A rapidly spinning top. Note that the direction of the torque
+vector is the direction of the precession.
+</div>
+</div>
+<div id="Ch20-S3-p3" class="para">
+<p class="p">This result can be generalized for a rapidly spinning top. In the
+familiar case of a spinning top, gravity acting on its center of mass
+furnishes a torque about the point of contact with the floor (see
+Fig. <a href="#Ch20-F3">20–3</a>). This torque is in the horizontal direction,
+and causes the top to precess with its axis moving in a circular cone
+about the vertical. If $\FLPOmega$ is the (vertical) angular velocity
+of precession, we again find that
+\begin{equation*}
+\FLPtau=d\FLPL/dt=\FLPOmega\times\FLPL_0.
+\end{equation*}
+Thus, when we apply a torque to a rapidly spinning top, the direction
+of the precessional motion is in the direction of the torque, or at
+right angles to the forces producing the torque.</p>
+</div>
+<div id="Ch20-S3-p4" class="para">
+<p class="p">We may now claim to understand the precession of gyroscopes, and
+indeed we do, mathematically. However, this is a mathematical thing
+which, in a sense, appears as a “miracle.” It will turn out, as we
+go to more and more advanced physics, that many simple things can be
+deduced mathematically more rapidly than they can be really understood
+in a fundamental or simple sense. This is a strange characteristic,
+and as we get into more and more advanced work there are circumstances
+in which mathematics will produce results which <em class="emph">no one</em> has
+really been able to understand in any direct fashion. An example is
+the Dirac equation, which appears
+in a very simple and beautiful form, but whose consequences are hard to
+understand. In our particular case, the precession of a top looks like
+some kind of a miracle involving right angles and circles, and twists
+and right-hand screws. What we should try to do is to understand it in a
+more physical way.</p>
+</div>
+<div id="Ch20-F4" class="figure">
+<img src="img/FLP_I/f20-04/f20-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–4.</span>The motion of particles in the spinning wheel of Fig. <a href="#Ch20-F2">20–2</a>,
+whose axis is turning, is in curved lines.
+</div>
+</div>
+<div id="Ch20-S3-p5" class="para">
+<p class="p">How can we explain the torque in terms of the real forces and the
+accelerations? We note that when the wheel is precessing, the
+particles that are going around the wheel are not really moving in a
+plane because the wheel is precessing (see Fig. <a href="#Ch20-F4">20–4</a>). As we
+explained previously (Fig. <a href="I_19.html#Ch19-F4">19–4</a>), the particles which are
+crossing through the precession axis are moving in <em class="emph">curved paths</em>,
+and this requires application of a lateral force. This is supplied by
+our pushing on the axle, which then communicates the force to the rim
+through the spokes. “Wait,” someone says, “what about the particles
+that are going back on the other side?” It does not take long to decide
+that there must be a force in the <em class="emph">opposite direction</em> on that
+side. The net force that we have to apply is therefore zero. The
+<em class="emph">forces</em> balance out, but one of them must be applied at one side
+of the wheel, and the other must be applied at the other side of the
+wheel. We could apply these forces directly, but because the wheel is
+solid we are allowed to do it by pushing on the axle, since forces can
+be carried up through the spokes.</p>
+</div>
+<div id="Ch20-S3-p6" class="para">
+<p class="p">What we have so far proved is that if the wheel is precessing, it can
+balance the torque due to gravity or some other applied torque. But
+all we have shown is that this is <em class="emph">a</em> solution of an
+equation. That is, if the torque is given, and <em class="emph">if we get the
+spinning started right</em>, then the wheel will precess smoothly and
+uniformly. But we have not proved (and it is not true) that a uniform
+precession is the <em class="emph">most general</em> motion a spinning body can
+undergo as the result of a given torque. The general motion involves
+also a “wobbling” about the mean precession. This “wobbling” is
+called <em class="emph">nutation</em>.</p>
+</div>
+<div id="Ch20-S3-p7" class="para">
+<p class="p">Some people like to say that when one exerts a torque on a gyroscope,
+it turns and it precesses, and that the torque <em class="emph">produces</em> the
+precession. It is very strange that when one suddenly lets go of a
+gyroscope, it does not <em class="emph">fall</em> under the action of gravity, but
+moves sidewise instead! Why is it that the <em class="emph">downward</em> force of
+the gravity, which we <em class="emph">know</em> and <em class="emph">feel</em>, makes it go
+<em class="emph">sidewise</em>? All the formulas in the world like (<a href="#mjx-eqn-EqI2015">20.15</a>)
+are not going to tell us, because (<a href="#mjx-eqn-EqI2015">20.15</a>) is a special
+equation, valid only after the gyroscope is precessing nicely. What
+really happens, in detail, is the following. If we were to hold the
+axis absolutely fixed, so that it cannot precess in any manner (but
+the top is spinning) then there is no torque acting, not even a torque
+from gravity, because it is balanced by our fingers. But if we
+suddenly let go, then there will instantaneously be a torque from
+gravity. Anyone in his right mind would think that the top would fall,
+and that is what it starts to do, as can be seen if the top is not
+spinning too fast.</p>
+</div>
+<div id="Ch20-S3-p8" class="para">
+<p class="p">The gyro actually does fall, as we would expect. But as soon as it
+falls, it is then turning, and if this turning were to continue, a
+torque would be required. In the absence of a torque in this
+direction, the gyro begins to “fall” in the direction opposite that
+of the missing force. This gives the gyro a component of motion around
+the vertical axis, as it would have in steady precession. But the
+actual motion “overshoots” the steady precessional velocity, and the
+axis actually rises again to the level from which it started. The path
+followed by the end of the axle is a cycloid (the path followed by a
+pebble that is stuck in the tread of an automobile tire). Ordinarily,
+this motion is too quick for the eye to follow, and it damps out
+quickly because of the friction in the gimbal bearings, leaving only
+the steady precessional drift (Fig. <a href="#Ch20-F5">20–5</a>). The slower
+the wheel spins, the more obvious the nutation is.
+</p>
+</div>
+<div id="Ch20-F5" class="figure">
+<img src="img/FLP_I/f20-05/f20-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–5.</span>Actual motion of tip of axis of gyroscope under gravity just
+after releasing axis previously held fixed.
+</div>
+</div>
+<div id="Ch20-S3-p9" class="para">
+<p class="p">When the motion settles down, the axis of the gyro is a little bit
+lower than it was at the start. Why? (These are the more complicated
+details, but we bring them in because we do not want the reader to get
+the idea that the gyroscope is an absolute miracle. It <em class="emph">is</em> a
+wonderful thing, but it is not a miracle.) If we were holding the axis
+absolutely horizontally, and suddenly let go, then the simple
+precession equation would tell us that it precesses, that it goes
+around in a horizontal plane. But that is impossible! Although we
+neglected it before, it is true that the wheel has <em class="emph">some</em> moment
+of inertia about the precession axis, and if it is moving about that
+axis, even slowly, it has a weak angular momentum about the
+axis. Where did it come from? If the pivots are perfect, there is no
+torque about the vertical axis. How then <em class="emph">does</em> it get to precess
+if there is no change in the angular momentum? The answer is that the
+cycloidal motion of the end of the axis damps down to the average,
+steady motion of the center of the equivalent rolling circle. That is,
+it settles down a little bit low. Because it is low, the spin angular
+momentum now has a small vertical component, which is exactly what is
+needed for the precession. So you see it has to go down a little, in
+order to go around. It has to yield a little bit to the gravity; by
+turning its axis down a little bit, it maintains the rotation about
+the vertical axis. That, then, is the way a gyroscope works.</p>
+</div>
+</div>
+<div id="Ch20-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">20–4</span>Angular momentum of a solid body</h3>
+<div id="Ch20-F6" class="figure">
+<img src="img/FLP_I/f20-06/f20-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–6.</span>The angular momentum of a rotating body is not necessarily
+parallel to the angular velocity.
+</div>
+</div>
+<div id="Ch20-S4-p1" class="para">
+<p class="p">Before we leave the subject of rotations in three dimensions, we shall
+discuss, at least qualitatively, a few effects that occur in
+three-dimensional rotations that are not self-evident. The main effect
+is that, in general, the angular momentum of a rigid body is <em class="emph">not
+necessarily</em> in the same direction as the angular velocity. Consider a
+wheel that is fastened onto a shaft in a lopsided fashion, but with the
+axis through the center of gravity, to be sure (Fig. <a href="#Ch20-F6">20–6</a>).
+When we spin the wheel around the axis, anybody knows that there will be
+shaking at the bearings because of the lopsided way we have it mounted.
+Qualitatively, we know that in the rotating system there is centrifugal
+force acting on
+the wheel, trying to throw its mass as far as possible from the axis.
+This tends to line up the plane of the wheel so that it is perpendicular
+to the axis. To resist this tendency, a torque is exerted by the
+bearings. If there is a torque exerted by the bearings, there must be a
+rate of change of angular momentum. How can there be a rate of change of
+angular momentum when we are simply turning the wheel about the axis?
+Suppose we break the angular velocity $\FLPomega$ into components
+$\FLPomega_1$ and $\FLPomega_2$ perpendicular and parallel to the plane
+of the wheel. What is the angular momentum?  The moments of inertia
+about these two axes are <em class="emph">different</em>, so the angular momentum
+components, which (in these particular, special axes only) are equal to
+the moments of inertia times the corresponding angular velocity
+components, are in a <em class="emph">different ratio</em> than are the angular
+velocity components. Therefore the angular momentum vector is in a
+direction in space <em class="emph">not</em> along the axis. When we turn the object,
+we have to turn the angular momentum vector in space, so we must exert
+torques on the shaft.</p>
+</div>
+<div id="Ch20-S4-p2" class="para">
+<p class="p">Although it is much too complicated to prove here, there is a very
+important and interesting property of the moment of inertia which is
+easy to describe and to use, and which is the basis of our above
+analysis. This property is the following: Any rigid body, even an
+irregular one like a potato, possesses three mutually perpendicular
+axes through the CM, such that the moment of inertia about one of
+these axes has the greatest possible value for any axis through the
+CM, the moment of inertia about another of the axes has the
+<em class="emph">minimum</em> possible value, and the moment of inertia about the
+third axis is intermediate between these two (or equal to one of
+them). These axes are called the <em class="emph">principal axes</em> of the body,
+and they have the important property that if the body is rotating
+about one of them, its angular momentum is in the same direction as
+the angular velocity. For a body having axes of symmetry, the
+principal axes are along the symmetry axes.</p>
+</div>
+<div id="Ch20-F7" class="figure">
+<img src="img/FLP_I/f20-07/f20-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 20–7.</span>The angular velocity and angular momentum of a rigid body ($A
+  &gt; B &gt; C$).
+</div>
+</div>
+<div id="Ch20-S4-p3" class="para">
+<p class="p">If we take the $x$-, $y$-, and $z$-axes along the principal axes, and
+call the corresponding principal moments of inertia $A$, $B$, and $C$,
+we may easily evaluate the angular momentum and the kinetic energy of
+rotation of the body for any angular velocity $\FLPomega$. If we
+resolve $\FLPomega$ into components $\omega_x$, $\omega_y$,
+and $\omega_z$ along the $x$-, $y$-, $z$-axes, and use unit vectors
+$\FLPi$, $\FLPj$, $\FLPk$, also along $x$, $y$, $z$, we may write the
+angular momentum as
+\begin{equation}
+\label{Eq:I:20:16}
+\FLPL=A\omega_x\FLPi+B\omega_y\FLPj+C\omega_z\FLPk.
+\end{equation}
+The kinetic energy of rotation is
+\begin{align}
+\label{Eq:I:20:17}
+\text{KE} &=\tfrac{1}{2}(A\omega_x^2+B\omega_y^2+C\omega_z^2)\\[1ex]
+&=\tfrac{1}{2}\FLPL\cdot\FLPomega.\
+\end{align}</p>
+</div>
+</div>
+<ol id="footnotes"><li class="footnote">
+  <a name="footnote_1"></a>
+  That
+this is true can be derived by compounding the displacements of the
+particles of the body during an infinitesimal time $\Delta t$. It is
+not self-evident, and is left to those who are interested to try to
+figure it out.
+  <a href="#footnote_source_1">↩</a>
+</li></ol>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

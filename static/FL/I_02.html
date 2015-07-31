@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 2: Basic Physics</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "2." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}^0", 0], Kplus: ["\\text{K}^+", 0], Kminus: ["\\text{K}^-", 0], Kstar: ["\\text{K}^*", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="header"></div>
+<div class="content">
+<div class="document">
+<div id="Ch2" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">2</span>Basic Physics</h2>
+<div id="Ch2-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">2–1</span>Introduction</h3>
+<div id="Ch2-S1-p1" class="para">
+<p class="p">In this chapter, we shall examine the most fundamental ideas
+that we have about physics—the nature of things as we see them at the
+present time. We shall not discuss the history of how we know that all
+these ideas are true; you will learn these details in due time.</p>
+</div>
+<div id="Ch2-S1-p2" class="para">
+<p class="p">The things with which we concern ourselves in science appear in myriad
+forms, and with a multitude of attributes. For example, if we stand on
+the shore and look at the sea, we see the water, the waves breaking, the
+foam, the sloshing motion of the water, the sound, the air, the winds
+and the clouds, the sun and the blue sky, and light; there is sand and
+there are rocks of various hardness and permanence, color and texture.
+There are animals and seaweed, hunger and disease, and the observer on
+the beach; there may be even happiness and thought. Any other spot in
+nature has a similar variety of things and influences. It is always as
+complicated as that, no matter where it is. Curiosity demands that we
+ask questions, that we try to put things together and try to understand
+this multitude of aspects as perhaps resulting from the action of a
+relatively small number of elemental things and forces acting in an
+infinite variety of combinations.</p>
+</div>
+<div id="Ch2-S1-p3" class="para">
+<p class="p">For example: Is the sand other than the rocks? That is, is the sand
+perhaps nothing but a great number of very tiny stones? Is the moon a
+great rock? If we understood rocks, would we also understand the sand
+and the moon? Is the wind a sloshing of the air analogous to the
+sloshing motion of the water in the sea? What common features do
+different movements have? What is common to different kinds of sound?
+How many different colors are there? And so on. In this way we try
+gradually to analyze all things, to put together things which at first
+sight look different, with the hope that we may be able to <em class="emph">reduce</em>
+the number of <em class="emph">different</em> things and thereby understand them
+better.</p>
+</div>
+<div id="Ch2-S1-p4" class="para">
+<p class="p">A few hundred years ago, a method was devised to find partial answers to
+such questions. <em class="emph">Observation</em>, <em class="emph">reason</em>, and <em class="emph">experiment</em>
+make up what we call the <em class="emph">scientific method</em>. We shall have to limit ourselves to a bare description of our
+basic view of what is sometimes called <em class="emph">fundamental physics</em>, or
+fundamental ideas which have arisen from the application of the
+scientific method.</p>
+</div>
+<div id="Ch2-S1-p5" class="para">
+<p class="p">What do we mean by “understanding” something? We can imagine that this
+complicated array of moving things which constitutes “the world” is
+something like a great chess game being played by the gods, and we are
+observers of the game. We do not know what the rules of the game are;
+all we are allowed to do is to <em class="emph">watch</em> the playing. Of course, if
+we watch long enough, we may eventually catch on to a few of the rules.
+<em class="emph">The rules of the game</em> are what we mean by <em class="emph">fundamental
+physics</em>. Even if we knew every rule, however, we might not be able to
+understand why a particular move is made in the game, merely because it
+is too complicated and our minds are limited. If you play chess you must
+know that it is easy to learn all the rules, and yet it is often very
+hard to select the best move or to understand why a player moves as he
+does. So it is in nature, only much more so; but we may be able at least
+to find all the rules. Actually, we do not have all the rules now.
+(Every once in a while something like castling is going on that we still
+do not understand.) Aside from not knowing all of the rules, what we
+really can explain in terms of those rules is very limited, because
+almost all situations are so enormously complicated that we cannot
+follow the plays of the game using the rules, much less tell what is
+going to happen next. We must, therefore, limit ourselves to the more
+basic question of the rules of the game. If we know the rules, we
+consider that we “understand” the world.</p>
+</div>
+<div id="Ch2-S1-p6" class="para">
+<p class="p">How can we tell whether the rules which we “guess” at are really right
+if we cannot analyze the game very well? There are, roughly speaking,
+three ways. First, there may be situations where nature has arranged, or
+we arrange nature, to be simple and to have so few parts that we can
+predict exactly what will happen, and thus we can check how our rules
+work. (In one corner of the board there may be only a few chess pieces
+at work, and that we can figure out exactly.)</p>
+</div>
+<div id="Ch2-S1-p7" class="para">
+<p class="p">A second good way to check rules is in terms of less specific rules
+derived from them. For example, the rule on the move of a bishop on a
+chessboard is that it moves only on the diagonal. One can deduce, no
+matter how many moves may be made, that a certain bishop will always be
+on a red square. So, without being able to follow the details, we can
+always check our idea about the bishop’s motion by finding out whether
+it is always on a red square. Of course it will be, for a long time,
+until all of a sudden we find that it is on a <em class="emph">black</em> square (what
+happened of course, is that in the meantime it was captured, another
+pawn crossed for queening, and it turned into a bishop on a black
+square). That is the way it is in physics. For a long time we will have
+a rule that works excellently in an over-all way, even when we cannot
+follow the details, and then some time we may discover a <em class="emph">new
+rule</em>. From the point of view of basic physics, the most interesting
+phenomena are of course in the <em class="emph">new</em> places, the places where the
+rules do not work—not the places where they <em class="emph">do</em> work!  That is
+the way in which we discover new rules.</p>
+</div>
+<div id="Ch2-S1-p8" class="para">
+<p class="p">The third way to tell whether our ideas are right is relatively crude
+but probably the most powerful of them all. That is, by rough
+<em class="emph">approximation</em>. While we may not be able to tell why Alekhine
+moves <em class="emph">this particular piece</em>, perhaps we can <em class="emph">roughly</em>
+understand that he is gathering his pieces around the king to protect
+it, more or less, since that is the sensible thing to do in the
+circumstances. In the same way, we can often understand nature, more or
+less, without being able to see what <em class="emph">every little piece</em> is doing,
+in terms of our understanding of the game.</p>
+</div>
+<div id="Ch2-S1-p9" class="para">
+<p class="p">At first the phenomena of nature were roughly divided into classes, like
+heat, electricity, mechanics, magnetism, properties of substances,
+chemical phenomena, light or optics, x-rays, nuclear physics,
+gravitation, meson phenomena, etc. However, the aim is to see
+<em class="emph">complete nature</em> as different aspects of <em class="emph">one set</em> of
+phenomena. That is the problem in basic theoretical physics, today—to
+<em class="emph">find the laws behind experiment;</em> to <em class="emph">amalgamate these
+classes</em>. Historically, we have always been able to amalgamate
+them, but as time goes on new things are found. We were
+amalgamating very well, when all of a sudden x-rays were found.
+Then we amalgamated some more, and mesons were found. Therefore,
+at any stage of the game, it always looks rather messy. A great deal is
+amalgamated, but there are always many wires or threads hanging
+out in all directions. That is the situation today, which we shall try
+to describe.</p>
+</div>
+<div id="Ch2-S1-p10" class="para">
+<p class="p">Some historic examples of amalgamation are the following. First,
+take <em class="emph">heat</em> and <em class="emph">mechanics</em>. When atoms are in motion, the
+more motion, the more heat the system contains, and so <em class="emph">heat and
+all temperature effects can be represented by the laws of mechanics</em>.
+Another tremendous amalgamation was the discovery of the relation
+between electricity, magnetism, and light, which were found to be
+different aspects of the same thing, which we call today the
+<em class="emph">electromagnetic field</em>. Another amalgamation
+is the unification of chemical phenomena, the various properties of
+various substances, and the behavior of atomic particles, which is in
+the <em class="emph">quantum mechanics of chemistry</em>.</p>
+</div>
+<div id="Ch2-S1-p11" class="para">
+<p class="p">The question is, of course, is it going to be possible to
+amalgamate <em class="emph">everything</em>, and merely discover that this world
+represents different aspects of <em class="emph">one</em> thing? Nobody knows. All we
+know is that as we go along, we find that we can amalgamate
+pieces, and then we find some pieces that do not fit, and we keep trying
+to put the jigsaw puzzle together. Whether there are a finite number of
+pieces, and whether there is even a border to the puzzle, is of course
+unknown. It will never be known until we finish the picture, if ever.
+What we wish to do here is to see to what extent this amalgamation
+process has gone on, and what the situation is at present, in
+understanding basic phenomena in terms of the smallest set of
+principles. To express it in a simple manner, <em class="emph">what are things made
+of and how few elements are there?</em>
+</p>
+</div>
+</div>
+<div id="Ch2-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">2–2</span>Physics before 1920</h3>
+<div id="Ch2-S2-p1" class="para">
+<p class="p">It is a little difficult to begin at once with the present view, so we
+shall first see how things looked in about 1920 and then take a few
+things out of that picture. Before 1920, our world picture was something
+like this: The “stage” on which the universe goes is the
+three-dimensional <em class="emph">space</em> of geometry, as described by
+Euclid, and things change in a medium
+called <em class="emph">time</em>. The elements on the stage are
+<em class="emph">particles</em>, for example the atoms, which have some
+<em class="emph">properties</em>. First, the property of inertia: if a
+particle is moving it keeps on going in the same direction unless
+<em class="emph">forces</em> act upon it. The second element, then, is <em class="emph">forces</em>,
+which were then thought to be of two varieties: First, an enormously
+complicated, detailed kind of interaction force which held the various
+atoms in different combinations in a complicated way, which determined
+whether salt would dissolve faster or slower when we raise the
+temperature. The other force that was known was a long-range
+interaction—a smooth and quiet attraction—which varied inversely as
+the square of the distance, and was called
+<em class="emph">gravitation</em>. This law was known and was
+very simple. <em class="emph">Why</em> things remain in motion when they are moving, or
+<em class="emph">why</em> there is a law of gravitation was, of course, not known.</p>
+</div>
+<div id="Ch2-S2-p2" class="para">
+<p class="p">A description of nature is what we are concerned with here. From this
+point of view, then, a gas, and indeed <em class="emph">all</em> matter, is a myriad of
+moving particles. Thus many of the things we saw while standing at the
+seashore can immediately be connected. First the pressure: this comes
+from the collisions of the atoms with the walls or whatever; the drift
+of the atoms, if they are all moving in one direction on the average, is
+wind; the <em class="emph">random</em> internal motions are the <em class="emph">heat</em>. There are
+waves of excess density, where too many particles have collected, and so
+as they rush off they push up piles of particles farther out, and so on.
+This wave of excess density is <em class="emph">sound</em>. It is a
+tremendous achievement to be able to understand so much. Some of these
+things were described in the previous chapter.</p>
+</div>
+<div id="Ch2-S2-p3" class="para">
+<p class="p">What <em class="emph">kinds</em> of particles are there? There were considered to be
+$92$ at that time: $92$ different kinds of atoms were ultimately
+discovered. They had different names associated with their chemical
+properties.</p>
+</div>
+<div id="Ch2-S2-p4" class="para">
+<p class="p">The next part of the problem was, <em class="emph">what are the short-range
+forces?</em> Why does carbon attract one oxygen or perhaps two oxygens, but
+not three oxygens? What is the machinery of interaction between atoms?
+Is it gravitation? The answer is no. Gravity is entirely too weak. But
+imagine a force analogous to gravity, varying inversely with the square
+of the distance, but enormously more powerful and having one difference.
+In gravity everything attracts everything else, but now imagine that
+there are <em class="emph">two kinds</em> of “things,” and that this new force (which
+is the electrical force, of course) has the property that likes
+<em class="emph">repel</em> but unlikes <em class="emph">attract</em>. The “thing” that carries this
+strong interaction is called <em class="emph">charge</em>.</p>
+</div>
+<div id="Ch2-S2-p5" class="para">
+<p class="p">Then what do we have? Suppose that we have two unlikes that attract each
+other, a plus and a minus, and that they stick very close together.
+Suppose we have another charge some distance away. Would it feel any
+attraction? It would feel <em class="emph">practically none</em>, because if the first
+two are equal in size, the attraction for the one and the repulsion for
+the other balance out. Therefore there is very little force at any
+appreciable distance. On the other hand, if we get <em class="emph">very close</em>
+with the extra charge, <em class="emph">attraction</em> arises, because the repulsion
+of likes and attraction of unlikes will tend to bring unlikes closer
+together and push likes farther apart. Then the repulsion will be
+<em class="emph">less</em> than the attraction. This is the reason why the atoms, which
+are constituted out of plus and minus electric charges, feel very little
+force when they are separated by appreciable distance (aside from
+gravity). When they come close together, they can “see inside” each
+other and rearrange their charges, with the result that they have a very
+strong interaction. The ultimate basis of an interaction between the
+atoms is <em class="emph">electrical</em>. Since this force is so enormous, all the
+plusses and all minuses will normally come together in as intimate a
+combination as they can. All things, even ourselves, are made of
+fine-grained, enormously strongly interacting plus and minus parts, all
+neatly balanced out. Once in a while, by accident, we may rub off a few
+minuses or a few plusses (usually it is easier to rub off minuses), and
+in those circumstances we find the force of electricity
+<em class="emph">unbalanced</em>, and we can then see the effects of these electrical
+attractions.</p>
+</div>
+<div id="Ch2-S2-p6" class="para">
+<p class="p">To give an idea of how much stronger electricity is than gravitation,
+consider two grains of sand, a millimeter across, thirty meters apart.
+If the force between them were not balanced, if everything attracted
+everything else instead of likes repelling, so that there were no
+cancellation, how much force would there be? There would be a force of
+<em class="emph">three million tons</em> between the two! You see, there is very,
+<em class="emph">very</em> little excess or deficit of the number of negative or
+positive charges necessary to produce appreciable electrical effects.
+This is, of course, the reason why you cannot see the difference between
+an electrically charged or uncharged thing—so few particles are
+involved that they hardly make a difference in the weight or size of an
+object.</p>
+</div>
+<div id="Ch2-S2-p7" class="para">
+<p class="p">With this picture the atoms were easier to understand. They were thought
+to have a “nucleus” at the center, which is positively
+electrically charged and very massive, and the nucleus is
+surrounded by a certain number of “electrons” which are very light and
+negatively charged. Now we go a little ahead in our story to remark that
+in the nucleus itself there were found two kinds of
+particles, protons and neutrons, almost
+of the same weight and very heavy. The protons are electrically charged
+and the neutrons are neutral. If we have an atom with
+six protons inside its nucleus, and this is surrounded by
+six electrons (the negative particles in the ordinary world of matter
+are all electrons, and these are very light compared with the protons
+and neutrons which make nuclei), this would be atom
+number six in the chemical table, and it is called carbon. Atom number
+eight is called oxygen, etc., because the chemical properties depend
+upon the electrons on the <em class="emph">outside</em>, and in fact only upon
+<em class="emph">how many</em> electrons there are. So the <em class="emph">chemical</em> properties
+of a substance depend only on a number, the number of electrons. (The
+whole list of elements of the chemists really could have been called
+$1$, $2$, $3$, $4$, $5$, etc. Instead of saying “carbon,” we could say
+“element six,” meaning six electrons, but of course, when the elements
+were first discovered, it was not known that they could be numbered that
+way, and secondly, it would make everything look rather complicated. It
+is better to have names and symbols for these things, rather than to
+call everything by number.)
+</p>
+</div>
+<div id="Ch2-S2-p8" class="para">
+<p class="p">More was discovered about the electrical force. The natural
+interpretation of electrical interaction is that two objects simply
+attract each other: plus against minus. However, this was discovered to
+be an inadequate idea to represent it. A more adequate representation of
+the situation is to say that the existence of the positive charge, in
+some sense, distorts, or creates a “condition” in space, so that when
+we put the negative charge in, it feels a force. This potentiality for
+producing a force is called an <em class="emph">electric field</em>. When we put an
+electron in an electric field, we say it is “pulled.”
+We then have two rules: (a) charges make a field, and (b) charges in
+fields have forces on them and move. The reason for this will become
+clear when we discuss the following phenomena: If we were to charge a
+body, say a comb, electrically, and then place a charged piece of paper
+at a distance and move the comb back and forth, the paper will respond
+by always pointing to the comb. If we shake it faster, it will be
+discovered that the paper is a little behind, <em class="emph">there is a delay</em> in
+the action. (At the first stage, when we move the comb rather slowly, we
+find a complication which is <em class="emph">magnetism</em>. Magnetic
+influences have to do with <em class="emph">charges in relative motion</em>, so
+magnetic forces and electric forces can really be attributed to one
+field, as two different aspects of exactly the same thing. A changing
+electric field cannot exist without magnetism.)  If we move the charged
+paper farther out, the delay is greater. Then an interesting thing is
+observed. Although the forces between two charged objects should go
+inversely as the <em class="emph">square</em> of the distance, it is found, when we
+shake a charge, that the influence extends <em class="emph">very much farther out</em>
+than we would guess at first sight. That is, the effect falls off more
+slowly than the inverse square.</p>
+</div>
+<div id="Ch2-S2-p9" class="para">
+<p class="p">Here is an analogy: If we are in a pool of water and there is a floating
+cork very close by, we can move it “directly” by pushing the water
+with another cork. If you looked only at the two <em class="emph">corks</em>, all you
+would see would be that one moved immediately in response to the motion
+of the other—there is some kind of “<em class="emph">interaction</em>” between
+them. Of course, what we really do is to disturb the <em class="emph">water</em>; the
+<em class="emph">water</em> then disturbs the other cork. We could make up a “law”
+that if you pushed the water a little bit, an object close by in the
+water would move. If it were farther away, of course, the second cork
+would scarcely move, for we move the water <em class="emph">locally</em>. On the other
+hand, if we jiggle the cork a new phenomenon is involved, in which the
+motion of the water moves the water there, etc., and <em class="emph">waves</em> travel
+away, so that by jiggling, there is an influence <em class="emph">very much farther
+out</em>, an oscillatory influence, that cannot be understood from the
+direct interaction. Therefore the idea of direct interaction must be
+replaced with the existence of the water, or in the electrical case,
+with what we call the <em class="emph">electromagnetic field</em>.</p>
+</div>
+<div id="Ch2-S2-p10" class="para">
+<p class="p">The electromagnetic field can carry waves; some of these waves are
+<em class="emph">light</em>, others are used in
+<em class="emph">radio broadcasts</em>, but the general name is <em class="emph">electromagnetic
+waves</em>.
+These oscillatory waves can have various <em class="emph">frequencies</em>. The only
+thing that is really different from one wave to another is the
+<em class="emph">frequency of oscillation</em>. If we shake a
+charge back and forth more and more rapidly, and look at the effects, we
+get a whole series of different kinds of effects, which are all unified
+by specifying but one number, the number of oscillations per second. The
+usual “pickup” that we get from electric currents in the circuits in
+the walls of a building have a frequency of about one hundred cycles per
+second. If we increase the frequency to $500$ or $1000$ kilocycles
+($1$ kilocycle${}=1000$ cycles) per second, we are “on the air,” for
+this is the frequency range which is used for radio broadcasts. (Of
+course it has nothing to do with the <em class="emph">air!</em> We can have radio
+broadcasts without any air.) If we again increase the frequency, we come
+into the range that is used for FM and TV. Going still further, we use
+certain short waves, for example for <em class="emph">radar</em>. Still higher, and we
+do not need an instrument to “see” the stuff, we can see it with the
+human eye. In the range of frequency from $5\times10^{14}$ to
+$10^{15}$ cycles per second our eyes would see the oscillation of the
+charged comb, if we could shake it that fast, as red, blue, or violet
+light, depending on the frequency. Frequencies below this range are
+called infrared, and above it, ultraviolet. The fact that we can see
+in a particular frequency range makes that part of the electromagnetic
+spectrum no more impressive than the other parts from a physicist’s
+standpoint, but from a human standpoint, of course, it <em class="emph">is</em> more
+interesting. If we go up even higher in frequency, we get
+x-rays.
+X-rays are nothing but very
+high-frequency light. If we go still higher, we get gamma
+rays. These two terms,
+x-rays and gamma rays, are used almost synonymously. Usually
+electromagnetic rays coming from nuclei are called gamma
+rays, while those of high
+energy from atoms are called
+x-rays, but at the same frequency
+they are indistinguishable physically, no matter what their source. If
+we go to still higher frequencies, say to $10^{24}$ cycles per second,
+we find that we can make those waves artificially, for example with the
+synchrotron here at Caltech. We can find
+electromagnetic waves with stupendously high frequencies—with even a
+thousand times more rapid oscillation—in the waves found in
+<em class="emph">cosmic rays</em>.
+These waves cannot be controlled by us.</p>
+</div>
+<div id="Ch2-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 2–1</span>The Electromagnetic Spectrum
+</div>
+<table class="tabular ltx_centering" style="min-width:25em">
+<tr class="tr">
+<td class="td t">
+<span class="rule" style="width:0.0pt;height:12.9pt;background:black;display:inline-block;"></span>
+<span class="text small">Frequency in oscillations/sec</span>
+</td>
+<td class="td t" style="text-align:center;" align="center"><span class="text small">Name</span></td>
+<td class="td t"><span class="text small">Rough behavior</span></td>
+</tr>
+<tr class="tr">
+<td class="td t">
+<span class="rule" style="width:0.0pt;height:12.9pt;background:black;display:inline-block;"></span><span class="text small">$\phantom{5\times{}}10^2$</span>
+</td>
+<td class="td t"><span class="text small">Electrical disturbance</span></td>
+<td class="td t"><span class="text small">$\phantom{\text{~~}}$Field</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">$5\times10^5$ – $10^6$</span></td>
+<td class="td"><span class="text small">Radio broadcast</span></td>
+<td class="td" style="text-align:left;" rowspan="4" align="left">
+<div class="curly_brace"><img src="img/right_curly_brace.svgz"></div>
+<span class="text small v_centered">Waves</span>
+</td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">$\phantom{5\times{}}10^8$</span></td>
+<td class="td"><span class="text small">FM—TV</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">$\phantom{5\times{}}10^{10}$</span></td>
+<td class="td"><span class="text small">Radar</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">$5\times10^{14}$ – $10^{15}$</span></td>
+<td class="td"><span class="text small">Light</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">$\phantom{5\times{}}10^{18}$</span></td>
+<td class="td"><span class="text small">X-rays</span></td>
+<td class="td b" style="text-align:left;" rowspan="4" align="left">
+<div class="curly_brace"><img src="img/right_curly_brace.svgz"></div>
+<span class="text small v_centered">Particle</span>
+</td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">$\phantom{5\times{}}10^{21}$</span></td>
+<td class="td"><span class="text small">$\gamma$-rays, nuclear</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">$\phantom{5\times{}}10^{24}$</span></td>
+<td class="td"><span class="text small">$\gamma$-rays, “artificial”</span></td>
+</tr>
+<tr class="tr">
+<td class="td b"><span class="text small">$\phantom{5\times{}}10^{27}$</span></td>
+<td class="td b"><span class="text small">$\gamma$-rays, in cosmic rays</span></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Ch2-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">2–3</span>Quantum physics</h3>
+<div id="Ch2-S3-p1" class="para">
+<p class="p">Having described the idea of the electromagnetic field, and that this
+field can carry waves, we soon learn that these waves actually behave in
+a strange way which seems very unwavelike. At higher frequencies they
+behave much more like <em class="emph">particles!</em> It is <em class="emph">quantum mechanics</em>,
+discovered just after 1920, which explains this strange behavior. In the
+years before 1920, the picture of space as a three-dimensional space,
+and of time as a separate thing, was changed by
+Einstein, first into a
+combination which we call space-time, and then still
+further into a <em class="emph">curved</em> space-time to represent
+gravitation. So the “stage” is changed into
+space-time, and gravitation is presumably a
+modification of space-time. Then it was also found
+that the rules for the motions of particles were incorrect. The
+mechanical rules of “inertia” and “forces” are
+<em class="emph">wrong</em>—Newton’s laws are
+<em class="emph">wrong</em>—in the world of atoms. Instead, it was discovered that
+things on a small scale behave <em class="emph">nothing like</em> things on a large
+scale. That is what makes physics difficult—and very interesting. It
+is hard because the way things behave on a small scale is so
+“unnatural”; we have no direct experience with it. Here things behave
+like nothing we know of, so that it is impossible to describe this
+behavior in any other than analytic ways. It is difficult, and takes a
+lot of imagination.</p>
+</div>
+<div id="Ch2-S3-p2" class="para">
+<p class="p">Quantum mechanics has many aspects. In the first place, the idea that a
+particle has a definite location and a definite speed is no longer
+allowed; that is wrong. To give an example of how wrong classical
+physics is, there is a rule in quantum mechanics that says that one
+cannot know both where something is and how fast it is moving. The
+uncertainty of the momentum and the uncertainty of the position are
+complementary, and the product of the two is bounded by a small
+constant. We can write the law like this: $\Delta x\,\Delta
+p\geq\hbar/2$, but
+we shall explain it in more detail later. This rule is the explanation
+of a very mysterious paradox: if the atoms are made out of plus and
+minus charges, why don’t the minus charges simply sit on top of the plus
+charges (they attract each other) and get so close as to completely
+cancel them out? <em class="emph">Why are atoms so big?</em> Why is the
+nucleus at the center with the electrons around it? It
+was first thought that this was because the nucleus was
+so big; but no, the nucleus is <em class="emph">very small</em>. An atom
+has a diameter of about $10^{-8}$ cm. The nucleus has a
+diameter of about $10^{-13}$ cm. If we had an atom and wished to see the
+nucleus, we would have to magnify it until the whole atom
+was the size of a large room, and then the nucleus would
+be a bare speck which you could just about make out with the eye, but
+very nearly <em class="emph">all the weight</em> of the atom is in that infinitesimal
+<em class="emph">nucleus</em>. What keeps the electrons from simply
+falling in? This principle: If they were in the nucleus,
+we would know their position precisely, and the uncertainty
+principle would then require that they have a very <em class="emph">large</em> (but
+uncertain) momentum, i.e., a very large <em class="emph">kinetic
+energy</em>. With this
+energy they would break away from the nucleus. They make
+a compromise: they leave themselves a little room for this uncertainty
+and then jiggle with a certain amount of minimum motion in accordance
+with this rule. (Remember that when a crystal is cooled to absolute
+zero, we said that the atoms
+do not stop moving, they still jiggle. Why? If they stopped moving, we
+would know where they were and that they had zero motion, and that is
+against the uncertainty principle. We cannot know where
+they are and how fast they are moving, so they must be continually
+wiggling in there!)
+</p>
+</div>
+<div id="Ch2-S3-p3" class="para">
+<p class="p">Another most interesting change in the ideas and philosophy of science
+brought about by quantum mechanics is this: it is not possible to
+predict <em class="emph">exactly</em> what will happen in any circumstance. For
+example, it is possible to arrange an atom which is ready to emit light,
+and we can measure when it has emitted light by picking up a photon
+particle, which we shall describe shortly. We cannot, however, predict
+<em class="emph">when</em> it is going to emit the light or, with several atoms,
+<em class="emph">which one</em> is going to. You may say that this is because there are
+some internal “wheels” which we have not looked at closely enough. No,
+there <em class="emph">are</em> no internal wheels; nature, as we understand it today,
+behaves in such a way that it is <em class="emph">fundamentally impossible</em> to make
+a precise prediction of <em class="emph">exactly what will happen</em> in a given
+experiment. This is a horrible thing; in fact, philosophers have said
+before that one of the fundamental requisites of science is that
+whenever you set up the same conditions, the same thing must happen.
+This is simply <em class="emph">not true</em>, it is <em class="emph">not</em> a fundamental condition
+of science. The fact is that the same thing does not happen, that we can
+find only an average, statistically, as to what happens. Nevertheless,
+science has not completely collapsed. Philosophers, incidentally, say a
+great deal about what is <em class="emph">absolutely necessary</em> for science, and it
+is always, so far as one can see, rather naive, and probably wrong. For
+example, some philosopher or other said it is fundamental to the
+scientific effort that if an experiment is performed in, say, Stockholm,
+and then the same experiment is done in, say, Quito, the <em class="emph">same
+results</em> must occur. That is quite false. It is not necessary that
+<em class="emph">science</em> do that; it may be a <em class="emph">fact of experience</em>, but it is
+not necessary. For example, if one of the experiments is to look out at
+the sky and see the aurora borealis in Stockholm, you do not see it in
+Quito; that is a different phenomenon. “But,” you say, “that is
+something that has to do with the outside; can you close yourself up in
+a box in Stockholm and pull down the shade and get any difference?”
+Surely. If we take a pendulum on a universal joint, and pull it out and
+let go, then the pendulum will swing almost in a plane, but not quite.
+Slowly the plane keeps changing in Stockholm, but not in Quito. The
+blinds are down, too. The fact that this happened does not bring on the
+destruction of science. What <em class="emph">is</em> the fundamental hypothesis of
+science, the fundamental philosophy? We stated it in the first chapter:
+<em class="emph">the sole test of the validity of any idea is experiment</em>. If it
+turns out that most experiments work out the same in Quito as they do in
+Stockholm, then those “most experiments” will be used to formulate
+some general law, and those experiments which do not come out the same
+we will say were a result of the environment near Stockholm. We will
+invent some way to summarize the results of the experiment, and we do
+not have to be told ahead of time what this way will look like. If we
+are told that the same experiment will always produce the same result,
+that is all very well, but if when we try it, it does <em class="emph">not</em>, then
+it does <em class="emph">not</em>. We just have to take what we see, and then formulate
+all the rest of our ideas in terms of our actual experience.</p>
+</div>
+<div id="Ch2-S3-p4" class="para">
+<p class="p">Returning again to quantum mechanics and fundamental physics, we cannot
+go into details of the quantum-mechanical principles at this time, of
+course, because these are rather difficult to understand. We shall
+assume that they are there, and go on to describe what some of the
+consequences are. One of the consequences is that things which we used
+to consider as waves also behave like particles, and particles behave
+like waves; in fact everything behaves the same way. There is no
+distinction between a wave and a particle. So quantum mechanics
+<em class="emph">unifies</em> the idea of the field and its waves, and the particles,
+all into one. Now it is true that when the frequency is low, the field
+aspect of the phenomenon is more evident, or more useful as an
+approximate description in terms of everyday experiences. But as the
+frequency increases, the particle aspects of the phenomenon become more
+evident with the equipment with which we usually make the measurements.
+In fact, although we mentioned many frequencies, no phenomenon directly
+involving a frequency has yet been detected above approximately
+$10^{12}$ cycles per second. We only <em class="emph">deduce</em> the higher
+frequencies from the energy of the particles, by a rule which assumes
+that the particle-wave idea of quantum mechanics is valid.</p>
+</div>
+<div id="Ch2-S3-p5" class="para">
+<p class="p">Thus we have a new view of electromagnetic interaction. We have a new
+kind of <em class="emph">particle</em> to add to the electron, the proton, and the
+neutron. That new particle is called a <em class="emph">photon</em>. The
+new view of the interaction of electrons and photons that is
+electromagnetic theory, but with everything quantum-mechanically
+correct, is called <em class="emph">quantum electrodynamics</em>. This fundamental theory of the interaction of light
+and matter, or electric field and charges, is our greatest success so
+far in physics. In this one theory we have the basic rules for all
+ordinary phenomena except for gravitation and nuclear processes. For
+example, out of quantum electrodynamics
+come all known electrical, mechanical, and chemical laws: the laws for
+the collision of billiard balls, the motions of wires in magnetic
+fields, the specific heat of carbon monoxide, the color of neon signs,
+the density of salt, and the reactions of hydrogen and oxygen to make
+water are all consequences of this one law. All these details can be
+worked out if the situation is simple enough for us to make an
+approximation, which is almost never, but often we can understand more
+or less what is happening. At the present time no exceptions are found
+to the quantum-electrodynamic laws
+outside the nucleus, and there we do not know whether
+there is an exception because we simply do not know what is going on in
+the nucleus.
+</p>
+</div>
+<div id="Ch2-S3-p6" class="para">
+<p class="p">In principle, then, quantum electrodynamics is the theory of all chemistry, and of life, if life is
+ultimately reduced to chemistry and therefore just to physics because
+chemistry is already reduced (the part of physics which is involved in
+chemistry being already known). Furthermore, the same quantum
+electrodynamics, this great thing,
+predicts a lot of new things. In the first place, it tells the
+properties of very high-energy photons, gamma rays, etc. It predicted
+another very remarkable thing: besides the electron, there should be
+another particle of the same mass, but of opposite charge, called a
+<em class="emph">positron</em>, and these two, coming together, could annihilate each
+other with the emission of light or gamma rays. (After all, light and
+gamma rays are all the same, they are just different points on a
+frequency scale.) The generalization of this, that for each particle
+there is an antiparticle, turns out to be true. In
+the case of electrons, the antiparticle has another name—it is called
+a positron, but for most other particles, it is called anti-so-and-so,
+like antiproton or antineutron. In quantum electrodynamics, <em class="emph">two numbers</em> are put in and most of the other
+numbers in the world are supposed to come out. The two numbers that are
+put in are called the mass of the electron and the charge of the
+electron. Actually, that is not quite true, for we have a whole set of
+numbers for chemistry which tells how heavy the nuclei are. That leads
+us to the next part.</p>
+</div>
+</div>
+<div id="Ch2-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">2–4</span>Nuclei and particles</h3>
+<div id="Ch2-S4-p1" class="para">
+<p class="p">What are the nuclei made of, and how are they held together? It is found
+that the nuclei are held together by enormous forces. When these are
+released, the energy released is tremendous compared with chemical
+energy, in the same ratio as the atomic bomb explosion is to a TNT
+explosion, because, of course, the atomic bomb has to do with changes
+inside the nucleus, while the explosion of TNT has to do with the
+changes of the electrons on the outside of the atoms. The question is,
+what are the forces which hold the protons and neutrons together in the
+nucleus? Just as the electrical interaction can be connected to a
+particle, a photon, Yukawa
+suggested that the forces between neutrons and protons also have a field
+of some kind, and that when this field jiggles it behaves like a
+particle. Thus there could be some other particles in the world besides
+protons and neutrons, and he was able to deduce the properties of these
+particles from the already known characteristics of nuclear forces. For
+example, he predicted they should have a mass of two or three hundred
+times that of an electron; and lo and behold, in cosmic rays there was
+discovered a particle of the right mass! But it later turned out to be
+the wrong particle. It was called a $\mu$-meson, or muon.</p>
+</div>
+<div id="Ch2-S4-p2" class="para">
+<p class="p">However, a little while later, in 1947 or 1948, another particle was
+found, the $\pi$-meson, or pion, which satisfied
+Yukawa’s criterion. Besides the
+proton and the neutron, then, in order to get nuclear forces we must add
+the pion. Now, you say, “Oh great!, with this theory we make quantum
+nucleodynamics using the pions just like Yukawa wanted to do, and see if it works, and everything will be
+explained.” Bad luck. It turns out that the calculations that are
+involved in this theory are so difficult that no one has ever been able
+to figure out what the consequences of the theory are, or to check it
+against experiment, and this has been going on now for almost twenty
+years!</p>
+</div>
+<div id="Ch2-S4-p3" class="para">
+<p class="p">So we are stuck with a theory, and we do not know whether it is right or
+wrong, but we do know that it is a <em class="emph">little</em> wrong, or at least
+incomplete. While we have been dawdling around theoretically, trying to
+calculate the consequences of this theory, the experimentalists have
+been discovering some things. For example, they had already discovered
+this $\mu$-meson or muon, and we do not yet know where it fits. Also, in
+cosmic rays, a large number of other “extra” particles were found. It
+turns out that today we have approximately thirty particles, and it is
+very difficult to understand the relationships of all these particles,
+and what nature wants them for, or what the connections are from one to
+another. We do not today understand these various particles as different
+aspects of the same thing, and the fact that we have so many unconnected
+particles is a representation of the fact that we have so much
+unconnected information without a good theory. After the great successes
+of quantum electrodynamics, there is a
+certain amount of knowledge of nuclear physics which is rough knowledge,
+sort of half experience and half theory, assuming a type of force
+between protons and neutrons and seeing what will happen, but not really
+understanding where the force comes from. Aside from that, we have made
+very little progress. We have collected an enormous number of chemical
+elements. In the chemical case, there suddenly appeared a relationship
+among these elements which was unexpected, and which is embodied in the
+periodic table of Mendeleev. For example, sodium and potassium
+are about the same in their chemical properties and are found in the
+same column in the Mendeleev chart. We have been seeking a
+Mendeleev-type chart for the new particles. One such chart of the new
+particles was made independently by Gell-Mann in the U.S.A. and Nishijima in Japan. The basis of their classification is a
+new number, like the electric charge, which can be assigned to each
+particle, called its “strangeness,” $S$.
+This number is conserved, like the electric charge, in reactions which
+take place by nuclear forces.
+</p>
+</div>
+<div id="Ch2-T2" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 2–2</span>Elementary Particles
+</div>
+<img src="img/FLP_I/t02-02/t02-02_tc_big.svgz">
+</div>
+<div id="Ch2-S4-p4" class="para">
+<p class="p">In Table <a href="#Ch2-T2">2–2</a> are listed all the particles. We cannot discuss
+them much at this stage, but the table will at least show you how much
+we do not know. Underneath each particle its mass is given in a certain
+unit, called the MeV. One MeV is equal to
+$1.783\times10^{-27}$ gram. The reason this unit was chosen is
+historical, and we shall not go into it now. More massive particles are
+put higher up on the chart; we see that a neutron and a proton have
+almost the same mass. In vertical columns we have put the particles with
+the same electrical charge, all neutral objects in one column, all
+positively charged ones to the right of this one, and all negatively
+charged objects to the left.
+</p>
+</div>
+<div id="Ch2-S4-p5" class="para">
+<p class="p">Particles are shown with a solid line and “resonances” with a dashed
+one. Several particles have been omitted from the table. These include
+the important zero-mass, zero-charge particles, the photon and the
+graviton, which do not fall into the baryon-meson-lepton classification
+scheme, and also some of the newer resonances ($\Kstar$, $\phi$,
+$\eta$). The antiparticles of the mesons are listed in the table, but
+the antiparticles of the leptons and baryons would have to be listed in
+another table which would look exactly like this one reflected on the
+zero-charge column. Although all of the particles except the electron,
+neutrino, photon, graviton, and proton are unstable, decay products have
+been shown only for the resonances. Strangeness assignments are not
+applicable for leptons, since they do not interact strongly with nuclei.
+</p>
+</div>
+<div id="Ch2-S4-p6" class="para">
+<p class="p">All particles which are together with the neutrons and protons are
+called <em class="emph">baryons</em>, and the following ones exist: There is a
+“lambda,” with a mass of $1115$ MeV, and three others, called sigmas,
+minus, neutral, and plus, with several masses almost the same. There are
+groups or multiplets with almost the same mass, within one or two
+percent. Each particle in a multiplet has the same strangeness. The
+first multiplet is the proton-neutron doublet, and then there is a
+singlet (the lambda) then the sigma triplet, and finally the xi doublet.
+Very recently, in 1961, even a few more particles were found. Or
+<em class="emph">are</em> they particles? They live so short a time, they disintegrate
+almost instantaneously, as soon as they are formed, that we do not know
+whether they should be considered as new particles, or some kind of
+“resonance” interaction of a certain definite energy between the
+$\Lambda$ and $\pi$ products into which they disintegrate.</p>
+</div>
+<div id="Ch2-S4-p7" class="para">
+<p class="p">In addition to the baryons the other particles which are involved in the
+nuclear interaction are called <em class="emph">mesons</em>. There are first the pions,
+which come in three varieties, positive, negative, and neutral; they
+form another multiplet. We have also found some new things called
+K-mesons, and they occur as a doublet, $\Kplus$ and $\Kzero$. Also, every
+particle has its antiparticle, unless a particle <em class="emph">is its own</em>
+antiparticle. For example, the $\pi^-$ and the $\pi^+$ are
+antiparticles, but the $\pi^0$ is its own antiparticle. The $\Kminus$
+and $\Kplus$ are antiparticles, and the $\Kzero$ and $\Kzerobar$. In
+addition, in 1961 we also found some more mesons or <em class="emph">maybe</em> mesons
+which disintegrate almost immediately.  A thing called $\omega$ which
+goes into three pions has a mass $780$ on this scale, and somewhat less
+certain is an object which disintegrates into two pions. These
+particles, called mesons and baryons, and the antiparticles of the
+mesons are on the same chart, but the antiparticles of the baryons must
+be put on another chart, “reflected” through the charge-zero column.</p>
+</div>
+<div id="Ch2-S4-p8" class="para">
+<p class="p">Just as Mendeleev’s chart was very good, except for the fact that there
+were a number of rare earth elements which were hanging out loose from
+it, so we have a number of things hanging out loose from this
+chart—particles which do not interact strongly in nuclei, have nothing
+to do with a nuclear interaction, and do not have a strong interaction
+(I mean the powerful kind of interaction of nuclear energy). These are
+called leptons, and they are the following: there is the electron, which
+has a very small mass on this scale, only $0.510$ MeV. Then there is
+that other, the $\mu$-meson, the muon, which has a mass much higher,
+$206$ times as heavy as an electron. So far as we can tell, by all
+experiments so far, the difference between the electron and the muon is
+nothing but the mass. Everything works exactly the same for the muon as
+for the electron, except that one is heavier than the other. Why is
+there another one heavier; what is the use for it? We do not know. In
+addition, there is a lepton which is neutral, called a neutrino, and
+this particle has zero mass. In fact, it is now known that there are
+<em class="emph">two</em> different kinds of neutrinos, one related to electrons and
+the other related to muons.</p>
+</div>
+<div id="Ch2-S4-p9" class="para">
+<p class="p">Finally, we have two other particles which do not interact strongly with
+the nuclear ones: one is a photon, and perhaps, if the field of gravity
+also has a quantum-mechanical analog (a quantum theory of gravitation
+has not yet been worked out), then there will be a particle, a graviton,
+which will have zero mass.</p>
+</div>
+<div id="Ch2-S4-p10" class="para">
+<p class="p">What is this “zero mass”? The masses given here are
+the masses of the particles <em class="emph">at rest</em>. The fact that a particle has
+zero mass means, in a way, that it cannot <em class="emph">be</em> at
+<em class="emph">rest</em>. A photon is never at rest, it is always moving at
+$186{,}000$ miles a second. We will understand more what mass means when
+we understand the theory of relativity, which will come in due time.</p>
+</div>
+<div id="Ch2-S4-p11" class="para">
+<p class="p">Thus we are confronted with a large number of particles, which together
+seem to be the fundamental constituents of matter. Fortunately, these
+particles are not <em class="emph">all</em> different in their <em class="emph">interactions</em> with
+one another. In fact, there seem to be just <em class="emph">four kinds</em> of
+interaction between particles which, in the order of decreasing
+strength, are the nuclear force, electrical interactions, the beta-decay
+interaction, and gravity. The photon is coupled to all charged particles
+and the strength of the interaction is measured by some number, which
+is $1/137$. The detailed law of this coupling is known, that is quantum
+electrodynamics. Gravity is coupled to
+all <em class="emph">energy</em>, but its coupling is extremely weak, much weaker than
+that of electricity. This law is also known. Then there are the
+so-called weak decays—beta decay, which causes the neutron to
+disintegrate into proton, electron, and neutrino, relatively slowly.
+This law is only partly known. The so-called strong interaction, the
+meson-baryon interaction, has a strength of $1$ in this scale, and the
+law is completely unknown, although there are a number of known rules,
+such as that the number of baryons does not change in any reaction.</p>
+</div>
+
+<div id="Ch2-T3" class="table">
+<div class="caption small">
+<span class="tag">Table 2–3</span>Elementary Interactions</div>
+<table class="tabular">
+<td class="td t" style="text-align:center;"><span class="text small">Coupling</span></td>
+<td class="td t" style="text-align:center;"><span class="text small">Strength*</span></td>
+<td class="td t" style="text-align:center;"><span class="text small">Law</span></td>
+</tr>
+<tr class="tr">
+<td class="td t"><span class="text small">Photon to charged particles</span></td>
+<td class="td t" tyle="text-align:center;"><span class="text small">$\sim10^{-2\phantom{0}}$</span></td>
+<td class="td t"><span class="text small">Law known</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">Gravity to all energy</span></td>
+<td class="td" style="text-align:center;"><span class="text small">$\sim10^{-40}$</span></td>
+<td class="td"><span class="text small">Law known</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">Weak decays</span></td>
+<td class="td" style="text-align:center;"><span class="text small">$\sim10^{-5\phantom{0}}$</span></td>
+<td class="td"><span class="text small">Law partly known</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">Mesons to baryons</span></td>
+<td class="td" style="text-align:center;"><span class="text small">$\sim1\phantom{0^{-20}}$</span></td>
+<td class="td"><span class="text small">Law unknown (some rules known)</span></td>
+</tr>
+<tr class="tr">
+<td class="td t" colspan="3" align="left"><span class="text small">* The “strength” is a dimensionless measure of the coupling
+constant involved in each interaction ($\sim$ means “of the order”).</span></td>
+</tr>
+</table>
+</div>
+
+
+<div id="Ch2-S4-p12" class="para">
+<p class="p">This then, is the horrible condition of our physics today. To summarize
+it, I would say this: outside the nucleus, we seem to know all; inside
+it, quantum mechanics is valid—the principles of quantum mechanics
+have not been found to fail. The stage on which we put all of our
+knowledge, we would say, is relativistic space-time; perhaps gravity is
+involved in space-time. We do not know how the universe got started, and
+we have never made experiments which check our ideas of space and time
+accurately, below some tiny distance, so we only <em class="emph">know</em> that our
+ideas work above that distance. We should also add that the rules of the
+game are the quantum-mechanical principles, and those principles apply,
+so far as we can tell, to the new particles as well as to the old. The
+origin of the forces in nuclei leads us to new particles, but
+unfortunately they appear in great profusion and we lack a complete
+understanding of their interrelationship, although we already know that
+there are some very surprising relationships among them. We seem
+gradually to be groping toward an understanding of the world of
+subatomic particles, but we really do not know how far we have yet to go
+in this task.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California 
+Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

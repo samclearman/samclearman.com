@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">  
+<title>The Feynman Lectures on Physics: About the Authors</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+    <div class="content">
+      <div class="document">
+      
+        <div id="Ch89" class="chapter">
+        <h2 style="line-height: 150%; margin-top: 0">
+        <b><i>About the Authors</i></b>
+        </h2>
+         
+        <div id="Ch89-S1" class="section">
+        <h3 class="title section-title">
+        <i><b><font style="font-size:135%">Richard Feynman</font></b></i>
+        </h3>
+      
+        <div id="Ch89-S1-p1" class="para">
+		<p class="p">
+        Born in 1918 in New York City, Richard&nbsp;P. Feynman received his Ph.D from Princeton in 1942.
+        Despite his youth, he played an important part in the Manhattan Project at Los Alamos during World
+        War II. Subsequently, he taught at Cornell and at the California Institute of Technology. In 1965
+        he received the Nobel Prize in Physics, along with Sin-Itiro Tomonaga and Julian Schwinger,
+        for his work in quantum electrodynamics.
+		</p>
+        </div>
+        
+        
+        <div id="Ch89-S1-p2" class="para">
+		<p class="p">
+        Dr.&nbsp;Feynman won his Nobel Prize for successfully resolving problems with the theory of quantum
+        electrodynamics. He also created a mathematical theory that accounts for the phenomenon of
+        superfluidity in liquid helium. Thereafter, with Murray Gell-Mann, he did fundamental work in the
+        area of weak interactions such as beta decay. In later years Feynman played a key role in the
+        development of quark theory by putting forward his parton model of high energy proton collision
+        processes.
+        </p>
+        </div>
+        
+        <div id="Ch89-S1-p3" class="para">
+		<p class="p">
+        Beyond these achievements, Dr.&nbsp;Feynman introduced basic new computational techniques and notations
+        into physics&mdash;above all, the ubiquitous Feynman diagrams that, perhaps more than any other formalism
+        in recent scientific history, have changed the way in which basic physical processes are conceptualized
+        and calculated.
+        </p>
+        </div>
+        
+        <div id="Ch89-S1-p4" class="para">
+		<p class="p">
+        Feynman was a remarkably effective educator. Of all his numerous awards, he was especially proud of
+        the Oersted Medal for Teaching, which he won in 1972. <i>The Feynman Lectures on Physics</i>,
+        originally published in 1963, were described by a reviewer in Scientific American as &ldquo;tough, but
+        nourishing and full of flavor. After 25 years it is <i>the</i> guide for teachers and for the best
+        of beginning students.&rdquo; In order to increase the understanding of physics among the lay public,
+        Dr.&nbsp;Feynman wrote <i>The Character of Physical Law</i> and <i>QED: The Strange Theory of Light and
+        Matter</i>. He also authored a number of advanced publications that have become classic references
+        and textbooks for researchers and students.
+        </p>
+		</div>
+		
+        <div id="Ch89-S1-p5" class="para">
+		<p class="p">
+        Richard Feynman was a constructive public man. His work on the Challenger commission is well known,
+        especially his famous demonstration of the susceptibility of the O-rings to cold, an elegant experiment
+        which required nothing more than a glass of ice water and a C-clamp. Less well known were
+        Dr.&nbsp;Feynman's efforts on the California State Curriculum Committee in the 1960s, where he protested
+        the mediocrity of textbooks.
+        </p>
+		</div>
+		
+        <div id="Ch89-S1-p6" class="para">
+		<p class="p">
+        A recital of Richard Feynman's myriad scientific and educational accomplishments cannot adequately
+        capture the essence of the man. As any reader of even his most technical publications knows, Feynman's
+        lively and multi-sided personality shines through all his work. Besides being a physicist, he was at
+        various times a repairer of radios, a picker of locks, an artist, a dancer, a bongo player, and even a
+        decipherer of Mayan hieroglyphics. Perpetually curious about his world, he was an exemplary empiricist.
+        </p>
+		</div>
+		
+        <div id="Ch89-S1-p7" class="para">
+		<p class="p">
+        Richard Feynman died on February 15, 1988, in Los Angeles.
+        </p>
+		</div>
+        </div>
+        
+        <div id="Ch89-S2" class="section">
+        <h3 class="title section-title">
+        <i><b><font style="font-size:135%">Robert Leighton</font></b></i>
+        </h3>
+        
+        <div id="Ch89-S2-p1" class="para">
+		<p class="p">
+        Born in Detroit in 1919, Robert&nbsp;B. Leighton did ground-breaking work in solid state physics, cosmic ray physics, the beginnings of modern particle physics, solar physics, planetary photography, infrared astronomy, and millimeter- and submillimeter-wave astronomy over the course of his life. He was widely known for his innovative design of scientific instruments, and was deeply admired as a teacher, having authored a highly influential text, <i>Principles of Modern Physics</i>, before joining the team developing <i>The Feynman Lectures on Physics</i>.
+        </p>
+		</div>
+
+        <div id="Ch89-S2-p2" class="para">
+		<p class="p">
+        In the early 1950s Leighton played a key role in showing the mu-meson decays into two neutrinos and an electron, and  made the first measurement of the energy spectrum of the decay electron.  He was the first to observe strange particle decays after their initial discovery, and elucidated many of the properties of the new strange particles.
+        </p>
+		</div>
+
+        <div id="Ch89-S2-p3" class="para">
+		<p class="p">
+        In the mid-1950s Leighton devised Doppler-shift and Zeeman-effect solar cameras. With the Zeeman camera, Leighton and his students mapped the sun's magnetic field with excellent resolution, leading to striking discoveries of a five-minute oscillation in local solar surface velocities and of a “super-granulation pattern,” thus opening a new field: solar seismology. Leighton also designed and built equipment to make clearer images of the planets, and opened another new field: adaptive optics. His were considered the best images of the planets until the era of space exploration with probes began in the 1960s.
+        </p>
+		</div>
+
+        <div id="Ch89-S2-p4" class="para">
+		<p class="p">
+        In the early 1960s, Leighton developed a novel, inexpensive infrared telescope, producing the first survey of the sky at 2.2 microns, which revealed an unexpectedly large number of objects in our galaxy too cool to be seen with the human eye.  During the mid-1960s he was Team Leader at JPL for  Imaging Science Investigations on the Mariner 4, 6, and 7 missions to Mars. Leighton played a key role in the development of JPL's first deep-space digital television system, and contributed to early efforts at image processing and enhancement techniques.
+        </p>
+		</div>
+
+        <div id="Ch89-S2-p5" class="para">
+		<p class="p">
+        In the 1970s, Leighton's interest shifted to the development of large, inexpensive dish antennae that could be used to pursue millimeter-wave interferometry and submillimeter-wave astronomy. Once again, his remarkable experimental abilities opened a new field of science, which continues to be vigorously pursued at the Owens Valley Radio Observatory and the Atacama Large Millimeter/submillimeter Array (ALMA) in Chile.
+        </p>
+		</div>
+
+        <div id="Ch89-S2-p6" class="para">
+		<p class="p">
+        Robert Leighton died on March 9, 1997, in Pasadena, California.
+        </p>
+		</div>
+        </div>
+        
+
+        <div id="Ch89-S3" class="section">
+        <h3 class="title section-title">
+        <i><b><font style="font-size:135%">Matthew Sands</font></b></i>
+        </h3>
+        
+        <div id="Ch89-S3-p1" class="para">
+		<p class="p">
+        Born in 1919 in Oxford, Massachusetts, Matthew Sands received his BA from Clark University in 1940 and his MA from Rice University in 1941. During World War II he served on the Manhattan Project at Los Alamos, working on electronics and instrumentation. After the war Sands helped found the Los Alamos Federation of Atomic Scientists, which lobbied against the further use of nuclear weapons. During that period he earned his Ph.D at MIT researching cosmic rays under Bruno Rossi.
+        </p>
+		</div>
+
+        <div id="Ch89-S3-p2" class="para">
+		<p class="p">
+        In 1950 Sands was recruited by Caltech to build and operate its 1.5 GeV electron synchrotron. He was the first to show, theoretically and experimentally, the importance of quantum effects in electron accelerators.
+        </p>
+		</div>
+
+        <div id="Ch89-S3-p3" class="para">
+		<p class="p">
+        From 1960 to 1966, Sands served on the Commission on College Physics, spearheading reforms in the Caltech undergraduate physics program that created <i>The Feynman Lectures on Physics</i>. During that time he also served as a consultant on nuclear weapons and disarmament to the President’s Science Advisory Committee, the Arms Control and Disarmament Agency, and the Department of Defense.
+        </p>
+		</div>
+
+        <div id="Ch89-S3-p4" class="para">
+		<p class="p">
+        In 1963 Sands became Deputy Director for construction and operation of the Stanford Linear Accelerator (SLAC), where he also worked on the Stanford Positron Electron Asymmetric Rings (SPEAR) 3 GeV collider.
+        </p>
+		</div>
+
+        <div id="Ch89-S3-p5" class="para">
+		<p class="p">
+        From 1969 to 1985 Sands was a physics professor at University of California, Santa Cruz, serving as its Vice Chancellor for Science from 1969 to 1972. He received a Distinguished Service Award from the American Association of Physics Teachers in 1972. As Professor Emeritus, he continued to be active in particle accelerator research until 1994. In 1998 the American Physical Society awarded Sands the Robert R. Wilson Prize “for his many contributions to accelerator physics and the development of electron-positron and proton colliders.”
+        </p>
+		</div>
+
+        <div id="Ch89-S3-p6" class="para">
+		<p class="p">
+        In his retirement Sands mentored local elementary and high school science teachers in Santa Cruz, helping them set up computer and laboratory activities for their students. He also supervised the editing of <i>Feynman’s Tips on Physics</i>, to which he contributed a memoir describing the creation of <i>The Feynman Lectures on Physics</i>.
+        </p>
+		</div>
+
+        <div id="Ch89-S3-p7" class="para">
+		<p class="p">
+        Matthew Sands died on September 13, 2014, in Santa Cruz, California.
+        </p>
+		</div>
+        </div>
+        
+        </div>
+   </div>
+   </div>
+   </div>
+</body>
+</html>

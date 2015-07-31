@@ -1,0 +1,1490 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 12: Electrostatic Analogs</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "12." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch12" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">12</span>Electrostatic Analogs</h2>
+<div id="Ch12-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">12–1</span>The same equations have the same solutions</h3>
+<div id="Ch12-S1-p1" class="para">
+<p class="p">The total amount of information which has been acquired about the
+physical world since the beginning of scientific progress is enormous,
+and it seems almost impossible that any one person could know a
+reasonable fraction of it. But it is actually quite possible for a
+physicist to retain a broad knowledge of the physical world rather
+than to become a specialist in some narrow area. The reasons for this
+are threefold: First, there are great principles which apply to all
+the different kinds of phenomena—such as the principles of the
+conservation of energy and of angular momentum. A thorough
+understanding of such principles gives an understanding of a great
+deal all at once. Second, there is the fact that many complicated
+phenomena, such as the behavior of solids under compression, really
+basically depend on electrical and quantum-mechanical forces, so that
+if one understands the fundamental laws of electricity and quantum
+mechanics, there is at least some possibility of understanding many of
+the phenomena that occur in complex situations. Finally, there is a
+most remarkable coincidence: <em class="emph">The equations for many different
+physical situations have exactly the same appearance</em>. Of course, the
+symbols may be different—one letter is substituted for another—but
+the mathematical form of the equations is the same. This means that
+having studied one subject, we immediately have a great deal of direct
+and precise knowledge about the solutions of the equations of another.</p>
+</div>
+<div id="Ch12-S1-p2" class="para">
+<p class="p">We are now finished with the subject of electrostatics, and will soon
+go on to study magnetism and electrodynamics. But before doing so, we
+would like to show that while learning electrostatics we have
+simultaneously learned about a large number of other subjects. We will
+find that the equations of electrostatics appear in several other
+places in physics. By a direct translation of the solutions (of course
+the same mathematical equations must have the same solutions) it is
+possible to solve problems in other fields with the same ease—or
+with the same difficulty—as in electrostatics.</p>
+</div>
+
+<div id="Ch12-S1-p3" class="para">
+<p class="p">The equations of electrostatics, we know, are
+\begin{align}
+\label{Eq:II:12:1}
+\FLPdiv{(\kappa\FLPE)}&=\frac{\rho_{\text{free}}}{\epsO},\\[1ex]
+\label{Eq:II:12:2}
+\FLPcurl{\FLPE}&=\FLPzero.
+\end{align}
+
+(We take the equations of electrostatics with dielectrics so as to
+have the most general situation.) The same physics can be expressed in
+another mathematical form:
+\begin{align}
+\label{Eq:II:12:3}
+\FLPE=&-\FLPgrad{\phi},\\[1ex]
+\label{Eq:II:12:4}
+\FLPdiv{(\kappa\,\FLPgrad{\phi})}&=-\frac{\rho_{\text{free}}}{\epsO}.
+\end{align}
+Now the point is that there are many physics problems whose
+mathematical equations have the same form. There is a potential
+($\phi$) whose gradient multiplied by a scalar function ($\kappa$) has
+a divergence equal to another scalar function
+($-\rho_{\text{free}}/\epsO$).</p>
+</div>
+
+<div id="Ch12-S1-p4" class="para">
+<p class="p">Whatever we know about electrostatics can immediately be carried over
+into that other subject, and <em class="emph">vice versa</em>. (It works both ways,
+of course—if the other subject has some particular characteristics
+that are known, then we can apply that knowledge to the corresponding
+electrostatic problem.) We want to consider a series of examples from
+different subjects that produce equations of this form.</p>
+</div>
+</div>
+<div id="Ch12-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">12–2</span>The flow of heat; a point source near an infinite plane boundary</h3>
+<div id="Ch12-S2-p1" class="para">
+<p class="p">We have discussed one example earlier (Section <a href="II_03.html#Ch3-S4">3–4</a>)—the
+flow of heat. Imagine a block of material, which need not be homogeneous
+but may consist of different materials at different places, in which the
+temperature varies from point to point. As a consequence of these
+temperature variations there is a flow of heat, which can be represented
+by the vector $\FLPh$. It represents the amount of heat energy which
+flows per unit time through a unit area perpendicular to the flow. The
+divergence of $\FLPh$ represents the rate per unit volume at which heat
+is leaving a region:
+\begin{equation*}
+\FLPdiv{\FLPh}=\text{rate of heat out per unit volume}.
+\end{equation*}
+
+(We could, of course, write the equation in integral form—just as we
+did in electrostatics with Gauss’ law—which would say that the flux
+through a surface is equal to the rate of change of heat energy inside
+the material. We will not bother to translate the equations back and
+forth between the differential and the integral forms, because it goes
+exactly the same as in electrostatics.)</p>
+</div>
+<div id="Ch12-S2-p2" class="para">
+<p class="p">The rate at which heat is generated or absorbed at various places
+depends, of course, on the problem. Suppose, for example, that there
+is a source of heat inside the material (perhaps a radioactive source,
+or a resistor heated by an electrical current). Let us call $s$ the
+heat energy produced per unit volume per second by this source. There
+may also be losses (or gains) of thermal energy to other internal
+energies in the volume. If $u$ is the internal energy per unit volume,
+$-du/dt$ will also be a “source” of heat energy. We have, then,
+\begin{equation}
+\label{Eq:II:12:5}
+\FLPdiv{\FLPh}=s-\ddt{u}{t}.
+\end{equation}
+</p>
+</div>
+<div id="Ch12-S2-p3" class="para">
+<p class="p">We are not going to discuss just now the complete equation in which
+things change with time, because we are making an analogy to
+electrostatics, where nothing depends on the time. We will consider
+only <em class="emph">steady heat-flow</em> problems, in which constant sources have
+produced an equilibrium state. In these cases,
+\begin{equation}
+\label{Eq:II:12:6}
+\FLPdiv{\FLPh}=s.
+\end{equation}
+</p>
+</div>
+<div id="Ch12-S2-p4" class="para">
+<p class="p">It is, of course, necessary to have another equation, which describes
+how the heat flows at various places. In many materials the heat
+current is approximately proportional to the rate of change of the
+temperature with position: the larger the temperature difference, the
+more the heat current. As we have seen, the <em class="emph">vector</em> heat current
+is proportional to the temperature gradient. The constant of
+proportionality $K$, a property of the material, is called the
+<em class="emph">thermal conductivity</em>.
+\begin{equation}
+\label{Eq:II:12:7}
+\FLPh=-K\,\FLPgrad{T}.
+\end{equation}
+
+If the properties of the material vary from place to place,
+then $K=K(x,y,z)$, a function of position. [Equation (<a href="#mjx-eqn-EqII127">12.7</a>) is
+not as fundamental as (<a href="#mjx-eqn-EqII125">12.5</a>), which expresses the
+conservation of heat energy, since the former depends upon a special
+property of the substance.] If now we substitute Eq. (<a href="#mjx-eqn-EqII127">12.7</a>)
+into Eq. (<a href="#mjx-eqn-EqII126">12.6</a>) we have
+\begin{equation}
+\label{Eq:II:12:8}
+\FLPdiv{(K\,\FLPgrad{T})}=-s,
+\end{equation}
+
+which has exactly the same form as (<a href="#mjx-eqn-EqII124">12.4</a>). <em class="emph">Steady
+heat-flow problems and electrostatic problems are the same</em>. The heat
+flow vector $\FLPh$ corresponds to $\FLPE$, and the temperature $T$
+corresponds to $\phi$. We have already noticed that a point heat
+source produces a temperature field which varies as $1/r$ and a heat
+flow which varies as $1/r^2$. This is nothing more than a translation
+of the statements from electrostatics that a point charge generates a
+potential which varies as $1/r$ and an electric field which varies
+as $1/r^2$. We can, in general, solve static heat problems as easily as
+we can solve electrostatic problems.</p>
+</div>
+<div id="Ch12-S2-p5" class="para">
+<p class="p">Consider a simple example. Suppose that we have a cylinder of
+radius $a$ at the temperature $T_1$, maintained by the generation of heat in
+the cylinder. (It could be, for example, a wire carrying a current, or
+a pipe with steam condensing inside.) The cylinder is covered with a
+concentric sheath of insulating material which has a
+conductivity $K$. Say the outside radius of the insulation is $b$ and the
+outside
+is kept at temperature $T_2$ (Fig. <a href="#Ch12-F1">12–1</a>a). We want to
+find out at what rate heat will be lost by the wire, or steampipe, or
+whatever it is in the center. Let the total amount of heat lost from a
+length $L$ of the pipe be called $G$—which is what we are trying to
+find.</p>
+</div>
+<div id="Ch12-F1" class="figure">
+<img src="img/FLP_II/f12-01/f12-01_tc_iPad_big.svgz"><div class="caption">
+<span class="tag">Fig. 12–1.</span>(a) Heat flow in a cylindrical geometry. (b) The
+corresponding electrical problem.
+</div>
+</div>
+<div id="Ch12-S2-p6" class="para">
+<p class="p">How can we solve this problem? We have the differential equations, but
+since these are the same as those of electrostatics, we have really
+already solved the mathematical problem. The analogous problem is that
+of a conductor of radius $a$ at the potential $\phi_1$, separated from
+another conductor of radius $b$ at the potential $\phi_2$, with a
+concentric layer of dielectric material in between, as drawn in
+Fig. <a href="#Ch12-F1">12–1</a>(b). Now since the heat flow $\FLPh$ corresponds
+to the electric field $\FLPE$, the quantity $G$ that we want to find
+corresponds to the flux of the electric field from a unit length (in
+other words, to the electric charge per unit length over $\epsO$). We
+have solved the electrostatic problem by using Gauss’ law. We follow the
+same procedure for our heat-flow problem.</p>
+</div>
+<div id="Ch12-S2-p7" class="para">
+<p class="p">From the symmetry of the situation, we know that $h$ depends only on
+the distance from the center. So we enclose the pipe in a gaussian
+cylinder of length $L$ and radius $r$. From Gauss’ law, we know that
+the heat flow $h$ multiplied by the area $2\pi rL$ of the surface must
+be equal to the total amount of heat generated inside, which is what
+we are calling $G$:
+\begin{equation}
+\label{Eq:II:12:9}
+2\pi rLh=G\quad\text{or}\quad h=\frac{G}{2\pi rL}.
+\end{equation}
+
+The heat flow is proportional to the temperature gradient:
+\begin{equation*}
+\FLPh=-K\,\FLPgrad{T},
+\end{equation*}
+
+or, in this case, the radial component of $\FLPh$ is
+\begin{equation*}
+h=-K\,\ddt{T}{r}.
+\end{equation*}
+
+This, together with (<a href="#mjx-eqn-EqII129">12.9</a>), gives
+\begin{equation}
+\label{Eq:II:12:10}
+\ddt{T}{r}=-\frac{G}{2\pi KLr}.
+\end{equation}
+
+Integrating from $r=a$ to $r=b$, we get
+\begin{equation}
+\label{Eq:II:12:11}
+T_2-T_1=-\frac{G}{2\pi KL}\ln\frac{b}{a}.
+\end{equation}
+
+Solving for $G$, we find
+\begin{equation}
+\label{Eq:II:12:12}
+G=\frac{2\pi KL(T_1-T_2)}{\ln(b/a)}.
+\end{equation}
+
+This result corresponds exactly to the result for the charge on a
+cylindrical condenser:
+\begin{equation*}
+Q=\frac{2\pi\epsO L(\phi_1-\phi_2)}{\ln(b/a)}.
+\end{equation*}
+
+The problems are the same, and they have the same solutions. From our
+knowledge of electrostatics, we also know how much heat is lost by an
+insulated pipe.</p>
+</div>
+<div id="Ch12-S2-p8" class="para">
+<p class="p">Let’s consider another example of heat flow. Suppose we wish to know
+the heat flow in the neighborhood of a point source of heat located a
+little way beneath the surface of the earth, or near the surface of a
+large metal block. The localized heat source might be an atomic bomb
+that was set off underground, leaving an intense source of heat, or it
+might correspond to a small radioactive source inside a block of
+iron—there are numerous possibilities.
+</p>
+</div>
+<div id="Ch12-S2-p9" class="para">
+<p class="p">We will treat the idealized problem of a point heat source of
+strength $G$ at the distance $a$ beneath the surface of an infinite
+block of uniform material whose thermal conductivity is $K$. And we will
+neglect the thermal conductivity of the air outside the
+material. We want to determine the distribution of the temperature on
+the surface of the block. How hot is it right above the source and at
+various places on the surface of the block?
+</p>
+</div>
+<div id="Ch12-S2-p10" class="para">
+<p class="p">How shall we solve it? It is like an electrostatic problem with two
+materials with different dielectric coefficients $\kappa$ on opposite
+sides of a plane boundary. Aha! Perhaps it is the analog of a point
+charge near the boundary between a dielectric and a conductor, or
+something similar. Let’s see what the situation is near the
+surface. The physical condition is that the normal component
+of $\FLPh$ on the surface is <em class="emph">zero</em>, since we have assumed there is
+no heat flow out of the block. We should ask: In what electrostatic
+problem do we have the condition that the normal component of the
+electric field $\FLPE$ (which is the analog of $\FLPh$) is <em class="emph">zero</em>
+at a surface? There is none!</p>
+</div>
+<div id="Ch12-S2-p11" class="para">
+<p class="p">That is one of the things that we have to watch out for. For physical
+reasons, there may be certain restrictions in the kinds of
+mathematical conditions which arise in any one subject. So if we have
+analyzed the differential equation only for certain limited cases, we
+may have missed some kinds of solutions that can occur in other
+physical situations. For example, there is no material with a dielectric
+constant of zero, whereas a vacuum does have zero thermal
+conductivity. So there is no electrostatic analogy for a perfect heat
+insulator. We can, however, still use the same <em class="emph">methods</em>. We can
+try to <em class="emph">imagine</em> what would happen if the dielectric constant
+<em class="emph">were</em> zero. (Of course, the dielectric constant is never zero in
+any real situation. But we might have a case in which there is a
+material with a very <em class="emph">high</em> dielectric constant, so that we could
+neglect the dielectric constant of the air outside.)</p>
+</div>
+<div id="Ch12-S2-p12" class="para">
+<p class="p">How shall we find an electric field that has <em class="emph">no</em> component
+perpendicular to the surface? That is, one which is always
+<em class="emph">tangent</em> at the surface? You will notice that our problem is
+opposite to the one of a point charge near a plane conductor. There we
+wanted the field to be <em class="emph">perpendicular</em> to the surface, because
+the conductor was all at the same potential. In the electrical
+problem, we invented a solution by imagining a point charge behind the
+conducting plate. We can use the same idea again. We try to pick an
+“image source” that will automatically make the normal component of
+the field zero at the surface. The solution is shown in
+Fig. <a href="#Ch12-F2">12–2</a>. An image source of <em class="emph">the same sign</em> and the
+same strength placed at the distance $a$ above the surface will cause
+the field to be always horizontal at the surface. The normal components
+of the two sources cancel out.</p>
+</div>
+<div id="Ch12-F2" class="figure">
+<img src="img/FLP_II/f12-02/f12-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 12–2.</span>The heat flow and isothermals near a point heat source at the
+distance $a$ below the surface of a good thermal conductor.
+</div>
+</div>
+<div id="Ch12-S2-p13" class="para">
+<p class="p">Thus our heat flow problem is solved. The temperature everywhere is
+the same, by direct analogy, as the potential due to two equal point
+charges! The temperature $T$ at the distance $r$ from a single point
+source $G$ in an infinite medium is
+\begin{equation}
+\label{Eq:II:12:13}
+T=\frac{G}{4\pi Kr}.
+\end{equation}
+
+(This, of course, is just the analog of $\phi=q/4\pi\epsO R$.) The
+temperature for a point source, together with its image source, is
+\begin{equation}
+\label{Eq:II:12:14}
+T=\frac{G}{4\pi Kr_1}+\frac{G}{4\pi Kr_2}.
+\end{equation}
+
+This formula gives us the temperature everywhere in the block. Several
+isothermal surfaces are shown in Fig. <a href="#Ch12-F2">12–2</a>. Also shown
+are lines of $\FLPh$, which can be obtained
+from $\FLPh=-K\,\FLPgrad{T}$.</p>
+</div>
+<div id="Ch12-S2-p14" class="para">
+<p class="p">We originally asked for the temperature distribution on the
+surface. For a point on the surface at the distance $\rho$ from the
+axis, $r_1=$ $r_2=$ $\sqrt{\rho^2+a^2}$, so
+\begin{equation}
+\label{Eq:II:12:15}
+T(\text{surface})=\frac{1}{4\pi K}\,\frac{2G}{\sqrt{\rho^2+a^2}}.
+\end{equation}
+
+This function is also shown in the figure. The temperature is,
+naturally, higher right above the source than it is farther away. This
+is the kind of problem that geophysicists often need to solve. We now
+see that it is the same kind of thing we have already been solving for
+electricity.</p>
+</div>
+</div>
+<div id="Ch12-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">12–3</span>The stretched membrane</h3>
+<div id="Ch12-S3-p1" class="para">
+<p class="p">Now let us consider a completely different physical situation which,
+nevertheless, gives the same equations again. Consider a thin rubber
+sheet—a membrane—which has been stretched over a large horizontal
+frame (like a drumhead). Suppose now that the membrane is pushed up in
+one place and down in another; as shown in Fig. <a href="#Ch12-F3">12–3</a>. Can
+we describe the shape of the surface? We will show how the problem can
+be solved when the deflections of the membrane are not too large.</p>
+</div>
+<div id="Ch12-F3" class="figure">
+<img src="img/FLP_II/f12-03/f12-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 12–3.</span>A thin rubber sheet stretched over a cylindrical frame (like
+a drumhead). If the sheet is pushed up at $A$ and down at $B$, what
+is the shape of the surface?
+</div>
+</div>
+<div id="Ch12-S3-p2" class="para">
+<p class="p">There are forces in the sheet because it is stretched. If we were to
+make a small cut anywhere, the two sides of the cut would pull apart
+(see Fig. <a href="#Ch12-F4">12–4</a>). So there is a <em class="emph">surface
+tension</em> in the
+sheet, analogous to the one-dimensional tension in a stretched string.
+We define the magnitude of the surface tension $\tau$ as the force
+<em class="emph">per unit length</em> which will just hold together the two sides of a
+cut such as one of those shown in Fig. <a href="#Ch12-F4">12–4</a>.</p>
+</div>
+<div id="Ch12-F4" class="figure">
+<img src="img/FLP_II/f12-04/f12-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 12–4.</span>The surface tension $\tau$ of a stretched rubber sheet is the
+force per unit length across a line.
+</div>
+</div>
+<div id="Ch12-S3-p3" class="para">
+<p class="p">Suppose now that we look at a vertical cross section of the
+membrane. It will appear as a curve, like the one in
+Fig. <a href="#Ch12-F5">12–5</a>. Let $u$ be the vertical displacement of the
+membrane from its normal position, and $x$ and $y$ the coordinates in
+the horizontal plane. (The cross section shown is parallel to the
+$x$-axis.)</p>
+</div>
+<div id="Ch12-F5" class="figure">
+<img src="img/FLP_II/f12-05/f12-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 12–5.</span>Cross section of the deflected sheet.
+</div>
+</div>
+<div id="Ch12-S3-p4" class="para">
+<p class="p">Consider a little piece of the surface of length $\Delta x$ and
+width $\Delta y$. There will be forces on the piece from the surface tension
+along each edge. The force along edge $1$ of the figure will
+be $\tau_1\,\Delta y$, directed tangent to the surface—that is, at the
+angle $\theta_1$ from the horizontal. Along edge $2$, the force will
+be $\tau_2\,\Delta y$ at the angle $\theta_2$. (There will be similar
+forces on the other two edges of the piece, but we will forget them
+for the moment.) The net <em class="emph">upward</em> force on the piece from edges
+$1$ and $2$ is
+\begin{equation*}
+\Delta F=\tau_2\,\Delta y\sin\theta_2-\tau_1\,\Delta y\sin\theta_1.
+\end{equation*}
+
+We will limit our considerations to small distortions of the membrane,
+i.e., to <em class="emph">small slopes</em>: we can then replace $\sin\theta$
+by $\tan\theta$, which can be written as $\ddpl{u}{x}$. The force is then
+\begin{equation*}
+\Delta F=
+\biggl[\tau_2\,\biggl(\ddp{u}{x}\biggr)_2-
+\tau_1\,\biggl(\ddp{u}{x}\biggr)_1\biggr]\Delta y.
+\end{equation*}
+
+The quantity in brackets can be equally well written (for small
+$\Delta x$) as
+\begin{equation*}
+\ddp{}{x}\biggl(\tau\,\ddp{u}{x}\biggr)\Delta x;
+\end{equation*}
+
+then
+\begin{equation*}
+\Delta F=
+\ddp{}{x}\biggl(\tau\,\ddp{u}{x}\biggr)\Delta x\,\Delta y.
+\end{equation*}
+</p>
+</div>
+<div id="Ch12-S3-p5" class="para">
+<p class="p">There will be another contribution to $\Delta F$ from the forces on
+the other two edges; the total is evidently
+\begin{equation}
+\label{Eq:II:12:16}
+\Delta F=\biggl[
+\ddp{}{x}\biggl(\tau\,\ddp{u}{x}\biggr)+
+\ddp{}{y}\biggl(\tau\,\ddp{u}{y}\biggr)
+\biggr]\Delta x\,\Delta y.
+\end{equation}
+</p>
+</div>
+<div id="Ch12-S3-p6" class="para">
+<p class="p">The distortions of the diaphragm are caused by external forces. Let’s
+let $f$ represent the <em class="emph">upward</em> force <em class="emph">per unit area</em> on the
+sheet (a kind of “pressure”) <em class="emph">from the external forces</em>. When
+the membrane is in equilibrium (the <em class="emph">static</em> case), this force
+must be balanced by the internal force we have just computed,
+Eq. (<a href="#mjx-eqn-EqII1216">12.16</a>). That is
+\begin{equation*}
+f=-\frac{\Delta F}{\Delta x\,\Delta y}.
+\end{equation*}
+
+Equation (<a href="#mjx-eqn-EqII1216">12.16</a>) can then be written
+\begin{equation}
+\label{Eq:II:12:17}
+f=-\FLPdiv{(\tau\,\FLPgrad{u})},
+\end{equation}
+
+where by $\FLPnabla$ we now mean, of course, the two-dimensional
+gradient operator $(\ddpl{}{x},\ddpl{}{y})$. We have the differential
+equation that relates $u(x,y)$ to the applied forces $f(x,y)$ and the
+surface tension $\tau(x,y)$, which may, in general, vary from place to
+place in the sheet. (The distortions of a three-dimensional elastic
+body are also governed by similar equations, but we will stick to
+two-dimensions.) We will worry only about the case in which the
+tension $\tau$ is constant throughout the sheet. We can then write for
+Eq. (<a href="#mjx-eqn-EqII1217">12.17</a>),
+\begin{equation}
+\label{Eq:II:12:18}
+\nabla^2u=-\frac{f}{\tau}.
+\end{equation}
+</p>
+</div>
+<div id="Ch12-S3-p7" class="para">
+<p class="p">We have another equation that is the same as for
+electrostatics!—only this time, limited to two-dimensions. The
+displacement $u$ corresponds to $\phi$, and $f/\tau$ corresponds
+to $\rho/\epsO$. So all the work we have done for infinite plane charged
+sheets, or long parallel wires, or charged cylinders is directly
+applicable to the stretched membrane.</p>
+</div>
+<div id="Ch12-S3-p8" class="para">
+<p class="p">Suppose we push the membrane at some points up to a definite
+<em class="emph">height</em>—that is, we fix the value of $u$ at some places. That
+is the analog of having a definite <em class="emph">potential</em> at the
+corresponding places in an electrical situation. So, for instance, we
+may make a positive “potential” by pushing up on the membrane with
+an object having the cross-sectional shape of the corresponding
+cylindrical conductor. For example, if we push the sheet up with a
+round rod, the surface will take on the shape shown in
+Fig. <a href="#Ch12-F6">12–6</a>. The height $u$ is the same as the electrostatic
+potential $\phi$ of a charged cylindrical rod. It falls off
+as $\ln(1/r)$. (The <em class="emph">slope</em>, which corresponds to the electric
+field $E$, drops off as $1/r$.)</p>
+</div>
+<div id="Ch12-F6" class="figure">
+<img src="img/FLP_II/f12-06/f12-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 12–6.</span>Cross section of a stretched rubber sheet pushed up by a
+round rod. The function $u(x,y)$ is the same as the electric
+potential $\phi(x,y)$ near a very long charged rod.
+</div>
+</div>
+<div id="Ch12-S3-p9" class="para">
+<p class="p">The stretched rubber sheet has often been used as a way of solving
+complicated <em class="emph">electrical</em> problems experimentally. The analogy is
+used backwards! Various rods and bars are pushed against the sheet to
+heights that correspond to the potentials of a set of
+electrodes. Measurements of the height then give the electrical
+potential for the electrical situation. The analogy has been carried
+even further. If little balls are placed on the membrane, their motion
+corresponds approximately to the motion of electrons in the
+corresponding electric field. One can actually <em class="emph">watch</em> the
+“electrons” move on their trajectories. This method was used to
+design the complicated geometry of many photomultiplier tubes (such as
+the ones used for scintillation counters, and the one used for
+controlling the headlight beams on Cadillacs). The method is still
+used, but the accuracy is limited. For the most accurate work, it is
+better to determine the fields by numerical methods, using the large
+electronic computing machines.</p>
+</div>
+</div>
+<div id="Ch12-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">12–4</span>The diffusion of neutrons; a uniform spherical source in a homogeneous medium</h3>
+<div id="Ch12-S4-p1" class="para">
+<p class="p">We take another example that gives the same kind of equation, this
+time having to do with diffusion. In Chapter <a href="I_43.html">43</a> of
+Vol. I we considered the diffusion of ions in a single gas, and of
+one gas through another. This time, let’s take a different
+example—the diffusion of neutrons in a material like graphite. We
+choose to speak of graphite (a pure form of carbon) because carbon
+doesn’t absorb slow neutrons. In it the neutrons are free to wander
+around. They travel in a straight line for several centimeters, on the
+average, before being scattered by a nucleus and deflected into a new
+direction. So if we have a large block—many meters on a side—the
+neutrons initially at one place will diffuse to other places. We want
+to find a description of their average behavior—that is, their
+<em class="emph">average flow</em>.</p>
+</div>
+<div id="Ch12-S4-p2" class="para">
+<p class="p">Let $N(x,y,z)\,\Delta V$ be the number of neutrons in the element of
+volume $\Delta V$ at the point $(x,y,z)$. Because of their motion,
+some neutrons will be leaving $\Delta V$, and others will be coming
+in. If there are more neutrons in one region than in a nearby region,
+more neutrons will go from the first region to the second than come
+back; there will be a net flow. Following the arguments of
+Chapter <a href="I_43.html">43</a> in Vol. I, we describe the flow by a flow
+vector $\FLPJ$. Its $x$-component $J_x$ is the <em class="emph">net</em> number of
+neutrons that pass in unit time a unit area perpendicular to the
+$x$-direction. We found that
+\begin{equation}
+\label{Eq:II:12:19}
+J_x=-D\,\ddp{N}{x},
+\end{equation}
+
+where the diffusion constant $D$ is given in terms of the mean
+velocity $v$, and the mean-free-path $l$ between scatterings is given
+by
+\begin{equation}
+D=\frac{1}{3}\,lv.\notag
+\end{equation}
+
+The vector equation for $\FLPJ$ is
+\begin{equation}
+\label{Eq:II:12:20}
+\FLPJ=-D\,\FLPgrad{N}.
+\end{equation}
+</p>
+</div>
+<div id="Ch12-S4-p3" class="para">
+<p class="p">The rate at which neutrons flow across any surface element $da$
+is $\FLPJ\cdot\FLPn\,da$ (where, as usual, $\FLPn$ is the unit
+normal). The net flow <em class="emph">out of a volume element</em> is then
+(following the usual gaussian argument) $\FLPdiv{\FLPJ}\,dV$. This
+flow would result in a decrease with time of the number in $\Delta V$
+unless neutrons are being created in $\Delta V$ (by some nuclear
+process). If there are sources in the volume that generate $S$
+neutrons per unit time in a unit volume, then the net flow out
+of $\Delta V$ will be equal to $(S-\ddpl{N}{t})\,\Delta V$. We have then
+that
+\begin{equation}
+\label{Eq:II:12:21}
+\FLPdiv{\FLPJ}=S-\ddp{N}{t}.
+\end{equation}
+
+Combining (<a href="#mjx-eqn-EqII1221">12.21</a>) with (<a href="#mjx-eqn-EqII1220">12.20</a>), we get the
+<em class="emph">neutron diffusion equation</em>
+\begin{equation}
+\label{Eq:II:12:22}
+\FLPdiv{(-D\,\FLPgrad{N})}=S-\ddp{N}{t}.
+\end{equation}
+</p>
+</div>
+<div id="Ch12-S4-p4" class="para">
+<p class="p">In the static case—where $\ddpl{N}{t}=0$—we have
+Eq. (<a href="#mjx-eqn-EqII124">12.4</a>) all over again!  We can use our knowledge of
+electrostatics to solve problems about the diffusion of neutrons. So
+let’s solve a problem. (You may wonder: <em class="emph">Why</em> do a problem if we
+have already done all the problems in electrostatics? We can do it
+<em class="emph">faster</em> this time because we <em class="emph">have</em> done the electrostatic
+problems!)</p>
+</div>
+<div id="Ch12-F7" class="figure">
+<img class="first" src="img/FLP_II/f12-07/f12-07_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_II/f12-07/f12-07_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 12–7.</span>(a) Neutrons are produced uniformly throughout a sphere of
+radius $a$ in a large graphite block and diffuse outward. The neutron
+density $N$ is found as a function of $r$, the distance from the center
+of the source. (b) The analogous electrostatic situation: a uniform
+sphere of charge, where $N$ corresponds to $\phi$ and $\FigJ$
+corresponds to $\FigE$.
+</div>
+</div>
+<div id="Ch12-S4-p5" class="para">
+<p class="p">Suppose we have a block of material in which neutrons are being
+generated—say by uranium fission—uniformly throughout a spherical
+region of radius $a$ (Fig. <a href="#Ch12-F7">12–7</a>). We would like to
+know: What is the density of neutrons everywhere? How uniform is the
+density of neutrons in the region where they are being generated? What
+is the ratio of the neutron density at the center to the neutron
+density at the surface of the source region? Finding the answers is
+easy. The source density $S_0$ replaces the charge density $\rho$, so
+our problem is the same as the problem of a sphere of uniform charge
+density. Finding $N$ is just like finding the potential $\phi$. We
+have already worked out the fields inside and outside of a uniformly
+charged sphere; we can integrate them to get the potential. Outside,
+the potential is $Q/4\pi\epsO r$, with the total charge $Q$ given
+by $4\pi a^3\rho/3$. So
+\begin{equation}
+\label{Eq:II:12:23}
+\phi_{\text{outside}}=\frac{\rho a^3}{3\epsO r}.
+\end{equation}
+
+For points inside, the field is due only to the charge $Q(r)$ inside
+the sphere of radius $r$, $Q(r)=4\pi r^3\rho/3$, so
+\begin{equation}
+\label{Eq:II:12:24}
+E=\frac{\rho r}{3\epsO}.
+\end{equation}
+
+The field increases linearly with $r$. Integrating $E$ to get $\phi$,
+we have
+\begin{equation*}
+\phi_{\text{inside}}=-\frac{\rho r^2}{6\epsO}+\text{a constant}.
+\end{equation*}
+
+At the radius $a$, $\phi_{\text{inside}}$ must be the same
+as $\phi_{\text{outside}}$, so the constant must be $\rho
+a^2/2\epsO$. (We are assuming that $\phi$ is zero at large distances
+from the source, which will correspond to $N$ being zero for the
+neutrons.) Therefore,
+\begin{equation}
+\label{Eq:II:12:25}
+\phi_{\text{inside}}=\frac{\rho}{3\epsO}
+\biggl(\frac{3a^2}{2}-\frac{r^2}{2}\biggr).
+\end{equation}
+</p>
+</div>
+<div id="Ch12-S4-p6" class="para">
+<p class="p">We know immediately the neutron density in our other problem. The
+answer is
+\begin{equation}
+\label{Eq:II:12:26}
+N_{\text{outside}}=\frac{Sa^3}{3Dr},
+\end{equation}
+
+and
+\begin{equation}
+\label{Eq:II:12:27}
+N_{\text{inside}}=\frac{S}{3D}
+\biggl(\frac{3a^2}{2}-\frac{r^2}{2}\biggr).
+\end{equation}
+
+$N$ is shown as a function of $r$ in Fig. <a href="#Ch12-F7">12–7</a>.</p>
+</div>
+<div id="Ch12-S4-p7" class="para">
+<p class="p">Now what is the ratio of density at the center to that at the edge? At
+the center ($r=0$), it is proportional to $3a^2/2$. At the edge
+($r=a$) it is proportional to $2a^2/2$, so the ratio of densities
+is $3/2$. A uniform source doesn’t produce a uniform density of
+neutrons. You see, our knowledge of electrostatics gives us a good
+start on the physics of nuclear reactors.</p>
+</div>
+<div id="Ch12-S4-p8" class="para">
+<p class="p">There are many physical circumstances in which diffusion plays a big
+part. The motion of ions through a liquid, or of electrons through a
+semiconductor, obeys the same equation. We find again and again the
+same equations.
+</p>
+</div>
+</div>
+<div id="Ch12-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">12–5</span>Irrotational fluid flow; the flow past a sphere</h3>
+<div id="Ch12-S5-p1" class="para">
+<p class="p">Let’s now consider an example which is not really a very good one,
+because the equations we will use will not really represent the
+subject with complete generality but only in an artificial idealized
+situation. We take up the problem of <em class="emph">water flow</em>. In the case of
+the stretched sheet, our equations were an approximation which was
+correct only for <em class="emph">small deflections</em>. For our consideration of
+water flow, we will not make that kind of an approximation; we must
+make restrictions that do not apply at all to real water. We treat
+only the case of the steady flow of an <em class="emph">incompressible,
+nonviscous, circulation-free</em> liquid. Then we represent the flow by
+giving the velocity $\FLPv(\FLPr)$ as a function of
+position $\FLPr$. If the motion is steady (the only case for which there is an
+electrostatic analog) $\FLPv$ is independent of time. If $\rho$ is the
+density of the fluid, then $\rho\FLPv$ is the amount of mass which
+passes per unit time through a unit area. By the conservation of
+matter, the divergence of $\rho\FLPv$ will be, in general, the time
+rate of change of the mass of the material per unit volume. We will
+assume that there are no processes for the continuous creation or
+destruction of matter. The conservation of matter then requires
+that $\FLPdiv{\rho\FLPv}=0$. (It should, in general, be equal
+to $-\ddpl{\rho}{t}$, but since our fluid is incompressible, $\rho$
+cannot change.) Since $\rho$ is everywhere the same, we can factor it
+out, and our equation is simply
+\begin{equation*}
+\FLPdiv{\FLPv}=0.
+\end{equation*}
+</p>
+</div>
+<div id="Ch12-S5-p2" class="para">
+<p class="p">Good! We have electrostatics again (with no charges); it’s just like
+$\FLPdiv{\FLPE}=0$. Not so! Electrostatics is <em class="emph">not</em> simply
+$\FLPdiv{\FLPE}=0$. It is a <em class="emph">pair</em> of equations. One equation
+does not tell us enough; we need still an additional equation. To
+match electrostatics, we should have also that the <em class="emph">curl</em> of
+$\FLPv$ is zero. But that is not generally true for real liquids. Most
+liquids will ordinarily develop some circulation. So we are restricted
+to the situation in which there is no circulation of the fluid. Such
+flow is often called <em class="emph">irrotational</em>. Anyway, if we make all our
+assumptions, we can <em class="emph">imagine</em> a case of fluid flow that is
+analogous to electrostatics. So we take
+\begin{equation}
+\label{Eq:II:12:28}
+\FLPdiv{\FLPv}=0
+\end{equation}
+
+and
+\begin{equation}
+\label{Eq:II:12:29}
+\FLPcurl{\FLPv}=0.
+\end{equation}
+
+</p>
+</div>
+<div id="Ch12-S5-p3" class="para">
+<p class="p">We want to emphasize that the number of circumstances in which liquid flow
+follows these equations is far from the great majority, but there are a few.
+They must be cases in which we can neglect surface tension, compressibility, and
+viscosity, and in which we can assume that the flow is irrotational. These
+assumptions are valid so rarely for real water that the mathematician John
+von Neumann said that people who analyze
+Eqs. (<a href="#mjx-eqn-EqII1228">12.28</a>) and (<a href="#mjx-eqn-EqII1229">12.29</a>) are studying “dry
+water”! (We take up the problem of fluid flow in more detail in Chapters
+<a href="II_40.html">40</a> and <a href="II_41.html">41</a>.)</p>
+</div>
+<div id="Ch12-S5-p4" class="para">
+<p class="p">Because $\FLPcurl{\FLPv}=0$, the velocity of “dry water” can be
+written as the gradient of some potential:
+\begin{equation}
+\label{Eq:II:12:30}
+\FLPv=-\FLPgrad{\psi}.
+\end{equation}
+
+What is the physical meaning of $\psi$? There isn’t any very useful
+meaning. The velocity can be written as the gradient of a potential
+simply because the flow is irrotational. And by analogy with
+electrostatics, $\psi$ is called the <em class="emph">velocity potential</em>, but it
+is not related to a potential energy in the way that $\phi$ is. Since
+the divergence of $\FLPv$ is zero, we have
+\begin{equation}
+\label{Eq:II:12:31}
+\FLPdiv{(\FLPgrad{\psi})}=\nabla^2\psi=0.
+\end{equation}
+
+The velocity potential $\psi$ obeys the same differential equation as
+the electrostatic potential in free space ($\rho=0$).</p>
+</div>
+<div id="Ch12-S5-p5" class="para">
+<p class="p">Let’s pick a problem in irrotational flow and see whether we can solve
+it by the methods we have learned. Consider the problem of a spherical
+ball falling through a liquid. If it is going too slowly, the viscous
+forces, which we are disregarding, will be important. If it is going
+too fast, little whirlpools (turbulence) will appear in its wake and
+there will be some circulation of the water. But if the ball is going
+neither too fast nor too slow, it is more or less true that the water
+flow will fit our assumptions, and we can describe the motion of the
+water by our simple equations.</p>
+</div>
+<div id="Ch12-S5-p6" class="para">
+<p class="p">It is convenient to describe what happens in a frame of reference
+<em class="emph">fixed in the sphere</em>. In this frame we are asking the question:
+How does water flow past a sphere at rest when the flow at large
+distances is uniform? That is, when, far from the sphere, the flow is
+everywhere the same. The flow near the sphere will be as shown by the
+streamlines drawn in Fig. <a href="#Ch12-F8">12–8</a>. These lines, always
+parallel to $\FLPv$, correspond to lines of electric field. We want to
+get a quantitative description for the velocity field, i.e., an
+expression for the velocity at any point $P$.</p>
+</div>
+<div id="Ch12-F8" class="figure">
+<img src="img/FLP_II/f12-08/f12-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 12–8.</span>The velocity field of irrotational fluid flow past a sphere.
+</div>
+</div>
+<div id="Ch12-S5-p7" class="para">
+<p class="p">We can find the velocity from the gradient of $\psi$, so we first work
+out the potential. We want a potential that satisfies
+Eq. (<a href="#mjx-eqn-EqII1231">12.31</a>) everywhere, and which also satisfies two
+restrictions: (1) there is no flow in the spherical region inside the
+surface of the ball, and (2) the flow is constant at large distances. To
+satisfy (1), the component of $\FLPv$ normal to the surface of the
+sphere must be zero. That means that $\ddpl{\psi}{r}$ is zero at $r=a$.
+To satisfy (2), we must have $\ddpl{\psi}{z}=v_0$ at all points
+where $r\gg a$. Strictly speaking, there is no electrostatic case which
+corresponds exactly to our problem. It really corresponds to putting a
+sphere of dielectric constant <em class="emph">zero</em> in a uniform electric field.
+If we had worked out the solution to the problem of a sphere of a
+dielectric constant $\kappa$ in a uniform field, then by
+putting $\kappa=0$ we would immediately have the solution to this problem.</p>
+</div>
+<div id="Ch12-S5-p8" class="para">
+<p class="p">We have not actually worked out this particular electrostatic problem
+in detail, but let’s do it now. (We could work directly on the fluid
+problem with $\FLPv$ and $\psi$, but we will use $\FLPE$ and $\phi$
+because we are so used to them.)</p>
+</div>
+<div id="Ch12-S5-p9" class="para">
+<p class="p">The problem is: Find a solution of $\nabla^2\phi=0$ such
+that $\FLPE=-\FLPgrad{\phi}$ is a constant, say $\FLPE_0$, for large $r$,
+and such that the radial component of $\FLPE$ is equal to zero
+at $r=a$. That is,
+\begin{equation}
+\label{Eq:II:12:32}
+\left.\ddp{\phi}{r}\right|_{r=a}=0.
+\end{equation}
+</p>
+</div>
+<div id="Ch12-S5-p10" class="para">
+<p class="p">Our problem involves a new kind of boundary condition, not one for
+which $\phi$ is a constant on a surface, but for
+which $\ddpl{\phi}{r}$ is a constant. That is a little different. It is not
+easy to get the answer immediately. First of all, without the sphere,
+$\phi$ would be $-E_0z$. Then $\FLPE$ would be in the $z$-direction
+and have the constant magnitude $E_0$, everywhere. Now we have
+analyzed the case of a dielectric sphere which has a uniform
+polarization inside it, and we found that the field inside such a
+polarized sphere is a uniform field, and that outside it is the same
+as the field of a point dipole located at the center. So let’s guess
+that the solution we want is a superposition of a uniform field plus
+the field of a dipole. The potential of a dipole
+(Chapter <a href="II_06.html">6</a>) is $pz/4\pi\epsO r^3$. Thus we assume that
+\begin{equation}
+\label{Eq:II:12:33}
+\phi=-E_0z+\frac{pz}{4\pi\epsO r^3}.
+\end{equation}
+
+Since the dipole field falls off as $1/r^3$, at large distances we
+have just the field $E_0$. Our guess will automatically satisfy
+condition (2) above. But what do we take for the dipole strength $p$?
+To find out, we may use the other condition on $\phi$,
+Eq. (<a href="#mjx-eqn-EqII1232">12.32</a>). We must differentiate $\phi$ with respect
+to $r$, but of course we must do so at a constant angle $\theta$, so it is
+more convenient if we first express $\phi$ in terms of $r$ and $\theta$,
+rather than of $z$ and $r$. Since $z=r\cos\theta$, we get
+\begin{equation}
+\label{Eq:II:12:34}
+\phi=-E_0r\cos\theta+\frac{p\cos\theta}{4\pi\epsO r^2}.
+\end{equation}
+
+The radial component of $\FLPE$ is
+\begin{equation}
+\label{Eq:II:12:35}
+-\ddp{\phi}{r}=+E_0\cos\theta+\frac{p\cos\theta}{2\pi\epsO r^3}.
+\end{equation}
+
+This must be zero at $r=a$ for all $\theta$. This will be true if
+\begin{equation}
+\label{Eq:II:12:36}
+p=-2\pi\epsO a^3E_0.
+\end{equation}
+</p>
+</div>
+<div id="Ch12-S5-p11" class="para">
+<p class="p">Note carefully that if both terms in Eq. (<a href="#mjx-eqn-EqII1235">12.35</a>) had not
+had the same $\theta$-dependence, it would not have been possible to
+choose $p$ so that (<a href="#mjx-eqn-EqII1235">12.35</a>) turned out to be zero at $r=a$
+for all angles. The fact that it works out means that we have guessed
+wisely in writing Eq. (<a href="#mjx-eqn-EqII1233">12.33</a>). Of course, when we made
+the guess we were looking ahead; we knew that we would need another
+term that (a) satisfied $\nabla^2\phi=0$ (any real field would do
+that), (b) dependent on $\cos\theta$, and (c) fell to zero at
+large $r$. The dipole field is the only one that does all three.</p>
+</div>
+<div id="Ch12-S5-p12" class="para">
+<p class="p">Using (<a href="#mjx-eqn-EqII1236">12.36</a>), our potential is
+\begin{equation}
+\label{Eq:II:12:37}
+\phi=-E_0\cos\theta\biggl(r+\frac{a^3}{2r^2}\biggr).
+\end{equation}
+</p>
+</div>
+<div id="Ch12-S5-p13" class="para">
+<p class="p">The solution of the fluid flow problem can be written simply as
+\begin{equation}
+\label{Eq:II:12:38}
+\psi=-v_0\cos\theta\biggl(r+\frac{a^3}{2r^2}\biggr).
+\end{equation}
+
+It is straightforward to find $\FLPv$ from this potential. We will not
+pursue the matter further.</p>
+</div>
+</div>
+<div id="Ch12-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">12–6</span>Illumination; the uniform lighting of a plane</h3>
+<div id="Ch12-F9" class="figure">
+<img src="img/FLP_II/f12-09/f12-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 12–9.</span>The illumination $I_n$ of a surface is the radiant energy per
+unit time arriving at a unit area of the surface.
+</div>
+</div>
+<div id="Ch12-S6-p1" class="para">
+<p class="p">In this section we turn to a completely different physical
+problem—we want to illustrate the great variety of
+possibilities. This time we will do something that leads to the same
+kind of <em class="emph">integral</em> that we found in electrostatics. (If we have a
+mathematical problem which gives us a certain integral, then we know
+something about the properties of that integral if it is the same
+integral that we had to do for another problem.) We take our example
+from illumination engineering. Suppose there is a light source at the
+distance $a$ above a plane surface. What is the illumination of the
+surface? That is, what is the radiant energy per unit time arriving at
+a unit area of the surface? (See Fig. <a href="#Ch12-F9">12–9</a>.) We suppose
+that the source is spherically symmetric, so that light is radiated
+equally in all directions. Then the amount of radiant energy which
+passes through a unit area <em class="emph">at right angles</em> to a light flow
+varies inversely as the square of the distance. It is evident that the
+intensity of the light in the direction normal to the flow is given by
+the same kind of formula as for the electric field from a point
+source. If the light rays meet the surface at an angle $\theta$ to the
+normal, then $I_n$, the energy arriving <em class="emph">per unit area</em> of the
+surface, is only $\cos\theta$ as great, because the same energy goes
+onto an area larger by $1/\cos\theta$. If we call the strength of our
+light source $S$, then $I_n$, the illumination of a surface, is
+\begin{equation}
+\label{Eq:II:12:39}
+I_n=\frac{S}{r^2}\,\FLPe_r\cdot\FLPn,
+\end{equation}
+
+where $\FLPe_r$ is the unit vector from the source and $\FLPn$ is the
+unit normal to the surface. The illumination $I_n$ corresponds to the
+normal component of the electric field from a point charge of
+strength $4\pi\epsO S$. Knowing that, we see that for any distribution of light
+sources, we can find the answer by solving the corresponding
+electrostatic problem. We calculate the vertical component of electric
+field on the plane due to a distribution of charge in the same way as
+for that of the light sources.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a></p>
+</div>
+<div id="Ch12-S6-p2" class="para">
+<p class="p">Consider the following example. We wish for some special experimental
+situation to arrange that the top surface of a table will have a very
+uniform illumination. We have available long tubular fluorescent
+lights which radiate uniformly along their lengths. We can illuminate
+the table by placing the fluorescent tubes in a regular array on the
+ceiling, which is at the height $z$ above the table. What is the
+widest spacing $b$ from tube to tube that we should use if we want the
+surface illumination to be uniform to, say, within one part in a
+thousand?  <em class="emph">Answer:</em> (1) Find the electric field from a grid of
+wires with the spacing $b$, each charged uniformly; (2) compute the
+vertical component of the electric field; (3) find out what $b$ must
+be so that the ripples of the field are not more than one part in a
+thousand.</p>
+</div>
+<div id="Ch12-S6-p3" class="para">
+<p class="p">In Chapter <a href="II_07.html">7</a> we saw that the electric field of a grid of
+charged wires could be represented as a sum of terms, each one of
+which gave a sinusoidal variation of the field with a period of $b/n$,
+where $n$ is an integer. The amplitude of any one of these terms is
+given by Eq. (<a href="II_07.html#mjx-eqn-EqII744">7.44</a>):
+\begin{equation*}
+F_n=A_ne^{-2\pi nz/b}.
+\end{equation*}
+
+We need consider only $n=1$, so long as we only want the field at
+points not too close to the grid. For a complete solution, we would
+still need to determine the coefficients $A_n$, which we have not yet
+done (although it is a straightforward calculation). Since we need
+only $A_1$, we can estimate that its magnitude is roughly the same as
+that of the average field. The exponential factor would then give us
+directly the <em class="emph">relative</em> amplitude of the variations. If we want
+this factor to be $10^{-3}$, we find that $b$ must be $0.91z$. If we
+make the spacing of the fluorescent tubes $3/4$ of the distance to the
+ceiling, the exponential factor is then $1/4000$, and we have a safety
+factor of $4$, so we are fairly sure that we will have the
+illumination constant to one part in a thousand. (An exact calculation
+shows that $A_1$ is really twice the average field, so
+that $b\approx0.83z$.) It is somewhat surprising that for such a uniform
+illumination the allowed separation of the tubes comes out so large.</p>
+</div>
+</div>
+<div id="Ch12-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">12–7</span>The “underlying unity” of nature</h3>
+<div id="Ch12-S7-p1" class="para">
+<p class="p">In this chapter, we wished to show that in learning electrostatics you
+have learned at the same time how to handle many subjects in physics,
+and that by keeping this in mind, it is possible to learn almost all
+of physics in a limited number of years.
+</p>
+</div>
+<div id="Ch12-S7-p2" class="para">
+<p class="p">However, a question surely suggests itself at the end of such a
+discussion: <em class="emph">Why are the equations from different phenomena so
+similar</em>? We might say: “It is the underlying unity of nature.” But
+what does that mean? What <em class="emph">could</em> such a statement mean? It could
+mean simply that the equations are similar for different phenomena;
+but then, of course, we have given no explanation. The “underlying
+unity” might mean that everything is made out of the same stuff, and
+therefore obeys the same equations. That sounds like a good
+explanation, but let us think. The electrostatic potential, the
+diffusion of neutrons, heat flow—are we really dealing with the same
+stuff? Can we really imagine that the electrostatic potential is
+<em class="emph">physically</em> identical to the temperature, or to the density of
+particles? Certainly $\phi$ is not <em class="emph">exactly the same</em> as the
+thermal energy of particles. The displacement of a membrane is
+certainly <em class="emph">not</em> like a temperature. Why, then, is there “an
+underlying unity”?</p>
+</div>
+<div id="Ch12-S7-p3" class="para">
+<p class="p">A closer look at the physics of the various subjects shows, in fact,
+that the equations are not really identical. The equation we found for
+neutron diffusion is only an approximation that is good when the
+distance over which we are looking is large compared with the mean
+free path. If we look more closely, we would see the individual
+neutrons running around. Certainly the motion of an individual neutron
+is a completely different thing from the smooth variation we get from
+solving the differential equation. The differential equation is an
+approximation, because we assume that the neutrons are smoothly
+distributed in <em class="emph">space</em>.</p>
+</div>
+<div id="Ch12-S7-p4" class="para">
+<p class="p">Is it possible that <em class="emph">this</em> is the clue? That the thing which is
+common to all the phenomena is the <em class="emph">space</em>, the framework into
+which the physics is put? As long as things are reasonably smooth in
+space, then the important things that will be involved will be the
+rates of change of quantities with position in space. That is why we
+always get an equation with a gradient. The derivatives <em class="emph">must</em>
+appear in the form of a gradient or a divergence; because the laws of
+physics are <em class="emph">independent of direction</em>, they must be expressible
+in vector form. The equations of electrostatics are the simplest
+vector equations that one can get which involve only the spatial
+derivatives of quantities. Any other <em class="emph">simple</em> problem—or
+simplification of a complicated problem—must look like
+electrostatics. What is common to all our problems is that they
+involve <em class="emph">space</em> and that we have <em class="emph">imitated</em> what is actually
+a complicated phenomenon by a simple differential equation.</p>
+</div>
+<div id="Ch12-S7-p5" class="para">
+<p class="p">That leads us to another interesting question. Is the same statement
+perhaps also true for the <em class="emph">electrostatic</em> equations? Are they
+also correct only as a smoothed-out imitation of a really much more
+complicated microscopic world? Could it be that the real world
+consists of little X-ons which can be seen only at <em class="emph">very</em> tiny
+distances? And that in our measurements we are always observing on
+such a large scale that we can’t see these little X-ons, and that is
+why we get the differential equations?</p>
+</div>
+<div id="Ch12-S7-p6" class="para">
+<p class="p">Our currently most complete theory of electrodynamics does indeed have
+its difficulties at very short distances. So it is possible, in
+principle, that these equations are smoothed-out versions of
+something. They appear to be correct at distances down to
+about $10^{-14}$ cm, but then they begin to look wrong. It is possible that
+there is some as yet undiscovered underlying “machinery,” and that
+the details of an underlying complexity are hidden in the
+smooth-looking equations—as is so in the “smooth” diffusion of
+neutrons. But no one has yet formulated a successful theory that works
+that way.</p>
+</div>
+<div id="Ch12-S7-p7" class="para">
+<p class="p">Strangely enough, it turns out (for reasons that we do not at all
+understand) that the combination of relativity and quantum mechanics
+as we know them seems to <em class="emph">forbid</em> the invention of an equation
+that is fundamentally different from Eq. (<a href="#mjx-eqn-EqII124">12.4</a>), and
+which does not at the same time lead to some kind of
+contradiction. Not simply a disagreement with experiment, but an
+<em class="emph">internal contradiction</em>. As, for example, the prediction that
+the sum of the probabilities of all possible occurrences is not equal
+to unity, or that energies may sometimes come out as complex numbers,
+or some other such idiocy. No one has yet made up a theory of
+electricity for which $\nabla^2\phi=-\rho/\epsO$ is understood as a
+smoothed-out approximation to a mechanism underneath, and which does
+not lead ultimately to some kind of an absurdity. But, it must be
+added, it is also true that the assumption
+that $\nabla^2\phi=-\rho/\epsO$ is valid for all distances, no matter how
+small, leads to absurdities of its own (the electrical energy of an
+electron is infinite)—absurdities from which no one yet knows an
+escape.</p>
+</div>
+</div>
+<ol id="footnotes"><li class="footnote">
+  <a name="footnote_1"></a>
+  Since we are talking about
+<em class="emph">incoherent</em> sources whose <em class="emph">intensities</em> always add
+linearly, the analogous electric charges will always have the same
+sign. Also, our analogy applies only to the light energy arriving at
+the top of an opaque surface, so we must include in our integral only
+the sources which shine on the surface (and, naturally, not sources
+located below the surface!).
+  <a href="#footnote_source_1">↩</a>
+</li></ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics: Foreword to Volume III</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+  <script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div>  <div class="main">
+    <div class="content">
+      <div class="document">
+     
+        <div id="Ch92" class="chapter">
+        	
+        <h2 style="line-height: 150%; margin-top: 0"><b><i>Foreword</i></b></h2>
+        <div class="figure"><a target="_blank" href="http://www.aip.org/history/ohilist/5052.html"><span style=
+        "float: right;  margin: 0 0 20px 15px"><img border="0" src="img/MSands.jpg"><center>Matthew Sands</center></span></a></div>
+        
+        <div id="Ch92-S1" class="section">
+        <div id="Ch92-S1-p1" class="para">
+		<p class="p">
+		A great triumph of twentieth-century physics, the theory of quantum 
+		mechanics, is now nearly 40 years old, yet we have generally been giving 
+		our students their introductory course in physics (for many students, 
+		their last) with hardly more than a casual allusion to this central part 
+		of our knowledge of the physical world. We should do better by them. 
+		These lectures are an attempt to present them with the basic and 
+		essential ideas of the quantum mechanics in a way that would, hopefully, 
+		be comprehensible. The approach you will find here is novel, 
+		particularly at the level of a sophomore course, and was considered very 
+		much an experiment. After seeing how easily some of the students take to 
+		it, however, I believe that the experiment was a success. There is, of course, 
+		room for improvement, and it will come with more experience in 
+		the classroom. What you will find here is a record of that first 
+		experiment.</p>
+		</div>        
+        <div id="Ch92-S1-p2" class="para">
+		<p class="p">
+		In the two-year sequence of the Feynman Lectures on Physics which were 
+		given from September 1961 through May 1963 for the introductory physics 
+		course at Caltech, the concepts of quantum physics were brought in 
+		whenever they were necessary for an understanding of the phenomena being 
+		described. In addition, the last twelve lectures of the second year were 
+		given over to a more coherent introduction to some of the concepts of 
+		quantum mechanics. It became clear as the lectures drew to a close, 
+		however, that not enough time had been left for the quantum mechanics. 
+		As the material was prepared, it was continually discovered that other 
+		important and interesting topics could be treated with the elementary 
+		tools that had been developed. There was also a fear that the too brief 
+		treatment of the Schrödinger wave function which had been included in 
+		the twelfth lecture would not provide a sufficient bridge to the more 
+		conventional treatments of many books the students might hope to read. 
+		It was therefore decided to extend the series with seven additional 
+		lectures; they were given to the sophomore class in May of 1964. These 
+		lectures rounded out and extended somewhat the material developed in the 
+		earlier lectures.</p>
+		</div>        
+        <div id="Ch92-S1-p3" class="para">
+		<p class="p">
+		In this volume we have put together the lectures from both years with 
+		some adjustment of the sequence. In addition, two lectures originally 
+		given to the freshman class as an introduction to quantum physics have 
+		been lifted bodily from Volume&nbsp;I (where they were Chapters
+		<a href="I_37.html">37</a> and <a href="I_38.html">38</a>) and placed as the first two
+		chapters here—to make this volume a self-contained unit, relatively
+		independent of the first two. A few ideas about the quantization of
+		angular momentum (including a discussion of the Stern-Gerlach
+		experiment) had been introduced in Chapters <a href="II_34.html">34</a>
+		and&nbsp;<a href="II_35.html">35</a> of Volume&nbsp;II, and familiarity with them is
+		assumed; for the convenience of those who will not have that volume at
+		hand, those two chapters are reproduced here as an Appendix.<a name=
+        "footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a></p>
+		</div>        
+        <div id="Ch92-S1-p4" class="para">
+		<p class="p">
+		This set of lectures tries to elucidate from the beginning those
+		features of the quantum mechanics which are most basic and most
+		general. The first lectures tackle head on the ideas of a probability
+		amplitude, the interference of amplitudes, the abstract notion of a
+		state, and the superposition and resolution of states—and the Dirac
+		notation is used from the start. In each instance the ideas are
+		introduced together with a detailed discussion of some specific
+		examples—to try to make the physical ideas as real as possible. The
+		time dependence of states including states of definite energy comes
+		next, and the ideas are applied at once to the study of two-state
+		systems. A detailed discussion of the ammonia maser provides the
+		frame-work for the introduction to radiation absorption and induced
+		transitions. The lectures then go on to consider more complex systems,
+		leading to a discussion of the propagation of electrons in a crystal,
+		and to a rather complete treatment of the quantum mechanics of angular
+		momentum. Our introduction to quantum mechanics ends in
+		Chapter 20 with a discussion of the Schrödinger wave
+		function, its differential equation, and the solution for the hydrogen atom.</p>
+		</div>        
+        <div id="Ch92-S1-p5" class="para">
+		<p class="p">
+		The last chapter of this volume is not intended to be a part of the 
+		“course.” It is a “seminar” on superconductivity and was given in
+		the spirit of some of the entertainment lectures of the first two
+		volumes, with the intent of opening to the students a broader view of
+		the relation of what they were learning to the general culture of
+		physics. Feynman&#39;s “epilogue” serves as the period to the
+		three-volume series.</p>
+		</div>        
+        <div id="Ch92-S1-p6" class="para">
+		<p class="p">
+		As explained in the Foreword to Volume&nbsp;I, these lectures were but one
+		aspect of a program for the development of a new introductory course
+		carried out at the California Institute of Technology under the
+		supervision of the Physics Course Revision Committee (Robert Leighton,
+		Victor Neher, and Matthew Sands). The program was made possible by a
+		grant from the Ford Foundation. Many people helped with the technical
+		details of the preparation of this volume: Marylou Clayton, Julie
+		Curcio, James Hartle, Tom Harvey, Martin Israel, Patricia Preuss,
+		Fanny Warren, and Barbara Zimmerman. Professors Gerry Neugebauer and
+		Charles Wilts contributed greatly to the accuracy and clarity of the
+		material by reviewing carefully much of the manuscript.</p>
+		</div>        
+        <div id="Ch92-S1-p7" class="para">
+		<p class="p">
+		But the story of quantum mechanics you will find here is Richard
+		Feynman&#39;s. Our labors will have been well spent if we have been able
+		to bring to others even some of the intellectual excitement we
+		experienced as we saw the ideas unfold in his real-life Lectures on
+		Physics.</p>
+
+		<div class="signature">
+        Matthew Sands<br>
+        <i>December, 1964</i><br>
+        <span style="font-size: 80%">(Photograph by Francis Bello © Estate of Francis Bello/Scence Photo Library)</span></div>
+      </div>
+      </div>
+
+      <ol id="footnotes">
+        <li class="footnote">
+          <a name="footnote_1"></a>The Appendix is not included in electronic editions.
+          The corresponding chapters can be read online at <a href="http://www.feynmanlectures.caltech.edu">www.feynmanlectures.caltech.edu</a>
+          <a href="#footnote_source_1">↩</a>
+        </li>
+      </ol>
+
+      	<footer>
+         <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+         Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+      </footer>
+
+      </div>
+    </div>
+   </div>
+   </div>
+</body>
+</html>

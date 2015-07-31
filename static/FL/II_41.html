@@ -1,0 +1,1349 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 41: The Flow of Wet Water</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "41." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch41" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">41</span>The Flow of Wet Water</h2>
+<div id="Ch41-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">41–1</span>Viscosity</h3>
+<div id="Ch41-S1-p1" class="para">
+<p class="p">In the last chapter we discussed the behavior of water, disregarding
+the phenomenon of viscosity. Now we would like to discuss the
+phenomena of the flow of fluids, <em class="emph">including</em> the effects of
+viscosity. We want to look at the <em class="emph">real behavior</em> of fluids. We
+will describe qualitatively the actual behavior of the fluids under
+various different circumstances so that you will get some feel for the
+subject. Although you will see some complicated equations and hear
+about some complicated things, it is not our purpose that you should
+learn all these things. This is, in a sense, a “cultural” chapter
+which will give you some idea of the way the world is. There is only
+one item which is worth learning, and that is the simple definition of
+viscosity which we will come to in a moment. The rest is only for your
+entertainment.</p>
+</div>
+<div id="Ch41-S1-p2" class="para">
+<p class="p">In the last chapter we found that the laws of motion of a fluid are
+contained in the equation
+\begin{equation}
+\label{Eq:II:41:1}
+\ddp{\FLPv}{t}+(\FLPv\cdot\FLPnabla)\FLPv=
+-\frac{\FLPgrad{p}}{\rho}-\FLPgrad{\phi}+
+\frac{\FLPf_{\text{visc}}}{\rho}.
+\end{equation}
+
+In our “dry” water approximation we left out the last term, so we
+were neglecting all viscous effects. Also, we sometimes made an
+additional approximation by considering the fluid as incompressible;
+then we had the additional equation
+\begin{equation*}
+\FLPdiv{\FLPv}=0.
+\end{equation*}
+
+This last approximation is often quite good—particularly when flow
+speeds are much slower than the speed of sound. But in real fluids it
+is almost never true that we can neglect the internal friction that we
+call viscosity; most of the interesting things that happen come from
+it in one way or another. For example, we saw that in “dry” water
+the circulation never changes—if there is none to start out with,
+there will never be any. Yet, circulation in fluids is an everyday
+occurrence. We must fix up our theory.</p>
+</div>
+<div id="Ch41-S1-p3" class="para">
+<p class="p">We begin with an important experimental fact. When we worked out the
+flow of “dry” water around or past a cylinder—the so-called
+“potential flow”—we had no reason not to permit the water to have
+a velocity tangent to the surface; only the normal component had to be
+zero. We took no account of the possibility that there might be a
+shear force between the liquid and the solid. It turns out—although
+it is not at all self-evident—that in all circumstances where it has
+been experimentally checked, the <em class="emph">velocity of a fluid is exactly
+zero at the surface of a solid</em>. You have noticed, no doubt, that the
+blade of a fan will collect a thin layer of dust—and that it is
+still there after the fan has been churning up the air. You can see
+the same effect even on the great fan of a wind tunnel. Why isn’t the
+dust blown off by the air? In spite of the fact that the fan blade is
+moving at high speed through the air, the speed of the air relative to
+the fan blade goes to zero right at the surface. So the very smallest
+dust particles are not disturbed.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> We must modify
+the theory to agree with the experimental fact that in all ordinary
+fluids, the molecules next to a solid surface have zero velocity
+(relative to the surface).<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a></p>
+</div>
+<div id="Ch41-F1" class="figure">
+<img src="img/FLP_II/f41-01/f41-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 41–1.</span>Viscous drag between two parallel plates.
+</div>
+</div>
+<div id="Ch41-S1-p4" class="para">
+<p class="p">We originally characterized a liquid by the fact that if you put a
+shearing stress on it—no matter how small—it would give way. It
+flows. In static situations, there are no shear stresses. But before
+equilibrium is reached—as long as you still push on it—there can
+be shear forces. <em class="emph">Viscosity</em> describes these shear forces which
+exist in a moving fluid. To get a measure of the shear forces during
+the motion of a fluid, we consider the following kind of
+experiment. Suppose that we have two solid plane surfaces with water
+between them, as in Fig. <a href="#Ch41-F1">41–1</a>, and we keep one stationary while
+moving the other parallel to it at the slow speed $v_0$. If you
+measure the force required to keep the upper plate moving, you find
+that it is proportional to the area of the plates and to $v_0/d$,
+where $d$ is the distance between the plates. So the shear
+stress $F/A$ is proportional to $v_0/d$:
+\begin{equation*}
+\frac{F}{A}=\eta\,\frac{v_0}{d}.
+\end{equation*}
+The constant of proportionality $\eta$ is called the <em class="emph">coefficient
+of viscosity</em>.</p>
+</div>
+<div id="Ch41-F2" class="figure">
+<img src="img/FLP_II/f41-02/f41-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 41–2.</span>The shear stress in a viscous fluid.
+</div>
+</div>
+<div id="Ch41-S1-p5" class="para">
+<p class="p">If we have a more complicated situation, we can always consider a
+little, flat, rectangular cell in the water with its faces parallel to
+the flow, as in Fig. <a href="#Ch41-F2">41–2</a>. The shear force across this cell is given
+by
+\begin{equation}
+\label{Eq:II:41:2}
+\frac{\Delta F}{\Delta A}=\eta\,\frac{\Delta v_x}{\Delta y}
+=\eta\ddp{v_x}{y}.
+\end{equation}
+
+Now, $\ddpl{v_x}{y}$ is the <em class="emph">rate of change</em> of the shear strain
+we defined in Chapter <a href="II_39.html">39</a>, so for a liquid, the shear
+stress is proportional to the <em class="emph">rate of change</em> of the shear
+strain.</p>
+</div>
+<div id="Ch41-S1-p6" class="para">
+<p class="p">In the general case we write
+\begin{equation}
+\label{Eq:II:41:3}
+S_{xy}=\eta\biggl(\ddp{v_y}{x}+\ddp{v_x}{y}\biggr).
+\end{equation}
+
+If there is a uniform rotation of the fluid, $\ddpl{v_x}{y}$ is the
+negative of $\ddpl{v_y}{x}$ and $S_{xy}$ is zero—as it should be
+since there are no stresses in a uniformly rotating fluid. (We did a
+similar thing in defining $e_{xy}$ in Chapter <a href="II_39.html">39</a>.) There
+are, of course, the corresponding expressions for $S_{yz}$ and $S_{zx}$.</p>
+</div>
+<div id="Ch41-F3" class="figure">
+<img src="img/FLP_II/f41-03/f41-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 41–3.</span>The flow in a fluid between two concentric cylinders rotating
+at different angular velocities.
+</div>
+</div>
+<div id="Ch41-S1-p7" class="para">
+<p class="p">As an example of the application of these ideas, we consider the
+motion of a fluid between two coaxial cylinders. Let the inner one
+have the radius $a$ and the peripheral velocity $v_a$, and let the
+outer one have radius $b$ and velocity $v_b$. See Fig. <a href="#Ch41-F3">41–3</a>. We
+might ask, what is the velocity distribution between the cylinders? To
+answer this question, we begin by finding a formula for the viscous
+shear in the fluid at a distance $r$ from the axis. From the symmetry
+of the problem, we can assume that the flow is always tangential and
+that its magnitude depends only on $r$; $v=v(r)$. If we watch a speck
+in the water at the radius $r$, its coordinates as a function of time
+are
+\begin{equation*}
+x=r\cos\omega t,\quad
+y=r\sin\omega t,
+\end{equation*}
+
+where $\omega=v/r$. Then the $x$- and $y$-components of velocity are
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:41:4}
+v_x=-r\omega\sin\omega t=-\omega y\quad
+\text{and}\quad
+v_y=r\omega\cos\omega t=\omega x.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{alignedat}{3}
+v_x\;&=&\;-r\omega\sin\omega t\;&=&\;-\omega&y,\\[.5ex]
+v_y\;&=&\;r\omega\cos\omega t\;&=&\omega&x.
+\end{alignedat}
+\label{Eq:II:41:4}
+\end{equation}
+</span>
+From Eq. (<a href="#mjx-eqn-EqII413">41.3</a>), we have
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:41:5}
+S_{xy}=\eta\biggl[\ddp{}{x}\,(x\omega)-\ddp{}{y}\,(y\omega)\biggl]=
+\eta\biggl[x\,\ddp{\omega}{x}-y\,\ddp{\omega}{y}\biggl].
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+S_{xy}&=\eta\biggl[\ddp{}{x}\,(x\omega)-\ddp{}{y}\,(y\omega)\biggl]\notag\\[1.25ex]
+\label{Eq:II:41:5}
+&=\eta\biggl[x\,\ddp{\omega}{x}-y\,\ddp{\omega}{y}\biggl].
+\end{align}
+</span>
+For a point at $y=0$, $\ddpl{\omega}{y}=0$, and $x\,\ddpl{\omega}{x}$
+is the same as $r\,d\omega/dr$. So at that point
+\begin{equation}
+\label{Eq:II:41:6}
+(S_{xy})_{y=0}=\eta r\,\ddt{\omega}{r}.
+\end{equation}
+
+(It is reasonable that $S$ should depend on $\ddpl{\omega}{r}$; when
+there is no change in $\omega$ with $r$, the liquid is in uniform
+rotation and there are no stresses.)</p>
+</div>
+<div id="Ch41-S1-p8" class="para">
+<p class="p">The stress we have calculated is the tangential shear which is the
+same all around the cylinder. We can get the <em class="emph">torque</em> acting
+<em class="emph">across a cylindrical surface</em> at the radius $r$ by multiplying
+the shear stress by the moment arm $r$ and the area $2\pi rl$ (where
+$l$ is the length of the cylinder). We get
+\begin{equation}
+\label{Eq:II:41:7}
+\tau=2\pi r^2l(S_{xy})_{y=0}=2\pi\eta lr^3\,\ddt{\omega}{r}.
+\end{equation}
+</p>
+</div>
+<div id="Ch41-S1-p9" class="para">
+<p class="p">Since the motion of the water is steady—there is no angular
+acceleration—the net torque on the cylindrical shell of water
+between $r$ and $r+dr$ must be zero; that is, the torque at $r$ must
+be balanced by an equal and opposite torque at $r+dr$, so that $\tau$
+must be independent of $r$. In other words, $r^3\,d\omega/dr$ is equal
+to some constant, say $A$, and
+\begin{equation}
+\label{Eq:II:41:8}
+\ddt{\omega}{r}=\frac{A}{r^3}.
+\end{equation}
+
+Integrating, we find that $\omega$ varies with $r$ as
+\begin{equation}
+\label{Eq:II:41:9}
+\omega=-\frac{A}{2r^2}+B.
+\end{equation}
+
+The constants $A$ and $B$ are to be determined to fit the conditions
+that $\omega=\omega_a$ at $r=a$, and $\omega=\omega_b$ at $r=b$. We
+get that
+\begin{equation}
+\label{Eq:II:41:10}
+\begin{aligned}
+A&=\frac{2a^2b^2}{b^2-a^2}\,(\omega_b-\omega_a),\\[1.5ex]
+B&=\frac{b^2\omega_b-a^2\omega_a}{b^2-a^2}.
+\end{aligned}
+\end{equation}
+
+So we know $\omega$ as a function of $r$, and from it $v=\omega r$.</p>
+</div>
+<div id="Ch41-S1-p10" class="para">
+<p class="p">If we want the torque, we can get it from Eqs. (<a href="#mjx-eqn-EqII417">41.7</a>)
+and (<a href="#mjx-eqn-EqII418">41.8</a>):
+\begin{equation}
+\tau=2\pi\eta lA\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:41:11}
+\tau=\frac{4\pi\eta la^2b^2}{b^2-a^2}\,(\omega_b-\omega_a).
+\end{equation}
+
+It is proportional to the relative angular velocities of the two
+cylinders. One standard apparatus for measuring the coefficients of
+viscosity is built this way. One cylinder—say the outer one—is on
+pivots but is held stationary by a spring balance which measures the
+torque on it, while the inner one is rotated at a constant angular
+velocity. The coefficient of viscosity is then determined from
+Eq. (<a href="#mjx-eqn-EqII4111">41.11</a>).</p>
+</div>
+<div id="Ch41-S1-p11" class="para">
+<p class="p">From its definition, you see that the units of $\eta$ are
+newton$\cdot$sec/m$^2$. For water at $20^\circ$C,
+\begin{equation*}
+\eta=10^{-3}\:\text{newton$\cdot$sec/m$^2$}.
+\end{equation*}
+
+It is usually more convenient to use the <em class="emph">specific viscosity</em>,
+which is $\eta$ divided by the density $\rho$. The values for water
+and air are then comparable:
+\begin{equation}
+\label{Eq:II:41:12}
+\begin{aligned}
+\text{water at $20^\circ$C},&\quad
+\eta/\rho=10^{-6}\text{ m$^2$/sec},\\[.5ex]
+\text{air at $20^\circ$C},&\quad
+\eta/\rho=15\times10^{-6}\text{ m$^2$/sec}.
+\end{aligned}
+\end{equation}
+
+Viscosities usually depend strongly on temperature. For instance, for
+water just above the freezing point, $\eta/\rho$ is $1.8$ times larger
+than it is at $20^\circ$C.</p>
+</div>
+</div>
+<div id="Ch41-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">41–2</span>Viscous flow</h3>
+<div id="Ch41-S2-p1" class="para">
+<p class="p">We now go to a general theory of viscous flow—at least in the most
+general form known to man. We already understand that the shear stress
+components are proportional to the spatial derivatives of the various
+velocity components such as $\ddpl{v_x}{y}$
+or $\ddpl{v_y}{x}$. However, in the general case of a <em class="emph">compressible</em>
+fluid there is another term in the stress which depends on other
+derivatives of the velocity. The general expression is
+\begin{equation}
+\label{Eq:II:41:13}
+S_{ij}=\eta\biggl(\ddp{v_i}{x_j}+\ddp{v_j}{x_i}\biggr)+
+\eta'\,\delta_{ij}(\FLPdiv{\FLPv}),
+\end{equation}
+
+where $x_i$ is any one of the rectangular coordinates $x$, $y$,
+or $z$, and $v_i$ is any one of the rectangular coordinates of the
+velocity. (The symbol $\delta_{ij}$ is the Kronecker delta which
+is $1$ when $i=j$ and $0$ for $i\neq j$.)  The additional term adds
+$\eta'\,\FLPdiv{\FLPv}$ to all the diagonal elements $S_{ii}$ of the
+stress tensor. If the liquid is incompressible $\FLPdiv{\FLPv}=0$, and
+this extra term doesn’t appear. So it has to do with internal forces
+during compression. So two constants are required to describe the
+liquid, just as we had two constants to describe a homogeneous elastic
+solid. The coefficient $\eta$ is the “ordinary” coefficient of
+viscosity which we have already encountered. It is also called the
+<em class="emph">first coefficient of viscosity</em> or the “shear viscosity
+coefficient,” and the new coefficient $\eta'$ is called the
+<em class="emph">second coefficient of viscosity</em>.</p>
+</div>
+<div id="Ch41-S2-p2" class="para">
+<p class="p">Now we want to determine the viscous force per unit volume,
+$\FLPf_{\text{visc}}$, so we can put it into Eq. (<a href="#mjx-eqn-EqII411">41.1</a>)
+to get the equation of motion for a real fluid. The force on a small
+cubical volume element of a fluid is the resultant of the forces on
+all the six faces. Taking them two at a time, we will get differences
+that depend on the derivatives of the stresses, and, therefore, on the
+second derivatives of the velocity. This is nice because it will get
+us back to a vector equation. The component of the viscous force per
+unit volume in the direction of the rectangular coordinate $x_i$ is
+<span class="eq-wide">
+\begin{equation}
+\begin{aligned}
+(f_{\text{visc}})_i &=\sum_{j=1}^3\ddp{S_{ij}}{x_j}\\
+ &=\sum_{j=1}^3\ddp{}{x_j}\biggl\{
+\eta\biggl(\ddp{v_i}{x_j}+\ddp{v_j}{x_i}\biggr)
+\biggr\}+
+\ddp{}{x_i}\,(\eta'\,\FLPdiv{\FLPv}).
+\end{aligned}
+\label{Eq:II:41:14}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+(f_{\text{visc}})_i =&\sum_{j=1}^3\ddp{S_{ij}}{x_j}\notag\\[.75ex]
+=&\sum_{j=1}^3\ddp{}{x_j}\biggl\{
+\eta\biggl(\ddp{v_i}{x_j}+\ddp{v_j}{x_i}\biggr)
+\biggr\}\notag\\
+\label{Eq:II:41:14}
+&+\;\;\ddp{}{x_i}\,(\eta'\,\FLPdiv{\FLPv}).
+\end{align}
+</span>
+Usually, the variation of the viscosity coefficients with position is
+not significant and can be neglected. Then, the viscous force per unit
+volume contains only second derivatives of the velocity. We saw in
+Chapter <a href="II_39.html">39</a> that the most general form of second derivatives
+that can occur in a vector equation is the sum of a term in the
+Laplacian ($\FLPdiv{\FLPnabla}\FLPv=\nabla^2\FLPv$), and a term in the
+gradient of the divergence $\bigl(\FLPgrad{(\FLPdiv{\FLPv})}\bigr)$.
+Equation (<a href="#mjx-eqn-EqII4114">41.14</a>) is just such a sum with the
+coefficients $\eta$ and $(\eta+\eta')$. We get
+\begin{equation}
+\label{Eq:II:41:15}
+\FLPf_{\text{visc}}=\eta\,\nabla^2\FLPv+(\eta+\eta')\,
+\FLPgrad{(\FLPdiv{\FLPv})}.
+\end{equation}
+
+In the incompressible case, $\FLPdiv{\FLPv}=0$, and the viscous force
+per unit volume is just $\eta\,\nabla^2\FLPv$. That is all that many
+people use; however, if you should want to calculate the absorption of
+sound in a fluid, you would need the second term.</p>
+</div>
+<div id="Ch41-S2-p3" class="para">
+<p class="p">We can now complete our general equation of motion for a real fluid.
+Substituting Eq. (<a href="#mjx-eqn-EqII4115">41.15</a>) into Eq. (<a href="#mjx-eqn-EqII411">41.1</a>), we get
+<span class="eq-wide">
+\begin{equation*}
+\rho\biggl\{\ddp{\FLPv}{t}+(\FLPv\cdot\FLPnabla)\FLPv\biggr\}=
+-\FLPgrad{p}-\rho\,\FLPgrad{\phi}+\eta\,\nabla^2\FLPv+
+(\eta+\eta')\,\FLPgrad{(\FLPdiv{\FLPv})}.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{gather*}
+\rho\biggl\{\ddp{\FLPv}{t}+(\FLPv\cdot\FLPnabla)\FLPv\biggr\}=\\[1.25ex]
+-\FLPgrad{p}-\rho\,\FLPgrad{\phi}+\eta\,\nabla^2\FLPv+
+(\eta+\eta')\,\FLPgrad{(\FLPdiv{\FLPv})}.
+\end{gather*}
+</span>
+It’s complicated. But that’s the way nature is.</p>
+</div>
+<div id="Ch41-S2-p4" class="para">
+<p class="p">If we introduce the vorticity $\FLPOmega=\FLPcurl{\FLPv}$, as we did
+before, we can write our equation as
+<span class="eq-wide">
+\begin{align}
+\label{Eq:II:41:16}
+\rho\biggl\{\ddp{\FLPv}{t}+\FLPOmega\times\FLPv+
+\frac{1}{2}\,\FLPgrad{v^2}\biggr\}=
+-\FLPgrad{p}&-\;\rho\,\FLPgrad{\phi}+\eta\,\nabla^2\FLPv\notag\\
+&\kern{-0.5em}+\;(\eta+\eta')\,\FLPgrad{(\FLPdiv{\FLPv})}.
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+\rho\biggl\{\ddp{\FLPv}{t}+\FLPOmega\times\FLPv+
+\frac{1}{2}\,\FLPgrad{v^2}\biggr\}=\\[1.25ex]
+-\FLPgrad{p}-\rho\,\FLPgrad{\phi}+\eta\,\nabla^2\FLPv
++(\eta+\eta')\,\FLPgrad{(\FLPdiv{\FLPv})}.
+\end{gathered}
+\label{Eq:II:41:16}
+\end{equation}
+</span>
+We are supposing again that the only body forces acting are
+conservative forces like gravity. To see what the new term means,
+let’s look at the incompressible fluid case. Then, if we take the curl
+of Eq. (<a href="#mjx-eqn-EqII4116">41.16</a>), we get
+\begin{equation}
+\label{Eq:II:41:17}
+\ddp{\FLPOmega}{t}+\FLPcurl{(\FLPOmega\times\FLPv)}=
+\frac{\eta}{\rho}\,\nabla^2\FLPOmega.
+\end{equation}
+
+This is like Eq. (<a href="II_40.html#mjx-eqn-EqII409">40.9</a>) except for the new term on the
+right-hand side. When the right-hand side was zero, we had the Helmholtz
+theorem that the vorticity stays with the fluid. Now, we have the rather
+complicated nonzero term on the right-hand side which, however, has
+straightforward physical consequences. If we disregard for the moment
+the term $\FLPcurl{(\FLPOmega\times\FLPv)}$, we have a <em class="emph">diffusion
+equation</em>. The new term means that the vorticity $\FLPOmega$
+<em class="emph">diffuses</em> through the fluid. If there is a large gradient in the
+vorticity, it will spread out into the neighboring fluid.
+</p>
+</div>
+<div id="Ch41-S2-p5" class="para">
+<p class="p">This is the term that causes the smoke ring to get thicker as it goes
+along. Also, it shows up nicely if you send a “clean” vortex (a
+“smokeless” ring made by the apparatus described in the last
+chapter) through a cloud of smoke. When it comes out of the cloud, it
+will have picked up some smoke, and you will see a hollow shell of a
+smoke ring. Some of the $\FLPOmega$ diffuses outward into the smoke,
+while still maintaining its forward motion with the vortex.</p>
+</div>
+</div>
+<div id="Ch41-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">41–3</span>The Reynolds number</h3>
+<div id="Ch41-S3-p1" class="para">
+<p class="p">We will now describe the changes which are made in the character of
+fluid flow as a consequence of the new viscosity term. We will look at
+two problems in some detail. The first of these is the flow of a fluid
+past a cylinder—a flow which we tried to calculate in the previous
+chapter using the theory for nonviscous flow. It turns out that the
+viscous equations can be solved by man today only for a few special
+cases. So some of what we will tell you is based on experimental
+measurements—assuming that the experimental model satisfies
+Eq. (<a href="#mjx-eqn-EqII4117">41.17</a>).
+</p>
+</div>
+<div id="Ch41-S3-p2" class="para">
+<p class="p">The mathematical problem is this: We would like the solution for the
+flow of an incompressible, viscous fluid past a long cylinder of
+diameter $D$. The flow should be given by Eq. (<a href="#mjx-eqn-EqII4117">41.17</a>)
+and by
+\begin{equation}
+\label{Eq:II:41:18}
+\FLPOmega=\FLPcurl{\FLPv}
+\end{equation}
+
+with the conditions that the velocity at large distances is some
+constant velocity, say $V$ (parallel to the $x$-axis), and at the
+surface of the cylinder is zero. That is,
+\begin{equation}
+\label{Eq:II:41:19}
+v_x=v_y=v_z=0
+\end{equation}
+
+for
+\begin{equation}
+x^2+y^2=\frac{D^2}{4}.\notag
+\end{equation}
+
+That specifies completely the mathematical problem.</p>
+</div>
+<div id="Ch41-S3-p3" class="para">
+<p class="p">If you look at the equations, you see that there are four different
+parameters to the problem: $\eta$, $\rho$, $D$, and $V$. You might
+think that we would have to give a whole series of cases for
+different $V$’s, different $D$’s, and so on. However, that is not the case. All
+the different possible solutions correspond to different values of
+<em class="emph">one parameter</em>. This is the most important general thing we can
+say about viscous flow. To see why this is so, notice first that the
+viscosity and density appear only in the ratio $\eta/\rho$—the
+<em class="emph">specific</em> viscosity. That reduces the number of independent
+parameters to three. Now suppose we measure all distances in the only
+length that appears in the problem, the diameter $D$ of the cylinder;
+that is, we substitute for $x$, $y$, $z$, the new variables $x'$,
+$y'$, $z'$ with
+\begin{equation*}
+x=x'D,\quad
+y=y'D,\quad
+z=z'D.
+\end{equation*}
+
+Then $D$ disappears from (<a href="#mjx-eqn-EqII4119">41.19</a>). In the same way, if we
+measure all velocities in terms of $V$—that is, we set $v=v'V$—we
+get rid of the $V$, and $v'$ is just equal to $1$ at large
+distances. Since we have fixed our units of length and velocity, our
+unit of time is now $D/V$; so we should set
+\begin{equation}
+\label{Eq:II:41:20}
+t=t'\,\frac{D}{V}.
+\end{equation}
+</p>
+</div>
+<div id="Ch41-S3-p4" class="para">
+<p class="p">With our new variables, the derivatives in Eq. (<a href="#mjx-eqn-EqII4118">41.18</a>)
+get changed from $\ddpl{}{x}$ to $(1/D)\,\ddpl{}{x'}$, and so on; so
+Eq. (<a href="#mjx-eqn-EqII4118">41.18</a>) becomes
+\begin{equation}
+\label{Eq:II:41:21}
+\FLPOmega=\FLPcurl{\FLPv}=\frac{V}{D}\,\FLPnabla'\times\FLPv'=
+\frac{V}{D}\,\FLPOmega'.
+\end{equation}
+
+Our main equation (<a href="#mjx-eqn-EqII4117">41.17</a>) then reads
+\begin{equation*}
+\ddp{\FLPOmega'}{t'}+\FLPnabla'\times(\FLPOmega'\times\FLPv')=
+\frac{\eta}{\rho VD}\,\nabla'^2\FLPOmega'.
+\end{equation*}
+
+All the constants condense into one factor which we write, following
+tradition, as $1/\ReynoldsR$:
+\begin{equation}
+\label{Eq:II:41:22}
+\ReynoldsR=\frac{\rho}{\eta}\,VD.
+\end{equation}
+
+If we just remember that all of our equations are to be written with
+all quantities in the new units, we can omit all the primes. Our
+equations for the flow are then
+\begin{equation}
+\label{Eq:II:41:23}
+\ddp{\FLPOmega}{t}+\FLPcurl{(\FLPOmega\times\FLPv)}=
+\frac{1}{\ReynoldsR}\,\nabla^2\FLPOmega.
+\end{equation}
+
+and
+\begin{equation}
+\FLPOmega=\FLPcurl{\FLPv}\notag
+\end{equation}
+
+with the conditions
+\begin{equation}
+\FLPv=\FLPzero\notag
+\end{equation}
+
+for
+\begin{equation}
+\label{Eq:II:41:24}
+x^2+y^2=1/4
+\end{equation}
+
+and
+\begin{equation}
+v_x=1,\quad
+v_y=v_z=0\notag
+\end{equation}
+
+for
+\begin{equation}
+x^2+y^2+z^2\gg1.\notag
+\end{equation}
+</p>
+</div>
+<div id="Ch41-S3-p5" class="para">
+<p class="p">What this all means physically is very interesting. It means, for
+example, that if we solve the problem of the flow for one velocity $V_1$
+and a certain cylinder diameter $D_1$, and then ask about the flow for a
+different diameter $D_2$ and a different fluid, the flow will be the
+same for the velocity $V_2$ which gives the same Reynolds number—that
+is, when
+\begin{equation}
+\label{Eq:II:41:25}
+\ReynoldsR_1=\frac{\rho_1}{\eta_1}\,V_1D_1=
+\ReynoldsR_2=\frac{\rho_2}{\eta_2}\,V_2D_2.
+\end{equation}
+
+For any two situations which have the same Reynolds number, the flows
+will “look” the same—in terms of the appropriate scaled $x'$, $y'$,
+$z'$, and $t'$. This is an important proposition because it
+means that we can determine what the behavior of the flow of air past
+an airplane wing will be without having to build an airplane and try
+it. We can, instead, make a model and make measurements using a
+velocity that gives the same Reynolds number. This is the principle
+which allows us to apply the results of “wind-tunnel” measurements
+on small-scale airplanes, or “model-basin” results on scale model
+boats, to the full-scale objects. Remember, however, that we can only
+do this provided the compressibility of the fluid can be
+neglected. Otherwise, a new quantity enters—the speed of sound. And
+different situations will really correspond to each other only if the
+ratio of $V$ to the sound speed is also the same. This latter ratio is
+called the <em class="emph">Mach number</em>. So, for velocities near the speed of
+sound or above, the flows are the same in two situations if
+<em class="emph">both</em> the <em class="emph">Mach number</em> and the <em class="emph">Reynolds number</em> are
+the same for both situations.</p>
+</div>
+</div>
+<div id="Ch41-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">41–4</span>Flow past a circular cylinder</h3>
+<div id="Ch41-F4" class="figure">
+<img src="img/FLP_II/f41-04/f41-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 41–4.</span>The drag coefficient $C_D$ of a circular cylinder as a function
+of the Reynolds number.
+</div>
+</div>
+<div id="Ch41-S4-p1" class="para">
+<p class="p">Let’s go back to the problem of low-speed (nearly incompressible) flow
+over the cylinder. We will give a qualitative description of the flow
+of a real fluid. There are many things we might want to know about
+such a flow—for instance, what is the drag force on the cylinder?
+The drag force on a cylinder is plotted in Fig. <a href="#Ch41-F4">41–4</a> as a function
+of $\ReynoldsR$—which is proportional to the air speed $V$ if
+everything else is held fixed. What is actually plotted is the
+so-called <em class="emph">drag coefficient</em> $C_D$, which is a
+dimensionless number equal to the force divided by $\tfrac{1}{2}\rho
+V^2Dl$, where $D$ is the diameter, $l$ is the length of the cylinder,
+and $\rho$ is the density of the liquid:
+\begin{equation*}
+C_D=\frac{F}{\tfrac{1}{2}\rho V^2Dl}.
+\end{equation*}
+
+The coefficient of drag varies in a rather complicated way, giving us
+a pre-hint that something rather interesting and complicated is
+happening in the flow. We will now describe the nature of flow for the
+different ranges of the Reynolds number. First, when the Reynolds
+number is very small, the flow is quite steady; that is, the velocity
+is constant at any place, and the flow goes around the cylinder. The
+actual distribution of the flow lines is, however, not like it is in
+potential flow. They are solutions of a somewhat different
+equation. When the velocity is very low or, what is equivalent, when
+the viscosity is very high so the stuff is like honey, then the
+inertial terms are negligible and the flow is described by the
+equation
+\begin{equation*}
+\nabla^2\FLPOmega=\FLPzero.
+\end{equation*}
+
+This equation was first solved by Stokes. He also solved the same
+problem for a sphere. If you have a small sphere moving under such
+conditions of low Reynolds number, the force needed to drag it is
+equal to $6\pi\eta aV$, where $a$ is the radius of the sphere and $V$
+is its velocity. This is a very useful formula because it tells the
+speed at which tiny grains of dirt (or other particles which can be
+approximated as spheres) move through a fluid under a given
+force—as, for instance, in a centrifuge, or in sedimentation, or
+diffusion. In the low Reynolds number region—for $\ReynoldsR$ less
+than $1$—the lines of $\FLPv$ around a <em class="emph">cylinder</em> are as drawn
+in Fig. <a href="#Ch41-F5">41–5</a>.</p>
+</div>
+<div id="Ch41-F5" class="figure">
+<img src="img/FLP_II/f41-05/f41-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 41–5.</span>Viscous flow (low velocities) around a circular cylinder.
+</div>
+</div>
+
+<div id="Ch41-S4-p2" class="para">
+<p class="p">If we now increase the fluid speed to get a Reynolds number somewhat
+greater than $1$, we find that the flow is different. There is a
+circulation behind the sphere, as shown in Fig. <a href="#Ch41-F6">41–6</a>(b). It is still
+an open question as to whether there is always a circulation there
+even at the smallest Reynolds number or whether things suddenly change
+at a certain Reynolds number. It used to be thought that the
+circulation grew continuously. But it is now thought that it appears
+suddenly, and it is certain that the circulation increases
+with $\ReynoldsR$. In any case, there is a different character to the flow
+for $\ReynoldsR$ in the region from about $10$ to $30$. There is a
+pair of vortices behind the cylinder.</p>
+</div>
+
+<div id="Ch41-F6" class="figure">
+<img class="first" src="img/FLP_II/f41-06/f41-06_tc_big_a.svgz"><img class="middle" src="img/FLP_II/f41-06/f41-06_tc_big_b.svgz"><img class="middle" src="img/FLP_II/f41-06/f41-06_tc_big_c.svgz"><img class="middle" src="img/FLP_II/f41-06/f41-06_tc_big_d.svgz"><img class="last" src="img/FLP_II/f41-06/f41-06_tc_big_e.svgz"><div class="caption">
+<span class="tag">Fig. 41–6.</span>Flow past a cylinder for various Reynolds numbers.
+</div>
+</div>
+
+<div id="Ch41-S4-p3" class="para">
+<p class="p">The flow changes again by the time we get to a number of $40$ or so.
+There is suddenly a complete change in the character of the motion. What
+happens is that one of the vortices behind the cylinder gets so long
+that it breaks off and travels downstream with the fluid. Then the fluid
+curls around behind the cylinder and makes a new vortex. The vortices
+peel off alternately on each side, so an instantaneous view of the flow
+looks roughly as sketched in Fig. <a href="#Ch41-F6">41–6</a>(c). The stream of
+vortices is called a “Kármán vortex street.”  They always appear
+for $\ReynoldsR&gt;40$. We show a photograph of such a flow in
+Fig. <a href="#Ch41-F7">41–7</a>.</p>
+</div>
+
+<div id="Ch41-F7" class="figure">
+<img src="img/FLP_II/f41-07/f41-07_mg.jpg"><div class="caption">
+<span class="tag">Fig. 41–7.</span>Photograph by Ludwig Prandtl of the “vortex street” in the
+flow behind a cylinder.
+</div>
+</div>
+
+<div id="Ch41-S4-p4" class="para">
+<p class="p">The difference between the two flows in Fig. <a href="#Ch41-F6">41–6</a>(c)
+and <a href="#Ch41-F6">41–6</a>(b) or <a href="#Ch41-F6">41–6</a>(a) is almost a complete
+difference in regime. In Fig. <a href="#Ch41-F6">41–6</a>(a) or (b), the
+velocity is constant, whereas in Fig. <a href="#Ch41-F6">41–6</a>(c), the velocity
+at any point varies with time. There is no steady solution
+above $\ReynoldsR=40$—which we have marked on Fig. <a href="#Ch41-F4">41–4</a>
+by a dashed line. For these higher Reynolds numbers, the flow varies
+with time but in a <em class="emph">regular</em>, cyclic fashion.</p>
+</div>
+
+<div id="Ch41-S4-p5" class="para">
+<p class="p">We can get a physical idea of how these vortices are produced. We know
+that the fluid velocity must be zero at the surface of the cylinder
+and that it also increases rapidly away from that surface. Vorticity
+is created by this large local variation in fluid velocity. Now when
+the main stream velocity is low enough, there is sufficient time for
+this vorticity to diffuse out of the thin region near the solid
+surface where it is produced and to grow into a large region of
+vorticity. This physical picture should help to prepare us for the
+next change in the nature of the flow as the main stream velocity,
+or $\ReynoldsR$, is increased still more.</p>
+</div>
+<div id="Ch41-S4-p6" class="para">
+<p class="p">As the velocity gets higher and higher, there is less and less time
+for the vorticity to diffuse into a larger region of fluid. By the
+time we reach a Reynolds number of several hundred, the vorticity
+begins to fill in a thin band, as shown in Fig. <a href="#Ch41-F6">41–6</a>(d). In this
+layer the flow is chaotic and irregular. The region is called the
+<em class="emph">boundary layer</em> and this irregular flow
+region works its way farther and farther upstream as $\ReynoldsR$ is
+increased. In the turbulent region, the velocities are very irregular
+and “noisy”; also the flow is no longer two-dimensional but twists and
+turns in all three dimensions. There is still a regular alternating
+motion superimposed on the turbulent one.</p>
+</div>
+<div id="Ch41-S4-p7" class="para">
+<p class="p">As the Reynolds number is increased further, the turbulent region
+works its way forward until it reaches the point where the flow lines
+leave the cylinder—for flows somewhat above $\ReynoldsR=10^5$. The
+flow is as shown in Fig. <a href="#Ch41-F6">41–6</a>(e), and we have what is called a
+“turbulent boundary layer.” Also, there is a drastic change in, the
+drag force; it drops by a large factor, as shown in Fig. <a href="#Ch41-F4">41–4</a>. In
+this speed region, the drag force actually <em class="emph">decreases</em> with
+increasing speed. There seems to be little evidence of periodicity.</p>
+</div>
+<div id="Ch41-S4-p8" class="para">
+<p class="p">What happens for still larger Reynolds numbers? As we increase the
+speed further, the wake increases in size again and the drag
+increases. The latest experiments—which go up to $\ReynoldsR=10^7$
+or so—indicate that a new periodicity appears in the wake, either
+because the whole wake is oscillating back and forth in a gross motion
+or because some new kind of vortex is occurring together with an
+irregular noisy motion. The details are as yet not entirely clear, and
+are still being studied experimentally.</p>
+</div>
+</div>
+<div id="Ch41-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">41–5</span>The limit of zero viscosity</h3>
+<div id="Ch41-S5-p1" class="para">
+<p class="p">We would like to point out that none of the flows we have described are
+anything like the potential flow solution we found in the preceding
+chapter. This is, at first sight, quite surprising. After all,
+$\ReynoldsR$ is proportional to $1/\eta$. So $\eta$ going to zero is
+equivalent to $\ReynoldsR$ going to infinity. And if we take the limit
+of large $\ReynoldsR$ in Eq. (<a href="#mjx-eqn-EqII4123">41.23</a>), we get rid of the
+right-hand side and get just the equations of the last chapter. Yet, you
+would find it hard to believe that the highly turbulent flow
+at $\ReynoldsR=10^7$ was approaching the smooth flow computed from the
+equations of “dry” water. How can it be that as we
+approach $\ReynoldsR=\infty$, the flow described by Eq. (<a href="#mjx-eqn-EqII4123">41.23</a>) gives
+a completely different solution from the one we obtained taking $\eta=0$
+to start out with? The answer is very interesting. Note that the
+right-hand term of Eq. (<a href="#mjx-eqn-EqII4123">41.23</a>) has $1/\ReynoldsR$ times a
+<em class="emph">second derivative</em>. It is a higher derivative than any other
+derivative in the equation. What happens is that although the
+coefficient $1/\ReynoldsR$ is small, there are very rapid variations
+of $\FLPOmega$ in the space near the surface. These rapid variations
+compensate for the small coefficient, and the product <em class="emph">does not go
+to zero</em> with increasing $\ReynoldsR$. The solutions do not approach the
+limiting case as the coefficient of $\nabla^2\FLPOmega$ goes to zero.</p>
+</div>
+<div id="Ch41-S5-p2" class="para">
+<p class="p">You may be wondering, “What is the fine-grain turbulence and how does
+it maintain itself? How can the vorticity which is made somewhere at the
+edge of the cylinder generate so much noise in the background?” The
+answer is again interesting. Vorticity has a tendency to amplify itself.
+If we forget for a moment about the diffusion of vorticity which causes
+a loss, the laws of flow say (as we have seen) that the vortex lines are
+carried along with the fluid, at the velocity $\FLPv$. We can imagine a
+certain number of lines of $\FLPOmega$ which are being distorted and
+twisted by the complicated flow pattern of $\FLPv$. This pulls the lines
+closer together and mixes them all up. Lines that were simple before
+will get knotted and pulled close together. They will be longer and
+tighter together. The strength of the vorticity will increase and its
+irregularities—the pluses and minuses—will, in general, increase. So
+the magnitude of vorticity in three dimensions increases as we twist the
+fluid about.</p>
+</div>
+<div id="Ch41-S5-p3" class="para">
+<p class="p">You might well ask, “When is the potential flow a satisfactory theory
+at all?” In the first place, it is satisfactory outside the turbulent
+region where the vorticity has not entered appreciably by
+diffusion. By making special streamlined bodies, we can keep the
+turbulent region as small as possible; the flow around airplane
+wings—which are carefully designed—is almost entirely true
+potential flow.</p>
+</div>
+</div>
+<div id="Ch41-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">41–6</span>Couette flow</h3>
+<div id="Ch41-F8" class="figure">
+<img class="first" src="img/FLP_II/f41-08/f41-08_tc_iPad_big_a.svgz"><img class="last"  src="img/FLP_II/f41-08/f41-08_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 41–8.</span>Liquid flow patterns between two transparent rotating
+cylinders.
+</div>
+</div>
+<div id="Ch41-S6-p1" class="para">
+<p class="p">It is possible to demonstrate that the complex and shifting character of
+the flow past a cylinder is not special but that the great variety of
+flow possibilities occurs generally. We have worked out in
+Section <a href="#Ch41-S1">41–1</a> a solution for the viscous flow between two
+cylinders, and we can compare the results with what actually happens. If
+we take two concentric cylinders with an oil in the space between them
+and put a fine aluminum powder as a suspension in the oil, the flow is
+easy to see. Now if we turn the outer cylinder slowly, nothing
+unexpected happens; see Fig. <a href="#Ch41-F8">41–8</a>(a). Alternatively, if we
+turn the inner cylinder slowly, nothing very striking occurs. However,
+if we turn the inner cylinder at a higher rate, we get a surprise. The
+fluid breaks into horizontal bands, as indicated in
+Fig. <a href="#Ch41-F8">41–8</a>(b). When the outer cylinder rotates at a similar
+rate with the inner one at rest, no such effect occurs. How can it be
+that there is a difference between rotating the inner or the out
+cylinder? After all, the flow pattern we derived in
+Section <a href="#Ch41-S1">41–1</a> depended only on $\omega_b-\omega_a$. We can
+get the answer by looking at the cross sections shown in
+Fig. <a href="#Ch41-F9">41–9</a>. When the inner layers of the fluid are moving
+more rapidly than the outer ones, they tend to move <em class="emph">outward</em>—the
+centrifugal force
+is larger than the pressure holding them in place. A
+whole layer cannot move out uniformly because the outer layers are in
+the way. It must break into cells and circulate, as shown in
+Fig. <a href="#Ch41-F9">41–9</a>(b). It is like the convection currents in a room
+which has hot air at the bottom. When the inner cylinder is at rest and
+the outer cylinder has a high velocity, the centrifugal
+forces build up
+a pressure gradient which keeps everything in equilibrium—see
+Fig. <a href="#Ch41-F9">41–9</a>(c) (as in a room with hot air at the top).
+</p>
+</div>
+<div id="Ch41-F9" class="figure">
+<img class="first"  src="img/FLP_II/f41-09/f41-09_tc_iPad_big_a.svgz"><img class="middle" src="img/FLP_II/f41-09/f41-09_tc_iPad_big_b.svgz"><img class="last"   src="img/FLP_II/f41-09/f41-09_tc_iPad_big_c.svgz"><div class="caption">
+<span class="tag">Fig. 41–9.</span>Why the flow breaks up into bands.
+</div>
+</div>
+<div id="Ch41-S6-p2" class="para">
+<p class="p">Now let’s speed up the inner cylinder. At first, the number of bands
+increases. Then suddenly you see the bands become wavy, as in
+Fig. <a href="#Ch41-F8">41–8</a>(c), and the waves travel around the cylinder. The
+speed of these waves is easily measured. For high rotation speeds they
+approach $1/3$ the speed of the inner cylinder. And no one knows why!
+There’s a challenge. A simple number like $1/3$, and no explanation. In
+fact, the whole mechanism of the wave formation is not very well
+understood; yet it is steady laminar flow.</p>
+</div>
+<div id="Ch41-S6-p3" class="para">
+<p class="p">If we now start rotating the outer cylinder also—but in the opposite
+direction—the flow pattern starts to break up. We get wavy regions
+alternating with apparently quiet regions, as sketched in
+Fig. <a href="#Ch41-F8">41–8</a>(d), making a spiral pattern. In these “quiet”
+regions, however, we can see that the flow is really quite irregular; it
+is, in fact completely turbulent. The wavy regions also begin to show
+irregular turbulent flow. If the cylinders are rotated still more
+rapidly, the whole flow becomes chaotically turbulent.</p>
+</div>
+<div id="Ch41-S6-p4" class="para">
+<p class="p">In this simple experiment we see many interesting regimes of flow
+which are quite different, and yet which are all contained in our
+simple equation for various values of the one parameter $\ReynoldsR$.
+With our rotating cylinders, we can see many of the
+effects which occur in the flow past a cylinder: first, there is a
+steady flow; second, a flow sets in which varies in time but in a
+regular, smooth way; finally, the flow becomes completely
+irregular. You have all seen the same effects in the column of smoke
+rising from a cigarette in quiet air. There is a smooth steady column
+followed by a series of twistings as the stream of smoke begins to
+break up, ending finally in an irregular churning cloud of smoke.</p>
+</div>
+<div id="Ch41-S6-p5" class="para">
+<p class="p">The main lesson to be learned from all of this is that a tremendous
+variety of behavior is hidden in the simple set of equations
+in (<a href="#mjx-eqn-EqII4123">41.23</a>). All the solutions are for the same equations,
+only with different values of $\ReynoldsR$. We have no reason to think
+that there are any terms missing from these equations. The only
+difficulty is that we do not have the mathematical power today to
+analyze them except for very small Reynolds numbers—that is, in the
+completely viscous case. That we have written an equation does not
+remove from the flow of fluids its charm or mystery or its surprise.</p>
+</div>
+<div id="Ch41-S6-p6" class="para">
+<p class="p">If such variety is possible in a simple equation with only one
+parameter, how much more is possible with more complex equations!
+Perhaps the fundamental equation that describes the swirling nebulae
+and the condensing, revolving, and exploding stars and galaxies is
+just a simple equation for the hydrodynamic behavior of nearly pure
+hydrogen gas. Often, people in some unjustified fear of physics say
+you can’t write an equation for life. Well, perhaps we can. As a
+matter of fact, we very possibly already have the equation to a
+sufficient approximation when we write the equation of quantum
+mechanics:
+\begin{equation*}
+H\psi=-\frac{\hbar}{i}\,\ddp{\psi}{t}.
+\end{equation*}
+
+We have just seen that the complexities of things can so easily and
+dramatically escape the simplicity of the equations which describe
+them. Unaware of the scope of simple equations, man has often
+concluded that nothing short of God, not mere equations, is required
+to explain the complexities of the world.</p>
+</div>
+<div id="Ch41-S6-p7" class="para">
+<p class="p">We have written the equations of water flow. From experiment, we find
+a set of concepts and approximations to use to discuss the
+solution—vortex streets, turbulent wakes, boundary layers. When we
+have similar equations in a less familiar situation, and one for which
+we cannot yet experiment, we try to solve the equations in a
+primitive, halting, and confused way to try to determine what new
+qualitative features may come out, or what new qualitative forms are a
+consequence of the equations. Our equations for the sun, for example,
+as a ball of hydrogen gas, describe a sun without sunspots, without
+the rice-grain structure of the surface, without prominences, without
+coronas. Yet, all of these are really in the equations; we just
+haven’t found the way to get them out.</p>
+</div>
+<div id="Ch41-S6-p8" class="para">
+<p class="p">There are those who are going to be disappointed when no life is found
+on other planets. Not I—I want to be reminded and delighted and
+surprised once again, through interplanetary exploration, with the
+infinite variety and novelty of phenomena that can be generated from
+such simple principles. The test of science is its ability to
+predict. Had you never visited the earth, could you predict the
+thunderstorms, the volcanos, the ocean waves, the auroras, and the
+colorful sunset? A salutary lesson it will be when we learn of all
+that goes on on each of those dead planets—those eight or ten balls,
+each agglomerated from the same dust cloud and each obeying exactly
+the same laws of physics.</p>
+</div>
+<div id="Ch41-S6-p9" class="para">
+<p class="p">The next great era of awakening of human intellect may well produce a
+method of understanding the <em class="emph">qualitative</em> content of
+equations. Today we cannot. Today we cannot see that the water flow
+equations contain such things as the barber pole structure of
+turbulence that one sees between rotating cylinders. Today we cannot
+see whether Schrödinger’s equation contains frogs, musical
+composers, or morality—or whether it does not. We cannot say whether
+something beyond it like God is needed, or not. And so we can all hold
+strong opinions either way.
+</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  You <em class="emph">can</em> blow
+<em class="emph">large</em> dust particles from a table top, but <em class="emph">not</em> the very
+finest ones. The large ones stick up into the breeze.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  You can imagine circumstances when
+it is not true: glass is theoretically a “liquid,” but it can
+certainly be made to slide along a steel surface. So our assertion
+must break down somewhere.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

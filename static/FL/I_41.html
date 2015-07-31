@@ -1,0 +1,1251 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 41: The Brownian Movement</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "41." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch41" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">41</span>The Brownian Movement</h2>
+<div id="Ch41-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">41–1</span>Equipartition of energy</h3>
+<div id="Ch41-S1-p1" class="para">
+<p class="p">The Brownian movement was discovered in 1827 by
+Robert Brown, a botanist. While he
+was studying microscopic life, he noticed little particles of plant
+pollens jiggling around in the liquid he was looking at in the
+microscope, and he was wise enough to realize that these were not
+living, but were just little pieces of dirt moving around in the water.
+In fact he helped to demonstrate that this had nothing to do with life
+by getting from the ground an old piece of quartz in which there was
+some water trapped. It must have been trapped for millions and millions
+of years, but inside he could see the same motion. What one sees is that
+very tiny particles are jiggling all the time.</p>
+</div>
+<div id="Ch41-S1-p2" class="para">
+<p class="p">This was later proved to be one of the effects of <em class="emph">molecular
+motion</em>, and we can understand it qualitatively
+by thinking of a great push ball on a playing field, seen from a great
+distance, with a lot of people underneath, all pushing the ball in
+various directions. We cannot see the people because we imagine that we
+are too far away, but we can see the ball, and we notice that it moves
+around rather irregularly. We also know, from the theorems that we have
+discussed in previous chapters, that the mean kinetic energy of a small
+particle suspended in a liquid or a gas will be $\tfrac{3}{2}kT$ even
+though it is very heavy compared with a molecule. If it is very heavy,
+that means that the speeds are relatively slow, but it turns out,
+actually, that the speed is not really so slow. In fact, we cannot see
+the speed of such a particle very easily because although the mean
+kinetic energy is $\tfrac{3}{2}kT$, which represents a speed of a
+millimeter or so per second for an object a micron or two in diameter,
+this is very hard to see even in a microscope, because the particle
+continuously reverses its direction and does not get anywhere. How far
+it does get we will discuss at the end of the present chapter. This
+problem was first solved by Einstein at the beginning of the 20th century.</p>
+</div>
+<div id="Ch41-S1-p3" class="para">
+<p class="p">Incidentally, when we say that the mean kinetic energy of this
+particle is $\tfrac{3}{2}kT$, we claim to have derived this result
+from the kinetic theory, that is, from Newton’s laws. We shall find
+that we can derive all kinds of things—marvelous things—from the
+kinetic theory, and it is most interesting that we can apparently get
+so much from so little. Of course we do not mean that Newton’s
+laws
+are “little”—they are enough to do it, really—what we mean is
+that <em class="emph">we</em> did not do very much. How do we get so much out? The
+answer is that we have been perpetually making a certain important
+assumption, which is that if a given system is in thermal equilibrium
+at some temperature, it will also be in thermal equilibrium with
+<em class="emph">anything else</em> at the same temperature. For instance, if we
+wanted to see how a particle would move if it was really colliding
+with water, we could imagine that there was a gas present, composed of
+another kind of particle, little fine pellets that (we suppose) do not
+interact with water, but only hit the particle with “hard”
+collisions. Suppose the particle has a prong sticking out of it; all
+our pellets have to do is hit the prong. We know all about this
+imaginary gas of pellets at temperature $T$—it is an ideal
+gas. Water is complicated, but an ideal gas is simple. Now, <em class="emph">our
+particle has to be in equilibrium with the gas of pellets</em>. Therefore,
+the mean motion of the particle must be what we get for gaseous
+collisions, because if it were not moving at the right speed relative
+to the water but, say, was moving faster, that would mean that the
+pellets would pick up energy from it and get hotter than the
+water. But we had started them at the same temperature, and we assume
+that if a thing is once in equilibrium, it stays in
+equilibrium—parts of it do not get hotter and other parts colder,
+spontaneously.
+</p>
+</div>
+<div id="Ch41-S1-p4" class="para">
+<p class="p">This proposition is true and can be proved from the laws of mechanics,
+but the proof is very complicated and can be established only by using
+advanced mechanics. It is much easier to prove in quantum mechanics than
+it is in classical mechanics. It was proved first by
+Boltzmann, but for now we simply
+take it to be true, and then we can argue that our particle has to have
+$\tfrac{3}{2}kT$ of energy if it is hit with artificial pellets, so it
+also must have $\tfrac{3}{2}kT$ when it is being hit with water at the
+same temperature and we take away the pellets; so it
+is $\tfrac{3}{2}kT$. It is a strange line of argument, but perfectly valid.</p>
+</div>
+<div id="Ch41-S1-p5" class="para">
+<p class="p">In addition to the motion of colloidal particles for which the Brownian
+movement was first discovered, there are a number of other phenomena,
+both in the laboratory and in other situations, where one can see
+Brownian movement. If we are trying to build the most delicate possible
+equipment, say a very small mirror on a thin quartz fiber for a very
+sensitive ballistic galvanometer (Fig. <a href="#Ch41-F1">41–1</a>), the mirror
+does not stay put, but jiggles all the time—<em class="emph">all the time</em>—so
+that when we shine a light on it and look at the position of the spot,
+we do not have a perfect instrument because the mirror is always
+jiggling. Why?  Because the average kinetic energy of rotation of this
+mirror has to be, on the average, $\tfrac{1}{2}kT$.</p>
+</div>
+<div id="Ch41-F1" class="figure">
+<img class="first" src="img/FLP_I/f41-01/f41-01_tc_big_a.svgz"><img class="last" src="img/FLP_I/f41-01/f41-01_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 41–1.</span>(a) A sensitive light-beam galvanometer. Light from a
+source $L$ is reflected from a small mirror onto a scale. (b) A
+schematic record of the reading of the scale as a function of the time.
+</div>
+</div>
+<div id="Ch41-S1-p6" class="para">
+<p class="p">What is the mean-square angle over which the mirror will wobble?
+Suppose we find the natural vibration period of the mirror by tapping
+on one side and seeing how long it takes to oscillate back and forth,
+and we also know the moment of inertia, $I$. We know the formula for
+the kinetic energy of rotation—it is given by Eq. (<a href="I_19.html#mjx-eqn-EqI198">19.8</a>):
+$T = \tfrac{1}{2}I\omega^2$. That is the kinetic energy, and the
+potential energy that goes with it will be proportional to the square of
+the angle—it is $V = \tfrac{1}{2}\alpha\theta^2$. But, if we know the
+period $t_0$ and calculate from that the natural frequency $\omega_0 =
+2\pi/t_0$, then the potential energy is $V =
+\tfrac{1}{2}I\omega_0^2\theta^2$. Now we know that the average kinetic
+energy is $\tfrac{1}{2}kT$, but since it is a harmonic oscillator the
+average potential energy is also $\tfrac{1}{2}kT$. Thus
+\begin{equation}
+\tfrac{1}{2}I\omega_0^2\avg{\theta^2} =
+\tfrac{1}{2}kT,\notag
+\end{equation}
+or
+\begin{equation}
+\label{Eq:I:41:1}
+\avg{\theta^2} = kT/I\omega_0^2.
+\end{equation}
+In this way we can calculate the oscillations of a galvanometer
+mirror, and thereby find what the limitations of our instrument will
+be. If we want to have smaller oscillations, we have to cool the
+mirror. An interesting question is, <em class="emph">where</em> to cool it. This
+depends upon where it is getting its “kicks” from. If it is through
+the fiber, we cool it at the top—if the mirror is surrounded by a
+gas and is getting hit mostly by collisions in the gas, it is better
+to cool the gas. As a matter of fact, if we know where the
+<em class="emph">damping</em> of the oscillations comes from, it turns out that that
+is always the <em class="emph">source</em> of the fluctuations also, a point which we
+will come back to.</p>
+</div>
+<div id="Ch41-F2" class="figure">
+<img class="first" src="img/FLP_I/f41-02/f41-02_tc_big_a.svgz"><img class="last" src="img/FLP_I/f41-02/f41-02_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 41–2.</span>A high-$Q$ resonant circuit. (a) Actual circuit, at
+temperature $T$. (b) Artificial circuit, with an ideal (noiseless)
+resistance and a “noise generator” $G$.
+</div>
+</div>
+<div id="Ch41-S1-p7" class="para">
+<p class="p">The same thing works, amazingly enough, in <em class="emph">electrical
+circuits</em>. Suppose that we are building a very sensitive, accurate
+amplifier for a definite frequency and have a resonant circuit
+(Fig. <a href="#Ch41-F2">41–2</a>) in the input so as to make it very sensitive to
+this certain frequency, like a radio receiver, but a really good one.
+Suppose we wish to go down to the very lowest limit of things, so we
+take the voltage, say off the inductance, and send it into the rest of
+the amplifier. Of course, in any circuit like this, there is a certain
+amount of loss. It is not a perfect resonant circuit, but it is a very
+good one and there is a little resistance, say (we put the resistor in
+so we can see it, but it is supposed to be small). Now we would like to
+find out: How much does the voltage across the inductance fluctuate?
+<em class="emph">Answer:</em> We know that $\tfrac{1}{2}LI^2$ is the “kinetic
+energy”—the energy associated with a coil in a resonant circuit
+(Chapter <a href="I_25.html">25</a>). Therefore the mean value of $\tfrac{1}{2}LI^2$
+is equal to $\tfrac{1}{2}kT$—that tells us what the rms current is and
+we can find out what the rms voltage is from the rms current. For if we
+want the voltage across the inductance the formula is $\hat{V}_L =
+i\omega L\hat{I}$, and the mean absolute square voltage on the
+inductance is $\avg{V_L^2} = L^2\omega_0^2\avg{I^2}$, and putting in
+$\tfrac{1}{2}L\avg{I^2} = \tfrac{1}{2}kT$, we obtain
+\begin{equation}
+\label{Eq:I:41:2}
+\avg{V_L^2} = L\omega_0^2 kT.
+\end{equation}
+So now we can design circuits and tell when we are going to get what is
+called <em class="emph">Johnson noise</em>, the noise associated with thermal
+fluctuations!</p>
+</div>
+<div id="Ch41-S1-p8" class="para">
+<p class="p">Where do the fluctuations come from this time? They come again from the
+<em class="emph">resistor</em>—they come from the fact that the
+electrons in the resistor are jiggling around because
+they are in thermal equilibrium with the matter in the
+resistor, and they make fluctuations in the density of
+electrons. They thus make tiny electric fields which drive the resonant
+circuit.</p>
+</div>
+<div id="Ch41-S1-p9" class="para">
+<p class="p">Electrical engineers represent the answer in another way. Physically,
+the resistor is effectively the source of noise.
+However, we may replace the real circuit having an honest, true physical
+resistor which is making noise, by an artificial circuit
+which contains a little generator that is going to <em class="emph">represent</em> the
+noise, and now the resistor is otherwise ideal—no
+noise comes from it. All the noise is in the artificial generator. And
+so if we knew the characteristics of the noise generated by a
+resistor, if we had the formula for that, then we could
+calculate what the circuit is going to do in response to that noise. So,
+we need a formula for the noise fluctuations. Now the noise that is
+generated by the resistor is at all frequencies, since
+the resistor by itself is not resonant. Of course the
+resonant circuit only “listens” to the part that is near the right
+frequency, but the resistor has many different
+frequencies in it. We may describe how strong the generator is, as
+follows: The mean power that the resistor would absorb
+if it were connected directly across the noise generator would
+be $\avg{E^2}/R$, if $E$ were the voltage from the generator. But we
+would like to know in more detail how much power there is at every
+frequency. There is very little power in any one frequency; it is a
+distribution. Let $P(\omega)\,d\omega$ be the power that the generator
+would deliver in the frequency range $d\omega$ into the very same
+resistor. Then we can prove (we shall prove it for
+another case, but the mathematics is exactly the same) that the power
+comes out \begin{equation}
+\label{Eq:I:41:3}
+P(\omega)\,d\omega = (2/\pi)kT\,d\omega,
+\end{equation}
+and is <em class="emph">independent of the resistance</em> when put this way.</p>
+</div>
+</div>
+<div id="Ch41-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">41–2</span>Thermal equilibrium of radiation</h3>
+<div id="Ch41-S2-p1" class="para">
+<p class="p">Now we go on to consider a still more advanced and interesting
+proposition that is as follows. Suppose we have a charged oscillator
+like those we were talking about when we were discussing light, let us
+say an electron oscillating up and down in an atom. If it oscillates up
+and down, it radiates light. Now suppose that this oscillator is in a
+very thin gas of other atoms, and that from time to time the atoms
+collide with it. Then in equilibrium, after a long time, this oscillator
+will pick up energy such that its kinetic energy of oscillation
+is $\tfrac{1}{2}kT$, and since it is a harmonic oscillator, its entire
+energy will become $kT$. That is, of course, a wrong description so far,
+because the oscillator carries <em class="emph">electric charge</em>, and if it has an
+energy $kT$ it is shaking up and down and <em class="emph">radiating light</em>.
+Therefore it is impossible to have equilibrium of real matter alone
+without the charges in it emitting light, and as light is emitted,
+energy flows away, the oscillator loses its $kT$ as time goes on, and
+thus the whole gas which is colliding with the oscillator gradually
+cools off. And that is, of course, the way a warm stove cools, by
+radiating the light into the sky, because the atoms are jiggling their
+charge and they continually radiate, and slowly, because of this
+radiation, the jiggling motion slows down.</p>
+</div>
+<div id="Ch41-S2-p2" class="para">
+<p class="p">On the other hand, if we enclose the whole thing in a box so that the
+light does not go away to infinity, then we <em class="emph">can</em> eventually get
+thermal equilibrium. We may either put the gas in a box where we can say
+that there are other radiators in the box walls sending light back or,
+to take a nicer example, we may suppose the box has mirror walls. It is
+easier to think about that case. Thus we assume that all the radiation
+that goes out from the oscillator keeps running around in the box. Then,
+of course, it is true that the oscillator starts to radiate, but pretty
+soon it can maintain its $kT$ of energy in spite of the fact that it is
+radiating, because it is being illuminated, we may say, by its own light
+reflected from the walls of the box. That is, after a while there is a
+great deal of light rushing around in the box, and although the
+oscillator is radiating some, the light comes back and returns some of
+the energy that was radiated.</p>
+</div>
+<div id="Ch41-S2-p3" class="para">
+<p class="p">We shall now determine how much light there must be in such a box at
+temperature $T$ in order that the shining of the light on this
+oscillator will generate just enough energy to account for the light
+it radiated.</p>
+</div>
+<div id="Ch41-S2-p4" class="para">
+<p class="p">Let the gas atoms be very few and far between, so that we have an
+ideal oscillator with no resistance except radiation resistance. Then
+we consider that at thermal equilibrium the oscillator is doing two
+things at the same time. First, it has a mean energy $kT$, and we
+calculate how much radiation it emits. Second, this radiation should
+be exactly the amount that would result because of the fact that the
+light shining on the oscillator is scattered. Since there is nowhere
+else the energy can go, this effective radiation is really just
+scattered light from the light that is in there.</p>
+</div>
+<div id="Ch41-S2-p5" class="para">
+<p class="p">Thus we first calculate the energy that is radiated by the oscillator
+per second, if the oscillator has a certain energy. (We borrow from
+Chapter <a href="I_32.html">32</a> on radiation resistance a number of equations
+without going back over their derivation.) The energy radiated per
+radian divided by the energy of the oscillator is called $1/Q$
+(Eq. <a href="I_32.html#mjx-eqn-EqI328">32.8</a>): $1/Q = (dW/dt)/\omega_0W$. Using the
+quantity $\gamma$, the damping constant, this can also be written as $1/Q =
+\gamma/\omega_0$, where $\omega_0$ is the natural frequency of the
+oscillator—if gamma is very small, $Q$ is very large. The energy
+radiated per second is then
+\begin{equation}
+\label{Eq:I:41:4}
+\ddt{W}{t} = \frac{\omega_0W}{Q} = \frac{\omega_0W\gamma}{\omega_0} =
+\gamma W.
+\end{equation}
+The energy radiated per second is thus simply gamma times the energy
+of the oscillator. Now the oscillator should have an average
+energy $kT$, so we see that gamma $kT$ is the average amount of energy
+radiated per second:
+\begin{equation}
+\label{Eq:I:41:5}
+\avg{dW/dt} = \gamma kT.
+\end{equation}
+Now we only have to know what gamma is. Gamma is easily found from
+Eq. (<a href="I_32.html#mjx-eqn-EqI3212">32.12</a>). It is
+\begin{equation}
+\label{Eq:I:41:6}
+\gamma = \frac{\omega_0}{Q} = \frac{2}{3}\,
+\frac{r_0\omega_0^2}{c},
+\end{equation}
+where $r_0 = e^2/mc^2$ is the classical electron radius, and we have
+set $\lambda = 2\pi c/\omega_0$.</p>
+</div>
+<div id="Ch41-S2-p6" class="para">
+<p class="p">Our final result for the average rate of radiation of light near the
+frequency $\omega_0$ is therefore
+\begin{equation}
+\label{Eq:I:41:7}
+\avg{dW/dt} = \frac{2}{3}\,
+\frac{r_0\omega_0^2kT}{c}.
+\end{equation}</p>
+</div>
+<div id="Ch41-S2-p7" class="para">
+<p class="p">Next we ask how much light must be shining on the oscillator. It must
+be enough that the energy absorbed from the light (and thereupon
+scattered) is just exactly this much. In other words, the emitted
+light is accounted for as <em class="emph">scattered</em> light from the light that
+is shining on the oscillator in the cavity. So we must now calculate
+how much light is scattered from the oscillator if there is a certain
+amount—unknown—of radiation incident on it. Let
+$I(\omega)\,d\omega$ be the amount of light energy there is at the
+frequency $\omega$, within a certain range $d\omega$ (because there is
+no light at <em class="emph">exactly</em> a certain frequency; it is spread all over
+the spectrum). So $I(\omega)$ is a certain <em class="emph">spectral
+distribution</em> which we are now going to find—it is the color of a
+furnace at temperature $T$ that we see when we open the door and look
+in the hole. Now how much light is absorbed? We worked out the amount
+of radiation absorbed from a given incident light beam, and we
+calculated it in terms of a <em class="emph">cross section</em>. It is just as though
+we said that all of the light that falls on a certain cross section is
+absorbed. So the total amount that is re-radiated (scattered) is the
+incident intensity $I(\omega)\,d\omega$ multiplied by the cross
+section $\sigma$.</p>
+</div>
+<div id="Ch41-S2-p8" class="para">
+<p class="p">The formula for the cross section that we derived (Eq. <a href="I_32.html#mjx-eqn-EqI3219">32.19</a>)
+did not have the damping included. It is not hard to go through the
+derivation again and put in the resistance term, which we neglected. If
+we do that, and calculate the cross section the same way, we get
+\begin{equation}
+\label{Eq:I:41:8}
+\sigma_s = \frac{8\pi r_0^2}{3}\biggl(
+\frac{\omega^4}{(\omega^2 - \omega_0^2)^2 + \gamma^2\omega^2}
+\biggr).
+\end{equation}</p>
+</div>
+<div id="Ch41-S2-p9" class="para">
+<p class="p">Now, as a function of frequency, $\sigma_s$ is of significant size only
+for $\omega$ very near to the natural frequency $\omega_0$. (Remember
+that the $Q$ for a radiating oscillator is about $10^8$.) The oscillator
+scatters very strongly when $\omega$ is equal to $\omega_0$, and very
+weakly for other values of $\omega$. Therefore we can replace $\omega$
+by $\omega_0$ and $\omega^2 - \omega_0^2$ by $2\omega_0(\omega -
+\omega_0)$, and we get
+\begin{equation}
+\label{Eq:I:41:9}
+\sigma_s = \frac{2\pi r_0^2\omega_0^2}
+{3[(\omega - \omega_0)^2 + \gamma^2/4]}.
+\end{equation}
+Now the whole curve is localized near $\omega = \omega_0$. (We do not
+really have to make any approximations, but it is much easier to do the
+integrals if we simplify the equation a bit.) Now we multiply the
+intensity in a given frequency range by the cross section of scattering,
+to get the amount of energy scattered in the range $d\omega$. The
+<em class="emph">total</em> energy scattered is then the integral of this for
+all $\omega$. Thus
+\begin{equation}
+\begin{aligned}
+\ddt{W_s}{t} &= \int_0^\infty
+I(\omega)\sigma_s(\omega)\,d\omega\\[1ex]
+&= \int_0^\infty\frac{2\pi r_0^2\omega_0^2I(\omega)\,d\omega}
+{3[(\omega - \omega_0)^2 + \gamma^2/4]}.
+\end{aligned}
+\label{Eq:I:41:10}
+\end{equation}</p>
+</div>
+<div id="Ch41-S2-p10" class="para">
+<p class="p">Now we set $dW_s/dt = 3\gamma kT$. Why <em class="emph">three</em>? Because when we
+made our analysis of the cross section in Chapter <a href="I_32.html">32</a>, we
+assumed that the polarization was such that the light could drive the
+oscillator. If we had used an oscillator which could move only in one
+direction, and the light, say, was polarized in the wrong way, it
+would not give any scattering. So we must either average the cross
+section of an oscillator which can go only in one direction, over all
+directions of incidence and polarization of the light or, more easily,
+we can imagine an oscillator which will follow the field no matter
+which way the field is pointing. Such an oscillator, which can
+oscillate equally in three directions, would have $3kT$ average energy
+because there are $3$ degrees of freedom in that oscillator. So we
+should use $3\gamma kT$ because of the $3$ degrees of freedom.</p>
+</div>
+<div id="Ch41-F3" class="figure">
+<img src="img/FLP_I/f41-03/f41-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 41–3.</span>The factors in the integrand (<a href="#mjx-eqn-EqI4110">41.10</a>). The peak is the
+resonance curve $1/\bigl[(\omega - \omega_0)^2 + \gamma^2/4\bigr]$. To a
+good approximation the factor $I(\omega)$ can be replaced
+by $I(\omega_0)$.
+</div>
+</div>
+<div id="Ch41-S2-p11" class="para">
+<p class="p">Now we have to do the integral. Let us suppose that the unknown
+spectral distribution $I(\omega)$ of the light is a smooth curve and
+does not vary very much across the very narrow frequency region where
+$\sigma_s$ is peaked (Fig. <a href="#Ch41-F3">41–3</a>). Then the only
+significant contribution comes when $\omega$ is very close
+to $\omega_0$, within an amount gamma, which is very small. So therefore,
+although $I(\omega)$ may be an unknown and complicated function, the
+only place where it is important is near $\omega = \omega_0$, and
+there we may replace the smooth curve by a flat one—a
+“constant”—at the same height. In other words, we simply take
+$I(\omega)$ outside the integral sign and call it $I(\omega_0)$. We
+may also take the rest of the constants out in front of the integral,
+and what we have left is
+\begin{equation}
+\label{Eq:I:41:11}
+\tfrac{2}{3}\pi r_0^2\omega_0^2I(\omega_0)
+\int_0^\infty\frac{d\omega}
+{(\omega - \omega_0)^2 + \gamma^2/4}
+= 3\gamma kT.
+\end{equation}
+Now, the integral should go from $0$ to $\infty$, but $0$ is so far
+from $\omega_0$ that the curve is all finished by that time, so we go
+instead to minus $\infty$—it makes no difference and it is much
+easier to do the integral. The integral is an inverse tangent function
+of the form $\int dx/(x^2 + a^2)$. If we look it up in a book we see
+that it is equal to $\pi/a$. So what it comes to for our case
+is $2\pi/\gamma$. Therefore we get, with some rearranging,
+\begin{equation}
+\label{Eq:I:41:12}
+I(\omega_0) = \frac{9\gamma^2kT}{4\pi^2r_0^2\omega_0^2}.
+\end{equation}
+Then we substitute the formula (<a href="#mjx-eqn-EqI416">41.6</a>) for gamma (do not
+worry about writing $\omega_0$; since it is true of any $\omega_0$, we
+may just call it $\omega$) and the formula for $I(\omega)$ then comes
+out
+\begin{equation}
+\label{Eq:I:41:13}
+I(\omega) = \frac{\omega^2kT}{\pi^2c^2}.
+\end{equation}
+And that gives us the distribution of light in a hot furnace. It is
+called the <em class="emph">blackbody radiation</em>. Black, because the hole in the
+furnace that we look at is black when the temperature is zero.</p>
+</div>
+<div id="Ch41-S2-p12" class="para">
+<p class="p">Inside a closed box at temperature $T$, (<a href="#mjx-eqn-EqI4113">41.13</a>) is the
+distribution of energy of the radiation, according to classical
+theory. First, let us notice a remarkable feature of that
+expression. The charge of the oscillator, the mass of the oscillator,
+all properties specific to the oscillator, <em class="emph">cancel out</em>, because
+once we have reached equilibrium with one oscillator, we must be at
+equilibrium with any other oscillator of a different mass, or we will
+be in trouble. So this is an important kind of check on the
+proposition that equilibrium does not depend on what we are in
+equilibrium with, but <em class="emph">only on the temperature</em>. Now let us draw
+a picture of the $I(\omega)$ curve (Fig. <a href="#Ch41-F4">41–4</a>). It tells
+us how much light we have at different frequencies.</p>
+</div>
+<div id="Ch41-F4" class="figure">
+<img src="img/FLP_I/f41-04/f41-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 41–4.</span>The blackbody intensity distribution at two temperatures,
+according to classical physics (solid curves). The dashed curves
+show the actual distribution.
+</div>
+</div>
+<div id="Ch41-S2-p13" class="para">
+<p class="p">The amount of intensity that there is in our box, per unit frequency
+range, goes, as we see, as the square of the frequency, which means
+that if we have a box at any temperature at all, and if we look at the
+x-rays that are coming out, there will be a lot of them!</p>
+</div>
+<div id="Ch41-S2-p14" class="para">
+<p class="p">Of course we know this is false. When we open the furnace and take a
+look at it, we do not burn our eyes out from x-rays at all. It is
+completely false. Furthermore, the <em class="emph">total energy</em> in the box, the
+total of all this intensity summed over all frequencies, would be the
+area under this infinite curve. Therefore, something is fundamentally,
+powerfully, and absolutely wrong.</p>
+</div>
+<div id="Ch41-S2-p15" class="para">
+<p class="p">Thus was the classical theory <em class="emph">absolutely incapable</em> of correctly
+describing the distribution of light from a blackbody, just as it was
+incapable of correctly describing the specific heats of
+gases. Physicists went back and forth over this derivation from many
+different points of view, and there is no escape. This <em class="emph">is</em> the
+prediction of classical physics. Equation (<a href="#mjx-eqn-EqI4113">41.13</a>) is called
+<em class="emph">Rayleigh’s law</em>, and it is
+the prediction of classical physics, and is obviously absurd.</p>
+</div>
+</div>
+<div id="Ch41-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">41–3</span>Equipartition and the quantum oscillator</h3>
+<div id="Ch41-S3-p1" class="para">
+<p class="p">The difficulty above was another part of the continual problem of
+classical physics, which started with the difficulty of the specific
+heat of gases, and now has been focused on the distribution of light
+in a blackbody. Now, of course, at the time that theoreticians studied
+this thing, there were also many <em class="emph">measurements</em> of the actual
+curve. And it turned out that the correct curve looked like the dashed
+curves in Fig. <a href="#Ch41-F4">41–4</a>. That is, the x-rays were not
+there. If we lower the temperature, the whole curve goes down in
+proportion to $T$, according to the classical theory, but the observed
+curve also cuts off sooner at a lower temperature. Thus the
+low-frequency end of the curve is right, but the high-frequency end is
+wrong. Why? When Sir James Jeans
+was worrying about the specific heats of gases, he noted that motions
+which have high frequency are “frozen out” as the temperature goes too
+low. That is, if the temperature is too low, if the frequency is too
+high, the oscillators <em class="emph">do not have $kT$</em> of energy on the average.
+Now recall how our derivation of (<a href="#mjx-eqn-EqI4113">41.13</a>) worked: It all
+depends on the energy of an oscillator at thermal equilibrium. What
+the $kT$ of (<a href="#mjx-eqn-EqI415">41.5</a>) was, and what the same $kT$
+in (<a href="#mjx-eqn-EqI4113">41.13</a>) is, is the mean energy of a harmonic oscillator of
+frequency $\omega$ at temperature $T$. Classically, this is $kT$, but
+experimentally, no!—not when the temperature is too low or the
+oscillator frequency is too high. And so the reason that the curve falls
+off is the same reason that the specific heats of gases fail. It is
+easier to study the blackbody curve than it is the specific heats of
+gases, which are so complicated, therefore our attention is focused on
+determining the true blackbody curve, because this curve is a curve
+which correctly tells us, at every frequency, what the average energy of
+harmonic oscillators actually is as a function of temperature.
+</p>
+</div>
+<div id="Ch41-S3-p2" class="para">
+<p class="p">Planck studied this curve. He first
+determined the answer empirically, by fitting the observed curve with a
+nice function that fitted very well. Thus he had an empirical formula
+for the average energy of a harmonic oscillator as a function of
+frequency. In other words, he had the <em class="emph">right</em> formula instead
+of $kT$, and then by fiddling around he found a simple derivation for it
+which involved a very peculiar assumption. That assumption was that
+<em class="emph">the harmonic oscillator can take up energies only $\hbar\omega$ at
+a time</em>. The idea that they can have <em class="emph">any energy at all</em> is false.
+Of course, that was the beginning of the end of classical mechanics.</p>
+</div>
+<div id="Ch41-F5" class="figure">
+<img src="img/FLP_I/f41-05/f41-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 41–5.</span>The energy levels of a harmonic oscillator are equally
+spaced: $E_n = n\hbar\omega$.
+</div>
+</div>
+<div id="Ch41-S3-p3" class="para">
+<p class="p">The very first correctly determined quantum-mechanical formula will
+now be derived. Suppose that the permitted energy levels of a harmonic
+oscillator were equally spaced at $\hbar\omega_0$ apart, so that the
+oscillator could take on only these different energies
+(Fig. <a href="#Ch41-F5">41–5</a>). Planck made a
+somewhat more complicated argument than the one that is being given
+here, because that was the very beginning of quantum mechanics and he
+had to prove some things. But we are going to take it as a fact (which
+he demonstrated in this case) that the probability of occupying a level
+of energy $E$ is $P(E) = \alpha e^{-E/kT}$. If we go along with that, we
+will obtain the right result.</p>
+</div>
+<div id="Ch41-S3-p4" class="para">
+<p class="p">Suppose now that we have a lot of oscillators, and each is a vibrator
+of frequency $\omega_0$. Some of these vibrators will be in the bottom
+quantum state, some will be in the next one, and so forth. What we
+would like to know is the average energy of all these oscillators. To
+find out, let us calculate the total energy of all the oscillators and
+divide by the number of oscillators. That will be the average energy
+per oscillator in thermal equilibrium, and will also be the energy
+that is in equilibrium with the blackbody radiation and that should go
+in Eq. (<a href="#mjx-eqn-EqI4113">41.13</a>) in place of $kT$. Thus we let $N_0$ be the
+number of oscillators that are in the ground state (the lowest energy
+state); $N_1$ the number of oscillators in the state $E_1$; $N_2$ the
+number that are in state $E_2$; and so on. According to the hypothesis
+(which we have not proved) that in quantum mechanics the law that
+replaced the probability $e^{-\text{P.E.}/kT}$
+or $e^{-\text{K.E.}/kT}$ in classical mechanics is that the probability
+goes down as $e^{-\Delta E/kT}$, where $\Delta E$ is the excess
+energy, we shall assume that the number $N_1$ that are in the first
+state will be the number $N_0$ that are in the ground state,
+times $e^{-\hbar\omega/kT}$. Similarly, $N_2$, the number of oscillators in
+the second state, is $N_2 = N_0e^{-2\hbar\omega/kT}$. To simplify the
+algebra, let us call $e^{-\hbar\omega/kT} = x$. Then we simply have
+$N_1 = N_0x$, $N_2 = N_0x^2$, …, $N_n = N_0x^n$.</p>
+</div>
+<div id="Ch41-S3-p5" class="para">
+<p class="p">The total energy of all the oscillators must first be worked out. If
+an oscillator is in the ground state, there is no energy. If it is in
+the first state, the energy is $\hbar\omega$, and there are $N_1$ of
+them. So $N_1\hbar\omega$, or $\hbar\omega N_0x$ is how much energy we
+get from those. Those that are in the second state have
+$2\hbar\omega$, and there are $N_2$ of them, so $N_2\cdot 2\hbar\omega
+= 2\hbar\omega N_0x^2$ is how much energy we get, and so on. Then we
+add it all together to get $E_{\text{tot}} = N_0\hbar\omega(0 + x
++2x^2 + 3x^3 + \dotsb)$.</p>
+</div>
+<div id="Ch41-S3-p6" class="para">
+<p class="p">And now, how many oscillators are there? Of course, $N_0$ is the
+number that are in the ground state, $N_1$ in the first state, and so
+on, and we add them together: $N_{\text{tot}} = N_0(1 + x + x^2 + x^3
++ \dotsb)$. Thus the average energy is
+\begin{equation}
+\label{Eq:I:41:14}
+\avg{E} = \frac{E_{\text{tot}}}{N_{\text{tot}}} =
+\frac{N_0\hbar\omega(0 + x +2x^2 + 3x^3 + \dotsb)}
+{N_0(1 + x + x^2 + x^3 + \dotsb)}.
+\end{equation}
+Now the two sums which appear here we shall leave for the reader to
+play with and have some fun with. When we are all finished summing and
+substituting for $x$ in the sum, we should get—if we make no
+mistakes in the sum—
+\begin{equation}
+\label{Eq:I:41:15}
+\avg{E} = \frac{\hbar\omega}{e^{\hbar\omega/kT} - 1}.
+\end{equation}
+This, then, was the first quantum-mechanical formula ever known, or
+ever discussed, and it was the beautiful culmination of decades of
+puzzlement. Maxwell knew that
+there was something wrong, and the problem was, what was <em class="emph">right</em>?
+Here is the quantitative answer of what is right instead of $kT$. This
+expression should, of course, approach $kT$ as $\omega \to 0$ or as $T
+\to \infty$. See if you can prove that it does—learn how to do the
+mathematics.</p>
+</div>
+<div id="Ch41-S3-p7" class="para">
+<p class="p">This is the famous cutoff factor that Jeans was looking for, and if we use it instead of $kT$
+in (<a href="#mjx-eqn-EqI4113">41.13</a>), we obtain for the distribution of light in a
+black box
+\begin{equation}
+\label{Eq:I:41:16}
+I(\omega)\,d\omega = \frac{\hbar\omega^3\,d\omega}
+{\pi^2c^2(e^{\hbar\omega/kT} - 1)}.
+\end{equation}
+We see that for a large $\omega$, even though we have $\omega^3$ in
+the numerator, there is an $e$ raised to a tremendous power in the
+denominator, so the curve comes down again and does not “blow
+up”—we do not get ultraviolet light and x-rays where we do not
+expect them!</p>
+</div>
+<div id="Ch41-S3-p8" class="para">
+<p class="p">One might complain that in our derivation of (<a href="#mjx-eqn-EqI4116">41.16</a>) we
+used the quantum theory for the energy levels of the harmonic
+oscillator, but the classical theory in determining the cross
+section $\sigma_s$. But the quantum theory of light interacting with a
+harmonic oscillator gives exactly the same result as that given by the
+classical theory. That, in fact, is why we were justified in spending
+so much time on our analysis of the index of refraction and the
+scattering of light, using a model of atoms like little
+oscillators—the quantum formulas are substantially the same.</p>
+</div>
+<div id="Ch41-S3-p9" class="para">
+<p class="p">Now let us return to the Johnson noise in a resistor. We
+have
+already remarked that the theory of this noise power is really the same
+theory as that of the classical blackbody distribution. In fact, rather
+amusingly, we have already said that if the resistance in a circuit were
+not a real resistance, but were an antenna (an antenna acts like a
+resistance because it radiates energy), a radiation resistance, it would
+be easy for us to calculate what the power would be. It would be just
+the power that runs into the antenna from the light that is all around,
+and we would get the same distribution, changed by only one or two
+factors. We can suppose that the resistor is a generator with an
+unknown
+power spectrum $P(\omega)$. The spectrum is determined by the fact that
+this same generator, connected to a resonant circuit of <em class="emph">any
+frequency</em>, as in Fig. <a href="#Ch41-F2">41–2</a>(b), generates in the inductance
+a voltage of the magnitude given in Eq. (<a href="#mjx-eqn-EqI412">41.2</a>). One is thus
+led to the same integral as in (<a href="#mjx-eqn-EqI4110">41.10</a>), and the same method
+works to give Eq. (<a href="#mjx-eqn-EqI413">41.3</a>). For low temperatures the $kT$
+in (<a href="#mjx-eqn-EqI413">41.3</a>) must of course be replaced by (<a href="#mjx-eqn-EqI4115">41.15</a>).
+The two theories (blackbody radiation and Johnson noise) are also
+closely related physically, for we may of course connect a resonant
+circuit to an <em class="emph">antenna</em>, so the resistance $R$ is a pure
+<em class="emph">radiation resistance</em>. Since (<a href="#mjx-eqn-EqI412">41.2</a>) does not depend on
+the physical origin of the resistance, we know the generator $G$ for a
+real resistance and for radiation resistance is the same. What is the
+origin of the generated power $P(\omega)$ if the resistance $R$ is only
+an ideal antenna in equilibrium with its environment at temperature $T$?
+It is the radiation $I(\omega)$ in the space at temperature $T$ which
+impinges on the antenna and, as “received signals,” makes an effective
+generator. Therefore one can deduce a direct relation of $P(\omega)$
+and $I(\omega)$, leading then from (<a href="#mjx-eqn-EqI4113">41.13</a>) to (<a href="#mjx-eqn-EqI413">41.3</a>).</p>
+</div>
+<div id="Ch41-S3-p10" class="para">
+<p class="p">All the things we have been talking about—the so-called
+Johnson noise and Planck’s distribution, and the correct theory
+of the Brownian movement which we are about to describe—are
+developments of the first decade or so of the 20th century. Now with those
+points and that history in mind, we return to the Brownian movement.</p>
+</div>
+</div>
+<div id="Ch41-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">41–4</span>The random walk</h3>
+<div id="Ch41-F6" class="figure">
+<img src="img/FLP_I/f41-06/f41-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 41–6.</span>A random walk of $36$ steps of length $l$. How far is $S_{36}$
+from $B$? <span class="text italic">Ans:</span> about $6l$ on the average.
+</div>
+</div>
+<div id="Ch41-S4-p1" class="para">
+<p class="p">Let us consider how the position of a jiggling particle should change
+with time, for very long times compared with the time between “kicks.”
+Consider a little Brownian movement particle
+which is jiggling about because it is bombarded on all sides by
+irregularly jiggling water molecules. Query: After a given length of
+time, how far away is it likely to be from where it began? This problem
+was solved by Einstein and
+Smoluchowski. If we imagine
+that we divide the time into little intervals, let us say a hundredth of
+a second or so, then after the first hundredth of a second it moves
+here, and in the next hundredth it moves some more, in the next
+hundredth of a second it moves somewhere else, and so on. In terms of
+the rate of bombardment, a hundredth of a second is a very long time.
+The reader may easily verify that the number of collisions a single
+molecule of water receives in a second is about $10^{14}$, so in a
+hundredth of a second it has $10^{12}$ collisions, which is a lot!
+Therefore, after a hundredth of a second it is not going to remember
+what happened before. In other words, the collisions are all
+<em class="emph">random</em>, so that one “step” is not related to the previous
+“step.” It is like the famous drunken sailor problem: the sailor comes
+out of the bar and takes a sequence of steps, but each step is chosen at
+an arbitrary angle, at random (Fig. <a href="#Ch41-F6">41–6</a>). The question is:
+After a long time, where is the sailor?  Of course we do not know!  It
+is impossible to say. What do we mean—he is just somewhere more or
+less random. Well then, on the average, where is he? <em class="emph">On the
+average, how far away from the bar has he gone?</em> We have already
+answered this question, because once we were discussing the
+superposition of light from a whole lot of different sources at
+different phases, and that meant adding a lot of arrows at different
+angles (Chapter <a href="I_32.html">32</a>). There we discovered that the mean
+square of the distance from one end to the other of the chain of random
+steps, which was the intensity of the light, is the sum of the
+intensities of the separate pieces. And so, by the same kind of
+mathematics, we can prove immediately that if $\FLPR_N$ is the vector
+distance from the origin after $N$ steps, the mean square of the
+distance from the origin is proportional to the number $N$ of steps.
+That is, $\avg{R_N^2} = NL^2$, where $L$ is the length of each step.
+Since the number of steps is proportional to the time in our present
+problem, <em class="emph">the mean square distance is
+proportional to the time:</em>
+\begin{equation}
+\label{Eq:I:41:17}
+\avg{R^2} = \alpha t.
+\end{equation}
+This does not mean that the <em class="emph">mean distance</em> is proportional to
+the time. If the mean distance were proportional to the time it would
+mean that the drifting is at a nice uniform velocity. The sailor
+<em class="emph">is</em> making some relatively sensible headway, but only such that
+his mean <em class="emph">square</em> distance is proportional to time. That is the
+characteristic of a random walk.</p>
+</div>
+<div id="Ch41-S4-p2" class="para">
+<p class="p">We may show very easily that in each successive step the square of the
+distance increases, on the average, by $L^2$. For if we write $\FLPR_N
+= \FLPR_{N - 1} + \FLPL$, we find that $\FLPR_N^2$ is
+\begin{equation*}
+\FLPR_N\!\cdot\!\FLPR_N = R_N^2 = R_{N - 1}^2 +
+2\FLPR_{N - 1}\!\cdot\!\FLPL + L^2,
+\end{equation*}
+and averaging over many trials, we have $\avg{R_N^2} = \avg{R_{N -
+1}^2} + L^2$, since $\avg{\FLPR_{N - 1}\cdot\FLPL} = 0$. Thus, by
+induction,
+\begin{equation}
+\label{Eq:I:41:18}
+\avg{R_N^2} = NL^2.
+\end{equation}</p>
+</div>
+<div id="Ch41-S4-p3" class="para">
+<p class="p">Now we would like to calculate the coefficient $\alpha$ in
+Eq. (<a href="#mjx-eqn-EqI4117">41.17</a>), and to do so we must add a feature. We are going
+to suppose that if we were to put a force on this particle (having
+nothing to do with the Brownian movement—we are
+taking a side issue for the moment), then it would react in the
+following way against the force. First, there would be inertia. Let $m$
+be the coefficient of inertia, the effective mass of the object (not
+necessarily the same as the real mass of the real particle, because the
+water has to move around the particle if we pull on it). Thus if we talk
+about motion in one direction, there is a term like $m(d^2x/dt^2)$ on
+one side. And next, we want also to assume that if we kept a steady pull
+on the object, there would be a drag on it from the fluid, proportional
+to its velocity. Besides the inertia of the fluid, there is a resistance
+to flow due to the viscosity and the complexity of the fluid. It is
+absolutely essential that there <em class="emph">be</em> some irreversible losses,
+something like resistance, in order that there be fluctuations. There is
+no way to produce the $kT$ unless there are also losses. The source of
+the fluctuations is very closely related to these losses. What the
+mechanism of this drag is, we will discuss soon—we shall talk about
+forces that are proportional to the velocity and where they come from.
+But let us suppose for now that there is such a resistance. Then the
+formula for the motion under an external force, when we are pulling on
+it in a normal manner, is
+\begin{equation}
+\label{Eq:I:41:19}
+m\,\frac{d^2x}{dt^2} + \mu\,\ddt{x}{t} = F_{\text{ext}}.
+\end{equation}
+The quantity $\mu$ can be determined directly from experiment. For
+example, we can watch the drop fall under gravity. Then we know that
+the force is $mg$, and $\mu$ is $mg$ divided by the speed of fall the
+drop ultimately acquires. Or we could put the drop in a centrifuge and
+see how fast it sediments. Or if it is charged, we can put an electric
+field on it. So $\mu$ is a measurable thing, not an artificial thing,
+and it is known for many types of colloidal particles, etc.</p>
+</div>
+<div id="Ch41-S4-p4" class="para">
+<p class="p">Now let us use the same formula in the case where the force is not
+external, but is equal to the irregular forces of the Brownian
+movement. We shall then try to determine the
+mean square distance that the object goes. Instead of taking the
+distances in three dimensions, let us take just one dimension, and
+find the mean of $x^2$, just to prepare ourselves. (Obviously the mean
+of $x^2$ is the same as the mean of $y^2$ is the same as the mean
+of $z^2$, and therefore the mean square of the distance is just $3$ times
+what we are going to calculate.) The $x$-component of the irregular
+forces is, of course, just as irregular as any other component. What
+is the rate of change of $x^2$? It is $d(x^2)/dt = 2x(dx/dt)$, so what
+we have to find is the average of the position times the velocity. We
+shall show that this is a constant, and that therefore the mean square
+radius will increase proportionally to the time, and at what rate. Now
+if we multiply Eq. (<a href="#mjx-eqn-EqI4119">41.19</a>) by $x$, $mx(d^2x/dt^2) + \mu
+x(dx/dt) = xF_x$. We want the time average of $x(dx/dt)$, so let us
+take the average of the whole equation, and study the three terms. Now
+what about $x$ times the force?  If the particle happens to have gone
+a certain distance $x$, then, since the irregular force is
+<em class="emph">completely</em> irregular and does not know where the particle
+started from, the next impulse can be in any direction relative
+to $x$. If $x$ is positive, there is no reason why the average force
+should also be in that direction. It is just as likely to be one way
+as the other. The bombardment forces are not driving it in a definite
+direction. So the average value of $x$ times $F$ is zero. On the other
+hand, for the term $mx(d^2x/dt^2)$ we will have to be a little fancy,
+and write this as
+\begin{equation*}
+mx\,\frac{d^2x}{dt^2} = m\,\frac{d[x(dx/dt)]}{dt} -
+m\biggl(\ddt{x}{t}\biggr)^2.
+\end{equation*}
+Thus we put in these two terms and take the average of both. So let us
+see how much the first term should be. Now $x$ times the
+velocity has a mean that does not change with time, because when it gets
+to some position it has no remembrance of where it was before, so things
+are no longer changing with time. So this quantity, on the average, is
+zero. We have left the quantity $mv^2$, and that is the only thing we
+know: $mv^2/2$ has a mean value $\tfrac{1}{2}kT$. Therefore we find that
+\begin{equation}
+\biggl\langle mx\,\frac{d^2x}{dt^2}\biggr\rangle +
+\mu\,\biggl\langle x\,\ddt{x}{t}\biggr\rangle =
+\avg{xF_x}\notag
+\end{equation}
+implies
+\begin{equation}
+-\avg{mv^2} + \frac{\mu}{2}\,\ddt{}{t}\,\avg{x^2} = 0,\notag
+\end{equation}
+or
+\begin{equation}
+\label{Eq:I:41:20}
+\ddt{\avg{x^2}}{t} = 2\,\frac{kT}{\mu}.
+\end{equation}
+Therefore the object has a mean square distance $\avg{R^2}$, at the
+end of a certain amount of $t$, equal to
+\begin{equation}
+\label{Eq:I:41:21}
+\avg{R^2} = 6kT\,\frac{t}{\mu}.
+\end{equation}
+And so we can actually determine <em class="emph">how far</em> the particles go! We
+first must determine how they react to a steady force, how fast they
+drift under a known force (to find $\mu$), and then we can determine
+how far they go in their random motions. This equation was of
+considerable importance historically, because it was one of the first
+ways by which the constant $k$ was determined. After all, we can
+measure $\mu$, the time, how far the particles go, and we can take an
+average. The reason that the determination of $k$ was important is
+that in the law $PV = RT$ for a mole, we know that $R$, which can also
+be measured, is equal to the number of atoms in a mole times $k$. A
+mole was originally defined as so and so many <em class="emph">grams</em> of
+oxygen-16 (now carbon is used), so the number of <em class="emph">atoms</em> in a
+mole was not known, originally. It is, of course, a very interesting
+and important problem. How big are atoms?  How many are there? So one
+of the earliest determinations of the number of atoms was by the
+determination of how far a dirty little particle would move if we
+watched it patiently under a microscope for a certain length of
+time. And thus Boltzmann’s constant $k$ and the Avogadro number $N_0$ were
+determined because $R$ had already been measured.
+</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

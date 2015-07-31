@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 15: The Independent Particle Approximation</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "15." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch15" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">15</span>The Independent Particle Approximation</h2>
+<div id="Ch15-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">15–1</span>Spin waves</h3>
+<div id="Ch15-S1-p1" class="para">
+<p class="p">In Chapter <a href="III_13.html">13</a> we worked out the theory for the
+propagation of an electron or of some other “particle,” such as an
+atomic excitation, through a crystal lattice. In the last chapter we
+applied the theory to semiconductors. But when we talked about
+situations in which there are many electrons we disregarded any
+interactions between them. To do this is of course only an
+approximation. In this chapter we will discuss further the idea that
+you can disregard the interaction between the electrons. We will also
+use the opportunity to show you some more applications of the theory
+of the propagation of particles. Since we will generally continue to
+disregard the interactions between particles, there is very little
+really new in this chapter except for the new applications. The first
+example to be considered is, however, one in which it is possible to
+write down quite exactly the correct equations when there is more than
+one “particle” present. From them we will be able to see how the
+approximation of disregarding the interactions is made. We will not,
+though, analyze the problem very carefully.</p>
+</div>
+<div id="Ch15-S1-p2" class="para">
+<p class="p">As our first example we will consider a “spin wave” in a ferromagnetic
+crystal. We have discussed the theory of ferromagnetism in
+Chapter <a href="II_36.html">36</a> of Volume II. At zero temperature all the
+electron spins that contribute to the magnetism in the body of a
+ferromagnetic crystal are parallel. There is an interaction energy
+between the spins, which is lowest when all the spins are down. At any
+nonzero temperature, however, there is some chance that some of the
+spins are turned over. We calculated the probability in an approximate
+manner in Chapter <a href="II_36.html">36</a>. This time we will describe the
+quantum mechanical theory—so you will see what you would have to do if
+you wanted to solve the problem more exactly. (We will still make some
+idealizations by assuming that the electrons are localized at the atoms
+and that the spins interact only with neighboring spins.)</p>
+</div>
+<div id="Ch15-S1-p3" class="para">
+<p class="p">We consider a model in which the electrons at each atom are all paired
+except one, so that all of the magnetic effects come from one
+spin-$\tfrac{1}{2}$ electron per atom. Further, we imagine that these
+electrons are localized at the atomic sites in the lattice. The model
+corresponds roughly to metallic nickel.
+</p>
+</div>
+<div id="Ch15-S1-p4" class="para">
+<p class="p">We also assume that there is an interaction between any two adjacent
+spinning electrons which gives a term in the energy of the system
+\begin{equation}
+\label{Eq:III:15:1}
+E=-\sum_{i,j}K\FLPsigma_i\cdot\FLPsigma_j,
+\end{equation}
+
+where $\FLPsigma$’s represent the spins and the summation is over all
+adjacent pairs of electrons. We have already discussed this kind of
+interaction energy when we considered the hyperfine splitting of
+hydrogen due to the interaction of the magnetic moments of the
+electron and proton in a hydrogen atom. We expressed it then
+as $A\FLPsigma_{\text{e}}\cdot\FLPsigma_{\text{p}}$. Now, for a given
+pair, say the electrons at atom $4$ and at atom $5$, the Hamiltonian
+would be $-K\FLPsigma_4\cdot\FLPsigma_5$. We have a term for each such
+pair, and the Hamiltonian is (as you would expect for classical
+energies) the sum of these terms for each interacting pair. The energy
+is written with the factor $-K$ so that a positive $K$ will correspond
+to ferromagnetism—that is, the lowest energy results when adjacent
+spins are parallel. In a real crystal, there may be other terms which
+are the interactions of <em class="emph">next</em> nearest neighbors, and so on, but
+we don’t need to consider such complications at this stage.</p>
+</div>
+<div id="Ch15-S1-p5" class="para">
+<p class="p">With the Hamiltonian of Eq. (<a href="#mjx-eqn-EqIII151">15.1</a>) we have a complete
+description of the ferromagnet—within our approximation—and the
+properties of the magnetization should come out. We should also be
+able to calculate the thermodynamic properties due to the
+magnetization. If we can find all the energy levels, the properties of
+the crystal at a temperature $T$ can be found from the principle that
+the probability that a system will be found in a given state of
+energy $E$ is proportional to $e^{-E/\kappa T}$. This problem has never been
+completely solved.</p>
+</div>
+<div id="Ch15-S1-p6" class="para">
+<p class="p">We will show some of the problems by taking a simple example in which
+all the atoms are in a line—a one-dimensional lattice. You can
+easily extend the ideas to three dimensions. At each atomic location
+there is an electron which has two possible states, either spin up or
+spin down, and the whole system is described by telling how all of the
+spins are arranged. We take the Hamiltonian of the system to be the
+operator of the interaction energy. Interpreting the spin vectors of
+Eq. (<a href="#mjx-eqn-EqIII151">15.1</a>) as the sigma-operators—or the
+sigma-matrices—we write for the linear lattice
+\begin{equation}
+\label{Eq:III:15:2}
+\Hop=\sum_n-\frac{A}{2}\,\FLPsigmaop_n\cdot\FLPsigmaop_{n+1}.
+\end{equation}
+
+In this equation we have written the constant as $A/2$ for convenience
+(so that some of the later equations will be exactly the same as the
+ones in Chapter <a href="III_13.html">13</a>).</p>
+</div>
+<div id="Ch15-S1-p7" class="para">
+<p class="p">Now what is the lowest state of this system? The state of lowest
+energy is the one in which all the spins are parallel—let’s say, all
+up.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> We can write
+this state as $\ket{\dotsb+\,+\,+\,+\dotsb}$, or $\ket{\text{gnd}}$
+for the “ground,” or lowest, state. It’s easy to figure out the
+energy for this state. One way is to write out all the vector sigmas
+in terms of $\sigmaop_x$, $\sigmaop_y$, and $\sigmaop_z$, and work
+through carefully what each term of the Hamiltonian does to the ground
+state, and then add the results. We can, however, also use a good
+short cut. We saw in Section <a href="III_12.html#Ch12-S2">12–2</a>, that
+$\FLPsigmaop_i\cdot\FLPsigmaop_j$ could be written in terms of the
+Pauli spin exchange operator
+like this:
+\begin{equation}
+\label{Eq:III:15:3}
+\FLPsigmaop_i\cdot\FLPsigmaop_j=(2\Pop^{\text{spin ex}}_{ij}-1),
+\end{equation}
+
+where the operator $\Pop^{\text{spin ex}}_{ij}$ interchanges the spins
+of the $i$th and $j$th electrons. With this substitution the
+Hamiltonian becomes
+\begin{equation}
+\label{Eq:III:15:4}
+\Hop=-A\sum_n(\Pop^{\text{spin ex}}_{n,n+1}-\tfrac{1}{2}).
+\end{equation}
+
+It is now easy to work out what happens to different states. For
+instance if $i$ and $j$ are both up, then exchanging the spins leaves
+everything unchanged, so $\Pop_{ij}$ acting on the state just gives
+the same state back, and is equivalent to multiplying by $+1$. The
+expression $(\Pop_{ij}-\tfrac{1}{2})$ is just equal to one-half. (From
+now on we will leave off the descriptive superscript on the $\Pop$.)
+</p>
+</div>
+<div id="Ch15-S1-p8" class="para">
+<p class="p">For the ground state all spins are up; so if you exchange a particular
+pair of spins, you get back the original state. The ground state is a
+stationary state. If you operate on it with the Hamiltonian you get
+the same state again multiplied by a sum of terms, $-(A/2)$ for each
+pair of spins. That is, the energy of the system in the ground state
+is $-A/2$ per atom.</p>
+</div>
+<div id="Ch15-S1-p9" class="para">
+<p class="p">Next we would like to look at the energies of some of the excited
+states. It will be convenient to measure the energies with respect to
+the ground state—that is, to choose the ground state as our zero of
+energy. We can do that by adding the energy $A/2$ to each term in the
+Hamiltonian. That just changes the “$\tfrac{1}{2}$” in
+Eq. (<a href="#mjx-eqn-EqIII154">15.4</a>) to “$1$.” Our new Hamiltonian is
+\begin{equation}
+\label{Eq:III:15:5}
+\Hop=-A\sum_n(\Pop_{n,n+1}-1).
+\end{equation}
+
+With this Hamiltonian the energy of the lowest state is zero; the spin
+exchange operator is equivalent to multiplying by unity (for the
+ground state) which is cancelled by the “$1$” in each term.</p>
+</div>
+<div id="Ch15-S1-p10" class="para">
+<p class="p">For describing states other than the ground state we will need a
+suitable set of base states. One convenient approach is to group the
+states according to whether one electron has spin down, or two
+electrons have spin down, and so on. There are, of course, many states
+with one spin down. The down spin could be at atom “4,” or at
+atom “5,” or at atom “6,” … We can, in fact, choose just such
+states for our base states. We could write them this way:
+$\ket{4}$, $\ket{5}$, $\ket{6}$, … It will, however, be more convenient
+later if we label the “odd atom”—the one with the down-spinning
+electron—by its coordinate $x$. That is, we’ll define the
+state $\ket{x_5}$ to be one with all the electrons spinning up except for
+the one on the atom at $x_5$, which has a down-spinning electron (see
+Fig. <a href="#Ch15-F1">15–1</a>). In general, $\ket{x_n}$ is the state with one down
+spin
+that is located at the coordinate $x_n$ of the $n$th atom.</p>
+</div>
+<div id="Ch15-F1" class="figure">
+<img src="img/FLP_III/f15-01/f15-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–1.</span>The base state $\ket{x_5}$ of a linear array of spins. All the
+spins are up except the one at $x_5$, which is down.
+</div>
+</div>
+
+<div id="Ch15-S1-p11" class="para">
+<p class="p">What is the action of the Hamiltonian (<a href="#mjx-eqn-EqIII155">15.5</a>) on the
+state $\ket{x_5}$? One term of the Hamiltonian is
+say $-A(\Pop_{7,8}-1)$. The operator $\Pop_{7,8}$ exchanges the two spins
+of the adjacent atoms $7$, $8$. But in the state $\ket{x_5}$ these are
+both up, and nothing happens; $\Pop_{7,8}$ is equivalent to
+multiplying by $1$:
+\begin{equation*}
+\Pop_{7,8}\,\ket{x_5}=\ket{x_5}.
+\end{equation*}
+It follows that
+\begin{equation*}
+(\Pop_{7,8}-1)\,\ket{x_5}=0.
+\end{equation*}
+Thus all the terms of the Hamiltonian give zero—except those
+involving atom $5$, of course. On the state $\ket{x_5}$, the
+operation $\Pop_{4,5}$ exchanges the spin of atom $4$ (up) and atom $5$
+(down). The result is the state with all spins up except the atom
+at $4$. That is
+\begin{equation*}
+\Pop_{4,5}\,\ket{x_5}=\ket{x_4}.
+\end{equation*}
+In the same way
+\begin{equation*}
+\Pop_{5,6}\,\ket{x_5}=\ket{x_6}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch15-S1-p12" class="para">
+<p class="p">Hence, the only terms of the Hamiltonian which survive are
+$-A(\Pop_{4,5}-1)$ and $-A(\Pop_{5,6}-1)$. Acting on $\ket{x_5}$ they
+produce $-A\,\ket{x_4}+A\,\ket{x_5}$ and $-A\,\ket{x_6}+A\,\ket{x_5}$,
+respectively. The result is
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:15:6}
+\Hop\,\ket{x_5}=-A\sum_n(\Pop_{n,n+1}-1)\,\ket{x_5}=
+-A\{\ket{x_6}+\ket{x_4}-2\,\ket{x_5}\}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\Hop\,\ket{x_5}&=-A\sum_n(\Pop_{n,n+1}-1)\,\ket{x_5}\notag\\[.5ex]
+\label{Eq:III:15:6}
+&=-A\{\ket{x_6}+\ket{x_4}-2\,\ket{x_5}\}.
+\end{align}
+</span>
+</p>
+</div>
+
+<div id="Ch15-S1-p13" class="para">
+<p class="p">When the Hamiltonian acts on state $\ket{x_5}$ it gives rise to some
+amplitude to be in states $\ket{x_4}$ and $\ket{x_6}$. That just means
+that there is a certain amplitude to have the down spin jump over to
+the next atom. So because of the interaction between the spins, if we
+begin with one spin down, then there is some probability that at a
+later time another one will be down instead. Operating on the general
+state $\ket{x_n}$, the Hamiltonian gives
+\begin{equation}
+\label{Eq:III:15:7}
+\Hop\,\ket{x_n}=-A\{\ket{x_{n+1}}+\ket{x_{n-1}}-2\,\ket{x_n}\}.
+\end{equation}
+Notice particularly that if we take a complete set of states with only
+one spin down, they will only be mixed among themselves. The
+Hamiltonian will never mix these states with others that have more
+spins down. So long as you only exchange spins you never change the
+total number of down spins.
+</p>
+</div>
+
+<div id="Ch15-S1-p14" class="para">
+<p class="p">It will be convenient to use the matrix notation for the Hamiltonian,
+say $H_{n,m}\equiv\bracket{x_n}{\Hop}{x_m}$; Eq. (<a href="#mjx-eqn-EqIII157">15.7</a>)
+is equivalent to
+\begin{equation}
+\begin{aligned}
+H_{n,n}&=2A;\\[1ex]
+H_{n,n+1}&=H_{n,n-1}=-A;\\[1ex]
+H_{n,m}&=0,\text{ for }\abs{n-m}&gt;1.
+\end{aligned}
+\label{Eq:III:15:8}
+\end{equation}
+</p>
+</div>
+
+<div id="Ch15-S1-p15" class="para">
+<p class="p">Now what are the energy levels for states with one spin down? As usual
+we let $C_n$ be the amplitude that some state $\ket{\psi}$ is in the
+state $\ket{x_n}$. If $\ket{\psi}$ is to be a definite energy state,
+all the $C_n$’s must vary with time in the same way, namely,
+\begin{equation}
+\label{Eq:III:15:9}
+C_n=a_ne^{-iEt/\hbar}.
+\end{equation}
+We can put this trial solution into our usual Hamiltonian equation
+\begin{equation}
+\label{Eq:III:15:10}
+i\hbar\,\ddt{C_n}{t}=\sum_mH_{nm}C_m,
+\end{equation}
+using Eq. (<a href="#mjx-eqn-EqIII158">15.8</a>) for the matrix elements. Of course we
+get an infinite number of equations, but they can all be written as
+\begin{equation}
+\label{Eq:III:15:11}
+Ea_n=2Aa_n-Aa_{n-1}-Aa_{n+1}.
+\end{equation}
+We have again exactly the same problem we worked out in
+Chapter <a href="III_13.html">13</a>, except that where we had $E_0$ we now
+have $2A$. The solutions correspond to amplitudes $C_n$ (the down-spin
+amplitude) which propagate along the lattice with a propagation
+constant $k$ and an energy
+\begin{equation}
+\label{Eq:III:15:12}
+E=2A(1-\cos kb),
+\end{equation}
+where $b$ is the lattice constant.
+</p>
+</div>
+
+
+<div id="Ch15-S1-p16" class="para">
+<p class="p">
+The definite energy solutions correspond to “waves” of down
+spin—called “spin waves.” And for each wavelength there is a
+corresponding energy. For large wavelengths (small $k$) this energy
+varies as
+\begin{equation}
+\label{Eq:III:15:13}
+E=Ab^2k^2.
+\end{equation}
+Just as before, we can consider a localized wave packet (containing,
+however, only long wavelengths) which corresponds to a spin-down
+electron in one part of the lattice. This down spin will behave like a
+“particle.” Because its energy is related to $k$
+by (<a href="#mjx-eqn-EqIII1513">15.13</a>) the “particle” will have an effective mass:
+\begin{equation}
+\label{Eq:III:15:14}
+m_{\text{eff}}=\frac{\hbar^2}{2Ab^2}.
+\end{equation}
+These “particles” are sometimes called “magnons.”
+</p>
+</div>
+</div>
+
+<div id="Ch15-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">15–2</span>Two spin waves</h3>
+
+<div id="Ch15-F2" class="figure">
+<img src="img/FLP_III/f15-02/f15-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–2.</span>A state with two down spins.
+</div>
+</div>
+
+<div id="Ch15-S2-p1" class="para">
+<p class="p">Now we would like to discuss what happens if there are <em class="emph">two</em> down
+spins. Again we pick a set of base states. We’ll choose states in
+which there are down spins at two atomic locations, such as the state
+shown in Fig. <a href="#Ch15-F2">15–2</a>. We can label such a state by the
+$x$-coordinates
+of the two sites with down spins. The one shown can be
+called $\ket{x_2,x_5}$. In general the base states are $\ket{x_n,x_m}$—a
+doubly infinite set! In this system of description, the
+state $\ket{x_4,x_9}$ and the state $\ket{x_9,x_4}$ are exactly the same
+state, because each simply says that there is a down spin at $4$ and
+one at $9$; there is no meaning to the order. Furthermore, the
+state $\ket{x_4,x_4}$ has no meaning, there isn’t such a thing. We can
+describe any state $\ket{\psi}$ by giving the amplitudes to be in each
+of the base states. Thus $C_{m,n}=\braket{x_m,x_n}{\psi}$ now means
+the amplitude for a system in the state $\ket{\psi}$ to be in a state
+in which both the $m$th and $n$th atoms have a down spin. The
+complications which now arise are not complications of ideas—they
+are merely complexities in bookkeeping. (One of the complexities of
+quantum mechanics is just the bookkeeping. With more and more down
+spins, the notation becomes more and more elaborate with lots of
+indices and the equations always look very horrifying; but the ideas
+are not necessarily more complicated than in the simplest case.)
+</p>
+</div>
+
+<div id="Ch15-S2-p2" class="para">
+<p class="p">The equations of motion of the spin system are the differential
+equations for the $C_{n,m}$. They are
+\begin{equation}
+\label{Eq:III:15:15}
+i\hbar\,\ddt{C_{n,m}}{t}=\sum_{i,j}(H_{nm,ij})C_{ij}.
+\end{equation}
+Suppose we want to find the stationary states. As usual, the
+derivatives with respect to time become $E$ times the amplitudes and
+the $C_{m,n}$ can be replaced by the coefficients $a_{m,n}$. Next we
+have to work out carefully the effect of $H$ on a state with spins $m$
+and $n$ down. It is not hard to figure out. Suppose for a moment that
+$m$ and $n$ are far enough apart so that we don’t have to worry about
+the obvious trouble. The operation of exchange at the location $x_n$
+will move the down spin either to the $(n+1)$ or $(n-1)$ atom, and so
+there’s an amplitude that the present state has come from the
+state $\ket{x_m,x_{n+1}}$ and also an amplitude that it has come from the
+state $\ket{x_m,x_{n-1}}$. Or it may have been the other spin that
+moved; so there’s a certain amplitude that $C_{m,n}$ is fed
+from $C_{m+1,n}$ or from $C_{m-1,n}$. These effects should all be
+equal. The final result for the Hamiltonian equation on $C_{m,n}$ is
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:15:16}
+Ea_{m,n}=-A(a_{m+1,n}+a_{m-1,n}+a_{m,n+1}+a_{m,n-1})+4Aa_{m,n}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{gather}
+\label{Eq:III:15:16}
+Ea_{m,n}=\\
+-A(a_{m+1,n}\!+a_{m-1,n}\!+a_{m,n+1}\!+a_{m,n-1})\!+\!4Aa_{m,n}.\notag
+\end{gather}
+
+</span>
+</p>
+</div>
+
+<div id="Ch15-S2-p3" class="para">
+<p class="p">This equation is correct except in two situations. If $m=n$ there is
+no equation at all, and if $m=n\pm1$, then two of the terms in
+Eq. (<a href="#mjx-eqn-EqIII1516">15.16</a>) should be missing. <em class="emph">We are going to
+disregard these exceptions</em>. We simply ignore the fact that some few of
+these equations are slightly altered. After all, the crystal is supposed
+to be infinite, and we have an infinite number of terms; neglecting a
+few might not matter much. So for a first rough approximation let’s
+forget about the altered equations. In other words, we assume that
+Eq. (<a href="#mjx-eqn-EqIII1516">15.16</a>) is true for all $m$ and $n$, even for $m$
+and $n$ next to each other. <em class="emph">This is the essential part of our
+approximation</em>.</p>
+</div>
+
+<div id="Ch15-S2-p4" class="para">
+<p class="p">Then the solution is not hard to find. We get immediately
+\begin{equation}
+\label{Eq:III:15:17}
+C_{m,n}=a_{m,n}e^{-iEt/\hbar},
+\end{equation}
+with
+\begin{equation}
+\label{Eq:III:15:18}
+a_{m,n}=(\text{const.})\,e^{ik_1x_m}e^{ik_2x_n},
+\end{equation}
+where
+\begin{equation}
+\label{Eq:III:15:19}
+E=4A-2A\cos k_1b-2A\cos k_2b.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch15-S2-p5" class="para">
+<p class="p">Think for a moment what would happen if we had two <em class="emph">independent,
+single</em> spin waves (as in the previous section) corresponding to
+$k=k_1$ and $k=k_2$; they would have energies, from
+Eq. (<a href="#mjx-eqn-EqIII1512">15.12</a>), of
+\begin{equation*}
+\epsilon_1 =(2A-2A\cos k_1b)
+\end{equation*}
+and
+\begin{equation*}
+\epsilon_2 =(2A-2A\cos k_2b).
+\end{equation*}
+Notice that the energy $E$ in Eq. (<a href="#mjx-eqn-EqIII1519">15.19</a>) is just their sum,
+\begin{equation}
+\label{Eq:III:15:20}
+E=\epsilon(k_1)+\epsilon(k_2).
+\end{equation}
+In other words we can think of our solution in this way. There are two
+particles—that is, two spin waves. One of them has a momentum
+described by $k_1$, the other by $k_2$, and the energy of the system
+is the sum of the energies of the two objects. The two particles act
+completely independently. That’s all there is to it.</p>
+</div>
+
+<div id="Ch15-S2-p6" class="para">
+<p class="p">Of course we have made some approximations, but we do not wish to
+discuss the precision of our answer at this point. However, you might
+guess that in a reasonable size crystal with billions of atoms—and,
+therefore, billions of terms in the Hamiltonian—leaving out a few
+terms wouldn’t make much of an error. If we had so many down spins
+that there was an appreciable density, then we would certainly have to
+worry about the corrections.</p>
+</div>
+
+<div id="Ch15-S2-p7" class="para">
+<p class="p">[Interestingly enough, an exact solution can be written down if there
+are just the <em class="emph">two</em> down spins. The result is not particularly
+important. But it is interesting that the equations can be solved
+exactly for this case. The solution is:
+\begin{equation}
+\label{Eq:III:15:21}
+a_{m,n}=\exp[ik_c(x_m+x_n)]\sin(k\abs{x_m-x_n}),
+\end{equation}
+with the energy
+\begin{equation}
+E=4A-2A\cos k_1b-2A\cos k_2b,\notag
+\end{equation}
+and with the wave numbers $k_c$ and $k$ related to $k_1$ and $k_2$ by
+\begin{equation}
+\label{Eq:III:15:22}
+k_1=k_c-k,\quad
+k_2=k_c+k.
+\end{equation}
+This solution includes the “interaction” of the two spins. It
+describes the fact that when the spins come together there is a
+certain chance of scattering. The spins act very much like particles
+with an interaction. But the detailed theory of their scattering goes
+beyond what we want to talk about here.]</p>
+</div>
+</div>
+
+<div id="Ch15-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">15–3</span>Independent particles</h3>
+<div id="Ch15-S3-p1" class="para">
+<p class="p">In the last section we wrote down a Hamiltonian, Eq. (<a href="#mjx-eqn-EqIII1515">15.15</a>), for a
+two-particle system. Then using an approximation which is equivalent to
+neglecting any “interaction” of the two particles, we found the stationary
+states described by Eqs. (<a href="#mjx-eqn-EqIII1517">15.17</a>) and (<a href="#mjx-eqn-EqIII1518">15.18</a>).
+This state is just the product of two single-particle states. The solution we
+have given for $a_{m,n}$ in Eq. (<a href="#mjx-eqn-EqIII1518">15.18</a>) is, however, really not
+satisfactory. We have very carefully pointed out earlier that the
+state $\ket{x_9,x_4}$ is <em class="emph">not</em> a different state from $\ket{x_4,x_9}$—the
+<em class="emph">order</em> of $x_m$ and $x_n$ has no significance. In general, the algebraic
+expression for the amplitude $C_{m,n}$ must be unchanged if we interchange the
+values of $x_m$ and $x_n$, since that doesn’t change the state. Either way, it
+should represent the amplitude to find a down spin at $x_m$ and a down spin
+at $x_n$. But notice that (<a href="#mjx-eqn-EqIII1518">15.18</a>) is <em class="emph">not</em> symmetric in $x_m$
+and $x_n$—since $k_1$ and $k_2$ can in general be different.</p>
+</div>
+<div id="Ch15-S3-p2" class="para">
+<p class="p">The trouble is that we have not forced our solution of
+Eq. (<a href="#mjx-eqn-EqIII1515">15.15</a>) to satisfy this additional condition.
+Fortunately it is easy to fix things up. Notice first that a solution of
+the Hamiltonian equation just as good as (<a href="#mjx-eqn-EqIII1518">15.18</a>) is
+\begin{equation}
+\label{Eq:III:15:23}
+a_{m,n}=Ke^{ik_2x_m}e^{ik_1x_n}.
+\end{equation}
+
+It even has the same energy we got for (<a href="#mjx-eqn-EqIII1518">15.18</a>). Any
+linear combination of (<a href="#mjx-eqn-EqIII1518">15.18</a>) and (<a href="#mjx-eqn-EqIII1523">15.23</a>) is
+also a good solution, and has an energy still given by
+Eq. (<a href="#mjx-eqn-EqIII1519">15.19</a>). The solution we should have chosen—because
+of our symmetry requirement—is just the sum of (<a href="#mjx-eqn-EqIII1518">15.18</a>)
+and (<a href="#mjx-eqn-EqIII1523">15.23</a>):
+\begin{equation}
+\label{Eq:III:15:24}
+a_{m,n}=K[e^{ik_1x_m}e^{ik_2x_n}+e^{ik_2x_m}e^{ik_1x_n}].
+\end{equation}
+
+Now, given any $k_1$ and $k_2$ the amplitude $C_{m,n}$ is independent
+of which way we put $x_m$ and $x_n$—if we should happen to define
+$x_m$ and $x_n$ reversed we get the same amplitude. Our interpretation
+of Eq. (<a href="#mjx-eqn-EqIII1524">15.24</a>) in terms of “magnons” must also be
+different. We can no longer say that the equation represents
+<em class="emph">one</em> particle with wave number $k_1$ and a <em class="emph">second</em> particle
+with wave number $k_2$. The amplitude (<a href="#mjx-eqn-EqIII1524">15.24</a>) represents
+<em class="emph">one</em> state with two particles (magnons). The <em class="emph">state</em> is
+characterized by the two wave numbers $k_1$ and $k_2$. Our solution
+looks like a compound state of one particle with the
+momentum $p_1=\hbar k_1$ and another particle with the momentum $p_2=\hbar
+k_2$, but in our state we can’t say which particle is which.</p>
+</div>
+<div id="Ch15-S3-p3" class="para">
+<p class="p">By now, this discussion should remind you of Chapter <a href="III_04.html">4</a>
+and our story of identical particles. We have just been showing that the
+particles of the spin waves—the magnons—behave like identical
+Bose particles. All amplitudes must
+be symmetric in the coordinates of the two particles—which is the same
+as saying that if we “interchange the two particles,” we get back the
+same amplitude and with the same sign. But, you may be thinking, why did
+we choose to <em class="emph">add</em> the two terms in making
+Eq. (<a href="#mjx-eqn-EqIII1524">15.24</a>). Why not subtract? With a minus sign,
+interchanging $x_m$ and $x_n$ would just change the sign of $a_{m,n}$
+which doesn’t matter. But interchanging $x_m$ and $x_n$ <em class="emph">doesn’t
+change anything</em>—all the electrons of the crystal are exactly where
+they were before, so there is no reason for even the sign of the
+amplitude to change. The magnons will behave like Bose
+particles.<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a></p>
+</div>
+<div id="Ch15-S3-p4" class="para">
+<p class="p">The main points of this discussion have been twofold: First, to show
+you something about spin waves, and, second, to demonstrate a state
+whose amplitude is a <em class="emph">product</em> of two amplitudes, and whose
+energy is the <em class="emph">sum</em> of the energies corresponding to the two
+amplitudes. For <em class="emph">independent particles</em> the amplitude is the
+product and the energy is the sum. You can easily see why the energy
+is the sum. The energy is the coefficient of $t$ in an imaginary
+exponential—it is proportional to the frequency. If two objects are
+doing something, one of them with the amplitude $e^{-iE_1t/\hbar}$ and
+the other with the amplitude $e^{-iE_2t/\hbar}$, and if the amplitude
+for the two things to happen together is the product of the amplitudes
+for each, then there is a single frequency in the product which is the
+sum of the two frequencies. The energy corresponding to the amplitude
+product is the sum of the two energies.</p>
+</div>
+<div id="Ch15-S3-p5" class="para">
+<p class="p">We have gone through a rather long-winded argument to tell you a
+simple thing. When you don’t take into account any interaction between
+particles, you can think of each particle independently. They can
+individually exist in the various different states they would have
+alone, and they will each contribute the energy they would have had if
+they were alone. However, you must remember that if they are identical
+particles, they may behave either as Bose or as Fermi
+particles depending upon the problem. Two
+extra electrons added to a crystal, for instance, would have to behave
+like Fermi particles. When the
+positions of two electrons are interchanged, the amplitude must reverse
+sign. In the equation corresponding to Eq. (<a href="#mjx-eqn-EqIII1524">15.24</a>) there
+would have to be a minus sign between the two terms on the right. As a
+consequence, two Fermi particles
+cannot be in exactly the same condition—with equal spins and
+equal $k$’s. The amplitude for this state is zero.
+</p>
+</div>
+</div>
+
+<div id="Ch15-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">15–4</span>The benzene molecule</h3>
+<div id="Ch15-S4-p1" class="para">
+<p class="p">Although quantum mechanics provides the basic laws that determine the
+structures of molecules, these laws can be applied exactly only to the
+most simple compounds. The chemists have, therefore, worked out
+various approximate methods for calculating some of the properties of
+complicated molecules. We would now like to show you how the
+independent particle approximation is used by the organic chemists. We
+begin with the benzene molecule.</p>
+</div>
+
+
+<div id="Ch15-F3" class="figure">
+<img class="first" src="img/FLP_III/f15-03/f15-03_tc_big_a.svgz"><img class="last" src="img/FLP_III/f15-03/f15-03_tc_big_b.svgz">
+<div class="caption">
+<span class="tag">Fig. 15–3.</span>The two base states for the benzene molecules used in
+Chapter <a href="III_10.html">10</a>.
+</div>
+</div>
+
+
+
+<div id="Ch15-S4-p2" class="para">
+<p class="p">We discussed the benzene molecule from another point of view in
+Chapter <a href="III_10.html">10</a>. There we took an approximate picture of the
+molecule as a two-state system, with the two base states shown in
+Fig. <a href="#Ch15-F3">15–3</a>. There is a ring of six carbons with a hydrogen bonded
+to
+the carbon at each location. With the conventional picture of valence
+bonds it is necessary to assume double bonds between half of the
+carbon atoms, and in the lowest energy condition there are the two
+possibilities shown in the figure. There are also other, higher-energy
+states. When we discussed benzene in Chapter <a href="III_10.html">10</a>, we just
+took the two states and forgot all the rest. We found that the
+ground-state energy of the molecule was not the energy of one of the
+states in the figure, but was lower than that by an amount
+proportional to the amplitude to flip from one of these states to the
+other.</p>
+</div>
+<div id="Ch15-S4-p3" class="para">
+<p class="p">Now we’re going to look at the same molecule from a completely different
+point of view—using a different kind of approximation. The two points
+of view will give us different answers, but if we improve either
+approximation it should lead to the truth, a valid description of
+benzene. However, if we don’t bother to improve them, which is of course
+the usual situation, then you should not be surprised if the two
+descriptions do not agree exactly. We shall at least show that also with
+the new point-of-view the lowest energy of the benzene molecule is lower
+than either of the three-bond structures of Fig. <a href="#Ch15-F3">15–3</a>.</p>
+</div>
+
+<div id="Ch15-S4-p4" class="para">
+<p class="p">Now we want to use the following picture. Suppose we imagine the six
+carbon atoms of a benzene molecule connected only by single bonds as
+in Fig. <a href="#Ch15-F4">15–4</a>. We have removed six electrons—since a bond stands
+for a pair of electrons—so we have a six-times ionized benzene
+molecule. Now we will consider what happens when we put back the six
+electrons one at a time, imagining that each one can run freely around
+the ring. We assume also that all the bonds shown in Fig. <a href="#Ch15-F4">15–4</a> are
+satisfied, and don’t need to be considered further.</p>
+</div>
+
+<div id="Ch15-F4" class="figure">
+<img src="img/FLP_III/f15-04/f15-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–4.</span>A benzene ring with six electrons removed.
+</div>
+</div>
+
+<div id="Ch15-S4-p5" class="para">
+<p class="p">What happens when we put one electron back into the molecular ion? It
+might, of course, be located in any one of the six positions around
+the ring—corresponding to six base states. It would also have a
+certain amplitude, say $A$, to go from one position to the next. If we
+analyze the stationary states, there would be certain possible energy
+levels. That’s only for one electron.</p>
+</div>
+<div id="Ch15-S4-p6" class="para">
+<p class="p">Next put a second electron in. And now we make the most ridiculous
+approximation that you can think of—<em class="emph">that what one electron
+does is not affected by what the other is doing</em>. Of course they
+really will interact; they repel each other through the Coulomb force,
+and furthermore when they are both at the same site, they must have
+considerably different energy than twice the energy for one being
+there. Certainly the approximation of independent particles is not
+legitimate when there are only six sites—particularly when we want
+to put in <em class="emph">six</em> electrons. Nevertheless the organic chemists have
+been able to learn a lot by making this kind of an approximation.</p>
+</div>
+
+<div id="Ch15-F5" class="figure">
+<img src="img/FLP_III/f15-05/f15-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–5.</span>The ethylene molecule.
+</div>
+</div>
+
+<div id="Ch15-S4-p7" class="para">
+<p class="p">Before we work out the benzene molecule in detail, let’s consider a
+simpler example—the ethylene molecule which
+contains just two carbon atoms with two hydrogen atoms on either side as
+shown in Fig. <a href="#Ch15-F5">15–5</a>. This molecule has one “extra” bond
+involving two electrons between the two carbon atoms. Now remove one of
+these electrons; what do we have? We can look at it as a two-state
+system—the remaining electron can be at one carbon or the other. We
+can analyze it as a two-state system. The possible energies for the
+single electron are either $(E_0-A)$ or $(E_0+A)$, as shown in
+Fig. <a href="#Ch15-F6">15–6</a>.
+</p>
+</div>
+
+<div id="Ch15-F6" class="figure">
+<img src="img/FLP_III/f15-06/f15-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–6.</span>The possible energy levels for the “extra” electrons in the
+ethylene molecule.
+</div>
+</div>
+
+<div id="Ch15-S4-p8" class="para">
+<p class="p">Now add the second electron. Good, if we have two electrons, we can
+put the first one in the lower state and the second one in the
+upper. Not quite; we forgot something. Each one of the states is
+really double. When we say there’s a possible state with the
+energy $(E_0-A)$, there are really two. Two electrons can go into the same
+state if one has its spin up and the other, its spin down. (No more
+can be put in because of the exclusion principle.) So there really are
+two possible states of energy $(E_0-A)$. We can draw a diagram, as in
+Fig. <a href="#Ch15-F7">15–7</a>, which indicates both the energy levels and their
+occupancy. In the condition of lowest energy both electrons will be in
+the lowest state with their spins opposite. The energy of the extra
+bond in the ethylene molecule therefore is $2(E_0-A)$ if we neglect
+the interaction between the two electrons.</p>
+</div>
+
+<div id="Ch15-F7" class="figure">
+<img src="img/FLP_III/f15-07/f15-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–7.</span>In the extra bond of the ethylene molecule two electrons (one
+spin up, one spin down) can occupy the lowest energy level.
+</div>
+</div>
+
+<div id="Ch15-S4-p9" class="para">
+<p class="p">Let’s go back to the benzene. Each of the two states of Fig. <a href="#Ch15-F3">15–3</a>
+has three double bonds. Each of these is just like the bond in
+ethylene, and contributes $2(E_0-A)$ to the energy if $E_0$ is now the
+energy to put an electron on a site in benzene and $A$ is the
+amplitude to flip to the next site. So the energy should be
+roughly $6(E_0-A)$. But when we studied benzene before, we got that the energy
+was lower than the energy of the structure with three extra
+bonds. Let’s see if the energy for benzene comes out lower than three
+bonds from our new point of view.</p>
+</div>
+
+<div id="Ch15-S4-p10" class="para">
+<p class="p">We start with the six-times ionized benzene ring and add one
+electron. Now we have a six-state system. We haven’t solved such a
+system yet, but we know what to do. We can write six equations in the
+six amplitudes, and so on. But let’s save some work—by noticing that
+we’ve already solved the problem, when we worked out the problem of an
+electron on an infinite line of atoms. Of course, the benzene is not
+an infinite line, it has $6$ atomic sites in a circle. But imagine
+that we open out the circle to a line, and number the atoms along the
+line from $1$ to $6$. In an infinite line the next location would
+be $7$, but if we insist that this location be identical with number $1$
+and so on, the situation will be just like the benzene ring. In other
+words we can take the solution for an infinite line <em class="emph">with an
+added requirement</em> that the solution must be periodic with a cycle six
+atoms long. From Chapter <a href="III_13.html">13</a> the electron on a line has
+states of definite energy when the amplitude at each site
+is $e^{ikx_n}=e^{ikbn}$. For each $k$ the energy is
+\begin{equation}
+\label{Eq:III:15:25}
+E=E_0-2A\cos kb.
+\end{equation}
+
+We want to use now only those solutions which repeat every
+$6$ atoms. Let’s do first the general case for a ring of $N$ atoms. If the
+solution is to have a period of $N$ atomic spacing, $e^{ikbN}$ must be
+unity; or $kbN$ must be a multiple of $2\pi$. Taking $s$ to represent
+any integer, our condition is that
+\begin{equation}
+\label{Eq:III:15:26}
+kbN=2\pi s.
+\end{equation}
+
+We have seen before that there is no meaning to taking $k$’s outside
+the range $\pm\pi/b$. This means that we get all possible states by
+taking values of $s$ in the range $\pm N/2$.</p>
+</div>
+<div id="Ch15-S4-p11" class="para">
+<p class="p">We find then that for an $N$-atom ring there are $N$ definite energy
+states<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a>
+and they have wave numbers $k_s$ given by
+\begin{equation}
+\label{Eq:III:15:27}
+k_s=\frac{2\pi}{Nb}\,s.
+\end{equation}
+
+Each state has the energy (<a href="#mjx-eqn-EqIII1525">15.25</a>). We have a line
+spectrum of possible energy levels. The spectrum for benzene ($N=6$)
+is shown in Fig. <a href="#Ch15-F8">15–8</a>(b). (The numbers in parentheses indicate the
+number of <em class="emph">different</em> states with the same energy.)</p>
+</div>
+
+
+<div id="Ch15-F8" class="figure">
+<img src="img/FLP_III/f15-08/f15-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–8.</span>The energy levels in a ring with six electron locations (for
+example, a benzene ring).
+</div>
+</div>
+
+
+<div id="Ch15-S4-p12" class="para">
+<p class="p">There’s a nice way to visualize the six energy levels, as we have
+shown in part (a) of the figure. Imagine a circle centered on a level
+with $E_0$, and with a radius of $2A$. If we start at the bottom and
+mark off six equal arcs (at angles from the bottom point of $k_sb=2\pi
+s/N$, or $2\pi s/6$ for benzene), then the vertical heights of the
+points on the circle are the solutions of Eq. (<a href="#mjx-eqn-EqIII1525">15.25</a>). The
+six points represent the six possible states. The lowest energy level is
+at $(E_0-2A)$; there are two states with the same energy $(E_0-A)$, and
+so on.<a name="footnote_source_4" href="#footnote_4"><sup class="mark">4</sup></a> These are possible states for one electron. If we
+have more than one electron, two—with opposite spins—can go into
+each state.</p>
+</div>
+<div id="Ch15-S4-p13" class="para">
+<p class="p">For the benzene molecule we have to put in six electrons. For the
+ground state they will go into the lowest possible energy states—two
+at $s=0$, two at $s=+1$, and two at $s=-1$. According to the
+independent particle approximation the energy of the ground state is
+\begin{align}
+E_{\text{ground}} &=2(E_0-2A)+4(E_0-A)\notag\\[1ex]
+\label{Eq:III:15:28}
+ &=6E_0-8A.
+\end{align}
+The energy is indeed less than that of three separate double
+bonds—by the amount $2A$.</p>
+</div>
+<div id="Ch15-S4-p14" class="para">
+<p class="p">By comparing the energy of benzene to the energy of ethylene it is
+possible to determine $A$. It comes out to be $0.8$ electron volt, or,
+in the units the chemists like, $18$ kilocalories per mole.</p>
+</div>
+<div id="Ch15-S4-p15" class="para">
+<p class="p">We can use this description to calculate or understand other
+properties of benzene. For example, using Fig. <a href="#Ch15-F8">15–8</a> we can discuss
+the excitation of benzene by light. What would happen if we tried to
+excite one of the electrons? It could move up to one of the empty
+higher states. The lowest energy of excitation would be a transition
+from the highest filled level to the lowest empty level. That takes
+the energy $2A$. Benzene will absorb light of frequency $\nu$
+when $h\nu=2A$. There will also be absorption of photons with the energies
+$3A$ and $4A$. Needless to say, the absorption spectrum of benzene has
+been measured and the pattern of spectral lines is more or less
+correct except that the lowest transition occurs in the ultraviolet;
+and to fit the data one would have to choose a value of $A$ between
+$1.4$ and $2.4$ electron volts. That is, the numerical value of $A$ is
+two or three times larger than is predicted from the chemical binding
+energy.</p>
+</div>
+<div id="Ch15-S4-p16" class="para">
+<p class="p">What the chemist does in situations like this is to analyze many
+molecules of a similar kind and get some empirical rules. He learns,
+for example: For calculating binding energy use such and such a value
+of $A$, but for getting the absorption spectrum approximately right
+use another value of $A$. You may feel that this sounds a little
+absurd. It is not very satisfactory from the point of view of a
+physicist who is trying to understand nature from first
+principles. But the problem of the chemist is different. He must try
+to guess ahead of time what is going to happen with molecules that
+haven’t been made yet, or which aren’t understood completely. What he
+needs is a series of empirical rules; it doesn’t make much difference
+where they come from. So he uses the theory in quite a different way
+than the physicist. He takes equations that have some shadow of the
+truth in them, but then he must alter the constants in them—making
+empirical corrections.</p>
+</div>
+<div id="Ch15-S4-p17" class="para">
+<p class="p">In the case of benzene, the principal reason for the inconsistency is
+our assumption that the electrons are independent—the theory we
+started with is really not legitimate. Nevertheless, it has some
+shadow of the truth because its results seem to be going in the right
+direction. With such equations plus some empirical rules—including
+various exceptions—the organic chemist makes his way through the
+morass of complicated things he chooses to study. (Don’t forget that
+the reason a physicist can really calculate from first principles is
+that he chooses only simple problems. He never solves a problem with
+$42$ or even $6$ electrons in it. So far, he has been able to
+calculate reasonably accurately only the hydrogen atom and the helium
+atom.)</p>
+</div>
+</div>
+
+<div id="Ch15-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">15–5</span>More organic chemistry</h3>
+
+<div id="Ch15-F9" class="figure">
+<img src="img/FLP_III/f15-09/f15-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–9.</span>The valence band representation of the molecule
+butadiene $(1,3)$.
+</div>
+</div>
+
+<div id="Ch15-S5-p1" class="para">
+<p class="p">Let’s see how the same ideas can be used to study other
+molecules. Consider a molecule like butadiene $(1,3)$—it is drawn in
+Fig. <a href="#Ch15-F9">15–9</a> according to the usual valence bond picture.</p>
+</div>
+
+<div id="Ch15-F10" class="figure">
+<img src="img/FLP_III/f15-10/f15-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–10.</span>A line of $N$ molecules.
+</div>
+</div>
+
+<div id="Ch15-S5-p2" class="para">
+<p class="p">We can play the same game with the extra four electrons corresponding
+to the two double bonds. If we remove four electrons, we have four
+carbon atoms in a line. You already know how to solve a line. You
+say, “Oh no, I only know how to solve an <em class="emph">infinite</em> line.” But
+the solutions for the infinite line also include the ones for a finite
+line. Watch. Let $N$ be the number of atoms on the line and number
+them from $1$ to $N$ as shown in Fig. <a href="#Ch15-F10">15–10</a>. In writing the
+equations for the amplitude at position $1$ you would not have a term
+feeding from position $0$. Similarly, the equation for position $N$
+would differ from the one that we used for an infinite line because
+there would be nothing feeding from position $N+1$. But suppose that
+we can obtain a solution for the infinite line which has the following
+property: the amplitude to be at atom $0$ is zero and the amplitude to
+be at atom $(N+1)$ is also zero. Then the set of equations for all the
+locations from $1$ to $N$ on the finite line are also satisfied. You
+might think no such solution exists for the infinite line because our
+solutions all looked like $e^{ikx_n}$ which has the same absolute
+value of the amplitude everywhere. But you will remember that the
+energy depends only on the absolute value of $k$, so that another
+solution, which is equally legitimate for the same energy, would
+be $e^{-ikx_n}$. And the same is true of any superposition of these two
+solutions. By subtracting them we can get the solution $\sin kx_n$,
+which satisfies the requirement that the amplitude be zero
+at $x=0$. It still corresponds to the energy $(E_0-2A\cos kb)$. Now by a
+suitable choice for the value of $k$ we can also make the amplitude
+zero at $x_{N+1}$. This requires that $(N+1)kb$ be a multiple
+of $\pi$, or that
+\begin{equation}
+\label{Eq:III:15:29}
+kb=\frac{\pi}{(N+1)}\,s,
+\end{equation}
+
+where $s$ is an integer from $1$ to $N$. (We take only positive $k$’s
+because each solution contains $+k$ and $-k$; changing the sign of $k$
+gives the same state all over again.) For the butadiene molecule,
+$N=4$, so there are four states with
+\begin{equation}
+\label{Eq:III:15:30}
+kb=\pi/5,\quad
+2\pi/5,\quad
+3\pi/5,\quad
+\text{and}\quad
+4\pi/5.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch15-S5-p3" class="para">
+<p class="p">We can represent the energy levels using a circle diagram similar to
+the one for benzene. This time we use a semicircle divided into five
+equal parts as shown in Fig. <a href="#Ch15-F11">15–11</a>. The point at the bottom
+corresponds to $s=0$, which gives no state at all. The same is true of
+the point at the top, which corresponds to $s=N+1$. The remaining
+$4$ points give us four allowed energies. There are four stationary
+states, which is what we expect having started with four base
+states. In the circle diagram, the angular intervals are $\pi/5$ or
+$36$ degrees. The lowest energy comes out $(E_0-1.618A)$. (Ah, what
+wonders mathematics holds; the golden mean of the Greeks<a name="footnote_source_5" href="#footnote_5"><sup class="mark">5</sup></a>  gives us the lowest energy state of the
+butadiene molecule according to this theory!)</p>
+</div>
+
+<div id="Ch15-F11" class="figure">
+<img src="img/FLP_III/f15-11/f15-11_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–11.</span>The energy levels of butadiene.
+</div>
+</div>
+
+<div id="Ch15-S5-p4" class="para">
+<p class="p">Now we can calculate the energy of the butadiene molecule when we put
+in four electrons. With four electrons, we fill up the lowest two
+levels, each with two electrons of opposite spin. The total energy is
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:15:31}
+E=2(E_0-1.618A)+2(E_0-0.618A)=
+4(E_0-A)-0.472A.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+E&=2(E_0-1.618A)+2(E_0-0.618A)\notag\\[1ex]
+\label{Eq:III:15:31}
+&=4(E_0-A)-0.472A.
+\end{align}
+</span>
+This result seems reasonable. The energy is a little lower than for
+two simple double bonds, but the binding is not so strong as in
+benzene. Anyway this is the way the chemist analyzes some organic
+molecules.</p>
+</div>
+<div id="Ch15-S5-p5" class="para">
+<p class="p">The chemist can use not only the energies but the probability
+amplitudes as well. Knowing the amplitudes for each state, and which
+states are occupied, he can tell the probability of finding an
+electron anywhere in the molecule. Those places where the electrons
+are more likely to be are apt to be reactive in chemical substitutions
+which require that an electron be shared with some other group of
+atoms. The other sites are more likely to be reactive in those
+substitutions which have a tendency to yield an extra electron to the
+system.</p>
+</div>
+
+
+<div id="Ch15-F12" class="figure">
+<img src="img/FLP_III/f15-12/f15-12_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–12.</span>A chlorophyll molecule.
+</div>
+</div>
+
+<div id="Ch15-S5-p6" class="para">
+<p class="p">The same ideas we have been using can give us some understanding of a
+molecule even as complicated as chlorophyll,
+one version of which is shown in Fig. <a href="#Ch15-F12">15–12</a>. Notice that
+the double and single bonds we have drawn with heavy lines form a long
+closed ring with twenty intervals. The extra electrons of the double
+bonds can run around this ring. Using the independent particle method we
+can get a whole set of energy levels. There are strong absorption lines
+from transitions between these levels which lie in the visible part of
+the spectrum, and give this molecule its strong color. Similar
+complicated molecules such as the xanthophylls, which make leaves turn
+red, can be studied in the same way.</p>
+</div>
+
+<div id="Ch15-S5-p7" class="para">
+<p class="p">There is one more idea which emerges from the application of this kind
+of theory in organic chemistry. It is probably the most successful or,
+at least in a certain sense, the most accurate. This idea has to do
+with the question: In what situations does one get a particularly
+strong chemical binding? The answer is very interesting. Take the
+example, first, of benzene, and imagine the sequence of events that
+occurs as we start with the six-times ionized molecule and add more
+and more electrons. We would then be thinking of various benzene
+ions—negative or positive. Suppose we plot the energy of the ion (or
+neutral molecule) as a function of the number of electrons. If we
+take $E_0=0$ (since we don’t know what it is), we get the curve shown in
+Fig. <a href="#Ch15-F13">15–13</a>. For the first two electrons the slope of the function
+is
+a straight line. For each successive group the slope increases, and
+there is a discontinuity in slope between the groups of electrons. The
+slope changes when one has just finished filling a set of levels which
+all have the same energy and must move up to the next higher set of
+levels for the next electron.</p>
+</div>
+
+<div id="Ch15-F13" class="figure">
+<img src="img/FLP_III/f15-13/f15-13_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–13.</span>The sum of all the electron energies when the lowest states in
+Fig. <a href="#Ch15-F8">15–8</a> are occupied by $n$ electrons if we take
+that $E_0=0$.
+</div>
+</div>
+
+<div id="Ch15-S5-p8" class="para">
+<p class="p">The actual energy of the benzene ion is really quite different from
+the curve of Fig. <a href="#Ch15-F13">15–13</a> because of the interactions of the
+electrons
+and because of electrostatic energies we have been neglecting. These
+corrections will, however, vary with $n$ in a rather smooth way. Even
+if we were to make all these corrections, the resulting energy curve
+would still have kinks at those values of $n$ which just fill up a
+particular energy level.
+</p>
+</div>
+
+<div id="Ch15-F14" class="figure">
+<img src="img/FLP_III/f15-14/f15-14_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–14.</span>The points of Fig. <a href="#Ch15-F13">15–13</a> with a smooth curve. Molecules
+with $n=2$, $6$, $10$ are more stable than the others.
+</div>
+</div>
+
+<div id="Ch15-S5-p9" class="para">
+<p class="p">Now consider a very smooth curve that fits the points on the average
+like the one drawn in Fig. <a href="#Ch15-F14">15–14</a>. We can say that the points
+<em class="emph">above</em> this curve have “higher-than-normal” energies, and the
+points <em class="emph">below</em> the curve have “lower-than-normal” energies. We
+would, in general, expect that those configurations with a
+lower-than-normal energy would have an above average
+stability—chemically speaking. Notice that the configurations
+farther below the curve always occur at the end of one of the straight
+line segments—namely when there are enough electrons to fill up an
+“energy shell,” as it is called. This is the very accurate
+prediction of the theory. Molecules—or ions—are particularly
+stable (in comparison with other similar configurations) when the
+available electrons just fill up an energy shell.</p>
+</div>
+
+<div id="Ch15-F15" class="figure">
+<img src="img/FLP_III/f15-15/f15-15_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–15.</span>Energy diagram for a ring of three.
+</div>
+</div>
+
+<div id="Ch15-S5-p10" class="para">
+<p class="p">This theory has explained and predicted some very peculiar chemical
+facts. To take a very simple example, consider a ring of three. It’s
+almost unbelievable that the chemist can make a ring of three and have
+it stable, but it has been done. The energy circle for three electrons
+is shown in Fig. <a href="#Ch15-F15">15–15</a>. Now if you put two electrons in the lower
+state, you have only two of the three electrons that you require. The
+third electron must be put in at a much higher level. By our argument
+this molecule should not be particularly stable, whereas the
+two-electron structure should be stable. It does turn out, in fact,
+that the neutral molecule of triphenyl cyclopropenyl is very hard to make, but that the positive ion
+shown in Fig. <a href="#Ch15-F16">15–16</a> is relatively easy to make. The ring
+of three is never really easy because there is always a large stress
+when the bonds in an organic molecule make an equilateral triangle. To
+make a stable compound at all, the structure must be stabilized in some
+way. Anyway if you add three benzene rings on the corners, the positive
+ion can be made. (The reason for this requirement of added benzene rings
+is not really understood.)
+</p>
+</div>
+
+<div id="Ch15-F16" class="figure">
+<img src="img/FLP_III/f15-16/f15-16_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–16.</span>The triphenyl cyclopropanyl cation.
+</div>
+</div>
+
+<div id="Ch15-S5-p11" class="para">
+<p class="p">In a similar way the five-sided ring can also be analyzed. If you draw
+the energy diagram, you can see in a qualitative way that the
+six-electron structure should be an especially stable structure, so
+that such a molecule should be most stable as a negative ion. Now the
+five-ring is well known and easy to make and always acts as a negative
+ion. Similarly, you can easily verify that a ring of $4$ or $8$ is not
+very interesting, but that a ring of $14$ or $10$—like a ring
+of $6$—should be especially stable as a neutral object.</p>
+</div>
+</div>
+
+<div id="Ch15-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">15–6</span>Other uses of the approximation</h3>
+<div id="Ch15-S6-p1" class="para">
+<p class="p">There are two other similar situations which we will describe only
+briefly. In considering the structure of an atom, we can consider that
+the electrons fill successive shells. The Schrödinger theory of
+electron motion can be worked out easily only for a <em class="emph">single</em>
+electron moving in a “central” field—one which varies only with
+the distance from a point. How can we then understand what goes on in
+an atom which has $22$ electrons?! One way is to use a kind of
+independent particle approximation. First you calculate what happens
+with one electron. You get a number of energy levels. You put an
+electron into the lowest energy state. You can, for a rough model,
+continue to ignore the electron interactions and go on filling
+successive shells, but there is a way to get better answers by taking
+into account—in an approximate way at least—the effect of the
+electric charge carried by the electron. Each time you add an electron
+you compute its amplitude to be at various places, and then use this
+amplitude to estimate a kind of spherically symmetric charge
+distribution. You use the field of this distribution—together with
+the field of the positive nucleus and all the previous electrons—to
+calculate the states available for the next electron. In this way you
+can get reasonably correct estimates for the energies for the neutral
+atom and for various ionized states. You find that there are energy
+shells, just as we saw for the electrons in a ring molecule. With a
+partially filled shell, the atom will show a preference for taking on
+one or more extra electrons, or for losing some electrons so as to get
+into the most stable state of a filled shell.</p>
+</div>
+<div id="Ch15-S6-p2" class="para">
+<p class="p">This theory explains the machinery behind the fundamental chemical
+properties which show up in the periodic table of the elements. The
+inert gases are those elements in which a shell has just been
+completed, and it is especially difficult to make them react. (Some of
+them do react of course—with fluorine and oxygen, for example; but
+such compounds are very weakly bound; the so-called inert gases are
+nearly inert.) An atom which has one electron more or one electron
+less than an inert gas will easily lose or gain an electron to get
+into the especially stable (low-energy) condition which comes from
+having a completely filled shell—they are the very active chemical
+elements of valence $+1$ or $-1$.</p>
+</div>
+<div id="Ch15-S6-p3" class="para">
+<p class="p">The other situation is found in nuclear physics. In atomic nuclei the
+protons and neutrons interact with each other quite strongly. Even so,
+the independent particle model can again be used to analyze nuclear
+structure. It was first discovered experimentally that nuclei were
+especially stable if they contained certain particular numbers of
+neutrons—namely $2$, $8$, $20$, $28$, $50$, $82$. Nuclei containing
+protons in these numbers are also especially stable. Since there was
+initially no explanation for these numbers they were called the
+“magic numbers” of nuclear physics. It is well known that neutrons
+and protons interact strongly with each other; people were, therefore,
+quite surprised when it was discovered that an independent particle
+model predicted a shell structure which came out with the first few
+magic numbers. The model assumed that each nucleon (proton or neutron)
+moved in a central potential which was created by the average effects
+of all the other nucleons. This model failed, however, to give the
+correct values for the higher magic numbers. Then it was discovered by
+Maria Mayer,
+and independently by Jensen
+and his collaborators, that by taking the independent particle model and
+adding only a correction for what is called the “spin-orbit
+interaction,” one could make an improved
+model which gave all of the magic numbers. (The spin-orbit interaction
+causes the energy of a nucleon to be lower if its spin has the same
+direction as its orbital angular momentum from motion in the nucleus.)
+The theory gives even more—its picture of the so—called “shell
+structure” of the nuclei enables us to predict certain characteristics
+of nuclei and of nuclear reactions.
+</p>
+</div>
+<div id="Ch15-S6-p4" class="para">
+<p class="p">The independent particle approximation has been found useful in a wide
+range of subjects—from solid-state physics, to chemistry, to
+biology, to nuclear physics. It is often only a crude approximation,
+but is able to give an understanding of why there are especially
+stable conditions—in shells. Since it omits all of the complexity of
+the interactions between the individual particles, we should not be
+surprised that it often fails completely to give correctly many
+important details.</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  The ground state here is really “degenerate”; there are
+other states with the same energy—for example, all spins down, or
+all in any other direction. The slightest external field in the
+$z$-direction will give a different energy to all these states, and
+the one we have chosen will be the true ground state.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  In general, the quasi
+particles of the kind we are discussing may act like either Bose
+particles or Fermi particles, and as for free particles, the particles
+with integral spin are bosons and those with half-integral spins are
+fermions. The “magnon” stands for a spin-up electron turned over. The
+<em class="emph">change</em> in spin is <em class="emph">one</em>. The magnon has an integral spin,
+and is a boson.
+  <a href="#footnote_source_2">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_3"></a>
+  You might think that for $N$ an even number there are
+$N+1$ states. That is not so because $s=\pm N/2$ give the same state.
+  <a href="#footnote_source_3">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_4"></a>
+  When there are two states (which will have different
+amplitude distributions) with the same energy, we say that the two
+states are “degenerate.” Notice that <em class="emph">four</em> electrons can have
+the energy $E_0-A$.
+  <a href="#footnote_source_4">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_5"></a>
+  The
+ratio of the sides of a rectangle which can be divided into a square
+and a similar rectangle.
+  <a href="#footnote_source_5">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div>
+
+</div>
+    
+  </body>
+</html>

@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 23: Resonance</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "23." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch23" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">23</span>Resonance</h2>
+<div id="Ch23-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">23–1</span>Complex numbers and harmonic motion</h3>
+<div id="Ch23-S1-p1" class="para">
+<p class="p">In the present chapter we shall continue our discussion of the
+harmonic oscillator and, in particular, the forced harmonic
+oscillator, using a new technique in the analysis. In the preceding
+chapter we introduced the idea of complex numbers, which have real and
+imaginary parts and which can be represented on a diagram in which the
+ordinate represents the imaginary part and the abscissa represents the
+real part. If $a$ is a complex number, we may write it as $a = a_r +
+ia_i$, where the subscript $r$ means the real part of $a$, and the
+subscript $i$ means the imaginary part of $a$. Referring to
+Fig. <a href="#Ch23-F1">23–1</a>, we see that we may also write a complex number $a
+= x + iy$ in the form $x + iy = re^{i\theta}$, where $r^2 = x^2 + y^2 =
+(x + iy)(x - iy) = aa\cconj$. (The complex conjugate of $a$, written
+$a\cconj$, is obtained by reversing the sign of $i$ in $a$.) So we shall
+represent a complex number in either of two forms, a real plus an
+imaginary part, or a magnitude $r$ and a phase angle $\theta$,
+so-called. Given $r$ and $\theta$, $x$ and $y$ are clearly $r\cos\theta$
+and $r\sin\theta$ and, in reverse, given a complex number $x + iy$, $r =
+\sqrt{x^2 + y^2}$ and $\tan\theta= y/x$, the ratio of the imaginary to
+the real part.</p>
+</div>
+<div id="Ch23-F1" class="figure">
+<img src="img/FLP_I/f23-01/f23-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–1.</span>A complex number may be represented by a point in the
+“complex plane.”
+</div>
+</div>
+<div id="Ch23-S1-p2" class="para">
+<p class="p">We are going to apply complex numbers to our analysis of physical
+phenomena by the following trick. We have examples of things that
+oscillate; the oscillation may have a driving force which is a certain
+constant times $\cos\omega t$. Now such a force, $F = F_0\cos\omega t$, 
+can be written as the real part of a complex number $F =
+F_0e^{i\omega t}$ because $e^{i\omega t} = \cos\omega t + i\sin\omega t$. 
+The reason we do this is that it is easier to work with an
+exponential function than with a cosine. So the whole trick is to
+represent our oscillatory functions as the real parts of certain
+complex functions. The complex number $F$ that we have so defined is
+not a real physical force, because no force in physics is really
+complex; actual forces have no imaginary part, only a real part. We
+shall, however, speak of the “force” $F_0e^{i\omega t}$, but of
+course the actual force is the <em class="emph">real part</em> of that expression.</p>
+</div>
+<div id="Ch23-S1-p3" class="para">
+<p class="p">Let us take another example. Suppose we want to represent a force
+which is a cosine wave that is out of phase with a delayed
+phase $\Delta $. This, of course, would be the real part of $F_0e^{i(\omega
+t-\Delta)}$, but exponentials being what they are, we may write
+$e^{i(\omega t-\Delta)}= e^{i\omega t}e^{-i\Delta}$. Thus we see that
+the algebra of exponentials is much easier than that of sines and
+cosines; this is the reason we choose to use complex numbers. We shall
+often write
+\begin{equation}
+\label{Eq:I:23:1}
+F=F_0e^{-i\Delta}e^{i\omega t}=\hat{F}e^{i\omega t}.
+\end{equation}
+We write a little caret ($\hat{\enspace}$) over the $F$ to remind
+ourselves that this quantity is a complex number: here the number is
+\begin{equation*}
+\hat{F}=F_0e^{-i\Delta}.
+\end{equation*}</p>
+</div>
+<div id="Ch23-S1-p4" class="para">
+<p class="p">Now let us solve an equation, using complex numbers, to see whether we
+can work out a problem for some real case. For example, let us try to
+solve
+\begin{equation}
+\label{Eq:I:23:2}
+\frac{d^2x}{dt^2}+\frac{kx}{m}=\frac{F}{m}=\frac{F_0}{m}\cos\omega t,
+\end{equation}
+where $F$ is the force which drives the oscillator and $x$ is the
+displacement. Now, absurd though it may seem, let us suppose that $x$
+and $F$ are actually complex numbers, for a mathematical purpose
+only. That is to say, $x$ has a real part and an imaginary part times
+$i$, and $F$ has a real part and an imaginary part times $i$.  Now if
+we had a solution of (<a href="#mjx-eqn-EqI232">23.2</a>) with complex numbers, and
+substituted the complex numbers in the equation, we would get
+\begin{equation*}
+\frac{d^2(x_r+ix_i)}{dt^2}+\frac{k(x_r+ix_i)}{m}=
+\frac{F_r+iF_i}{m}
+\end{equation*}
+or
+\begin{equation*}
+\frac{d^2x_r}{dt^2}+\frac{kx_r}{m}+i\biggl(
+\frac{d^2x_i}{dt^2}+\frac{kx_i}{m}\biggr)=
+\frac{F_r}{m}+\frac{iF_i}{m}.
+\end{equation*}
+Now, since if two complex numbers are equal, their real parts must be
+equal <em class="emph">and</em> their imaginary parts must be equal, we deduce that
+<em class="emph">the real part of $x$ satisfies the equation with the real part
+of the force</em>. We must emphasize, however, that this separation into a
+real part and an imaginary part is <em class="emph">not</em> valid in general, but is
+valid only for equations which are <em class="emph">linear</em>, that is, for
+equations in which $x$ appears in every term only in the first power
+or the zeroth power. For instance, if there were in the equation a
+term $\lambda x^2$, then when we substitute $x_r + ix_i$, we would get
+$\lambda(x_r + ix_i)^2$, but when separated into real and imaginary
+parts this would yield $\lambda(x_r^2 - x_i^2)$ as the real part and
+$2i\lambda x_rx_i$ as the imaginary part. So we see that the real part
+of the equation would not involve just $\lambda x_r^2$, but also
+$-\lambda x_i^2$. In this case we get a different equation than the
+one we wanted to solve, with $x_i$, the completely artificial thing we
+introduced in our analysis, mixed in.</p>
+</div>
+<div id="Ch23-S1-p5" class="para">
+<p class="p">Let us now try our new method for the problem of the forced oscillator,
+that we already know how to solve. We want to solve
+Eq. (<a href="#mjx-eqn-EqI232">23.2</a>) as before, but we say that we are going to try to
+solve
+\begin{equation}
+\label{Eq:I:23:3}
+\frac{d^2x}{dt^2}+\frac{kx}{m}=\frac{\hat{F}e^{i\omega t}}{m},
+\end{equation}
+where $\hat{F}e^{i\omega t}$ is a complex number. Of course $x$ will
+also be complex, but remember the rule: take the real part to find out
+what is really going on. So we try to solve (<a href="#mjx-eqn-EqI233">23.3</a>) for the
+forced solution; we shall discuss other solutions later. The forced
+solution has the same frequency as the applied force, and has some
+amplitude of oscillation and some phase, and so it can be represented
+also by some complex number $\hat{x}$ whose magnitude represents the
+swing of $x$ and whose phase represents the time delay in the same way
+as for the force. Now a wonderful feature of an exponential function
+is that $d(\hat{x}e^{i\omega t})/dt = i\omega\hat{x}e^{i\omega
+t}$. When we differentiate an exponential function, we bring down the
+exponent as a simple multiplier. The second derivative does the same
+thing, it brings down another $i\omega$, and so it is very simple to
+write immediately, by inspection, what the equation is for $\hat{x}$:
+every time we see a differentiation, we simply multiply
+by $i\omega$. (Differentiation is now as easy as multiplication!  This
+idea of using exponentials in linear differential equations is almost
+as great as the invention of logarithms, in which multiplication is
+replaced by addition. Here differentiation is replaced by
+multiplication.) Thus our equation becomes
+\begin{equation}
+\label{Eq:I:23:4}
+(i\omega)^2\hat{x}+(k\hat{x}/m)=\hat{F}/m.
+\end{equation}
+(We have cancelled the common factor $e^{i\omega t}$.) See how simple
+it is!  Differential equations are immediately converted, by sight,
+into mere algebraic equations; we virtually have the solution by
+sight, that
+\begin{equation*}
+\hat{x}=\frac{\hat{F}/m}{(k/m)-\omega^2},
+\end{equation*}
+since $(i\omega)^2 =-\omega^2$. This may be slightly simplified by
+substituting $k/m = \omega_0^2$, which gives
+\begin{equation}
+\label{Eq:I:23:5}
+\hat{x}=\hat{F}/m(\omega_0^2-\omega^2).
+\end{equation}
+This, of course, is the solution we had before; for since
+$m(\omega_0^2 - \omega^2)$ is a real number, the phase angles of $\hat{F}$
+and of $\hat{x}$ are the same (or perhaps $180^\circ$ apart,
+if $\omega^2 &gt; \omega_0^2$), as advertised previously. The magnitude
+of $\hat{x}$, which measures how far it oscillates, is related to the
+size of the $\hat{F}$ by the factor $1/m(\omega_0^2-\omega^2)$, and
+this factor becomes enormous when $\omega$ is nearly equal
+to $\omega_0$. So we get a very strong response when we apply the right
+frequency $\omega$ (if we hold a pendulum on the end of a string and
+shake it at just the right frequency, we can make it swing very high).</p>
+</div>
+</div>
+<div id="Ch23-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">23–2</span>The forced oscillator with damping</h3>
+<div id="Ch23-S2-p1" class="para">
+<p class="p">That, then, is how we analyze oscillatory motion with the more elegant
+mathematical technique. But the elegance of the technique is not at
+all exhibited in such a problem that can be solved easily by other
+methods. It is only exhibited when one applies it to more difficult
+problems. Let us therefore solve another, more difficult problem,
+which furthermore adds a relatively realistic feature to the previous
+one. Equation (<a href="#mjx-eqn-EqI235">23.5</a>) tells us that if the
+frequency $\omega$ were exactly equal to $\omega_0$, we would have an infinite
+response. Actually, of course, no such infinite response occurs
+because some other things, like friction, which we have so far
+ignored, limits the response. Let us therefore add to
+Eq. (<a href="#mjx-eqn-EqI232">23.2</a>) a friction term.</p>
+</div>
+<div id="Ch23-S2-p2" class="para">
+<p class="p">Ordinarily such a problem is very difficult because of the character
+and complexity of the frictional term. There are, however, many
+circumstances in which the frictional force is <em class="emph">proportional to
+the speed</em> with which the object moves. An example of such friction is
+the friction for slow motion of an object in oil or a thick
+liquid. There is no force when it is just standing still, but the
+faster it moves the faster the oil has to go past the object, and the
+greater is the resistance. So we shall assume that there is, in
+addition to the terms in (<a href="#mjx-eqn-EqI232">23.2</a>), another term, a resistance
+force proportional to the velocity: $F_f =-c\,dx/dt$. It will be
+convenient, in our mathematical analysis, to write the constant $c$ as
+$m$ times $\gamma$ to simplify the equation a little. This is just the
+same trick we use with $k$ when we replace it by $m\omega_0^2$, just
+to simplify the algebra. Thus our equation will be
+\begin{equation}
+\label{Eq:I:23:6}
+m(d^2x/dt^2)+c(dx/dt)+kx=F
+\end{equation}
+or, writing $c = m\gamma$ and $k = m\omega_0^2$ and dividing out the
+mass $m$,
+\begin{equation*}
+\label{Eq:I:23:6a}
+(d^2x/dt^2)+\gamma(dx/dt)+\omega_0^2x=F/m.
+\tag{23.6a}
+\end{equation*}</p>
+</div>
+<div id="Ch23-S2-p3" class="para">
+<p class="p">Now we have the equation in the most convenient form to solve. If
+$\gamma$ is very small, that represents very little friction; if
+$\gamma$ is very large, there is a tremendous amount of friction. How
+do we solve this new linear differential equation? Suppose that the
+driving force is equal to $F_0\cos\,(\omega t+\Delta)$; we could put
+this into (<a href="#mjx-eqn-EqI236a">23.6a</a>) and try to solve it, but we shall instead
+solve it by our new method. Thus we write $F$ as the real part
+of $\hat{F}e^{i\omega t}$ and $x$ as the real part of $\hat{x}e^{i\omega
+t}$, and substitute these into Eq. (<a href="#mjx-eqn-EqI236a">23.6a</a>). It is not
+even necessary to do the actual substituting, for we can see by
+inspection that the equation would become
+\begin{equation}
+\label{Eq:I:23:7}
+[(i\omega)^2\hat{x}+\gamma(i\omega)\hat{x}+\omega_0^2\hat{x}]
+e^{i\omega t}=(\hat{F}/m)e^{i\omega t}.
+\end{equation}
+[As a matter of fact, if we tried to solve Eq. (<a href="#mjx-eqn-EqI236a">23.6a</a>) by
+our old straightforward way, we would really appreciate the magic of
+the “complex” method.] If we divide by $e^{i\omega t}$ on both
+sides, then we can obtain the response $\hat{x}$ to the given
+force $\hat{F}$; it is
+\begin{equation}
+\label{Eq:I:23:8}
+\hat{x}=\hat{F}/m(\omega_0^2-\omega^2+i\gamma\omega).
+\end{equation}</p>
+</div>
+<div id="Ch23-S2-p4" class="para">
+<p class="p">Thus again $\hat{x}$ is given by $\hat{F}$ times a certain
+factor. There is no technical name for this factor, no particular
+letter for it, but we may call it $R$ for discussion purposes:
+\begin{equation}
+R=\frac{1}{m(\omega_0^2-\omega^2+i\gamma\omega)}\notag
+\end{equation}
+and
+\begin{equation}
+\label{Eq:I:23:9}
+\hat{x}=\hat{F}R.
+\end{equation}
+(Although the letters $\gamma$ and $\omega_0$ are in very common use,
+this $R$ has no particular name.) This factor $R$ can either be
+written as $p+iq$, or as a certain magnitude $\rho$ times
+$e^{i\theta}$. If it is written as a certain magnitude times
+$e^{i\theta}$, let us see what it means.  Now $\hat{F}=
+F_0e^{i\Delta}$, and the actual force $F$ is the real part of
+$F_0e^{i\Delta}e^{i\omega t}$, that is, $F_0 \cos\,(\omega t +
+\Delta)$. Next, Eq. (<a href="#mjx-eqn-EqI239">23.9</a>) tells us that $\hat{x}$ is
+equal to $\hat{F}R$. So, writing $R = \rho e^{i\theta}$ as another
+name for $R$, we get
+\begin{equation*}
+\hat{x}=R\hat{F}=\rho e^{i\theta}F_0e^{i\Delta}=\rho F_0e^{i(\theta+\Delta)}.
+\end{equation*}
+Finally, going even further back, we see that the physical $x$, which
+is the real part of the complex $\hat{x}e^{i\omega t}$, is equal to
+the real part of $\rho F_0e^{i(\theta+\Delta)}e^{i\omega t}$. But
+$\rho$ and $F_0$ are real, and the real part
+of $e^{i(\theta+\Delta+\omega t)}$ is simply $\cos\,(\omega t + \Delta +
+\theta)$. Thus
+\begin{equation}
+\label{Eq:I:23:10}
+x=\rho F_0\cos\,(\omega t+\Delta+\theta).
+\end{equation}
+This tells us that the amplitude of the response is the magnitude of
+the force $F$ multiplied by a certain magnification factor, $\rho$;
+this gives us the “amount” of oscillation. It also tells us,
+however, that $x$ is not oscillating in phase with the force, which
+has the phase $\Delta$, but is shifted by an extra
+amount $\theta$. Therefore $\rho$ and $\theta$ represent the size of the
+response and the phase shift of the response.</p>
+</div>
+<div id="Ch23-S2-p5" class="para">
+<p class="p">Now let us work out what $\rho$ is. If we have a complex number, the
+square of the magnitude is equal to the number times its complex
+conjugate; thus
+\begin{equation}
+\begin{aligned}
+\rho^2&=\frac{1}{m^2(\omega_0^2-\omega^2+i\gamma\omega)
+(\omega_0^2-\omega^2-i\gamma\omega)}\\[1ex]
+&=\frac{1}{m^2[(\omega^2-\omega_0^2)^2+\gamma^2\omega^2]}.
+\end{aligned}
+\label{Eq:I:23:11}
+\end{equation}</p>
+</div>
+<div id="Ch23-S2-p6" class="para">
+<p class="p">In addition, the phase angle $\theta$ is easy to find, for if we write
+\begin{equation}
+1/R=1/\rho e^{i\theta}=(1/\rho)e^{-i\theta}=
+m(\omega_0^2-\omega^2+i\gamma\omega),\notag
+\end{equation}
+we see that
+\begin{equation}
+\label{Eq:I:23:12}
+\tan\theta=-\gamma\omega/(\omega_0^2-\omega^2).
+\end{equation}
+It is minus because $\tan (-\theta) =-\tan\theta$. A negative value
+for $\theta$ results for all $\omega$, and this corresponds to the
+displacement $x$ lagging the force $F$.</p>
+</div>
+<div id="Ch23-F2" class="figure">
+<img src="img/FLP_I/f23-02/f23-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–2.</span>Plot of $\rho^2$ versus $\omega$.
+</div>
+</div>
+<div id="Ch23-F3" class="figure">
+<img src="img/FLP_I/f23-03/f23-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–3.</span>Plot of $\theta$ versus $\omega$.
+</div>
+</div>
+<div id="Ch23-S2-p7" class="para">
+<p class="p">Figure <a href="#Ch23-F2">23–2</a> shows how $\rho^2$ varies as a function of
+frequency ($\rho^2$ is physically more interesting than $\rho$,
+because $\rho^2$ is proportional to the square of the amplitude, or
+more or less to the <em class="emph">energy</em> that is developed in the oscillator
+by the force). We see that if $\gamma$ is very small, then
+$1/(\omega_0^2 - \omega^2)^2$ is the most important term, and the
+response tries to go up toward infinity when $\omega$ equals
+$\omega_0$. Now the “infinity” is not actually infinite because if
+$\omega=\omega_0$, then $1/\gamma^2\omega^2$ is still there. The phase
+shift varies as shown in Fig. <a href="#Ch23-F3">23–3</a>.</p>
+</div>
+<div id="Ch23-S2-p8" class="para">
+<p class="p">In certain circumstances we get a slightly different formula
+than (<a href="#mjx-eqn-EqI238">23.8</a>), also called a “resonance” formula, and one
+might think that it represents a different phenomenon, but it does not.
+The reason is that if $\gamma$ is very small the most interesting part
+of the curve is near $\omega = \omega_0$, and we may
+replace (<a href="#mjx-eqn-EqI238">23.8</a>) by an approximate formula which is very
+accurate if $\gamma$ is small and $\omega$ is near $\omega_0$. Since
+$\omega_0^2 - \omega^2 = (\omega_0-\omega)(\omega_0 + \omega)$, if
+$\omega$ is near $\omega_0$ this is nearly the same as
+$2\omega_0(\omega_0 - \omega)$ and $\gamma\omega$ is nearly the same as
+$\gamma\omega_0$. Using these in (<a href="#mjx-eqn-EqI238">23.8</a>), we see that
+$\omega_0^2-\omega^2 + i\gamma\omega \approx
+2\omega_0(\omega_0-\omega+i\gamma/2)$, so that
+
+\begin{equation}
+\begin{gathered}
+\hat{x}\approx
+\hat{F}/2m\omega_0(\omega_0-\omega+i\gamma/2)\\[.5ex]
+\text{ if }\gamma\ll\omega_0\text{ and }
+\omega\approx\omega_0.
+\end{gathered}
+\label{Eq:I:23:13}
+\end{equation}
+
+It is easy to find the corresponding formula for $\rho^2$. It is
+\begin{equation*}
+\rho^2\approx
+1/4m^2\omega_0^2[(\omega_0-\omega)^2+\gamma^2/4].
+\end{equation*}</p>
+</div>
+<div id="Ch23-S2-p9" class="para">
+<p class="p">We shall leave it to the student to show the following: if we call the
+maximum height of the curve of $\rho^2$ vs. $\omega$ one unit, and
+we ask for the width $\Delta\omega$ of the curve, at one half the
+maximum height, the full width at half the maximum height of the curve
+is $\Delta\omega=\gamma$, supposing that $\gamma$ is small. The
+resonance is sharper and sharper as the frictional effects are made
+smaller and smaller.</p>
+</div>
+<div id="Ch23-S2-p10" class="para">
+<p class="p">As another measure of the width, some people use a quantity $Q$ which
+is defined as $Q = \omega_0/\gamma$. The narrower the resonance, the
+higher the $Q$: $Q= 1000$ means a resonance whose width is only
+$1000$th of the frequency scale. The $Q$ of the resonance curve shown
+in Fig. <a href="#Ch23-F2">23–2</a> is $5$.</p>
+</div>
+<div id="Ch23-S2-p11" class="para">
+<p class="p">The importance of the resonance phenomenon is that it occurs in many
+other circumstances, and so the rest of this chapter will describe
+some of these other circumstances.</p>
+</div>
+</div>
+<div id="Ch23-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">23–3</span>Electrical resonance</h3>
+<div id="Ch23-S3-p1" class="para">
+<p class="p">The simplest and broadest technical applications of resonance are in
+electricity. In the electrical world there are a number of objects
+which can be connected to make electric circuits. These <em class="emph">passive
+circuit elements</em>, as they are often called, are of three main types,
+although each one has a little bit of the other two mixed in. Before
+describing them in greater detail, let us note that the whole idea of
+our mechanical oscillator being a mass on the end of a spring is only
+an approximation. All the mass is not actually at the “mass”; some
+of the mass is in the inertia of the spring. Similarly, all of the
+spring is not at the “spring”; the mass itself has a little
+elasticity, and although it may appear so, it is not <em class="emph">absolutely</em>
+rigid, and as it goes up and down, it flexes ever so slightly under
+the action of the spring pulling it. The same thing is true in
+electricity. There is an approximation in which we can lump things
+into “circuit elements” which are assumed to have pure, ideal
+characteristics. It is not the proper time to discuss that
+approximation here, we shall simply assume that it is true in the
+circumstances.</p>
+</div>
+<div id="Ch23-F4" class="figure">
+<img src="img/FLP_I/f23-04/f23-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–4.</span>The three passive circuit elements.
+</div>
+</div>
+<div id="Ch23-S3-p2" class="para">
+<p class="p">The three main kinds of circuit elements are the following. The first is
+called a <em class="emph">capacitor</em> (Fig. <a href="#Ch23-F4">23–4</a>); an
+example is two plane metallic plates spaced a very small distance apart
+by an insulating material. When the plates are charged there is a
+certain voltage difference, that is, a certain difference in potential,
+between them. The same difference of potential appears between the
+terminals $A$ and $B$, because if there were any difference along the
+connecting wire, electricity would flow right away. So there is a
+certain voltage difference $V$ between the plates if there is a certain
+electric charge $+q$ and $-q$ on them, respectively. Between the plates
+there will be a certain electric field; we have even found a formula for
+it (Chapters <a href="I_13.html">13</a> and <a href="I_14.html">14</a>):
+\begin{equation}
+\label{Eq:I:23:14}
+V=\sigma d/\epsO=qd/\epsO A,
+\end{equation}
+where $d$ is the spacing and $A$ is the area of the plates. Note that
+the potential difference is a linear function of the charge. If we do
+not have parallel plates, but insulated electrodes which are of any
+other shape, the difference in potential is still precisely
+proportional to the charge, but the constant of proportionality may
+not be so easy to compute. However, all we need to know is that the
+potential difference across a capacitor <em class="emph">is proportional to the
+charge: $V = q/C$</em>; the proportionality constant is $1/C$, where $C$
+is the <em class="emph">capacitance</em> of the object.</p>
+</div>
+<div id="Ch23-S3-p3" class="para">
+<p class="p">The second kind of circuit element is called a <em class="emph">resistor</em>;
+it
+offers resistance to the flow of electrical current. It turns out that
+metallic wires and many other substances resist the flow of
+electricity in this manner: if there is a voltage difference across a
+piece of some substance, there exists an electric current $I= dq/dt$
+that is proportional to the electric voltage difference:
+\begin{equation}
+\label{Eq:I:23:15}
+V=RI=R\,dq/dt
+\end{equation}
+The proportionality coefficient is called the
+<em class="emph">resistance</em> $R$. This relationship may already
+be familiar to you; it is Ohm’s law.
+</p>
+</div>
+<div id="Ch23-S3-p4" class="para">
+<p class="p">If we think of the charge $q$ on a capacitor as being analogous to the
+displacement $x$ of a mechanical system, we see that the current, $I =
+dq/dt$, is analogous to velocity, $1/C$ is analogous to a spring
+constant $k$, and $R$ is analogous to the resistive coefficient
+$c=m\gamma$ in Eq. (<a href="#mjx-eqn-EqI236">23.6</a>). Now it is very interesting that
+there exists another circuit element which is the analog of <em class="emph">mass</em>!
+This is a coil which builds up a magnetic field within itself when there
+is a current in it. A <em class="emph">changing</em> magnetic field develops in the
+coil a voltage that is proportional to $dI/dt$ (this is how a
+transformer works, in fact). The magnetic field is proportional to a
+current, and the induced voltage (so-called) in such a coil is
+proportional to the rate of change of the current:
+\begin{equation}
+\label{Eq:I:23:16}
+V=L\,dI/dt=L\,d^2q/dt^2.
+\end{equation}
+The coefficient $L$ is the <em class="emph">self-inductance</em>, and
+is analogous to the mass in a mechanical oscillating circuit.</p>
+</div>
+<div id="Ch23-F5" class="figure">
+<img src="img/FLP_I/f23-05/f23-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–5.</span>An oscillatory electrical circuit with resistance,
+inductance, and capacitance.
+</div>
+</div>
+<div id="Ch23-S3-p5" class="para">
+<p class="p">Suppose we make a circuit in which we have connected the three circuit
+elements in series (Fig. <a href="#Ch23-F5">23–5</a>); then the voltage across
+the whole thing from $1$ to $2$ is the work done in carrying a charge
+through, and it consists of the sum of several pieces: across the
+inductor, $V_L = L\,d^2q/dt^2$; across the resistance, $V_R =
+R\,dq/dt$; across the capacitor, $V_C = q/C$. The sum of these is
+equal to the applied voltage, $V$:
+\begin{equation}
+\label{Eq:I:23:17}
+L\,d^2q/dt^2+R\,dq/dt+q/C=V(t).
+\end{equation}
+Now we see that this equation is exactly the same as the mechanical
+equation (<a href="#mjx-eqn-EqI236">23.6</a>), and of course it can be solved in exactly
+the same manner. We suppose that $V(t)$ is oscillatory: we are driving
+the circuit with a generator with a pure sine wave oscillation. Then
+we can write our $V(t)$ as a complex $\hat{V}$ with the understanding
+that it must be ultimately multiplied by $e^{i\omega t}$, and the real
+part taken in order to find the true $V$. Likewise, the charge $q$ can
+thus be analyzed, and then in exactly the same manner as in
+Eq. (<a href="#mjx-eqn-EqI238">23.8</a>) we write the corresponding equation: the second
+derivative of $\hat{q}$ is $(i\omega)^2\hat{q}$; the first derivative
+is $(i\omega)\hat{q}$. Thus Eq. (<a href="#mjx-eqn-EqI2317">23.17</a>) translates to
+\begin{equation*}
+\biggl[L(i\omega)^2+R(i\omega)+\frac{1}{C}\biggr]\hat{q}=\hat{V}
+\end{equation*}
+or
+\begin{equation*}
+\hat{q}=\frac{\hat{V}}
+{L(i\omega)^2+R(i\omega)+\dfrac{1}{C}}
+\end{equation*}
+which we can write in the form
+\begin{equation}
+\label{Eq:I:23:18}
+\hat{q}=\hat{V}/L(\omega_0^2-\omega^2+i\gamma\omega),
+\end{equation}
+where $\omega_0^2 = 1/LC$ and $\gamma= R/L$. It is exactly the same
+denominator as we had in the mechanical case, with exactly the same
+resonance properties! The correspondence between the electrical and
+mechanical cases is outlined in Table <a href="#Ch23-T1">23–1</a>.</p>
+</div>
+
+<div id="Ch23-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 23–1</span>
+</div>
+<table class="tabular ltx_centering">
+<tr class="tr">
+<td class="td l r t" style="text-align:center;" align="center"><span class="text small" style="width:102.429921pt;">General characteristic</span></td>
+<td class="td r t" style="text-align:center;" align="center"><span class="text small" style="width:105.275197pt;">Mechanical property</span></td>
+<td class="td r t" style="text-align:center;" align="center"><span class="text small" style="width:136.573228pt;">Electrical property</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r tt" style="text-align:left;" align="left"><span class="text small">indep. variable</span></td>
+<td class="td r tt" style="text-align:left;" align="left"><span class="text small">time ($t$)</span></td>
+<td class="td r tt" style="text-align:left;" align="left"><span class="text small">time ($t$)</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:left;" align="left"><span class="text small">dep. variable</span></td>
+<td class="td r" style="text-align:left;" align="left"><span class="text small">position ($x$)</span></td>
+<td class="td r" style="text-align:left;" align="left"><span class="text small">charge ($q$)</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:left;" align="left"><span class="text small">inertia</span></td>
+<td class="td r" style="text-align:left;" align="left"><span class="text small">mass ($m$)</span></td>
+<td class="td r" style="text-align:left;" align="left"><span class="text small">inductance ($L$)</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:left;" align="left"><span class="text small">resistance</span></td>
+<td class="td r" style="text-align:left;" align="left"><span class="text small">drag coeff. ($c=\gamma m$)</span></td>
+<td class="td r" style="text-align:left;" align="left"><span class="text small">resistance ($R=\gamma L$)</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:left;" align="left"><span class="text small">stiffness</span></td>
+<td class="td r" style="text-align:left;" align="left"><span class="text small">stiffness ($k$)</span></td>
+<td class="td r" style="text-align:left;" align="left"><span class="text small">(capacitance)$^{-1}$ ($1/C$)</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:left;" align="left"><span class="text small">resonant frequency</span></td>
+<td class="td r" style="text-align:left;" align="left"><span class="text small">$\omega_0^2=k/m$</span></td>
+<td class="td r" style="text-align:left;" align="left"><span class="text small">$\omega_0^2=1/LC$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" style="text-align:left;" align="left"><span class="text small">period</span></td>
+<td class="td r" style="text-align:left;" align="left"><span class="text small">$t_0=2\pi\sqrt{m/k}$</span></td>
+<td class="td r" style="text-align:left;" align="left"><span class="text small">$t_0=2\pi\sqrt{LC}$</span></td>
+</tr>
+<tr class="tr">
+<td class="td b l r" style="text-align:left;" align="left"><span class="text small">figure of merit</span></td>
+<td class="td b r" style="text-align:left;" align="left"><span class="text small">$Q=\omega_0/\gamma$</span></td>
+<td class="td b r" style="text-align:left;" align="left"><span class="text small">$Q=\omega_0L/R$</span></td>
+</tr>
+</table>
+</div>
+
+<div id="Ch23-S3-p6" class="para">
+<p class="p">We must mention a small technical point. In the electrical literature,
+a different notation is used. (From one field to another, the subject
+is not really any different, but the way of writing the notations is
+often different.) First, $j$ is commonly used instead of $i$ in
+electrical engineering, to denote $\sqrt{-1}$. (After all, $i$ must be
+the current!) Also, the engineers would rather have a relationship
+between $\hat{V}$ and $\hat{I}$ than between $\hat{V}$ and $\hat{q}$,
+just because they are more used to it that way. Thus, since $\hat{I}=
+d\hat{q}/dt = i\omega\hat{q}$, we can just substitute
+$\hat{I}/i\omega$ for $\hat{q}$ and get
+\begin{equation}
+\label{Eq:I:23:19}
+\hat{V}=(i\omega L+R+1/i\omega C)\hat{I}=\hat{Z}\hat{I}.
+\end{equation}
+Another way is to rewrite Eq. (<a href="#mjx-eqn-EqI2317">23.17</a>), so that it looks
+more familiar; one often sees it written this way:
+\begin{equation}
+\label{Eq:I:23:20}
+L\,dI/dt+RI+(1/C)\int^tI\,dt=V(t).
+\end{equation}
+At any rate, we find the relation (<a href="#mjx-eqn-EqI2319">23.19</a>) between
+voltage $\hat{V}$ and current $\hat{I}$ which is just the same
+as (<a href="#mjx-eqn-EqI2318">23.18</a>) except divided by $i\omega$, and that produces
+Eq. (<a href="#mjx-eqn-EqI2319">23.19</a>). The quantity $R + i\omega L + 1/i\omega C$ is a
+complex number, and is used so much in electrical engineering that it
+has a name: it is called the <em class="emph">complex impedance</em>, $\hat{Z}$. Thus we can write
+$\hat{V}=\hat{Z}\hat{I}$. The reason that the engineers like to do this
+is that they learned something when they were young: $V = RI$ for
+resistances, when they only knew about resistances and <span class="text smallcaps">dc</span>. Now
+they have become more educated and have <span class="text smallcaps">ac</span> circuits, so they
+want the equation to look the same. Thus they write
+$\hat{V}=\hat{Z}\hat{I}$, the only difference being that the resistance
+is replaced by a more complicated thing, a complex quantity. So they
+insist that they cannot use what everyone else in the world uses for
+imaginary numbers, they have to use a $j$ for that; it is a miracle that
+they did not insist also that the letter $Z$ be an $R$! (Then they get
+into trouble when they talk about current densities, for which they also
+use $j$. The difficulties of science are to a large extent the
+difficulties of notations, the units, and all the other artificialities
+which are invented by man, not by nature.)</p>
+</div>
+</div>
+<div id="Ch23-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">23–4</span>Resonance in nature</h3>
+<div id="Ch23-S4-p1" class="para">
+<p class="p">Although we have discussed the electrical case in detail, we could
+also bring up case after case in many fields, and show exactly how the
+resonance equation is the same. There are many circumstances in nature
+in which something is “oscillating” and in which the resonance
+phenomenon occurs. We said that in an earlier chapter; let us now
+demonstrate it. If we walk around our study, pulling books off the
+shelves and simply looking through them to find an example of a curve
+that corresponds to Fig. <a href="#Ch23-F2">23–2</a> and comes from the same
+equation, what do we find? Just to demonstrate the wide range obtained
+by taking the smallest possible sample, it takes only five or six
+books to produce quite a series of phenomena which show resonances.</p>
+</div>
+<div id="Ch23-F6" class="figure">
+<img src="img/FLP_I/f23-06/f23-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–6.</span>Response of the atmosphere to external excitation. $a$ is the
+required response if the atmospheric $S_2$-tide is of gravitational
+origin; peak amplification is $100:1$. $b$ is derived from observed
+magnification and phase of $M_2$-tide. [Munk and MacDonald,
+“Rotation of the Earth,” Cambridge University Press (1960)]
+</div>
+</div>
+<div id="Ch23-S4-p2" class="para">
+<p class="p">The first two are from mechanics, the first on a large scale: the
+atmosphere of the whole earth. If the atmosphere, which we suppose
+surrounds the earth evenly on all sides, is pulled to one side by the
+moon or, rather, squashed prolate into a double tide, and if we could
+then let it go, it would go sloshing up and down; it is an
+oscillator. This oscillator is <em class="emph">driven</em> by the moon, which is
+effectively revolving about the earth; any one component of the force,
+say in the $x$-direction, has a cosine component, and so the response
+of the earth’s atmosphere to the tidal pull of the moon is that of an
+oscillator. The expected response of the atmosphere is shown in
+Fig. <a href="#Ch23-F6">23–6</a>, curve $b$ (curve $a$ is another theoretical curve
+under discussion in the book from which this is taken out of context).
+Now one might think that we only have one point on this resonance curve,
+since we only have the one frequency, corresponding to the rotation of
+the earth under the moon, which occurs at a period of
+$12.42$ hours—$12$ hours for the earth (the tide is a double bump), plus a
+little more because the moon is going around. But from the <em class="emph">size</em>
+of the atmospheric tides, and from the <em class="emph">phase</em>, the amount of
+delay, we can get both $\rho$ and $\theta$. From those we can get
+$\omega_0$ and $\gamma$, and thus draw the entire curve! This is an
+example of very poor science. From two numbers we obtain two numbers,
+and from those two numbers we draw a beautiful curve, which of course
+goes through the very point that determined the curve! It is of no use
+<em class="emph">unless we can measure something else</em>, and in the case of
+geophysics that is often very difficult. But in this particular case
+there is another thing which we can show theoretically must have the
+same timing as the natural frequency $\omega_0$: that is, if someone
+disturbed the atmosphere, it would oscillate with the
+frequency $\omega_0$. Now there <em class="emph">was</em> such a sharp disturbance in 1883; the
+Krakatoa volcano exploded and half the island blew off, and it made such
+a terrific explosion in the atmosphere that the period of oscillation of
+the atmosphere could be measured. It came out to $10\tfrac{1}{2}$ hours.
+The $\omega_0$ obtained from Fig. <a href="#Ch23-F6">23–6</a> comes out
+$10$ hours and $20$ minutes, so there we have at least one check on the
+reality of our understanding of the atmospheric tides.</p>
+</div>
+<div id="Ch23-S4-p3" class="para">
+<p class="p">Next we go to the small scale of mechanical oscillation. This time we
+take a sodium chloride crystal, which has sodium ions and chlorine
+ions next to each other, as we described in an early chapter. These
+ions are electrically charged, alternately plus and minus. Now there
+is an interesting oscillation possible. Suppose that we could drive
+all the plus charges to the right and all the negative charges to the
+left, and let go; they would then oscillate back and forth, the sodium
+lattice against the chlorine lattice. How can we ever drive such a
+thing? That is easy, for if we apply an electric field on the crystal,
+it will push the plus charge one way and the minus charge the other
+way! So, by having an external electric field we can perhaps get the
+crystal to oscillate. The frequency of the electric field needed is so
+high, however, that it corresponds to <em class="emph">infrared
+radiation!</em>
+So we try to find a resonance curve by measuring the absorption of
+infrared light by sodium chloride. Such a curve is shown in
+Fig. <a href="#Ch23-F7">23–7</a>. The abscissa is not frequency, but is given in
+terms of wavelength, but that is just a technical matter, of course,
+since for a wave there is a definite relation between frequency and
+wavelength; so it is really a frequency scale, and a certain frequency
+corresponds to the resonant frequency.
+</p>
+</div>
+<div id="Ch23-F7" class="figure">
+<img src="img/FLP_I/f23-07/f23-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–7.</span>Transmission of infrared radiation through a thin (0.17 $\mu$m) sodium
+chloride film. [After R. B. Barnes, <span class="text italic">Z.
+Physik</span> <span class="text bold">75</span>, 723 (1932). Kittel, <span class="text italic">Introduction to Solid State
+Physics</span>, Wiley, 1956.]
+</div>
+</div>
+<div id="Ch23-S4-p4" class="para">
+<p class="p">But what about the width? What determines the width? There are many
+cases in which the width that is seen on the curve is not really the
+natural width $\gamma$ that one would have theoretically. There are
+two reasons why there can be a wider curve than the theoretical
+curve. If the objects do not all have the same frequency, as might
+happen if the crystal were strained in certain regions, so that in
+those regions the oscillation frequency were slightly different than
+in other regions, then what we have is many resonance curves on top of
+each other; so we apparently get a wider curve. The other kind of
+width is simply this: perhaps we cannot measure the frequency
+precisely enough—if we open the slit of the spectrometer fairly
+wide, so although we thought we had only one frequency, we actually
+had a certain range $\Delta\omega$, then we may not have the resolving
+power needed to see a narrow curve. Offhand, we cannot say whether the
+width in Fig. <a href="#Ch23-F7">23–7</a> is natural, or whether it is due to
+inhomogeneities in the crystal or the finite width of the slit of the
+spectrometer.</p>
+</div>
+<div id="Ch23-F8" class="figure">
+<img src="img/FLP_I/f23-08/f23-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–8.</span>Magnetic energy loss in paramagnetic organic compound as function of
+applied magnetic field intensity. [Holden <span class="text italic">et al.</span>, <span class="text italic">Phys.
+Rev.</span> <span class="text bold">75</span>, 1614 (1949)]
+</div>
+</div>
+<div id="Ch23-S4-p5" class="para">
+<p class="p">Now we turn to a more esoteric example, and that is the swinging of a
+magnet. If we have a magnet, with north and south poles, in a constant
+magnetic field, the N end of the magnet will be pulled one way and the
+S end the other way, and there will in general be a torque on it, so
+it will vibrate about its equilibrium position, like a compass
+needle. However, the magnets we are talking about are
+<em class="emph">atoms</em>. These atoms have an angular momentum, the torque does
+not produce a simple motion in the direction of the field, but
+instead, of course, a <em class="emph">precession</em>. Now, looked at from the side,
+any one component is “swinging,” and we can disturb or drive that
+swinging and measure an absorption. The curve in Fig. <a href="#Ch23-F8">23–8</a>
+represents a typical such resonance curve. What has been done here is
+slightly different technically. The frequency of the lateral field that
+is used to drive this swinging is always kept the same, while we would
+have expected that the investigators would vary that and plot the curve.
+They could have done it that way, but technically it was easier for them
+to leave the frequency $\omega$ fixed, and change the strength of the
+constant magnetic field, which corresponds to changing $\omega_0$ in our
+formula. They have plotted the resonance curve against $\omega_0$.
+Anyway, this is a typical resonance with a certain $\omega_0$
+and $\gamma$.
+</p>
+</div>
+<div id="Ch23-F9" class="figure">
+<img src="img/FLP_I/f23-09/f23-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–9.</span>The intensity of gamma-radiation from lithium as a function of the
+energy of the bombarding protons. The dashed curve is a theoretical one
+calculated for protons with an angular momentum $\ell = 0$. [Bonner and Evans,
+<span class="text italic">Phys. Rev.</span> <span class="text bold">73</span>, 666 (1948)]
+</div>
+</div>
+<div id="Ch23-S4-p6" class="para">
+<p class="p">Now we go still further. Our next example has to do with atomic
+nuclei. The motions of protons and neutrons in nuclei are oscillatory
+in certain ways, and we can demonstrate this by the following
+experiment. We bombard a lithium atom with protons, and we discover
+that a certain reaction, producing $\gamma$-rays, actually has a very
+sharp maximum typical of resonance. We note in Fig. <a href="#Ch23-F9">23–9</a>,
+however, one difference from other cases: the horizontal scale is not a
+frequency, it is an <em class="emph">energy!</em> The reason is that in quantum
+mechanics what we think of classically as the energy will turn out to be
+really related to a frequency of a wave amplitude. When we analyze
+something which in simple large-scale physics has to do with a
+frequency, we find that when we do quantum-mechanical experiments with
+atomic matter, we get the corresponding curve as a function of energy.
+In fact, this curve is a demonstration of this relationship, in a sense.
+It shows that frequency and energy have some deep interrelationship,
+which of course they do.</p>
+</div>
+<div id="Ch23-F10" class="figure">
+<img src="img/FLP_I/f23-10/f23-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–10.</span>[Courtesy of Dr. R. Mössbauer]
+</div>
+</div>
+<div id="Ch23-S4-p7" class="para">
+<p class="p">Now we turn to another example which also involves a nuclear energy
+level, but now a much, much narrower one. The $\omega_0$ in
+Fig. <a href="#Ch23-F10">23–10</a> corresponds to an energy of $100{,}000$ electron
+volts, while the width $\gamma$ is approximately $10^{-5}$ electron
+volt; in other words, this has a $Q$ of $10^{10}$! When this curve was
+measured it was the largest $Q$ of any oscillator that had ever been
+measured. It was measured by Dr. Mössbauer, and it was the basis of his Nobel prize.  The
+horizontal scale here is velocity, because the technique for obtaining
+the slightly different frequencies was to use the Doppler
+effect, by moving the source relative to
+the absorber. One can see how delicate the experiment is when we realize
+that the speed involved is a few centimeters per second! On the actual
+scale of the figure, zero frequency would correspond to a point about
+$10^{10}$ cm to the left—slightly off the paper!
+</p>
+</div>
+<div id="Ch23-F11" class="figure">
+<img src="img/FLP_I/f23-11/f23-11_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–11.</span>Momentum dependence of the cross section for the reactions
+(a) $\text{K}^- + \text{p} \to \Lambda + \pi^+ + \pi^-$ and (b) $\text{K}^- +
+\text{p} \to \overline{\text{K}}{}^0 + \text{n}$. The lower curves in (a)
+and (b) represent the presumed nonresonant backgrounds, while the upper curves
+contain in addition the superposed resonance. [Ferro-Luzzi <span class="text italic">et al.</span>,
+<span class="text italic">Phys. Rev. Lett.</span> <span class="text bold">8</span>, 28 (1962)]
+</div>
+</div>
+<div id="Ch23-S4-p8" class="para">
+<p class="p">Finally, if we look in an issue of the <em class="emph">Physical Review</em>, say
+that of January 1, 1962, will we find a resonance curve? Every issue
+has a resonance curve, and Fig. <a href="#Ch23-F11">23–11</a> is the resonance
+curve for this one. This resonance curve turns out to be very
+interesting. It is the resonance found in a certain reaction among
+strange particles, a reaction in which a K$^-$ and a proton
+interact. The resonance is detected by seeing how many of some kinds
+of particles come out, and depending on what and how many come out,
+one gets different curves, but of the same shape and with the peak at
+the same energy. We thus determine that there is a resonance at a
+certain energy for the K$^-$ meson. That presumably means that there
+is some kind of a state, or condition, corresponding to this
+resonance, which can be attained by putting together a K$^-$ and a
+proton. This is a new particle, or resonance. Today we do not know
+whether to call a bump like this a “particle” or simply a
+resonance. When there is a very <em class="emph">sharp</em> resonance, it corresponds
+to a very <em class="emph">definite energy</em>, just as though there were a particle
+of that energy present in nature. When the resonance gets wider, then
+we do not know whether to say there is a particle which does not last
+very long, or simply a resonance in the reaction probability. In the
+second chapter, this point is made about the particles, but when the
+second chapter was written this resonance was not known, so our chart
+should now have still another particle in it!</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

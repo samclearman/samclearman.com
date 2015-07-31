@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>FLP Vol. III Table of Contents</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/javascript"> localStorage["FLP-toc-preference"] = "_toc"; </script>
+<script type="text/javascript">
+    function Goto(vol,chap,sec){
+        var volstrings =["I","II","III"];
+		var dest;
+		var chapstr = "0"+String(chap);
+		chapstr = chapstr.substr(chapstr.length-2);
+		dest = volstrings[vol-1] + "_" + chapstr + ".html"
+	    if(typeof(sec)!=='undefined') {
+	    	dest += "#Ch" + String(chap) + "-S" + String(sec);
+	    }
+		window.open(dest,'_parent');
+	}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main" align="center" style="margin-left: 1em;">
+<div class="table">
+<table border="0" cellpadding="10" cellspacing="0">
+	<tr>
+		<td valign="top" colspan="3" style="vertical-align: top">
+		<p align="center" style="margin-top: 0; margin-bottom: 3px"><b>
+		<font face="Arial"  style="font-size:120%">The Feynman Lectures on Physics, Volume III</font></b></p>
+		<p align="center" style="margin-top: 0; margin-bottom: 5px">
+		<span style="font-variant: small-caps"><font face="Arial" >quantum mechanics</font></span></p>
+		<p align="center" style="margin-top: 0; margin-bottom: 3px">
+		<font face="Arial">Feynman-Leighton-Sands</font><p align="center" style="margin-top: 0; margin-bottom: 3px">
+		<i><font face="Arial"><a style="color:mediumblue" href="III_toc_sc.html">(single-column 
+		Table of Contents)</a></font></i></td>
+	</tr>
+	<tr>
+				<td valign="top" style="vertical-align: top">
+				<span LANG="EN">
+                <p style="margin-top: 0; margin-bottom: 5px"><b>
+				<font face="Arial"  style="font-size:80%">
+				<a href="javascript:Goto(3,89)">About the Authors</a></font></b></p>
+				<p style="margin-top: 0; margin-bottom: 5px"><b>
+				<font face="Arial"  style="font-size:80%">
+				<a href="javascript:Goto(3,90)">Preface to the New Millennium Edition</a></font></b></p>
+				<p style="margin-top: 0; margin-bottom: 5px"><b>
+				<font face="Arial"  style="font-size:80%"><a href="javascript:Goto(3,91)">Feynman&#39;s 
+				Preface</a></font></b></p>
+				<p style="margin-top: 0; margin-bottom: 5px"><b>
+				<font face="Arial"  style="font-size:80%"><a href="javascript:Goto(3,92)">Foreword</a></font></b></p>
+				<p style="margin-top: 0; margin-bottom: 5px">&nbsp;</p>
+				<p style="margin-top: 0; margin-bottom: 5px">
+				<font face="Arial"  style="font-size:80%"><b><a href="javascript:Goto(3,1)">Chapter 1. Quantum Behavior</a></b><br>
+&emsp; <a href="javascript:Goto(3,1,1)">1-1 Atomic mechanics </a><br>
+&emsp; <a href="javascript:Goto(3,1,2)">1-2 An experiment with bullets </a><br>
+&emsp; <a href="javascript:Goto(3,1,3)">1-3 An experiment with waves </a><br>
+&emsp; <a href="javascript:Goto(3,1,4)">1-4 An experiment with electrons </a><br>
+&emsp; <a href="javascript:Goto(3,1,5)">1-5 The interference of electron waves </a><br>
+&emsp; <a href="javascript:Goto(3,1,6)">1-6 Watching the electrons </a><br>
+&emsp; <a href="javascript:Goto(3,1,7)">1-7 First principles of quantum mechanics </a><br>
+&emsp; <a href="javascript:Goto(3,1,8)">1-8 The uncertainty principle </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,2)">Chapter 2. The Relation of Wave and Particle Viewpoints</a></b><br>
+&emsp; <a href="javascript:Goto(3,2,1)">2-1 Probability wave amplitudes </a><br>
+&emsp; <a href="javascript:Goto(3,2,2)">2-2 Measurement of position and momentum </a><br>
+&emsp; <a href="javascript:Goto(3,2,3)">2-3 Crystal diffraction </a><br>
+&emsp; <a href="javascript:Goto(3,2,4)">2-4 The size of an atom </a><br>
+&emsp; <a href="javascript:Goto(3,2,5)">2-5 Energy levels </a><br>
+&emsp; <a href="javascript:Goto(3,2,6)">2-6 Philosophical implications </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,3)">Chapter 3. Probability Amplitudes</a></b><br>
+&emsp; <a href="javascript:Goto(3,3,1)">3-1 The laws for combining amplitudes </a><br>
+&emsp; <a href="javascript:Goto(3,3,2)">3-2 The two-slit interference pattern </a><br>
+&emsp; <a href="javascript:Goto(3,3,3)">3-3 Scattering from a crystal </a><br>
+&emsp; <a href="javascript:Goto(3,3,4)">3-4 Identical particles </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,4)">Chapter 4. Identical Particles</a></b><br>
+&emsp; <a href="javascript:Goto(3,4,1)">4-1 Bose particles and Fermi particles </a><br>
+&emsp; <a href="javascript:Goto(3,4,2)">4-2 States with two Bose particles </a><br>
+&emsp; <a href="javascript:Goto(3,4,3)">4-3 States with n Bose particles </a><br>
+&emsp; <a href="javascript:Goto(3,4,4)">4-4 Emission and absorption of photons </a><br>
+&emsp; <a href="javascript:Goto(3,4,5)">4-5 The blackbody spectrum </a><br>
+&emsp; <a href="javascript:Goto(3,4,6)">4-6 Liquid helium </a><br>
+&emsp; <a href="javascript:Goto(3,4,7)">4-7 The exclusion principle </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,5)">Chapter 5. Spin One</a></b><br>
+&emsp; <a href="javascript:Goto(3,5,1)">5-1 Filtering atoms with a Stern-Gerlach apparatus </a><br>
+&emsp; <a href="javascript:Goto(3,5,2)">5-2 Experiments with filtered atoms </a><br>
+&emsp; <a href="javascript:Goto(3,5,3)">5-3 Stern-Gerlach filters in series </a><br>
+&emsp; <a href="javascript:Goto(3,5,4)">5-4 Base states </a><br>
+&emsp; <a href="javascript:Goto(3,5,5)">5-5 Interfering amplitudes </a><br>
+&emsp; <a href="javascript:Goto(3,5,6)">5-6 The machinery of quantum mechanics </a><br>
+&emsp; <a href="javascript:Goto(3,5,7)">5-7 Transforming to a different base </a><br>
+&emsp; <a href="javascript:Goto(3,5,8)">5-8 Other situations </a> </font></p>
+				<p style="margin-top: 0; margin-bottom: 5px">
+				<font face="Arial"  style="font-size:80%"><br>
+				<b><a href="javascript:Goto(3,6)">Chapter 6. Spin One-Half</a></b><br>
+&emsp; <a href="javascript:Goto(3,6,1)">6-1 Transforming amplitudes </a><br>
+&emsp; <a href="javascript:Goto(3,6,2)">6-2 Transforming to a rotated coordinate system </a><br>
+&emsp; <a href="javascript:Goto(3,6,3)">6-3 Rotations about the z-axis </a><br>
+&emsp; <a href="javascript:Goto(3,6,4)">6-4 Rotations of 180 and 90 about y </a><br>
+&emsp; <a href="javascript:Goto(3,6,5)">6-5 Rotations about x </a><br>
+&emsp; <a href="javascript:Goto(3,6,6)">6-6 Arbitrary rotations </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,7)">Chapter 7. The Dependence of Amplitudes on Time</a></b><br>
+&emsp; <a href="javascript:Goto(3,7,1)">7-1 Atoms at rest; stationary states </a><br>
+&emsp; <a href="javascript:Goto(3,7,2)">7-2 Uniform motion </a><br>
+&emsp; <a href="javascript:Goto(3,7,3)">7-3 Potential energy; energy conservation </a><br>
+&emsp; <a href="javascript:Goto(3,7,4)">7-4 Forces; the classical limit </a><br>
+&emsp; <a href="javascript:Goto(3,7,5)">7-5 The “precession” of a spin one-half particle</a></font></span></p></td>
+
+		<td valign="top" style="vertical-align: top">
+				<span LANG="EN">
+				<p style="margin-top: 0; margin-bottom: 5px">
+				<font face="Arial"  style="font-size:80%">
+				<b><a href="javascript:Goto(3,8)">Chapter 8. The Hamiltonian Matrix</a></b><br>
+&emsp; <a href="javascript:Goto(3,8,1)">8-1 Amplitudes and vectors </a><br>
+&emsp; <a href="javascript:Goto(3,8,2)">8-2 Resolving state vectors </a><br>
+&emsp; <a href="javascript:Goto(3,8,3)">8-3 What are the base states of the world? </a><br>
+&emsp; <a href="javascript:Goto(3,8,4)">8-4 How states change with time </a><br>
+&emsp; <a href="javascript:Goto(3,8,5)">8-5 The Hamiltonian matrix </a><br>
+&emsp; <a href="javascript:Goto(3,8,6)">8-6 The ammonia molecule </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,9)">Chapter 9. The Ammonia Maser</a></b><br>
+&emsp; <a href="javascript:Goto(3,9,1)">9-1 The states of an ammonia molecule </a><br>
+&emsp; <a href="javascript:Goto(3,9,2)">9-2 The molecule in a static electric field </a><br>
+&emsp; <a href="javascript:Goto(3,9,3)">9-3 Transitions in a time-dependent field </a><br>
+&emsp; <a href="javascript:Goto(3,9,4)">9-4 Transitions at resonance </a><br>
+&emsp; <a href="javascript:Goto(3,9,5)">9-5 Transitions off resonance </a><br>
+&emsp; <a href="javascript:Goto(3,9,6)">9-6 The absorption of light </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,10)">Chapter 10. Other Two-State Systems</a></b><br>
+&emsp; <a href="javascript:Goto(3,10,1)">10-1 The hydrogen molecular ion </a><br>
+&emsp; <a href="javascript:Goto(3,10,2)">10-2 Nuclear forces </a><br>
+&emsp; <a href="javascript:Goto(3,10,3)">10-3 The hydrogen molecule </a><br>
+&emsp; <a href="javascript:Goto(3,10,4)">10-4 The benzene molecule </a><br>
+&emsp; <a href="javascript:Goto(3,10,5)">10-5 Dyes </a><br>
+&emsp; <a href="javascript:Goto(3,10,6)">10-6 The Hamiltonian of a spin one-half particle in a 
+				magnetic field </a><br>
+&emsp; <a href="javascript:Goto(3,10,7)">10-7 The spinning electron in a magnetic field </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,11)">Chapter 11. More Two-State Systems</a></b><br>
+&emsp; <a href="javascript:Goto(3,11,1)">11-1 The Pauli spin matrices </a><br>
+&emsp; <a href="javascript:Goto(3,11,2)">11-2 The spin matrices as operators </a><br>
+&emsp; <a href="javascript:Goto(3,11,3)">11-3 The solution of the two-state equations </a><br>
+&emsp; <a href="javascript:Goto(3,11,4)">11-4 The polarization states of the photon </a><br>
+&emsp; <a href="javascript:Goto(3,11,5)">11-5 The neutral K-meson </a><br>
+&emsp; <a href="javascript:Goto(3,11,6)">11-6 Generalization to N-state systems </a> </font></p>
+				<p style="margin-top: 0; margin-bottom: 5px">
+				<font face="Arial"  style="font-size:80%"><br>
+				<b><a href="javascript:Goto(3,12)">Chapter 12. The Hyperfine Splitting in Hydrogen</a></b><br>
+&emsp; <a href="javascript:Goto(3,12,1)">12-1 Base states for a system with two spin one-half 
+				particles </a><br>
+&emsp; <a href="javascript:Goto(3,12,2)">12-2 The Hamiltonian for the ground state of hydrogen </a><br>
+&emsp; <a href="javascript:Goto(3,12,3)">12-3 The energy levels </a><br>
+&emsp; <a href="javascript:Goto(3,12,4)">12-4 The Zeeman splitting </a><br>
+&emsp; <a href="javascript:Goto(3,12,5)">12-5 The states in a magnetic field </a><br>
+&emsp; <a href="javascript:Goto(3,12,6)">12-6 The projection matrix for spin one </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,13)">Chapter 13. Propagation in a Crystal Lattice</a></b><br>
+&emsp; <a href="javascript:Goto(3,13,1)">13-1 States for an electron in a one-dimensional lattice </a><br>
+&emsp; <a href="javascript:Goto(3,13,2)">13-2 States of definite energy </a><br>
+&emsp; <a href="javascript:Goto(3,13,3)">13-3 Time-dependent states </a><br>
+&emsp; <a href="javascript:Goto(3,13,4)">13-4 An electron in a three-dimensional lattice </a><br>
+&emsp; <a href="javascript:Goto(3,13,5)">13-5 Other states in a lattice </a><br>
+&emsp; <a href="javascript:Goto(3,13,6)">13-6 Scattering from imperfections in the lattice </a><br>
+&emsp; <a href="javascript:Goto(3,13,7)">13-7 Trapping by a lattice imperfection </a><br>
+&emsp; <a href="javascript:Goto(3,13,8)">13-8 Scattering amplitudes and bound states </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,14)">Chapter 14. Semiconductors</a></b><br>
+&emsp; <a href="javascript:Goto(3,14,1)">14-1 Electrons and holes in semiconductors </a><br>
+&emsp; <a href="javascript:Goto(3,14,2)">14-2 Impure semiconductors </a><br>
+&emsp; <a href="javascript:Goto(3,14,3)">14-3 The Hall effect </a><br>
+&emsp; <a href="javascript:Goto(3,14,4)">14-4 Semiconductor junctions </a><br>
+&emsp; <a href="javascript:Goto(3,14,5)">14-5 Rectification at a semiconductor junction </a><br>
+&emsp; <a href="javascript:Goto(3,14,6)">14-6 The transistor </a> </font>
+				</span></p>
+		</td>
+		<td valign="top" style="vertical-align: top">
+		<span LANG="EN">
+				<p style="margin-top: 0; margin-bottom: 5px">
+				<font face="Arial"  style="font-size:80%">
+				<b><a href="javascript:Goto(3,15)">Chapter 15. The Independent Particle Approximation</a></b><br>
+&emsp; <a href="javascript:Goto(3,15,1)">15-1 Spin waves </a><br>
+&emsp; <a href="javascript:Goto(3,15,2)">15-2 Two spin waves </a><br>
+&emsp; <a href="javascript:Goto(3,15,3)">15-3 Independent particles </a><br>
+&emsp; <a href="javascript:Goto(3,15,4)">15-4 The benzene molecule </a><br>
+&emsp; <a href="javascript:Goto(3,15,5)">15-5 More organic chemistry </a><br>
+&emsp; <a href="javascript:Goto(3,15,6)">15-6 Other uses of the approximation </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,16)">Chapter 16. The Dependence of Amplitudes on Position</a></b><br>
+&emsp; <a href="javascript:Goto(3,16,1)">16-1 Amplitudes on a line </a><br>
+&emsp; <a href="javascript:Goto(3,16,2)">16-2 The wave function </a><br>
+&emsp; <a href="javascript:Goto(3,16,3)">16-3 States of definite momentum </a><br>
+&emsp; <a href="javascript:Goto(3,16,4)">16-4 Normalization of the states in x </a><br>
+&emsp; <a href="javascript:Goto(3,16,5)">16-5 The Schrödinger equation </a><br>
+&emsp; <a href="javascript:Goto(3,16,6)">16-6 Quantized energy levels </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,17)">Chapter 17. Symmetry and Conservation Laws</a></b><br>
+&emsp; <a href="javascript:Goto(3,17,1)">17-1 Symmetry </a><br>
+&emsp; <a href="javascript:Goto(3,17,2)">17-2 Symmetry and conservation </a><br>
+&emsp; <a href="javascript:Goto(3,17,3)">17-3 The conservation laws </a><br>
+&emsp; <a href="javascript:Goto(3,17,4)">17-4 Polarized light </a><br>
+&emsp; <a href="javascript:Goto(3,17,5)">17-5 The disintegration of the Λ<sup>0</sup> </a><br>
+&emsp; <a href="javascript:Goto(3,17,6)">17-6 Summary of the rotation matrices </a> </font></p>
+				<p style="margin-top: 0; margin-bottom: 5px">
+				<font face="Arial"  style="font-size:80%"><br>
+				<b><a href="javascript:Goto(3,18)">Chapter 18. Angular Momentum</a></b><br>
+&emsp; <a href="javascript:Goto(3,18,1)">18-1 Electric dipole radiation </a><br>
+&emsp; <a href="javascript:Goto(3,18,2)">18-2 Light scattering </a><br>
+&emsp; <a href="javascript:Goto(3,18,3)">18-3 The annihilation of positronium </a><br>
+&emsp; <a href="javascript:Goto(3,18,4)">18-4 Rotation matrix for any spin </a><br>
+&emsp; <a href="javascript:Goto(3,18,5)">18-5 Measuring a nuclear spin </a><br>
+&emsp; <a href="javascript:Goto(3,18,6)">18-6 Composition of angular momentum </a><br>
+&emsp; <a href="javascript:Goto(3,18,7)">18-7 Added Note 1: Derivation of the rotation matrix </a><br>
+&emsp; <a href="javascript:Goto(3,18,8)">18-8 Added Note 2: Conservation of parity in photon emission
+				</a><br>
+				<br>
+				<b><a href="javascript:Goto(3,19)">Chapter 19. The Hydrogen Atom and The Periodic Table</a></b><br>
+&emsp; <a href="javascript:Goto(3,19,1)">19-1 Schrödinger’s equation for the hydrogen atom </a><br>
+&emsp; <a href="javascript:Goto(3,19,2)">19-2 Spherically symmetric solutions </a><br>
+&emsp; <a href="javascript:Goto(3,19,3)">19-3 States with an angular dependence </a><br>
+&emsp; <a href="javascript:Goto(3,19,4)">19-4 The general solution for hydrogen </a><br>
+&emsp; <a href="javascript:Goto(3,19,5)">19-5 The hydrogen wave functions </a><br>
+&emsp; <a href="javascript:Goto(3,19,6)">19-6 The periodic table </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,20)">Chapter 20. Operators</a></b><br>
+&emsp; <a href="javascript:Goto(3,20,1)">20-1 Operations and operators </a><br>
+&emsp; <a href="javascript:Goto(3,20,2)">20-2 Average energies </a><br>
+&emsp; <a href="javascript:Goto(3,20,3)">20-3 The average energy of an atom </a><br>
+&emsp; <a href="javascript:Goto(3,20,4)">20-4 The position operator </a><br>
+&emsp; <a href="javascript:Goto(3,20,5)">20-5 The momentum operator </a><br>
+&emsp; <a href="javascript:Goto(3,20,6)">20-6 Angular momentum </a><br>
+&emsp; <a href="javascript:Goto(3,20,7)">20-7 The change of averages with time </a><br>
+				<br>
+				<b><a href="javascript:Goto(3,21)">Chapter 21. The Schrödinger Equation in a Classical Context: A 
+				Seminar on Superconductivity</a></b><br>
+&emsp; <a href="javascript:Goto(3,21,1)">21-1 Schrödinger’s equation in a magnetic field </a><br>
+&emsp; <a href="javascript:Goto(3,21,2)">21-2 The equation of continuity for probabilities </a><br>
+&emsp; <a href="javascript:Goto(3,21,3)">21-3 Two kinds of momentum </a><br>
+&emsp; <a href="javascript:Goto(3,21,4)">21-4 The meaning of the wave function </a><br>
+&emsp; <a href="javascript:Goto(3,21,5)">21-5 Superconductivity </a><br>
+&emsp; <a href="javascript:Goto(3,21,6)">21-6 The Meissner effect </a><br>
+&emsp; <a href="javascript:Goto(3,21,7)">21-7 Flux quantization </a><br>
+&emsp; <a href="javascript:Goto(3,21,8)">21-8 The dynamics of superconductivity </a><br>
+&emsp; <a href="javascript:Goto(3,21,9)">21-9 The Josephson junction </a> </font></p>
+				<p style="margin-top: 0; margin-bottom: 0; line-height:100% !important">
+				<font face="Arial"  style="font-size:80%"><br>
+				<b><a href="javascript:Goto(3,22)">Feynman’s Epilogue</a></b></font></p>
+				</span>
+				</td>
+	</tr>
+	<tr>
+		<td valign="top" colspan="3" style="vertical-align: top">
+		<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+		</td>
+		</tr>
+</table>
+</div>
+</div>
+</body>
+</html>

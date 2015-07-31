@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 27: Field Energy and Field Momentum</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "27." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch27" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">27</span>Field Energy and Field Momentum</h2>
+<div id="Ch27-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">27–1</span>Local conservation</h3>
+<div id="Ch27-S1-p1" class="para">
+<p class="p">It is clear that the energy of matter is not conserved. When an
+object
+radiates light it loses energy. However, the energy lost is possibly
+describable in some other form, say in the light. Therefore the theory
+of the conservation of energy is incomplete without a consideration of
+the energy which is associated with the light or, in general, with the
+electromagnetic field. We take up now the law of conservation of
+energy and, also, of momentum for the fields. Certainly, we cannot
+treat one without the other, because in the relativity theory they are
+different aspects of the same four-vector.</p>
+</div>
+<div id="Ch27-S1-p2" class="para">
+<p class="p">Very early in Volume I, we discussed the conservation of energy; we
+said then merely that the total energy in the world is constant. Now
+we want to extend the idea of the energy conservation law in an
+important way—in a way that says something in <em class="emph">detail</em> about
+<em class="emph">how</em> energy is conserved. The new law will say that if energy
+goes away from a region, it is because it <em class="emph">flows</em> away through
+the boundaries of that region. It is a somewhat stronger law than the
+conservation of energy without such a restriction.</p>
+</div>
+<div id="Ch27-S1-p3" class="para">
+<p class="p">To see what the statement means, let’s look at how the law of the
+conservation of charge works. We described the conservation of charge
+by saying that there is a current density $\FLPj$ and a charge
+density $\rho$, and that when the charge decreases at some place there must be
+a flow of charge away from that place. We call that the conservation
+of charge. The mathematical form of the conservation law is
+\begin{equation}
+\label{Eq:II:27:1}
+\FLPdiv{\FLPj}=-\ddp{\rho}{t}.
+\end{equation}
+
+This law has the consequence that the total charge in the world is
+always constant—there is never any net gain or loss of
+charge. However, the total charge in the world could be constant in
+another way. Suppose that there is some charge $Q_1$ near some
+point $(1)$ while there is no charge near some point $(2)$ some distance
+away (Fig. <a href="#Ch27-F1">27–1</a>). Now suppose that, as time goes on,
+the charge $Q_1$ were to gradually fade away and that
+<em class="emph">simultaneously</em> with the decrease of $Q_1$ some charge $Q_2$
+would appear near point $(2)$, and in such a way that at every instant
+the sum of $Q_1$ and $Q_2$ was a constant. In other words, at any
+intermediate state the amount of charge lost by $Q_1$ would be added
+to $Q_2$. Then the total amount of charge in the world would be
+conserved. That’s a “world-wide” conservation, but not what we will
+call a “local” conservation, because in order for the charge to get
+from $(1)$ to $(2)$, it didn’t have to appear anywhere in the space
+between point $(1)$ and point $(2)$. Locally, the charge was just
+“lost.”</p>
+</div>
+<div id="Ch27-F1" class="figure">
+<img src="img/FLP_II/f27-01/f27-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–1.</span>Two ways to conserve charge: (a) $Q_1+Q_2$ is constant;
+(b) $dQ_1/dt=$ $-\int\Figj\cdot\Fign\,da=$ $-dQ_2/dt$.
+</div>
+</div>
+<div id="Ch27-S1-p4" class="para">
+<p class="p">There is a difficulty with such a “world-wide” conservation law in
+the theory of relativity. The concept of “simultaneous moments” at
+distant points is one which is not equivalent in different
+systems. Two events that are simultaneous in one system are not
+simultaneous for another system moving past. For “world-wide”
+conservation of the kind described, it is necessary that the charge
+lost from $Q_1$ should appear <em class="emph">simultaneously</em>
+in $Q_2$. Otherwise there would be some moments when the charge was not
+conserved. There seems to be no way to make the law of charge
+conservation relativistically invariant without making it a “local”
+conservation law. As a matter of fact, the requirement of the Lorentz
+relativistic invariance seems to restrict the possible laws of nature
+in surprising ways. In modern quantum field theory, for example,
+people have often wanted to alter the theory by allowing what we call
+a “nonlocal” interaction—where something <em class="emph">here</em> has a direct
+effect on something <em class="emph">there</em>—but we get in trouble with the
+relativity principle.</p>
+</div>
+<div id="Ch27-S1-p5" class="para">
+<p class="p">“Local” conservation involves another idea. It says that a charge
+can get from one place to another only if there is something happening
+in the space between. To describe the law we need not only the density
+of charge, $\rho$, but also another kind of quantity, namely $\FLPj$,
+a vector giving the rate of flow of charge across a surface. Then the
+flow is related to the rate of change of the density by
+Eq. (<a href="#mjx-eqn-EqII271">27.1</a>). This is the more extreme kind of a conservation
+law. It says that charge is conserved in a special way—conserved
+“locally.”</p>
+</div>
+<div id="Ch27-S1-p6" class="para">
+<p class="p">It turns out that energy conservation is also a <em class="emph">local</em>
+process. There is not only an energy density in a given region of
+space but also a vector to represent the rate of flow of the energy
+through a surface. For example, when a light source radiates, we can
+find the light energy moving out from the source. If we imagine some
+mathematical surface surrounding the light source, the energy lost
+from inside the surface is equal to the energy that flows out through
+the surface.</p>
+</div>
+</div>
+<div id="Ch27-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">27–2</span>Energy conservation and electromagnetism</h3>
+<div id="Ch27-S2-p1" class="para">
+<p class="p">We want now to write quantitatively the conservation of energy for
+electromagnetism. To do that, we have to describe how much energy there
+is in any volume element of space, and also the rate of energy flow.
+Suppose we think first only of the electromagnetic field energy. We will
+let $u$ represent the <em class="emph">energy density</em> in the field (that is, the amount
+of energy per unit volume in space) and let the vector $\FLPS$ represent
+the <em class="emph">energy flux</em> of
+the field (that is, the flow of energy per unit time across a unit area
+perpendicular to the flow). Then, in perfect analogy with the
+conservation of charge, Eq. (<a href="#mjx-eqn-EqII271">27.1</a>), we can write the
+“local” law of energy conservation in the field as
+\begin{equation}
+\label{Eq:II:27:2}
+\ddp{u}{t}=-\FLPdiv{\FLPS}.
+\end{equation}
+</p>
+</div>
+<div id="Ch27-S2-p2" class="para">
+<p class="p">Of course, this law is not true in general; it is not true that the
+field energy is conserved. Suppose you are in a dark room and then
+turn on the light switch. All of a sudden the room is full of light,
+so there is energy in the field, although there wasn’t any energy
+there before. Equation (<a href="#mjx-eqn-EqII272">27.2</a>) is not the complete
+conservation law, because the <em class="emph">field</em> energy <em class="emph">alone</em> is not
+conserved, only the total energy in the world—there is also the
+energy of matter. The field energy will change if there is some work
+being done by matter on the field or by the field on matter.</p>
+</div>
+<div id="Ch27-S2-p3" class="para">
+<p class="p">However, if there is matter inside the volume of interest, we know how
+much energy it has: Each particle has the
+energy $m_0c^2/\sqrt{1-v^2/c^2}$. The total energy of the matter is just the
+sum of all the particle energies, and the flow of this energy through
+a surface is just the sum of the energy carried by each particle that
+crosses the surface. We want now to talk only about the energy of the
+electromagnetic field. So we must write an equation which says that
+the total <em class="emph">field</em> energy in a given volume decreases
+<em class="emph">either</em> because field energy flows out of the volume <em class="emph">or</em>
+because the field loses energy to matter (or gains energy, which is
+just a negative loss). The field energy inside a volume $V$ is
+\begin{equation*}
+\int_Vu\,dV,
+\end{equation*}
+
+and its rate of decrease is minus the time derivative of this
+integral. The flow of field energy out of the volume $V$ is the
+integral of the normal component of $\FLPS$ over the surface $\Sigma$
+that encloses $V$,
+\begin{equation}
+\int_\Sigma\FLPS\cdot\FLPn\,da.\notag
+\end{equation}
+
+So
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:27:3}
+-\ddt{}{t}\int_Vu\,dV=\int_\Sigma\FLPS\cdot\FLPn\,da+
+(\text{work done on matter inside $V$}).
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\label{Eq:II:27:3}
+-\ddt{}{t}\int_Vu\,dV=\int_\Sigma\FLPS\cdot\FLPn\,da+
+\begin{pmatrix}
+\text{work done}\\[-.5ex]
+\text{on matter}\\[-.5ex]
+\text{inside $V$}
+\end{pmatrix}\!.
+\end{equation}
+
+</span>
+</p>
+</div>
+<div id="Ch27-S2-p4" class="para">
+<p class="p">We have seen before that the field does work on each unit volume of
+matter at the rate $\FLPE\cdot\FLPj$. [The force on a particle
+is $\FLPF=q(\FLPE+\FLPv\times\FLPB)$, and the rate of doing work
+is $\FLPF\cdot\FLPv=q\FLPE\cdot\FLPv$. If there are $N$ particles per
+unit volume, the rate of doing work per unit volume
+is $Nq\FLPE\cdot\FLPv$, but $Nq\FLPv=\FLPj$.] So the
+quantity $\FLPE\cdot\FLPj$ must be equal to the loss of energy per unit time
+and per unit volume <em class="emph">by</em> the field. Equation (<a href="#mjx-eqn-EqII273">27.3</a>)
+then becomes
+\begin{equation}
+\label{Eq:II:27:4}
+-\ddt{}{t}\int_Vu\,dV=\int_\Sigma\FLPS\cdot\FLPn\,da+
+\int_V\FLPE\cdot\FLPj\,dV.
+\end{equation}
+</p>
+</div>
+<div id="Ch27-S2-p5" class="para">
+<p class="p">This is our conservation law for energy in the field. We can convert
+it into a differential equation like Eq. (<a href="#mjx-eqn-EqII272">27.2</a>) if we
+can change the second term to a volume integral. That is easy to do
+with Gauss’ theorem. The surface integral of the normal component
+of $\FLPS$ is the integral of its divergence over the volume inside. So
+Eq. (<a href="#mjx-eqn-EqII273">27.3</a>) is equivalent to
+\begin{equation*}
+-\int_V\ddp{u}{t}\,dV=\int_V\FLPdiv{\FLPS}\,dV+
+\int_V\FLPE\cdot\FLPj\,dV,
+\end{equation*}
+
+where we have put the time derivative of the first term inside the
+integral. Since this equation is true for any volume, we can take away
+the integrals and we have the energy equation for the electromagnetic
+fields:
+\begin{equation}
+\label{Eq:II:27:5}
+-\ddp{u}{t}=\FLPdiv{\FLPS}+\FLPE\cdot\FLPj.
+\end{equation}
+</p>
+</div>
+<div id="Ch27-S2-p6" class="para">
+<p class="p">Now this equation doesn’t do us a bit of good unless we know what $u$
+and $\FLPS$ are. Perhaps we should just tell you what they are in
+terms of $\FLPE$ and $\FLPB$, because all we really want is the
+result. However, we would rather show you the kind of argument that
+was used by Poynting
+in 1884 to obtain formulas for $\FLPS$ and $u$,
+so you can see where they come from. (You won’t, however, need to
+learn this derivation for our later work.)</p>
+</div>
+</div>
+<div id="Ch27-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">27–3</span>Energy density and energy flow in the electromagnetic field</h3>
+<div id="Ch27-S3-p1" class="para">
+<p class="p">The idea is to suppose that there is a field energy density $u$ and a
+flux $\FLPS$ that depend only upon the fields $\FLPE$
+and $\FLPB$. (For example, we know that in electrostatics, at least, the
+energy density can be written $\tfrac{1}{2}\epsO\FLPE\cdot\FLPE$.) Of
+course, the $u$ and $\FLPS$ might depend on the potentials or
+something else, but let’s see what we can work out. We can try to
+rewrite the quantity $\FLPE\cdot\FLPj$ in such a way that it becomes
+the sum of two terms: one that is the time derivative of one quantity
+and another that is the divergence of a second quantity. The first
+quantity would then be $u$ and the second would be $\FLPS$ (with
+suitable signs). Both quantities must be written in terms of the
+fields only; that is, we want to write our equality as
+\begin{equation}
+\label{Eq:II:27:6}
+\FLPE\cdot\FLPj=-\ddp{u}{t}-\FLPdiv{\FLPS}.
+\end{equation}
+</p>
+</div>
+<div id="Ch27-S3-p2" class="para">
+<p class="p">The left-hand side must first be expressed in terms of the fields only.
+How can we do that? By using Maxwell’s
+equations, of course. From Maxwell’s
+equation
+for the curl of $\FLPB$,
+\begin{equation*}
+\FLPj=\epsO c^2\FLPcurl{\FLPB}-\epsO\,\ddp{\FLPE}{t}.
+\end{equation*}
+
+Substituting this in (<a href="#mjx-eqn-EqII276">27.6</a>) we will have only $\FLPE$’s
+and $\FLPB$’s:
+\begin{equation}
+\label{Eq:II:27:7}
+\FLPE\cdot\FLPj=\epsO c^2\FLPE\cdot(\FLPcurl{\FLPB})-
+\epsO\FLPE\cdot\ddp{\FLPE}{t}.
+\end{equation}
+
+We are already partly finished. The last term is a time
+derivative—it is$(\ddpl{}{t})(\tfrac{1}{2}\epsO\FLPE\cdot\FLPE)$. So
+$\tfrac{1}{2}\epsO\FLPE\cdot\FLPE$ is at least one part of $u$. It’s
+the same thing we found in electrostatics. Now, all we have to do is
+to make the other term into the divergence of something.</p>
+</div>
+<div id="Ch27-S3-p3" class="para">
+<p class="p">Notice that the first term on the right-hand side of (<a href="#mjx-eqn-EqII277">27.7</a>)
+is the same as
+\begin{equation}
+\label{Eq:II:27:8}
+(\FLPcurl{\FLPB})\cdot\FLPE.
+\end{equation}
+
+And, as you know from vector
+algebra,
+$(\FLPa\times\FLPb)\cdot\FLPc$
+is the same as $\FLPa\cdot(\FLPb\times\FLPc)$; so our term is also the
+same as
+\begin{equation}
+\label{Eq:II:27:9}
+\FLPdiv{(\FLPB\times\FLPE)}
+\end{equation}
+
+and we have the divergence of “something,” just as we wanted. Only
+that’s wrong! We warned you before that $\FLPnabla$ is “like” a
+vector, but not “exactly” the same. The reason it is not is because
+there is an additional <em class="emph">convention</em> from calculus: when a
+derivative operator is in front of a product, it works on everything
+to the right. In Eq. (<a href="#mjx-eqn-EqII277">27.7</a>), the $\FLPnabla$ operates
+only on $\FLPB$, not on $\FLPE$. But in the form (<a href="#mjx-eqn-EqII279">27.9</a>),
+the normal convention would say that $\FLPnabla$ operates on both
+$\FLPB$ and $\FLPE$. So it’s <em class="emph">not</em> the same thing. In fact, if we
+work out the components of $\FLPdiv{(\FLPB\times\FLPE)}$ we can see
+that it is equal to $\FLPE\cdot(\FLPcurl{\FLPB})$ <em class="emph">plus</em> some
+other terms. It’s like what happens when we take a derivative of a
+product in algebra. For instance,
+\begin{equation*}
+\ddt{}{x}(fg)=\ddt{f}{x}\,g+f\,\ddt{g}{x}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch27-S3-p4" class="para">
+<p class="p">Rather than working out all the components
+of $\FLPdiv{(\FLPB\times\FLPE)}$, we would like to show you a trick that
+is very useful for this kind of problem. It is a trick that allows you
+to use all the rules of vector
+algebra
+on expressions with the $\FLPnabla$ operator,
+without getting into trouble. The trick is to
+throw out—for a while at least—the rule of the calculus notation
+about what the derivative operator works on. You see, ordinarily, the
+order of terms is used for <em class="emph">two</em> separate purposes. One is for
+calculus: $f(d/dx)g$ is not the same as $g(d/dx)f$; and the other is
+for vectors: $\FLPa\times\FLPb$ is different
+from $\FLPb\times\FLPa$. We can, if we want, choose to abandon momentarily
+the calculus rule. Instead of saying that a derivative operates on
+everything to the right, we make a <em class="emph">new</em> rule that doesn’t depend
+on the order in which terms are written down. Then we can juggle terms
+around without worrying.</p>
+</div>
+<div id="Ch27-S3-p5" class="para">
+<p class="p">Here is our new convention: we show, by a subscript, what a
+differential operator works on; the <em class="emph">order</em> has no
+meaning. Suppose we let the operator $D$ stand for $\ddpl{}{x}$. Then
+$D_f$ means that only the derivative of the variable quantity $f$ is
+taken. Then
+\begin{equation*}
+D_ff=\ddp{f}{x}.
+\end{equation*}
+
+But if we have $D_ffg$, it means
+\begin{equation*}
+D_ffg=\biggl(\ddp{f}{x}\biggr)g.
+\end{equation*}
+
+But notice now that according to our new rule, $fD_fg$ means the same
+thing. We can write the same thing any which way:
+\begin{equation*}
+D_ffg=gD_ff=fD_fg=fgD_f.
+\end{equation*}
+
+You see, the $D_f$ can even come <em class="emph">after</em> everything. (It’s
+surprising that such a handy notation is never taught in books on
+mathematics or physics.)</p>
+</div>
+<div id="Ch27-S3-p6" class="para">
+<p class="p">You may wonder: What if I <em class="emph">want</em> to write the derivative of $fg$?
+I <em class="emph">want</em> the derivative of <em class="emph">both</em> terms. That’s easy, you
+just say so; you write $D_f(fg)+D_g(fg)$. That is just
+$g(\ddpl{f}{x})+f(\ddpl{g}{x})$, which is what you mean in the old
+notation by $\ddpl{(fg)}{x}$.</p>
+</div>
+<div id="Ch27-S3-p7" class="para">
+<p class="p">You will see that it is now going to be very easy to work out a new
+expression for $\FLPdiv{(\FLPB\times\FLPE)}$. We start by changing to
+the new notation; we write
+\begin{equation}
+\label{Eq:II:27:10}
+\FLPdiv{(\FLPB\times\FLPE)}=\FLPnabla_B\cdot(\FLPB\times\FLPE)+
+\FLPnabla_E\cdot(\FLPB\times\FLPE).
+\end{equation}
+
+The moment we do that we don’t have to keep the order straight any more.
+We always know that $\FLPnabla_E$ operates on $\FLPE$ only,
+and $\FLPnabla_B$ operates on $\FLPB$ only. In these circumstances, we can
+use $\FLPnabla$ as though it were an ordinary vector. (Of course, when
+we are finished, we will want to return to the “standard” notation
+that everybody usually uses.) So now we can do the various things like
+interchanging dots and crosses and making other kinds of rearrangements
+of the terms. For instance, the middle term of Eq. (<a href="#mjx-eqn-EqII2710">27.10</a>)
+can be rewritten as $\FLPE\cdot\FLPnabla_B\times\FLPB$. (You remember that
+$\FLPa\cdot\FLPb\times\FLPc=\FLPb\cdot\FLPc\times\FLPa$.) And the last
+term is the same as $\FLPB\cdot\FLPE\times\FLPnabla_E$. It looks
+freakish, but it is all right. Now if we try to go back to the ordinary
+convention, we have to arrange that the $\FLPnabla$ operates only on its
+“own” variable. The first one is already that way, so we can just
+leave off the subscript. The second one needs some rearranging to put
+the $\FLPnabla$ in front of the $\FLPE$, which we can do by reversing
+the cross product and changing sign:
+\begin{equation*}
+\FLPB\cdot(\FLPE\times\FLPnabla_E)=
+-\FLPB\cdot(\FLPnabla_E\times\FLPE).
+\end{equation*}
+
+Now it is in a conventional order, so we can return to the usual
+notation. Equation (<a href="#mjx-eqn-EqII2710">27.10</a>) is equivalent to
+\begin{equation}
+\label{Eq:II:27:11}
+\FLPdiv{(\FLPB\times\FLPE)}=
+\FLPE\cdot(\FLPcurl{\FLPB})-\FLPB\cdot(\FLPcurl{\FLPE}).
+\end{equation}
+
+(A quicker way would have been to use components in this special case,
+but it was worth taking the time to show you the mathematical
+trick. You probably won’t see it anywhere else, and it is very good
+for unlocking vector
+algebra
+from the rules about the order of terms
+with derivatives.)
+</p>
+</div>
+<div id="Ch27-S3-p8" class="para">
+<p class="p">We now return to our energy conservation discussion and use our new
+result, Eq. (<a href="#mjx-eqn-EqII2711">27.11</a>), to transform the $\FLPcurl{\FLPB}$ term
+of Eq. (<a href="#mjx-eqn-EqII277">27.7</a>). That energy equation becomes
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:27:12}
+\FLPE\cdot\FLPj=\epsO c^2\FLPdiv{(\FLPB\times\FLPE)}+\epsO c^2
+\FLPB\cdot(\FLPcurl{\FLPE})-\ddp{}{t}(\tfrac{1}{2}\epsO
+\FLPE\cdot\FLPE).
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:II:27:12}
+\FLPE\cdot\FLPj=\,&\epsO c^2\FLPdiv{(\FLPB\times\FLPE)}\,+\\
+&\epsO c^2\FLPB\cdot(\FLPcurl{\FLPE})\,-\ddp{}{t}(\tfrac{1}{2}\epsO
+\FLPE\cdot\FLPE).\notag
+\end{align}
+</span>
+Now you see, we’re almost finished. We have one term which is a nice
+derivative with respect to $t$ to use for $u$ and another that is a
+beautiful divergence to represent $\FLPS$. Unfortunately, there is the
+center term left over, which is neither a divergence nor a derivative
+with respect to $t$. So we almost made it, but not quite. After some
+thought, we look back at the differential equations of
+Maxwell and
+discover that $\FLPcurl{\FLPE}$ is, fortunately, equal
+to $-\ddpl{\FLPB}{t}$, which means that we can turn the extra term into
+something that is a pure time derivative:
+\begin{equation*}
+\FLPB\cdot(\FLPcurl{\FLPE})=\FLPB\cdot\biggl(
+-\ddp{\FLPB}{t}\biggr)=-\ddp{}{t}\biggl(
+\frac{\FLPB\cdot\FLPB}{2}\biggr).
+\end{equation*}
+
+Now we have exactly what we want. Our energy equation reads
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:27:13}
+\FLPE\cdot\FLPj=\FLPdiv{(\epsO c^2\FLPB\times\FLPE)}-
+\ddp{}{t}\biggl(\frac{\epsO c^2}{2}\,\FLPB\cdot\FLPB+
+\frac{\epsO}{2}\,\FLPE\cdot\FLPE\biggr),
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:II:27:13}
+\FLPE\cdot\FLPj=\;&\FLPdiv{(\epsO c^2\FLPB\times\FLPE)}\,-\\[1ex]
+&\ddp{}{t}\biggl(\frac{\epsO c^2}{2}\,\FLPB\cdot\FLPB+
+\frac{\epsO}{2}\,\FLPE\cdot\FLPE\biggr),\notag
+\end{align}
+</span>
+which is exactly like Eq. (<a href="#mjx-eqn-EqII276">27.6</a>), if we make the
+<em class="emph">definitions</em>
+\begin{equation}
+\label{Eq:II:27:14}
+u=\frac{\epsO}{2}\,\FLPE\cdot\FLPE+
+\frac{\epsO c^2}{2}\,\FLPB\cdot\FLPB
+\end{equation}
+
+and
+\begin{equation}
+\label{Eq:II:27:15}
+\FLPS=\epsO c^2\FLPE\times\FLPB.
+\end{equation}
+
+(Reversing the cross product makes the signs come out right.)</p>
+</div>
+<div id="Ch27-S3-p9" class="para">
+<p class="p">Our program was successful. We have an expression for the energy
+density that is the sum of an “electric” energy density and a
+“magnetic” energy density, whose forms are just like the ones we
+found in statics <em class="emph">when we worked out the energy in terms of the
+fields</em>. Also, we have found a formula for the energy flow vector of
+the electromagnetic field. This new vector, $\FLPS=\epsO
+c^2\FLPE\times\FLPB$, is called “Poynting’s vector,” after its discoverer. It tells us the
+rate at which the field energy moves around in space. The energy which
+flows through a small area $da$ per second is $\FLPS\cdot\FLPn\,da$,
+where $\FLPn$ is the unit vector perpendicular to $da$. (Now that we
+have our formulas for $u$ and $\FLPS$, you can forget the derivations if
+you want.)
+</p>
+</div>
+</div>
+<div id="Ch27-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">27–4</span>The ambiguity of the field energy</h3>
+<div id="Ch27-S4-p1" class="para">
+<p class="p">Before we take up some applications of the Poynting formulas [Eqs.
+(<a href="#mjx-eqn-EqII2714">27.14</a>) and (<a href="#mjx-eqn-EqII2715">27.15</a>)], we would like to say that we have
+not really “proved” them. All we did was to find a <em class="emph">possible</em> “$u$” and
+a <em class="emph">possible</em> “$\FLPS$.” How do we know that by juggling the terms around
+some more we couldn’t find another formula for “$u$” and another formula
+for “$\FLPS$”? The new $\FLPS$ and the new $u$ would be different, but they
+would still satisfy Eq. (<a href="#mjx-eqn-EqII276">27.6</a>). It’s possible. It can be done, but
+the forms that have been found always involve various <em class="emph">derivatives</em> of the
+field (and always with second-order terms like a second derivative or the square
+of a first derivative). There are, in fact, an infinite number of different
+possibilities for $u$ and $\FLPS$, and so far no one has thought of an
+experimental way to tell which one is right! People have guessed that the
+simplest one is probably the correct one, but we must say that we do not know
+for certain what is the actual location in space of the electromagnetic field
+energy. So we too will take the easy way out and say that the field energy is
+given by Eq. (<a href="#mjx-eqn-EqII2714">27.14</a>). Then the flow vector $\FLPS$ must be given by
+Eq. (<a href="#mjx-eqn-EqII2715">27.15</a>).</p>
+</div>
+<div id="Ch27-S4-p2" class="para">
+<p class="p">It is interesting that there seems to be no unique way to resolve the
+indefiniteness in the location of the field energy. It is sometimes
+claimed that this problem can be resolved by using the theory of
+gravitation in the following argument. In the theory of gravity, all
+energy is the source of gravitational attraction. Therefore the energy
+density of electricity must be located properly if we are to know in
+which direction the gravity force acts. As yet, however, no one has
+done such a delicate experiment that the precise location of the
+gravitational influence of electromagnetic fields could be
+determined. That electromagnetic fields alone can be the source of
+gravitational force is an idea it is hard to do without. It has, in
+fact, been observed that light is deflected as it passes near the
+sun—we could say that the sun pulls the light down toward it. Do you
+not want to allow that the light pulls equally on the sun? Anyway,
+everyone always accepts the simple expressions we have found for the
+location of electromagnetic energy and its flow. And although
+sometimes the results obtained from using them seem strange, nobody
+has ever found anything wrong with them—that is, no disagreement
+with experiment. So we will follow the rest of the world—besides, we
+believe that it is probably perfectly right.
+</p>
+</div>
+<div id="Ch27-S4-p3" class="para">
+<p class="p">We should make one further remark about the energy formula. In the
+first place, the energy per unit volume in the field is very simple:
+It is the electrostatic energy plus the magnetic energy, <em class="emph">if</em> we
+write the electrostatic energy in terms of $E^2$ and the magnetic
+energy as $B^2$. We found two such expressions as <em class="emph">possible</em>
+expressions for the energy when we were doing static problems. We also
+found a number of other formulas for the energy in the electrostatic
+field, such as $\rho\phi$, which is <em class="emph">equal</em> to the integral
+of $\FLPE\cdot\FLPE$ in the electrostatic case. However, in an
+electrodynamic field the equality failed, and there was no obvious
+choice as to which was the right one. Now we know which is the right
+one. Similarly, we have found the formula for the magnetic energy that
+is correct in general. The right formula for the energy density of
+<em class="emph">dynamic</em> fields is Eq. (<a href="#mjx-eqn-EqII2714">27.14</a>).</p>
+</div>
+</div>
+<div id="Ch27-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">27–5</span>Examples of energy flow</h3>
+<div id="Ch27-F2" class="figure">
+<img src="img/FLP_II/f27-02/f27-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–2.</span>The vectors $\FigE$, $\FigB$, and $\FigS$ for a light wave.
+</div>
+</div>
+<div id="Ch27-S5-p1" class="para">
+<p class="p">Our formula for the energy flow vector $\FLPS$ is something quite
+new. We want now to see how it works in some special cases and also to
+see whether it checks out with anything that we knew before. The first
+example we will take is light. In a light wave we have an $\FLPE$
+vector and a $\FLPB$ vector at right angles to each other and to the
+direction of the wave propagation. (See Fig. <a href="#Ch27-F2">27–2</a>.) In
+an electromagnetic wave, the magnitude of $\FLPB$ is equal to
+$1/c$ times the magnitude of $\FLPE$, and since they are at right angles,
+\begin{equation*}
+\abs{\FLPE\times\FLPB}=\frac{E^2}{c}.
+\end{equation*}
+
+Therefore, for light, the flow of energy per unit area per second is
+\begin{equation}
+\label{Eq:II:27:16}
+S=\epsO cE^2.
+\end{equation}
+
+For a light wave in which $E=E_0\cos\omega(t-x/c)$, the average rate
+of energy flow per unit area, $\av{S}$—which is called the
+“intensity” of the light—is the mean value of the square of the
+electric field times $\epsO c$:
+\begin{equation}
+\label{Eq:II:27:17}
+\text{Intensity} = \av{S} = \epsO c\av{E^2}.
+\end{equation}
+</p>
+</div>
+<div id="Ch27-S5-p2" class="para">
+<p class="p">Believe it or not, we have already derived this result in
+Section <a href="I_31.html#Ch31-S5">31–5</a> of Vol. I, when we were studying light. We
+can believe that it is right because it also checks against something
+else. When we have a light beam, there is an energy density in space
+given by Eq. (<a href="#mjx-eqn-EqII2714">27.14</a>). Using $cB=E$ for a light wave, we get
+that
+\begin{equation*}
+u=\frac{\epsO}{2}\,E^2+\frac{\epsO c^2}{2}\biggl(
+\frac{E^2}{c^2}\biggr)=\epsO E^2.
+\end{equation*}
+
+But $\FLPE$ varies in space, so the average energy density is
+\begin{equation}
+\label{Eq:II:27:18}
+\av{u} = \epsO\av{E^2}.
+\end{equation}
+
+Now the wave travels at the speed $c$, so we should think that the
+energy that goes through a square meter in a second is $c$ times the
+amount of energy in one cubic meter. So we would say that
+\begin{equation*}
+\av{S} = \epsO c\av{E^2}.
+\end{equation*}
+
+And it’s right; it is the same as Eq. (<a href="#mjx-eqn-EqII2717">27.17</a>).</p>
+</div>
+<div id="Ch27-F3" class="figure">
+<img src="img/FLP_II/f27-03/f27-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–3.</span>Near a charging capacitor, the Poynting vector $\FigS$ points
+inward toward the axis.
+</div>
+</div>
+<div id="Ch27-S5-p3" class="para">
+<p class="p">Now we take another example. Here is a rather curious one. We look at
+the energy flow in a capacitor that we are charging slowly. (We don’t
+want frequencies so high that the capacitor is beginning to look like
+a resonant cavity, but we don’t want <span class="text smallcaps">dc</span> either.) Suppose we
+use a circular parallel plate capacitor of our usual kind, as shown in
+Fig. <a href="#Ch27-F3">27–3</a>. There is a nearly uniform electric field
+inside which is changing with time. At any instant the total
+electromagnetic energy inside is $u$ times the volume. If the plates
+have a radius $a$ and a separation $h$, the total energy between the
+plates is
+\begin{equation}
+\label{Eq:II:27:19}
+U=\biggl(\frac{\epsO}{2}\,E^2\biggr)(\pi a^2h).
+\end{equation}
+
+This energy changes when $E$ changes. When the capacitor is being
+charged, the volume between the plates is receiving energy at the rate
+\begin{equation}
+\label{Eq:II:27:20}
+\ddt{U}{t}=\epsO\pi a^2hE\dot{E}.
+\end{equation}
+
+So there must be a flow of energy into that volume from somewhere. Of
+course you know that it must come in on the charging wires—not at
+all!  It can’t enter the space between the plates from that direction,
+because $\FLPE$ is perpendicular to the plates; $\FLPE\times\FLPB$
+must be <em class="emph">parallel</em> to the plates.</p>
+</div>
+<div id="Ch27-S5-p4" class="para">
+<p class="p">You remember, of course, that there is a magnetic field that circles
+around the axis when the capacitor is charging. We discussed that in
+Chapter <a href="II_23.html">23</a>. Using the last of Maxwell’s
+equations, we found that the magnetic
+field at the edge of the capacitor is given by
+\begin{equation*}
+2\pi ac^2B=\dot{E}\cdot\pi a^2,
+\end{equation*}
+
+or
+\begin{equation*}
+B=\frac{a}{2c^2}\,\dot{E}.
+\end{equation*}
+
+Its direction is shown in Fig. <a href="#Ch27-F3">27–3</a>. So there is an
+energy flow proportional to $\FLPE\times\FLPB$ that comes in all
+around the edges, as shown in the figure. The energy isn’t actually
+coming down the wires, but from the space surrounding the capacitor.
+</p>
+</div>
+<div id="Ch27-S5-p5" class="para">
+<p class="p">Let’s check whether or not the total amount of flow through the whole
+surface between the edges of the plates checks with the rate of change
+of the energy inside—it had better; we went through all that work
+proving Eq. (<a href="#mjx-eqn-EqII2715">27.15</a>) to make sure, but let’s see. The
+area of the surface is $2\pi ah$, and $\FLPS=\epsO
+c^2\FLPE\times\FLPB$ is in magnitude
+\begin{equation*}
+\epsO c^2E\biggl(\frac{a}{2c^2}\,\dot{E}\biggr),
+\end{equation*}
+
+so the total flux of energy is
+\begin{equation*}
+\pi a^2h\epsO E\dot{E}.
+\end{equation*}
+
+It does check with Eq. (<a href="#mjx-eqn-EqII2720">27.20</a>). But it tells us a
+peculiar thing: that when we are charging a capacitor, the energy is
+not coming down the wires; it is coming in through the edges of the
+gap. That’s what this theory says!</p>
+</div>
+<div id="Ch27-S5-p6" class="para">
+<p class="p">How can that be? That’s <em class="emph">not</em> an easy question, but here is one
+way of thinking about it. Suppose that we had some charges above and
+below the capacitor and far away. When the charges are far away, there
+is a weak but enormously spread-out field that surrounds the
+capacitor. (See Fig. <a href="#Ch27-F4">27–4</a>.) Then, as the charges come
+together, the field gets stronger nearer to the capacitor. So the
+field energy which is way out moves toward the capacitor and
+eventually ends up between the plates.</p>
+</div>
+<div id="Ch27-F4" class="figure">
+<img src="img/FLP_II/f27-04/f27-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–4.</span>The fields outside a capacitor when it is being charged by
+bringing two charges from a large distance.
+</div>
+</div>
+<div id="Ch27-S5-p7" class="para">
+<p class="p">As another example, we ask what happens in a piece of resistance wire
+when it is carrying a current. Since the wire has resistance, there is
+an electric field along it, driving the current. Because there is a
+potential drop along the wire, there is also an electric field just
+outside the wire, parallel to the surface. (See Fig. <a href="#Ch27-F5">27–5</a>.)
+There is, in addition, a magnetic field which goes around the wire
+because of the current. The $\FLPE$ and $\FLPB$ are at right angles;
+therefore there is a Poynting vector directed radially inward, as shown
+in the figure. There is a flow of energy into the wire all around. It
+is, of course, equal to the energy being lost in the wire in the form of
+heat. So our “crazy” theory says that the electrons are getting their
+energy to generate heat because of the energy flowing into the wire from
+the field outside. Intuition would seem to tell us that the electrons
+get their energy from being pushed along the wire, so the energy should
+be flowing down (or up) along the wire. But the theory says that the
+electrons are really being pushed by an electric field, which has come
+from some charges very far away, and that the electrons get their energy
+for generating heat from these fields. The energy somehow flows from the
+distant charges into a wide area of space and then inward to the wire.</p>
+</div>
+<div id="Ch27-F5" class="figure">
+<img src="img/FLP_II/f27-05/f27-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–5.</span>The Poynting vector $\FigS$ near a wire carrying a current.
+</div>
+</div>
+<div id="Ch27-S5-p8" class="para">
+<p class="p">Finally, in order to really convince you that this theory is obviously
+nuts, we will take one more example—an example in which an electric
+charge and a magnet are <em class="emph">at rest</em> near each other—both sitting
+quite still. Suppose we take the example of a point charge sitting near
+the center of a bar magnet, as shown in Fig. <a href="#Ch27-F6">27–6</a>.
+Everything is at rest, so the energy is not changing with time. Also,
+$\FLPE$ and $\FLPB$ are quite static. But the Poynting vector says that
+there is a flow of energy, because there is an $\FLPE\times\FLPB$ that
+is not zero. If you look at the energy flow, you find that it just
+circulates around and around. There isn’t any change in the energy
+anywhere—everything which flows into one volume flows out again. It is
+like incompressible water flowing around. So there is a circulation of
+energy in this so-called static condition. How absurd it gets!</p>
+</div>
+<div id="Ch27-F6" class="figure">
+<img src="img/FLP_II/f27-06/f27-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–6.</span>A charge and a magnet produce a Poynting vector that
+circulates in closed loops.
+</div>
+</div>
+<div id="Ch27-S5-p9" class="para">
+<p class="p">Perhaps it isn’t so terribly puzzling, though, when you remember that
+what we called a “static” magnet is really a circulating permanent
+current. In a permanent magnet the electrons are spinning permanently
+inside. So maybe a circulation of the energy outside isn’t so queer
+after all.</p>
+</div>
+<div id="Ch27-S5-p10" class="para">
+<p class="p">You no doubt begin to get the impression that the Poynting theory at
+least partially violates your intuition as to where energy is located
+in an electromagnetic field. You might believe that you must revamp
+all your intuitions, and, therefore have a lot of things to study
+here. But it seems really not necessary. You don’t need to feel that
+you will be in great trouble if you forget once in a while that the
+energy in a wire is flowing into the wire from the outside, rather
+than along the wire. It seems to be only rarely of value, when using
+the idea of energy conservation, to notice in detail what path the
+energy is taking. The circulation of energy around a magnet and a
+charge seems, in most circumstances, to be quite unimportant. It is
+not a vital detail, but it is clear that our ordinary intuitions are
+quite wrong.</p>
+</div>
+</div>
+<div id="Ch27-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">27–6</span>Field momentum</h3>
+<div id="Ch27-S6-p1" class="para">
+<p class="p">Next we would like to talk about the <em class="emph">momentum</em> in the
+electromagnetic field. Just as the field has energy, it will have a
+certain momentum per unit volume. Let us call that momentum
+density $\FLPg$. Of course, momentum has various possible directions, so
+that $\FLPg$ must be a vector. Let’s talk about one component at a time;
+first, we take the $x$-component. Since each component of momentum is
+conserved we should be able to write down a law that looks something
+like this:
+\begin{equation*}
+-\ddp{}{t}
+\begin{pmatrix}
+\text{momentum}\\
+\text{of matter}
+\end{pmatrix}
+_x\!\!=\ddp{g_x}{t}+
+\begin{pmatrix}
+\text{momentum}\\
+\text{outflow}
+\end{pmatrix}
+_x.
+\end{equation*}
+
+The left side is easy. The rate-of-change of the momentum of matter is
+just the force on it. For a particle, it
+is $\FLPF=q(\FLPE+\FLPv\times\FLPB)$; for a distribution of charges, the
+force per unit volume is $(\rho\FLPE+\FLPj\times\FLPB)$. The
+“momentum outflow” term, however, is strange. It cannot be the
+divergence of a vector because it is not a scalar; it is, rather, an
+$x$-component of some vector. Anyway, it should probably look
+something like
+\begin{equation*}
+\ddp{a}{x}+\ddp{b}{y}+\ddp{c}{z},
+\end{equation*}
+
+because the $x$-momentum could be flowing in any one of the three
+directions. In any case, whatever $a$, $b$, and $c$ are, the
+combination is supposed to equal the outflow of the $x$-momentum.</p>
+</div>
+<div id="Ch27-S6-p2" class="para">
+<p class="p">Now the game would be to write $\rho\FLPE+\FLPj\times\FLPB$ in terms
+only of $\FLPE$ and $\FLPB$—eliminating $\rho$ and $\FLPj$ by using
+Maxwell’s equations—and then
+to juggle terms and make substitutions to get it into a form that looks
+like
+\begin{equation*}
+\ddp{g_x}{t}+\ddp{a}{x}+\ddp{b}{y}+\ddp{c}{z}.
+\end{equation*}
+
+Then, by identifying terms, we would have expressions for $g_x$, $a$,
+$b$, and $c$. It’s a lot of work, and we are not going to do
+it. Instead, we are only going to find an expression for $\FLPg$, the
+momentum density—and by a different route.</p>
+</div>
+<div id="Ch27-S6-p3" class="para">
+<p class="p">There is an important theorem in mechanics which is this: whenever
+there is a flow of energy in any circumstance at all (field energy or
+any other kind of energy), the energy flowing through a unit area per
+unit time, when multiplied by $1/c^2$, is equal to the momentum per
+unit volume in the space. In the special case of electrodynamics, this
+theorem gives the result that $\FLPg$ is $1/c^2$ times the Poynting
+vector:
+\begin{equation}
+\label{Eq:II:27:21}
+\FLPg=\frac{1}{c^2}\,\FLPS.
+\end{equation}
+
+So the Poynting vector gives not only energy flow but, if you divide
+by $c^2$, also the momentum density. The same result would come out of
+the other analysis we suggested, but it is more interesting to notice
+this more general result. We will now give a number of interesting
+examples and arguments to convince you that the general theorem is
+true.</p>
+</div>
+<div id="Ch27-S6-p4" class="para">
+<p class="p">First example: Suppose that we have a lot of particles in a
+box—let’s say $N$ per cubic meter—and that they are moving along
+with some velocity $\FLPv$. Now let’s consider an imaginary plane
+surface perpendicular to $\FLPv$. The energy flow through a unit area
+of this surface per second is equal to $Nv$, the number which flow
+through the surface per second, times the energy carried by each
+one. The energy in each particle is $m_0c^2/\sqrt{1-v^2/c^2}$. So the
+energy flow per second is
+\begin{equation*}
+Nv\,\frac{m_0c^2}{\sqrt{1-v^2/c^2}}.
+\end{equation*}
+
+But the momentum of each particle is $m_0v/\sqrt{1-v^2/c^2}$, so the
+<em class="emph">density</em> of momentum is
+\begin{equation*}
+N\,\frac{m_0v}{\sqrt{1-v^2/c^2}},
+\end{equation*}
+
+which is just $1/c^2$ times the energy flow—as the theorem says. So
+the theorem is true for a bunch of particles.</p>
+</div>
+<div id="Ch27-S6-p5" class="para">
+<p class="p">It is also true for light. When we studied light in Volume I, we saw
+that when the energy is absorbed from a light beam, a certain amount
+of momentum is delivered to the absorber. We have, in fact, shown in
+Chapter <a href="I_34.html">34</a> of Vol. I that the momentum is $1/c$ times
+the energy absorbed [Eq. (<a href="I_34.html#mjx-eqn-EqI3424">34.24</a>) of Vol. I]. If we
+let $U_0$ be the energy arriving at a unit area per second, then the
+momentum arriving at a unit area per second is $U_0/c$. But the
+momentum is travelling at the speed $c$, so its <em class="emph">density</em> in
+front of the absorber must be $U_0/c^2$. So again the theorem is
+right.</p>
+</div>
+<div id="Ch27-F7" class="figure">
+<img src="img/FLP_II/f27-07/f27-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–7.</span>The energy $U$ in motion at the speed $c$ carries the
+momentum $U/c$.
+</div>
+</div>
+<div id="Ch27-S6-p6" class="para">
+<p class="p">Finally we will give an argument due to
+Einstein which demonstrates the
+same thing once more. Suppose that we have a railroad car on wheels
+(assumed frictionless) with a certain big mass $M$. At one end there is
+a device which will shoot out some particles or light (or anything, it
+doesn’t make any difference what it is), which are then stopped at the
+opposite end of the car. There was some energy originally at one
+end—say the energy $U$ indicated in Fig. <a href="#Ch27-F7">27–7</a>(a)—and
+then later it is at the opposite end, as shown in
+Fig. <a href="#Ch27-F7">27–7</a>(c). The energy $U$ has been displaced the
+distance $L$, the length of the car. Now the energy $U$ has the
+mass $U/c^2$, so if the car stayed still, the center of gravity of the car
+would be moved.  Einstein
+didn’t like the idea that the center of
+gravity of an object could be moved by fooling around only on the
+inside, so he assumed that it is impossible to move the center of
+gravity by doing anything inside. But if that is the case, when we moved
+the energy $U$ from one end to the other, the whole car must have
+recoiled some distance $x$, as shown in part (c) of the figure. You can
+see, in fact, that the total mass of the car, times $x$, must equal the
+mass of the energy moved, $U/c^2$ times $L$ (assuming that $U/c^2$ is
+much less than $M$):
+\begin{equation}
+\label{Eq:II:27:22}
+Mx=\frac{U}{c^2}\,L.
+\end{equation}
+</p>
+</div>
+<div id="Ch27-S6-p7" class="para">
+<p class="p">Let’s now look at the special case of the energy being carried by a
+light flash. (The argument would work as well for particles, but we
+will follow Einstein, who was
+interested in the problem of light.)
+What causes the car to be moved? Einstein
+argued as follows: When the
+light is emitted there must be a recoil, some unknown recoil with
+momentum $p$. It is this recoil which makes the car roll backward. The
+recoil velocity $v$ of the car will be this momentum divided by the
+mass of the car:
+\begin{equation*}
+v=\frac{p}{M}.
+\end{equation*}
+
+The car moves with this velocity until the light energy $U$ gets to
+the opposite end. Then, when it hits, it gives back its momentum and
+stops the car. If $x$ is small, then the time the car moves is nearly
+equal to $L/c$; so we have that
+\begin{equation*}
+x=vt=v\,\frac{L}{c}=\frac{p}{M}\,\frac{L}{c}.
+\end{equation*}
+
+Putting this $x$ in Eq. (<a href="#mjx-eqn-EqII2722">27.22</a>), we get that
+\begin{equation*}
+p=\frac{U}{c}.
+\end{equation*}
+
+Again we have the relation of energy and momentum for light. Dividing
+by $c$ to get the momentum density $g=p/c$, we get once more that
+\begin{equation}
+\label{Eq:II:27:23}
+g=\frac{U}{c^2}.
+\end{equation}
+
+</p>
+</div>
+<div id="Ch27-S6-p8" class="para">
+<p class="p">You may well wonder: What is so important about the center-of-gravity
+theorem? Maybe <em class="emph">it</em> is wrong. Perhaps, but then we would also
+lose the conservation of angular momentum. Suppose that our boxcar is
+moving along a track at some speed $v$ and that we shoot some light
+energy from the <em class="emph">top</em> to the <em class="emph">bottom</em> of the car—say, from
+$A$ to $B$ in Fig. <a href="#Ch27-F8">27–8</a>. Now we look at the angular
+momentum of the system about the point $P$. Before the energy $U$
+leaves $A$, it has the mass $m=U/c^2$ and the velocity $v$, so it has
+the angular momentum $mvr_A$. When it arrives at $B$, it has the same
+mass and, if the <em class="emph">linear</em> momentum of the whole boxcar is not to
+change, it must still have the velocity $v$. It’s angular momentum
+about $P$ is then $mvr_B$. The angular momentum will be changed
+<em class="emph">unless</em> the right recoil momentum was given to the car when the
+light was emitted—that is, unless the light carries the
+momentum $U/c$. It turns out that the angular momentum conservation and the
+theorem of center-of-gravity are closely related in the relativity
+theory. So the conservation of angular momentum would also be
+destroyed if our theorem were not true. At any rate, it does turn out
+to be a true general law, and in the case of electrodynamics we can
+use it to get the momentum in the field.</p>
+</div>
+<div id="Ch27-F8" class="figure">
+<img src="img/FLP_II/f27-08/f27-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 27–8.</span>The energy $U$ must carry the momentum $U/c$ if the angular
+momentum about $P$ is to be conserved.
+</div>
+</div>
+<div id="Ch27-S6-p9" class="para">
+<p class="p">We will mention two further examples of momentum in the
+electromagnetic field. We pointed out in Section <a href="II_26.html#Ch26-S2">26–2</a>
+the failure of the law of action and reaction when two charged
+particles were moving on orthogonal trajectories. The forces on the
+two particles don’t balance out, so the action and reaction are not
+equal; therefore the net momentum of the matter must be changing. It
+is not conserved. But the momentum in the field is also changing in
+such a situation. If you work out the amount of momentum given by the
+Poynting vector, it is not constant. However, the change of the
+particle momenta is just made up by the field momentum, so the total
+momentum of particles plus field is conserved.</p>
+</div>
+<div id="Ch27-S6-p10" class="para">
+<p class="p">Finally, another example is the situation with the magnet and the
+charge, shown in Fig. <a href="#Ch27-F6">27–6</a>. We were unhappy to find
+that energy was flowing around in circles, but now, since we know that
+energy flow and momentum are proportional, we know also that there is
+momentum circulating in the space. But a <em class="emph">circulating</em> momentum
+means that there is <em class="emph">angular</em> momentum. So there is
+<em class="emph">angular</em> momentum in the field. Do you remember the paradox we
+described in Section <a href="II_17.html#Ch17-S4">17–4</a> about a solenoid and some
+charges mounted on a disc? It seemed that when the current turned off,
+the whole disc should start to turn. The puzzle was: Where did the
+angular momentum come from? The answer is that if you have a magnetic
+field and some charges, there will be some angular momentum in the
+field. It must have been put there when the field was built up. When
+the field is turned off, the angular momentum is given back. So the
+disc in the paradox <em class="emph">would</em> start rotating. This mystic
+circulating flow of energy, which at first seemed so ridiculous, is
+absolutely necessary. There is really a momentum flow. It is needed to
+maintain the conservation of angular momentum in the whole world.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 21: The Harmonic Oscillator</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "21." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch21" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">21</span>The Harmonic Oscillator</h2>
+<div id="Ch21-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">21–1</span>Linear differential equations</h3>
+<div id="Ch21-S1-p1" class="para">
+<p class="p">In the study of physics, usually the course is divided into a series
+of subjects, such as mechanics, electricity, optics, etc., and one
+studies one subject after the other. For example, this course has so
+far dealt mostly with mechanics. But a strange thing occurs again and
+again: the equations which appear in different fields of physics, and
+even in other sciences, are often almost exactly the same, so that
+many phenomena have analogs in these different fields. To take the
+simplest example, the propagation of sound waves is in many ways
+analogous to the propagation of light waves. If we study acoustics in
+great detail we discover that much of the work is the same as it would
+be if we were studying optics in great detail. So the study of a
+phenomenon in one field may permit an extension of our knowledge in
+another field. It is best to realize from the first that such
+extensions are possible, for otherwise one might not understand the
+reason for spending a great deal of time and energy on what appears to
+be only a small part of mechanics.</p>
+</div>
+<div id="Ch21-S1-p2" class="para">
+<p class="p">The harmonic oscillator, which we are about to study, has close
+analogs in many other fields; although we start with a mechanical
+example of a weight on a spring, or a pendulum with a small swing, or
+certain other mechanical devices, we are really studying a certain
+<em class="emph">differential equation</em>. This equation appears again and again in
+physics and in other sciences, and in fact it is a part of so many
+phenomena that its close study is well worth our while. Some of the
+phenomena involving this equation are the oscillations of a mass on a
+spring; the oscillations of charge flowing back and forth in an
+electrical circuit; the vibrations of a tuning fork which is
+generating sound waves; the analogous vibrations of the electrons in
+an atom, which generate light waves; the equations for the operation
+of a servosystem, such as a thermostat trying to adjust a temperature;
+complicated interactions in chemical reactions; the growth of a colony
+of bacteria in interaction with the food supply and the poisons the
+bacteria produce; foxes eating rabbits eating grass, and so on; all
+these phenomena follow equations which are very similar to one
+another, and this is the reason why we study the mechanical oscillator
+in such detail. The equations are called <em class="emph">linear differential
+equations with constant coefficients</em>. A linear differential equation
+with constant coefficients is a differential equation consisting of a
+sum of several terms, each term being a derivative of the dependent
+variable with respect to the independent variable, and multiplied by
+some constant. Thus
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:21:1}
+a_n\,d^nx/dt^n+a_{n-1}\,d^{n-1}x/dt^{n-1}+\dotsb
++a_1\,dx/dt+a_0x=f(t)
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+a_n\,d^nx/dt^n&+a_{n-1}\,d^{n-1}x/dt^{n-1}+\dotsb\notag\\
+&+a_1\,dx/dt+a_0x=f(t)
+\label{Eq:I:21:1}
+\end{align}
+</span>
+is called a linear differential equation of order $n$ with constant
+coefficients (each $a_i$ is constant).</p>
+</div>
+</div>
+<div id="Ch21-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">21–2</span>The harmonic oscillator</h3>
+<div id="Ch21-F1" class="figure">
+<img src="img/FLP_I/f21-01/f21-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 21–1.</span>A mass on a spring: a simple example of a harmonic
+oscillator.
+</div>
+</div>
+<div id="Ch21-S2-p1" class="para">
+<p class="p">Perhaps the simplest mechanical system whose motion follows a linear
+differential equation with constant coefficients is a mass on a
+spring: first the spring stretches to balance the gravity; once it is
+balanced, we then discuss the vertical displacement of the mass from
+its equilibrium position (Fig. <a href="#Ch21-F1">21–1</a>). We shall call this
+upward displacement $x$, and we shall also suppose that the spring is
+perfectly linear, in which case the force pulling back when the spring
+is stretched is precisely proportional to the amount of stretch. That
+is, the force is $-kx$ (with a minus sign to remind us that it pulls
+back). Thus the mass times the acceleration must equal $-kx$:
+\begin{equation}
+\label{Eq:I:21:2}
+m\,d^2x/dt^2=-kx.
+\end{equation}
+For simplicity, suppose it happens (or we change our unit of time
+measurement) that the ratio $k/m = 1$. We shall first study the
+equation
+\begin{equation}
+\label{Eq:I:21:3}
+d^2x/dt^2=-x.
+\end{equation}
+Later we shall come back to Eq. (<a href="#mjx-eqn-EqI212">21.2</a>) with the $k$
+and $m$ explicitly present.</p>
+</div>
+<div id="Ch21-S2-p2" class="para">
+<p class="p">We have already analyzed Eq. (<a href="#mjx-eqn-EqI213">21.3</a>) in detail
+numerically; when we first introduced the subject of mechanics we
+solved this equation (see Eq. <a href="I_09.html#mjx-eqn-EqI912">9.12</a>) to find the
+motion. By numerical integration we found a curve (Fig. <a href="I_09.html#Ch9-F4">9–4</a>)
+which showed that if $m$ was initially displaced, but at rest, it would
+come down and go through zero; we did not then follow it any farther,
+but of course we know that it just keeps going up and down—it
+<em class="emph">oscillates</em>. When we calculated the motion numerically, we found
+that it went through the equilibrium point at $t = 1.570$. The length of
+the whole cycle is four times this long, or $t_0 = 6.28$ “sec.”  This
+was found numerically, before we knew much calculus. We assume that in
+the meantime the Mathematics Department has brought forth a function
+which, when differentiated twice, is equal to itself with a minus sign.
+(There are, of course, ways of getting at this function in a direct
+fashion, but they are more complicated than already knowing what the
+answer is.) The function is $x= \cos t$. If we differentiate this we
+find $dx/dt = -\sin t$ and $d^2x/dt^2 =$ $-\cos t=$ $-x$. The function $x =
+\cos t$ starts, at $t = 0$, with $x= 1$, and no initial velocity; that
+was the situation with which we started when we did our numerical work.
+Now that we know that $x = \cos t$, we can calculate a <em class="emph">precise</em>
+value for the time at which it should pass $x = 0$. The answer
+is $t=\pi/2$, or $1.57080$. We were wrong in the last figure because of the
+errors of numerical analysis, but it was very close!</p>
+</div>
+<div id="Ch21-S2-p3" class="para">
+<p class="p">Now to go further with the original problem, we restore the time units
+to real seconds. What is the solution then? First of all, we might
+think that we can get the constants $k$ and $m$ in by multiplying
+$\cos t$ by something. So let us try the equation $x = A \cos t$; then
+we find $dx/dt = -A \sin t$, and $d^2x/dt^2 =$ $-A \cos t=$ $-x$. Thus we
+discover to our horror that we did not succeed in solving
+Eq. (<a href="#mjx-eqn-EqI212">21.2</a>), but we got Eq. (<a href="#mjx-eqn-EqI213">21.3</a>) again! That
+fact illustrates one of the most important properties of linear
+differential equations: <em class="emph">if we multiply a solution of the equation
+by any constant, it is again a solution</em>. The mathematical reason for
+this is clear. If $x$ is a solution, and we multiply both sides of the
+equation, say by $A$, we see that all derivatives are also multiplied
+by $A$, and therefore $Ax$ is just as good a solution of the original
+equation as $x$ was. The physics of it is the following. If we have a
+weight on a spring, and pull it down twice as far, the force is twice as
+much, the resulting acceleration is twice as great, the velocity it
+acquires in a given time is twice as great, the distance covered in a
+given time is twice as great; but it <em class="emph">has</em> to cover twice as great
+a distance in order to get back to the origin because it is pulled down
+twice as far. So it takes the <em class="emph">same time</em> to get back to the
+origin, irrespective of the initial displacement. In other words, with a
+linear equation, the motion has the same <em class="emph">time pattern</em>, no matter
+how “strong” it is.</p>
+</div>
+<div id="Ch21-S2-p4" class="para">
+<p class="p">That was the wrong thing to do—it only taught us that we can
+multiply the solution by anything, and it satisfies the same equation,
+but not a different equation. After a little cut and try to get to an
+equation with a different constant multiplying $x$, we find that we
+must alter the scale of <em class="emph">time</em>. In other words,
+Eq. (<a href="#mjx-eqn-EqI212">21.2</a>) has a solution of the form
+\begin{equation}
+\label{Eq:I:21:4}
+x=\cos\omega_0t.
+\end{equation}
+(It is important to realize that in the present case, $\omega_0$ is
+not an angular velocity of a spinning body, but we run out of letters
+if we are not allowed to use the same letter for more than one thing.)
+The reason we put a subscript “$0$” on $\omega$ is that we are going
+to have more omegas before long; let us remember that $\omega_0$
+refers to the natural motion of this oscillator. Now we try
+Eq. (<a href="#mjx-eqn-EqI214">21.4</a>) and this time we are more successful, because
+$dx/dt =-\omega_0\sin \omega_0t$ and $d^2x/dt^2
+=$ $-\omega_0^2\cos\omega_0t =$ $-\omega_0^2x$.  So at last we have solved the
+equation that we really wanted to solve. The equation $d^2x/dt^2
+=-\omega_0^2x$ is the same as Eq. (<a href="#mjx-eqn-EqI212">21.2</a>) if $\omega_0^2 =
+k/m$.</p>
+</div>
+<div id="Ch21-S2-p5" class="para">
+<p class="p">The next thing we must investigate is the physical significance
+of $\omega_0$. We know that the cosine function repeats itself when the
+angle it refers to is $2\pi$. So $x= \cos\omega_0t$ will repeat its
+motion, it will go through a complete cycle, when the “angle”
+changes by $2\pi$. The quantity $\omega_0t$ is often called the
+<em class="emph">phase</em> of the motion. In order to change $\omega_0t$ by $2\pi$,
+the time must change by an amount $t_0$, called the <em class="emph">period</em> of
+one complete oscillation; of course $t_0$ must
+be such that $\omega_0t_0 = 2\pi$. That is, $\omega_0t_0 $ must account
+for one cycle of the angle, and then everything will repeat itself—if
+we increase $t$ by $t_0$, we add $2\pi$ to the phase. Thus
+\begin{equation}
+\label{Eq:I:21:5}
+t_0=2\pi/\omega_0=2\pi\sqrt{m/k}.
+\end{equation}
+Thus if we had a heavier mass, it would take longer to oscillate back
+and forth on a spring. That is because it has more inertia, and so,
+while the forces are the same, it takes longer to get the mass
+moving. Or, if the spring is stronger, it will move more quickly, and
+that is right: the period is less if the spring is stronger.</p>
+</div>
+<div id="Ch21-S2-p6" class="para">
+<p class="p">Note that the period of oscillation of a mass on a spring does not
+depend in any way on <em class="emph">how</em> it has been started, how far down we
+pull it. The <em class="emph">period</em> is determined, but the amplitude of the
+oscillation is <em class="emph">not</em> determined by the equation of
+motion (<a href="#mjx-eqn-EqI212">21.2</a>). The amplitude <em class="emph">is</em> determined, in fact,
+by how we let go of it, by what we call the <em class="emph">initial conditions</em> or
+starting conditions.</p>
+</div>
+<div id="Ch21-S2-p7" class="para">
+<p class="p">Actually, we have not quite found the most general possible solution
+of Eq. (<a href="#mjx-eqn-EqI212">21.2</a>). There are other solutions. It should be
+clear why: because all of the cases covered by $x = a \cos \omega_0t$
+start with an initial displacement and no initial velocity. But it is
+possible, for instance, for the mass to start at $x= 0$, and we may
+then give it an impulsive kick, so that it has some speed at $t =
+0$. Such a motion is not represented by a cosine—it is represented
+by a sine. To put it another way, if $x = \cos \omega_0t$ is a
+solution, then is it not obvious that if we were to happen to walk
+into the room at some time (which we would call “$t = 0$”) and saw
+the mass as it was passing $x= 0$, it would keep on going just the
+same?  Therefore, $x = \cos \omega_0t$ cannot be the most general
+solution; it must be possible to shift the beginning of time, so to
+speak. As an example, we could write the solution this way: $x= a \cos
+\omega_0(t - t_1)$, where $t_1$ is some constant. This also
+corresponds to shifting the origin of time to some new
+instant. Furthermore, we may expand
+\begin{equation*}
+\cos\,(\omega_0t+\Delta)=\cos\omega_0t\cos\Delta-
+\sin\omega_0t\sin\Delta,
+\end{equation*}
+and write
+\begin{equation*}
+x = A \cos \omega_0t + B \sin \omega_0t,
+\end{equation*}
+where $A = a \cos\Delta$ and $B = -a \sin\Delta$. Any one of these
+forms is a possible way to write the complete, general solution
+of (<a href="#mjx-eqn-EqI212">21.2</a>): that is, every solution of the differential
+equation $d^2x/dt^2 =-\omega_0^2x$ that exists in the world can be
+written as
+\begin{alignat}{2}
+&(\text{a})\quad x&=\;&a\cos\omega_0(t-t_1),\notag\\[1ex]
+\kern{-2em}\text{or}\notag\\ % ebook remove
+% ebook insert: \makebox[0em]{\kern{-3.33em}\text{or}}\notag\\
+\label{Eq:I:21:6}
+&(\text{b})\quad x&=\;&a\cos\,(\omega_0t+\Delta)\\[1ex]
+\kern{-2em}\text{or}\notag\\ % ebook remove
+% ebook insert: \makebox[0em]{\kern{-3.33em}\text{or}}\notag\\
+&(\text{c})\quad x&=\;&A\cos\omega_0t+B\sin\omega_0t.\notag
+\end{alignat}
+</p>
+</div>
+<div id="Ch21-S2-p8" class="para">
+<p class="p">Some of the quantities in (<a href="#mjx-eqn-EqI216">21.6</a>) have names: $\omega_0$ is
+called the <em class="emph">angular frequency</em>; it is the number of radians
+by which the phase changes in a second. That is determined by the
+differential equation. The other constants are not determined by the
+equation, but by how the motion is started. Of these constants, $a$
+measures the maximum displacement attained by the mass, and is called
+the <em class="emph">amplitude</em> of oscillation. The
+constant $\Delta$ is sometimes called the <em class="emph">phase</em> of the
+oscillation, but that is a confusion, because other people call $\omega_0t +
+\Delta$ the phase, and say the phase changes with time. We might say
+that $\Delta$ is a <em class="emph">phase shift</em> from some
+defined zero. Let us put it differently. Different $\Delta$’s correspond
+to motions in different phases. That is true, but whether we want to
+call $\Delta$ <em class="emph">the</em> phase, or not, is another question.</p>
+</div>
+</div>
+<div id="Ch21-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">21–3</span>Harmonic motion and circular motion</h3>
+<div id="Ch21-F2" class="figure">
+<img src="img/FLP_I/f21-02/f21-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 21–2.</span>A particle moving in a circular path at constant speed.
+</div>
+</div>
+<div id="Ch21-S3-p1" class="para">
+<p class="p">The fact that cosines are involved in the solution of
+Eq. (<a href="#mjx-eqn-EqI212">21.2</a>) suggests that there might be some relationship to
+circles. This is artificial, of course, because there is no circle
+actually involved in the linear motion—it just goes up and down. We
+may point out that we have, in fact, already solved that differential
+equation when we were studying the mechanics of circular motion. If a
+particle moves in a circle with a constant speed $v$, the radius vector
+from the center of the circle to the particle turns through an angle
+whose size is proportional to the time. If we call this angle $\theta=
+vt/R$ (Fig. <a href="#Ch21-F2">21–2</a>) then $d\theta/dt =$ $\omega_0 =$ $v/R$. We
+know that there is an acceleration $a =$ $v^2/R =$ $\omega_0^2R$ toward the
+center. Now we also know that the position $x$, at a given moment, is
+the radius of the circle times $\cos\theta$, and that $y$ is the radius
+times $\sin\theta$:
+\begin{equation*}
+x=R\cos\theta,\quad
+y=R\sin\theta.
+\end{equation*}
+Now what about the acceleration? What is the $x$-component of
+acceleration, $d^2x/dt^2$? We have already worked that out
+geometrically; it is the magnitude of the acceleration times the
+cosine of the projection angle, with a minus sign because it is toward
+the center.
+\begin{equation}
+\label{Eq:I:21:7}
+a_x=-a\cos\theta=-\omega_0^2R\cos\theta=-\omega_0^2x.
+\end{equation}
+In other words, when a particle is moving in a circle, the horizontal
+component of its motion has an acceleration which is proportional to
+the horizontal displacement from the center. Of course we also have
+the solution for motion in a circle: $x = R \cos \omega_0t$.
+Equation (<a href="#mjx-eqn-EqI217">21.7</a>) does not depend upon the radius of the
+circle, so for a circle of any radius, one finds the same equation for a
+given $\omega_0$. Thus, for several reasons, we expect that the
+displacement of a mass on a spring will turn out to be proportional to
+$\cos\omega_0t$, and will, in fact, be exactly the same motion as we
+would see if we looked at the $x$-component of the position of an object
+rotating in a circle with angular velocity $\omega_0$. As a check on
+this, one can devise an experiment to show that the up-and-down motion
+of a mass on a spring is the same as that of a point going around in a
+circle. In Fig. <a href="#Ch21-F3">21–3</a> an arc light projected on a screen
+casts shadows of a crank pin on a shaft and of a vertically oscillating
+mass, side by side. If we let go of the mass at the right time from the
+right place, and if the shaft speed is carefully adjusted so that the
+frequencies match, each should follow the other exactly. One can also
+check the numerical solution we obtained earlier with the cosine
+function, and see whether that agrees very well.</p>
+</div>
+<div id="Ch21-F3" class="figure">
+<img src="img/FLP_I/f21-03/f21-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 21–3.</span>Demonstration of the equivalence between simple harmonic
+motion and uniform circular motion.
+</div>
+</div>
+<div id="Ch21-S3-p2" class="para">
+<p class="p">Here we may point out that because uniform motion in a circle is so
+closely related mathematically to oscillatory up-and-down motion, we
+can analyze oscillatory motion in a simpler way if we imagine it to be
+a projection of something going in a circle. In other words, although
+the distance $y$ means nothing in the oscillator problem, we may still
+artificially supplement Eq. (<a href="#mjx-eqn-EqI212">21.2</a>) with another equation
+using $y$, and put the two together. If we do this, we will be able to
+analyze our one-dimensional oscillator with <em class="emph">circular</em> motions,
+which is a lot easier than having to solve a differential
+equation. The trick in doing this is to use complex numbers, a
+procedure we shall introduce in the next chapter.</p>
+</div>
+</div>
+<div id="Ch21-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">21–4</span>Initial conditions</h3>
+<div id="Ch21-S4-p1" class="para">
+<p class="p">Now let us consider what determines the constants $A$ and $B$, or $a$
+and $\Delta$. Of course these are determined by how we start the
+motion. If we start the motion with just a small displacement, that is
+one type of oscillation; if we start with an initial displacement and
+then push up when we let go, we get still a different motion. The
+constants $A$ and $B$, or $a$ and $\Delta$, or any other way of
+putting it, are determined, of course, by the way the motion started,
+not by any other features of the situation. These are called the
+<em class="emph">initial conditions</em>. We would like to connect the initial
+conditions with the constants. Although this can be done using any one
+of the forms (<a href="#mjx-eqn-EqI216">21.6</a>), it turns out to be easiest if we use
+Eq. (<a href="#mjx-eqn-EqI216">21.6</a>c). Suppose that at $t= 0$ we have started with
+an initial displacement $x_0$ and a certain velocity $v_0$.  This is
+the most general way we can start the motion. (We cannot specify the
+<em class="emph">acceleration</em> with which it started, true, because that is
+determined by the spring, once we specify $x_0$.) Now let us calculate
+$A$ and $B$. We start with the equation for $x$,
+\begin{equation*}
+x = A \cos \omega_0t + B \sin \omega_0t.
+\end{equation*}
+Since we shall later need the velocity also, we differentiate $x$ and
+obtain
+\begin{equation*}
+v=-\omega_0 A \sin \omega_0t + \omega_0 B \cos \omega_0t.
+\end{equation*}
+These expressions are valid for all $t$, but we have special knowledge
+about $x$ and $v$ at $t= 0$. So if we put $t= 0$ into these equations,
+on the left we get $x_0$ and $v_0$, because that is what $x$ and $v$
+are at $t = 0$; also, we know that the cosine of zero is unity, and
+the sine of zero is zero. Therefore we get
+\begin{equation*}
+x_0=A\cdot 1 + B\cdot 0=A
+\end{equation*}
+and
+\begin{equation*}
+v_0=-\omega_0 A\cdot 0 + \omega_0 B\cdot 1 = \omega_0 B.
+\end{equation*}
+So for this particular case we find that
+\begin{equation*}
+A=x_0,\quad
+B=v_0/\omega_0.
+\end{equation*}
+
+From these values of $A$ and $B$, we can get $a$ and $\Delta$ if we
+wish.</p>
+</div>
+<div id="Ch21-S4-p2" class="para">
+<p class="p">That is the end of our solution, but there is one physically
+interesting thing to check, and that is the conservation of
+energy. Since there are no frictional losses, energy ought to be
+conserved. Let us use the formula
+\begin{equation*}
+x =a\cos\,(\omega_0t+\Delta);
+\end{equation*}
+then
+\begin{equation*}
+v =-\omega_0 a\sin\,(\omega_0t+\Delta).
+\end{equation*}
+Now let us find out what the kinetic energy $T$ is, and what the
+potential energy $U$ is. The potential energy at any moment
+is $\tfrac{1}{2}kx^2$, where $x$ is the displacement and $k$ is the
+constant of the spring. If we substitute for $x$, using our expression
+above, we get
+\begin{equation*}
+U=\tfrac{1}{2}kx^2=\tfrac{1}{2}ka^2\cos^2\,(\omega_0t+\Delta).
+\end{equation*}
+Of course the potential energy is not constant; the potential never
+becomes negative, naturally—there is always some energy in the
+spring, but the amount of energy fluctuates with $x$. The kinetic
+energy, on the other hand, is $\tfrac{1}{2}mv^2$, and by substituting
+for $v$ we get
+\begin{equation*}
+T=\tfrac{1}{2}mv^2=\tfrac{1}{2}m\omega_0^2a^2\sin^2\,(\omega_0t+\Delta).
+\end{equation*}
+Now the kinetic energy is zero when $x$ is at the maximum, because
+then there is no velocity; on the other hand, it is maximal when $x$
+is passing through zero, because then it is moving fastest. This
+variation of the kinetic energy is just the opposite of that of the
+potential energy. But the total energy ought to be a constant. If we
+note that $k = m\omega_0^2$, we see that
+<span class="eq-wide">
+\begin{equation*}
+T+U=\tfrac{1}{2}m\omega_0^2a^2[\cos^2\,(\omega_0t+\Delta)+
+\sin^2\,(\omega_0t+\Delta)]=
+\tfrac{1}{2}m\omega_0^2a^2.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+T+U &=\tfrac{1}{2}m\omega_0^2a^2[\cos^2\,(\omega_0t+\Delta)+
+\sin^2\,(\omega_0t+\Delta)]\\[1.5ex]
+&= \tfrac{1}{2}m\omega_0^2a^2.
+\end{align*}
+</span>
+The energy is dependent on the square of the amplitude; if we have
+twice the amplitude, we get an oscillation which has four times the
+energy. The <em class="emph">average</em> potential energy is half the maximum and,
+therefore, half the total, and the average kinetic energy is likewise
+half the total energy.</p>
+</div>
+</div>
+<div id="Ch21-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">21–5</span>Forced oscillations</h3>
+<div id="Ch21-S5-p1" class="para">
+<p class="p">Next we shall discuss the <em class="emph">forced harmonic oscillator</em>, i.e., one
+in which there is an external driving force acting. The equation then
+is the following:
+\begin{equation}
+\label{Eq:I:21:8}
+m\,d^2x/dt^2=-kx+F(t).
+\end{equation}
+We would like to find out what happens in these circumstances. The
+external driving force can have various kinds of functional dependence
+on the time; the first one that we shall analyze is very simple—we
+shall suppose that the force is oscillating:
+\begin{equation}
+\label{Eq:I:21:9}
+F(t)=F_0\cos\omega t.
+\end{equation}
+Notice, however, that this $\omega$ is not necessarily $\omega_0$: we
+have $\omega$ under our control; the forcing may be done at different
+frequencies. So we try to solve Eq. (<a href="#mjx-eqn-EqI218">21.8</a>) with the
+special force (<a href="#mjx-eqn-EqI219">21.9</a>). What is the solution
+of (<a href="#mjx-eqn-EqI218">21.8</a>)? One special solution, (we shall discuss the more
+general cases later) is
+\begin{equation}
+\label{Eq:I:21:10}
+x=C\cos\omega t,
+\end{equation}
+where the constant is to be determined. In other words, we might
+suppose that if we kept pushing back and forth, the mass would follow
+back and forth in step with the force. We can try it anyway. So we
+put (<a href="#mjx-eqn-EqI2110">21.10</a>) and (<a href="#mjx-eqn-EqI219">21.9</a>) into (<a href="#mjx-eqn-EqI218">21.8</a>), and
+get
+\begin{equation}
+\label{Eq:I:21:11}
+-m\omega^2C\cos\omega t=-m\omega_0^2C\cos\omega t+F_0\cos\omega t.
+\end{equation}
+We have also put in $k = m\omega_0^2$, so that we will understand the
+equation better at the end. Now because the cosine appears everywhere,
+we can divide it out, and that shows that (<a href="#mjx-eqn-EqI2110">21.10</a>) is, in
+fact, a solution, provided we pick $C$ just right. The answer is that
+$C$ must be
+\begin{equation}
+\label{Eq:I:21:12}
+C=F_0/m(\omega_0^2-\omega^2).
+\end{equation}
+That is, $m$ oscillates at the same frequency as the force, but with
+an amplitude which depends on the frequency of the force, and also
+upon the frequency of the natural motion of the oscillator. It means,
+first, that if $\omega$ is very small compared with $\omega_0$, then
+the displacement and the force are in the same direction. On the other
+hand, if we shake it back and forth very fast, then (<a href="#mjx-eqn-EqI2112">21.12</a>)
+tells us that $C$ is negative if $\omega$ is above the natural
+frequency $\omega_0$ of the harmonic oscillator. (We will call
+$\omega_0$ the natural frequency of the harmonic oscillator, and
+$\omega$ the applied frequency.) At very high frequency the
+denominator may become very large, and there is then not much
+amplitude.</p>
+</div>
+<div id="Ch21-S5-p2" class="para">
+<p class="p">Of course the solution we have found is the solution only if things
+are started just right, for otherwise there is a part which usually
+dies out after a while. This other part is called the <em class="emph">transient</em>
+response to $F(t)$, while (<a href="#mjx-eqn-EqI2110">21.10</a>) and (<a href="#mjx-eqn-EqI2112">21.12</a>)
+are called the <em class="emph">steady-state</em> response.</p>
+</div>
+<div id="Ch21-S5-p3" class="para">
+<p class="p">According to our formula (<a href="#mjx-eqn-EqI2112">21.12</a>), a very remarkable thing
+should also occur: if $\omega$ is almost exactly the same as
+$\omega_0$, then $C$ should approach infinity. So if we adjust the
+frequency of the force to be “in time” with the natural frequency,
+then we should get an enormous displacement. This is well known to
+anybody who has pushed a child on a swing. It does not work very well
+to close our eyes and push at a certain speed at random. If we happen
+to get the right timing, then the swing goes very high, but if we have
+the wrong timing, then sometimes we may be pushing when we should be
+pulling, and so on, and it does not work.</p>
+</div>
+<div id="Ch21-S5-p4" class="para">
+<p class="p">If we make $\omega$ exactly equal to $\omega_0$, we find that it
+should oscillate at an <em class="emph">infinite</em> amplitude, which is, of course,
+impossible. The reason it does not is that something goes wrong with
+the equation, there are some other frictional terms, and other forces,
+which are not in (<a href="#mjx-eqn-EqI218">21.8</a>) but which occur in the real
+world. So the amplitude does not reach infinity for some reason; it
+may be that the spring breaks!</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

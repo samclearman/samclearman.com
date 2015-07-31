@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 4: Electrostatics</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "4." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch4" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">4</span>Electrostatics</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapters&nbsp;<a href="I_13.html">13</a>, and <a href="I_14.html">14</a> Vol.&nbsp;I, <i>Work and Potential Energy</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch4-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">4–1</span>Statics</h3>
+
+<div id="Ch4-S1-p1" class="para">
+<p class="p">We begin now our detailed study of the theory of
+electromagnetism. All of electromagnetism is contained in the Maxwell
+equations.
+<br><br>
+<em class="emph">&emsp;&emsp;Maxwell’s equations:</em>
+\begin{align}
+\label{Eq:II:4:1}
+\FLPdiv{\FLPE}&=\frac{\rho}{\epsO},\\[1ex]
+\label{Eq:II:4:2}
+\FLPcurl{\FLPE}&=-\ddp{\FLPB}{t},\\[1ex]
+\label{Eq:II:4:3}
+c^2\,\FLPcurl{\FLPB}&=\ddp{\FLPE}{t}+\frac{\FLPj}{\epsO},\\[1ex]
+\label{Eq:II:4:4}
+\FLPdiv{\FLPB}&=0.
+\end{align}
+</p>
+</div>
+
+<div id="Ch4-S1-p2" class="para">
+<p class="p">The situations that are described by these equations can be very
+complicated.  We will consider first relatively simple situations, and
+learn how to handle them before we take up more complicated ones. The
+easiest circumstance to treat is one in which nothing depends on the
+time—called the <em class="emph">static</em> case. All charges are permanently
+fixed in space, or if they do move, they move as a steady flow in a
+circuit (so $\rho$ and&nbsp;$\FLPj$ are constant in time). In these
+circumstances, all of the terms in the Maxwell equations which are time derivatives
+of the field are zero. In this case, the Maxwell
+equations
+become:
+<br><br>
+<em class="emph">&emsp;&emsp;Electrostatics:</em>
+\begin{align}
+\label{Eq:II:4:5}
+\FLPdiv{\FLPE}&=\frac{\rho}{\epsO},\\[1ex]
+\label{Eq:II:4:6}
+\FLPcurl{\FLPE}&=\FLPzero.
+\end{align}
+<em class="emph">&emsp;&emsp;Magnetostatics:</em>
+\begin{align}
+\label{Eq:II:4:7}
+\FLPcurl{\FLPB}&=\frac{\FLPj}{\epsO c^2},\\[1ex]
+\label{Eq:II:4:8}
+\FLPdiv{\FLPB}&=0.
+\end{align}
+</p>
+</div>
+
+<div id="Ch4-S1-p3" class="para">
+<p class="p">You will notice an interesting thing about this set of four equations.
+It can be separated into two pairs. The electric field&nbsp;$\FLPE$ appears
+only in the first two, and the magnetic field&nbsp;$\FLPB$ appears only in
+the second two. The two fields are not interconnected. This means that
+<em class="emph">electricity and magnetism are distinct phenomena so long as
+charges and currents are static</em>. The interdependence of $\FLPE$
+and&nbsp;$\FLPB$ does not appear until there are changes in charges or
+currents, as when a condensor is charged, or a magnet moved. Only when
+there are sufficiently rapid changes, so that the time derivatives in
+Maxwell’s equations become
+significant, will $\FLPE$ and&nbsp;$\FLPB$ depend on each other.
+</p>
+</div>
+
+<div id="Ch4-S1-p4" class="para">
+<p class="p">Now if you look at the equations of statics you will see that the study
+of the two subjects we call electrostatics and magnetostatics is ideal
+from the point of view of learning about the mathematical properties of
+vector fields. Electrostatics is a neat example of a vector field with
+<em class="emph">zero curl</em> and a <em class="emph">given divergence</em>.
+Magnetostatics is a neat example of a field with <em class="emph">zero
+divergence</em> and a <em class="emph">given curl</em>. The more
+conventional—and you may be thinking, more satisfactory—way of
+presenting the theory of electromagnetism is to start first with
+electrostatics and thus to learn about the divergence. Magnetostatics
+and the curl are taken up later. Finally, electricity and magnetism are
+put together. We have chosen to start with the complete theory of vector
+calculus. Now we shall apply it to the special case of electrostatics,
+the field of&nbsp;$\FLPE$ given by the first pair of equations.
+</p>
+</div>
+
+<div id="Ch4-S1-p5" class="para">
+<p class="p">We will begin with the simplest situations—ones in which the
+positions of all charges are specified. If we had only to study
+electrostatics at this level (as we shall do in the next two
+chapters), life would be very simple—in fact, almost
+trivial. Everything can be obtained from
+Coulomb’s law and some
+integration, as you will see. In many real electrostatic problems,
+however, we do not <em class="emph">know</em>, initially, where the charges are. We
+know only that they have distributed themselves in ways that depend on
+the properties of matter. The positions that the charges take up
+depend on the $\FLPE$&nbsp;field, which in turn depends on the positions of
+the charges. Then things can get quite complicated. If, for instance,
+a charged body is brought near a conductor or insulator, the electrons
+and protons in the conductor or insulator will move around. The charge
+density&nbsp;$\rho$ in Eq.&nbsp;(<a href="#mjx-eqn-EqII45">4.5</a>) may have one part that we
+know about, from the charge that we brought up; but there will be
+other parts from charges that have moved around in the conductor. And
+all of the charges must be taken into account. One can get into some
+rather subtle and interesting problems. So although this chapter is to
+be on electrostatics, it will not cover the more beautiful and subtle
+parts of the subject. It will treat only the situation where we can
+assume that the positions of all the charges are known. Naturally, you
+should be able to do that case before you try to handle the other
+ones.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch4-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">4–2</span>Coulomb’s law; superposition</h3>
+
+<div id="Ch4-S2-p1" class="para">
+<p class="p">It would be logical to use Eqs. (<a href="#mjx-eqn-EqII45">4.5</a>) and&nbsp;(<a href="#mjx-eqn-EqII46">4.6</a>)
+as our starting points. It will be easier, however, if we start somewhere else
+and come back to these equations. The results will be equivalent. We will start
+with a law that we have talked about before, called Coulomb’s law, which says
+that between two charges at rest there is a force directly proportional to the
+product of the charges and inversely proportional to the square of the distance
+between. The force is along the straight line from one charge to the other.
+<br><br>
+<em class="emph">&emsp;&emsp;Coulomb’s law:</em>
+\begin{equation}
+\label{Eq:II:4:9}
+\FLPF_1=\frac{1}{4\pi\epsO}\,\frac{q_1q_2}{r_{12}^2}\,\FLPe_{12}=-\FLPF_2.
+\end{equation}
+$\FLPF_1$ is the force <em class="emph">on</em> charge&nbsp;$q_1$, $\FLPe_{12}$ is the
+unit vector in the direction <em class="emph">to</em>&nbsp;$q_1$ <em class="emph">from</em>&nbsp;$q_2$,
+and&nbsp;$r_{12}$ is the distance between $q_1$ and&nbsp;$q_2$. The
+force&nbsp;$\FLPF_2$ on&nbsp;$q_2$ is equal and opposite to&nbsp;$\FLPF_1$.
+</p>
+</div>
+
+<div id="Ch4-S2-p2" class="para">
+<p class="p">The constant of proportionality, for historical reasons, is written
+as&nbsp;$1/4\pi\epsO$. In the system of units which we use—the mks
+system—it is defined as exactly $10^{-7}$&nbsp;times the speed of light
+squared. Now since the speed of light is approximately
+$3\times10^8$&nbsp;meters per second, the constant is
+approximately&nbsp;$9\times10^9$, and the unit turns out to be
+newton$\cdot$meter$^2$ per coulomb$^2$ or volt$\cdot$meter per coulomb.
+
+\begin{align}
+\frac{1}{4\pi\epsO}&=10^{-7}c^2\;\quad\,\text{(by definition)}\notag\\[-1pt]
+\label{Eq:II:4:10}
+&=9.0\times10^9\;\text{(by experiment).}\\[2pt]
+\text{Unit:}&\quad\text{newton$\cdot$meter$^2$$/$coulomb$^2$,}\notag\\[2pt]
+\text{or}&\quad\text{volt$\cdot$meter$/$coulomb.}\notag
+\end{align}
+</p>
+</div>
+
+<div id="Ch4-S2-p3" class="para">
+<p class="p">When there are more than two charges present—the only really
+interesting times—we must supplement Coulomb’s law with one other
+fact of nature: the force on any charge is the vector sum of the
+Coulomb forces from each of the other charges. This fact is called
+“the principle of superposition.” That’s all
+there is to electrostatics. If we combine the Coulomb law and the
+principle of superposition, there is nothing else. Equations
+(<a href="#mjx-eqn-EqII45">4.5</a>) and&nbsp;(<a href="#mjx-eqn-EqII46">4.6</a>)—the electrostatic
+equations—say no more and no less.
+</p>
+</div>
+
+<div id="Ch4-S2-p4" class="para">
+<p class="p">When applying Coulomb’s law, it is convenient to introduce the idea of
+an electric field. We say that the field&nbsp;$\FLPE(1)$ is the force
+<em class="emph">per unit charge</em> on&nbsp;$q_1$ (due to all other charges). Dividing
+Eq.&nbsp;(<a href="#mjx-eqn-EqII49">4.9</a>) by&nbsp;$q_1$, we have, for one other charge
+besides&nbsp;$q_1$,
+\begin{equation}
+\label{Eq:II:4:11}
+\FLPE(1)=\frac{1}{4\pi\epsO}\,\frac{q_2}{r_{12}^2}\,\FLPe_{12}.
+\end{equation}
+Also, we consider that&nbsp;$\FLPE(1)$ describes something about the
+point&nbsp;$(1)$ even if&nbsp;$q_1$ were not there—assuming that all other
+charges keep their same positions. We say:&nbsp;$\FLPE(1)$ is the electric
+field <em class="emph">at</em> the point&nbsp;$(1)$.
+</p>
+</div>
+
+<div id="Ch4-S2-p5" class="para">
+<p class="p">The electric field&nbsp;$\FLPE$ is a vector, so by Eq.&nbsp;(<a href="#mjx-eqn-EqII411">4.11</a>)
+we really mean three equations—one for each component. Writing out
+explicitly the $x$-component, Eq.&nbsp;(<a href="#mjx-eqn-EqII411">4.11</a>) means
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:4:12}
+E_x(x_1,y_1,z_1)=\frac{q_2}{4\pi\epsO}\,
+\frac{x_1-x_2}{[(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2]^{3/2}},
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:II:4:12}
+E_x&(x_1,y_1,z_1)=\\[1.5ex]
+&\frac{q_2}{4\pi\epsO}
+\frac{x_1\!-x_2}{[(x_1\!-\!x_2)^2\!+\!(y_1\!-\!y_2)^2\!+\!(z_1\!-\!z_2)^2]^{3/2}},\notag
+\end{align}
+</span>
+and similarly for the other components.
+</p>
+</div>
+
+<div id="Ch4-S2-p6" class="para">
+<p class="p">If there are many charges present, the field&nbsp;$\FLPE$ at any point&nbsp;$(1)$
+is a sum of the contributions from each of the other charges. Each term
+of the sum will look like (<a href="#mjx-eqn-EqII411">4.11</a>) or&nbsp;(<a href="#mjx-eqn-EqII412">4.12</a>).
+Letting&nbsp;$q_j$ be the magnitude of the $j$th&nbsp;charge, and&nbsp;$\FLPr_{1j}$ the
+displacement from&nbsp;$q_j$ to the point&nbsp;$(1)$, we write
+\begin{equation}
+\label{Eq:II:4:13}
+\FLPE(1)=\sum_j\frac{1}{4\pi\epsO}\,\frac{q_j}{r_{1j}^2}\,\FLPe_{1j}.
+\end{equation}
+Which means, of course,
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:4:14}
+E_x(x_1,y_1,z_1)=\sum_j\frac{1}{4\pi\epsO}\,
+\frac{q_j(x_1-x_j)}{[(x_1-x_j)^2+(y_1-y_j)^2+(z_1-z_j)^2]^{3/2}},
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:II:4:14}
+E_x&(x_1,y_1,z_1)=\\[.5ex]
+&\sum_j\!\frac{1}{4\pi\epsO}
+\frac{q_j(x_1-x_j)}{[(x_1\!-\!x_j)^2\!+\!(y_1\!-\!y_j)^2\!+\!(z_1\!-\!z_j)^2]^{3/2}},\notag
+\end{align}
+</span>
+and so on.
+</p>
+</div>
+
+<div id="Ch4-S2-p7" class="para">
+<p class="p">Often it is convenient to ignore the fact that charges come in
+packages like electrons and protons, and think of them as being spread
+out in a continuous smear—or in a “distribution,” as it is
+called. This is O.K. so long as we are not interested in what is
+happening on too small a scale. We describe a charge distribution by
+the “charge density,”&nbsp;$\rho(x,y,z)$. If the amount of charge in a
+small volume&nbsp;$\Delta V_2$ located at the point $(2)$ is&nbsp;$\Delta q_2$,
+then&nbsp;$\rho$ is defined by
+\begin{equation}
+\label{Eq:II:4:15}
+\Delta q_2=\rho(2)\Delta V_2.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch4-F1" class="figure">
+<img src="img/FLP_II/f04-01/f04-01_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–1.</span>
+The electric field&nbsp;$\FigE$ at point&nbsp;$(1)$, from a charge
+distribution, is obtained from an integral over the distribution.
+Point&nbsp;$(1)$ could also be inside the distribution.
+</div>
+</div>
+
+<div id="Ch4-S2-p8" class="para">
+<p class="p">To use Coulomb’s law with such a description, we replace the sums of Eqs.
+(<a href="#mjx-eqn-EqII413">4.13</a>) or&nbsp;(<a href="#mjx-eqn-EqII414">4.14</a>) by integrals over all volumes
+containing charges. Then we have
+\begin{equation}
+\label{Eq:II:4:16}
+\FLPE(1)=\frac{1}{4\pi\epsO}
+\underset{\substack{\text{all}\\\text{space}}}{\int}
+\frac{\rho(2)\FLPe_{12}\,dV_2}{r_{12}^2}.
+\end{equation}
+Some people prefer to write
+\begin{equation*}
+\FLPe_{12}=\frac{\FLPr_{12}}{r_{12}},\notag
+\end{equation*}
+where&nbsp;$\FLPr_{12}$ is the vector displacement <em class="emph">to</em> $(1)$
+<em class="emph">from</em>&nbsp;$(2)$, as shown in Fig.&nbsp;<a href="#Ch4-F1">4-1</a>. The integral
+for&nbsp;$\FLPE$ is then written as
+\begin{equation}
+\label{Eq:II:4:17}
+\FLPE(1)=\frac{1}{4\pi\epsO}
+\underset{\substack{\text{all}\\\text{space}}}{\int}
+\frac{\rho(2)\FLPr_{12}\,dV_2}{r_{12}^3}.
+\end{equation}
+When we want to calculate something with these integrals, we usually have to
+write them out in explicit detail. For the $x$-component of either Eq.
+(<a href="#mjx-eqn-EqII416">4.16</a>) or&nbsp;(<a href="#mjx-eqn-EqII417">4.17</a>), we would have
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:4:18}
+E_x(x_1,y_1,z_1)=
+\underset{\substack{\text{all}\\\text{space}}}{\int}
+\frac{(x_1-x_2)\rho(x_2,y_2,z_2)\,dx_2\,dy_2\,dz_2}
+{4\pi\epsO
+[(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2]^{3/2}}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:II:4:18}
+&E_x(x_1,y_1,z_1)=\\[1.5ex]
+&\underset{\substack{\text{all}\\\text{space}}}{\int}\!\!
+\frac{(x_1-x_2)\rho(x_2,y_2,z_2)\,dx_2\,dy_2\,dz_2}
+{4\pi\epsO
+[(x_1\!-\!x_2)^2\!+\!(y_1\!-\!y_2)^2\!+\!(z_1\!-\!z_2)^2]^{3/2}}.\notag
+\end{align}
+</span>
+</p>
+</div>
+
+<div id="Ch4-S2-p9" class="para">
+<p class="p">We are not going to use this formula much. We write it here only to
+emphasize the fact that we have completely solved all the
+electrostatic problems in which we know the locations of all of the
+charges. Given the charges, what are the fields? <em class="emph">Answer</em>: Do
+this integral. So there is nothing to the subject; it is just a case
+of doing complicated integrals over three dimensions—strictly a job
+for a computing machine!
+</p>
+</div>
+
+<div id="Ch4-S2-p10" class="para">
+<p class="p">With our integrals we can find the fields produced by a sheet of
+charge, from a line of charge, from a spherical shell of charge, or
+from any specified distribution. It is important to realize, as we go
+on to draw field lines, to talk about potentials, or to calculate
+divergences, that we already have the answer here. It is merely a
+matter of it being sometimes easier to do an integral by some clever
+guesswork than by actually carrying it out. The guesswork requires
+learning all kinds of strange things. In practice, it might be easier
+to forget trying to be clever and always to do the integral directly
+instead of being so smart. We are, however, going to try to be smart
+about it. We shall go on to discuss some other features of the
+electric field.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch4-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">4–3</span>Electric potential</h3>
+
+<div id="Ch4-S3-p1" class="para">
+<p class="p">First we take up the idea of electric potential, which is related to
+the work done in carrying a charge from one point to another. There is
+some distribution of charge, which produces an electric field. We ask
+about how much work it would take to carry a small charge from one
+place to another. The work done <em class="emph">against</em> the electrical forces
+in carrying a charge along some path is the <em class="emph">negative</em> of the
+component of the electrical force in the direction of the motion,
+integrated along the path. If we carry a charge from point&nbsp;$a$ to
+point&nbsp;$b$,
+\begin{equation*}
+W=-\int_a^b\FLPF\cdot d\FLPs,
+\end{equation*}
+where&nbsp;$\FLPF$ is the electrical force <em class="emph">on</em> the charge at each
+point, and&nbsp;$d\FLPs$ is the differential vector displacement along the
+path. (See Fig.&nbsp;<a href="#Ch4-F2">4-2</a>.)
+</p>
+</div>
+
+<div id="Ch4-F2" class="figure">
+<img src="img/FLP_II/f04-02/f04-02_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–2.</span>
+The work done in carrying a charge from $a$ to&nbsp;$b$ is the
+  negative of the integral of $\FigF\cdot d\Figs$ along the path
+  taken.
+</div>
+</div>
+
+<div id="Ch4-S3-p2" class="para">
+<p class="p">It is more interesting for our purposes to consider the work that
+would be done in carrying <em class="emph">one unit</em> of charge. Then the force on
+the charge is numerically the same as the electric field. Calling the
+work done against electrical forces in this case&nbsp;$W(\text{unit})$, we
+write
+\begin{equation}
+\label{Eq:II:4:19}
+W(\text{unit})=-\int_a^b\FLPE\cdot d\FLPs.
+\end{equation}
+Now, in general, what we get with this kind of an integral depends on
+the path we take. But if the integral of&nbsp;(<a href="#mjx-eqn-EqII419">4.19</a>) depended
+on the path from $a$ to&nbsp;$b$, we could get work out of the field by
+carrying the charge to&nbsp;$b$ along one path and then back to&nbsp;$a$ on the
+other. We would go to&nbsp;$b$ along the path for which&nbsp;$W$ is smaller and
+<em class="emph">back</em> along the other, getting <em class="emph">out</em> more work than we put
+<em class="emph">in</em>.
+</p>
+</div>
+
+<div id="Ch4-S3-p3" class="para">
+<p class="p">There is nothing impossible, in principle, about getting energy out of
+a field.  We shall, in fact, encounter fields where it is possible. It
+could be that as you move a charge you produce forces on the other
+part of the “machinery.” If the “machinery” moved against the
+force it would lose energy, thereby keeping the total energy in the
+world constant. For <em class="emph">electrostatics</em>, however, there is no such
+“machinery.” We know what the forces back on the sources of the
+field are. They are the Coulomb forces on the charges responsible for
+the field. If the other charges are fixed in position—as we assume
+in <em class="emph">electrostatics</em> only—these back forces can do no work on
+them. There is no way to get energy from them—provided, of course,
+that the principle of energy conservation works for electrostatic
+situations.  We believe that it will work, but let’s just show that it
+must follow from Coulomb’s law of force.
+</p>
+</div>
+
+<div id="Ch4-F3" class="figure">
+<img src="img/FLP_II/f04-03/f04-03_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–3.</span>
+In carrying a test charge from $a$ to&nbsp;$b$ the same work is
+  done along either path.
+</div>
+</div>
+
+<div id="Ch4-S3-p4" class="para">
+<p class="p">We consider first what happens in the field due to a single charge&nbsp;$q$.
+Let point&nbsp;$a$ be at the distance&nbsp;$r_a$ from&nbsp;$q$, and point&nbsp;$b$ at&nbsp;$r_b$.
+Now we carry a different charge, which we will call the “test” charge,
+and whose magnitude we choose to be one unit, from $a$ to&nbsp;$b$. Let’s
+start with the easiest possible path to calculate. We carry our test
+charge first along the arc of a circle, then along a radius, as shown in
+part&nbsp;(a) of Fig.&nbsp;<a href="#Ch4-F3">4-3</a>. Now on that particular path it is
+child’s play to find the work done (otherwise we wouldn’t have picked
+it). First, there is no work done at all on the path from $a$ to&nbsp;$a'$.
+The field is radial (from Coulomb’s law),
+so it is at right angles to the direction of motion. Next, on
+the path from $a'$ to&nbsp;$b$, the field is in the direction of motion and
+varies as&nbsp;$1/r^2$. Thus the work done on the test charge in carrying it
+from $a$ to&nbsp;$b$ would be
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:4:20}
+-\int_a^b\FLPE\cdot d\FLPs=-\frac{q}{4\pi\epsO}\int_{a'}^b
+\frac{dr}{r^2}=-\frac{q}{4\pi\epsO}
+\biggl(\frac{1}{r_a}-\frac{1}{r_b}\biggr).
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+-\int_a^b\FLPE\cdot d\FLPs &=-\frac{q}{4\pi\epsO}\int_{a'}^b
+\frac{dr}{r^2}\notag\\[1ex]
+\label{Eq:II:4:20}
+&=-\frac{q}{4\pi\epsO}
+\biggl(\frac{1}{r_a}-\frac{1}{r_b}\biggr).
+\end{align}
+</span>
+</p>
+</div>
+
+<div id="Ch4-S3-p5" class="para">
+<p class="p">Now let’s take another easy path. For instance, the one shown in
+part&nbsp;(b) of Fig.&nbsp;<a href="#Ch4-F3">4-3</a>. It goes for awhile along an arc of a
+circle, then radially for awhile, then along an arc again, then
+radially, and so on. Every time we go along the circular parts, we do
+no work. Every time we go along the radial parts, we must just
+integrate&nbsp;$1/r^2$. Along the first radial stretch, we integrate from
+$r_a$ to&nbsp;$r_{a'}$, then along the next radial stretch from $r_{a'}$
+to&nbsp;$r_{a''}$, and so on. The sum of all these integrals is the same as a
+single integral directly from $r_a$ to&nbsp;$r_b$. We get the same answer
+for this path that we did for the first path we tried. It is clear
+that we would get the same answer for <em class="emph">any</em> path which is made up
+of an arbitrary number of the same kinds of pieces.
+</p>
+</div>
+
+<div id="Ch4-S3-p6" class="para">
+<p class="p">What about smooth paths? Would we get the same answer? We discussed
+this point previously in Chapter&nbsp;<a href="I_13.html">13</a> of Vol.&nbsp;I. Applying
+the same arguments used there, we can conclude that work done in
+carrying a unit charge from $a$ to&nbsp;$b$ is independent of the path.
+\begin{equation*}
+\left.\begin{gathered}
+W(\text{unit})\\[1ex]
+a\to b
+\end{gathered}
+\right\}
+=-\underset{\substack{\text{any}\\\text{path}}}{\int_a^b}\FLPE\cdot d\FLPs.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch4-S3-p7" class="para">
+<p class="p">Since the work done depends only on the endpoints, it can be
+represented as the difference between two numbers. We can see this in
+the following way. Let’s choose a reference point&nbsp;$P_0$ and agree to
+evaluate our integral by using a path that always goes <em class="emph">by way
+  of</em> point&nbsp;$P_0$. Let&nbsp;$\phi(a)$ stand for the work done against the
+field in going <em class="emph">from</em>&nbsp;$P_0$ to point&nbsp;$a$, and let&nbsp;$\phi(b)$ be
+the work done in going <em class="emph">from</em>&nbsp;$P_0$ to point&nbsp;$b$
+(Fig.&nbsp;<a href="#Ch4-F4">4-4</a>). The work in going <em class="emph">to</em>&nbsp;$P_0$ from&nbsp;$a$ (on
+the way to&nbsp;$b$) is the negative of&nbsp;$\phi(a)$, so we have that
+\begin{equation}
+\label{Eq:II:4:21}
+-\int_a^b\FLPE\cdot d\FLPs=\phi(b)-\phi(a).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch4-F4" class="figure">
+<img src="img/FLP_II/f04-04/f04-04_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–4.</span>
+The work done in going along any path from $a$ to&nbsp;$b$ is the
+  negative of the work from some point $P_0$ to&nbsp;$a$ plus the work from
+  $P_0$ to&nbsp;$b$.
+</div>
+</div>
+
+<div id="Ch4-S3-p8" class="para">
+<p class="p">Since only the difference in the function&nbsp;$\phi$ at two points is ever
+involved, we do not really have to specify the location of&nbsp;$P_0$. Once
+we have chosen some reference point, however, a number&nbsp;$\phi$ is
+determined for <em class="emph">any</em> point in space; $\phi$&nbsp;is then a
+<em class="emph">scalar field</em>. It is a function of $x$,&nbsp;$y$,&nbsp;$z$. We call this scalar
+function the <em class="emph">electrostatic potential</em> at any point.
+<br><br>
+<em class="emph">&emsp;&emsp;Electrostatic potential:</em>
+\begin{equation}
+\label{Eq:II:4:22}
+\phi(P)=-\int_{P_0}^P\FLPE\cdot d\FLPs.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch4-S3-p9" class="para">
+<p class="p">For convenience, we will often take the reference point at infinity.
+Then, for a single charge at the origin, the potential&nbsp;$\phi$ is given
+for any point&nbsp;$(x,y,z)$—using Eq.&nbsp;(<a href="#mjx-eqn-EqII420">4.20</a>):
+\begin{equation}
+\label{Eq:II:4:23}
+\phi(x,y,z)=\frac{q}{4\pi\epsO}\,\frac{1}{r}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch4-S3-p10" class="para">
+<p class="p">The electric field from several charges can be written as the sum of
+the electric field from the first, from the second, from the third,
+etc. When we integrate the sum to find the potential we get a sum of
+integrals. Each of the integrals is the negative of the potential from
+one of the charges. We conclude that the potential&nbsp;$\phi$ from a lot
+of charges is the sum of the potentials from all the individual
+charges. There is a superposition principle also for potentials. Using
+the same kind of arguments by which we found the electric field from a
+group of charges and for a distribution of charges, we can get the
+complete formulas for the potential&nbsp;$\phi$ at a point we call&nbsp;$(1)$:
+\begin{align}
+\label{Eq:II:4:24}
+\phi(1)&=\sum_{j}\frac{1}{4\pi\epsO}\,\frac{q_j}{r_{1j}},\\[1ex]
+\label{Eq:II:4:25}
+\phi(1)&=\frac{1}{4\pi\epsO}
+\underset{\substack{\text{all}\\\text{space}}}{\int}
+\frac{\rho(2)\,dV_2}{r_{12}}.
+\end{align}
+</p>
+</div>
+
+<div id="Ch4-S3-p11" class="para">
+<p class="p">Remember that the potential&nbsp;$\phi$ has a physical significance: it is
+the potential energy which a unit charge would have if brought to the
+specified point in space from some reference point.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch4-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">4–4</span>$\boldsymbol{E=-\nabla\phi}$</h3>
+
+<div id="Ch4-S4-p1" class="para">
+<p class="p">Who cares about&nbsp;$\phi$? Forces on charges are given by&nbsp;$\FLPE$, the
+electric field. The point is that&nbsp;$\FLPE$ can be obtained easily
+from&nbsp;$\phi$—it is as easy, in fact, as taking a derivative. Consider two
+points, one at&nbsp;$x$ and one at&nbsp;$(x+\Delta x)$, but both at the same $y$
+and&nbsp;$z$, and ask how much work is done in carrying a unit charge from
+one point to the other. The path is along the horizontal line from $x$
+to&nbsp;$x+\Delta x$. The work done is the difference in the potential at
+the two points:
+\begin{equation*}
+\Delta W=\phi(x+\Delta x,y,z)-\phi(x,y,z)=\ddp{\phi}{x}\,\Delta x.
+\end{equation*}
+But the work done against the field for the same path is
+\begin{equation*}
+\Delta W=-\int\FLPE\cdot d\FLPs=-E_x\,\Delta x.
+\end{equation*}
+We see that
+\begin{equation}
+\label{Eq:II:4:26}
+E_x=-\ddp{\phi}{x}.
+\end{equation}
+Similarly, $E_y=-\ddpl{\phi}{y}$, $E_z=-\ddpl{\phi}{z}$, or,
+summarizing with the notation of vector analysis,
+\begin{equation}
+\label{Eq:II:4:27}
+\FLPE=-\FLPgrad{\phi}.
+\end{equation}
+This equation is the differential form of Eq.&nbsp;(<a href="#mjx-eqn-EqII422">4.22</a>). Any
+problem with specified charges can be solved by computing the potential
+from (<a href="#mjx-eqn-EqII424">4.24</a>) or&nbsp;(<a href="#mjx-eqn-EqII425">4.25</a>) and
+using&nbsp;(<a href="#mjx-eqn-EqII427">4.27</a>) to get the field. Equation&nbsp;(<a href="#mjx-eqn-EqII427">4.27</a>)
+also agrees with what we found from vector calculus: that for any scalar
+field&nbsp;$\phi$
+\begin{equation}
+\label{Eq:II:4:28}
+\int_a^b\FLPgrad{\phi}\cdot d\FLPs=\phi(b)-\phi(a).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch4-S4-p2" class="para">
+<p class="p">According to Eq.&nbsp;(<a href="#mjx-eqn-EqII425">4.25</a>) the scalar potential&nbsp;$\phi$ is
+given by a three-dimensional integral similar to the one we had
+for&nbsp;$\FLPE$. Is there any advantage to computing&nbsp;$\phi$ rather
+than&nbsp;$\FLPE$?  Yes. There is only one integral for&nbsp;$\phi$, while there are
+three integrals for&nbsp;$\FLPE$—because it is a vector.
+Furthermore,&nbsp;$1/r$ is usually a little easier to integrate than&nbsp;$x/r^3$. It
+turns
+out in many practical cases that it is easier to calculate&nbsp;$\phi$ and
+then take the gradient to find the electric field, than it is to
+evaluate the three integrals for&nbsp;$\FLPE$. It is merely a practical
+matter.
+</p>
+</div>
+
+<div id="Ch4-S4-p3" class="para">
+<p class="p">There is also a deeper physical significance to the potential&nbsp;$\phi$.
+We have shown that&nbsp;$\FLPE$ of
+Coulomb’s law is obtained from
+$\FLPE=-\grad\phi$, when&nbsp;$\phi$ is given by&nbsp;(<a href="#mjx-eqn-EqII422">4.22</a>). But
+if&nbsp;$\FLPE$ is equal to the gradient of a scalar field, then we know from
+the vector calculus that the curl of&nbsp;$\FLPE$ must vanish:
+\begin{equation}
+\label{Eq:II:4:29}
+\FLPcurl{\FLPE}=\FLPzero.
+\end{equation}
+But that is just our second fundamental equation of electrostatics,
+Eq.&nbsp;(<a href="#mjx-eqn-EqII46">4.6</a>). We have shown that
+Coulomb’s law gives
+an&nbsp;$\FLPE$ field that satisfies that condition. So far, everything is all
+right.
+</p>
+</div>
+
+<div id="Ch4-S4-p4" class="para">
+<p class="p">We had really proved that $\FLPcurl{\FLPE}$ was zero before we defined
+the potential. We had shown that the work done around a closed path is
+zero. That is, that
+\begin{equation*}
+\oint\FLPE\cdot d\FLPs = 0
+\end{equation*}
+for <em class="emph">any</em> path. We saw in Chapter&nbsp;<a href="II_03.html">3</a> that for any
+such field $\FLPcurl{\FLPE}$ must be zero everywhere. The electric
+field in electrostatics is an example of a curl-free field.
+</p>
+</div>
+
+<div id="Ch4-S4-p5" class="para">
+<p class="p">You can practice your vector calculus by proving that
+$\FLPcurl{\FLPE}$ is zero in a different way—by computing the
+components of $\FLPcurl{\FLPE}$ for the field of a point charge, as
+given by Eq.&nbsp;(<a href="#mjx-eqn-EqII411">4.11</a>). If you get zero, the superposition
+principle says you would get zero for the field of any charge
+distribution.
+</p>
+</div>
+
+<div id="Ch4-S4-p6" class="para">
+<p class="p">We should point out an important fact. For any <em class="emph">radial</em> force the
+work done is independent of the path, and there exists a potential. If
+you think about it, the entire argument we made above to show that the
+work integral was independent of the path depended only on the fact
+that the force from a single charge was radial and spherically
+symmetric. It did not depend on the fact that the dependence on
+distance was as&nbsp;$1/r^2$—there could have been any
+$r$&nbsp;dependence. The existence of a potential, and the fact that the curl
+of&nbsp;$\FLPE$ is zero, comes really only from the <em class="emph">symmetry</em> and
+<em class="emph">direction</em> of the electrostatic forces. Because of this,
+Eq.&nbsp;(<a href="#mjx-eqn-EqII428">4.28</a>)—or&nbsp;(<a href="#mjx-eqn-EqII429">4.29</a>)—can contain only part
+of the laws of electricity.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch4-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">4–5</span>The flux of $\FLPE$</h3>
+
+<div id="Ch4-S5-p1" class="para">
+<p class="p">We will now derive a field equation that depends specifically and
+directly on the fact that the force law is inverse square. That the
+field varies inversely as the square of the distance seems, for some
+people, to be “only natural,” because “that’s the way things spread
+out.” Take a light source with light streaming out: the amount of
+light that passes through a surface cut out by a cone with its apex at
+the source is the same no matter at what radius the surface is
+placed. It must be so if there is to be conservation of light
+energy. The amount of light per unit area—the intensity—must vary
+inversely as the area cut by the cone, i.,e., inversely as the square
+of the distance from the source. Certainly the electric field should
+vary inversely as the square of the distance for the same reason! But
+there is no such thing as the “same reason” here. Nobody can say
+that the electric field measures the flow of something like light
+which must be conserved. <em class="emph">If</em> we had a “model” of the electric
+field in which the electric field vector represented the direction and
+speed—say the current—of some kind of little “bullets” which
+were flying out, <em class="emph">and</em> if our model required that these bullets
+were conserved, that none could ever disappear once it was shot out of
+a charge, then we might say that we can “see” that the inverse
+square law is necessary. On the other hand, there would necessarily be
+some mathematical way to express this physical idea. If the electric
+field <em class="emph">were</em> like conserved bullets going out, then it would vary
+inversely as the square of the distance and we would be able to
+describe that behavior by an equation—which is purely
+mathematical. Now there is no harm in thinking this way, so long as we
+do not say that the electric field <em class="emph">is made</em> out of bullets, but
+realize that we are using a model to help us find the right
+mathematics.
+</p>
+</div>
+
+<div id="Ch4-S5-p2" class="para">
+<p class="p">Suppose, indeed, that we imagine for a moment that the electric field
+did represent the flow of something that was conserved—everywhere,
+that is, except at charges. (It has to start somewhere!) We imagine
+that whatever it is flows out of a charge into the space around.
+If&nbsp;$\FLPE$ were the vector of such a flow (as&nbsp;$\FLPh$ is for heat flow),
+it would have a&nbsp;$1/r^2$ dependence near a point source. Now we wish to
+use this model to find out how to state the inverse square law in a
+deeper or more abstract way, rather than simply saying “inverse
+square.” (You may wonder why we should want to avoid the direct
+statement of such a simple law, and want instead to imply the same
+thing sneakily in a different way. Patience! It will turn out to be
+useful.)
+</p>
+</div>
+
+<div id="Ch4-F5" class="figure">
+<img src="img/FLP_II/f04-05/f04-05_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–5.</span>
+The flux of&nbsp;$\FigE$ out of the surface&nbsp;$S$ is zero.
+</div>
+</div>
+
+<div id="Ch4-S5-p3" class="para">
+<p class="p">We ask: What is the “flow” of&nbsp;$\FLPE$ out of an arbitrary closed
+surface in the neighborhood of a point charge? First let’s take an
+easy surface—the one shown in Fig.&nbsp;<a href="#Ch4-F5">4-5</a>. If
+the&nbsp;$\FLPE$ field is like a flow, the net flow out of this box should be
+zero.  That is what we get if by the “flow” from this surface we
+mean the surface integral of the normal component of&nbsp;$\FLPE$—that
+is, the flux of&nbsp;$\FLPE$. On the radial faces, the normal component is
+zero. On the spherical faces, the normal component&nbsp;$E_n$ is just the
+magnitude of&nbsp;$\FLPE$—minus for the smaller face and plus for the
+larger face. The magnitude of&nbsp;$\FLPE$ decreases as&nbsp;$1/r^2$, but the
+surface area is proportional to&nbsp;$r^2$, so the product is independent
+of&nbsp;$r$. The flux of&nbsp;$\FLPE$ into face&nbsp;$a$ is just cancelled by the
+flux out of face&nbsp;$b$. The total flow out of&nbsp;$S$ is zero, which is to
+say that for this surface
+\begin{equation}
+\label{Eq:II:4:30}
+\int_S E_n\,da=0.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch4-F6" class="figure">
+<img src="img/FLP_II/f04-06/f04-06_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–6.</span>
+The flux of&nbsp;$\FigE$ out of the surface&nbsp;$S$ is zero.
+</div>
+</div>
+
+<div id="Ch4-S5-p4" class="para">
+<p class="p">Next we show that the two end surfaces may be tilted with respect to
+the radial line without changing the integral&nbsp;(<a href="#mjx-eqn-EqII430">4.30</a>).
+Although it is true in general, for our purposes it is only necessary to
+show that this is true when the end surfaces are small, so that they
+subtend a small angle from the source—in fact, an infinitesimal angle.
+In Fig.&nbsp;<a href="#Ch4-F6">4-6</a> we show a surface&nbsp;$S$ whose “sides” are
+radial, but whose “ends” are tilted. The end surfaces are not small in
+the figure, but you are to imagine the situation for very small end
+surfaces. Then the field&nbsp;$\FLPE$ will be sufficiently uniform over the
+surface that we can use just its value at the center. When we tilt the
+surface by an angle&nbsp;$\theta$, the area is increased by the
+factor&nbsp;$1/\cos\theta$. But&nbsp;$E_n$, the component of&nbsp;$\FLPE$ normal to the
+surface, is decreased by the factor&nbsp;$\cos\theta$. The
+product&nbsp;$E_n\,\Delta a$ is unchanged. The flux out of the whole surface&nbsp;$S$ is
+still zero.
+</p>
+</div>
+
+<div id="Ch4-F7" class="figure">
+<img src="img/FLP_II/f04-07/f04-07_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–7.</span>
+Any volume can be thought of as completely made up of
+  infinitesimal truncated cones. The flux of&nbsp;$\FigE$ from one end of
+  each conical segment is equal and opposite to the flux from the
+  other end. The total flux from the surface&nbsp;$S$ is therefore zero.
+</div>
+</div>
+
+<div id="Ch4-S5-p5" class="para">
+<p class="p">Now it is easy to see that the flux out of a volume enclosed by
+<em class="emph">any</em> surface&nbsp;$S$ must be zero. Any volume can be thought of as
+made up of pieces, like that in Fig.&nbsp;<a href="#Ch4-F6">4-6</a>. The surface
+will be subdivided completely into pairs of end surfaces, and since
+the fluxes in and out of these end surfaces cancel by pairs, the total
+flux out of the surface will be zero. The idea is illustrated in
+Fig.&nbsp;<a href="#Ch4-F7">4-7</a>. We have the completely general result that
+the total flux of&nbsp;$\FLPE$ out of <em class="emph">any</em> surface&nbsp;$S$ in the field
+of a point charge is zero.
+</p>
+</div>
+
+<div id="Ch4-F8" class="figure">
+<img src="img/FLP_II/f04-08/f04-08_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–8.</span>
+If a charge is inside a surface, the flux out is not zero.
+</div>
+</div>
+
+<div id="Ch4-F9" class="figure">
+<img src="img/FLP_II/f04-09/f04-09_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–9.</span>
+The flux through&nbsp;$S$ is the same as the flux through&nbsp;$S'$.
+</div>
+</div>
+
+<div id="Ch4-S5-p6" class="para">
+<p class="p">But notice! Our proof works only if the surface&nbsp;$S$ <em class="emph">does not
+  surround</em> the charge. What would happen if the point charge were
+<em class="emph">inside</em> the surface? We could still divide our surface into
+pairs of areas that are matched by radial lines through the charge, as
+shown in Fig.&nbsp;<a href="#Ch4-F8">4-8</a>. The fluxes through the two surfaces
+are still equal—by the same arguments as before—only now they have
+the <em class="emph">same</em> sign. The flux out of a surface that <em class="emph">surrounds</em>
+a charge is <em class="emph">not</em> zero. Then what is it?  We can find out by a
+little trick. Suppose we “remove” the charge from the “inside” by
+surrounding the charge by a little surface&nbsp;$S'$ totally inside the
+original surface&nbsp;$S$, as shown in Fig.&nbsp;<a href="#Ch4-F9">4-9</a>. Now the
+volume enclosed <em class="emph">between</em> the two surfaces $S$ and&nbsp;$S'$ has no
+charge in it. The total flux out of this volume (including that
+through&nbsp;$S'$) is zero, by the arguments we have given above. The
+arguments tell us, in fact, that the flux <em class="emph">into</em> the volume
+through&nbsp;$S'$ is the same as the flux outward through&nbsp;$S$.
+</p>
+</div>
+
+<div id="Ch4-F10" class="figure">
+<img src="img/FLP_II/f04-10/f04-10_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–10.</span>
+The flux through a spherical surface containing a point
+  charge&nbsp;$q$ is&nbsp;$q/\epsO$.
+</div>
+</div>
+
+<div id="Ch4-S5-p7" class="para">
+<p class="p">We can choose any shape we wish for&nbsp;$S'$, so let’s make it a sphere
+centered on the charge, as in Fig.&nbsp;<a href="#Ch4-F10">4-10</a>. Then we can
+easily calculate the flux through it. If the radius of the little
+sphere is&nbsp;$r$, the value of&nbsp;$\FLPE$ everywhere on its surface is
+\begin{equation*}
+\frac{1}{4\pi\epsO}\,\frac{q}{r^2},
+\end{equation*}
+and is directed always normal to the surface. We find the total flux
+through&nbsp;$S'$ if we multiply this normal component of&nbsp;$\FLPE$ by the
+surface area:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:4:31}
+\text{Flux through the surface $S'$}=
+\biggl(\frac{1}{4\pi\epsO}\,\frac{q}{r^2}\biggr)
+(4\pi r^2)=\frac{q}{\epsO},
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\begin{pmatrix}
+\text{Flux through}\\[-.5ex]
+\text{the surface $S'$}
+\end{pmatrix}
+&=\biggl(\frac{1}{4\pi\epsO}\,\frac{q}{r^2}\biggr)
+(4\pi r^2)\notag\\[1ex]
+\label{Eq:II:4:31}
+&=\frac{q}{\epsO},
+\end{align}
+</span>
+a number independent of the radius of the sphere! We know then that
+the flux outward through&nbsp;$S$ is also&nbsp;$q/\epsO$—a value independent
+of the shape of&nbsp;$S$ so long as the charge&nbsp;$q$ is inside.
+</p>
+</div>
+
+<div id="Ch4-S5-p8" class="para">
+<p class="p">We can write our conclusions as follows:
+\begin{equation}
+\label{Eq:II:4:32}
+\underset{\text{any surface $S$}}{\int}\kern{-1em}
+E_n\,da =
+\begin{cases}
+0;&\text{$q$ outside $S$}\\[1ex]
+{\dfrac{q}{\epsO}};&\text{$q$ inside $S$}
+\end{cases}
+\end{equation}
+</p>
+</div>
+
+<div id="Ch4-S5-p9" class="para">
+<p class="p">Let’s return to our “bullet” analogy and see if it makes sense. Our
+theorem says that the net flow of bullets through a surface is zero if
+the surface does not enclose the gun that shoots the bullets. If the
+gun is enclosed in a surface, whatever size and shape it is, the
+number of bullets passing through is the same—it is given by the
+rate at which bullets are generated at the gun. It all seems quite
+reasonable for conserved bullets. But does the model tell us anything
+more than we get simply by writing Eq.&nbsp;(<a href="#mjx-eqn-EqII432">4.32</a>)? No one
+has succeeded in making these “bullets” do anything else but produce
+this one law. After that, they produce nothing but errors. That is why
+today we prefer to represent the electromagnetic field purely
+abstractly.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch4-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">4–6</span>Gauss’ law; the divergence of $\FLPE$</h3>
+
+<div id="Ch4-S6-p1" class="para">
+<p class="p">Our nice result, Eq.&nbsp;(<a href="#mjx-eqn-EqII432">4.32</a>), was proved for a single
+point charge. Now suppose that there are two charges, a charge&nbsp;$q_1$
+at one point and a charge&nbsp;$q_2$ at another. The problem looks more
+difficult. The electric field whose normal component we integrate for
+the flux is the field due to both charges. That is, if&nbsp;$\FLPE_1$
+represents the electric field that would have been produced by&nbsp;$q_1$
+alone, and&nbsp;$\FLPE_2$ represents the electric field produced by&nbsp;$q_2$
+alone, the total electric field is $\FLPE=\FLPE_1+\FLPE_2$. The flux
+through any closed surface&nbsp;$S$ is
+\begin{equation}
+\label{Eq:II:4:33}
+\int_S(E_{1n}\!+\!E_{2n})\,da=\!\!\int_S E_{1n}\,da+\!\!\int_S E_{2n}\,da.
+\end{equation}
+The flux with both charges present is the flux due to a single charge
+plus the flux due to the other charge. If both charges are outside&nbsp;$S$,
+the flux through&nbsp;$S$ is zero. If&nbsp;$q_1$ is inside&nbsp;$S$ but&nbsp;$q_2$ is
+outside, then the first integral gives $q_1/\epsO$ and the second
+integral gives zero. If the surface encloses both charges, each will
+give its contribution and we have that the flux is
+$(q_1+q_2)/\epsO$. The general rule is clearly that the total flux out
+of a closed surface is equal to the total charge <em class="emph">inside</em>,
+divided by&nbsp;$\epsO$.
+</p>
+</div>
+
+<div id="Ch4-S6-p2" class="para">
+<p class="p">Our result is an important general law of the electrostatic field,
+called Gauss’ law.
+<br><br>
+<em class="emph">&emsp;&emsp;Gauss’ law:</em>
+\begin{equation}
+\label{Eq:II:4:34}
+\underset{\substack{\text{any closed}\\\text{surface $S$}}}{\int}\kern{-.5ex}
+E_n\,da=\frac{\text{sum of charges inside}}{\epsO},
+\end{equation}
+or
+\begin{equation}
+\label{Eq:II:4:35}
+\underset{\substack{\text{any closed}\\\text{surface $S$}}}{\int}
+\FLPE\cdot\FLPn\,da=\frac{Q_{\text{int}}}{\epsO},
+\end{equation}
+where
+\begin{equation}
+\label{Eq:II:4:36}
+Q_{\text{int}}=\underset{\text{inside $S$}}{\sum}q_i.
+\end{equation}
+If we describe the location of charges in terms of a charge
+density&nbsp;$\rho$, we can consider that each infinitesimal volume&nbsp;$dV$ contains a
+“point” charge&nbsp;$\rho\,dV$. The sum over all charges is then the
+integral
+\begin{equation}
+\label{Eq:II:4:37}
+Q_{\text{int}}=\kern{-1ex}
+\underset{\substack{\text{volume}\\\text{inside $S$}}}{\int}
+\rho\,dV.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch4-S6-p3" class="para">
+<p class="p">From our derivation you see that Gauss’ law follows from the fact that
+the exponent in Coulomb’s law
+is exactly two. A $1/r^3$&nbsp;field, or any $1/r^n$&nbsp;field with
+$n\neq2$, would not give Gauss’ law. So Gauss’ law
+is just an expression, in a different form, of the Coulomb
+law of
+forces between two charges. In fact, working back from Gauss’ law, you
+can derive Coulomb’s law. The
+two are quite equivalent so long as we
+keep in mind the rule that the forces between charges are radial.
+</p>
+</div>
+
+<div id="Ch4-S6-p4" class="para">
+<p class="p">We would now like to write Gauss’ law in terms of derivatives. To do
+this, we apply Gauss’ law to an infinitesimal cubical surface. We
+showed in Chapter&nbsp;<a href="II_03.html">3</a> that the flux of&nbsp;$\FLPE$ out of such
+a cube is&nbsp;$\FLPdiv{\FLPE}$ times the volume&nbsp;$dV$ of the cube. The
+charge inside of&nbsp;$dV$, by the definition of&nbsp;$\rho$, is equal 
+to&nbsp;$\rho\,dV$, so Gauss’ law gives
+\begin{equation*}
+\FLPdiv{\FLPE}\,dV=\frac{\rho\,dV}{\epsO},
+\end{equation*}
+or
+\begin{equation}
+\label{Eq:II:4:38}
+\FLPdiv{\FLPE}=\frac{\rho}{\epsO}.
+\end{equation}
+The differential form of Gauss’ law is the first of our fundamental field
+equations of electrostatics, Eq.&nbsp;(<a href="#mjx-eqn-EqII45">4.5</a>). We have now shown that the
+two equations of electrostatics, Eqs. (<a href="#mjx-eqn-EqII45">4.5</a>)
+and&nbsp;(<a href="#mjx-eqn-EqII46">4.6</a>), are equivalent to Coulomb’s
+law of force. We will now consider one example of
+the use of Gauss’ law. (We will come later to many more examples.)
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch4-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">4–7</span>Field of a sphere of charge</h3>
+
+<div id="Ch4-S7-p1" class="para">
+<p class="p">One of the difficult problems we had when we studied the theory of
+gravitational attractions was to prove that the force produced by a
+solid sphere of matter was the same at the surface of the sphere as it
+would be if all the matter were concentrated at the center. For many
+years Newton
+didn’t make public his theory of gravitation, because he
+couldn’t be sure this theorem was true. We proved the theorem in
+Chapter&nbsp;<a href="I_13.html">13</a> of Vol.&nbsp;I by doing the integral for the
+potential and then finding the gravitational force by using the
+gradient. Now we can prove the theorem in a most simple fashion. Only
+this time we will prove the corresponding theorem for a uniform sphere
+of electrical charge. (Since the laws of electrostatics are the same
+as those of gravitation, the same proof could be done for the
+gravitational field.)
+</p>
+</div>
+
+<div id="Ch4-F11" class="figure">
+<img src="img/FLP_II/f04-11/f04-11_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–11.</span>
+Using Gauss’ law to find the field of a uniform sphere of
+  charge.
+</div>
+</div>
+
+<div id="Ch4-S7-p2" class="para">
+<p class="p">We ask: What is the electric field&nbsp;$\FLPE$ at a point&nbsp;$P$ anywhere
+outside the surface of a sphere filled with a uniform distribution of
+charge?  Since there is no “special” direction, we can assume
+that&nbsp;$\FLPE$ is everywhere directed away from the center of the sphere. We
+consider an imaginary surface that is spherical and concentric with
+the sphere of charge, and that passes through the point&nbsp;$P$
+(Fig.&nbsp;<a href="#Ch4-F11">4-11</a>). For this surface, the flux outward is
+\begin{equation*}
+\int E_n\,da=E\cdot4\pi R^2.
+\end{equation*}
+Gauss’ law tells us that this flux is equal to the total charge&nbsp;$Q$ of
+the sphere (over&nbsp;$\epsO$):
+\begin{equation*}
+E\cdot4\pi R^2=\frac{Q}{\epsO},
+\end{equation*}
+or
+\begin{equation}
+\label{Eq:II:4:39}
+E=\frac{1}{4\pi\epsO}\,\frac{Q}{R^2},
+\end{equation}
+which is the same formula we would have for a point charge&nbsp;$Q$. We
+have proved Newton’s problem more easily
+than by doing the
+integral. It is, of course, a false kind of easiness—it has taken
+you some time to be able to understand Gauss’ law, so you may think
+that no time has really been saved. But after you have used the
+theorem more and more, it begins to pay. It is a question of
+efficiency.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch4-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">4–8</span>Field lines; equipotential surfaces</h3>
+
+<div id="Ch4-S8-p1" class="para">
+<p class="p">We would like now to give a geometrical description of the
+electrostatic field. The two laws of electrostatics, one that the flux
+is proportional to the charge inside and the other that the electric
+field is the gradient of a potential, can also be represented
+geometrically. We illustrate this with two examples.
+</p>
+</div>
+
+<div id="Ch4-F12" class="figure">
+<img src="img/FLP_II/f04-12/f04-12_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–12.</span>
+Field lines and equipotential surfaces for a positive point
+  charge.
+</div>
+</div>
+
+<div id="Ch4-S8-p2" class="para">
+<p class="p">First, we take the field of a point charge. We draw lines in the
+direction of the field—lines which are always tangent to the field,
+as in Fig.&nbsp;<a href="#Ch4-F12">4-12</a>. These are called <em class="emph">field
+  lines</em>. The lines show everywhere the direction of the electric
+vector. But we also wish to represent the magnitude of the vector. We
+can make the rule that the strength of the electric field will be
+represented by the “density” of the lines. By the density of the
+lines we mean the number of lines per unit area through a surface
+perpendicular to the lines. With these two rules we can have a picture
+of the electric field. For a point charge, the density of the lines
+must decrease as&nbsp;$1/r^2$. But the area of a spherical surface
+perpendicular to the lines at any radius&nbsp;$r$ <em class="emph">increases</em>
+as&nbsp;$r^2$, so if we always keep the same <em class="emph">number</em> of lines for
+<em class="emph">all</em> distances from the charge, the <em class="emph">density</em> will remain
+in proportion to the magnitude of the field. We can guarantee that
+there are the same number of lines at every distance if we insist that
+the lines be <em class="emph">continuous</em>—that once a line is started from the
+charge, it never stops. In terms of the field lines, Gauss’
+law
+says
+that lines should start only at plus charges and stop at minus
+charges. The number which <em class="emph">leave</em> a charge&nbsp;$q$ must be equal
+to&nbsp;$q/\epsO$.
+</p>
+</div>
+
+<div id="Ch4-S8-p3" class="para">
+<p class="p">Now, we can find a similar geometrical picture for the
+potential&nbsp;$\phi$. The easiest way to represent the potential is to draw surfaces
+on which&nbsp;$\phi$ is a constant. We call them <em class="emph">equipotential</em>
+surfaces—surfaces of equal potential. Now what is the geometrical
+relationship of the equipotential surfaces to the field lines? The
+electric field is the gradient of the potential. The gradient is in
+the direction of the most rapid change of the potential, and is
+therefore perpendicular to an equipotential surface. If&nbsp;$\FLPE$ were
+<em class="emph">not</em> perpendicular to the surface, it would have a component
+<em class="emph">in</em> the surface. The potential would be changing in the surface,
+but then it wouldn’t be an equipotential. The equipotential surfaces
+must then be everywhere at right angles to the electric field lines.
+</p>
+</div>
+
+<div id="Ch4-S8-p4" class="para">
+<p class="p">For a point charge all by itself, the equipotential surfaces are
+spheres centered at the charge. We have shown in Fig.&nbsp;<a href="#Ch4-F12">4-12</a>
+the intersection of these spheres with a plane through the charge.
+</p>
+</div>
+
+<div id="Ch4-S8-p5" class="para">
+<p class="p">As a second example, we consider the field near two equal charges, a
+positive one and a negative one. To get the field is easy. The field
+is the superposition of the fields from each of the two charges. So,
+we can take two pictures like Fig.&nbsp;<a href="#Ch4-F12">4-12</a> and superimpose
+them—impossible! Then we would have field lines crossing each other,
+and that’s not possible, because&nbsp;$\FLPE$ can’t have <em class="emph">two</em>
+directions at the same point. The disadvantage of the field-line
+picture is now evident. By geometrical arguments it is impossible to
+analyze in a very simple way where the new lines go. From the two
+independent pictures, we can’t get the combined picture. The principle
+of superposition, a simple and deep principle about electric fields,
+does not have, in the field-line picture, an easy representation.
+</p>
+</div>
+
+<div id="Ch4-F13" class="figure">
+<img src="img/FLP_II/f04-13/f04-13_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 4–13.</span>
+Field lines and equipotentials for two equal and opposite point charges.
+</div>
+</div>
+
+<div id="Ch4-S8-p6" class="para">
+<p class="p">The field-line picture has its uses, however, so we might still like
+to draw the picture for a pair of equal (and opposite) charges. If we
+calculate the fields from Eq.&nbsp;(<a href="#mjx-eqn-EqII413">4.13</a>) and the potentials
+from&nbsp;(<a href="#mjx-eqn-EqII424">4.24</a>), we can draw the field lines and
+equipotentials. Figure&nbsp;<a href="#Ch4-F13">4-13</a> shows the result. But we
+first had to solve the problem mathematically!
+</p>
+</div>
+
+<div id="Ch4-T1">
+<div class="caption ltx_centering">
+A Note about Units
+</div>
+<div align="center" border="1">
+		<div class="pair"><div class="quantity">
+		<b><i>Quantity</i></b></div>
+		<div class="unit"><b><i>Unit</i></b></div>
+		<div class="pair"><div class="quantity">$F$</div>
+<div class="unit">newton</div></div>
+		<div class="pair"><div class="quantity">$Q$</div>
+<div class="unit">coulomb</div></div>
+		<div class="pair"><div class="quantity">$L$</div>
+<div class="unit">meter</div></div>
+		<div class="pair"><div class="quantity">$W$</div>
+<div class="unit">joule</div></div>
+		<div class="pair"><div class="quantity">$\rho\sim Q/L^3$</div>
+<div class="unit">coulomb/meter³</div></div>
+		<div class="pair"><div class="quantity">$1/\epsO\sim FL^2/Q^2$</div>
+<div class="unit">newton·meter²/coulomb²</div></div>
+		<div class="pair"><div class="quantity">$E\sim F/Q$</div>
+<div class="unit">newton/coulomb</div></div>
+		<div class="pair"><div class="quantity">$\phi\sim W/Q$</div>
+<div class="unit">joule/coulomb = volt</div></div>
+		<div class="pair"><div class="quantity">$E\sim \phi/L$</div>
+<div class="unit">volt/meter</div></div>
+		<div class="pair"><div class="quantity">$1/\epsO\sim EL^2/Q$</div>
+<div class="unit">volt·meter/coulomb</div></div>
+</div>
+</div>
+
+</div> <!--end of section -->
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

@@ -1,0 +1,1594 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 33: Reflection from Surfaces</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "33." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch33" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">33</span>Reflection from Surfaces</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapter&nbsp;<a href="I_33.html">33</a>, Vol.&nbsp;I, <i>Polarization</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch33-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">33–1</span>Reflection and refraction of light</h3>
+<div id="Ch33-F1" class="figure">
+<img src="img/FLP_II/f33-01/f33-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–1.</span>Reflection and refraction of light waves at a surface. (The
+wave directions are normal to the wave crests.)
+</div>
+</div>
+<div id="Ch33-S1-p1" class="para">
+<p class="p">The subject of this chapter is the reflection and refraction
+of light—or electromagnetic waves in general—at surfaces. We have
+already discussed the laws of reflection and refraction in Chapters
+<a href="I_26.html">26</a> and <a href="I_33.html">33</a> of Volume I. Here’s what we
+found out there:</p>
+<ol id="Ch33-I1" class="enumerate">
+<li id="Ch33-I1.i1" class="item">The angle of reflection is equal to the angle of
+incidence. With the
+angles defined as shown in Fig.&nbsp;<a href="#Ch33-F1">33-1</a>,
+\begin{equation}
+\label{Eq:II:33:1}
+\theta_r=\theta_i.
+\end{equation}
+
+</li>
+<li id="Ch33-I1.i2" class="item">The product&nbsp;$n\sin\theta$ is the same for the incident and
+transmitted beams (Snell’s law):
+\begin{equation}
+\label{Eq:II:33:2}
+n_1\sin\theta_i=n_2\sin\theta_t.
+\end{equation}
+
+</li>
+<li id="Ch33-I1.i3" class="item">The intensity of the reflected light depends on the angle of
+incidence and also on the direction of polarization. For&nbsp;$\FLPE$
+perpendicular to the plane of incidence, the reflection
+coefficient&nbsp;$R_\perp$ is
+\begin{equation}
+\label{Eq:II:33:3}
+R_\perp=\frac{I_r}{I_i}=\frac{\sin^2(\theta_i-\theta_t)}
+{\sin^2(\theta_i+\theta_t)}.
+\end{equation}
+
+For $\FLPE$ parallel to the plane of incidence, the reflection
+coefficient&nbsp;$R_{\parallel}$ is
+\begin{equation}
+\label{Eq:II:33:4}
+R_\parallel=\frac{I_r}{I_i}=\frac{\tan^2(\theta_i-\theta_t)}
+{\tan^2(\theta_i+\theta_t)}.
+\end{equation}
+</li>
+<li id="Ch33-I1.i4" class="item">For normal incidence (any polarization, of course!),
+\begin{equation}
+\label{Eq:II:33:5}
+\frac{I_r}{I_i}=\biggl(\frac{n_2-n_1}{n_2+n_1}\biggr)^2.
+\end{equation}
+</li>
+</ol>
+<p>(Earlier, we used $i$ for the incident angle and $r$ for the refracted
+angle. Since we can’t use $r$ for both “refracted” <em class="emph">and</em>
+“reflected” angles, we are now using $\theta_i={}$incident angle,
+$\theta_r={}$reflected angle, and $\theta_t={}$transmitted angle.)</p>
+</div>
+<div id="Ch33-S1-p2" class="para">
+<p class="p">Our earlier discussion is really about as far as anyone would normally
+need to go with the subject, but we are going to do it all over again
+a different way. Why? One reason is that we assumed before that the
+indexes were real (no absorption in the materials). But another reason
+is that you should know how to deal with what happens to waves at
+surfaces from the point of view of Maxwell’s
+equations. We’ll get the same answers
+as before, but now from a straightforward solution of the wave problem,
+rather than by some clever arguments.
+</p>
+</div>
+<div id="Ch33-S1-p3" class="para">
+<p class="p">We want to emphasize that the amplitude of a surface reflection is not
+a property of the <em class="emph">material</em>, as is the index of refraction. It
+is a “surface property,” one that depends precisely on how the
+surface is made. A thin layer of extraneous junk on the surface
+between two materials of indices $n_1$ and $n_2$ will usually change
+the reflection. (There are all kinds of possibilities of interference
+here—like the colors of oil films. Suitable thickness can even
+reduce the reflected amplitude to zero for a given frequency; that’s
+how coated lenses are made.) The formulas we will derive are correct
+only if the change of index is sudden—within a distance very small
+compared with one wavelength. For light, the wavelength is about
+$5000$ Å, so by a “smooth” surface we mean one in which the
+conditions change in going a distance of only a few atoms (or a few
+angstroms). Our equations will work for light for highly polished
+surfaces. In general, if the index changes gradually over a distance
+of several wavelengths, there is very little reflection at all.</p>
+</div>
+</div>
+<div id="Ch33-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">33–2</span>Waves in dense materials</h3>
+<div id="Ch33-S2-p1" class="para">
+<p class="p">First, we remind you about the convenient way of describing a sinusoidal
+plane wave we used in Chapter <a href="I_34.html">34</a> of Volume I. Any field
+<em class="emph">component</em> in the wave (we use $E$ as an example) can be written
+in the form
+\begin{equation}
+\label{Eq:II:33:6}
+E=E_0e^{i(\omega t-\FLPk\cdot\FLPr)},
+\end{equation}
+
+where $E$ represents the amplitude at the point $\FLPr$ (from the
+origin) at the time $t$. The vector $\FLPk$ points in the direction
+the wave is travelling, and its magnitude $\abs{\FLPk}=$ $k=$ $2\pi/\lambda$
+is the wave number. The phase velocity of the wave
+is $v_{\text{ph}}=\omega/k$; for a light wave in a material of index $n$,
+$v_{\text{ph}}=c/n$, so
+\begin{equation}
+\label{Eq:II:33:7}
+k=\frac{\omega n}{c}.
+\end{equation}
+
+Suppose $\FLPk$ is in the $z$-direction; then $\FLPk\cdot\FLPr$ is
+just $kz$, as we have often used it. For $\FLPk$ in any other direction, we
+should replace $z$ by $r_k$, the distance from the origin in the
+$\FLPk$-direction; that is, we should replace $kz$ by $kr_k$, which is
+just $\FLPk\cdot\FLPr$. (See Fig. <a href="#Ch33-F2">33–2</a>.) So
+Eq. (<a href="#mjx-eqn-EqII336">33.6</a>) is a convenient representation of a wave in any
+direction.</p>
+</div>
+<div id="Ch33-F2" class="figure">
+<img src="img/FLP_II/f33-02/f33-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–2.</span>For a wave moving in the direction $\Figk$, the phase at any
+point $P$ is $(\omega t-\Figk\cdot\Figr)$.
+</div>
+</div>
+<div id="Ch33-S2-p2" class="para">
+<p class="p">We must remember, of course, that
+\begin{equation*}
+\FLPk\cdot\FLPr=k_xx+k_yy+k_zz,
+\end{equation*}
+
+where $k_x$, $k_y$, and $k_z$ are the components of $\FLPk$ along the
+three axes. In fact, we pointed out once that $(\omega,k_x,k_y,k_z)$ is
+a four-vector, and that its scalar product with $(t,x,y,z)$ is an
+invariant. So the <i>phase</i> of a wave is an invariant, and
+Eq. (<a href="#mjx-eqn-EqII336">33.6</a>) could be written
+\begin{equation*}
+E=E_0e^{ik_\mu x_\mu}.
+\end{equation*}
+
+But we don’t need to be that fancy now.</p>
+</div>
+<div id="Ch33-S2-p3" class="para">
+<p class="p">For a sinusoidal $E$, as in Eq. (<a href="#mjx-eqn-EqII336">33.6</a>), $\ddpl{E}{t}$ is
+the same as $i\omega E$, and $\ddpl{E}{x}$ is $-ik_xE$, and so on for
+the other components. You can see why it is very convenient to use the
+form in Eq. (<a href="#mjx-eqn-EqII336">33.6</a>) when working with differential
+equations—differentiations are replaced by multiplications. One
+further useful point: The
+operation $\FLPnabla=(\ddpl{}{x},\ddpl{}{y},\ddpl{}{z})$ gets replaced by the
+three multiplications $(-ik_x,-ik_y,-ik_z)$. But these three factors
+transform as the components of the vector $\FLPk$, so the
+operator $\FLPnabla$ gets replaced by multiplication with $-i\FLPk$:
+\begin{align}
+&\ddp{}{t}\to i\omega,\notag\\[1ex]
+\label{Eq:II:33:8}
+&\FLPnabla\to-i\FLPk.
+\end{align}
+
+This remains true for any $\FLPnabla$ operation—whether it is the
+gradient, or the divergence, or the curl. For instance, the
+$z$-component of $\FLPcurl{\FLPE}$ is
+\begin{equation*}
+\ddp{E_y}{x}-\ddp{E_x}{y}.
+\end{equation*}
+
+If both $E_y$ and $E_x$ vary as $e^{-i\FLPk\cdot\FLPr}$, then we get
+\begin{equation*}
+-ik_xE_y+ik_yE_x,
+\end{equation*}
+
+which is, you see, the $z$-component of $-i\FLPk\times\FLPE$.</p>
+</div>
+<div id="Ch33-S2-p4" class="para">
+<p class="p">So we have the very useful general fact that whenever you have to take
+the gradient of a vector that varies as a wave in three dimensions
+(they are an important part of physics), you can always take the
+derivations quickly and almost without thinking by remembering that
+the operation $\FLPnabla$ is equivalent to multiplication by $-i\FLPk$.</p>
+</div>
+<div id="Ch33-S2-p5" class="para">
+<p class="p">For instance, the Faraday equation
+\begin{equation}
+\FLPcurl{\FLPE}=-\ddp{\FLPB}{t}\notag
+\end{equation}
+
+becomes for a wave
+\begin{equation}
+-i\FLPk\times\FLPE=-i\omega\FLPB.\notag
+\end{equation}
+
+This tells us that
+\begin{equation}
+\label{Eq:II:33:9}
+\FLPB=\frac{\FLPk\times\FLPE}{\omega},
+\end{equation}
+
+which corresponds to the result we found earlier for waves in free
+space—that $\FLPB$, in a wave, is at right angles to $\FLPE$ and to
+the wave direction. (In free space, $\omega/k=c$.) You can remember
+the sign in Eq. (<a href="#mjx-eqn-EqII339">33.9</a>) from the fact that $\FLPk$ is in
+the direction of Poynting’s vector $\FLPS=\epsO c^2\FLPE\times\FLPB$.</p>
+</div>
+<div id="Ch33-S2-p6" class="para">
+<p class="p">If you use the same rule with the other Maxwell
+equations,
+you get again the results of the last chapter and, in particular, that
+\begin{equation}
+\label{Eq:II:33:10}
+\FLPk\cdot\FLPk=k^2=\frac{\omega^2n^2}{c^2}.
+\end{equation}
+
+But since we know that, we won’t do it again.
+</p>
+</div>
+<div id="Ch33-S2-p7" class="para">
+<p class="p">If you want to entertain yourself, you can try the following terrifying
+problem that was the ultimate test for graduate students back in 1890:
+solve Maxwell’s equations for
+plane waves in an <em class="emph">anisotropic</em> crystal, that is, when the
+polarization $\FLPP$ is related to the electric field $\FLPE$ by a
+tensor of polarizability. You should, of course, choose your axes along
+the principal axes of the tensor, so that the relations are simplest
+(then $P_x=\alpha_aE_x$, $P_y=\alpha_bE_y$, and $P_z=\alpha_cE_z$), but
+let the waves have an arbitrary direction and polarization. You should
+be able to find the relations between $\FLPE$ and $\FLPB$, and
+how $\FLPk$ varies with direction and wave polarization. Then you will
+understand the optics of an anisotropic crystal. It would be best to
+start with the simpler case of a birefringent crystal—like calcite—for which two of the polarizabilities are
+equal (say, $\alpha_b=\alpha_c$), and see if you can understand why you
+see double when you look through such a crystal. If you can do that,
+then try the hardest case, in which all three $\alpha$’s are different.
+Then you will know whether you are up to the level of a graduate student
+of 1890. In this chapter, however, we will consider only isotropic
+substances.
+</p>
+</div>
+<div id="Ch33-S2-p8" class="para">
+<p class="p">We know from experience that when a plane wave arrives at the boundary
+between two different materials—say, air and glass, or water and
+oil—there is a wave reflected and a wave transmitted. Suppose we
+assume no more than that and see what we can work out. We choose our
+axes with the $yz$-plane in the surface and the $xy$-plane perpendicular
+to the incident wave surfaces, as shown in Fig. <a href="#Ch33-F3">33–3</a>.</p>
+</div>
+<div id="Ch33-F3" class="figure">
+<img src="img/FLP_II/f33-03/f33-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–3.</span>The propagation vectors $\Figk$, $\Figk'$, and $\Figk''$ for
+the incident, reflected, and transmitted waves.
+</div>
+</div>
+<div id="Ch33-S2-p9" class="para">
+<p class="p">The electric vector of the incident wave can then be written as
+\begin{equation}
+\label{Eq:II:33:11}
+\FLPE_i=\FLPE_0e^{i(\omega t-\FLPk\cdot\FLPr)}.
+\end{equation}
+
+Since $\FLPk$ is perpendicular to the $z$-axis,
+\begin{equation}
+\label{Eq:II:33:12}
+\FLPk\cdot\FLPr=k_xx+k_yy.
+\end{equation}
+
+We write the reflected wave as
+\begin{equation}
+\label{Eq:II:33:13}
+\FLPE_r=\FLPE_0'e^{i(\omega't-\FLPk'\cdot\FLPr)},
+\end{equation}
+
+so that its frequency is $\omega'$, its wave number is $\FLPk'$, and
+its amplitude is $\FLPE_0'$. (We know, of course, that the frequency
+is the same and the magnitude of $\FLPk'$ is the same as for the
+incident wave, but we are not going to assume even that. We will let
+it come out of the mathematical machinery.) Finally, we write for the
+transmitted wave,
+\begin{equation}
+\label{Eq:II:33:14}
+\FLPE_t=\FLPE_0''e^{i(\omega''t-\FLPk''\cdot\FLPr)}.
+\end{equation}
+</p>
+</div>
+<div id="Ch33-S2-p10" class="para">
+<p class="p">We know that one of Maxwell’s equations gives Eq. (<a href="#mjx-eqn-EqII339">33.9</a>), so for each of the waves we have
+\begin{equation}
+\label{Eq:II:33:15}
+\FLPB_i=\frac{\FLPk\times\FLPE_i}{\omega},\quad
+\FLPB_r=\frac{\FLPk'\times\FLPE_r}{\omega'},\quad
+\FLPB_t=\frac{\FLPk''\times\FLPE_t}{\omega''}.
+\end{equation}
+
+Also, if we call the indexes of the two media $n_1$ and $n_2$, we have
+from Eq. (<a href="#mjx-eqn-EqII3310">33.10</a>)
+\begin{equation}
+\label{Eq:II:33:16}
+k^2=k_x^2+k_y^2=\frac{\omega^2n_1^2}{c^2}.
+\end{equation}
+
+Since the reflected wave is in the same material, then
+\begin{equation}
+\label{Eq:II:33:17}
+k'^2=\frac{\omega'^2n_1^2}{c^2}
+\end{equation}
+
+whereas for the transmitted wave,
+\begin{equation}
+\label{Eq:II:33:18}
+k''^2=\frac{\omega''^2n_2^2}{c^2}.
+\end{equation}
+</p>
+</div>
+</div>
+<div id="Ch33-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">33–3</span>The boundary conditions</h3>
+<div id="Ch33-S3-p1" class="para">
+<p class="p">All we have done so far is to describe the three waves; our problem now
+is to work out the parameters of the reflected and transmitted waves in
+terms of those of the incident wave. How can we do that? The three waves
+we have described satisfy Maxwell’s
+equations in the uniform material,
+but Maxwell’s equations must
+also be satisfied <em class="emph">at</em> the boundary between the two different
+materials. So we must now look at what happens right <i>at</i> the boundary. We
+will find that Maxwell’s equations demand that the three waves fit together in a certain way.
+</p>
+</div>
+<div id="Ch33-F4" class="figure">
+<img src="img/FLP_II/f33-04/f33-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–4.</span>A boundary condition $E_{y2}=E_{y1}$ is obtained
+from $\oint_\Gamma\FigE\cdot d\Figs = 0$.
+</div>
+</div>
+<div id="Ch33-S3-p2" class="para">
+<p class="p">As an example of what we mean, the $y$-component of the electric
+field $\FLPE$ must be the <em class="emph">same</em> on both sides of the boundary. This is
+required by Faraday’s law,
+\begin{equation}
+\label{Eq:II:33:19}
+\FLPcurl{\FLPE}=-\ddp{\FLPB}{t},
+\end{equation}
+
+as we can see in the following way. Consider a little rectangular
+loop $\Gamma$ which straddles the boundary, as shown in
+Fig. <a href="#Ch33-F4">33–4</a>. Equation (<a href="#mjx-eqn-EqII3319">33.19</a>) says that the line
+integral of $\FLPE$ around $\Gamma$ is equal to the rate of change of
+the flux of $\FLPB$ through the loop:
+\begin{equation*}
+\oint_\Gamma\FLPE\cdot d\FLPs=-\ddp{}{t}\int\FLPB\cdot\FLPn\,da.
+\end{equation*}
+
+Now imagine that the rectangle is very narrow, so that the loop
+encloses an infinitesimal area. If $\FLPB$ remains finite (and there’s
+no reason it should be infinite at the boundary!) the flux through the
+area is zero. So the line integral of $\FLPE$ must be zero. If
+$E_{y1}$ and $E_{y2}$ are the components of the field on the two sides
+of the boundary and if the length of the rectangle is $l$, we have
+\begin{equation}
+E_{y1}l-E_{y2}l=0\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:33:20}
+E_{y1}=E_{y2},
+\end{equation}
+
+as we have said. This gives us one relation among the fields of the
+three waves.</p>
+</div>
+<div id="Ch33-S3-p3" class="para">
+<p class="p">The procedure of working out the consequences of Maxwell’s
+equations at the boundary is called
+“determining the boundary conditions.” Ordinarily, it is done by
+finding as many equations like Eq. (<a href="#mjx-eqn-EqII3320">33.20</a>) as one can, by
+making arguments about little rectangles like $\Gamma$ in
+Fig. <a href="#Ch33-F4">33–4</a>, or by using little gaussian surfaces that
+straddle the boundary. Although that is a perfectly good way of
+proceeding, it gives the impression that the problem of dealing with a
+boundary is different for every different physical problem.</p>
+</div>
+<div id="Ch33-S3-p4" class="para">
+<p class="p">For example, in a problem of heat flow across a boundary, how are the
+temperatures on the two sides related? Well, you could argue, for one
+thing, that the heat flow <em class="emph">to</em> the boundary from one side would
+have to equal the flow <em class="emph">away</em> from the other side. It is usually
+possible, and generally quite useful, to work out the boundary
+conditions by making such physical arguments. There may be times,
+however, when in working on some problem you have only some equations,
+and you may not see right away what physical arguments to use. So
+although we are at the moment interested only in an electromagnetic
+problem, where we <em class="emph">can</em> make the physical arguments, we want to
+show you a method that can be used for any problem—a <em class="emph">general</em>
+way of finding what happens at a boundary directly from the
+differential equations.</p>
+</div>
+<div id="Ch33-S3-p5" class="para">
+<p class="p">We begin by writing all the Maxwell equations for a dielectric—and this
+time we are very specific and write out explicitly all the components:
+\begin{align}
+\label{Eq:II:33:21}
+&\FLPdiv{\FLPE}=-\frac{\FLPdiv{\FLPP}}{\epsO}\\[1ex]
+&\quad
+\epsO\biggl(\ddp{E_x}{x}\!+\!\ddp{E_y}{y}\!+\!\ddp{E_z}{z}\biggr)=
+-\biggl(\ddp{P_x}{x}\!+\!\ddp{P_y}{y}\!+\!\ddp{P_z}{z}\biggr)\notag\\[2ex]
+% ebook break
+% ebook insert:   \label{Eq:II:0:0}
+&\FLPcurl{\FLPE}=-\ddp{\FLPB}{t}\notag\\[1ex]
+% ebook break
+% ebook indent
+\label{Eq:II:33:22a}
+&\quad
+\ddp{E_z}{y}-\ddp{E_y}{z}=-\ddp{B_x}{t}\tag{33.22a}\\[.75ex]
+\label{Eq:II:33:22b}
+&\quad
+\ddp{E_x}{z}-\ddp{E_z}{x}=-\ddp{B_y}{t}\tag{33.22b}\\[.75ex]
+\label{Eq:II:33:22c}
+&\quad
+\ddp{E_y}{x}-\ddp{E_x}{y}=-\ddp{B_z}{t}\tag{33.22c}\\[2ex]
+% ebook break
+\label{Eq:II:33:23}
+&\FLPdiv{\FLPB}=0\tag{33.23}\\[1.75ex]
+&\quad
+\ddp{B_x}{x}+\ddp{B_y}{y}+\ddp{B_z}{z}=0\notag\\[2ex]
+% ebook break
+% ebook insert: \label{Eq:II:0:0}
+&c^2\FLPcurl{\FLPB}=\frac{1}{\epsO}\,\ddp{\FLPP}{t}+\ddp{\FLPE}{t}\notag\\[1ex]
+% ebook break
+% ebook indent
+\label{Eq:II:33:24a}
+&\quad
+c^2\biggl(\ddp{B_z}{y}-\ddp{B_y}{z}\biggr)=
+\frac{1}{\epsO}\,\ddp{P_x}{t}+\ddp{E_x}{t}\tag{33.24a}\\[.75ex]
+\label{Eq:II:33:24b}
+&\quad
+c^2\biggl(\ddp{B_x}{z}-\ddp{B_z}{x}\biggr)=
+\frac{1}{\epsO}\,\ddp{P_y}{t}+\ddp{E_y}{t}\tag{33.24b}\\[.75ex]
+\label{Eq:II:33:24c}
+&\quad
+c^2\biggl(\ddp{B_y}{x}-\ddp{B_x}{y}\biggr)=
+\frac{1}{\epsO}\,\ddp{P_z}{t}+\ddp{E_z}{t}\tag{33.24c}
+\end{align}
+</p>
+</div>
+
+<div class="hidden_equation_shim">
+\begin{equation}
+hidden equation shim to bump the equation number
+\end{equation}
+</div>
+<div class="hidden_equation_shim">
+\begin{equation}
+hidden equation shim to bump the equation number
+\end{equation}
+</div>
+<div class="hidden_equation_shim">
+\begin{equation}
+hidden equation shim to bump the equation number
+\end{equation}
+</div>
+
+<div id="Ch33-S3-p6" class="para">
+<p class="p">Now these equations must all hold in region $1$ (to the left of the
+boundary) and in region $2$ (to the right of the boundary). We have
+already written the solutions in regions $1$ and $2$. Finally, they
+must also be satisfied <em class="emph">in</em> the boundary, which we can call
+region $3$. Although we usually think of the boundary as being sharply
+discontinuous, in reality it is not. The physical properties change
+very rapidly but not infinitely fast. In any case, we can imagine that
+there is a very rapid, but <em class="emph">continuous</em>, transition of the index
+between region $1$ and $2$, in a short distance we can call
+region $3$. Also, any field quantity like $P_x$, or $E_y$, etc., will make a
+similar kind of transition in region $3$. In this region, the
+differential equations must still be satisfied, and it is by following
+the differential equations in this region that we can arrive at the
+needed “boundary conditions.”</p>
+</div>
+<div id="Ch33-S3-p7" class="para">
+<p class="p">For instance, suppose that we have a boundary between vacuum (region $1$)
+and glass (region $2$). There is nothing to polarize in the vacuum,
+so $\FLPP_1=0$. Let’s say there is some polarization $\FLPP_2$ in the
+glass. Between the vacuum and the glass there is a smooth, but rapid,
+transition. If we look at any component of $\FLPP$, say $P_x$, it might
+vary as drawn in Fig. <a href="#Ch33-F5">33–5</a>(a). Suppose now we take the
+first of our equations, Eq. (<a href="#mjx-eqn-EqII3321">33.21</a>). It involves derivatives
+of the components of $\FLPP$ with respect to $x$, $y$, and $z$. The $y$-
+and $z$-derivatives are not interesting; nothing spectacular is
+happening in those directions. But the $x$-derivative of $P_x$ will have
+some very large values in region $3$, because of the tremendous slope
+of $P_x$. The derivative $\ddpl{P_x}{x}$ will have a sharp spike at the
+boundary, as shown in Fig. <a href="#Ch33-F5">33–5</a>(b). If we imagine squashing
+the boundary to an even thinner layer, the spike would get much higher.
+If the boundary is really sharp for the waves we are interested in, the
+magnitude of $\ddpl{P_x}{x}$ in region $3$ will be much, much greater
+than any contributions we might have from the variation of $\FLPP$ in
+the wave away from the boundary—so we ignore any variations other than
+those due to the boundary.</p>
+</div>
+<div id="Ch33-F5" class="figure">
+<img src="img/FLP_II/f33-05/f33-05_tc_big.svgz">
+<div class="caption">
+<span class="tag">Fig. 33–5.</span>The fields in the transition region 3 between two different
+materials in regions 1 and 2.
+</div>
+</div>
+<div id="Ch33-S3-p8" class="para">
+<p class="p">Now how can Eq. (<a href="#mjx-eqn-EqII3321">33.21</a>) be satisfied if there is a
+whopping big spike on the right-hand side? Only if there is an equally
+whopping big spike on the other side. Something on the left-hand side
+must also be big. The only candidate is $\ddpl{E_x}{x}$, because the
+variations with $y$ and $z$ are only those small effects in the wave
+we just mentioned. So $-\epsO(\ddpl{E_x}{x})$ must be as drawn in
+Fig. <a href="#Ch33-F5">33–5</a>(c)—just a copy of $\ddpl{P_x}{x}$. We have that
+\begin{equation*}
+\epsO\,\ddp{E_x}{x}=-\ddp{P_x}{x}.
+\end{equation*}
+
+If we integrate this equation with respect to $x$ across region $3$,
+we conclude that
+\begin{equation}
+\label{Eq:II:33:25}
+\epsO(E_{x2}-E_{x1})=-(P_{x2}-P_{x1}).
+\end{equation}
+
+In other words, the jump in $\epsO E_x$ in going from region $1$ to
+region $2$ must be equal to the jump in $-P_x$.</p>
+</div>
+<div id="Ch33-S3-p9" class="para">
+<p class="p">We can rewrite Eq. (<a href="#mjx-eqn-EqII3325">33.25</a>) as
+\begin{equation}
+\label{Eq:II:33:26}
+\epsO E_{x2}+P_{x2}=\epsO E_{x1}+P_{x1},
+\end{equation}
+
+which says that the quantity $(\epsO E_x+P_x)$ has equal values in
+region $2$ and region $1$. People say: the quantity $(\epsO E_x+P_x)$
+is <em class="emph">continuous</em> across the boundary. We have, in this way, one of
+our boundary conditions.</p>
+</div>
+<div id="Ch33-S3-p10" class="para">
+<p class="p">Although we took as an illustration the case in which $\FLPP_1$ was
+zero because region $1$ was a vacuum, it is clear that the same
+argument applies for any two materials in the two regions, so
+Eq. (<a href="#mjx-eqn-EqII3326">33.26</a>) is true in general.</p>
+</div>
+<div id="Ch33-S3-p11" class="para">
+<p class="p">Let’s now go through the rest of Maxwell’s
+equations and see what each of them
+tells us. We take next Eq. (<a href="#mjx-eqn-EqII3322a">33.22a</a>). There are no
+$x$-derivatives, so it doesn’t tell us anything. (Remember that the
+fields <em class="emph">themselves</em> do not get especially large at the boundary;
+only the derivatives with respect to $x$ can become so huge that they
+dominate the equation.) Next, we look at Eq. (<a href="#mjx-eqn-EqII3322b">33.22b</a>). Ah!
+There is an $x$-derivative! We have $\ddpl{E_z}{x}$ on the left-hand
+side. Suppose it has a huge derivative. But wait a moment! There is
+nothing on the right-hand side to match it with; therefore $E_z$
+<em class="emph">cannot</em> have any jump in going from region $1$ to region $2$. [If
+it did, there would be a spike on the left of Eq. (<a href="#mjx-eqn-EqII3322b">33.22b</a>)
+but none on the right, and the equation would be false.] So we have a
+new condition:
+\begin{equation}
+\label{Eq:II:33:27}
+E_{z2}=E_{z1}.
+\end{equation}
+
+By the same argument, Eq. (<a href="#mjx-eqn-EqII3322c">33.22c</a>) gives
+\begin{equation}
+\label{Eq:II:33:28}
+E_{y2}=E_{y1}.
+\end{equation}
+
+This last result is just what we got in Eq. (<a href="#mjx-eqn-EqII3320">33.20</a>) by a
+line integral argument.</p>
+</div>
+<div id="Ch33-S3-p12" class="para">
+<p class="p">We go on to Eq. (<a href="#mjx-eqn-EqII3323">33.23</a>). The only term that could have a
+spike is $\ddpl{B_x}{x}$. But there’s nothing on the right to match
+it, so we conclude that
+\begin{equation}
+\label{Eq:II:33:29}
+B_{x2}=B_{x1}.
+\end{equation}
+</p>
+</div>
+<div id="Ch33-S3-p13" class="para">
+<p class="p">On to the last of Maxwell’s equations! Equation (<a href="#mjx-eqn-EqII3324a">33.24a</a>) gives nothing, because there are
+no $x$-derivatives. Equation (<a href="#mjx-eqn-EqII3324b">33.24b</a>) has one,
+$-c^2\,\ddpl{B_z}{x}$, but again, there is nothing to match it with. We
+get
+\begin{equation}
+\label{Eq:II:33:30}
+B_{z2}=B_{z1}.
+\end{equation}
+
+The last equation is quite similar, and gives
+\begin{equation}
+\label{Eq:II:33:31}
+B_{y2}=B_{y1}.
+\end{equation}
+</p>
+</div>
+<div id="Ch33-S3-p14" class="para">
+<p class="p">The last three equations gives us that $\FLPB_2=\FLPB_1$. We want to
+emphasize, however, that we get this result only when the materials on
+both sides of the boundary are nonmagnetic—or rather, when we can
+neglect any magnetic effects of the materials. This can usually be
+done for most materials, except ferromagnetic ones. (We will treat the
+magnetic properties of materials in some later chapters.)</p>
+</div>
+
+<div id="Ch33-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 33–1</span>Boundary conditions at the surface of a 
+dielectric
+</div>
+<table class="tabular ltx_centering" style="width:200pt;"><tbody class="tbody">
+<tr class="tr">
+<th class="td" style="text-align:center;" align="right"><span class="text small">$(\epsO\FLPE_1+\FLPP_1)_x=(\epsO\FLPE_2+\FLPP_2)_x$</span></th>
+</tr>
+<tr class="tr">
+<th class="td" style="text-align:center;" align="right"><span class="text small">$(\FLPE_1)_y=(\FLPE_2)_y$</span></th>
+</tr>
+<tr class="tr">
+<th class="td" style="text-align:center;" align="right"><span class="text small">$(\FLPE_1)_z=(\FLPE_2)_z$</span></th>
+</tr>
+<tr class="tr">
+<th class="td" style="text-align:center;" align="right"><span class="text small">$\FLPB_1=\FLPB_2$</span></th>
+</tr>
+<tr class="tr">
+<th class="td" style="text-align:center;" align="right"><span class="text small">(The surface is in the $yz$-plane)</span></th>
+</tr>
+</tbody></table>
+</div>
+
+<div id="Ch33-S3-p15" class="para">
+<p class="p">Our program has netted us the six relations between the fields in
+region $1$ and those in region $2$. We have put them all together in
+Table <a href="#Ch33-T1">33–1</a>. We can now use them to match the waves in the
+two regions. We want to emphasize, however, that the idea we have just
+used will work in <em class="emph">any</em> physical situation in which you have
+differential equations and you want a solution that crosses a sharp
+boundary between two regions where some property changes. For our
+present purposes, we could have easily derived the same equations by
+using arguments about the fluxes and circulations at the
+boundary. (You might see whether you can get the same result that
+way.) But now you have seen a method that will work in case you ever
+get stuck and don’t see any easy argument about the physics of what is
+happening at the boundary—you can just work with the equations.</p>
+</div>
+</div>
+<div id="Ch33-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">33–4</span>The reflected and transmitted waves</h3>
+<div id="Ch33-S4-p1" class="para">
+<p class="p">Now we are ready to apply our boundary conditions to the waves we
+wrote down in Section <a href="#Ch33-S2">33–2</a>. We had:
+\begin{align}
+\label{Eq:II:33:32}
+\FLPE_i&=\FLPE_0e^{i(\omega t-k_xx-k_yy)},\\[1.3ex]
+\label{Eq:II:33:33}
+\FLPE_r&=\FLPE_0'e^{i(\omega't-k_x'x-k_y'y)},\\[1.3ex]
+\label{Eq:II:33:34}
+\FLPE_t&=\FLPE_0''e^{i(\omega''t-k_x''x-k_y''y)},\\[1.5ex]
+% ebook break
+\label{Eq:II:33:35}
+\FLPB_i&=\frac{\FLPk\times\FLPE_i}{\omega},\\[1ex]
+\label{Eq:II:33:36}
+\FLPB_r&=\frac{\FLPk'\times\FLPE_r}{\omega'},\\[1ex]
+\label{Eq:II:33:37}
+\FLPB_t&=\frac{\FLPk''\times\FLPE_t}{\omega''}.
+\end{align}
+We have one further bit of knowledge: $\FLPE$ is perpendicular to its
+propagation vector $\FLPk$ for each wave.</p>
+</div>
+<div id="Ch33-S4-p2" class="para">
+<p class="p">The results will depend on the direction of the $\FLPE$-vector (the
+“polarization”) of the incoming wave. The analysis is much
+simplified if we treat separately the case of an incident wave with
+its $\FLPE$-vector <em class="emph">parallel</em> to the “plane of incidence” (that
+is, the $xy$-plane) and the case of an incident wave with the
+$\FLPE$-vector <em class="emph">perpendicular</em> to the plane of incidence. A wave
+of any other polarization is just a linear combination of two such
+waves. In other words, the reflected and transmitted intensities are
+different for different polarizations, and it is easiest to pick the
+two simplest cases and treat them separately.</p>
+</div>
+<div id="Ch33-S4-p3" class="para">
+<p class="p">We will carry through the analysis for an incoming wave polarized
+perpendicular to the plane of incidence and then just give you the
+result for the other. We are cheating a little by taking the simplest
+case, but the principle is the same for both. So we take that
+$\FLPE_i$ has only a $z$-component, and since all the $\FLPE$-vectors
+are in the same direction we can leave off the vector signs.</p>
+</div>
+<div id="Ch33-F6" class="figure">
+<img src="img/FLP_II/f33-06/f33-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–6.</span>Polarization of the reflected and transmitted waves when the
+$\FigE$-field of the incident wave is perpendicular to the plane of
+incidence.
+</div>
+</div>
+<div id="Ch33-S4-p4" class="para">
+<p class="p">So long as both materials are isotropic, the induced oscillations of
+charges in the material will also be in the $z$-direction, and the
+$\FLPE$-field of the transmitted and radiated waves will have only
+$z$-components. So for all the waves, $E_x$ and $E_y$ and $P_x$
+and $P_y$ are zero. The waves will have their $\FLPE$- and $\FLPB$-vectors
+as drawn in Fig. <a href="#Ch33-F6">33–6</a>. (We are cutting a corner here on our
+original
+plan of getting everything from the equations. This result would also
+come out of the boundary conditions, but we can save a lot of algebra
+by using the physical argument. When you have some spare time, see if
+you can get the same result from the equations. It is clear that what
+we have said agrees with the equations; it is just that we have not
+shown that there are no <em class="emph">other</em> possibilities.)</p>
+</div>
+<div id="Ch33-S4-p5" class="para">
+<p class="p">Now our boundary conditions, Eqs. (<a href="#mjx-eqn-EqII3326">33.26</a>)
+through (<a href="#mjx-eqn-EqII3331">33.31</a>), give relations between the components of $\FLPE$
+and $\FLPB$ in regions $1$ and $2$. For region $2$ we have only the transmitted
+wave, but in region $1$ we have <em class="emph">two</em> waves. Which one do we use? The
+fields in region $1$ are, of course, the superposition of the fields of the
+incident and reflected waves. (Since each satisfies Maxwell’s
+equations, so does the sum.) So when we use
+the boundary conditions, we must use that
+\begin{equation*}
+\FLPE_1=\FLPE_i+\FLPE_r,\quad
+\FLPE_2=\FLPE_t,
+\end{equation*}
+
+and similarly for the $\FLPB$’s.
+</p>
+</div>
+<div id="Ch33-S4-p6" class="para">
+<p class="p">For the polarization we are considering, Eqs. (<a href="#mjx-eqn-EqII3326">33.26</a>)
+and (<a href="#mjx-eqn-EqII3328">33.28</a>) give us no new information; only Eq. (<a href="#mjx-eqn-EqII3327">33.27</a>)
+is useful. It says that
+\begin{equation*}
+E_i+E_r=E_t,
+\end{equation*}
+
+<em class="emph">at the boundary</em>, that is, for $x=0$. So we have that
+\begin{equation}
+\label{Eq:II:33:38}
+E_0e^{i(\omega t-k_yy)}+E_0'e^{i(\omega't-k_y'y)}=
+E_0''e^{i(\omega''t-k_y''y)},
+\end{equation}
+
+which must be true for <em class="emph">all</em> $t$ and for <em class="emph">all</em> $y$. Suppose
+we look first at $y=0$. Then we have
+\begin{equation*}
+E_0e^{i\omega t}+E_0'e^{i\omega't}=
+E_0''e^{i\omega''t}.
+\end{equation*}
+
+This equation says that two oscillating terms are equal to a third
+oscillation. That can happen only if all the oscillations have the
+same frequency. (It is impossible for three—or any number—of such
+terms with different frequencies to add to zero for all times.) So
+\begin{equation}
+\label{Eq:II:33:39}
+\omega''=\omega'=\omega.
+\end{equation}
+
+As we knew all along, the frequencies of the reflected and transmitted
+waves are the same as that of the incident wave.</p>
+</div>
+<div id="Ch33-S4-p7" class="para">
+<p class="p">We should really have saved ourselves some trouble by putting that in
+at the beginning, but we wanted to show you that it can also be got
+out of the equations. When you are doing a real problem, it is usually
+the best thing to put everything you know into the works right at the
+start and save yourself a lot of trouble.</p>
+</div>
+<div id="Ch33-S4-p8" class="para">
+<p class="p">By definition, the <em class="emph">magnitude</em> of $\FLPk$ is given
+by $k^2=n^2\omega^2/c^2$, so we have also that
+\begin{equation}
+\label{Eq:II:33:40}
+\frac{k''^2}{n_2^2}=\frac{k'^2}{n_1^2}=\frac{k^2}{n_1^2}.
+\end{equation}
+</p>
+</div>
+<div id="Ch33-S4-p9" class="para">
+<p class="p">Now look at Eq. (<a href="#mjx-eqn-EqII3338">33.38</a>) for $t=0$. Using again the same
+kind of argument we have just made, but this time based on the fact
+that the equation must hold for all values of $y$, we get that
+\begin{equation}
+\label{Eq:II:33:41}
+k_y''=k_y'=k_y.
+\end{equation}
+
+From Eq. (<a href="#mjx-eqn-EqII3340">33.40</a>), $k'^2=k^2$, so
+\begin{equation*}
+k_x'^2+k_y'^2=k_x^2+k_y^2.
+\end{equation*}
+
+Combining this with Eq. (<a href="#mjx-eqn-EqII3341">33.41</a>), we have that
+\begin{equation*}
+k_x'^2=k_x^2,
+\end{equation*}
+
+or that $k_x'=\pm k_x$. The positive sign makes no sense; that would
+not give a <em class="emph">reflected</em> wave, but another <em class="emph">incident</em> wave,
+and we said at the start that we were solving the problem of only one
+incident wave. So we have
+\begin{equation}
+\label{Eq:II:33:42}
+k_x'=-k_x.
+\end{equation}
+
+The two equations (<a href="#mjx-eqn-EqII3341">33.41</a>) and (<a href="#mjx-eqn-EqII3342">33.42</a>) give us
+that the angle of reflection is equal to the angle of incidence, as we
+expected. (See Fig. <a href="#Ch33-F3">33–3</a>.) The reflected wave is
+\begin{equation}
+\label{Eq:II:33:43}
+E_r=E_0'e^{i(\omega t+k_xx-k_yy)}.
+\end{equation}
+</p>
+</div>
+<div id="Ch33-S4-p10" class="para">
+<p class="p">For the transmitted wave we already have that
+\begin{equation}
+k_y''=k_y,\notag
+\end{equation}
+
+and
+\begin{equation}
+\label{Eq:II:33:44}
+\frac{k''^2}{n_2^2}=\frac{k^2}{n_1^2};
+\end{equation}
+
+so we can solve these to find $k_x''$. We get
+\begin{equation}
+\label{Eq:II:33:45}
+k_x''^2=k''^2-k_y''^2=\frac{n_2^2}{n_1^2}\,k^2-k_y^2.
+\end{equation}
+</p>
+</div>
+<div id="Ch33-S4-p11" class="para">
+<p class="p">Suppose for a moment that $n_1$ and $n_2$ are real numbers (that the
+imaginary parts of the indexes are very small). Then all the $k$’s are
+also real numbers, and from Fig. <a href="#Ch33-F3">33–3</a> we find that
+\begin{equation}
+\label{Eq:II:33:46}
+\frac{k_y}{k}=\sin\theta_i,\quad
+\frac{k_y''}{k''}=\sin\theta_t.
+\end{equation}
+
+From (<a href="#mjx-eqn-EqII3344">33.44</a>) we get that
+\begin{equation}
+\label{Eq:II:33:47}
+n_2\sin\theta_t=n_1\sin\theta_i,
+\end{equation}
+
+which is Snell’s law of refraction—again, something we already knew.
+If the indexes are not real, the wave numbers are complex, and we have
+to use Eq. (<a href="#mjx-eqn-EqII3345">33.45</a>). [We could still <em class="emph">define</em> the angles
+$\theta_i$ and $\theta_t$ by Eq. (<a href="#mjx-eqn-EqII3346">33.46</a>), and Snell’s law,
+Eq. (<a href="#mjx-eqn-EqII3347">33.47</a>), would be true in general. But then the
+“angles” also are complex numbers, thereby losing their simple
+geometrical interpretation as angles. It is best then to describe the
+behavior of the waves by their complex $k_x$ or $k_x''$ values.]</p>
+</div>
+<div id="Ch33-S4-p12" class="para">
+<p class="p">So far, we haven’t found anything new. We have just had the
+simple-minded delight of getting some obvious answers from a complicated
+mathematical machinery. Now we are ready to find the amplitudes of the
+waves which we have not yet known. Using our results for the $\omega$’s
+and $k$’s, the exponential factors in Eq. (<a href="#mjx-eqn-EqII3338">33.38</a>) can be
+cancelled, and we get
+\begin{equation}
+\label{Eq:II:33:48}
+E_0+E_0'=E_0''.
+\end{equation}
+
+Since both $E_0'$ and $E_0''$ are unknown, we need one more
+relationship. We must use another of the boundary conditions. The
+equations for $E_x$ and $E_y$ are no help, because all the $\FLPE$’s
+have only a $z$-component. So we must use the conditions on $\FLPB$.
+Let’s try Eq. (<a href="#mjx-eqn-EqII3329">33.29</a>):
+\begin{equation*}
+B_{x2}=B_{x1}.
+\end{equation*}
+
+From Eqs. (<a href="#mjx-eqn-EqII3335">33.35</a>) through (<a href="#mjx-eqn-EqII3337">33.37</a>),
+<span class="eq-wide">
+\begin{equation*}
+B_{xi}=\frac{k_yE_i}{\omega},\quad
+B_{xr}=\frac{k_y'E_r}{\omega'},\quad
+B_{xt}=\frac{k_y''E_t}{\omega''}.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+B_{xi}&=\frac{k_yE_i}{\omega},\\[1ex]
+B_{xr}&=\frac{k_y'E_r}{\omega'},\\[1ex]
+B_{xt}&=\frac{k_y''E_t}{\omega''}.
+\end{align*}
+</span>
+
+
+Recalling that $\omega''=\omega'=\omega$ and $k_y''=k_y'=k_y$, we get
+that
+\begin{equation*}
+E_0+E_0'=E_0''.
+\end{equation*}
+
+But this is just Eq. (<a href="#mjx-eqn-EqII3348">33.48</a>) all over again! We’ve just
+wasted time getting something we already knew.</p>
+</div>
+<div id="Ch33-S4-p13" class="para">
+<p class="p">We could try Eq. (<a href="#mjx-eqn-EqII3330">33.30</a>), $B_{z2}=B_{z1}$, but there are no
+$z$-components of $\FLPB$! So there’s only one equation left:
+Eq. (<a href="#mjx-eqn-EqII3331">33.31</a>), $B_{y2}=B_{y1}$. For the three waves:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:33:49}
+B_{yi}=-\frac{k_xE_i}{\omega},\quad
+B_{yr}=-\frac{k_x'E_r}{\omega'},\quad
+B_{yt}=-\frac{k_x''E_t}{\omega''}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+B_{yi}=-\frac{k_xE_i}{\omega},\notag\\[1ex]
+\label{Eq:II:33:49}
+B_{yr}=-\frac{k_x'E_r}{\omega'},\\[1ex]
+B_{yt}=-\frac{k_x''E_t}{\omega''}.\notag
+\end{align}
+</span>
+Putting for $E_i$, $E_r$, and $E_t$ the wave expression for $x=0$ (to
+be at the boundary), the boundary condition is
+\begin{equation*}
+\frac{k_x}{\omega}\,E_0e^{i(\omega t-k_yy)}+
+\frac{k_x'}{\omega'}\,E_0'e^{i(\omega't-k_y'y)}=
+\frac{k_x''}{\omega''}\,E_0''e^{i(\omega''t-k_y''y)}.
+\end{equation*}
+
+Again all $\omega$’s and $k_y$’s are equal, so this reduces to
+\begin{equation}
+\label{Eq:II:33:50}
+k_xE_0+k_x'E_0'=k_x''E_0''.
+\end{equation}
+
+This gives us an equation for the $E$’s that is different from
+Eq. (<a href="#mjx-eqn-EqII3348">33.48</a>). With the two, we can solve for $E_0'$
+and $E_0''$. Remembering that $k_x'=-k_x$, we get
+\begin{align}
+\label{Eq:II:33:51}
+E_0'&=\frac{k_x-k_x''}{k_x+k_x''}\,E_0,\\[1ex]
+\label{Eq:II:33:52}
+E_0''&=\frac{2k_x}{k_x+k_x''}\,E_0.
+\end{align}
+
+These, together with Eq. (<a href="#mjx-eqn-EqII3345">33.45</a>) or Eq. (<a href="#mjx-eqn-EqII3346">33.46</a>)
+for $k_x''$, give us what we wanted to know. We will discuss the
+consequences of this result in the next section.</p>
+</div>
+<div id="Ch33-F7" class="figure">
+<img src="img/FLP_II/f33-07/f33-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–7.</span>Polarization of the waves when the $\FigE$-field of the
+incident wave is parallel to the plane of incidence.
+</div>
+</div>
+<div id="Ch33-S4-p14" class="para">
+<p class="p">If we begin with a wave polarized with its $\FLPE$-vector
+<em class="emph">parallel</em> to the plane of incidence, $\FLPE$ will have both $x$-
+and $y$-components, as shown in Fig. <a href="#Ch33-F7">33–7</a>. The algebra is
+straightforward but more complicated. (The work can be somewhat reduced
+by expressing things in this case in terms of the <em class="emph">magnetic</em>
+fields, which are all in the $z$-direction.) One finds that
+\begin{equation}
+\label{Eq:II:33:53}
+\abs{E_0'}=\frac{n_2^2k_x-n_1^2k_x''}{n_2^2k_x+n_1^2k_x''}\,
+\abs{E_0}
+\end{equation}
+
+and
+\begin{equation}
+\label{Eq:II:33:54}
+\abs{E_0''}=\frac{2n_1n_2k_x}{n_2^2k_x+n_1^2k_x''}\,
+\abs{E_0}.
+\end{equation}
+</p>
+</div>
+<div id="Ch33-S4-p15" class="para">
+<p class="p">Let’s see whether our results agree with those we got
+earlier. Equation (<a href="#mjx-eqn-EqII333">33.3</a>) is the result we worked out in
+Chapter <a href="I_33.html">33</a> of Volume I for the ratio of the intensity of
+the reflected wave to the intensity of the incident wave. Then,
+however, we were considering only <em class="emph">real</em> indexes. For real
+indexes (and $k$’s), we can write
+\begin{gather*}
+k_x=k\cos\theta_i=\frac{\omega n_1}{c}\cos\theta_i,\\[1ex]
+k_x''=k''\cos\theta_t=\frac{\omega n_2}{c}\cos\theta_t.
+\end{gather*}
+
+Substituting in Eq. (<a href="#mjx-eqn-EqII3351">33.51</a>), we have
+\begin{equation}
+\label{Eq:II:33:55}
+\frac{E_0'}{E_0}=\frac{n_1\cos\theta_i-n_2\cos\theta_t}
+{n_1\cos\theta_i+n_2\cos\theta_t},
+\end{equation}
+
+which does not look the same as Eq. (<a href="#mjx-eqn-EqII333">33.3</a>). It will,
+however, if we use Snell’s law to get rid of the $n$’s. Setting
+$n_2=n_1\sin\theta_i/\sin\theta_t$, and multiplying the numerator and
+denominator by $\sin\theta_t$, we get
+\begin{equation*}
+\frac{E_0'}{E_0}=\frac{\cos\theta_i\sin\theta_t-\sin\theta_i\cos\theta_t}
+{\cos\theta_i\sin\theta_t+\sin\theta_i\cos\theta_t}.
+\end{equation*}
+
+The numerator and denominator are just the sines of
+$-(\theta_i-\theta_t)$ and $(\theta_i+\theta_t)$; we get
+\begin{equation}
+\label{Eq:II:33:56}
+\frac{E_0'}{E_0}=-\frac{\sin(\theta_i-\theta_t)}
+{\sin(\theta_i+\theta_t)}.
+\end{equation}
+
+Since $E_0'$ and $E_0$ are in the same material, the intensities are
+proportional to the squares of the electric fields, and we get the
+same result as before. Similarly, Eq. (<a href="#mjx-eqn-EqII3353">33.53</a>) is the
+same as Eq. (<a href="#mjx-eqn-EqII334">33.4</a>).</p>
+</div>
+<div id="Ch33-S4-p16" class="para">
+<p class="p">For waves which arrive at normal incidence, $\theta_i=0$
+and $\theta_t=0$. Equation (<a href="#mjx-eqn-EqII3356">33.56</a>) gives $0/0$, which is not
+very useful. We can, however, go back to Eq. (<a href="#mjx-eqn-EqII3355">33.55</a>),
+which gives
+\begin{equation}
+\label{Eq:II:33:57}
+\frac{I_r}{I_i}=\biggl(\frac{E_0'}{E_0}\biggr)^2=\biggl(
+\frac{n_1-n_2}{n_1+n_2}\biggr)^2.
+\end{equation}
+
+This result, naturally, applies for “either” polarization, since for
+normal incidence there is no special “plane of incidence.”
+</p>
+</div>
+</div>
+<div id="Ch33-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">33–5</span>Reflection from metals</h3>
+<div id="Ch33-S5-p1" class="para">
+<p class="p">We can now use our results to understand the interesting phenomenon of
+reflection from metals. Why is it that metals are shiny? We saw in the
+last chapter that metals have an index of refraction which, for some
+frequencies, has a large imaginary part. Let’s see what we would get
+for the reflected intensity when light shines from air (with $n=1$)
+onto a material with $n=-in_I$. Then Eq. (<a href="#mjx-eqn-EqII3355">33.55</a>) gives
+(for normal incidence)
+\begin{equation*}
+\frac{E_0'}{E_0}=\frac{1+in_I}{1-in_I}.
+\end{equation*}
+
+For the <em class="emph">intensity</em> of the reflected wave, we want the square of
+the absolute values of $E_0'$ and $E_0$:
+\begin{equation}
+\frac{I_r}{I_i}=\frac{\abs{E_0'}^2}{\abs{E_0}^2}=
+\frac{\abs{1+in_I}^2}{\abs{1-in_I}^2},
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:33:58}
+\frac{I_r}{I_i}=\frac{1+n_I^2}{1+n_I^2}=1.
+\end{equation}
+
+For a material with an index which is a pure imaginary number, there
+is $100$ percent reflection!</p>
+</div>
+<div id="Ch33-S5-p2" class="para">
+<p class="p">Metals do not reflect $100$ percent, but many do reflect visible light
+very well. In other words, the imaginary part of their indexes is very
+large. But we have seen that a large imaginary part of the index means
+a strong absorption. So there is a general rule that if <em class="emph">any</em>
+material gets to be a <em class="emph">very</em> good absorber at any frequency, the
+waves are strongly reflected at the surface and very little gets
+inside to be absorbed. You can see this effect with strong dyes. Pure
+crystals of the strongest dyes have a “metallic” shine. Probably you
+have noticed that at the edge of a bottle of purple ink the dried dye
+will give a golden metallic reflection, or that dried red ink will
+sometimes give a greenish metallic reflection. Red ink absorbs out the
+greens of <em class="emph">transmitted</em> light, so if the ink is very
+concentrated, it will exhibit a strong surface <em class="emph">reflection</em> for
+the frequencies of green light.</p>
+</div>
+<div id="Ch33-F8" class="figure">
+<img src="img/FLP_II/f33-08/f33-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–8.</span>A material which absorbs light strongly at the
+frequency $\omega$ also reflects light of that frequency.
+</div>
+</div>
+<div id="Ch33-S5-p3" class="para">
+<p class="p">You can easily show this effect by coating a glass plate with red ink
+and letting it dry. If you direct a beam of white light at the back of
+the plate, as shown in Fig. <a href="#Ch33-F8">33–8</a>, there will be a transmitted beam
+of red light and a reflected beam of green light.</p>
+</div>
+</div>
+<div id="Ch33-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">33–6</span>Total internal reflection</h3>
+<div id="Ch33-S6-p1" class="para">
+<p class="p">If light goes from a material like glass, with a real index $n$
+greater than $1$, toward, say, air, with an index $n_2$ equal to $1$,
+Snell’s law says that
+\begin{equation*}
+\sin\theta_t=n\sin\theta_i.
+\end{equation*}
+
+The angle $\theta_t$ of the transmitted wave becomes $90^\circ$ when the
+incident angle $\theta_i$ is equal to the “critical angle” $\theta_c$
+given by
+\begin{equation}
+\label{Eq:II:33:59}
+n\sin\theta_c=1.
+\end{equation}
+
+What happens for $\theta_i$ greater than the critical angle? You know
+that there is total internal reflection. But how does that come about?</p>
+</div>
+<div id="Ch33-S6-p2" class="para">
+<p class="p">Let’s go back to Eq. (<a href="#mjx-eqn-EqII3345">33.45</a>) which gives the wave
+number $k_x''$ for the transmitted wave. We would have
+\begin{equation*}
+k_x''^2=\frac{k^2}{n^2}-k_y^2.
+\end{equation*}
+
+Now $k_y=k\sin\theta_i$ and $k=\omega n/c$, so
+\begin{equation*}
+k_x''^2=\frac{\omega^2}{c^2}\,(1-n^2\sin^2\theta_i).
+\end{equation*}
+
+If $n\sin\theta_i$ is greater than one, $k_x''^2$ is <em class="emph">negative</em>
+and $k_x''$ is a pure imaginary, say $\pm ik_I$. You know by now what
+that means! The “transmitted” wave (Eq. <a href="#mjx-eqn-EqII3334">33.34</a>) will
+have the form
+\begin{equation*}
+\FLPE_t=\FLPE_0''e^{\pm k_Ix}e^{i(\omega t-k_yy)}.
+\end{equation*}
+
+The wave amplitude either grows or drops off exponentially with
+increasing $x$. Clearly, what we want here is the negative sign. Then
+the <em class="emph">amplitude</em> of the wave to the right of the boundary will go as
+shown in Fig. <a href="#Ch33-F9">33–9</a>. Notice that $k_I$ is $\omega/c$—which
+is of the order $1/\lambda_0$, the reciprocal of the free-space
+wavelength of the light. When light is totally reflected from the inside
+of a glass-air surface, there are fields in the air, but they extend
+beyond the surface only a distance of the order of the wavelength of the
+light.</p>
+</div>
+<div id="Ch33-F9" class="figure">
+<img src="img/FLP_II/f33-09/f33-09_tc_iPad_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–9.</span>Total internal reflection.
+</div>
+</div>
+<div id="Ch33-S6-p3" class="para">
+<p class="p">We can now see how to answer the following question: If a light wave
+in glass arrives at the surface at a large enough angle, it is
+reflected; if another piece of glass is brought up to the surface (so
+that the “surface” in effect disappears) the light is
+transmitted. Exactly when does this happen? Surely there must be
+continuous change from total reflection to no reflection! The answer,
+of course, is that if the air gap is so small that the exponential
+tail of the wave in the air has an appreciable strength at the second
+piece of glass, it will shake the electrons there and generate a new
+wave, as shown in Fig. <a href="#Ch33-F10">33–10</a>. Some light will be
+transmitted. (Clearly, our solution is incomplete; we should solve all
+the equations again for a thin layer of air between two regions of
+glass.)</p>
+</div>
+<div id="Ch33-F10" class="figure">
+<img src="img/FLP_II/f33-10/f33-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–10.</span>If there is a small gap, internal reflection is not “total;”
+a transmitted wave appears beyond the gap.
+</div>
+</div>
+<div id="Ch33-S6-p4" class="para">
+<p class="p">This transmission effect can be observed with ordinary light only if the
+air gap is very small (of the order of the wavelength of light, like
+$10^{-5}$ cm), but it is easily demonstrated with three-centimeter
+waves. Then the exponentially decreasing field extends several
+centimeters. A microwave apparatus that shows the effect is drawn in
+Fig. <a href="#Ch33-F11">33–11</a>. Waves from a small three-centimeter
+transmitter are directed at a $45^\circ$ prism of paraffin. The index of
+refraction of paraffin for these frequencies is $1.50$, and therefore
+the critical angle is $41.5^\circ$. So the wave is totally reflected
+from the $45^\circ$ face and is picked up by detector $A$, as indicated
+in Fig. <a href="#Ch33-F11">33–11</a>(a). If a second paraffin prism is placed in
+contact with the first, as shown in part (b) of the figure, the wave
+passes straight through and is picked up at detector $B$. If a gap of a
+few centimeters is left between the two prisms, as in part (c), there
+are both transmitted and reflected waves. The electric field outside the
+$45^\circ$ face of the prism in Fig. <a href="#Ch33-F11">33–11</a>(a) can also be
+shown by bringing detector $B$ to within a few centimeters of the
+surface.</p>
+</div>
+<div id="Ch33-F11" class="figure">
+<img class="first" src="img/FLP_II/f33-11/f33-11_tc_iPad_big_a.svgz"><img class="middle" src="img/FLP_II/f33-11/f33-11_tc_iPad_big_b.svgz"><img class="last" src="img/FLP_II/f33-11/f33-11_tc_iPad_big_c.svgz"><div class="caption">
+<span class="tag">Fig. 33–11.</span>A demonstration of the penetration of internally reflected waves.
+</div>
+</div>
+</div>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

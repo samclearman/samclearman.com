@@ -1,0 +1,1874 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 10: Other Two-State Systems</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "10." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch10" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">10</span>Other Two-State Systems</h2>
+<div id="Ch10-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">10–1</span>The hydrogen molecular ion</h3>
+<div id="Ch10-S1-p1" class="para">
+<p class="p">In the last chapter we discussed some aspects of the ammonia
+molecule under the approximation that it can be considered as a
+two-state system. It is, of course, not really a two-state
+system—there are many states of rotation, vibration, translation, and
+so on—but each of these states of motion must be analyzed in terms of
+two internal states because of the flip-flop of the nitrogen atom. Here
+we are going to consider other examples of systems which, to some
+approximation or other, can be considered as two-state systems. Lots of
+things will be approximate because there are always many other states,
+and in a more accurate analysis they would have to be taken into
+account. But in each of our examples we will be able to understand a
+great deal by just thinking about two states.
+</p>
+</div>
+<div id="Ch10-S1-p2" class="para">
+<p class="p">Since we will only be dealing with two-state systems, the Hamiltonian we
+need will look just like the one we used in the last chapter. When the
+Hamiltonian is independent of time, we know that there are two
+stationary states with definite—and usually different—energies.
+Generally, however, we start our analysis with a set of base states
+which are <em class="emph">not</em> these stationary states, but states which may,
+perhaps, have some other simple physical meaning. Then, the stationary
+states of the system will be represented by a linear combination of
+these base states.</p>
+</div>
+<div id="Ch10-S1-p3" class="para">
+<p class="p">For convenience, we will summarize the important equations from
+Chapter <a href="III_09.html">9</a>. Let the original choice of base states be
+$\ket{\slOne}$ and $\ket{\slTwo}$. Then any state $\ket{\psi}$ is
+represented by the linear combination
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:10:1}
+\ket{\psi}=\ket{\slOne}\braket{\slOne}{\psi}+
+\ket{\slTwo}\braket{\slTwo}{\psi}=
+\ket{\slOne}C_1+\ket{\slTwo}C_2.
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{align}
+\ket{\psi}&=\ket{\slOne}\braket{\slOne}{\psi}+\ket{\slTwo}\braket{\slTwo}{\psi}\notag\\[1ex]
+\label{Eq:III:10:1}
+&=\ket{\slOne}C_1+\ket{\slTwo}C_2.
+\end{align}
+
+</span>
+The amplitudes $C_i$ (by which we mean either $C_1$ or $C_2$)
+satisfy the two linear differential equations
+\begin{equation}
+\label{Eq:III:10:2}
+i\hbar\,\ddt{C_i}{t}=\sum_jH_{ij}C_j,
+\end{equation}
+
+where both $i$ and $j$ take on the values $1$ and $2$.</p>
+</div>
+<div id="Ch10-S1-p4" class="para">
+<p class="p">When the terms of the Hamiltonian $H_{ij}$ do not depend on $t$, the two
+states of definite energy (the stationary states), which we call
+\begin{equation*}
+\ket{\psi_{\slI}}=\ket{\slI}e^{-(i/\hbar)E_{\slI}t}\quad
+\text{and}\quad
+\ket{\psi_{\slII}}=\ket{\slII}e^{-(i/\hbar)E_{\slII}t},
+\end{equation*}
+
+have the energies
+\begin{equation}
+\label{Eq:III:10:3}
+\begin{aligned}
+E_{\slI}&=\!\frac{H_{11}\!+H_{22}}{2}\!+\!
+\sqrt{\biggl(\!\frac{H_{11}\!-H_{22}}{2}\!\biggr)^2\!\!\!+
+H_{12}H_{21}},\\[1.5ex]
+E_{\slII}&=\!\frac{H_{11}\!+H_{22}}{2}\!-\!
+\sqrt{\biggl(\!\frac{H_{11}\!-H_{22}}{2}\!\biggr)^2\!\!\!+
+H_{12}H_{21}}.
+\end{aligned}
+\end{equation}
+
+The two $C$’s for each of these states have the same time
+dependence. The state vectors $\ket{\slI}$ and $\ket{\slII}$ which go
+with the stationary states are related to our original base states
+$\ket{\slOne}$ and $\ket{\slTwo}$ by
+\begin{equation}
+\label{Eq:III:10:4}
+\begin{aligned}
+\ket{\slI}&=\ket{\slOne}a_1+\ket{\slTwo}a_2,\\[1ex]
+\ket{\slII}&=\ket{\slOne}a_1'+\ket{\slTwo}a_2'.
+\end{aligned}
+\end{equation}
+
+The $a$’s are complex constants, which satisfy
+\begin{gather}
+\abs{a_1}^2+\abs{a_2}^2=1,\notag\\[2ex]
+\label{Eq:III:10:5}
+\frac{a_1}{a_2}=
+\frac{H_{12}}{E_{\slI}-H_{11}},\\[2ex]
+\abs{a_1'}^2+\abs{a_2'}^2=1,\notag\\[2ex]
+\label{Eq:III:10:6}
+\frac{a_1'}{a_2'}=
+\frac{H_{12}}{E_{\slII}-H_{11}}.
+\end{gather}
+
+If $H_{11}$ and $H_{22}$ are equal—say both are equal
+to $E_0$—and $H_{12}=H_{21}=-A$, then $E_{\slI}=E_0+A$,
+$E_{\slII}=E_0-A$, and the states $\ket{\slI}$ and $\ket{\slII}$ are
+particularly simple:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:10:7}
+\ket{\slI}=\frac{1}{\sqrt{2}}\,\biggl[
+\ket{\slOne}-\ket{\slTwo}\biggr],\quad
+\ket{\slII}=\frac{1}{\sqrt{2}}\,\biggl[
+\ket{\slOne}+\ket{\slTwo}\biggr].
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+\ket{\slI}=\frac{1}{\sqrt{2}}\,\biggl[
+\ket{\slOne}-\ket{\slTwo}\biggr],\\[1.5ex]
+\ket{\slII}=\frac{1}{\sqrt{2}}\,\biggl[
+\ket{\slOne}+\ket{\slTwo}\biggr].
+\end{aligned}
+\label{Eq:III:10:7}
+\end{equation}
+</span>
+</p>
+</div>
+<div id="Ch10-S1-p5" class="para">
+<p class="p">Now we will use these results to discuss a number of interesting
+examples taken from the fields of chemistry and physics. The first
+example is the hydrogen molecular ion. A positively ionized hydrogen
+molecule consists of two protons with one electron worming its way
+around them. If the two protons are very far apart, what states would
+we expect for this system? The answer is pretty clear: The electron
+will stay close to one proton and form a hydrogen atom in its lowest
+state, and the other proton will remain alone as a positive ion. So,
+if the two protons are far apart, we can visualize one physical state
+in which the electron is “attached” to one of the protons. There is,
+clearly, another state symmetric to that one in which the electron is
+near the other proton, and the first proton is the one that is an
+ion. We will take these two as our base states, and we’ll call them
+$\ket{\slOne}$ and $\ket{\slTwo}$. They are sketched in
+Fig. <a href="#Ch10-F1">10–1</a>. Of course, there are really many states of an
+electron near a proton, because the combination can exist as any one of
+the excited states of the hydrogen atom. We are not interested in that
+variety of states now; we will consider only the situation in which the
+hydrogen atom is in the lowest state—its ground state—and we will,
+for the moment, disregard spin of the electron. We can just suppose that
+for all our states the electron has its spin “up” along the
+$z$-axis.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a></p>
+</div>
+<div id="Ch10-F1" class="figure">
+<img src="img/FLP_III/f10-01/f10-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–1.</span>A set of base states for two protons and an electron.
+</div>
+</div>
+<div id="Ch10-S1-p6" class="para">
+<p class="p">Now to remove an electron from a hydrogen atom requires
+$13.6$ electron volts of energy. So long as the two protons of the hydrogen
+molecular ion are far apart, it still requires about this much
+energy—which is for our present considerations a great deal of
+energy—to get the electron somewhere near the midpoint between the
+protons. So it is impossible, classically, for the electron to jump
+from one proton to the other. However, in quantum mechanics it is
+possible—though not very likely. There is some small amplitude for
+the electron to move from one proton to the other. As a first
+approximation, then, each of our base states $\ket{\slOne}$
+and $\ket{\slTwo}$ will have the energy $E_0$, which is just the energy
+of one hydrogen atom plus one proton. We can take that the Hamiltonian
+matrix elements $H_{11}$ and $H_{22}$ are both approximately
+equal to $E_0$. The other matrix elements $H_{12}$
+and $H_{21}$, which are the amplitudes for the electron to go back and
+forth, we will again write as $-A$.</p>
+</div>
+<div id="Ch10-S1-p7" class="para">
+<p class="p">You see that this is the same game we played in the last two
+chapters. If we disregard the fact that the electron can flip back and
+forth, we have two states of exactly the same energy. This energy
+will, however, be split into two energy levels by the possibility of
+the electron going back and forth—the greater the probability of the
+transition, the greater the split. So the two energy levels of the
+system are $E_0+A$ and $E_0-A$; and the states which have these
+definite energies are given by Eqs. (<a href="#mjx-eqn-EqIII107">10.7</a>).</p>
+</div>
+<div id="Ch10-S1-p8" class="para">
+<p class="p">From our solution we see that if a proton and a hydrogen atom are put
+anywhere near together, the electron will not stay on one of the
+protons but will flip back and forth between the two protons. If it
+starts on one of the protons, it will oscillate back and forth between
+the states $\ket{\slOne}$ and $\ket{\slTwo}$—giving a time-varying
+solution. In order to have the lowest energy solution (which does not
+vary with time), it is necessary to start the system with equal
+amplitudes for the electron to be around each proton. Remember, there
+are not two electrons—we are not saying that there is an electron
+around each proton. There is only <em class="emph">one</em> electron, and <em class="emph">it</em>
+has the same amplitude—$1/\sqrt{2}$ in magnitude—to be in either
+position.</p>
+</div>
+<div id="Ch10-S1-p9" class="para">
+<p class="p">Now the amplitude $A$ for an electron which is near one proton to get to
+the other one depends on the separation between the protons. The closer
+the protons are together, the larger the amplitude. You remember that we
+talked in Chapter <a href="III_07.html">7</a> about the amplitude for an electron
+to “penetrate a barrier,” which it could not do classically. We have
+the same situation here. The amplitude for an electron to get across
+decreases roughly exponentially with the distance—for large distances.
+Since the transition probability, and therefore $A$, gets larger when
+the protons are closer together, the separation of the energy levels
+will also get larger. If the system is in the state $\ket{\slI}$, the
+energy $E_0+A$ increases with decreasing distance, so these quantum
+mechanical effects make a <em class="emph">repulsive</em> force tending to keep the
+protons apart. On the other hand, if the system is in the
+state $\ket{\slII}$, the total energy <em class="emph">decreases</em> if the protons
+are brought closer together; there is an <em class="emph">attractive</em> force pulling
+the protons together. The variation of the two energies with the
+distance between the two protons should be roughly as shown in
+Fig. <a href="#Ch10-F2">10–2</a>. We have, then, a quantum-mechanical explanation
+of the binding force that holds the $\text{H}_2^+$ ion together.</p>
+</div>
+<div id="Ch10-F2" class="figure">
+<img src="img/FLP_III/f10-02/f10-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–2.</span>The energies of the two stationary states of the $\text{H}_2^+$ ion as
+a function of the distance between the two protons.
+</div>
+</div>
+<div id="Ch10-S1-p10" class="para">
+<p class="p">We have, however, forgotten one thing. In addition to the force we have
+just described, there is also an electrostatic repulsive force between
+the two protons. When the two protons are far apart—as in
+Fig. <a href="#Ch10-F1">10–1</a>—the “bare” proton sees only a neutral atom,
+so there is a negligible electrostatic force. At very close distances,
+however, the “bare” proton begins to get “inside” the electron
+distribution—that is, it is closer to the proton on the average than
+to the electron. So there begins to be some extra electrostatic energy
+which is, of course, positive. This energy—which also varies with the
+separation—should be included in $E_0$. So for $E_0$ we should take
+something like the broken-line curve in Fig. <a href="#Ch10-F2">10–2</a> which
+rises rapidly for distances less than the radius of a hydrogen atom. We
+should add and subtract the flip-flop energy $A$ from this $E_0$. When
+we do that, the energies $E_{\slI}$ and $E_{\slII}$ will vary with the
+interproton distance $D$ as shown in Fig. <a href="#Ch10-F3">10–3</a>. [In this
+figure, we have plotted the results of a more detailed calculation. The
+interproton distance is given in units of $1$ Å ($10^{-8}$ cm), and
+the excess energy over a proton plus a hydrogen atom is given in units
+of the binding energy of the hydrogen atom—the so-called “Rydberg”
+energy, $13.6$ eV.]
+We see that the state $\ket{\slII}$ has a minimum-energy point. This
+will be the equilibrium configuration—the lowest energy
+condition—for the $\text{H}_2^+$ ion. The energy at this point is lower than
+the energy of a separated proton and hydrogen ion, so the system is
+bound. A single electron acts to hold the two protons together. A
+chemist would call it a “one-electron bond.”
+</p>
+</div>
+<div id="Ch10-F3" class="figure">
+<img src="img/FLP_III/f10-03/f10-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–3.</span>The energy levels of the $\text{H}_2^+$ ion as a function of the interproton
+distance $D$. ($E_H=13.6$ eV.)
+</div>
+</div>
+<div id="Ch10-S1-p11" class="para">
+<p class="p">This kind of chemical binding is also often called “quantum mechanical
+resonance” (by analogy with the two coupled pendulums we have
+described before). But that really sounds more mysterious than it is,
+it’s only a “resonance” if you start out by making a poor choice for
+your base states—as we did also! If you picked the
+state $\ket{\slII}$, you would have the lowest energy state—that’s all.</p>
+</div>
+<div id="Ch10-S1-p12" class="para">
+<p class="p">We can see in another way why such a state should have a lower energy
+than a proton and a hydrogen atom. Let’s think about an electron near
+two protons with some fixed, but not too large, separation. You
+remember that with a single proton the electron is “spread out”
+because of the uncertainty principle. It seeks a balance between
+having a low Coulomb <em class="emph">potential</em> energy and not getting confined
+into too small a space, which would make a high <em class="emph">kinetic</em> energy
+(because of the uncertainty relation $\Delta p\,\Delta
+x\approx\hbar$). Now if there are two protons, there is more space
+where the electron can have a low potential energy. It can spread
+out—lowering its kinetic energy—without increasing its potential
+energy. The net result is a lower energy than a proton and a hydrogen
+atom. Then why does the other state $\ket{\slI}$ have a higher energy?
+Notice that this state is the <em class="emph">difference</em> of the states
+$\ket{\slOne}$ and $\ket{\slTwo}$. Because of the symmetry of
+$\ket{\slOne}$ and $\ket{\slTwo}$, the difference must have zero
+amplitude to find the electron half-way between the two protons. This
+means that the electron is somewhat more confined, which leads to a
+larger energy.</p>
+</div>
+<div id="Ch10-S1-p13" class="para">
+<p class="p">We should say that our approximate treatment of the $\text{H}_2^+$ ion as a
+two-state system breaks down pretty badly once the protons get as
+close together as they are at the minimum in the curve of
+Fig. <a href="#Ch10-F3">10–3</a>, and so, will not give a good value for the
+actual binding energy. For small separations, the energies of the two
+“states” we imagined in Fig. <a href="#Ch10-F1">10–1</a> are not really equal
+to $E_0$; a more refined quantum mechanical treatment is needed.</p>
+</div>
+<div id="Ch10-S1-p14" class="para">
+<p class="p">Suppose we ask now what would happen if instead of two protons, we had
+two different objects—as, for example, one proton and one lithium
+positive ion (both particles still with a single positive charge). In
+such a case, the two terms $H_{11}$ and $H_{22}$ of the Hamiltonian
+would no longer be equal; they would, in fact, be quite different. If it
+should happen that the difference $(H_{11}-H_{22})$ is, in absolute
+value, much greater than $A=-H_{12}$, the attractive force gets very
+weak, as we can see in the following way.</p>
+</div>
+<div id="Ch10-S1-p15" class="para">
+<p class="p">If we put $H_{12}H_{21}=A^2$ into Eqs. (<a href="#mjx-eqn-EqIII103">10.3</a>) we get
+\begin{equation*}
+E=\frac{H_{11}+H_{22}}{2}\pm
+\frac{H_{11}-H_{22}}{2}
+\sqrt{1+\frac{4A^2}{(H_{11}-H_{22})^2}}.
+\end{equation*}
+
+When $H_{11}-H_{22}$ is much greater than $A^2$, the square root is
+very nearly equal to
+\begin{equation*}
+1+\frac{2A^2}{(H_{11}-H_{22})^2}.
+\end{equation*}
+
+The two energies are then\begin{equation}
+\label{Eq:III:10:8}
+\begin{aligned}
+E_{\slI}&=H_{11}+
+\frac{A^2}{(H_{11}-H_{22})},\\[1ex]
+E_{\slII}&=H_{22}-
+\frac{A^2}{(H_{11}-H_{22})}.
+\end{aligned}
+\end{equation}
+
+They are now very nearly just the energies $H_{11}$ and $H_{22}$
+of the isolated atoms, pushed apart only slightly by the flip-flop
+amplitude $A$.
+</p>
+</div>
+<div id="Ch10-S1-p16" class="para">
+<p class="p">The energy difference $E_{\slI}-E_{\slII}$ is
+\begin{equation*}
+(H_{11}-H_{22})+\frac{2A^2}{H_{11}-H_{22}}.
+\end{equation*}
+
+The <em class="emph">additional</em> separation from the flip-flop of the electron is
+no longer equal to $2A$; it is smaller by the
+factor $A/(H_{11}-H_{22})$, which we are now taking to be much less than
+one. Also, the dependence of $E_{\slI}-E_{\slII}$ on the separation of
+the two nuclei is much smaller than for the $\text{H}_2^+$ ion—it is also
+reduced by the factor $A/(H_{11}-H_{22})$. We can now see why the
+binding of unsymmetric diatomic molecules is generally very weak.</p>
+</div>
+<div id="Ch10-S1-p17" class="para">
+<p class="p">In our theory of the $\text{H}_2^+$ ion we have discovered an explanation for
+the mechanism by which an electron shared by two protons provides, in
+effect, an attractive force between the two protons which can be
+present even when the protons are at large distances. The attractive
+force comes from the reduced energy of the system due to the
+possibility of the electron jumping from one proton to the other. In
+such a jump the system changes from the configuration (hydrogen atom,
+proton) to the configuration (proton, hydrogen atom), or switches
+back. We can write the process symbolically as
+\begin{equation*}
+(H,p)\rightleftharpoons (p,H).
+\end{equation*}
+
+The energy shift due to this process is proportional to the
+amplitude $A$ that an electron whose energy is $-W_H$ (its binding
+energy in the hydrogen atom) can get from one proton to the other.</p>
+</div>
+<div id="Ch10-S1-p18" class="para">
+<p class="p">For large distances $R$ between the two protons, the electrostatic
+potential energy of the electron is nearly zero over most of the space
+it must go when it makes its jump. In this space, then, the electron
+moves nearly like a free particle in empty space—but with a
+<em class="emph">negative</em> energy! We have seen in Chapter <a href="III_03.html">3</a>
+[Eq. (<a href="III_03.html#mjx-eqn-EqIII37">3.7</a>)] that the amplitude for a particle of
+definite energy to get from one place to another a distance $r$ away
+is proportional to
+\begin{equation*}
+\frac{e^{(i/\hbar)pr}}{r},
+\end{equation*}
+
+where $p$ is the momentum corresponding to the definite energy. In the
+present case (using the nonrelativistic formula), $p$ is given by
+\begin{equation}
+\label{Eq:III:10:9}
+\frac{p^2}{2m}=-W_H.
+\end{equation}
+
+This means that $p$ is an imaginary number,
+\begin{equation*}
+p=i\sqrt{2mW_H}
+\end{equation*}
+
+(the other sign for the radical gives nonsense here).</p>
+</div>
+<div id="Ch10-S1-p19" class="para">
+<p class="p">We should expect, then, that the amplitude $A$ for the $\text{H}_2^+$ ion
+will vary as
+\begin{equation}
+\label{Eq:III:10:10}
+A\propto\frac{e^{-(\sqrt{2mW_H}/\hbar)R}}{R}
+\end{equation}
+
+for large separations $R$ between the two protons. The energy shift
+due to the electron binding is proportional to $A$, so there is a
+force pulling the two protons together which is proportional—for
+large $R$—to the derivative of (<a href="#mjx-eqn-EqIII1010">10.10</a>) with respect
+to $R$.</p>
+</div>
+<div id="Ch10-S1-p20" class="para">
+<p class="p">Finally, to be complete, we should remark that in the two-proton,
+one-electron system there is still one other effect which gives a
+dependence of the energy on $R$.  We have neglected it until now because
+it is usually rather unimportant—the exception is just for those very
+large distances where the energy of the exchange term $A$ has decreased
+exponentially to very small values. The new effect we are thinking of is
+the electrostatic attraction of the proton for the hydrogen atom, which
+comes about in the same way any charged object attracts a neutral
+object.  The bare proton makes an electric field $\Efield$ (varying
+as $1/R^2$) at the neutral hydrogen atom. The atom becomes polarized,
+taking on an induced dipole moment $\mu$ proportional to $\Efield$. The
+energy of the dipole is $\mu\Efield$, which is proportional
+to $\Efield^2$—or to $1/R^4$. So there is a term in the energy of the
+system which decreases with the fourth power of the distance. (It is a
+correction to $E_0$.) This energy falls off with distance more slowly
+than the shift $A$ given by (<a href="#mjx-eqn-EqIII1010">10.10</a>); at some large
+separation $R$ it becomes the only remaining important term giving a
+variation of energy with $R$—and, therefore, the only remaining force.
+Note that the electrostatic term has the same sign for both of the base
+states (the force is attractive, so the energy is negative) and so also
+for the two stationary states, whereas the electron exchange term $A$
+gives opposite signs for the two stationary states.</p>
+</div>
+</div>
+<div id="Ch10-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">10–2</span>Nuclear forces</h3>
+<div id="Ch10-S2-p1" class="para">
+<p class="p">We have seen that the system of a hydrogen atom and a proton has an
+energy of interaction due to the exchange of the single electron which
+varies at large separations $R$ as
+\begin{equation}
+\label{Eq:III:10:11}
+\frac{e^{-\alpha R}}{R},
+\end{equation}
+
+with $\alpha=\sqrt{2mW_H}/\hbar$. (One usually says that there is an
+exchange of a “virtual” electron when—as here—the electron has
+to jump across a space where it would have a negative energy. More
+specifically, a “virtual exchange” means that the phenomenon
+involves a quantum mechanical interference between an exchanged state
+and a nonexchanged state.)</p>
+</div>
+<div id="Ch10-S2-p2" class="para">
+<p class="p">Now we might ask the following question: Could it be that forces
+between other kinds of particles have an analogous origin? What about,
+for example, the nuclear force between a neutron and a proton, or
+between two protons? In an attempt to explain the nature of nuclear
+forces, Yukawa
+proposed that the force between two nucleons is due to
+a similar exchange effect—only, in this case, due to the virtual
+exchange, not of an electron, but of a new particle, which he called a
+“meson.” Today, we would identify Yukawa’s meson with the
+$\pi$-meson (or “pion”) produced in high-energy collisions of
+protons or other particles.</p>
+</div>
+<div id="Ch10-S2-p3" class="para">
+<p class="p">Let’s see, as an example, what kind of a force we would expect from
+the exchange of a positive pion ($\pi^+$) of mass $m_\pi$ between a
+proton and a neutron. Just as a hydrogen atom H$^0$ can go into a
+proton p$^+$ by giving up an electron e$^-$,
+\begin{equation}
+\label{Eq:III:10:12}
+\text{H}^0\to\text{p}^++\text{e}^-,
+\end{equation}
+
+a proton p$^+$ can go into a neutron n$^0$ by giving up a
+$\pi^+$ meson:
+\begin{equation}
+\label{Eq:III:10:13}
+\text{p}^+\to\text{n}^0+\pi^+.
+\end{equation}
+
+So if we have a proton at $a$ and a neutron at $b$ separated by the
+distance $R$, the proton can become a neutron by emitting a $\pi^+$,
+which is then absorbed by the neutron at $b$, turning it into a
+proton. There is an energy of interaction of the two-nucleon (plus
+pion) system which depends on the amplitude $A$ for the pion
+exchange—just as we found for the electron exchange in the
+$\text{H}_2^+$ ion.</p>
+</div>
+<div id="Ch10-S2-p4" class="para">
+<p class="p">In the process (<a href="#mjx-eqn-EqIII1012">10.12</a>), the energy of the H$^0$ atom is
+less than that of the proton by $W_H$ (calculating
+nonrelativistically, and omitting the rest energy $mc^2$ of the
+electron), so the electron has a negative <em class="emph">kinetic</em> energy—or
+imaginary momentum—as in Eq. (<a href="#mjx-eqn-EqIII109">10.9</a>). In the nuclear
+process (<a href="#mjx-eqn-EqIII1013">10.13</a>), the proton and neutron have almost equal
+masses, so the $\pi^+$ will have zero <em class="emph">total</em> energy. The
+relation between the total energy $E$ and the momentum $p$ for a pion
+of mass $m_\pi$ is
+\begin{equation*}
+E^2=p^2c^2+m_\pi^2c^4.
+\end{equation*}
+
+Since $E$ is zero (or at least negligible in comparison with $m_\pi$),
+the momentum is again imaginary:
+\begin{equation*}
+p=im_\pi c.
+\end{equation*}
+</p>
+</div>
+<div id="Ch10-S2-p5" class="para">
+<p class="p">Using the same arguments we gave for the amplitude that a bound
+electron would penetrate the barrier in the space between two protons,
+we get for the nuclear case an exchange amplitude $A$ which
+should—for large $R$—go as
+\begin{equation}
+\label{Eq:III:10:14}
+\frac{e^{-(m_\pi c/\hbar)R}}{R}.
+\end{equation}
+
+The interaction energy is proportional to $A$, and so varies in the same
+way. We get an energy variation in the form of the so-called
+<em class="emph">Yukawa potential</em> between two nucleons. Incidentally, we
+obtained this same formula earlier directly from the differential
+equation for the motion of a pion in free space [see
+Chapter <a href="II_28.html">28</a>, Vol. II, Eq. (<a href="II_28.html#mjx-eqn-EqII2818">28.18</a>)].</p>
+</div>
+<div id="Ch10-S2-p6" class="para">
+<p class="p">We can, following the same line of argument, discuss the interaction
+between two protons (or between two neutrons) which results from the
+exchange of a <em class="emph">neutral</em> pion ($\pi^0$). The
+basic process is now
+\begin{equation}
+\label{Eq:III:10:15}
+\text{p}^+\to\text{p}^++\pi^0.
+\end{equation}
+
+A proton can emit a virtual $\pi^0$, but then it remains still a
+proton. If we have two protons, proton No. $1$ can emit a virtual
+$\pi^0$ which is absorbed by proton No. $2$. At the end, we still
+have two protons. This is somewhat different from the $\text{H}_2^+$
+ion. There the H$^0$ went into a different condition—the
+proton—after emitting the electron. Now we are assuming that a
+proton can emit a $\pi^0$ without changing its character. Such
+processes are, in fact, observed in high-energy collisions. The
+process is analogous to the way that an electron emits a photon and
+ends up still an electron:
+\begin{equation}
+\label{Eq:III:10:16}
+\text{e}\to\text{e}+\text{photon}.
+\end{equation}
+
+We do not “see” the photons inside the electrons before they are
+emitted or after they are absorbed, and their emission does not change
+the “nature” of the electron.</p>
+</div>
+<div id="Ch10-S2-p7" class="para">
+<p class="p">Going back to the two protons, there is an interaction energy which
+arises from the amplitude $A$ that one proton emits a neutral pion
+which travels across (with imaginary momentum) to the other proton and
+is absorbed there. This amplitude is again proportional
+to (<a href="#mjx-eqn-EqIII1014">10.14</a>), with $m_\pi$ the mass of the neutral pion. All
+the same arguments give an equal interaction energy for two neutrons.
+Since the nuclear forces (disregarding electrical effects) between
+neutron and proton, between proton and proton, between neutron and
+neutron are the same, we conclude that the masses of the charged and
+neutral pions should be the same. Experimentally, the masses are indeed
+very nearly equal, and the small difference is about what one would
+expect from electric self-energy corrections (see
+Chapter <a href="II_28.html">28</a>, Vol. II).</p>
+</div>
+<div id="Ch10-S2-p8" class="para">
+<p class="p">There are other kinds of particles—like K-mesons—which can be
+exchanged between two nucleons. It is also possible for two pions to
+be exchanged at the same time. But all of these other exchanged
+“objects” have a rest mass $m_x$ higher than the pion mass $m_\pi$,
+and lead to terms in the exchange amplitude which vary as
+\begin{equation*}
+\frac{e^{-(m_xc/\hbar)R}}{R}.
+\end{equation*}
+
+These terms die out faster with increasing $R$ than the one-meson
+term. No one knows, today, how to calculate these higher-mass terms,
+but for large enough values of $R$ only the one-pion term
+survives. And, indeed, those experiments which involve nuclear
+interactions only at large distances do show that the interaction
+energy is as predicted from the one-pion exchange theory.</p>
+</div>
+<div id="Ch10-S2-p9" class="para">
+<p class="p">In the classical theory of electricity and magnetism, the Coulomb
+electrostatic interaction and the radiation of light by an
+accelerating charge are closely related—both come out of the Maxwell
+equations. We have seen in the quantum theory that light can be
+represented as the quantum excitations of the harmonic oscillations of
+the classical electromagnetic fields in a box. Alternatively, the
+quantum theory can be set up by describing light in terms of
+particles—photons—which obey Bose statistics. We emphasized in
+Section <a href="III_04.html#Ch4-S5">4–5</a> that the two alternative points of view
+always give identical predictions. Can the second point of view be
+carried through completely to include <em class="emph">all</em> electromagnetic
+effects? In particular, if we want to describe the electromagnetic
+field purely in terms of Bose particles—that is, in terms of
+photons—what is the Coulomb force due to?</p>
+</div>
+<div id="Ch10-S2-p10" class="para">
+<p class="p">From the “particle” point of view the Coulomb interaction between
+two electrons <em class="emph">comes from the exchange of a virtual photon</em>. One
+electron emits a photon—as in reaction (<a href="#mjx-eqn-EqIII1016">10.16</a>)—which
+goes over to the second electron, where it is absorbed in the reverse
+of the same reaction. The interaction energy is again given by a
+formula like (<a href="#mjx-eqn-EqIII1014">10.14</a>), but now with $m_\pi$ replaced by
+the rest mass of the photon—which is zero. So the virtual exchange
+of a photon between two electrons gives an interaction energy that
+varies simply inversely as $R$, the distance between the two
+electrons—just the normal Coulomb potential energy! In the
+“particle” theory of electromagnetism, the process of a virtual
+photon exchange gives rise to all the phenomena of electrostatics.</p>
+</div>
+</div>
+<div id="Ch10-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">10–3</span>The hydrogen molecule</h3>
+<div id="Ch10-S3-p1" class="para">
+<p class="p">As our next two-state system we will look at the neutral hydrogen
+molecule H$_2$. It is, naturally, more complicated to understand because
+it has two electrons. Again, we start by thinking of what happens when
+the two protons are well separated. Only now we have two electrons to
+add. To keep track of them, we’ll call one of them “electron $a$” and
+the other “electron $b$.” We can again imagine two possible states.
+One possibility is that “electron $a$” is around the first proton and
+“electron $b$” is around the second, as shown in the top half of
+Fig. <a href="#Ch10-F4">10–4</a>. We have simply two hydrogen atoms. We will call
+this state $\ket{\slOne}$. There is also another possibility: that
+“electron $b$” is around the first proton and that “electron $a$” is
+around the second. We call this state $\ket{\slTwo}$. From the symmetry
+of the situation, those two possibilities should be energetically
+equivalent, but, as we will see, the energy of the system is <em class="emph">not</em>
+just the energy of two hydrogen atoms. We should mention that there are
+many other possibilities. For instance, “electron $a$” might be near
+the first proton and “electron $b$” might be in another state around
+the <em class="emph">same</em> proton. We’ll disregard such a case, since it will
+certainly have higher energy (because of the large Coulomb repulsion
+between the two electrons). For greater accuracy, we would have to
+include such states, but we can get the essentials of the molecular
+binding by considering just the two states of Fig. <a href="#Ch10-F4">10–4</a>.
+To this approximation we can describe any state by giving the
+amplitude $\braket{\slOne}{\phi}$ to be in the state $\ket{\slOne}$ and
+an amplitude $\braket{\slTwo}{\phi}$ to be in state $\ket{\slTwo}$. In
+other words, the state vector $\ket{\phi}$ can be written as the linear
+combination
+\begin{equation*}
+\ket{\phi}=\sum_i\ket{i}\braket{i}{\phi}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch10-F4" class="figure">
+<img src="img/FLP_III/f10-04/f10-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–4.</span>A set of base states for the H$_2$ molecule.
+</div>
+</div>
+<div id="Ch10-S3-p2" class="para">
+<p class="p">To proceed, we assume—as usual—that there is some amplitude $A$
+that the electrons can move through the intervening space and exchange
+places. This possibility of exchange means that the energy of the
+system is split, as we have seen for other two-state systems. As for
+the hydrogen molecular ion, the splitting is very small when the
+distance between the protons is large. As the protons approach each
+other, the amplitude for the electrons to go back and forth increases,
+so the splitting increases. The decrease of the lower energy state
+means that there is an attractive force which pulls the atoms
+together. Again the energy levels rise when the protons get very close
+together because of the Coulomb repulsion. The net final result is
+that the two stationary states have energies which vary with the
+separation as shown in Fig. <a href="#Ch10-F5">10–5</a>. At a separation of
+about $0.74$ Å, the lower energy level reaches a minimum; this is the
+proton-proton distance of the true hydrogen molecule.</p>
+</div>
+<div id="Ch10-F5" class="figure">
+<img src="img/FLP_III/f10-05/f10-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–5.</span>The energy levels of the H$_2$ molecule for different
+interproton distances $D$. ($E_H=13.6$ eV.)
+</div>
+</div>
+<div id="Ch10-S3-p3" class="para">
+<p class="p">Now you have probably been thinking of an objection. What about the
+fact that the two electrons are identical particles? We have been
+calling them “electron $a$” and “electron $b$,” but there really
+is no way to tell which is which. And we have said in
+Chapter <a href="III_04.html">4</a> that for electrons—which are Fermi
+particles—if there are two ways something can happen by exchanging the
+electrons, the two amplitudes will interfere with a <em class="emph">negative</em>
+sign. This means that if we switch which electron is which, the sign of
+the amplitude must reverse. We have just concluded, however, that the
+bound state of the hydrogen molecule would be (at $t=0$)
+\begin{equation*}
+\ket{\slII}=\frac{1}{\sqrt{2}}\,(\ket{\slOne}+\ket{\slTwo}).
+\end{equation*}
+
+However, according to our rules of Chapter <a href="III_04.html">4</a>, this
+state is not allowed. If we reverse which electron is which, we get
+the state
+\begin{equation*}
+\frac{1}{\sqrt{2}}\,(\ket{\slTwo}+\ket{\slOne}).
+\end{equation*}
+
+and we get the same sign instead of the opposite one.</p>
+</div>
+<div id="Ch10-S3-p4" class="para">
+<p class="p">These arguments are correct <em class="emph">if both electrons have the same
+spin</em>. It is true that if both electrons have spin up (or both have
+spin down), the only state that is permitted is
+\begin{equation*}
+\ket{\slI}=\frac{1}{\sqrt{2}}\,(\ket{\slOne}-\ket{\slTwo}).
+\end{equation*}
+
+For this state, an interchange of the two electrons gives
+\begin{equation*}
+\frac{1}{\sqrt{2}}\,(\ket{\slTwo}-\ket{\slOne}).
+\end{equation*}
+
+which is $-\ket{\slI}$, as required. So if we bring two hydrogen atoms
+near to each other with their electrons spinning in the same direction,
+they can go into the state $\ket{\slI}$ and not state $\ket{\slII}$. But
+notice that state $\ket{\slI}$ is the <em class="emph">upper</em> energy state. Its
+curve of energy versus separation has no minimum. The two hydrogens will
+always repel and will not form a molecule. So we conclude that the
+hydrogen molecule cannot exist with parallel electron spins. And that is
+right.</p>
+</div>
+<div id="Ch10-S3-p5" class="para">
+<p class="p">On the other hand, our state $\ket{\slII}$ is perfectly symmetric for
+the two electrons. In fact, if we interchange which electron we call $a$
+and which we call $b$ we get back exactly the same state. We saw in
+Section <a href="III_04.html#Ch4-S7">4–7</a> that if two Fermi particles are in the same
+state, they <em class="emph">must</em> have opposite spins. So, the bound hydrogen
+molecule must have one electron with spin up and one with spin down.
+</p>
+</div>
+<div id="Ch10-S3-p6" class="para">
+<p class="p">The whole story of the hydrogen molecule is really somewhat more
+complicated if we want to include the proton spins. It is then no longer
+right to think of the molecule as a <em class="emph">two</em>-state system. It should
+really be looked at as an <em class="emph">eight</em>-state system—there are four
+possible spin arrangements for each of our states $\ket{\slOne}$
+and $\ket{\slTwo}$—so we were cutting things a little short by
+neglecting the spins. Our final conclusions are, however, correct.</p>
+</div>
+<div id="Ch10-S3-p7" class="para">
+<p class="p">We find that the lowest energy state—the only bound state—of the
+H$_2$ molecule has the two electrons with spins opposite. The total
+spin angular momentum of the electrons is zero. On the other hand, two
+nearby hydrogen atoms with spins parallel—and so with a total
+angular momentum $\hbar$—must be in a higher (unbound) energy state;
+the atoms repel each other. There is an interesting correlation
+between the spins and the energies. It gives another illustration of
+something we mentioned before, which is that there appears to be an
+“interaction” energy between two spins because the case of parallel
+spins has a higher energy than the opposite case. In a certain sense
+you could say that the spins try to reach an antiparallel condition
+and, in doing so, have the potential to liberate energy—not because
+there is a large magnetic force, but because of the exclusion
+principle.</p>
+</div>
+<div id="Ch10-S3-p8" class="para">
+<p class="p">We saw in Section <a href="#Ch10-S1">10–1</a> that the binding of two
+<em class="emph">different</em> ions by a <em class="emph">single</em> electron is likely to be
+quite weak. This is <em class="emph">not</em> true for binding by <em class="emph">two</em>
+electrons. Suppose the two protons in Fig. <a href="#Ch10-F4">10–4</a> were
+replaced by any two ions (with closed inner electron shells and a single
+ionic charge), and that the binding energies of an electron at the two
+ions are different. The energies of states $\ket{\slOne}$
+and $\ket{\slTwo}$ would still be equal because in each of these states we
+have one electron bound to each ion. Therefore, we always have the
+splitting proportional to $A$. Two-electron binding is ubiquitous—it
+is the most common valence bond. Chemical binding usually involves this
+flip-flop game played by two electrons. Although two atoms can be bound
+together by only one electron, it is relatively rare—because it
+requires just the right conditions.</p>
+</div>
+<div id="Ch10-S3-p9" class="para">
+<p class="p">Finally, we want to mention that if the energy of attraction for an
+electron to one nucleus is much greater than to the other, then what
+we have said earlier about ignoring other possible states is no longer
+right. Suppose nucleus $a$ (or it may be a positive ion) has a much
+stronger attraction for an electron than does nucleus $b$. It may then
+happen that the total energy is still fairly low even when both
+electrons are at nucleus $a$, and no electron is at nucleus $b$. The
+strong attraction may more than compensate for the mutual repulsion of
+the two electrons. If it does, the lowest energy state may have a
+large amplitude to find both electrons at $a$ (making a negative ion)
+and a small amplitude to find any electron at $b$. The state looks
+like a negative ion with a positive ion. This is, in fact, what
+happens in an “ionic” molecule like NaCl. You can see that all the
+gradations between covalent binding and ionic binding are possible.</p>
+</div>
+<div id="Ch10-S3-p10" class="para">
+<p class="p">You can now begin to see how it is that many of the facts of chemistry
+can be most clearly understood in terms of a quantum mechanical
+description.</p>
+</div>
+</div>
+<div id="Ch10-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">10–4</span>The benzene molecule</h3>
+<div id="Ch10-F6" class="figure">
+<img src="img/FLP_III/f10-06/f10-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–6.</span>The benzene molecule, C$_6$H$_6$.
+</div>
+</div>
+<div id="Ch10-S4-p1" class="para">
+<p class="p">Chemists have invented nice diagrams to represent complicated organic
+molecules. Now we are going to discuss one of the most interesting of
+them—the benzene molecule shown in Fig. <a href="#Ch10-F6">10–6</a>. It
+contains six carbon and six hydrogen atoms in a symmetrical array. Each
+bar of the diagram represents a <em class="emph">pair</em> of electrons, with spins
+opposite, doing the covalent bond dance. Each hydrogen atom contributes
+one electron and each carbon atom contributes four electrons to make up
+the total of $30$ electrons involved. (There are two more electrons
+close to the nucleus of the carbon which form the first, or K, shell.
+These are not shown since they are so tightly bound that they are not
+appreciably involved in the covalent binding.) So each bar in the figure
+represents a <em class="emph">bond</em>, or pair of electrons, and the double bonds
+mean that there are <em class="emph">two pairs</em> of electrons between alternate
+pairs of carbon atoms.</p>
+</div>
+<div id="Ch10-S4-p2" class="para">
+<p class="p">There is a mystery about this benzene molecule. We can calculate what
+energy should be required to form this chemical compound, because the
+chemists have measured the energies of various compounds which involve
+pieces of the ring—for instance, they know the energy of a double
+bond by studying ethylene, and so on. We can, therefore, calculate the
+total energy we should expect for the benzene molecule. The actual
+energy of the benzene ring, however, is much lower than we get by such
+a calculation; it is more tightly bound than we would expect from what
+is called an “unsaturated double bond system.” Usually a double bond
+system which is not in such a ring is easily attacked chemically
+because it has a relatively high energy—the double bonds can be
+easily broken by the addition of other hydrogens. But in benzene the
+ring is quite permanent and hard to break up.  In other words, benzene
+has a much lower energy than you would calculate from the bond
+picture.</p>
+</div>
+<div id="Ch10-S4-p3" class="para">
+<p class="p">Then there is another mystery. Suppose we replace two adjacent
+hydrogens by bromine atoms to make ortho-dibromobenzene. There are two
+ways to do this, as shown in Fig. <a href="#Ch10-F7">10–7</a>. The bromines
+could be on the opposite ends of a double bond as shown in part (a) of
+the figure, or could be on the opposite ends of a single bond as in (b).
+One would think that ortho-dibromobenzene should have two different
+forms, but it doesn’t. There is only one such chemical.<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a></p>
+</div>
+<div id="Ch10-F7" class="figure">
+<img class="first" src="img/FLP_III/f10-07/f10-07_tc_big_a.svgz"><img class="last" src="img/FLP_III/f10-07/f10-07_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 10–7.</span>Two possibilities of orthodibromobenzene. The two bromines
+could be separated by a single bond or by a double bond.
+</div>
+</div>
+<div id="Ch10-S4-p4" class="para">
+<p class="p">Now we want to resolve these mysteries—and perhaps you have already
+guessed how: by noticing, of course, that the “ground state” of the
+benzene ring is really a two-state system. We could imagine that the
+bonds in benzene could be in either of the two arrangements shown in
+Fig. <a href="#Ch10-F8">10–8</a>. You say, “But they are really the same; they
+should have the same energy.” Indeed, they should. And for that reason
+they must be analyzed as a two-state system. Each state represents a
+different configuration of the whole set of electrons, and there is some
+amplitude $A$ that the whole bunch can switch from one arrangement to
+the other—there is a chance that the electrons can flip from one dance
+to the other.</p>
+</div>
+<div id="Ch10-F8" class="figure">
+<img class="first" src="img/FLP_III/f10-08/f10-08_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_III/f10-08/f10-08_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 10–8.</span>A set of base states for the benzene molecule.
+</div>
+</div>
+<div id="Ch10-S4-p5" class="para">
+<p class="p">As we have seen, this chance of flipping makes a mixed state whose
+energy is lower than you would calculate by looking separately at either
+of the two pictures in Fig. <a href="#Ch10-F8">10–8</a>. Instead, there are two
+stationary states—one with an energy above and one with an energy
+below the expected value. So actually, the true normal state (lowest
+energy) of benzene is neither of the possibilities shown in
+Fig. <a href="#Ch10-F8">10–8</a>, but it has the amplitude $1/\sqrt{2}$ to be in
+each of the states shown. It is the only state that is involved in the
+chemistry of benzene at normal temperatures. Incidentally, the upper
+state also exists; we can tell it is there because benzene has a strong
+absorption for ultraviolet light at the
+frequency $\omega=(E_{\slI}-E_{\slII})/\hbar$. You will remember that in
+ammonia, where the object flipping back and forth was three protons, the
+energy separation was in the microwave region. In benzene, the objects
+are electrons, and because they are much lighter, they find it easier to
+flip back and forth, which makes the coefficient $A$ very much larger.
+The result is that the energy difference is much larger—about
+$3$ eV, which is the energy of an ultraviolet photon.<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a></p>
+</div>
+<div id="Ch10-S4-p6" class="para">
+<p class="p">What happens if we substitute bromine? Again the two “possibilities”
+(a) and (b) in Fig. <a href="#Ch10-F7">10–7</a> represent the two different
+electron configurations. The only difference is that the two base states
+we start with would have slightly different energies. The lowest energy
+stationary state will still involve a linear combination of the two
+states, but with unequal amplitudes. The amplitude for
+state $\ket{\slOne}$ might have a value something like $\sqrt{2/3}$,
+say, whereas state $\ket{\slTwo}$ would have the magnitude $\sqrt{1/3}$.
+We can’t say for sure without more information, but once the two
+energies $H_{11}$ and $H_{22}$ are no longer equal, then the amplitudes
+$C_1$ and $C_2$ no longer have equal magnitudes. This means, of course,
+that one of the two possibilities in the figure is more likely than the
+other, but the electrons are mobile enough so that there is some
+amplitude for both. The other state has different amplitudes (like
+$\sqrt{1/3}$ and $-\sqrt{2/3}$) but lies at a higher energy. There is
+only one lowest state, not two as the naive theory of fixed chemical
+bonds would suggest.</p>
+</div>
+</div>
+<div id="Ch10-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">10–5</span>Dyes</h3>
+<div id="Ch10-F9" class="figure">
+<img class="first" src="img/FLP_III/f10-09/f10-09_tc_big_a.svgz"><img class="last" src="img/FLP_III/f10-09/f10-09_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 10–9.</span>Two base states for the molecule of the dye magenta.
+</div>
+</div>
+<div id="Ch10-S5-p1" class="para">
+<p class="p">We will give you one more chemical example of the two-state
+phenomenon—this time on a larger molecular scale. It has to do with
+the theory of dyes. Many dyes—in fact, most artificial dyes—have an
+interesting characteristic; they have a kind of symmetry.
+Figure <a href="#Ch10-F9">10–9</a> shows an ion of a particular dye called
+magenta, which has a purplish red color. The molecule has
+three ring structures—two of which are benzene rings. The third is not
+exactly the same as a benzene ring because it has only two double bonds
+inside the ring. The figure shows two equally satisfactory pictures, and
+we would guess that they should have equal energies. But there is a
+certain amplitude that all the electrons can flip from one condition to
+the other, shifting the position of the “unfilled” position to the
+opposite end. With so many electrons involved, the flipping amplitude is
+somewhat lower than it is in the case of benzene, and the difference in
+energy between the two stationary states is smaller. There are,
+nevertheless, the usual two stationary states $\ket{\slI}$
+and $\ket{\slII}$ which are the sum and difference combinations of the two
+base states shown in the figure. The energy separation of $\ket{\slI}$
+and $\ket{\slII}$ comes out to be equal to the energy of a photon in the
+optical region. If one shines light on the molecule, there is a very
+strong absorption at one frequency, and it appears to be brightly
+colored. That’s why it’s a dye!</p>
+</div>
+<div id="Ch10-S5-p2" class="para">
+<p class="p">Another interesting feature of such a dye molecule is that in the two
+base states shown, the center of electric charge is located at different
+places. As a result, the molecule should be strongly affected by an
+external electric field. We had a similar effect in the ammonia
+molecule. Evidently we can analyze it by using exactly the same
+mathematics, provided we know the numbers $E_0$ and $A$. Generally,
+these are obtained by gathering experimental data. If one makes
+measurements with many dyes, it is often possible to guess what will
+happen with some related dye molecule. Because of the large shift in the
+position of the center of electric charge the value of $\mu$ in
+formula (<a href="III_09.html#mjx-eqn-EqIII955">9.55</a>) is large and the material has a high
+probability for absorbing light of the characteristic
+frequency $2A/\hbar$. Therefore, it is not only colored but very
+strongly so—a small amount of substance absorbs a lot of light.</p>
+</div>
+<div id="Ch10-S5-p3" class="para">
+<p class="p">The rate of flipping—and, therefore, $A$—is very sensitive to the
+complete structure of the molecule. By changing $A$, the energy
+splitting, and with it the color of the dye, can be changed. Also, the
+molecules do not have to be perfectly symmetrical. We have seen that
+the same basic phenomenon exists with slight modifications, even if
+there is some small asymmetry present. So, one can get some
+modification of the colors by introducing slight asymmetries in the
+molecules. For example, another important dye, malachite green, is
+very similar to magenta, but has two of the hydrogens replaced by
+CH$_3$. It’s a different color because the $A$ is shifted and the
+flip-flop rate is changed.</p>
+</div>
+</div>
+<div id="Ch10-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">10–6</span>The Hamiltonian of a spin one-half particle in a magnetic field</h3>
+<div id="Ch10-S6-p1" class="para">
+<p class="p">Now we would like to discuss a two-state system involving an object of
+spin one-half. Some of what we will say has been covered in earlier
+chapters, but doing it again may help to make some of the puzzling
+points a little clearer. We can think of an electron at rest as a
+two-state system. Although we will be talking in this section about “an
+electron,” what we find out will be true for <em class="emph">any</em> spin one-half
+particle. Suppose we choose for our base states $\ket{\slOne}$
+and $\ket{\slTwo}$ the states in which the $z$-component of the electron
+spin is $+\hbar/2$ and $-\hbar/2$.</p>
+</div>
+<div id="Ch10-S6-p2" class="para">
+<p class="p">These states are, of course, the same ones we have called $(+)$
+and $(-)$ in earlier chapters. To keep the notation of this chapter
+consistent, though, we call the “plus” spin state $\ket{\slOne}$ and
+the “minus” spin state $\ket{\slTwo}$—where “plus” and “minus”
+refer to the angular momentum in the $z$-direction.</p>
+</div>
+<div id="Ch10-S6-p3" class="para">
+<p class="p">Any possible state $\psi$ for the electron can be described as in
+Eq. (<a href="#mjx-eqn-EqIII101">10.1</a>) by giving the amplitude $C_1$ that the electron
+is in state $\ket{\slOne}$, and the amplitude $C_2$ that it is in
+state $\ket{\slTwo}$. To treat this problem, we will need to know the
+Hamiltonian for this two-state system—that is, for an electron in a
+magnetic field. We begin with the special case of a magnetic field in
+the $z$-direction.</p>
+</div>
+<div id="Ch10-S6-p4" class="para">
+<p class="p">Suppose that the vector $\FLPB$ has only a $z$-component $B_z$. From the
+definition of the two base states (that is, spins parallel and
+antiparallel to $\FLPB$) we know that they are already stationary states
+with a definite energy in the magnetic field. State $\ket{\slOne}$
+corresponds to an energy<a name="footnote_source_4" href="#footnote_4"><sup class="mark">4</sup></a> equal to $-\mu B_z$ and state $\ket{\slTwo}$ to $+\mu B_z$. The
+Hamiltonian must be very simple in this case since $C_1$, the amplitude
+to be in state $\ket{\slOne}$, is not affected by $C_2$, and vice versa:
+\begin{equation}
+\label{Eq:III:10:17}
+\begin{aligned}
+i\hbar\,\ddt{C_1}{t}&=E_1C_1=-\mu B_zC_1,\\[2ex]
+i\hbar\,\ddt{C_2}{t}&=E_2C_2=+\mu B_zC_2.
+\end{aligned}
+\end{equation}
+
+For this special case, the Hamiltonian is
+\begin{alignat}{2}
+H_{11}&=-\mu B_z,&\quad
+H_{12}&=0,\notag\\[2ex]
+\label{Eq:III:10:18}
+H_{21}&=0,&\quad
+H_{22}&=+\mu B_z.
+\end{alignat}
+
+So we know what the Hamiltonian is for the magnetic field in the
+$z$-direction, and we know the energies of the stationary states.</p>
+</div>
+<div id="Ch10-S6-p5" class="para">
+<p class="p">Now suppose the field is <em class="emph">not</em> in the $z$-direction. What is the
+Hamiltonian? How are the matrix elements changed if the field is not in
+the $z$-direction? We are going to make an assumption that there is a
+kind of superposition principle for the terms of the Hamiltonian. More
+specifically, we want to assume that if two magnetic fields are
+superposed, the terms in the Hamiltonian simply add—if we know
+the $H_{ij}$ for a pure $B_z$ and we know the $H_{ij}$ for a pure $B_x$,
+then the $H_{ij}$ for both $B_z$ and $B_x$ together is simply the sum.
+This is certainly true if we consider only fields in the
+$z$-direction—if we double $B_z$, then all the $H_{ij}$ are doubled.
+So let’s assume that $H$ is linear in the field $\FLPB$. That’s all we
+need to be able to find the $H_{ij}$ for any magnetic field.</p>
+</div>
+<div id="Ch10-S6-p6" class="para">
+<p class="p">Suppose we have a constant field $\FLPB$. We <em class="emph">could</em> have chosen
+our $z$-axis in its direction, and we <em class="emph">would</em> have found two
+stationary states with the energies $\mp\mu B$. Just choosing our axes
+in a different direction won’t change the <em class="emph">physics</em>. Our
+<em class="emph">description</em> of the stationary states will be different, but
+their energies <em class="emph">will still be</em> $\mp\mu B$—that is,
+\begin{equation}
+\begin{aligned}
+E_{\slI}&=-\mu\sqrt{B_x^2+B_y^2+B_z^2},\\[1ex]
+E_{\slII}&=+\mu\sqrt{B_x^2+B_y^2+B_z^2}.
+\end{aligned}
+\label{Eq:III:10:19}
+\end{equation}
+</p>
+</div>
+<div id="Ch10-S6-p7" class="para">
+<p class="p">The rest of the game is easy. We have here the formulas for the
+energies. We want a Hamiltonian which is linear in $B_x$, $B_y$,
+and $B_z$, and which will give these energies when used in our general
+formula of Eq. (<a href="#mjx-eqn-EqIII103">10.3</a>). The problem: find the Hamiltonian.
+First, notice that the energy splitting is symmetric, with an average
+value of zero. Looking at Eq. (<a href="#mjx-eqn-EqIII103">10.3</a>), we can see directly
+that that requires
+\begin{equation*}
+H_{22}=-H_{11}.
+\end{equation*}
+
+(Note that this checks with what we already know when $B_x$ and $B_y$
+are both zero; in that case $H_{11}=-\mu B_z$, and $H_{22}=\mu B_z$.)
+Now if we equate the energies of Eq. (<a href="#mjx-eqn-EqIII103">10.3</a>) with what
+we know from Eq. (<a href="#mjx-eqn-EqIII1019">10.19</a>), we have
+\begin{equation}
+\label{Eq:III:10:20}
+\biggl(\!\frac{H_{11}\!-H_{22}}{2}\!\biggr)^2\!\!\!+\abs{H_{12}}^2=
+\mu^2(B_x^2\!+\!B_y^2\!+\!B_z^2).
+\end{equation}
+
+(We have also made use of the fact that $H_{21}=H_{12}\cconj$, so that
+$H_{12}H_{21}$ can also be written as $\abs{H_{12}}^2$.) Again for the
+special case of a field in the $z$-direction, this gives
+\begin{equation*}
+\mu^2B_z^2+\abs{H_{12}}^2=\mu^2B_z^2.
+\end{equation*}
+
+Clearly, $\abs{H_{12}}$ must be zero in this special case, which means
+that $H_{12}$ cannot have any terms in $B_z$. (Remember, we have said
+that all terms must be linear in $B_x$, $B_y$, and $B_z$.)</p>
+</div>
+<div id="Ch10-S6-p8" class="para">
+<p class="p">So far, then, we have discovered that $H_{11}$ and $H_{22}$ have terms
+in $B_z$, while $H_{12}$ and $H_{21}$ do not. We can make a simple
+guess that will satisfy Eq. (<a href="#mjx-eqn-EqIII1020">10.20</a>) if we say that
+\begin{align*}
+H_{11} &=-\mu B_z,\notag\\[2ex]
+H_{22} &=\mu B_z,
+\end{align*}
+and
+\begin{equation}
+\label{Eq:III:10:21}
+\quad\quad\abs{H_{12}}^2 =\mu^2(B_x^2+B_y^2).
+\end{equation}
+
+And it turns out that that’s the <i>only</i> way it can be done!</p>
+</div>
+<div id="Ch10-S6-p9" class="para">
+<p class="p">“Wait”—you say—“$H_{12}$ is not linear in $B$;
+Eq. (<a href="#mjx-eqn-EqIII1021">10.21</a>) gives
+$H_{12}=$$\mu\sqrt{B_x^2+B_y^2}$.” Not necessarily. There is another possibility
+which <em class="emph">is</em> linear, namely,
+\begin{equation*}
+H_{12}=\mu(B_x+iB_y).
+\end{equation*}
+
+There are, in fact, several such possibilities—most generally, we
+could write
+\begin{equation*}
+H_{12}=\mu(B_x\pm iB_y)e^{i\delta},
+\end{equation*}
+
+where $\delta$ is some arbitrary phase. Which sign and phase should we
+use?  It turns out that you can choose either sign, and any phase you
+want, and the physical results will always be the same. So the choice
+is a matter of convention. People ahead of us have chosen to use the
+minus sign and to take $e^{i\delta}=-1$. We might as well follow suit
+and write
+\begin{equation*}
+H_{12}=-\mu(B_x-iB_y),\quad
+H_{21}=-\mu(B_x+iB_y).
+\end{equation*}
+
+(Incidentally, these conventions are related to, and consistent with,
+some of the arbitrary choices we made in Chapter <a href="III_06.html">6</a>.)</p>
+</div>
+<div id="Ch10-S6-p10" class="para">
+<p class="p">The complete Hamiltonian for an electron in an arbitrary magnetic
+field is, then
+\begin{equation}
+\label{Eq:III:10:22}
+\begin{alignedat}{2}
+H_{11}&=-\mu B_z,&\quad
+H_{12}&=-\mu(B_x-iB_y),\\[1ex]
+H_{21}&=-\mu(B_x+iB_y),&\quad
+H_{22}&=+\mu B_z.
+\end{alignedat}
+\end{equation}
+
+And the equations for the amplitudes $C_1$ and $C_2$ are
+\begin{equation}
+\label{Eq:III:10:23}
+\begin{aligned}
+i\hbar\,\ddt{C_1}{t}&=-\mu[B_zC_1+(B_x-iB_y)C_2],\\[1ex]
+i\hbar\,\ddt{C_2}{t}&=-\mu[(B_x+iB_y)C_1-B_zC_2].
+\end{aligned}
+\end{equation}
+</p>
+</div>
+<div id="Ch10-S6-p11" class="para">
+<p class="p">So we have discovered the “equations of motion for the spin states”
+of an electron in a magnetic field. We guessed at them by making some
+physical argument, but the real test of any Hamiltonian is that it
+should give predictions in agreement with experiment. According to any
+tests that have been made, these equations are right. In fact,
+although we made our arguments only for constant fields, the
+Hamiltonian we have written is also right for magnetic fields which
+vary with time. So we can now use Eq. (<a href="#mjx-eqn-EqIII1023">10.23</a>) to look
+at all kinds of interesting problems.</p>
+</div>
+</div>
+<div id="Ch10-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">10–7</span>The spinning electron in a magnetic field</h3>
+<div id="Ch10-S7-p1" class="para">
+<p class="p">Example number one: We start with a constant field in the $z$-direction.
+There are just the two stationary states with energies $\mp\mu B_z$.
+Suppose we add a small field in the $x$-direction. Then the equations
+look like our old two-state problem. We get the flip-flop business once
+more, and the energy levels are split a little farther apart. Now let’s
+let the $x$-component of the field vary with time—say, as $\cos\omega
+t$. The equations are then the same as we had when we put an oscillating
+electric field on the ammonia molecule in Chapter <a href="III_09.html">9</a>. You
+can work out the details in the same way. You will get the result that
+the oscillating field causes transitions from the $+z$-state to the
+$-z$-state—and vice versa—when the horizontal field oscillates near
+the resonant frequency $\omega_0=2\mu B_z/\hbar$. <em class="emph">This gives the
+quantum mechanical theory of the magnetic resonance phenomena we
+described in Chapter <a href="II_35.html">35</a> of Volume II</em>.</p>
+</div>
+<div id="Ch10-S7-p2" class="para">
+<p class="p">It is also possible to make a maser which uses a spin one-half
+system. A Stern-Gerlach apparatus is used to produce a beam of
+particles polarized in, say, the $+z$-direction, which are sent into a
+cavity in a constant magnetic field. The oscillating fields in the
+cavity can couple with the magnetic moment and induce transitions
+which give energy to the cavity.</p>
+</div>
+<div id="Ch10-F10" class="figure">
+<img src="img/FLP_III/f10-10/f10-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–10.</span>The direction of $\FigB$ is defined by the polar angle $\theta$
+and the azimuthal angle $\phi$.
+</div>
+</div>
+<div id="Ch10-S7-p3" class="para">
+<p class="p">Now let’s look at the following question. Suppose we have a magnetic
+field $\FLPB$ which points in the direction whose polar angle
+is $\theta$ and azimuthal angle is $\phi$, as in Fig. <a href="#Ch10-F10">10–10</a>.
+Suppose, additionally, that there is an electron which has been prepared
+with its spin pointing along this field. What are the amplitudes $C_1$
+and $C_2$ for such an electron? In other words, calling the state of the
+electron $\ket{\psi}$, we want to write
+\begin{equation*}
+\ket{\psi}=\ket{\slOne}C_1+\ket{\slTwo}C_2,
+\end{equation*}
+
+where $C_1$ and $C_2$ are
+\begin{equation*}
+C_1=\braket{\slOne}{\psi},\quad
+C_2=\braket{\slTwo}{\psi},
+\end{equation*}
+
+where by $\ket{\slOne}$ and $\ket{\slTwo}$ we mean the same thing we
+used to call $\ket{+}$ and $\ket{-}$ (referred to our chosen
+$z$-axis).</p>
+</div>
+<div id="Ch10-S7-p4" class="para">
+<p class="p">The answer to this question is also in our general equations for
+two-state systems. First, we know that since the electron’s spin is
+parallel to $\FLPB$ it is in a stationary state with
+energy $E_{\slI}=-\mu B$. Therefore, both $C_1$ and $C_2$ must vary
+as $e^{-iE_{\slI}t/\hbar}$, as in (<a href="III_09.html#mjx-eqn-EqIII918">9.18</a>); and their
+coefficients $a_1$ and $a_2$ are given by (<a href="#mjx-eqn-EqIII105">10.5</a>), namely,
+\begin{equation}
+\label{Eq:III:10:24}
+\frac{a_1}{a_2}=\frac{H_{12}}{E_{\slI}-H_{11}}.
+\end{equation}
+
+An additional condition is that $a_1$ and $a_2$ should be normalized so
+that $\abs{a_1}^2+\abs{a_2}^2=1$. We can take $H_{11}$ and $H_{12}$
+from (<a href="#mjx-eqn-EqIII1022">10.22</a>) using
+<span class="eq-wide">
+\begin{equation*}
+B_z=B\cos\theta,\quad
+B_x=B\sin\theta\cos\phi,\quad
+B_y=B\sin\theta\sin\phi.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+B_z&=B\cos\theta,\\[.6ex]
+B_x&=B\sin\theta\cos\phi,\\[.6ex]
+B_y&=B\sin\theta\sin\phi.
+\end{align*}
+</span>
+So we have
+\begin{equation}
+\label{Eq:III:10:25}
+\begin{aligned}
+H_{11}&=-\mu B\cos\theta,\\[1ex]
+H_{12}&=-\mu B\sin\theta\,(\cos\phi-i\sin\phi).
+\end{aligned}
+\end{equation}
+
+The last factor in the second equation is, incidentally, $e^{-i\phi}$,
+so it is simpler to write
+\begin{equation}
+\label{Eq:III:10:26}
+H_{12}=-\mu B\sin\theta\,e^{-i\phi}.
+\end{equation}
+</p>
+</div>
+<div id="Ch10-S7-p5" class="para">
+<p class="p">Using these matrix elements in Eq. (<a href="#mjx-eqn-EqIII1024">10.24</a>)—and
+canceling $-\mu B$ from numerator and denominator—we find
+\begin{equation}
+\label{Eq:III:10:27}
+\frac{a_1}{a_2}=\frac{\sin\theta\,e^{-i\phi}}{1-\cos\theta}.
+\end{equation}
+
+With this ratio and the normalization condition, we can find both $a_1$
+and $a_2$. That’s not hard, but we can make a short cut with a little
+trick. Notice that $1-\cos\theta=2\sin^2\,(\theta/2)$, and that
+$\sin\theta=2\sin\,(\theta/2)\cos\,(\theta/2)$. Then
+Eq. (<a href="#mjx-eqn-EqIII1027">10.27</a>) is equivalent to
+\begin{equation}
+\label{Eq:III:10:28}
+\frac{a_1}{a_2}=\frac{\cos\dfrac{\theta}{2}\,e^{-i\phi}}
+{\sin\dfrac{\theta}{2}}.
+\end{equation}
+
+So one possible answer is
+\begin{equation}
+\label{Eq:III:10:29}
+a_1=\cos\frac{\theta}{2}\,e^{-i\phi},\quad
+a_2=\sin\frac{\theta}{2},
+\end{equation}
+
+since it fits with (<a href="#mjx-eqn-EqIII1028">10.28</a>) and also makes
+\begin{equation*}
+\abs{a_1}^2+\abs{a_2}^2=1.
+\end{equation*}
+
+As you know, multiplying both $a_1$ and $a_2$ by an arbitrary phase
+factor doesn’t change anything. People generally prefer to make
+Eqs. (<a href="#mjx-eqn-EqIII1029">10.29</a>) more symmetric by multiplying both
+by $e^{i\phi/2}$. So the form usually used is
+\begin{equation}
+\label{Eq:III:10:30}
+a_1=\cos\frac{\theta}{2}\,e^{-i\phi/2},\quad
+a_2=\sin\frac{\theta}{2}\,e^{+i\phi/2},
+\end{equation}
+
+and this is the answer to our question. The numbers $a_1$ and $a_2$
+are the amplitudes to find an electron with its spin up or down along
+the $z$-axis when we know that its spin is along the axis at $\theta$
+and $\phi$. (The amplitudes $C_1$ and $C_2$ are just $a_1$ and $a_2$
+times $e^{-iE_{\slI}t/\hbar}$.)</p>
+</div>
+<div id="Ch10-S7-p6" class="para">
+<p class="p">Now we notice an interesting thing. The strength $B$ of the magnetic
+field does not appear anywhere in (<a href="#mjx-eqn-EqIII1030">10.30</a>). The result is
+clearly the same in the limit that $B$ goes to zero. This means that
+we have answered <em class="emph">in general</em> the question of how to represent a
+particle whose spin is along an arbitrary axis. The amplitudes
+of (<a href="#mjx-eqn-EqIII1030">10.30</a>) are the projection amplitudes for spin one-half
+particles corresponding to the projection amplitudes we gave in
+Chapter <a href="III_05.html">5</a> [Eqs. (<a href="III_05.html#mjx-eqn-EqIII538">5.38</a>)] for spin-one
+particles. We can now find the amplitudes for filtered beams of spin
+one-half particles to go through any particular Stern-Gerlach filter.</p>
+</div>
+<div id="Ch10-S7-p7" class="para">
+<p class="p">Let $\ket{+z}$ represent a state with spin up along the $z$-axis,
+and $\ket{-z}$ represent the spin down state. If $\ket{+z'}$ represents a
+state with spin up along a $z'$-axis which makes the polar angles
+$\theta$ and $\phi$ with the $z$-axis, then in the notation of
+Chapter <a href="III_05.html">5</a>, we have
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:10:31}
+\braket{+z}{+z'}=\cos\frac{\theta}{2}\,e^{-i\phi/2},\quad
+\braket{-z}{+z'}=\sin\frac{\theta}{2}\,e^{+i\phi/2}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+\braket{+z}{+z'}&=\cos\frac{\theta}{2}\,e^{-i\phi/2},\\[1.5ex]
+\braket{-z}{+z'}&=\sin\frac{\theta}{2}\,e^{+i\phi/2}.
+\end{aligned}
+\label{Eq:III:10:31}
+\end{equation}
+</span>
+These results are equivalent to what we found in
+Chapter <a href="III_06.html">6</a>, Eq. (<a href="III_06.html#mjx-eqn-EqIII636">6.36</a>), by purely geometrical
+arguments. (So if you decided to skip Chapter <a href="III_06.html">6</a>, you now
+have the essential results anyway.)</p>
+</div>
+<div id="Ch10-S7-p8" class="para">
+<p class="p">As our final example lets look again at one which we’ve already
+mentioned a number of times. Suppose that we consider the following
+problem. We start with an electron whose spin is in some given
+direction, then turn on a magnetic field in the $z$-direction for
+$25$ minutes, and then turn it off. What is the final state? Again let’s
+represent the state by the linear
+combination $\ket{\psi}=\ket{\slOne}C_1+\ket{\slTwo}C_2$. For this
+problem, however, the states of definite energy are also our base states
+$\ket{\slOne}$ and $\ket{\slTwo}$. So $C_1$ and $C_2$ only vary in
+phase. We know that
+\begin{equation*}
+C_1(t)=C_1(0)e^{-iE_{\slI}t/\hbar}=C_1(0)e^{+i\mu Bt/\hbar},
+\end{equation*}
+
+and
+\begin{equation*}
+C_2(t)=C_2(0)e^{-iE_{\slII}t/\hbar}=C_2(0)e^{-i\mu Bt/\hbar}.
+\end{equation*}
+
+Now initially we said the electron spin was set in a given direction.
+That means that initially $C_1$ and $C_2$ are two numbers given by
+Eqs. (<a href="#mjx-eqn-EqIII1030">10.30</a>). After we wait for a period of time $T$, the
+new $C_1$ and $C_2$ are the same two numbers multiplied respectively by
+$e^{i\mu B_zT/\hbar}$ and $e^{-i\mu B_zT/\hbar}$. What state is that?
+That’s easy. It’s exactly the same as if the angle $\phi$ had been
+changed by the subtraction of $2\mu B_zT/\hbar$ and the angle $\theta$
+had been left unchanged. That means that at the end of the time $T$, the
+state $\ket{\psi}$ represents an electron lined up in a direction which
+differs from the original direction only by a <em class="emph">rotation</em> about the
+$z$-axis through the angle $\Delta\phi=2\mu B_zT/\hbar$. Since this
+angle is proportional to $T$, we can also say the direction of the spin
+<em class="emph">precesses</em> at the angular velocity $2\mu B_z/\hbar$ around the
+$z$-axis. This result we discussed several times previously in a less
+complete and rigorous manner. Now we have obtained a complete and
+accurate quantum mechanical description of the precession of atomic
+magnets.</p>
+</div>
+<div id="Ch10-S7-p9" class="para">
+<p class="p">It is interesting that the mathematical ideas we have just gone over
+for the spinning electron in a magnetic field can be applied to
+<em class="emph">any</em> two-state system. That means that by making a mathematical
+<em class="emph">analogy</em> to the spinning electron, <em class="emph">any problem</em> about
+two-state systems can be solved by pure geometry. It works like
+this. First you shift the zero of energy so that $(H_{11}+H_{22})$ is
+equal to zero so that $H_{11}=-H_{22}$. Then any two-state problem is
+<em class="emph">formally</em> the same as the electron in a magnetic field. All you
+have to do is <em class="emph">identify</em> $-\mu B_z$ with $H_{11}$ and
+$-\mu(B_x-iB_y)$ with $H_{12}$. No matter what the physics is
+originally—an ammonia molecule, or whatever—you can translate it
+into a corresponding electron problem. So if we can solve the electron
+problem <em class="emph">in general</em>, we have solved <em class="emph">all</em> two-state
+problems.</p>
+</div>
+<div id="Ch10-F11" class="figure">
+<img src="img/FLP_III/f10-11/f10-11_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–11.</span>The spin direction of an electron in a varying magnetic
+field $\FigB(t)$ precesses at the frequency $\Figomega(t)$ about an axis
+parallel to $\FigB$.
+</div>
+</div>
+<div id="Ch10-S7-p10" class="para">
+<p class="p">And we have the general solution for the electron! Suppose you have some
+state to start with that has spin “up” in some direction, and you have
+a magnetic field $\FLPB$ that points in some other direction. You just
+rotate the spin direction around the axis of $\FLPB$ with the
+<em class="emph">vector</em> angular velocity $\FLPomega(t)$ equal to a constant times
+the vector $\FLPB$ (namely $\FLPomega=2\mu\FLPB/\hbar$). As $\FLPB$
+varies with time, you keep moving the axis of the rotation to keep it
+parallel with $\FLPB$, and keep changing the speed of rotation so that
+it is always proportional to the strength of $\FLPB$. See
+Fig. <a href="#Ch10-F11">10–11</a>. If you keep doing this, you will end up with a
+certain final orientation of the spin axis, and the amplitudes $C_1$
+and $C_2$ are just given by the
+projections—using (<a href="#mjx-eqn-EqIII1030">10.30</a>)—into your coordinate frame.
+You see, it’s just a geometric problem to keep track of where you end up
+after all the rotating. Although it’s easy to see what’s involved, this
+geometric problem (of finding the net result of a rotation with a
+varying angular velocity vector) is not easy to solve explicitly in the
+general case. Anyway, we see, <em class="emph">in principle</em>, the general solution
+to any two-state problem. In the next chapter we will look some more
+into the mathematical techniques for handling the important case of a
+spin one-half particle—and, therefore, for handling two-state systems
+in general.</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  This is satisfactory so long as there are no
+important magnetic fields. We will discuss the effects of magnetic
+fields on the electron later in this chapter, and the very small effects
+of spin in the hydrogen atom in Chapter <a href="III_12.html">12</a>.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  We are
+oversimplifying a little. Originally, the chemists thought that there
+should be <em class="emph">four</em> forms of dibromobenzene: two forms with the
+bromines on adjacent carbon atoms (ortho-dibromobenzene), a third form
+with the bromines on next-nearest carbons (meta-dibromobenzene), and a
+fourth form with the bromines opposite to each other
+(para-dibromobenzene). However, they found only three forms—there is
+only <em class="emph">one</em> form of the ortho-molecule.
+  <a href="#footnote_source_2">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_3"></a>
+  What we
+have said is a little misleading. Absorption of ultraviolet light would
+be very weak in the two-state system we have taken for benzene, because
+the dipole moment matrix element between the two states is zero. [The
+two states are electrically symmetric, so in our formula
+Eq. (<a href="III_09.html#mjx-eqn-EqIII955">9.55</a>) for the probability of a transition, the dipole
+moment $\mu$ is zero and no light is absorbed.] If these were the only
+states, the existence of the upper state would have to be shown in other
+ways. A more complete theory of benzene, however, which begins with more
+base states (such as those having adjacent double bonds) shows that the
+true stationary states of benzene are slightly distorted from the ones
+we have found. The resulting dipole moments permit the transition we
+mentioned in the text to occur by the absorption of ultraviolet light.
+  <a href="#footnote_source_3">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_4"></a>
+  We are taking the rest energy $m_0c^2$
+as our “zero” of energy and treating the magnetic moment $\mu$ of the
+electron as a <em class="emph">negative</em> number, since it points opposite to the
+spin.
+  <a href="#footnote_source_4">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div>
+
+</div>
+    
+  </body>
+</html>

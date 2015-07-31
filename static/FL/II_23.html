@@ -1,0 +1,1348 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 23: Cavity Resonators</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "23." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch23" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">23</span>Cavity Resonators</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref" rowspan=2>
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapter&nbsp;<a href="I_23.html">23</a>, Vol.&nbsp;I, <i>Resonance</i>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Chapter&nbsp;<a href="I_49.html">49</a>, Vol.&nbsp;I, <i>Modes</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch23-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">23–1</span>Real circuit elements</h3>
+<div id="Ch23-S1-p1" class="para">
+<p class="p">When looked at from any one pair of terminals, any arbitrary circuit
+made up of ideal impedances and generators is, at any given frequency,
+equivalent to a generator $\emf$ in series with an impedance $z$.
+That comes about because if we put a voltage $V$ across the
+terminals and solve all the equations to find the current $I$, we must
+get a linear relation between the current and the voltage. Since all
+the equations are linear, the result for $I$ must also depend only
+linearly on $V$. The most general linear form can be expressed as
+\begin{equation}
+\label{Eq:II:23:1}
+I=\frac{1}{z}(V-\emf).
+\end{equation}
+
+In general, both $z$ and $\emf$ may depend in some complicated way on
+the frequency $\omega$. Equation (<a href="#mjx-eqn-EqII231">23.1</a>), however, is the
+relation we would get if behind the two terminals there was just the
+generator $\emf(\omega)$ in series with the impedance $z(\omega)$.</p>
+</div>
+<div id="Ch23-S1-p2" class="para">
+<p class="p">There is also the opposite kind of question: If we have any
+electromagnetic device at all with two terminals and we <em class="emph">measure</em>
+the relation between $I$ and $V$ to determine $\emf$ and $z$ as
+functions of frequency, can we find a combination of our ideal elements
+that is equivalent to the internal impedance $z$? The answer is that for
+any reasonable—that is, physically meaningful—function $z(\omega)$,
+it <em class="emph">is</em> possible to <em class="emph">approximate</em> the situation to as high an
+accuracy as you wish with a circuit containing a finite set of ideal
+elements. We don’t want to consider the general problem now, but only
+look at what might be expected from physical arguments for a few cases.</p>
+</div>
+<div id="Ch23-F1" class="figure">
+<img src="img/FLP_II/f23-01/f23-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–1.</span>Equivalent circuit of a real resistor.
+</div>
+</div>
+<div id="Ch23-S1-p3" class="para">
+<p class="p">If we think of a real resistor, we know that the current through it
+will produce a magnetic field. So any real resistor should also have
+some inductance. Also, when a resistor has a potential difference
+across it, there must be charges on the ends of the resistor to
+produce the necessary electric fields. As the voltage changes, the
+charges will change in proportion, so the resistor will also have some
+capacitance. We expect that a <em class="emph">real</em> resistor might have the
+equivalent circuit shown in Fig. <a href="#Ch23-F1">23–1</a>. In a
+well-designed resistor, the so-called “parasitic” elements $L$
+and $C$ are small, so that at the frequencies for which it is intended,
+$\omega L$ is much less than $R$, and $1/\omega C$ is much greater
+than $R$. It may therefore be possible to neglect them. As the
+frequency is raised, however, they will eventually become important,
+and a resistor begins to look like a resonant circuit.</p>
+</div>
+<div id="Ch23-F2" class="figure">
+<img src="img/FLP_II/f23-02/f23-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–2.</span>The equivalent circuit of a real inductance at low
+frequencies.
+</div>
+</div>
+<div id="Ch23-S1-p4" class="para">
+<p class="p">A real inductance is also not equal to the idealized inductance, whose
+impedance is $i\omega L$. A real coil of wire will have some
+resistance, so at low frequencies the coil is really equivalent to an
+inductance in series with some resistance, as shown in
+Fig. <a href="#Ch23-F2">23–2</a>(a). But, you are thinking, the resistance and
+inductance are <em class="emph">together</em> in a real coil—the resistance is spread
+all along the wire, so it is mixed in with the inductance. We should
+probably use a circuit more like the one in Fig. <a href="#Ch23-F2">23–2</a>(b),
+which has several little $R$’s and $L$’s in series. But the total
+impedance of such a circuit is just $\sum R+\sum i\omega L$, which is
+equivalent to the simpler diagram of part (a).</p>
+</div>
+<div id="Ch23-F3" class="figure">
+<img class="first" src="img/FLP_II/f23-03/f23-03_tc_big_a.svgz"><img class="last" src="img/FLP_II/f23-03/f23-03_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 23–3.</span>The equivalence circuit of a real inductance at higher
+frequencies.
+</div>
+</div>
+<div id="Ch23-S1-p5" class="para">
+<p class="p">As we go up in frequency with a real coil, the approximation of an
+inductance plus a resistance is no longer very good. The charges that
+must build up on the wires to make the voltages will become important.
+It is as if there were little condensers across the turns of the coil,
+as sketched in Fig. <a href="#Ch23-F3">23–3</a>(a). We might try to approximate
+the real coil by the circuit in Fig. <a href="#Ch23-F3">23–3</a>(b). At low
+frequencies, this circuit can be imitated fairly well by the simpler one
+in part (c) of the figure (which is again the same resonant circuit we
+found for the high-frequency model of a resistor). For higher
+frequencies, however, the more complicated circuit of
+Fig. <a href="#Ch23-F3">23–3</a>(b) is better. In fact, the more accurately you
+wish to represent the actual impedance of a real, physical inductance,
+the more ideal elements you will have to use in the artificial model of
+it.</p>
+</div>
+<div id="Ch23-S1-p6" class="para">
+<p class="p">Let’s look a little more closely at what goes on in a real coil. The
+impedance of an inductance goes as $\omega L$, so it becomes zero at
+low frequencies—it is a “short circuit”: all we see is the
+resistance of the wire. As we go up in frequency, $\omega L$ soon
+becomes much larger than $R$, and the coil looks pretty much like an
+ideal inductance. As we go still higher, however, the capacities
+become important. Their impedance is proportional to $1/\omega C$,
+which is large for small $\omega$. For small enough frequencies a
+condenser is an “open circuit,” and when it is in parallel with
+something else, it draws no current. But at high frequencies, the
+current prefers to flow into the capacitance between the turns, rather
+than through the inductance. So the current in the coil jumps from one
+turn to the other and doesn’t bother to go around and around where it
+has to buck the emf. So although we may have <em class="emph">intended</em> that the
+current should go around the loop, it will take the easier path—the
+path of least impedance.</p>
+</div>
+<div id="Ch23-S1-p7" class="para">
+<p class="p">If the subject had been one of popular interest, this effect would
+have been called “the high-frequency barrier,” or some such
+name. The same kind of thing happens in all subjects. In aerodynamics,
+if you try to make things go faster than the speed of sound when they
+were designed for lower speeds, they don’t work. It doesn’t mean that
+there is a great “barrier” there; it just means that the object
+should be redesigned. So this coil which we designed as an
+“inductance” is not going to work as a good inductance, but as some
+other kind of thing at very high frequencies. For high frequencies, we
+have to find a new design.</p>
+</div>
+</div>
+<div id="Ch23-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">23–2</span>A capacitor at high frequencies</h3>
+<div id="Ch23-S2-p1" class="para">
+<p class="p">Now we want to discuss in detail the behavior of a capacitor—a
+geometrically ideal capacitor—as the frequency gets larger and
+larger, so we can see the transition of its properties. (We prefer to
+use a capacitor instead of an inductance, because the geometry of a
+pair of plates is much less complicated than the geometry of a coil.)
+We consider the capacitor shown in Fig. <a href="#Ch23-F4">23–4</a>(a), which
+consists of two parallel circular plates connected to an external
+generator by a pair of wires. If we charge the capacitor with
+<span class="text smallcaps">dc</span>, there will be a positive charge on one plate and a
+negative charge on the other; and there will be a uniform electric
+field between the plates.</p>
+</div>
+<div id="Ch23-F4" class="figure">
+<img src="img/FLP_II/f23-04/f23-04_tc_iPad_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–4.</span>The electric and magnetic fields between the plates of a
+capacitor.
+</div>
+</div>
+<div id="Ch23-S2-p2" class="para">
+<p class="p">Now suppose that instead of <span class="text smallcaps">dc</span>, we put an <span class="text smallcaps">ac</span> of low
+frequency on the plates. (We will find out later what is “low” and
+what is “high”.) Say we connect the capacitor to a lower-frequency
+generator. As the voltage alternates, the positive charge on the top
+plate is taken off and negative charge is put on. While that is
+happening, the electric field disappears and then builds up in the
+opposite direction. As the charge sloshes back and forth slowly, the
+electric field follows. At each instant the electric field is uniform,
+as shown in Fig. <a href="#Ch23-F4">23–4</a>(b), except for some edge effects
+which we are going to disregard. We can write the magnitude
+of the electric field as
+\begin{equation}
+\label{Eq:II:23:2}
+E=E_0e^{i\omega t},
+\end{equation}
+
+where $E_0$ is a constant.</p>
+</div>
+<div id="Ch23-S2-p3" class="para">
+<p class="p">Now will that continue to be right as the frequency goes up? No, because
+as the electric field is going up and down, there is a flux of electric
+field through any loop like $\Gamma_1$ in Fig. <a href="#Ch23-F4">23–4</a>(a).
+And, as you know, a changing electric field acts to produce a magnetic
+field. One of Maxwell’s equations says that when there is a varying electric field, as there is
+here, there has got to be a line integral of the magnetic field. The
+integral of the magnetic field around a closed ring, multiplied
+by $c^2$, is equal to the time rate-of-change of the electric flux
+through the area inside the ring (if there are no currents):
+\begin{equation}
+\label{Eq:II:23:3}
+c^2\oint_\Gamma\FLPB\cdot d\FLPs=\ddt{}{t}\kern{-1.7ex}
+\underset{\text{inside $\Gamma$}}{\int}
+\FLPE\cdot\FLPn\,da.
+\end{equation}
+
+So how much magnetic field is there? That’s not very hard. Suppose
+that we take the loop $\Gamma_1$, which is a circle of radius $r$. We
+can see from symmetry that the magnetic field goes around as shown in
+the figure. Then the line integral of $\FLPB$ is $2\pi rB$. And, since
+the electric field is uniform, the flux of the electric field is
+simply $E$ multiplied by $\pi r^2$, the area of the circle:
+\begin{equation}
+\label{Eq:II:23:4}
+c^2B\cdot2\pi r=\ddp{}{t}\,E\cdot\pi r^2.
+\end{equation}
+
+The derivative of $E$ with respect to time is, for our alternating
+field, simply $i\omega E_0e^{i\omega t}$. So we find that our
+capacitor has the magnetic field
+\begin{equation}
+\label{Eq:II:23:5}
+B=\frac{i\omega r}{2c^2}\,E_0e^{i\omega t}.
+\end{equation}
+
+In other words, the magnetic field also oscillates and has a strength
+proportional to $r$.</p>
+</div>
+<div id="Ch23-S2-p4" class="para">
+<p class="p">What is the effect of that? When there is a magnetic field that is
+varying, there will be induced electric fields and the capacitor will
+begin to act a little bit like an inductance. As the frequency goes
+up, the magnetic field gets stronger; it is proportional to the rate
+of change of $E$, and so to $\omega$. The impedance of the capacitor
+will no longer be simply $1/i\omega C$.
+</p>
+</div>
+<div id="Ch23-S2-p5" class="para">
+<p class="p">Let’s continue to raise the frequency and to analyze what happens more
+carefully. We have a magnetic field that goes sloshing back and
+forth. But then the electric field cannot be uniform, as we have
+assumed! When there is a varying magnetic field, there must be a line
+integral of the electric field—because of Faraday’s law. So if there
+is an appreciable magnetic field, as begins to happen at high
+frequencies, the electric field cannot be the same at all distances
+from the center. The electric field must change with $r$ so that the
+line integral of the electric field can equal the changing flux of the
+magnetic field.</p>
+</div>
+<div id="Ch23-S2-p6" class="para">
+<p class="p">Let’s see if we can figure out the correct electric field. We can do
+that by computing a “correction” to the uniform field we originally
+assumed for low frequencies. Let’s call the uniform field $E_1$, which
+will still be $E_0e^{i\omega t}$, and write the correct field as
+\begin{equation*}
+E=E_1+E_2,
+\end{equation*}
+
+where $E_2$ is the correction due to the changing magnetic field. For
+any $\omega$ we will write the field at the center of the condenser
+as $E_0e^{i\omega t}$ (thereby defining $E_0$), so that we have no
+correction at the center; $E_2=0$ at $r=0$.</p>
+</div>
+<div id="Ch23-S2-p7" class="para">
+<p class="p">To find $E_2$ we can use the integral form of Faraday’s law:
+\begin{equation*}
+\oint_\Gamma\FLPE\cdot d\FLPs=-\ddt{}{t}(\text{flux of $B$}).
+\end{equation*}
+
+The integrals are simple if we take them for the curve $\Gamma_2$,
+shown in Fig. <a href="#Ch23-F4">23–4</a>(b), which goes up along the axis,
+out radially the distance $r$ along the top plate, down vertically to
+the bottom plate, and back to the axis. The line integral of $E_1$
+around this curve is, of course, zero; so only $E_2$ contributes, and
+its integral is just $-E_2(r)\cdot h$, where $h$ is the spacing
+between the plates. (We call $E$ positive if it points upward.) This
+is equal to minus the rate of change of the flux of $\FLPB$, which we have
+to get by an integral over the shaded area $S$ inside $\Gamma_2$ in
+Fig. <a href="#Ch23-F4">23–4</a>(b). The flux through a vertical strip of
+width $dr$ is $B(r)h\,dr$, so the total flux is
+\begin{equation*}
+h\int B(r)\,dr.
+\end{equation*}
+
+Setting $-\ddpl{}{t}$ of the flux equal to the line integral of $E_2$,
+we have
+\begin{equation}
+\label{Eq:II:23:6}
+E_2(r)=\ddp{}{t}\int B(r)\,dr.
+\end{equation}
+
+Notice that the $h$ cancels out; the fields don’t depend on the
+separation of the plates.</p>
+</div>
+<div id="Ch23-S2-p8" class="para">
+<p class="p">Using Eq. (<a href="#mjx-eqn-EqII235">23.5</a>) for $B(r)$, we have
+\begin{equation*}
+E_2(r)=\ddp{}{t}\,\frac{i\omega r^2}{4c^2}\,E_0e^{i\omega t}.
+\end{equation*}
+
+The time derivative just brings down another factor $i\omega$; we get
+\begin{equation}
+\label{Eq:II:23:7}
+E_2(r)=-\frac{\omega^2r^2}{4c^2}\,E_0e^{i\omega t}.
+\end{equation}
+
+As we expect, the induced field tends to <em class="emph">reduce</em> the electric
+field farther out. The corrected field $E=E_1+E_2$ is then
+\begin{equation}
+\label{Eq:II:23:8}
+E=E_1+E_2=\biggl(1-\frac{1}{4}\,\frac{\omega^2r^2}{c^2}
+\biggr)E_0e^{i\omega t}.
+\end{equation}
+
+</p>
+</div>
+<div id="Ch23-S2-p9" class="para">
+<p class="p">The electric field in the capacitor is no longer uniform; it has the
+parabolic shape shown by the broken line in Fig. <a href="#Ch23-F5">23–5</a>. You
+see that our simple capacitor is getting slightly complicated.</p>
+</div>
+<div id="Ch23-F5" class="figure">
+<img src="img/FLP_II/f23-05/f23-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–5.</span>The electric field between the capacitor plates at high
+frequency. (Edge effects are neglected.)
+</div>
+</div>
+<div id="Ch23-S2-p10" class="para">
+<p class="p">We could now use our results to calculate the impedance of the
+capacitor at high frequencies. Knowing the electric field, we could
+compute the charges on the plates and find out how the current through
+the capacitor depends on the frequency $\omega$, but we are not
+interested in that problem for the moment. We are more interested in
+seeing what happens as we continue to go up with the frequency—to
+see what happens at even higher frequencies. Aren’t we already
+finished?  No, because we have corrected the electric field, which
+means that the magnetic field we have calculated is no longer
+right. The magnetic field of Eq. (<a href="#mjx-eqn-EqII235">23.5</a>) is approximately
+right, but it is only a first approximation. So let’s call
+it $B_1$. We should then rewrite Eq. (<a href="#mjx-eqn-EqII235">23.5</a>) as
+\begin{equation}
+\label{Eq:II:23:9}
+B_1=\frac{i\omega r}{2c^2}\,E_0e^{i\omega t}.
+\end{equation}
+
+You will remember that this field was produced by the variation
+of $E_1$. Now the correct magnetic field will be that produced by the
+total electric field $E_1+E_2$. If we write the magnetic field
+as $B=B_1+B_2$, the second term is just the additional field produced
+by $E_2$. To find $B_2$ we can go through the same arguments we have used
+to find $B_1$; the line integral of $B_2$ around the curve $\Gamma_1$
+is equal to the rate of change of the flux of $E_2$
+through $\Gamma_1$. We will just have Eq. (<a href="#mjx-eqn-EqII234">23.4</a>) again with $B$
+replaced by $B_2$ and $E$ replaced by $E_2$:
+\begin{equation*}
+c^2B_2\cdot2\pi r=\ddt{}{t}(\text{flux of $E_2$ through $\Gamma_1$}).
+\end{equation*}
+
+Since $E_2$ varies with radius, to obtain its flux we must integrate
+over the circular surface inside $\Gamma_1$. Using $2\pi r\,dr$ as the
+element of area, this integral is
+\begin{equation}
+\int_0^rE_2(r)\cdot2\pi r\,dr.\notag
+\end{equation}
+
+So we get for $B_2(r)$
+\begin{equation}
+\label{Eq:II:23:10}
+B_2(r)=\frac{1}{rc^2}\,\ddp{}{t}
+\int E_2(r)r\,dr.
+\end{equation}
+
+Using $E_2(r)$ from Eq. (<a href="#mjx-eqn-EqII237">23.7</a>), we need the integral
+of $r^3\,dr$, which is, of course, $r^4/4$. Our correction to the
+magnetic field becomes
+\begin{equation}
+\label{Eq:II:23:11}
+B_2(r)=-\frac{i\omega^3r^3}{16c^4}\,E_0e^{i\omega t}.
+\end{equation}
+</p>
+</div>
+<div id="Ch23-S2-p11" class="para">
+<p class="p">But we are still not finished! If the magnetic field $B$ is not the
+same as we first thought, then we have incorrectly computed $E_2$. We
+must make a further correction to $E$, which comes from the extra
+magnetic field $B_2$. Let’s call this additional correction to the
+electric field $E_3$. It is related to the magnetic field $B_2$ in the
+same way that $E_2$ was related to $B_1$. We can use
+Eq. (<a href="#mjx-eqn-EqII236">23.6</a>) all over again just by changing the subscripts:
+\begin{equation}
+\label{Eq:II:23:12}
+E_3(r)=\ddp{}{t}\int B_2(r)\,dr.
+\end{equation}
+
+Using our result, Eq. (<a href="#mjx-eqn-EqII2311">23.11</a>), for $B_2$, the new
+correction to the electric field is
+\begin{equation}
+\label{Eq:II:23:13}
+E_3(r)=+\frac{\omega^4r^4}{64c^4}\,E_0e^{i\omega t}.
+\end{equation}
+
+Writing our doubly corrected electric field as $E=E_1+E_2+E_3$, we get
+\begin{equation}
+\label{Eq:II:23:14}
+E=E_0e^{i\omega t}\biggl[
+1-\frac{1}{2^2}\biggl(\frac{\omega r}{c}\biggr)^2\kern{-1.25ex}+
+\frac{1}{2^2\cdot4^2}\biggl(\frac{\omega r}{c}\biggr)^4
+\biggr].
+\end{equation}
+
+The variation of the electric field with radius is no longer the
+simple parabola we drew in Fig. <a href="#Ch23-F5">23–5</a>, but at large
+radii lies slightly above the curve $(E_1+E_2)$.</p>
+</div>
+<div id="Ch23-S2-p12" class="para">
+<p class="p">We are not quite through yet. The new electric field produces a new
+correction to the magnetic field, and the newly corrected magnetic
+field will produce a further correction to the electric field, and on
+and on. However, we already have all the formulas that we need.
+For $B_3$ we can use Eq. (<a href="#mjx-eqn-EqII2310">23.10</a>), changing the subscripts of
+$B$ and $E$ from $2$ to $3$.</p>
+</div>
+<div id="Ch23-S2-p13" class="para">
+<p class="p">The next correction to the electric field is
+\begin{equation*}
+E_4=-\frac{1}{2^2\cdot4^2\cdot6^2}
+\biggl(\frac{\omega r}{c}\biggr)^6
+E_0e^{i\omega t}.
+\end{equation*}
+
+So to this order we have that the complete electric field is given by
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:23:15}
+E=E_0e^{i\omega t}\biggl[
+1-\frac{1}{(1!)^2}\biggl(\frac{\omega r}{2c}\biggr)^2\kern{-1.25ex}+
+\frac{1}{(2!)^2}\biggl(\frac{\omega r}{2c}\biggr)^4\kern{-1.25ex}-
+\frac{1}{(3!)^2}\biggl(\frac{\omega r}{2c}\biggr)^6\pm\dotsb
+\biggr].
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:II:23:15}
+E=E_0&e^{i\omega t}\biggl[
+1-\frac{1}{(1!)^2}\biggl(\frac{\omega r}{2c}\biggr)^2\kern{-1ex}+\\[1ex]
+&\frac{1}{(2!)^2}\biggl(\frac{\omega r}{2c}\biggr)^4\kern{-1ex}-
+\frac{1}{(3!)^2}\biggl(\frac{\omega r}{2c}\biggr)^6\kern{-1ex}\pm\dotsb
+\biggr].\notag
+\end{align}
+</span>
+where we have written the numerical coefficients in such a way that it
+is obvious how the series is to be continued.</p>
+</div>
+<div id="Ch23-S2-p14" class="para">
+<p class="p">Our final result is that the electric field between the plates of the
+capacitor, for any frequency, is given by $E_0e^{i\omega t}$ times the
+infinite series which contains only the variable $\omega r/c$. If we
+wish, we can define a special function, which we will call $J_0(x)$, as
+the infinite series that appears in the brackets of
+Eq. (<a href="#mjx-eqn-EqII2315">23.15</a>):
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:23:16}
+J_0(x)=1-\frac{1}{(1!)^2}\biggl(\frac{x}{2}\biggr)^2\kern{-1.25ex}+
+\frac{1}{(2!)^2}\biggl(\frac{x}{2}\biggr)^4\kern{-1.25ex}-
+\frac{1}{(3!)^2}\biggl(\frac{x}{2}\biggr)^6\pm\dotsb
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:II:23:16}
+J_0(x)=&\;1-\frac{1}{(1!)^2}\biggl(\frac{x}{2}\biggr)^2\kern{-1ex}+\\[1ex]
+&\frac{1}{(2!)^2}\biggl(\frac{x}{2}\biggr)^4\kern{-1ex}-
+\frac{1}{(3!)^2}\biggl(\frac{x}{2}\biggr)^6\kern{-1ex}\pm\dotsb\notag
+\end{align}
+</span>
+Then we can write our solution as $E_0e^{i\omega t}$ times this
+function, with $x=\omega r/c$:
+\begin{equation}
+\label{Eq:II:23:17}
+E=E_0e^{i\omega t}J_0\biggl(\frac{\omega r}{c}\biggr).
+\end{equation}
+</p>
+</div>
+<div id="Ch23-S2-p15" class="para">
+<p class="p">The reason we have called our special function $J_0$ is that, naturally,
+this is not the first time anyone has ever worked out a problem with
+oscillations in a cylinder. The function has come up before and is
+usually called $J_0$. It always comes up whenever you solve a problem
+about waves with cylindrical symmetry. The function $J_0$ is to
+cylindrical waves what the cosine function is to waves on a straight
+line. So it is an important function, invented a long time ago. Then a
+man named Bessel got his name
+attached to it. The subscript zero means that
+Bessel invented a whole lot of different
+functions and this is just the first of them.</p>
+</div>
+<div id="Ch23-S2-p16" class="para">
+<p class="p">The other functions of Bessel—$J_1$, $J_2$,
+and so on—have to do with cylindrical waves which have a variation
+of their strength with the angle around the axis of the cylinder.
+</p>
+</div>
+<div id="Ch23-S2-p17" class="para">
+<p class="p">The completely corrected electric field between the plates of our
+circular capacitor, given by Eq. (<a href="#mjx-eqn-EqII2317">23.17</a>), is plotted as
+the solid line in Fig. <a href="#Ch23-F5">23–5</a>. For frequencies that are
+not too high, our second approximation was already quite good. The
+third approximation was even better—so good, in fact, that if we had
+plotted it, you would not have been able to see the difference between
+it and the solid curve. You will see in the next section, however,
+that the complete series is needed to get an accurate description for
+large radii, or for high frequencies.</p>
+</div>
+</div>
+<div id="Ch23-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">23–3</span>A resonant cavity</h3>
+<div id="Ch23-S3-p1" class="para">
+<p class="p">We want to look now at what our solution gives for the electric field
+between the plates of the capacitor as we continue to go to higher and
+higher frequencies. For large $\omega$, the parameter $x=\omega r/c$
+also gets large, and the first few terms in the series for $J_0$
+of $x$ will increase rapidly. That means that the parabola we have drawn
+in Fig. <a href="#Ch23-F5">23–5</a> curves downward more steeply at higher
+frequencies. In fact, it looks as though the field would fall all the
+way to zero at some high frequency, perhaps when $c/\omega$ is
+approximately one-half of $a$. Let’s see whether $J_0$ does indeed go
+through zero and become negative. We begin by trying $x=2$:
+\begin{equation*}
+J_0(2)=1-1+\tfrac{1}{4}-\tfrac{1}{36}=0.22.
+\end{equation*}
+
+The function is still not zero, so let’s try a higher value of $x$,
+say, $x=2.5$. Putting in numbers, we write
+\begin{equation*}
+J_0(2.5)=1-1.56+0.61-0.11=-0.06.
+\end{equation*}
+
+The function $J_0$ has already gone through zero by the time we get
+to $x=2.5$. Comparing the results for $x=2$ and $x=2.5$, it looks as
+though $J_0$ goes through zero at one-fifth of the way from $2.5$
+to $2$. We would guess that the zero occurs for $x$ approximately equal
+to $2.4$. Let’s see what that value of $x$ gives:
+\begin{equation*}
+J_0(2.4)=1-1.44+0.52-0.08=0.00.
+\end{equation*}
+
+We get zero to the accuracy of our two decimal places. If we make the
+calculation more accurate (or since $J_0$ is a well-known function, if
+we look it up in a book), we find that it goes through zero
+at $x=2.405$. We have worked it out by hand to show you that you too
+could have discovered these things rather than having to borrow them
+from a book.
+</p>
+</div>
+<div id="Ch23-S3-p2" class="para">
+<p class="p">As long as we are looking up $J_0$ in a book, it is interesting to
+notice how it goes for larger values of $x$; it looks like the graph
+in Fig. <a href="#Ch23-F6">23–6</a>. As $x$ increases, $J_0(x)$ oscillates
+between positive and negative values with a decreasing amplitude of
+oscillation.</p>
+</div>
+<div id="Ch23-F6" class="figure">
+<img src="img/FLP_II/f23-06/f23-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–6.</span>The Bessel function $J_0(x)$.
+</div>
+</div>
+<div id="Ch23-S3-p3" class="para">
+<p class="p">We have gotten the following interesting result: If we go high enough
+in frequency, the electric field at the center of our condenser will
+be one way and the electric field near the edge will point in the
+opposite direction. For example, suppose that we take an $\omega$ high
+enough so that $x=\omega r/c$ at the outer edge of the capacitor is
+equal to $4$; then the edge of the capacitor corresponds to the
+abscissa $x=4$ in Fig. <a href="#Ch23-F6">23–6</a>. This means that our
+capacitor is being operated at the frequency $\omega=4c/a$. At the
+edge of the plates, the electric field will have a rather high
+magnitude opposite the direction we would expect. That is the terrible
+thing that can happen to a capacitor at high frequencies. If we go to
+very high frequencies, the direction of the electric field oscillates
+back and forth many times as we go out from the center of the
+capacitor. Also there are the magnetic fields associated with these
+electric fields. It is not surprising that our capacitor doesn’t look
+like the ideal capacitance for high frequencies. We may even start to
+wonder whether it looks more like a capacitor or an inductance. We
+should emphasize that there are even more complicated effects that we
+have neglected which happen at the edges of the capacitor. For
+instance, there will be a radiation of waves out past the edges, so
+the fields are even more complicated than the ones we have computed,
+but we will not worry about those effects now.</p>
+</div>
+<div id="Ch23-S3-p4" class="para">
+<p class="p">We could try to figure out an equivalent circuit for the capacitor, but
+perhaps it is better if we just admit that the capacitor we have
+designed for low-frequency fields is just no longer satisfactory when
+the frequency is too high. If we want to treat the operation of such an
+object at high frequencies, we should abandon the approximations to
+Maxwell’s equations that we
+have made for treating circuits and return to the complete set of
+equations which describe completely the fields in space. Instead of
+dealing with idealized circuit elements, we have to deal with the real
+conductors as they are, taking into account all the fields in the spaces
+in between. For instance, if we want a resonant circuit at high
+frequencies we will not try to design one using a coil and a
+parallel-plate capacitor.
+</p>
+</div>
+<div id="Ch23-S3-p5" class="para">
+<p class="p">We have already mentioned that the parallel-plate capacitor we have been
+analyzing has some of the aspects of both a capacitor and an inductance.
+With the electric field there are charges on the surfaces of the plates,
+and with the magnetic fields there are back emf’s. Is it possible that
+we already have a resonant circuit? We do indeed. Suppose we pick a
+frequency for which the electric field pattern falls to zero at some
+radius inside the edge of the disc; that is, we choose $\omega a/c$
+greater than $2.405$. Everywhere on a circle coaxial with the plates the
+electric field will be zero. Now suppose we take a thin metal sheet and
+cut a strip just wide enough to fit between the plates of the capacitor.
+Then we bend it into a cylinder that will go around at the radius where
+the electric field is zero. Since there are no electric fields there,
+when we put this conducting cylinder in place, no currents will flow in
+it; and there will be no changes in the electric and magnetic fields. We
+have been able to put a direct short circuit across the capacitor
+without changing anything. And look what we have; we have a complete
+cylindrical can with electrical and magnetic fields inside and no
+connection at all to the outside world. The fields inside won’t change
+even if we throw away the edges of the plates outside our can, and also
+the capacitor leads. All we have left is a closed can with electric and
+magnetic fields inside, as shown in Fig. <a href="#Ch23-F7">23–7</a>(a). The
+electric fields are oscillating back and forth at the
+frequency $\omega$—which, don’t forget, determined the diameter of the can. The
+amplitude of the oscillating $E$ field varies with the distance from the
+axis of the can, as shown in the graph of Fig. <a href="#Ch23-F7">23–7</a>(b).
+This curve is just the first arch of the Bessel function of zero
+order. There is also a magnetic field which goes in circles around the
+axis and oscillates in time $90^\circ$ out of phase with the electric
+field.</p>
+</div>
+<div id="Ch23-S3-p6" class="para">
+<p class="p">We can also write out a series for the magnetic field and plot it, as
+shown in the graph of Fig. <a href="#Ch23-F7">23–7</a>(c).</p>
+</div>
+<div id="Ch23-F7" class="figure">
+<img class="first" src="img/FLP_II/f23-07/f23-07_tc_big_a.svgz"><img class="middle" src="img/FLP_II/f23-07/f23-07_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 23–7.</span>The electric and magnetic fields in an enclosed cylindrical
+can.
+</div>
+</div>
+<div id="Ch23-S3-p7" class="para">
+<p class="p">How is it that we can have an electric and magnetic field inside a can
+with no external connections? It is because the electric and magnetic
+fields maintain themselves, the changing $\FLPE$ makes a $\FLPB$ and
+the changing $\FLPB$ makes an $\FLPE$—all according to the equations
+of Maxwell.
+The magnetic field has an inductive aspect, and the
+electric field a capacitive aspect; together they make something like
+a resonant circuit. Notice that the conditions we have described would
+only happen if the radius of the can is exactly $2.405 c/\omega$. For
+a can of a given radius, the oscillating electric and magnetic fields
+will maintain themselves—in the way we have described—only at that
+particular frequency. So a cylindrical can of radius $r$ is
+<em class="emph">resonant</em> at the frequency
+\begin{equation}
+\label{Eq:II:23:18}
+\omega_0=2.405\,\frac{c}{r}.
+\end{equation}
+</p>
+</div>
+<div id="Ch23-S3-p8" class="para">
+<p class="p">We have said that the fields continue to oscillate in the same way after
+the can is completely closed. That is not exactly right. It would be
+possible if the walls of the can were perfect conductors. For a real
+can, however, the oscillating currents which exist on the inside walls
+of the can lose energy because of the resistance of the material. The
+oscillations of the fields will gradually die away. We can see from
+Fig. <a href="#Ch23-F7">23–7</a> that there must be strong currents associated
+with electric and magnetic fields inside the cavity. Because the
+vertical electrical field stops suddenly at the top and bottom plates of
+the can, it has a large divergence there; so there must be positive and
+negative electric charges on the inner surfaces of the can, as shown in
+Fig. <a href="#Ch23-F7">23–7</a>(a). When the electric field reverses, the charges
+must reverse also, so there must be an alternating current between the
+top and bottom plates of the can. These charges will flow in the sides
+of the can, as shown in the figure. We can also see that there must be
+currents in the sides of the can by considering what happens to the
+magnetic field. The graph of Fig. <a href="#Ch23-F7">23–7</a>(c) tells us that the
+magnetic field suddenly drops to zero at the edge of the can. Such a
+sudden change in the magnetic field can happen only if there is a
+current in the wall. This current is what gives the alternating electric
+charges on the top and bottom plates of the can.</p>
+</div>
+<div id="Ch23-S3-p9" class="para">
+<p class="p">You may be wondering about our discovery of currents in the vertical
+sides of the can. What about our earlier statement that nothing would
+be changed when we introduced these vertical sides in a region where
+the electric field was zero? Remember, however, that when we first put
+in the sides of the can, the top and bottom plates extended out beyond
+them, so that there were also magnetic fields on the outside of our
+can. It was only when we threw away the parts of the capacitor plates
+beyond the edges of the can that net currents had to appear on the
+insides of the vertical walls.</p>
+</div>
+<div id="Ch23-F8" class="figure">
+<img src="img/FLP_II/f23-08/f23-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–8.</span>Coupling into and out of a resonant cavity.
+</div>
+</div>
+<div id="Ch23-S3-p10" class="para">
+<p class="p">Although the electric and magnetic fields in the completely enclosed
+can will gradually die away because of the energy losses, we can stop
+this from happening if we make a little hole in the can and put in a
+little bit of electrical energy to make up the losses. We take a small
+wire, poke it through the hole in the side of the can, and fasten it
+to the inside wall so that it makes a small loop, as shown in
+Fig. <a href="#Ch23-F8">23–8</a>. If we now connect this wire to a source of
+high-frequency alternating current, this current will couple energy into
+the electric and magnetic fields of the cavity and keep the oscillations
+going. This will happen, of course, only if the frequency of the driving
+source is at the resonant frequency of the can. If the source is at the
+wrong frequency, the electric and magnetic fields will not resonate, and
+the fields in the can will be very weak.</p>
+</div>
+<div id="Ch23-F9" class="figure">
+<img src="img/FLP_II/f23-09/f23-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–9.</span>A setup for observing the cavity resonance.
+</div>
+</div>
+<div id="Ch23-S3-p11" class="para">
+<p class="p">The resonant behavior can easily be seen by making another small hole
+in the can and hooking in another coupling loop, as we have also drawn
+in Fig. <a href="#Ch23-F8">23–8</a>. The changing magnetic field through this loop will
+generate an induced electromotive force in the loop. If this loop is
+now connected to some external measuring circuit, the currents will be
+proportional to the strength of the fields in the cavity. Suppose we
+now connect the input loop of our cavity to an RF signal generator, as
+shown in Fig. <a href="#Ch23-F9">23–9</a>. The signal generator contains a source of
+alternating current whose frequency can be varied by varying the knob
+on the front of the generator. Then we connect the output loop of the
+cavity to a “detector,” which is an instrument that measures the
+current from the output loop. It gives a meter reading proportional to
+this current. If we now measure the output current as a function of
+the frequency of the signal generator, we find a curve like that shown
+in Fig. <a href="#Ch23-F10">23–10</a>. The output current is small for all frequencies
+except those very near the frequency $\omega_0$, which is the resonant
+frequency of the cavity. The resonance curve is very much like those
+we described in Chapter <a href="I_23.html">23</a> of Vol. I. The width of the
+resonance is however, much narrower than we usually find for resonant
+circuits made of inductances and capacitors; that is, the $Q$ of the
+cavity is very high. It is not unusual to find $Q$’s as high
+as $100{,}000$ or more if the inside walls of the cavity are made of some
+material with a very good conductivity, such as silver.</p>
+</div>
+<div id="Ch23-F10" class="figure">
+<img src="img/FLP_II/f23-10/f23-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–10.</span>The frequency response curve of a resonant cavity.
+</div>
+</div>
+</div>
+<div id="Ch23-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">23–4</span>Cavity modes</h3>
+<div id="Ch23-S4-p1" class="para">
+<p class="p">Suppose we now try to check our theory by making measurements with an
+actual can. We take a can which is a cylinder with a diameter of
+$3.0$ inches and a height of about $2.5$ inches. The can is fitted with
+an input and output loop, as shown in Fig. <a href="#Ch23-F8">23–8</a>. If we
+calculate the resonant frequency expected for this can according to
+Eq. (<a href="#mjx-eqn-EqII2318">23.18</a>), we get that
+$f_0=$ $\omega_0/2\pi=$ $3010$ megacycles. When we set the frequency of our
+signal generator near $3000$ megacycles and vary it slightly until we
+find the resonance, we observe that the maximum output current occurs
+for a frequency of $3050$ megacycles, which is quite close to the
+predicted resonant frequency, but not exactly the same. There are
+several possible reasons for the discrepancy. Perhaps the resonant
+frequency is changed a little bit because of the holes we have cut to
+put in the coupling loops. A little thought, however, shows that the
+holes should lower the resonant frequency a little bit, so that cannot
+be the reason. Perhaps there is some slight error in the frequency
+calibration of the signal generator, or perhaps our measurement of the
+diameter of the cavity is not accurate enough. Anyway, the agreement is
+fairly close.</p>
+</div>
+<div id="Ch23-F11" class="figure">
+<img src="img/FLP_II/f23-11/f23-11_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–11.</span>Observed resonant frequencies of a cylindrical cavity.
+</div>
+</div>
+<div id="Ch23-S4-p2" class="para">
+<p class="p">Much more important is something that happens if we vary the frequency
+of our signal generator somewhat further from $3000$ megacycles. When we
+do that we get the results shown in Fig. <a href="#Ch23-F11">23–11</a>. We find
+that, in addition to the resonance we expected near $3000$ megacycles,
+there is also a resonance near $3300$ megacycles and one near
+$3820$ megacycles. What do these extra resonances mean? We might get a
+clue from Fig. <a href="#Ch23-F6">23–6</a>. Although we have been assuming that
+the first zero of the Bessel function occurs at
+the edge of the can, it could also be that the second zero of the Bessel
+function corresponds to the edge of the can, so
+that there is one complete oscillation of the electric field as we move
+from the center of the can out to the edge, as shown in
+Fig. <a href="#Ch23-F12">23–12</a>. This is another possible mode for the
+oscillating fields. We should certainly expect the can to resonate in
+such a mode. But notice, the second zero of the Bessel
+function occurs at $x=5.52$, which is over twice
+as large as the value at the first zero. The resonant frequency of this
+mode should therefore be higher than $6000$ megacycles. We would, no
+doubt, find it there, but it doesn’t explain the resonance we observe
+at $3300$.</p>
+</div>
+<div id="Ch23-F12" class="figure">
+<img class="first" src="img/FLP_II/f23-12/f23-12_tc_big_a.svgz"><img class="last" src="img/FLP_II/f23-12/f23-12_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 23–12.</span>A higher-frequency mode.
+</div>
+</div>
+<div id="Ch23-S4-p3" class="para">
+<p class="p">The trouble is that in our analysis of the behavior of a resonant
+cavity we have considered only one possible geometric arrangement of
+the electric and magnetic fields. We have assumed that the electric
+fields are vertical and that the magnetic fields lie in horizontal
+circles. But other fields are possible. The only requirements are that
+the fields should satisfy Maxwell’s
+equations inside the can and that the
+electric field should meet the wall at right angles. We have considered
+the case in which the top and the bottom of the can are flat, but things
+would not be completely different if the top and bottom were curved. In
+fact, how is the can supposed to know which is its top and bottom, and
+which are its sides? It is, in fact, possible to show that there is a
+mode of oscillation of the fields inside the can in which the electric
+fields go more or less across the diameter of the can, as shown in
+Fig. <a href="#Ch23-F13">23–13</a>.
+</p>
+</div>
+<div id="Ch23-F13" class="figure">
+<img src="img/FLP_II/f23-13/f23-13_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–13.</span>A transverse mode of the cylindrical cavity.
+</div>
+</div>
+<div id="Ch23-S4-p4" class="para">
+<p class="p">It is not too hard to understand why the natural frequency of this
+mode should be not very different from the natural frequency of the
+first mode we have considered. Suppose that instead of our cylindrical
+cavity we had taken a cavity which was a cube $3$ inches on a side. It
+is clear that this cavity would have three different modes, but all
+with the same frequency. A mode with the electric field going more or
+less up and down would certainly have the same frequency as the mode
+in which the electric field was directed right and left. If we now
+distort the cube into a cylinder, we will change these frequencies
+somewhat. We would still expect them not to be changed too much,
+provided we keep the dimensions of the cavity more or less the same. So
+the frequency of the mode of Fig. <a href="#Ch23-F13">23–13</a> should not be too
+different from the mode of Fig. <a href="#Ch23-F8">23–8</a>. We could make a
+detailed calculation of the natural frequency of the mode shown in
+Fig. <a href="#Ch23-F13">23–13</a>, but we will not do that now. When the
+calculations are carried through, it is found that, for the dimensions
+we have assumed, the resonant frequency comes out very close to the
+observed resonance at $3300$ megacycles.</p>
+</div>
+<div id="Ch23-F14" class="figure">
+<img src="img/FLP_II/f23-14/f23-14_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–14.</span>Another mode of a cylindrical cavity.
+</div>
+</div>
+<div id="Ch23-S4-p5" class="para">
+<p class="p">By similar calculations it is possible to show that there should be
+still another mode at the other resonant frequency we found near
+$3800$ megacycles. For this mode, the electric and magnetic fields are
+as shown in Fig. <a href="#Ch23-F14">23–14</a>. The electric field does not bother to go all
+the way across the cavity. It goes from the sides to the ends, as
+shown.</p>
+</div>
+<div id="Ch23-S4-p6" class="para">
+<p class="p">As you will probably now believe, if we go higher and higher in
+frequency we should expect to find more and more resonances. There are
+many different modes, each of which will have a different resonant
+frequency corresponding to some particular complicated arrangement of
+the electric and magnetic fields. Each of these field arrangements is
+called a resonant <em class="emph">mode</em>. The resonance
+frequency of each mode can be calculated by solving Maxwell’s
+equations for the electric and
+magnetic fields in the cavity.
+</p>
+</div>
+<div id="Ch23-F15" class="figure">
+<img class="first" src="img/FLP_II/f23-15/f23-15_tc_iPad_big_a.svgz"><img class="middle" src="img/FLP_II/f23-15/f23-15_tc_iPad_big_b.svgz"><img class="last" src="img/FLP_II/f23-15/f23-15_tc_iPad_big_c.svgz"><div class="caption">
+<span class="tag">Fig. 23–15.</span>A short metal wire inserted into a cavity will disturb the
+resonance much more when it is parallel to $\FigE$ than when it is at
+right angles.
+</div>
+</div>
+<div id="Ch23-S4-p7" class="para">
+<p class="p">When we have a resonance at some particular frequency, how can we know
+which mode is being excited? One way is to poke a little wire into the
+cavity through a small hole. If the electric field is along the wire, as
+in Fig. <a href="#Ch23-F15">23–15</a>(a), there will be relatively large currents
+in the wire, sapping energy from the fields, and the resonance will be
+suppressed. If the electric field is as shown in
+Fig. <a href="#Ch23-F15">23–15</a>(b), the wire will have a much smaller effect. We
+could find which way the field points in this mode by bending the end of
+the wire, as shown in Fig. <a href="#Ch23-F15">23–15</a>(c). Then, as we rotate the
+wire, there will be a big effect when the end of the wire is parallel
+to $\FLPE$ and a small effect when it is rotated so as to be at $90^\circ$
+to $\FLPE$.</p>
+</div>
+</div>
+<div id="Ch23-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">23–5</span>Cavities and resonant circuits</h3>
+<div id="Ch23-S5-p1" class="para">
+<p class="p">Although the resonant cavity we have been describing seems to be quite
+different from the ordinary resonant circuit consisting of an inductance
+and a capacitor, the two resonant systems are, of course, closely
+related. They are both members of the same family; they are just two
+extreme cases of electromagnetic resonators—and there are many
+intermediate cases between these two extremes. Suppose we start by
+considering the resonant circuit of a capacitor in parallel with an
+inductance, as shown in Fig. <a href="#Ch23-F16">23–16</a>(a). This circuit will
+resonate at the frequency $\omega_0=1/\sqrt{LC}$. If we want to raise
+the resonant frequency of this circuit, we can do so by lowering the
+inductance $L$. One way is to decrease the number of turns in the coil.
+We can, however, go only so far in this direction. Eventually we will
+get down to the last turn, and we will have just a piece of wire joining
+the top and bottom plates of the condenser. We could raise the resonant
+frequency still further by making the capacitance smaller; however, we
+can also continue to decrease the inductance by putting several
+inductances in parallel. Two one-turn inductances in parallel will have
+only half the inductance of each turn. So when our inductance has been
+reduced to a single turn, we can continue to raise the resonant
+frequency by adding other single loops from the top plate to the bottom
+plate of the condenser. For instance, Fig. <a href="#Ch23-F16">23–16</a>(b) shows
+the condenser plates connected by six such “single-turn inductances.”
+If we continue to add many such pieces of wire, we can make the
+transition to the completely enclosed resonant system shown in part (c)
+of the figure, which is a drawing of the cross section of a
+cylindrically symmetrical object. Our inductance is now a cylindrical
+hollow can attached to the edges of the condenser plates. The electric
+and magnetic fields will be as shown in the figure. Such an object is,
+of course, a resonant cavity. It is called a “loaded” cavity. But we
+can still think of it as an $L$-$C$ circuit in which the capacity
+section is the region where we find most of the electric field and the
+inductance section is that region where we find most of the magnetic
+field.</p>
+</div>
+<div id="Ch23-F16" class="figure">
+<img class="first" src="img/FLP_II/f23-16/f23-16_tc_iPad_big_a.svgz"><img class="middle" src="img/FLP_II/f23-16/f23-16_tc_iPad_big_b.svgz"><img class="last" src="img/FLP_II/f23-16/f23-16_tc_iPad_big_c.svgz"><div class="caption">
+<span class="tag">Fig. 23–16.</span>Resonators of progressively higher resonant frequencies.
+</div>
+</div>
+<div id="Ch23-S5-p2" class="para">
+<p class="p">If we want to make the frequency of the resonator in
+Fig. <a href="#Ch23-F16">23–16</a>(c) still higher, we can do so by continuing to
+decrease the inductance $L$. To do that, we must decrease the geometric
+dimensions of the inductance section, for example by decreasing the
+dimension $h$ in the drawing. As $h$ is decreased, the resonant
+frequency will be increased. Eventually, of course, we will get to the
+situation in which the height $h$ is just equal to the separation
+between the condenser plates. We then have just a cylindrical can; our
+resonant circuit has become the cavity resonator of
+Fig. <a href="#Ch23-F7">23–7</a>.</p>
+</div>
+<div id="Ch23-S5-p3" class="para">
+<p class="p">You will notice that in the original $L$-$C$ resonant circuit of
+Fig. <a href="#Ch23-F16">23–16</a> the electric and magnetic fields are quite
+separate. As we have gradually modified the resonant system to make
+higher and higher frequencies, the magnetic field has been brought
+closer and closer to the electric field until in the cavity resonator
+the two are quite intermixed.</p>
+</div>
+<div id="Ch23-S5-p4" class="para">
+<p class="p">Although the cavity resonators we have talked about in this chapter
+have been cylindrical cans, there is nothing magic about the
+cylindrical shape. A can of any shape will have resonant frequencies
+corresponding to various possible modes of oscillations of the
+electric and magnetic fields. For example, the “cavity” shown in
+Fig. <a href="#Ch23-F17">23–17</a> will have its own particular set of resonant
+frequencies—although they would be rather difficult to calculate.</p>
+</div>
+<div id="Ch23-F17" class="figure">
+<img src="img/FLP_II/f23-17/f23-17_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 23–17.</span>Another resonant cavity.
+</div>
+</div>
+</div>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

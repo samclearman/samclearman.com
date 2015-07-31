@@ -1,0 +1,2878 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 18: Angular Momentum</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "18." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0],
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+
+<div id="Ch18" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">18</span>Angular Momentum</h2>
+
+<div id="Ch18-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">18–1</span>Electric dipole radiation</h3>
+
+<div id="Ch18-S1-p1" class="para">
+<p class="p">In the last chapter we developed the idea of the conservation of
+angular momentum in quantum mechanics, and showed how it might be used
+to predict the angular distribution of the proton from the
+disintegration of the $\Lambda$-particle. We want now to give you a
+number of other, similar, illustrations of the consequences of
+momentum conservation in atomic systems. Our first example is the
+radiation of light from an atom. The conservation of angular momentum
+(among other things) will determine the polarization and angular
+distribution of the emitted photons.
+</p>
+</div>
+
+<div id="Ch18-S1-p2" class="para">
+<p class="p">Suppose we have an atom which is in an excited state of definite
+angular momentum—say with a spin of one—and it makes a transition
+to a state of angular momentum zero at a lower energy, emitting a
+photon. The problem is to figure out the angular distribution and
+polarization of the photons. (This problem is almost exactly the same
+as the $\Lambda^0$ disintegration, except that we have spin-one
+instead of spin one-half particles.) Since the upper state of the atom
+is spin one, there are three possibilities for its $z$-component of
+angular momentum. The value of&nbsp;$m$ could be $+1$,&nbsp;or $0$, or&nbsp;$-1$. We
+will take&nbsp;$m=+1$ for our example. Once you see how it goes, you can
+work out the other cases. We suppose that the atom is sitting with its
+angular momentum along the $+z$-axis—as in
+Fig.&nbsp;<a href="#Ch18-F1">18–1</a>(a)—and ask with what amplitude it will emit
+right circularly polarized light upward along the $z$-axis, so that the
+atom ends up with zero angular momentum—as shown in part&nbsp;(b) of the
+figure. Well, we don’t know the answer to that. But we do know that
+right circularly polarized light has one unit of angular momentum about
+its direction of propagation. So after the photon is emitted, the
+situation would have to be as shown in Fig.&nbsp;<a href="#Ch18-F1">18–1</a>(b)—the
+atom is left with zero angular momentum about the $z$-axis, since we
+have assumed an atom whose lower state is spin zero. We will let&nbsp;$a$
+stand for the amplitude for such an event. More precisely, we let&nbsp;$a$ be
+the amplitude to emit a photon into a certain small solid
+angle&nbsp;$\Delta\Omega$, centered on the $z$-axis, during a time&nbsp;$dt$. Notice
+that the amplitude to emit a LHC photon in the same direction is zero.
+The net angular momentum about the $z$-axis would be&nbsp;$-1$ for such a
+photon and zero for the atom for a total of&nbsp;$-1$, which would not
+conserve angular momentum.
+</p>
+</div>
+
+<div id="Ch18-F1" class="figure">
+<img src="img/FLP_III/f18-01/f18-01_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 18–1.</span>
+An atom with&nbsp;$m=+1$ emits a RHC photon along the $+z$-axis.
+</div>
+</div>
+
+<div id="Ch18-S1-p3" class="para">
+<p class="p">Similarly, if the spin of the atom is initially “down” ($-1$&nbsp;along
+the $z$-axis), it can emit only a LHC polarized photon in the
+direction of the $+z$-axis, as shown in Fig.&nbsp;<a href="#Ch18-F2">18–2</a>. We
+will let&nbsp;$b$ stand for the amplitude for this event—meaning again the
+amplitude that the photon goes into a certain solid
+angle&nbsp;$\Delta\Omega$. On the other hand, if the atom is in the $m=0$&nbsp;state, it
+cannot emit a photon in the $+z$-direction at all, because a photon can
+have only the angular momentum $+1$ or&nbsp;$-1$ along its direction of
+motion.
+</p>
+</div>
+
+<div id="Ch18-F2" class="figure">
+<img src="img/FLP_III/f18-02/f18-02_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 18–2.</span>
+An atom with&nbsp;$m=-1$ emits a LHC photon along the $+z$-axis.
+</div>
+</div>
+
+<div id="Ch18-S1-p4" class="para">
+<p class="p">Next, we can show that $b$ is related to&nbsp;$a$. Suppose we perform an
+inversion of the situation in Fig.&nbsp;<a href="#Ch18-F1">18–1</a>, which means
+that we should imagine what the system would look like if we were to
+move each part of the system to an equivalent point on the opposite side
+of the origin. This does <em class="emph">not</em> mean that we should reflect the
+angular momentum vectors, because they are artificial. We should,
+rather, invert the actual character of the motion that would correspond
+to such an angular momentum. In Fig.&nbsp;<a href="#Ch18-F3">18–3</a>(a) and&nbsp;(b) we
+show what the process of Fig.&nbsp;<a href="#Ch18-F1">18–1</a> looks like before and
+after an inversion with respect to the center of the atom. Notice that
+the sense of rotation of the atom is unchanged.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> In the inverted
+system of Fig.&nbsp;<a href="#Ch18-F3">18–3</a>(b) we have an atom with&nbsp;$m=+1$
+emitting a LHC photon downward.
+</p>
+</div>
+
+<div id="Ch18-F3" class="figure">
+<img src="img/FLP_III/f18-03/f18-03_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 18–3.</span>
+If the process of&nbsp;(a) is transformed by an inversion through
+the center of the atom, it appears as in&nbsp;(b).
+</div>
+</div>
+
+<div id="Ch18-S1-p5" class="para">
+<p class="p">If we now rotate the system of Fig.&nbsp;<a href="#Ch18-F3">18–3</a>(b)
+by&nbsp;$180^\circ$ about the $x$- or&nbsp;$y$-axis, it becomes identical to
+Fig.&nbsp;<a href="#Ch18-F2">18–2</a>. The combination of the inversion and rotation
+turns the second process into the first. Using Table&nbsp;<a href="III_17.html#Ch17-T2">17–2</a>,
+we see that a rotation of&nbsp;$180^\circ$ about the $y$-axis just throws an
+$m=-1$&nbsp;state into an $m=+1$&nbsp;state, so the amplitude&nbsp;$b$ must be equal to
+the amplitude&nbsp;$a$ <em class="emph">except for a possible sign change due to the
+inversion</em>. The sign change in the inversion will depend on the parities
+of the initial and final state of the atom.
+</p>
+</div>
+
+<div id="Ch18-S1-p6" class="para">
+<p class="p">In atomic processes,
+parity is conserved, so the parity of the whole
+system must be the same before and after the photon emission. What
+happens will depend on whether the parities of the initial and final
+states of the atom are even or odd—the angular distribution of the
+radiation will be different for different cases. We will take the
+common case of <em class="emph">odd</em> parity for the initial state and <em class="emph">even</em>
+parity for the final state; it will give what is called “electric
+dipole radiation.” (If the initial and final states have the same
+parity we say there is “magnetic dipole radiation,” which has the
+character of the radiation from an oscillating current in a loop.) If
+the parity of the initial state is odd, its amplitude reverses its
+sign in the inversion which takes the system from (a) to&nbsp;(b) of
+Fig.&nbsp;<a href="#Ch18-F3">18–3</a>. The final state of the atom has even parity, so
+its amplitude doesn’t change sign. If the reaction is going to conserve
+parity, the amplitude&nbsp;$b$ must be equal to&nbsp;$a$ in magnitude but of the
+opposite sign.
+</p>
+</div>
+
+<div id="Ch18-S1-p7" class="para">
+<p class="p">We conclude that if the amplitude is&nbsp;$a$ that an $m=+1$&nbsp;state will
+emit a photon upward, then for the assumed parities of the initial and
+final states the amplitude that an $m=-1$&nbsp;state will emit a LHC photon
+upward is&nbsp;$-a$.<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+</p>
+</div>
+
+<div id="Ch18-S1-p8" class="para">
+<p class="p">We have all we need to know to find the amplitude for a photon to be
+emitted at any angle&nbsp;$\theta$ with respect to the $z$-axis. Suppose we
+have an atom originally polarized with&nbsp;$m=+1$. We can resolve this
+state into $+1$,&nbsp;$0$, and&nbsp;$-1$ states with respect to a new $z'$-axis
+in the direction of the photon emission. The amplitudes for these
+three states are just the ones given in the lower half of
+Table&nbsp;<a href="III_17.html#Ch17-T2">17–2</a>. The amplitude that a RHC photon is emitted in
+the direction&nbsp;$\theta$ is then $a$&nbsp;times the amplitude to have $m=+1$ in
+that direction, namely,
+\begin{equation}
+\label{Eq:III:18:1}
+a\bracket{+}{R_y(\theta)}{+}=\frac{a}{2}\,(1+\cos\theta).
+\end{equation}
+The amplitude that a LHC photon is emitted in the same direction is
+$-a$&nbsp;times the amplitude to have $m=-1$ in the new direction. Using
+Table&nbsp;<a href="III_17.html#Ch17-T2">17–2</a>, it is
+\begin{equation}
+\label{Eq:III:18:2}
+-a\bracket{-}{R_y(\theta)}{+}=-\frac{a}{2}\,(1-\cos\theta).
+\end{equation}
+If you are interested in other polarizations you can find out the
+amplitude for them from the superposition of these two amplitudes. To
+get the intensity of any component as a function of angle, you must,
+of course, take the absolute square of the amplitudes.
+</p>
+</div>
+
+</div> <!-- end of section -->
+
+<div id="Ch18-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">18–2</span>Light scattering</h3>
+
+<div id="Ch18-F4" class="figure">
+<img src="img/FLP_III/f18-04/f18-04_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 18–4.</span>
+The scattering of light by an atom seen as a two-step process.
+</div>
+</div>
+
+<div id="Ch18-S2-p1" class="para">
+<p class="p">Let’s use these results to solve a somewhat more complicated
+problem—but also one which is somewhat more real. We suppose that
+the same atoms are sitting in their ground state&nbsp;($j=0$), and
+<em class="emph">scatter</em> an incoming beam of light. Let’s say that the light is
+going initially in the $+z$-direction, so that we have photons coming
+up to the atom <em class="emph">from</em> the $-z$-direction, as shown in
+Fig.&nbsp;<a href="#Ch18-F4">18–4</a>(a). We can consider the scattering of light as a
+two-step process: The photon is absorbed, and then is re-emitted. If we
+start with a RHC photon as in Fig.&nbsp;<a href="#Ch18-F4">18–4</a>(a), and angular
+momentum is conserved, the atom will be in an $m=+1$&nbsp;state after the
+absorption—as shown in Fig.&nbsp;<a href="#Ch18-F4">18–4</a>(b). We call the
+amplitude for this process&nbsp;$c$. The atom can then emit a RHC photon in
+the direction&nbsp;$\theta$—as in Fig.&nbsp;<a href="#Ch18-F4">18–4</a>(c). The total
+amplitude that a RHC photon is scattered in the direction&nbsp;$\theta$ is
+just $c$&nbsp;times&nbsp;(<a href="#mjx-eqn-EqIII181">18.1</a>). Let’s call this scattering
+amplitude&nbsp;$\bracket{R'}{S}{R}$; we have
+\begin{equation}
+\label{Eq:III:18:3}
+\bracket{R'}{S}{R}=\frac{ac}{2}\,(1+\cos\theta).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch18-S2-p2" class="para">
+<p class="p">There is also an amplitude that a RHC photon will be absorbed and that
+a LHC photon will be emitted. The product of the two amplitudes is the
+amplitude&nbsp;$\bracket{L'}{S}{R}$ that a RHC photon is scattered as a LHC
+photon. Using&nbsp;(<a href="#mjx-eqn-EqIII182">18.2</a>), we have
+\begin{equation}
+\label{Eq:III:18:4}
+\bracket{L'}{S}{R}=-\frac{ac}{2}\,(1-\cos\theta).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch18-S2-p3" class="para">
+<p class="p">Now let’s ask about what happens if a LHC photon comes in. When it is
+absorbed, the atom will go into an $m=-1$&nbsp;state. By the same kind of
+arguments we used in the preceding section, we can show that this
+amplitude must be&nbsp;$-c$. The amplitude that an atom in the $m=-1$&nbsp;state
+will emit a RHC photon at the angle&nbsp;$\theta$ is $a$&nbsp;times the
+amplitude&nbsp;$\bracket{+}{R_y(\theta)}{-}$, which
+is&nbsp;$\tfrac{1}{2}(1-\cos\theta)$. So we have
+\begin{equation}
+\label{Eq:III:18:5}
+\bracket{R'}{S}{L}=-\frac{ac}{2}\,(1-\cos\theta).
+\end{equation}
+Finally, the amplitude for a LHC photon to be scattered as a LHC
+photon is
+\begin{equation}
+\label{Eq:III:18:6}
+\bracket{L'}{S}{L}=\frac{ac}{2}\,(1+\cos\theta).
+\end{equation}
+(There are two minus signs which cancel.)
+</p>
+</div>
+
+<div id="Ch18-S2-p4" class="para">
+<p class="p">If we make a measurement of the scattered <em class="emph">intensity</em> for any
+given combination of circular polarizations it will be proportional to
+the square of one of our four amplitudes. For instance, with an
+incoming beam of RHC light the intensity of the RHC light in the
+scattered radiation will vary as&nbsp;$(1+\cos\theta)^2$.
+</p>
+</div>
+
+<div id="Ch18-S2-p5" class="para">
+<p class="p">That’s all very well, but suppose we start out with <em class="emph">linearly</em>
+polarized light. What then? If we have $x$-polarized light, it can be
+represented as a superposition of RHC and LHC light. We write (see
+Section&nbsp;<a href="III_11.html#Ch11-S4">11-4</a>)
+\begin{equation}
+\label{Eq:III:18:7}
+\ket{x}=\frac{1}{\sqrt{2}}\,(\ket{R}+\ket{L}).
+\end{equation}
+Or, if we have $y$-polarized light, we would have
+\begin{equation}
+\label{Eq:III:18:8}
+\ket{y}=-\frac{i}{\sqrt{2}}\,(\ket{R}-\ket{L}).
+\end{equation}
+Now what do you want to know? Do you want the amplitude that an
+$x$-polarized photon will scatter into a RHC photon at the
+angle&nbsp;$\theta$? You can get it by the usual rule for combining
+amplitudes. First, multiply&nbsp;(<a href="#mjx-eqn-EqIII187">18.7</a>) by&nbsp;$\bra{R'}\,S$ to
+get
+\begin{equation}
+\label{Eq:III:18:9}
+\bracket{R'}{S}{x}=\!\frac{1}{\sqrt{2}}\,
+(\bracket{R'}{S}{R}\!+\!\bracket{R'}{S}{L}),
+\end{equation}
+and then use (<a href="#mjx-eqn-EqIII183">18.3</a>) and&nbsp;(<a href="#mjx-eqn-EqIII185">18.5</a>) for the two
+amplitudes. You get
+\begin{equation}
+\label{Eq:III:18:10}
+\bracket{R'}{S}{x}=\frac{ac}{\sqrt{2}}\cos\theta.
+\end{equation}
+If you wanted the amplitude that an $x$-photon would scatter into a
+LHC photon, you would get
+\begin{equation}
+\label{Eq:III:18:11}
+\bracket{L'}{S}{x}=\frac{ac}{\sqrt{2}}\cos\theta.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch18-S2-p6" class="para">
+<p class="p">Finally, suppose you wanted to know the amplitude that an
+$x$-polarized photon will scatter while keeping its
+$x$-polarization. What you want is&nbsp;$\bracket{x'}{S}{x}$. This can be
+written as
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:18:12}
+\bracket{x'}{S}{x}=\braket{x'}{R'}\bracket{R'}{S}{x}+
+\braket{x'}{L'}\bracket{L'}{S}{x}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\bracket{x'}{S}{x}=\,&\braket{x'}{R'}\bracket{R'}{S}{x}\notag\\[.5ex]
+\label{Eq:III:18:12}
++\,&\braket{x'}{L'}\bracket{L'}{S}{x}.
+\end{align}
+</span>
+If you then use the relations
+
+\begin{align}
+\label{Eq:III:18:13}
+\ket{R'}&=\frac{1}{\sqrt{2}}\,(\ket{x'}+i\,\ket{y'}),\\[1ex]
+\label{Eq:III:18:14}
+\ket{L'}&=\frac{1}{\sqrt{2}}\,(\ket{x'}-i\,\ket{y'})
+\end{align}
+
+it follows that
+
+\begin{align}
+\label{Eq:III:18:15}
+\braket{x'}{R'}&=\frac{1}{\sqrt{2}},\\[1ex]
+\label{Eq:III:18:16}
+\braket{x'}{L'}&=\frac{1}{\sqrt{2}}.
+\end{align}
+
+So you get that
+
+\begin{equation}
+\label{Eq:III:18:17}
+\bracket{x'}{S}{x}=ac\cos\theta.
+\end{equation}
+
+The answer is that a beam of $x$-polarized light will be scattered at
+the direction&nbsp;$\theta$ (in the $xz$-plane) with an <em class="emph">intensity</em>
+proportional to&nbsp;$\cos^2\theta$. If you ask about $y$-polarized light,
+you find that
+\begin{equation}
+\label{Eq:III:18:18}
+\bracket{y'}{S}{x}=0.
+\end{equation}
+So the scattered light is completely polarized in the $x$-direction.
+</p>
+</div>
+
+<div id="Ch18-S2-p7" class="para">
+<p class="p">Now we notice something interesting. The results (<a href="#mjx-eqn-EqIII1817">18.17</a>)
+and&nbsp;(<a href="#mjx-eqn-EqIII1818">18.18</a>) correspond exactly to the classical theory of
+light scattering we gave in Vol.&nbsp;I, Section&nbsp;<a href="I_32.html#Ch32-S5">32-5</a>, where
+we imagined that the electron was bound to the atom by a linear
+restoring force—so that it acted like a classical oscillator. Perhaps
+you are thinking: “It’s so much easier in the classical theory; if it
+gives the right answer why bother with the quantum theory?” For one
+thing, we have considered so far only the special—though common—case
+of an atom with a $j=1$&nbsp;excited state and a $j=0$&nbsp;ground state. If the
+excited state had spin two, you would get a different result. Also,
+there is no reason why the model of an electron attached to a spring and
+driven by an oscillating electric field should work for a single photon.
+But we have found that it does in fact work, and that the polarization
+and intensities come out right. So in a certain sense we are bringing
+the whole course around to the real truth. Whereas we have, in Vol.&nbsp;I,
+done the theory of the index of refraction, and of light scattering, by
+the classical theory, we have now shown that the quantum theory gives
+the same result for the most common case. In effect we have now done the
+polarization of sky light, for instance, by quantum mechanical
+arguments, which is the only truly legitimate way.
+</p>
+</div>
+
+<div id="Ch18-S2-p8" class="para">
+<p class="p">It should be, of course, that all the classical theories which work
+are supported ultimately by legitimate quantum arguments. Naturally,
+those things which we have spent a great deal of time in explaining to
+you were selected from just those parts of classical physics which
+still maintain validity in quantum mechanics. You’ll notice that we
+did not discuss in great detail any model of the atom which has
+electrons going around in orbits. That’s because such a model doesn’t
+give results which agree with the quantum mechanics. But the electron
+on a spring—which is not, in a sense, at all the way an atom
+“looks”—does work, and so we used that model for the theory of the
+index of refraction.
+</p>
+</div>
+
+</div> <!-- end of section -->
+
+<div id="Ch18-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">18–3</span>The annihilation of positronium</h3>
+
+<div id="Ch18-S3-p1" class="para">
+<p class="p">We would like next to take an example which is very pretty. It is
+quite interesting and, although somewhat complicated, we hope not too
+much so. Our example is the system called <em class="emph">positronium</em>, which is
+an “atom” made up of an electron and a positron—a bound state of
+an e$^+$ and an e$^-$. It is like a hydrogen atom, except that a
+positron replaces the proton. This object has—like the hydrogen
+atom—many states. Also like the hydrogen, the ground state is split
+into a “hyperfine structure” by the interaction of the magnetic
+moments. The spins of the electron and positron are each one-half, and
+they can be either parallel or antiparallel to any given axis. (In the
+ground state there is no other angular momentum due to orbital
+motion.) So there are four states: three are the substates of a
+spin-one system, all with the same energy; and one is a state of spin
+zero with a different energy. The energy splitting is, however, much
+larger than the $1420$&nbsp;megacycles of hydrogen because the positron
+magnetic moment is so much stronger—$1000$&nbsp;times stronger—than the
+proton moment.
+</p>
+</div>
+
+<div id="Ch18-S3-p2" class="para">
+<p class="p">The most important difference, however, is that positronium cannot
+last forever. The positron is the antiparticle of the electron; they
+can annihilate each other. The two particles disappear
+completely—converting their rest energy into radiation, which
+appears as $\gamma$-rays (photons). In the disintegration, two
+particles with a finite rest mass go into two or more objects which
+have zero rest mass.<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a>
+</p>
+</div>
+
+<div id="Ch18-S3-p3" class="para">
+<p class="p">We begin by analyzing the disintegration of the spin-zero state of the
+positronium. It disintegrates into two $\gamma$-rays with a lifetime
+of about $10^{-10}$&nbsp;second. Initially, we have a positron and an
+electron close together and with spins antiparallel, making the
+positronium system. After the disintegration there are two photons
+going out with equal and opposite momenta (Fig.&nbsp;<a href="#Ch18-F5">18–5</a>).
+The momenta must be equal and opposite, because the total momentum after
+the disintegration must be zero, as it was before, if we are taking the
+case of annihilation at rest. If the positronium is not at rest, we can
+ride with it, solve the problem, and then transform everything back to
+the lab system. (See, we can do anything now; we have all the tools.)
+</p>
+</div>
+
+<div id="Ch18-F5" class="figure">
+<img src="img/FLP_III/f18-05/f18-05_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 18–5.</span>
+The two-photon annihilation of positronium.
+</div>
+</div>
+
+<div id="Ch18-S3-p4" class="para">
+<p class="p">First, we note that the angular distribution is not very
+interesting. Since the initial state has spin zero, it has no special
+axis—it is symmetric under all rotations. The final state must then
+also be symmetric under all rotations. That means that all angles for
+the disintegration are equally likely—the amplitude is the same for
+a photon to go in any direction. Of course, once we find <em class="emph">one</em> of
+the photons in some direction the <em class="emph">other</em> must be opposite.
+</p>
+</div>
+
+<div id="Ch18-S3-p5" class="para">
+<p class="p">The only remaining question, which we now want to look at, is about
+the polarization of the photons. Let’s call the directions of motion
+of the two photons the plus and minus $z$-axes. We can use any
+representations we want for the polarization states of the photons; we
+will choose for our description right and left circular
+polarization—always with respect to the directions of
+motion.<a name="footnote_source_4" href="#footnote_4"><sup class="mark">4</sup></a> Right away, we can see that if the photon going
+upward is RHC, then angular momentum will be conserved if the downward
+going photon is also RHC. Each will carry $+1$&nbsp;unit of angular
+momentum <em class="emph">with respect to its momentum direction</em>, which means
+plus and minus one unit about the $z$-axis. The total will be zero,
+and the angular momentum after the disintegration will be the same as
+before. See Fig.&nbsp;<a href="#Ch18-F6">18–6</a>.
+</p>
+</div>
+
+<div id="Ch18-F6" class="figure">
+<img src="img/FLP_III/f18-06/f18-06_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 18–6.</span>
+One possibility for positronium annihilation along the
+$z$-axis.
+</div>
+</div>
+
+<div id="Ch18-S3-p6" class="para">
+<p class="p">The same arguments show that if the upward going photon is RHC, the
+downward cannot be LHC. Then the final state would have two units of
+angular momentum. This is not permitted if the initial state has spin
+zero. Note that such a final state is also not possible for the other
+positronium ground state of spin one, because it can have a maximum of
+one unit of angular momentum in any direction.
+</p>
+</div>
+
+<div id="Ch18-S3-p7" class="para">
+<p class="p">Now we want to show that two-photon annihilation is not possible at
+all from the spin-one state. You might think that if we took the
+$j=1$, $m=0$&nbsp;state—which has zero angular momentum about the
+$z$-axis—it should be like the spin-zero state, and could
+disintegrate into two RHC photons. Certainly, the disintegration
+sketched in Fig.&nbsp;<a href="#Ch18-F7">18–7</a>(a) conserves angular momentum
+about the $z$-axis. But now look what happens if we rotate this system
+around the $y$-axis by&nbsp;$180^\circ$; we get the picture shown in
+Fig.&nbsp;<a href="#Ch18-F7">18–7</a>(b). It is exactly the same as in part&nbsp;(a) of the
+figure. All we have done is interchange the two photons. Now photons are
+Bose particles; if we interchange them, the amplitude has the same sign,
+so the amplitude for the disintegration in part&nbsp;(b) must be the same as
+in part&nbsp;(a). But we have assumed that the initial object is spin one.
+And when we rotate a spin-one object in a state with&nbsp;$m=0$
+by&nbsp;$180^\circ$ about the $y$-axis, its amplitudes change sign (see
+Table&nbsp;<a href="III_17.html#Ch17-T2">17–2</a> for&nbsp;$\theta=\pi$). So the amplitudes for (a)
+and&nbsp;(b) in Fig.&nbsp;<a href="#Ch18-F7">18–7</a> should have opposite signs; the
+spin-one state <em class="emph">cannot disintegrate into two photons</em>.
+</p>
+</div>
+
+<div id="Ch18-F7" class="figure">
+<img class="first" src="img/FLP_III/f18-07/f18-07_tc_big_a.svgz"><img class="last" src="img/FLP_III/f18-07/f18-07_tc_big_b.svgz">
+<div class="caption"><span class="tag">Fig. 18–7.</span>
+For the $j=1$&nbsp;state of positronium, the process&nbsp;(a) and its
+$180^\circ$&nbsp;rotation about&nbsp;$y$&nbsp;(b) are exactly the same.
+</div>
+</div>
+
+<div id="Ch18-S3-p8" class="para">
+<p class="p">When positronium is formed you would expect it to end up in the
+spin-zero state $1/4$&nbsp;of the time and in the spin-one state (with
+$m=-1$,&nbsp;$0$, or&nbsp;$+1$) $3/4$&nbsp;of the time. So $1/4$&nbsp;of the time you
+would get two-photon annihilations. The other $3/4$&nbsp;of the time there
+can be no two-photon annihilations. There is still an annihilation,
+but it has to go with <em class="emph">three</em> photons. It is harder for it to do
+that and the lifetime is $1000$&nbsp;times longer—about
+$10^{-7}$&nbsp;second. This is what is observed experimentally. We will not go into
+any more of the details of the spin-one annihilation.
+</p>
+</div>
+
+<div id="Ch18-S3-p9" class="para">
+<p class="p">So far we have that if we only worry about angular momentum, the
+spin-zero state of the positronium can go into two RHC photons. There
+is also another possibility: it can go into two LHC photons as shown
+in Fig.&nbsp;<a href="#Ch18-F8">18–8</a>. The next question is, what is the relation
+between the amplitudes for these two possible decay modes? We can find
+out from the conservation of parity.
+</p>
+</div>
+
+<div id="Ch18-F8" class="figure">
+<img src="img/FLP_III/f18-08/f18-08_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 18–8.</span>
+Another possible process for positronium annihilation.
+</div>
+</div>
+
+<div id="Ch18-S3-p10" class="para">
+<p class="p">To do that, however, we need to know the parity of the
+positronium. Now theoretical physicists have shown in a way that is
+not easy to explain that the parity of the electron and the
+positron—its antiparticle—must be opposite, so that the spin-zero
+ground state of positronium must be odd. We will just assume that it
+is odd, and since we will get agreement with experiment, we can take
+that as sufficient proof.
+</p>
+</div>
+
+<div id="Ch18-S3-p11" class="para">
+<p class="p">Let’s see then what happens if we make an inversion of the process in
+Fig.&nbsp;<a href="#Ch18-F6">18–6</a>. When we do that, the two photons reverse
+directions <em class="emph">and</em> polarizations. The inverted picture looks just like
+Fig.&nbsp;<a href="#Ch18-F8">18–8</a>. Assuming that the parity of the positronium is odd, the
+amplitudes for the two processes in Figs. <a href="#Ch18-F6">18–6</a>
+and&nbsp;<a href="#Ch18-F8">18–8</a> must have the opposite sign. Let’s let&nbsp;$\ket{R_1R_2}$
+stand for the final state of Fig.&nbsp;<a href="#Ch18-F6">18–6</a> in which both photons are
+RHC, and let&nbsp;$\ket{L_1L_2}$ stand for the final state of
+Fig.&nbsp;<a href="#Ch18-F8">18–8</a>, in which both photons are LHC. The true final
+state—let’s call it&nbsp;$\ket{F}$—must be
+\begin{equation}
+\label{Eq:III:18:19}
+\ket{F}=\ket{R_1R_2}-\ket{L_1L_2}.
+\end{equation}
+Then an inversion changes the $R$’s into&nbsp;$L$’s and gives the state
+\begin{equation}
+\label{Eq:III:18:20}
+P\,\ket{F}=\ket{L_1L_2}-\ket{R_1R_2}=-\,\ket{F},
+\end{equation}
+which is the negative of&nbsp;(<a href="#mjx-eqn-EqIII1819">18.19</a>). So the final state&nbsp;$\ket{F}$ has
+negative parity, which is the same as the initial spin-zero state of the
+positronium. This is the only final state that conserves both angular momentum
+and parity. There is some amplitude that the disintegration into this state will
+occur, which we don’t need to worry about now, however, since we are only
+interested in questions about the polarization.
+</p>
+</div>
+
+<div id="Ch18-S3-p12" class="para">
+<p class="p">What does the final state of&nbsp;(<a href="#mjx-eqn-EqIII1819">18.19</a>) mean physically? One
+thing it means is the following: If we observe the two photons in two
+detectors which can be set to count separately the RHC or LHC photons,
+we will always see two RHC photons together, or two LHC photons
+together. That is, if you stand on one side of the positronium and
+someone else stands on the opposite side, you can measure the
+polarization and tell the other guy what polarization he will get. You
+have a $50$-$50$&nbsp;chance of catching a RHC photon or a LHC photon;
+whichever one you get, you can predict that he will get the same.
+</p>
+</div>
+
+<div id="Ch18-S3-p13" class="para">
+<p class="p">Since there is a $50$-$50$&nbsp;chance for RHC or LHC polarization, it
+sounds as though it might be like linear polarization. Let’s ask what
+happens if we observe the photon in counters that accept only linearly
+polarized light. For $\gamma$-rays it is not as easy to measure the
+polarization as it is for light; there is no polarizer which works
+well for such short wavelengths. But let’s imagine that there is, to
+make the discussion easier. Suppose that you have a counter that only
+accepts light with $x$-polarization, and that there is a guy on the
+other side that also looks for linear polarized light with, say,
+$y$-polarization. What is the chance you will pick up the two photons
+from an annihilation? What we need to ask is the amplitude that
+$\ket{F}$ will be in the state&nbsp;$\ket{x_1y_2}$. In other words, we want
+the amplitude
+\begin{equation*}
+\braket{x_1y_2}{F},
+\end{equation*}
+which is, of course, just
+\begin{equation}
+\label{Eq:III:18:21}
+\braket{x_1y_2}{R_1R_2}-\braket{x_1y_2}{L_1L_2}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch18-S3-p14" class="para">
+<p class="p">Now although we are working with two-particle amplitudes for the two
+photons, we can handle them just as we did the single particle
+amplitudes, since each particle acts independently of the other. That
+means that the amplitude&nbsp;$\braket{x_1y_2}{R_1R_2}$ is just the product
+of the two independent amplitudes $\braket{x_1}{R_1}$
+and&nbsp;$\braket{y_2}{R_2}$. Using Table&nbsp;<a href="III_17.html#Ch17-T3">17–3</a>, these two
+amplitudes are $1/\sqrt{2}$ and&nbsp;$i/\sqrt{2}$—so
+
+\begin{equation*}
+\braket{x_1y_2}{R_1R_2}=+\frac{i}{2}.
+\end{equation*}
+
+Similarly, we find that
+
+\begin{equation*}
+\braket{x_1y_2}{L_1L_2}=-\frac{i}{2}.
+\end{equation*}
+
+Subtracting these two amplitudes according to&nbsp;(<a href="#mjx-eqn-EqIII1821">18.21</a>), we
+get that
+\begin{equation}
+\label{Eq:III:18:22}
+\braket{x_1y_2}{F}=+i.
+\end{equation}
+So there is a <em class="emph">unit</em> probability<a name="footnote_source_5" href="#footnote_5"><sup class="mark">5</sup></a> that
+<em class="emph">if</em> you get a photon in your $x$-polarized detector, the other
+guy will get a photon in his $y$-polarized detector.
+</p>
+</div>
+
+<div id="Ch18-S3-p15" class="para">
+<p class="p">Now suppose that the other guy sets his counter for $x$-polarization
+the same as yours. He would never get a count when you got one. If you
+work it through, you will find that
+\begin{equation}
+\label{Eq:III:18:23}
+\braket{x_1x_2}{F}=0.
+\end{equation}
+It will, naturally, also work out that if you set your counter for
+$y$-polarization he will get coincident counts only if he is set for
+$x$-polarization.
+</p>
+</div>
+
+<div id="Ch18-S3-p16" class="para">
+<p class="p">Now this all leads to an interesting situation. Suppose you were to
+set up something like a piece of calcite which separated the photons
+into $x$-polarized and $y$-polarized beams, and put a counter in each
+beam. Let’s call one the $x$-counter and the other the $y$-counter. If
+the guy on the other side does the same thing, you can always tell him
+which beam his photon is going to go into. Whenever you and he get
+simultaneous counts, you can see which of your detectors caught the
+photon and then tell him which of his counters had a photon. Let’s say
+that in a certain disintegration you find that a photon went into your
+$x$-counter; you can tell him that he must have had a count in his
+$y$-counter.
+</p>
+</div>
+
+<div id="Ch18-S3-p17" class="para">
+<p class="p">Now many people who learn quantum mechanics in the usual
+(old-fashioned) way find this disturbing. They would like to think
+that once the photons are emitted it goes along as a wave with a
+definite character. They would think that since “any given photon”
+has some “amplitude” to be $x$-polarized or to be $y$-polarized,
+there should be some chance of picking it up in either the $x$-
+or&nbsp;$y$-counter and that this chance shouldn’t depend on what some other
+person finds out about a completely different photon. They argue that
+“someone else making a measurement shouldn’t be able to change the
+probability that I will find something.” Our quantum mechanics says,
+however, that by making a measurement on photon number one, you
+<em class="emph">can</em> predict precisely what the polarization of photon number
+two is going to be when it is detected. This point was never accepted by
+Einstein, and he worried about
+it a great deal—it became known as the
+“Einstein-Podolsky-Rosen paradox.” But when the situation is
+described as we have done it here, there doesn’t seem to be any paradox
+at all; it comes out quite naturally that what is measured in one place
+is correlated with what is measured somewhere else. The argument that
+the result is paradoxical runs something like this:
+<ol id="Ch18-I1" class="enumerate">
+<li id="Ch18-I1.i1" class="item">If you have a counter which tells you whether your photon
+is RHC or LHC, you can predict exactly what kind of a photon (RHC or
+LHC) he will find.
+</li>
+<li id="Ch18-I1.i2" class="item">The photons he receives must, therefore, each be purely RHC
+or purely LHC, some of one kind and some of the other.
+</li>
+<li id="Ch18-I1.i3" class="item">Surely you cannot alter the physical nature of <em class="emph">his</em>
+photons by changing the kind of observation you make on <em class="emph">your</em>
+photons. No matter what measurements you make on yours, his must still
+be either RHC or LHC.
+</li>
+<li id="Ch18-I1.i4" class="item">Now suppose he changes his apparatus to split his photons
+into two linearly polarized beams with a piece of calcite so that all
+of his photons go either into an $x$-polarized beam or into a
+$y$-polarized beam. There is absolutely no way, according to quantum
+mechanics, to tell into which beam any particular RHC photon will
+go. There is a 50% probability it will go into the $x$-beam and a
+50% probability it will go into the $y$-beam. And the same goes for
+a LHC photon.
+</li>
+<li id="Ch18-I1.i5" class="item">Since each photon is RHC or LHC—according to (2)
+and&nbsp;(3)—each one must have a 50-50&nbsp;chance of going into the
+$x$-beam or the $y$-beam and there is no way to predict which way it
+will go.
+</li>
+<li id="Ch18-I1.i6" class="item">(Yet the theory predicts that if <em class="emph">you</em> see your photon
+go through an $x$-polarizer you can predict <em class="emph">with certainty</em> that
+his photon will go into his $y$-polarized beam. This is in
+contradiction to&nbsp;(5) so there is a paradox.
+</li>
+</ol>
+</p>
+</div>
+
+<div id="Ch18-S3-p18" class="para">
+<p class="p">Nature apparently doesn’t see the “paradox,” however, because
+experiment shows that the prediction in&nbsp;(6) is, in fact, true. We have
+already discussed the key to this “paradox” in our very first lecture
+on quantum mechanical behavior in Chapter&nbsp;<a href="I_37.html">37</a>,
+Vol.&nbsp;I.<a name="footnote_source_6" href="#footnote_6"><sup class="mark">6</sup></a> In the argument above, steps (1),&nbsp;(2), (4), and&nbsp;(6) are all
+correct, but&nbsp;(3), and its consequence&nbsp;(5), are wrong; they are not a
+true description of nature. Argument&nbsp;(3) says that by <em class="emph">your</em>
+measurement (seeing a RHC or a LHC photon) you can determine which of
+two alternative events occurs for him (seeing a RHC or a LHC photon),
+<em class="emph">and</em> that even if you do <em class="emph">not</em> make your measurement you can
+still say that his event will occur either by one alternative or the
+other. But it was precisely the point of Chapter&nbsp;<a href="I_37.html">37</a>,
+Vol.&nbsp;I, to point out right at the beginning that this is not so in
+Nature. <em class="emph">Her</em> way requires a description in terms of interfering
+amplitudes, one amplitude for each alternative. A measurement of which
+alternative actually occurs destroys the interference, but if a
+measurement is <em class="emph">not</em> made you cannot still say that “one
+alternative or the other is still occurring.”
+</p>
+</div>
+
+<div id="Ch18-S3-p19" class="para">
+<p class="p">If you could determine for each one of your photons whether it was RHC
+and LHC, and <em class="emph">also</em> whether it was $x$-polarized (all for the
+same photon) there would indeed be a paradox. But you cannot do
+that—it is an example of the uncertainty principle.
+</p>
+</div>
+
+<div id="Ch18-S3-p20" class="para">
+<p class="p">Do you still think there is a “paradox”? Make sure that it is, in
+fact, a paradox about the behavior of Nature, by setting up an
+imaginary experiment for which the theory of quantum mechanics would
+predict inconsistent results via two different arguments. Otherwise
+the “paradox” is only a conflict between reality and your feeling of
+what reality “ought to be.”
+</p>
+</div>
+
+<div id="Ch18-S3-p21" class="para">
+<p class="p">Do you think that it is <em class="emph">not</em> a “paradox,” but that it is still
+very peculiar? On that we can all agree. It is what makes physics
+fascinating.
+</p>
+</div>
+
+</div> <!-- end of section -->
+
+<div id="Ch18-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">18–4</span>Rotation matrix for any spin</h3>
+
+<div id="Ch18-S4-p1" class="para">
+<p class="p">By now you can see, we hope, how important the idea of the angular
+momentum is in understanding atomic processes. So far, we have
+considered only systems with spins—or “total angular
+momentum”—of zero, one-half, or one. There are, of course, atomic
+systems with higher angular momenta. For analyzing such systems we
+would need to have tables of rotation amplitudes like those in
+Section&nbsp;<a href="III_17.html#Ch17-S6">17-6</a>. That is, we would need the matrix of
+amplitudes for spin $\tfrac{3}{2}$,&nbsp;$2$, $\tfrac{5}{2}$, $3$,&nbsp;etc.
+Although we will not work out these tables in detail, we would like to
+show you how it is done, so that you can do it if you ever need to.
+</p>
+</div>
+
+<div id="Ch18-S4-p2" class="para">
+<p class="p">As we have seen earlier, any system which has the spin or “total
+angular momentum”&nbsp;$j$ can exist in any one of $(2j+1)$&nbsp;states for
+which the $z$-component of angular momentum can have any one of the
+discrete values in the sequence $j$,&nbsp;$j-1$, $j-2$, $\ldots\,$, $-(j-1)$,&nbsp;$-j$
+(all in units of&nbsp;$\hbar$). Calling the $z$-component of angular
+momentum of any particular state&nbsp;$m\hbar$, we can define a particular
+angular momentum state by giving the numerical values of the two
+“angular momentum quantum numbers” $j$ and&nbsp;$m$. We can indicate such
+a state by the state vector&nbsp;$\ket{j,m}$. In the case of a spin
+one-half particle, the two states are then
+$\ket{\tfrac{1}{2},\tfrac{1}{2}}$
+and&nbsp;$\ket{\tfrac{1}{2},-\tfrac{1}{2}}$; or for a spin-one system, the
+states would be written in this notation as&nbsp;$\ket{1,+1}$, $\ket{1,0}$,
+$\ket{1,-1}$. A spin-zero particle has, of course, only the one
+state&nbsp;$\ket{0,0}$.
+</p>
+</div>
+
+<div id="Ch18-S4-p3" class="para">
+<p class="p">Now we want to know what happens when we project the general
+state&nbsp;$\ket{j,m}$ into a representation with respect to a rotated set of
+axes. First, we know that $j$ is a number which characterizes
+<em class="emph">the system</em>, so it doesn’t change. If we rotate the axes, all we
+do is get a mixture of the various $m$-values for the same&nbsp;$j$. In
+general, there will be some amplitude that in the rotated frame the
+system will be in the state&nbsp;$\ket{j,m'}$, where $m'$ gives the new
+$z$-component of angular momentum. So what we want are all the matrix
+elements&nbsp;$\bracket{j,m'}{R}{j,m}$ for various rotations. We already
+know what happens if we rotate by an angle&nbsp;$\phi$ about the
+$z$-axis. The new state is just the old one multiplied
+by&nbsp;$e^{im\phi}$—it still has the same $m$-value. We can write this by
+
+\begin{equation}
+\label{Eq:III:18:24}
+R_z(\phi)\,\ket{j,m}=e^{im\phi}\,\ket{j,m}.
+\end{equation}
+
+Or, if you prefer,
+
+\begin{equation}
+\label{Eq:III:18:25}
+\bracket{j,m'}{R_z(\phi)}{j,m}=\delta_{m,m'}e^{im\phi}
+\end{equation}
+
+(where $\delta_{m,m'}$ is&nbsp;$1$ if $m'=m$, or zero otherwise).
+</p>
+</div>
+
+<div id="Ch18-S4-p4" class="para">
+<p class="p">For a rotation about any other axis there will be a mixing of the
+various $m$-states. We could, of course, try to work out the matrix
+elements for an arbitrary rotation described by the Euler angles
+$\beta$,&nbsp;$\alpha$, and&nbsp;$\gamma$. But it is easier to remember that the
+most general such rotation can be made up of the three
+rotations&nbsp;$R_z(\gamma)$, $R_y(\alpha)$, $R_z(\beta)$; so if we know the matrix
+elements for a rotation about the $y$-axis, we will have all we need.
+</p>
+</div>
+
+<div id="Ch18-S4-p5" class="para">
+<p class="p">How can we find the rotation matrix for a rotation by the angle
+$\theta$ about the $y$-axis for a particle of spin&nbsp;$j$? We can’t tell
+you how to do it in a basic way (with what we have had). We did it for
+spin one-half by a complicated symmetry argument. We then did it for
+spin one by taking the special case of a spin-one system which was
+made up of two spin one-half particles. If you will go along with us
+and accept the fact that in the general case the answers depend only
+on the spin&nbsp;$j$, and are independent of how the inner guts of the
+object of spin&nbsp;$j$ are put together, we can extend the spin-one
+argument to an arbitrary spin. We can, for example, cook up an
+artificial system of spin&nbsp;$\tfrac{3}{2}$ out of three spin one-half
+objects. We can even avoid complications by imagining that they are
+all distinct particles—like a proton, an electron, and a muon. By
+transforming each spin one-half object, we can see what happens to the
+whole system—remembering that the three amplitudes are multiplied
+for the combined state. Let’s see how it goes in this case.
+</p>
+</div>
+
+<div id="Ch18-S4-p6" class="para">
+<p class="p">Suppose we take the three spin one-half objects all with spins “up”;
+we can indicate this state by&nbsp;$\ket{+\,+\,+}$. If we look at this
+system in a frame rotated about the $z$-axis by the angle&nbsp;$\phi$, each
+plus stays a plus, but gets multiplied by&nbsp;$e^{i\phi/2}$. We have three
+such factors, so
+\begin{equation}
+\label{Eq:III:18:26}
+R_z(\phi)\,\ket{+\,+\,+}=e^{i(3\phi/2)}\,\ket{+\,+\,+}.
+\end{equation}
+Evidently the state&nbsp;$\ket{+\,+\,+}$ is just what we mean by the
+$m=+\tfrac{3}{2}$&nbsp;state, or the state&nbsp;$\ket{\tfrac{3}{2},+\tfrac{3}{2}}$.
+</p>
+</div>
+
+<div id="Ch18-S4-p7" class="para">
+<p class="p">If we now rotate this system about the $y$-axis, each of the spin
+one-half objects will have some amplitude to be plus or to be minus,
+so the system will now be a mixture of the <em class="emph">eight</em> possible
+combinations $\ket{+\,+\,+}$,&nbsp;$\ket{+\,+\,-}$, $\ket{+\,-\,+}$,
+$\ket{-\,+\,+}$, $\ket{+\,-\,-}$, $\ket{-\,+\,-}$, $\ket{-\,-\,+}$,
+or&nbsp;$\ket{-\,-\,-}$. It is clear, however, that these can be broken up
+into four sets, each set corresponding to a particular value of&nbsp;$m$.
+First, we have $\ket{+\,+\,+}$, for which&nbsp;$m=\tfrac{3}{2}$. Then
+there are the three states $\ket{+\,+\,-}$,&nbsp;$\ket{+\,-\,+}$,
+and&nbsp;$\ket{-\,+\,+}$—each with two plusses and one minus. Since each spin
+one-half object has the same chance of coming out minus under the
+rotation, the amounts of each of these three combinations should be
+equal. So let’s take the combination
+\begin{equation}
+\label{Eq:III:18:27}
+\frac{1}{\sqrt{3}}\,\{
+\ket{+\,+\,-}+\ket{+\,-\,+}+\ket{-\,+\,+}\}
+\end{equation}
+with the factor&nbsp;$1/\sqrt{3}$ put in to normalize the state. If we
+rotate this state about the $z$-axis, we get a factor&nbsp;$e^{i\phi/2}$
+for each plus, and $e^{-i\phi/2}$ for each minus. Each term
+in&nbsp;(<a href="#mjx-eqn-EqIII1827">18.27</a>) is multiplied by&nbsp;$e^{i\phi/2}$, so there is the
+common factor&nbsp;$e^{i\phi/2}$. This state satisfies our idea of an
+$m=+\tfrac{1}{2}$&nbsp;state; we can conclude that
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:18:28}
+\frac{1}{\sqrt{3}}\,\{
+\ket{+\,+\,-}+\ket{+\,-\,+}+\ket{-\,+\,+}\}=
+\ket{\tfrac{3}{2},+\tfrac{1}{2}}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\frac{1}{\sqrt{3}}\,\{
+\ket{+\,+\,-}+\ket{+\,-\,+}+\ket{-\,+\,+}\}\notag\\
+\label{Eq:III:18:28}
+=\ket{\tfrac{3}{2},+\tfrac{1}{2}}.
+\end{gather}
+</span>
+Similarly, we can write
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:18:29}
+\frac{1}{\sqrt{3}}\,\{
+\ket{+\,-\,-}+\ket{-\,+\,-}+\ket{-\,-\,+}\}=
+\ket{\tfrac{3}{2},-\tfrac{1}{2}},
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\frac{1}{\sqrt{3}}\,\{
+\ket{+\,-\,-}+\ket{-\,+\,-}+\ket{-\,-\,+}\}\notag\\
+\label{Eq:III:18:29}
+=\ket{\tfrac{3}{2},-\tfrac{1}{2}},
+\end{gather}
+</span>
+which corresponds to a state with&nbsp;$m=-\tfrac{1}{2}$. Notice that we
+take only the <em class="emph">symmetric</em> combinations—we do not take any
+combinations with minus signs. They would correspond to states of the
+same&nbsp;$m$ but a different&nbsp;$j$. (It’s just like the spin-one case, where
+we found that $(1/\sqrt{2})\{\ket{+\,-}+\ket{-\,+}\}$ was the
+state&nbsp;$\ket{1,0}$, but the state&nbsp;$(1/\sqrt{2})\{\ket{+\,-}-\ket{-\,+}\}$ was
+the state&nbsp;$\ket{0,0}$.) Finally, we would have that
+\begin{equation}
+\label{Eq:III:18:30}
+\ket{\tfrac{3}{2},-\tfrac{3}{2}}=\ket{-\,-\,-}.
+\end{equation}
+We summarize our four states in Table&nbsp;<a href="#Ch18-T1">18–1</a>.
+</p>
+</div>
+
+<div id="Ch18-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 18–1</span></div>
+<div align="center">
+		\begin{equation*}
+		\boxed{\quad%
+		\begin{alignedat}{2}
+		\\
+		&\ket{+\,+\,+}&=\ket{\tfrac{3}{2},+\tfrac{3}{2}}\\
+		\frac{1}{\sqrt{3}}\{
+		&\ket{+\,+\,-}+\ket{+\,-\,+}+\ket{-\,+\,+}\}\,&=
+		\ket{\tfrac{3}{2},+\tfrac{1}{2}}\\
+		\frac{1}{\sqrt{3}}\{
+		&\ket{+\,-\,-}+\ket{-\,+\,-}+\ket{-\,-\,+}\}\,&=
+		\ket{\tfrac{3}{2},-\tfrac{1}{2}}\\
+		&\ket{-\,-\,-}&=\ket{\tfrac{3}{2},-\tfrac{3}{2}}\\
+		\\
+		\end{alignedat}
+		\quad}
+		\end{equation*}
+</div>
+</div>
+
+<div id="Ch18-S4-p8" class="para">
+<p class="p">Now all we have to do is take each state and rotate it about the
+$y$-axis and see how much of the other states it gives—using our
+known rotation matrix for the spin one-half particles. We can proceed
+in exactly the same way we did for the spin-one case in
+Section&nbsp;<a href="III_12.html#Ch12-S6">12-6</a>. (It just takes a little more algebra.) We
+will follow directly the ideas of Chapter&nbsp;<a href="III_12.html">12</a>, so we won’t
+repeat all the explanations in detail. The states in the system&nbsp;$S$ will
+be labelled&nbsp;$\ket{\tfrac{3}{2},+\tfrac{3}{2},S}=\ket{+\,+\,+}$,
+$\ket{\tfrac{3}{2},+\tfrac{1}{2},S}=
+(1/\sqrt{3})\{\ket{+\,+\,-}+\ket{+\,-\,+}+\ket{-\,+\,+}\}$, and so on.
+The $T$-system will be one rotated about the $y$-axis of&nbsp;$S$ by the
+angle&nbsp;$\theta$. States in&nbsp;$T$ will be
+labelled&nbsp;$\ket{\tfrac{3}{2},+\tfrac{3}{2},T}$,
+$\ket{\tfrac{3}{2},+\tfrac{1}{2},T}$, and so on. Of course,
+$\ket{\tfrac{3}{2},+\tfrac{3}{2},T}$ is the same as&nbsp;$\ket{+'\,+'\,+'}$,
+the primes referring always to the $T$-system. Similarly,
+$\ket{\tfrac{3}{2},+\tfrac{1}{2},T}$ will be equal
+to&nbsp;$(1/\sqrt{3})\{\ket{+'\,+'\,-'}+\ket{+'\,-'\,+'}+\ket{-'\,+'\,+'}\}$,
+and so on. Each $\ket{+'}$&nbsp;state in the $T$-frame comes from both the
+$\ket{+}$ and&nbsp;$\ket{-}$ states in&nbsp;$S$ via the matrix elements of
+Table&nbsp;<a href="III_12.html#Ch12-T4">12–4</a>.
+</p>
+</div>
+
+<div id="Ch18-S4-p9" class="para">
+<p class="p">When we have three spin one-half particles, Eq.&nbsp;(<a href="III_12.html#mjx-eqn-EqIII1247">12.47</a>)
+gets replaced by
+<span class="eq-wide">
+\begin{align}
+\ket{+\,+\,+}=&\;a^3\ket{+'\,+'\,+'}+a^2b\,\{\ket{+'\,+'\,-'}+
+\ket{+'\,-'\,+'}+\ket{-'\,+'\,+'}\}\notag\\[1ex]
+&+\,ab^2\{\ket{+'\,-'\,-'}+\ket{-'\,+'\,-'}+
+\ket{-'\,-'\,+'}\}\notag\\[1ex]
+\label{Eq:III:18:31}
+&+\,b^3\ket{-'\,-'\,-'}.
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+&\ket{+\,+\,+}=\notag\\[1ex]
+&\phantom{+a^2b} a^3\ket{+'\,+'\,+'}\notag\\[.5ex]
+&+a^2b\{\ket{+'\,+'\,-'}\!+\!\ket{+'\,-'\,+'}+\ket{-'\,+'\,+'}\}\notag\\[.5ex]
+&+ab^2\!\{\ket{+'\,-'\,-'}\!+\!\ket{-'\,+'\,-'}+\ket{-'\,-'\,+'}\}\notag\\[.5ex]
+\label{Eq:III:18:31}
+&+\phantom{a\!\{}b^3\ket{-'\,-'\,-'}.
+\end{align}
+</span>
+Using the transformation of Table&nbsp;<a href="III_12.html#Ch12-T4">12–4</a>, we get instead
+of&nbsp;(<a href="III_12.html#mjx-eqn-EqIII1248">12.48</a>) the equation
+<span class="eq-wide">
+\begin{align}
+\ket{\tfrac{3}{2},+\tfrac{3}{2},S}&=
+a^3\,\ket{\tfrac{3}{2},+\tfrac{3}{2},T}+
+\sqrt{3}\,a^2b\,\ket{\tfrac{3}{2},+\tfrac{1}{2},T}\notag\\[1ex]
+\label{Eq:III:18:32}
+&\quad+\sqrt{3}\,ab^2\,\ket{\tfrac{3}{2},-\tfrac{1}{2},T}
++b^3\,\ket{\tfrac{3}{2},-\tfrac{3}{2},T}.
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\ket{\tfrac{3}{2},+\tfrac{3}{2},S}&=a^3\,\ket{\tfrac{3}{2},+\tfrac{3}{2},T}\notag\\[.5ex]
+&+\sqrt{3}\,a^2b\,\ket{\tfrac{3}{2},+\tfrac{1}{2},T}\notag\\[.5ex]
+&+\sqrt{3}\,ab^2\,\ket{\tfrac{3}{2},-\tfrac{1}{2},T}\notag\\[.5ex]
+\label{Eq:III:18:32}
+&+b^3\,\ket{\tfrac{3}{2},-\tfrac{3}{2},T}.
+\end{align}
+</span>
+This already gives us several of our matrix elements&nbsp;$\braket{jT}{iS}$.
+To get the expression for&nbsp;$\ket{\tfrac{3}{2},+\tfrac{1}{2},S}$ we begin
+with the transformation of a state with two&nbsp;“$+$” and one&nbsp;“$-$”
+pieces. For instance,
+<span class="eq-wide">
+\begin{align}
+\ket{+\,+\,-}&=a^2c\,\ket{+'\,+'\,+'}+a^2d\,\ket{+'\,+'\,-'}+
+abc\,\ket{+'\,-'\,+'}\notag\\[1ex]
+&\quad+bac\,\ket{-'\,+'\,+'}+abd\,\ket{+'\,-'\,-'}+
+bad\,\ket{-'\,+'\,-'}\notag\\[1ex]
+\label{Eq:III:18:33}
+&\quad+b^2c\,\ket{-'\,-'\,+'}+b^2d\,\ket{-'\,-'\,-'}.
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\ket{+\,+\,-}&=a^2c\,\ket{+'\,+'\,+'}\notag\\[.5ex]
+&+a^2d\,\ket{+'\,+'\,-'}\notag\\[.5ex]
+&+abc\,\ket{+'\,-'\,+'}\notag\\[.5ex]
+&+bac\,\ket{-'\,+'\,+'}+abd\,\ket{+'\,-'\,-'}\notag\\[.5ex]
+&+bad\,\ket{-'\,+'\,-'}\notag\\[.5ex]
+\label{Eq:III:18:33}
+&+b^2c\,\ket{-'\,-'\,+'}+b^2d\,\ket{-'\,-'\,-'}.
+\end{align}
+</span>
+Adding two similar expressions for $\ket{+\,-\,+}$ and&nbsp;$\ket{-\,+\,+}$
+and dividing by&nbsp;$\sqrt{3}$, we find
+\begin{align}
+\ket{\tfrac{3}{2},+\tfrac{1}{2},S}&=
+\sqrt{3}\,a^2c\,\ket{\tfrac{3}{2},+\tfrac{3}{2},T}\notag\\[.5ex]
+&+(a^2d+2abc)\,\ket{\tfrac{3}{2},+\tfrac{1}{2},T}\notag\\[.5ex]
+&+(2bad+b^2c)\,\ket{\tfrac{3}{2},-\tfrac{1}{2},T}\notag\\[.5ex]
+\label{Eq:III:18:34}
+&+\sqrt{3}\,b^2d\,\ket{\tfrac{3}{2},-\tfrac{3}{2},T}.
+\end{align}
+Continuing the process we find all the elements&nbsp;$\braket{jT}{iS}$ of
+the transformation matrix as given in Table&nbsp;<a href="#Ch18-T2">18–2</a>. The
+first column comes from Eq.&nbsp;(<a href="#mjx-eqn-EqIII1832">18.32</a>); the second
+from&nbsp;(<a href="#mjx-eqn-EqIII1834">18.34</a>). The last two columns were worked out in the
+same way.
+</p>
+</div>
+
+<div id="Ch18-T2" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 18–2</span>
+Rotation matrix for a spin&nbsp;$\boldsymbol{\tfrac{3}{2}}$ particle<br>
+The coefficients $a$,&nbsp;$b$, $c$, and&nbsp;$d$ are given in Table&nbsp;<a href="III_12.html#Ch12-T4">12–4</a>.
+</div>
+<div align="center">
+<table border="1" style="width: 75%">
+	<tr>
+		<td class="l t center">$\braket{jT}{iS}$</td>
+		<td class="ll t center">$\ket{\tfrac{3}{2},+\tfrac{3}{2},S}$</td>
+		<td class="l t center">$\ket{\tfrac{3}{2},+\tfrac{1}{2},S}$</td>
+		<td class="l t center">$\ket{\tfrac{3}{2},-\tfrac{1}{2},S}$</td>
+		<td class="l t r center">$\ket{\tfrac{3}{2},-\tfrac{3}{2},S}$</td>
+	</tr>
+	<tr>
+		<td class="l tt center">$\bra{\tfrac{3}{2},+\tfrac{3}{2},T}$</td>
+		<td class="ll tt center">$a^3$</td>
+		<td class="l tt center">$\sqrt{3}\,a^2c$</td>
+		<td class="l tt center">$\sqrt{3}\,ac^2$</td>
+		<td class="l tt r center">$c^3$</td>
+	</tr>
+	<tr>
+		<td class="l t center">$\bra{\tfrac{3}{2},+\tfrac{1}{2},T}$</td>
+		<td class="ll t center">$\sqrt{3}\,a^2b$</td>
+		<td class="l t center">$a^2d+2abc$</td>
+		<td class="l t center">$c^2b+2dac$</td>
+		<td class="l t r center">$\sqrt{3}\,c^2d$</td>
+	</tr>
+	<tr>
+		<td class="l t center">$\bra{\tfrac{3}{2},-\tfrac{1}{2},T}$</td>
+		<td class="ll t center">$\sqrt{3}\,ab^2$</td>
+		<td class="l t center">$2bad+b^2c$</td>
+		<td class="l t center">$2cdb+d^2a$</td>
+		<td class="l t r center">$\sqrt{3}\,cd^2$</td>
+	</tr>
+	<tr>
+		<td class="l t b center">$\bra{\tfrac{3}{2},-\tfrac{3}{2},T}$ </td>
+		<td class="ll t b center">$b^3$ </td>
+		<td class="l t b center">$\sqrt{3}\,b^2d$</td>
+		<td class="l t b center">$\sqrt{3}\,bd^2$</td>
+		<td class="l t b r center">$d^3$</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch18-S4-p10" class="para">
+<p class="p">Now suppose the $T$-frame were rotated with respect to&nbsp;$S$ by the
+angle&nbsp;$\theta$ about their $y$-axes. Then $a$,&nbsp;$b$, $c$, and&nbsp;$d$ have
+the values [see&nbsp;(<a href="III_12.html#mjx-eqn-EqIII1254">12.54</a>)] $a=$ $d=$ $\cos\theta/2$, and
+$c=$ $-b=$ $\sin\theta/2$. Using these values in Table&nbsp;<a href="#Ch18-T2">18–2</a> we
+get the forms which correspond to the second part of
+Table&nbsp;<a href="III_17.html#Ch17-T2">17–2</a>, but now for a spin $\tfrac{3}{2}$&nbsp;system.
+</p>
+</div>
+
+<div id="Ch18-S4-p11" class="para">
+<p class="p">The arguments we have just gone through are readily generalized to a
+system of any spin&nbsp;$j$. The states&nbsp;$\ket{j,m}$ can be put together
+from $2j$&nbsp;particles, each of spin one-half. (There are $j+m$ of them
+in the $\ket{+}$&nbsp;state and $j-m$ in the $\ket{-}$&nbsp;state.) Sums are
+taken over all the possible ways this can be done, and the state is
+normalized by multiplying by a suitable constant. Those of you who are
+mathematically inclined may be able to show that the following result
+comes out<a name="footnote_source_7" href="#footnote_7"><sup class="mark">7</sup></a>:
+<span class="eq-wide">
+\begin{align}
+&\bracket{j,m'}{R_y(\theta)}{j,m}=
+[(j+m)!(j-m)!(j+m')!(j-m')!]^{1/2}\notag\\[2ex]
+\label{Eq:III:18:35}
+&\kern{4.5em}\times\sum_k
+\frac{(-1)^{k+m-m'}(\cos\theta/2)^{2j+m'-m-2k}(\sin\theta/2)^{m-m'+2k}}
+{(m-m'+k)!(j+m'-k)!(j-m-k)!k!},
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\label{Eq:III:18:35}
+\bracket{j,m'}{R_y(\theta)}{j,m}=\\[1.5ex]
+[(j+m)!(j-m)!(j+m')!(j-m')!]^{1/2}\;\times\notag\\[1.25ex]
+\sum_k\!\!
+\frac{(-1)^{k+m-m'}\!(\cos\theta/2)^{2j+m'\!-m-2k}(\sin\theta/2)^{m-m'\!+2k}}
+{(m-m'+k)!(j+m'-k)!(j-m-k)!k!},\notag
+\end{gather}
+</span>
+where $k$ is to go over all values which give terms&nbsp;$\geq0$ in all the
+factorials.
+</p>
+</div>
+
+<div id="Ch18-S4-p12" class="para">
+<p class="p">This is quite a messy formula, but with it you can check
+Table&nbsp;<a href="III_17.html#Ch17-T2">17–2</a> for&nbsp;$j=1$ and prepare tables of your own for
+larger&nbsp;$j$. Several special matrix elements are of extra importance and
+have been given special names. For example the matrix elements
+for&nbsp;$m=m'=0$ and integral&nbsp;$j$ are known as the Legendre polynomials and
+are
+called&nbsp;$P_j(\cos\theta)$:
+\begin{equation}
+\label{Eq:III:18:36}
+\bracket{j,0}{R_y(\theta)}{j,0}=P_j(\cos\theta).
+\end{equation}
+The first few of these polynomials are:
+\begin{align}
+\label{Eq:III:18:37}
+P_0(\cos\theta)&=1,\\[1ex]
+\label{Eq:III:18:38}
+P_1(\cos\theta)&=\cos\theta,\\[1ex]
+\label{Eq:III:18:39}
+P_2(\cos\theta)&=\tfrac{1}{2}(3\cos^2\theta-1),\\[1ex]
+\label{Eq:III:18:40}
+P_3(\cos\theta)&=\tfrac{1}{2}(5\cos^3\theta-3\cos\theta).
+\end{align}
+</p>
+</div>
+
+</div> <!-- end of section -->
+
+<div id="Ch18-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">18–5</span>Measuring a nuclear spin</h3>
+
+<div id="Ch18-S5-p1" class="para">
+<p class="p">We would like to show you one example of the application of the
+coefficients we have just described. It has to do with a recent,
+interesting experiment which you will now be able to understand. Some
+physicists wanted to find out the spin of a certain excited state of
+the Ne$^{20}$ nucleus. To do this, they bombarded a carbon target with
+a beam of accelerated carbon ions, and produced the desired excited
+state of Ne$^{20}$—called Ne$^{20*}$—in the reaction
+\begin{equation*}
+\text{C}^{12}+\text{C}^{12}\to
+\text{Ne}^{20*}+\alpha_1,
+\end{equation*}
+where $\alpha_1$ is the $\alpha$-particle, or He$^4$. Several of the
+excited states of Ne$^{20}$ produced this way are unstable and
+disintegrate in the reaction
+\begin{equation*}
+\text{Ne}^{20*}\to\text{O}^{16}+\alpha_2.
+\end{equation*}
+So experimentally there are two $\alpha$-particles which come out of
+the reaction. We call them $\alpha_1$ and&nbsp;$\alpha_2$; since they come
+off with different energies, they can be distinguished from each
+other. Also, by picking a particular energy for $\alpha_1$ we can pick
+out any particular excited state of the Ne$^{20}$.
+</p>
+</div>
+
+<div id="Ch18-F9" class="figure">
+<img src="img/FLP_III/f18-09/f18-09_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 18–9.</span>
+Experimental arrangement for determining the spin of certain
+states of Ne$^{20}$.
+</div>
+</div>
+
+<div id="Ch18-S5-p2" class="para">
+<p class="p">The experiment was set up as shown in Fig.&nbsp;<a href="#Ch18-F9">18–9</a>. A beam
+of $16$-MeV carbon ions was directed onto a thin foil of carbon. The
+first $\alpha$-particle was counted in a silicon diffused junction
+detector marked $\alpha_1$—set to accept $\alpha$-particles of the
+proper energy moving in the forward direction (with respect to the
+incident C$^{12}$ beam). The second $\alpha$-particle was picked up in
+the counter&nbsp;$\alpha_2$ at the angle&nbsp;$\theta$ with respect to&nbsp;$\alpha_1$.
+The counting rate of coincidence signals from $\alpha_1$ and&nbsp;$\alpha_2$
+were measured as a function of the angle&nbsp;$\theta$.
+</p>
+</div>
+
+<div id="Ch18-S5-p3" class="para">
+<p class="p">The idea of the experiment is the following. First, you need to know
+that the spins of C$^{12}$, O$^{16}$, and the $\alpha$-particle are
+all zero. If we call the direction of motion of the initial C$^{12}$
+the $+z$-direction, then we know that the Ne$^{20*}$ must have zero
+angular momentum about the $z$-axis. None of the other particles has
+any spin; the C$^{12}$ arrives along the $z$-axis and the $\alpha_1$
+leaves along the $z$-axis so they can’t have any angular momentum
+about it. So whatever the spin&nbsp;$j$ of the Ne$^{20*}$ is, we know that
+it is in the state&nbsp;$\ket{j,0}$. Now what will happen when the
+Ne$^{20*}$ disintegrates into an O$^{16}$ and the second
+$\alpha$-particle?  Well, the $\alpha$-particle is picked up in the
+counter&nbsp;$\alpha_2$ and to conserve momentum the O$^{16}$ must go off
+in the opposite direction.<a name="footnote_source_8" href="#footnote_8"><sup class="mark">8</sup></a>
+<em class="emph">About the
+new axis</em> through&nbsp;$\alpha_2$, there can be no component of angular
+momentum. The final state has zero angular momentum about the new
+axis, so the Ne$^{20*}$ can disintegrate this way only if it has some
+amplitude to have $m'$ equal to zero, where $m'$ is the quantum number
+of the component of angular momentum about the new axis. In fact, the
+probability of observing $\alpha_2$ at the angle&nbsp;$\theta$ is just the
+square of the amplitude (or matrix element)
+\begin{equation}
+\label{Eq:III:18:41}
+\bracket{j,0}{R_y(\theta)}{j,0}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch18-S5-p4" class="para">
+<p class="p">To find the spin of the Ne$^{20*}$ state in question, the intensity of
+the second $\alpha$-particle was plotted as a function of angle and
+compared with the theoretical curves for various values of&nbsp;$j$. As we
+said in the last section, the
+amplitudes&nbsp;$\bracket{j,0}{R_y(\theta)}{j,0}$ are just the
+functions&nbsp;$P_j(\cos\theta)$. So the possible angular distributions are curves
+of&nbsp;$[P_j(\cos\theta)]^2$. The experimental results are shown in
+Fig.&nbsp;<a href="#Ch18-F10">18–10</a> for two of the excited states. You can see that
+the angular distribution for the $5.80$-MeV state fits very well the
+curve for&nbsp;$[P_1(\cos\theta)]^2$, and so it must be a spin-one state. The
+data for the $5.63$-MeV state, on the other hand, are quite different;
+they fit the curve&nbsp;$[P_3(\cos\theta)]^2$. The state has a spin of&nbsp;$3$.
+</p>
+</div>
+
+<div id="Ch18-F10" class="figure">
+<img src="img/FLP_III/f18-10/f18-10_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 18–10.</span>
+Experimental results for the angular distribution of the $\alpha$-particles
+from two excited states of Ne$^{20}$ produced in the setup of
+Fig.&nbsp;<a href="#Ch18-F9">18–9</a>. [From J.&nbsp;A. Kuehner, <em class="emph">Physical Review</em>,
+Vol.&nbsp;125, p.&nbsp;1650, 1962.]</div>
+</div>
+
+<div id="Ch18-S5-p5" class="para">
+<p class="p">From this experiment we have been able to find out the angular
+momentum of two of the excited states of Ne$^{20*}$. This information
+can then be used for trying to understand what the configuration of
+protons and neutrons is inside this nucleus—one more piece of
+information about the mysterious nuclear forces.
+</p>
+</div>
+
+</div> <!-- end of section -->
+
+<div id="Ch18-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">18–6</span>Composition of angular momentum</h3>
+
+<div id="Ch18-S6-p1" class="para">
+<p class="p">When we studied the hyperfine structure of the hydrogen atom in
+Chapter&nbsp;<a href="III_12.html">12</a> we had to work out the internal states of a
+system composed of two particles—the electron and the proton—each
+with a spin of one-half. We found that the four possible spin states
+of such a system could be put together into two groups—a group with
+one energy that looked to the external world like a spin-one particle,
+and one remaining state that behaved like a particle of zero
+spin. That is, putting together two spin one-half particles we can
+form a system whose “total spin” is one, or zero. In this section we
+want to discuss in more general terms the spin states of a
+<em class="emph">system</em> which is made up of two particles of arbitrary spin. It
+is another important problem about angular momentum in quantum
+mechanical systems.
+</p>
+</div>
+
+<div id="Ch18-S6-p2" class="para">
+<p class="p">Let’s first rewrite the results of Chapter&nbsp;<a href="III_12.html">12</a> for the
+hydrogen atom in a form that will be easier to extend to the more
+general case. We began with two particles which we will now call
+particle&nbsp;$a$ (the electron) and particle&nbsp;$b$ (the proton).
+Particle&nbsp;$a$ had the spin&nbsp;$j_a$ ($=\tfrac{1}{2}$), and its $z$-component of
+angular momentum&nbsp;$m_a$ could have one of several values (actually&nbsp;$2$,
+namely $m_a=+\tfrac{1}{2}$ or&nbsp;$m_a=-\tfrac{1}{2}$). Similarly, the
+spin state of particle&nbsp;$b$ is described by its spin&nbsp;$j_b$ and its
+$z$-component of angular momentum&nbsp;$m_b$. Various combinations of the
+spin states of the two particles could be formed. For instance, we
+could have particle&nbsp;$a$ with&nbsp;$m_a=\tfrac{1}{2}$ and particle&nbsp;$b$
+with&nbsp;$m_b=-\tfrac{1}{2}$, to make a
+state&nbsp;$\ket{a,+\tfrac{1}{2};b,-\tfrac{1}{2}}$. In general, the combined
+states formed a system whose “system spin,” or “total spin,” or
+“total angular momentum”&nbsp;$J$ could be&nbsp;$1$, or&nbsp;$0$. And the system
+could have a $z$-component of angular momentum&nbsp;$M$, which was
+$+1$,&nbsp;$0$, or&nbsp;$-1$ when&nbsp;$J=1$, or&nbsp;$0$ when&nbsp;$J=0$. In this new language we
+can rewrite the formulas in (<a href="III_12.html#mjx-eqn-EqIII1241">12.41</a>)
+and&nbsp;(<a href="III_12.html#mjx-eqn-EqIII1242">12.42</a>) as shown in Table&nbsp;<a href="#Ch18-T3">18–3</a>.
+</p>
+</div>
+
+<div id="Ch18-T3" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 18–3</span>Composition of angular momenta for two spin $\boldsymbol{\tfrac{1}{2}}$ particles
+</div>
+<div align="center">
+<table border="1" style="width: 65%">
+	<tr>
+		<td class="l t r center">
+		\begin{aligned}
+		\ket{J=1,M=+1}&=\ket{a,+\tfrac{1}{2};b,+\tfrac{1}{2}}\\
+		\ket{J=1,M=\phantom{+}0}&=\dfrac{1}{\sqrt{2}}\,\{\ket{a,+\tfrac{1}{2};b,-\tfrac{1}{2}}+\ket{a,-\tfrac{1}{2};b,+\tfrac{1}{2}}\}\\
+		\ket{J=1,M=-1}&=\ket{a,-\tfrac{1}{2};b,-\tfrac{1}{2}}
+		\end{aligned}
+		</td>
+	</tr>
+	<tr>
+		<td class="l t b r center">$\ket{J=0,M=\phantom{+}0}=\dfrac{1}{\sqrt{2}}\,
+		\{\ket{a,+\tfrac{1}{2};b,-\tfrac{1}{2}}-
+		\ket{a,-\tfrac{1}{2};b,+\tfrac{1}{2}}\}$</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch18-S6-p3" class="para">
+<p class="p">In the table the left-hand column describes the compound state in
+terms of its total angular momentum&nbsp;$J$ and the $z$-component&nbsp;$M$. The
+right-hand column shows how these states are made up in terms of the
+$m$-values of the two particles $a$ and&nbsp;$b$.
+</p>
+</div>
+
+<div id="Ch18-S6-p4" class="para">
+<p class="p">We want now to generalize this result to states made up of two objects
+$a$ and&nbsp;$b$ of arbitrary spins $j_a$ and&nbsp;$j_b$. We start by
+considering an example for which $j_a=\tfrac{1}{2}$ and&nbsp;$j_b=1$,
+namely, the deuterium atom in which particle&nbsp;$a$ is an electron&nbsp;(e)
+and particle&nbsp;$b$ is the nucleus—a deuteron&nbsp;(d). We have then that
+$j_a=j_{\text{e}}=\tfrac{1}{2}$. The deuteron is formed of one proton
+and one neutron in a state whose total spin is one,
+so&nbsp;$j_b=j_{\text{d}}=1$. We want to discuss the hyperfine states of
+deuterium—just the way we did for hydrogen. Since the deuteron has
+three possible states&nbsp;$m_b=m_{\text{d}}=+1$, $0$, $-1$, and the
+electron has two, $m_a=m_{\text{e}}=+\tfrac{1}{2}$,&nbsp;$-\tfrac{1}{2}$,
+there are <em class="emph">six</em> possible states as follows (using the
+notation&nbsp;$\ket{\text{e},m_{\text{e}};\text{d},m_{\text{d}}}$:
+\begin{equation}
+\label{Eq:III:18:42}
+\begin{aligned}
+&\ket{\text{e},+\tfrac{1}{2};\text{d},+1},\\[.5ex]
+&\ket{\text{e},+\tfrac{1}{2};\text{d},0};
+\ket{\text{e},-\tfrac{1}{2};\text{d},+1},\\[.5ex]
+&\ket{\text{e},+\tfrac{1}{2};\text{d},-1};
+\ket{\text{e},-\tfrac{1}{2};\text{d},0},\\[.5ex]
+&\ket{\text{e},-\tfrac{1}{2};\text{d},-1}.
+\end{aligned}
+\end{equation}
+You will notice that we have grouped the states according to the
+values of the sum of $m_{\text{e}}$ and&nbsp;$m_{\text{d}}$—arranged in
+descending order.
+</p>
+</div>
+
+<div id="Ch18-S6-p5" class="para">
+<p class="p">Now we ask: What happens to these states if we project into a
+different coordinate system? If the new system is just rotated about
+the $z$-axis by the angle&nbsp;$\phi$, then the
+state&nbsp;$\ket{\text{e},m_{\text{e}};\text{d},m_{\text{d}}}$ gets multiplied by
+\begin{equation}
+\label{Eq:III:18:43}
+e^{im_{\text{e}}\phi}e^{im_{\text{d}}\phi}=
+e^{i(m_{\text{e}}+m_{\text{d}})\phi}.
+\end{equation}
+(The state may be thought of as the
+product&nbsp;$\ket{\text{e},m_{\text{e}}}\ket{\text{d},m_{\text{d}}}$, and each
+state vector contributes independently its own exponential factor.)
+The factor&nbsp;(<a href="#mjx-eqn-EqIII1843">18.43</a>) is of the form&nbsp;$e^{iM\phi}$, so the
+state&nbsp;$\ket{\text{e},m_{\text{e}};\text{d},m_{\text{d}}}$ has a
+$z$-component of angular momentum equal to
+\begin{equation}
+\label{Eq:III:18:44}
+M=m_{\text{e}}+m_{\text{d}}.
+\end{equation}
+<em class="emph">The $z$-component of the total angular momentum is the sum of
+the $z$-components of angular momentum of the parts.</em>
+</p>
+</div>
+
+<div id="Ch18-S6-p6" class="para">
+<p class="p">In the list of&nbsp;(<a href="#mjx-eqn-EqIII1842">18.42</a>), therefore, the state in the top
+line has&nbsp;$M=+\tfrac{3}{2}$, the two in the second line
+have&nbsp;$M=+\tfrac{1}{2}$, the next two have&nbsp;$M=-\tfrac{1}{2}$, and the last
+state has&nbsp;$M=-\tfrac{3}{2}$. We see immediately one possibility for
+the spin&nbsp;$J$ of the combined state (the total angular momentum) must
+be&nbsp;$\tfrac{3}{2}$, and this will require four states with
+$M=+\tfrac{3}{2}$,&nbsp;$+\tfrac{1}{2}$, $-\tfrac{1}{2}$, and&nbsp;$-\tfrac{3}{2}$.
+</p>
+</div>
+
+<div id="Ch18-S6-p7" class="para">
+<p class="p">There is only one candidate for&nbsp;$M=+\tfrac{3}{2}$, so we know already
+that
+\begin{equation}
+\label{Eq:III:18:45}
+\ket{J=\tfrac{3}{2},M=+\tfrac{3}{2}}=
+\ket{\text{e},+\tfrac{1}{2};\text{d},+1}.
+\end{equation}
+But what is the state&nbsp;$\ket{J=\tfrac{3}{2},M=+\tfrac{1}{2}}$? We have
+two candidates in the second line of&nbsp;(<a href="#mjx-eqn-EqIII1842">18.42</a>), and, in
+fact, any linear combination of them would also
+have&nbsp;$M=\tfrac{1}{2}$. So, in general, we must expect to find that
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:18:46}
+\ket{J=\tfrac{3}{2},M=+\tfrac{1}{2}}=
+\alpha\,\ket{\text{e},+\tfrac{1}{2};\text{d},0}+
+\beta\,\ket{\text{e},-\tfrac{1}{2};\text{d},+1},
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+\ket{J=\tfrac{3}{2},M=+\tfrac{1}{2}}=\\[.75ex]
+\alpha\,\ket{\text{e},+\tfrac{1}{2};\text{d},0}+
+\beta\,\ket{\text{e},-\tfrac{1}{2};\text{d},+1},
+\end{gathered}
+\label{Eq:III:18:46}
+\end{equation}
+</span>
+where $\alpha$ and&nbsp;$\beta$ are two numbers. They are called the
+<em class="emph">Clebsch-Gordan
+coefficients</em>. Our next
+problem is to find out what they are.
+</p>
+</div>
+
+<div id="Ch18-S6-p8" class="para">
+<p class="p">We can find out easily if we just remember that the deuteron is made
+up of a neutron and a proton, and write the deuteron states out more
+explicitly using the rules of Table&nbsp;<a href="#Ch18-T3">18–3</a>. If we do that,
+the states listed in&nbsp;(<a href="#mjx-eqn-EqIII1842">18.42</a>) then look as shown in
+Table&nbsp;<a href="#Ch18-T4">18–4</a>.
+</p>
+</div>
+
+
+<div id="Ch18-T4" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 18–4</span>Angular momentum states of a deuterium atom
+</div>
+<div align="center">
+<table border="1" style="width: 65%">
+	<tr>
+		<td class="l t r center">$M=\tfrac{3}{2}$</td>
+	</tr>
+	<tr>
+		<td class="l r center">$\ket{\text{e},+\tfrac{1}{2};\text{d},+1}=
+			\ket{\text{e},+\tfrac{1}{2};
+			\text{n},+\tfrac{1}{2};
+			\text{p},+\tfrac{1}{2}}$</td>
+	</tr>
+	<tr>
+		<td class="l t r center">$M=\tfrac{1}{2}$</td>
+	</tr>
+	<tr>
+		<td class="l r center">$\ket{\text{e},+\tfrac{1}{2};\text{d},0}=\dfrac{1}{\sqrt{2}}\,\{
+			\ket{\text{e},+\tfrac{1}{2};
+			\text{n},+\tfrac{1}{2};
+			\text{p},-\tfrac{1}{2}}+
+			\ket{\text{e},+\tfrac{1}{2};
+			\text{n},-\tfrac{1}{2};
+			\text{p},+\tfrac{1}{2}}\}$</td>
+	</tr>
+	<tr>
+		<td class="l r center">$\ket{\text{e},-\tfrac{1}{2};\text{d},+1}=
+			\ket{\text{e},-\tfrac{1}{2};
+			\text{n},+\tfrac{1}{2};
+			\text{p},+\tfrac{1}{2}}$</td>
+	</tr>
+	<tr>
+		<td class="l t r center">$M=-\tfrac{1}{2}$</td>
+	</tr>
+	<tr>
+		<td class="l r center">$\ket{\text{e},+\tfrac{1}{2};\text{d},-1}=
+			\ket{\text{e},+\tfrac{1}{2};
+			\text{n},-\tfrac{1}{2};
+			\text{p},-\tfrac{1}{2}}$</td>
+	</tr>
+	<tr>
+		<td class="l r center">$\ket{\text{e},-\tfrac{1}{2};\text{d},0}=\dfrac{1}{\sqrt{2}}\,\{
+				\ket{\text{e},-\tfrac{1}{2};
+				\text{n},+\tfrac{1}{2};
+				\text{p},-\tfrac{1}{2}}+
+				\ket{\text{e},-\tfrac{1}{2};
+				\text{n},-\tfrac{1}{2};
+				\text{p},+\tfrac{1}{2}}\}$</td>
+	</tr>
+	<tr>
+		<td class="l t r center">$M=-\tfrac{3}{2}$</td>
+	</tr>
+	<tr>
+		<td class="l r b center">$\ket{\text{e},-\tfrac{1}{2};\text{d},-1}=
+			\ket{\text{e},-\tfrac{1}{2};
+			\text{n},-\tfrac{1}{2};
+			\text{p},-\tfrac{1}{2}}$</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch18-S6-p9" class="para">
+<p class="p">We want to form the four states of&nbsp;$J=\tfrac{3}{2}$, using the states
+in the table. But we already know the answer, because in
+Table&nbsp;<a href="#Ch18-T1">18–1</a> we have states of spin&nbsp;$\tfrac{3}{2}$ formed
+from three spin one-half particles. The first state in
+Table&nbsp;<a href="#Ch18-T1">18–1</a> has&nbsp;$\ket{J=\tfrac{3}{2},M=+\tfrac{3}{2}}$ and
+it is&nbsp;$\ket{+\,+\,+}$, which—in our present notation—is the same
+as&nbsp;$\ket{\text{e},+\tfrac{1}{2};\text{n},+\tfrac{1}{2};\text{p},+\tfrac{1}{
+2}}$, or the first state in Table&nbsp;<a href="#Ch18-T4">18–4</a>. But this state is
+also the same as the first in the list of&nbsp;(<a href="#mjx-eqn-EqIII1842">18.42</a>),
+confirming our statement in&nbsp;(<a href="#mjx-eqn-EqIII1845">18.45</a>). The second line of
+Table&nbsp;<a href="#Ch18-T1">18–1</a> says—changing to our present notation—that
+<span class="eq-wide">
+\begin{align}
+\label{Eq:III:18:47}
+\ket{J=\tfrac{3}{2},M=+\tfrac{1}{2}}=&\frac{1}{\sqrt{3}}\,\{
+\ket{\text{e},+\tfrac{1}{2};\text{n},+\tfrac{1}{2};\text{p},-\tfrac{1}{2}}\\[1ex]
+&+\;\ket{\text{e},+\tfrac{1}{2};\text{n},-\tfrac{1}{2};\text{p},+\tfrac{1}{2}}
++\ket{\text{e},-\tfrac{1}{2};\text{n},+\tfrac{1}{2};\text{p},+\tfrac{1}{2}}\}.\notag
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+&\ket{J=\tfrac{3}{2},M=+\tfrac{1}{2}}=\notag\\[.5ex]
+&\quad\frac{1}{\sqrt{3}}\,\{
+\ket{\text{e},+\tfrac{1}{2};\text{n},+\tfrac{1}{2};\text{p},-\tfrac{1}{2}}\notag\\[-.5ex]
+&\qquad+\,\ket{\text{e},+\tfrac{1}{2};\text{n},-\tfrac{1}{2};\text{p},+\tfrac{1}{2}}\notag\\[.75ex]
+\label{Eq:III:18:47}
+&\qquad+\,\ket{\text{e},-\tfrac{1}{2};\text{n},+\tfrac{1}{2};\text{p},+\tfrac{1}{2}}\}.
+\end{align}
+</span>
+The right side can evidently be put together from the two entries in
+the second line of Table&nbsp;<a href="#Ch18-T4">18–4</a> by taking $\sqrt{2/3}$&nbsp;of
+the first term with $\sqrt{1/3}$&nbsp;of the second. That is,
+Eq.&nbsp;(<a href="#mjx-eqn-EqIII1847">18.47</a>) is equivalent to
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:18:48}
+\ket{J=\tfrac{3}{2},M=+\tfrac{1}{2}}=
+\sqrt{2/3}\,\ket{\text{e},+\tfrac{1}{2};\text{d},0}+
+\sqrt{1/3}\,\ket{\text{e},-\tfrac{1}{2};\text{d},+1}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\ket{J=\tfrac{3}{2},M=+\tfrac{1}{2}}&=
+\sqrt{2/3}\,\ket{\text{e},+\tfrac{1}{2};\text{d},0}\notag\\[.5ex]
+\label{Eq:III:18:48}
+&+\sqrt{1/3}\,\ket{\text{e},-\tfrac{1}{2};\text{d},+1}.
+\end{align}
+</span>
+We have found our two Clebsch-Gordan coefficients $\alpha$ and&nbsp;$\beta$
+in Eq.&nbsp;(<a href="#mjx-eqn-EqIII1846">18.46</a>):
+\begin{equation}
+\label{Eq:III:18:49}
+\alpha=\sqrt{2/3},\quad
+\beta=\sqrt{1/3}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch18-S6-p10" class="para">
+<p class="p">Following the same procedure we can find that
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:18:50}
+\ket{J=\tfrac{3}{2},M=-\tfrac{1}{2}}=
+\sqrt{1/3}\,\ket{\text{e},+\tfrac{1}{2};\text{d},-1}+
+\sqrt{2/3}\,\ket{\text{e},-\tfrac{1}{2};\text{d},0}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\ket{J=\tfrac{3}{2},M=-\tfrac{1}{2}}&=
+\sqrt{1/3}\,\ket{\text{e},+\tfrac{1}{2};\text{d},-1}\notag\\[.5ex]
+\label{Eq:III:18:50}
+&+\sqrt{2/3}\,\ket{\text{e},-\tfrac{1}{2};\text{d},0}.
+\end{align}
+</span>
+
+And, also, of course,
+\begin{equation}
+\label{Eq:III:18:51}
+\ket{J=\tfrac{3}{2},M=-\tfrac{3}{2}}=
+\ket{\text{e},-\tfrac{1}{2};\text{d},-1}.
+\end{equation}
+These are the rules for the composition of spin&nbsp;$1$ and
+spin&nbsp;$\tfrac{1}{2}$ to make a total&nbsp;$J=\tfrac{3}{2}$. We summarize
+(<a href="#mjx-eqn-EqIII1845">18.45</a>),&nbsp;(<a href="#mjx-eqn-EqIII1848">18.48</a>),&nbsp;(<a href="#mjx-eqn-EqIII1850">18.50</a>),
+and&nbsp;(<a href="#mjx-eqn-EqIII1851">18.51</a>) in Table&nbsp;<a href="#Ch18-T5">18–5</a>.
+</p>
+</div>
+
+<div id="Ch18-T5" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 18–5</span>The $\boldsymbol{J=\tfrac{3}{2}}$&nbsp;states of the deuterium atom
+</div>
+<div align="center">
+<table class="framed" border="1" style="width: 65%">
+	<tr>
+		<td class="center">
+		\begin{aligned}
+		\ket{J=\tfrac{3}{2},M=+\tfrac{3}{2}}&= \ket{\text{e},+\tfrac{1}{2};\text{d},+1}\\
+		\ket{J=\tfrac{3}{2},M=+\tfrac{1}{2}}&= \sqrt{2/3}\,\ket{\text{e},+\tfrac{1}{2};\text{d},0}+\sqrt{1/3}\,\ket{\text{e},-\tfrac{1}{2};\text{d},+1}\\
+		\ket{J=\tfrac{3}{2},M=-\tfrac{1}{2}}&= \sqrt{1/3}\,\ket{\text{e},+\tfrac{1}{2};\text{d},-1}+\sqrt{2/3}\,\ket{\text{e},-\tfrac{1}{2};\text{d},0}\\
+		\ket{J=\tfrac{3}{2},M=-\tfrac{3}{2}}&= \ket{\text{e},-\tfrac{1}{2};\text{d},-1}\\
+		\end{aligned}
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch18-S6-p11" class="para">
+<p class="p">We have, however, only four states here while the system we are
+considering has six possible states. Of the two states in the second
+line of&nbsp;(<a href="#mjx-eqn-EqIII1842">18.42</a>) we have used only one linear combination
+to form&nbsp;$\ket{J=\tfrac{3}{2},M=+\tfrac{1}{2}}$. There is another
+linear combination orthogonal to the one we have taken which also
+has&nbsp;$M=+\tfrac{1}{2}$, namely
+\begin{equation}
+\label{Eq:III:18:52}
+\sqrt{1/3}\,\ket{\text{e},+\tfrac{1}{2};\text{d},0}-
+\sqrt{2/3}\,\ket{\text{e},-\tfrac{1}{2};\text{d},+1}.
+\end{equation}
+Similarly, the two states in the third line of&nbsp;(<a href="#mjx-eqn-EqIII1842">18.42</a>)
+can be combined to give two orthogonal states, each
+with&nbsp;$M=-\tfrac{1}{2}$. The one orthogonal to&nbsp;(<a href="#mjx-eqn-EqIII1852">18.52</a>) is
+\begin{equation}
+\label{Eq:III:18:53}
+\sqrt{2/3}\,\ket{\text{e},+\tfrac{1}{2};\text{d},-1}-
+\sqrt{1/3}\,\ket{\text{e},-\tfrac{1}{2};\text{d},0}.
+\end{equation}
+These are the two remaining states. They
+have&nbsp;$M=m_{\text{e}}+m_{\text{d}}=\pm\tfrac{1}{2}$; and must be the two
+states corresponding to&nbsp;$J=\tfrac{1}{2}$. So we have
+<span class="eq-wide">
+\begin{equation}
+\begin{aligned}
+\ket{J=\tfrac{1}{2},M=+\tfrac{1}{2}}&=
+\sqrt{1/3}\,\ket{\text{e},+\tfrac{1}{2};\text{d},0}-
+\sqrt{2/3}\,\ket{\text{e},-\tfrac{1}{2};\text{d},+1},\\[2ex]
+\ket{J=\tfrac{1}{2},M=-\tfrac{1}{2}}&=
+\sqrt{2/3}\,\ket{\text{e},+\tfrac{1}{2};\text{d},-1}-
+\sqrt{1/3}\,\ket{\text{e},-\tfrac{1}{2};\text{d},0}.
+\end{aligned}
+\label{Eq:III:18:54}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+\ket{J=\tfrac{1}{2},M=+\tfrac{1}{2}}&=
+\sqrt{1/3}\,\ket{\text{e},+\tfrac{1}{2};\text{d},0}\\[.5ex]
+&-\sqrt{2/3}\,\ket{\text{e},-\tfrac{1}{2};\text{d},+1},\\[2.25ex]
+\ket{J=\tfrac{1}{2},M=-\tfrac{1}{2}}&=
+\sqrt{2/3}\,\ket{\text{e},+\tfrac{1}{2};\text{d},-1}\\[.5ex]
+&-\sqrt{1/3}\,\ket{\text{e},-\tfrac{1}{2};\text{d},0}.
+\end{aligned}
+\label{Eq:III:18:54}
+\end{equation}
+</span>
+</p>
+</div>
+
+<div id="Ch18-S6-p12" class="para">
+<p class="p">We can verify that these two states do indeed behave like the states
+of a spin one-half object by writing out the deuterium parts in terms
+of the neutron and proton states—using Table&nbsp;<a href="#Ch18-T4">18–4</a>. The
+first state in&nbsp;(<a href="#mjx-eqn-EqIII1852">18.52</a>) is
+<span class="eq-wide">
+\begin{align}
+\sqrt{1/6}\,\{
+\ket{\text{e},+\tfrac{1}{2};
+\text{n},+\tfrac{1}{2};
+\text{p},-\tfrac{1}{2}}+
+\ket{\text{e},+\tfrac{1}{2};
+\text{n},-\tfrac{1}{2};
+\text{p},+\tfrac{1}{2}}&\}\notag\\\notag\\
+\label{Eq:III:18:55}
+{}-\sqrt{2/3}\,
+\ket{\text{e},-\tfrac{1}{2};
+\text{n},+\tfrac{1}{2};
+\text{p},+\tfrac{1}{2}}&,
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\sqrt{1/6}\,\{
+&\ket{\text{e},+\tfrac{1}{2};
+\text{n},+\tfrac{1}{2};
+\text{p},-\tfrac{1}{2}}\,+\notag\\
+&\ket{\text{e},+\tfrac{1}{2};
+\text{n},-\tfrac{1}{2};
+\text{p},+\tfrac{1}{2}}\}\notag\\[1ex]
+\label{Eq:III:18:55}
+-\,\sqrt{2/3}\,
+&\ket{\text{e},-\tfrac{1}{2};
+\text{n},+\tfrac{1}{2};
+\text{p},+\tfrac{1}{2}},
+\end{align}
+</span>
+which can also be written
+<span class="eq-wide">
+\begin{align}
+&\sqrt{1/3}\,\bigl[\sqrt{1/2}\,\{
+\ket{\text{e},+\tfrac{1}{2};
+\text{n},+\tfrac{1}{2};
+\text{p},-\tfrac{1}{2}}-
+\ket{\text{e},-\tfrac{1}{2};
+\text{n},+\tfrac{1}{2};
+\text{p},+\tfrac{1}{2}}\}\notag\\\notag\\
+\label{Eq:III:18:56}
+&{}+\sqrt{1/2}\{
+\ket{\text{e},+\tfrac{1}{2};
+\text{n},-\tfrac{1}{2};
+\text{p},+\tfrac{1}{2}}-
+\ket{\text{e},-\tfrac{1}{2};
+\text{n},+\tfrac{1}{2};
+\text{p},+\tfrac{1}{2}}\}\bigr].
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\sqrt{1/3}\biggl[\sqrt{1/2}\,\{
+&\ket{\text{e},+\tfrac{1}{2};
+\text{n},+\tfrac{1}{2};
+\text{p},-\tfrac{1}{2}}\,-\notag\\
+&\ket{\text{e},-\tfrac{1}{2};
+\text{n},+\tfrac{1}{2};
+\text{p},+\tfrac{1}{2}}\}\notag\\[1ex]
+\label{Eq:III:18:56}
++\,\sqrt{1/2}\{
+&\ket{\text{e},+\tfrac{1}{2};
+\text{n},-\tfrac{1}{2};
+\text{p},+\tfrac{1}{2}}\,-\notag\\[-.5ex]
+&\ket{\text{e},-\tfrac{1}{2};
+\text{n},+\tfrac{1}{2};
+\text{p},+\tfrac{1}{2}}\}\biggr].
+\end{align}
+</span>
+Now look at the terms in the first curly brackets, and think of the e
+and p taken together. Together they form a spin-zero state (see the
+bottom line of Table&nbsp;<a href="#Ch18-T3">18–3</a>), and contribute no angular
+momentum. Only the neutron is left, so the whole of the <em class="emph">first</em>
+curly bracket of&nbsp;(<a href="#mjx-eqn-EqIII1856">18.56</a>) behaves under rotations like a
+neutron, namely as a state with&nbsp;$J=\tfrac{1}{2}$,
+$M=+\tfrac{1}{2}$. Following the same reasoning, we see that in the
+<em class="emph">second</em> curly bracket of&nbsp;(<a href="#mjx-eqn-EqIII1856">18.56</a>) the electron and
+neutron team up to produce zero angular momentum, and only the proton
+contribution—with&nbsp;$m_{\text{p}}=\tfrac{1}{2}$—is left. The terms
+behave like an object with&nbsp;$J=\tfrac{1}{2}$, $M=+\tfrac{1}{2}$. So the
+whole expression of&nbsp;(<a href="#mjx-eqn-EqIII1856">18.56</a>) transforms
+like&nbsp;$\ket{J=\tfrac{1}{2},M=+\tfrac{1}{2}}$ as it should. The
+$M=-\tfrac{1}{2}$&nbsp;state which corresponds to&nbsp;(<a href="#mjx-eqn-EqIII1853">18.53</a>) can
+be written down (by changing the proper $+\tfrac{1}{2}$'s
+to&nbsp;$-\tfrac{1}{2}$'s) to get
+<span class="eq-wide">
+\begin{align}
+&\sqrt{1/3}\,\bigl[\sqrt{1/2}\,\{
+\ket{\text{e},+\tfrac{1}{2};
+\text{n},-\tfrac{1}{2};
+\text{p},-\tfrac{1}{2}}-
+\ket{\text{e},-\tfrac{1}{2};
+\text{n},-\tfrac{1}{2};
+\text{p},+\tfrac{1}{2}}\}\notag\\\notag\\
+\label{Eq:III:18:57}
+&{}+\sqrt{1/2}\{
+\ket{\text{e},+\tfrac{1}{2};
+\text{n},-\tfrac{1}{2};
+\text{p},-\tfrac{1}{2}}-
+\ket{\text{e},-\tfrac{1}{2};
+\text{n},+\tfrac{1}{2};
+\text{p},-\tfrac{1}{2}}\}\bigr].
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\sqrt{1/3}\biggl[\sqrt{1/2}\,\{
+&\ket{\text{e},+\tfrac{1}{2};
+\text{n},-\tfrac{1}{2};
+\text{p},-\tfrac{1}{2}}\,-\notag\\
+&\ket{\text{e},-\tfrac{1}{2};
+\text{n},-\tfrac{1}{2};
+\text{p},+\tfrac{1}{2}}\}\notag\\[1ex]
+\label{Eq:III:18:57}
++\sqrt{1/2}\{
+&\ket{\text{e},+\tfrac{1}{2};
+\text{n},-\tfrac{1}{2};
+\text{p},-\tfrac{1}{2}}\,-\notag\\[-.5ex]
+&\ket{\text{e},-\tfrac{1}{2};
+\text{n},+\tfrac{1}{2};
+\text{p},-\tfrac{1}{2}}\}\biggr].
+\end{align}
+</span>
+You can easily check that this is equal to the second line
+of&nbsp;(<a href="#mjx-eqn-EqIII1854">18.54</a>), as it should be if the two terms of that pair
+are to be the two states of a spin one-half system. So our results are
+confirmed. A deuteron and an electron can exist in six spin states, four
+of which act like the states of a spin $\tfrac{3}{2}$&nbsp;object
+(Table&nbsp;<a href="#Ch18-T5">18–5</a>) and two of which act like an object of spin
+one-half&nbsp;(<a href="#mjx-eqn-EqIII1854">18.54</a>).
+</p>
+</div>
+
+<div id="Ch18-S6-p13" class="para">
+<p class="p">The results of Table&nbsp;<a href="#Ch18-T5">18–5</a> and of Eq.&nbsp;(<a href="#mjx-eqn-EqIII1854">18.54</a>)
+were obtained by making use of the fact that the deuteron is made up of
+a neutron and a proton. The truth of the equations does not depend on
+that special circumstance. For <em class="emph">any</em> spin-one object put together
+with any spin one-half object the composition laws (and the
+coefficients) are the same. The set of equations in
+Table&nbsp;<a href="#Ch18-T5">18–5</a> means that if the coordinates are rotated
+about, say, the $y$-axis—so that the states of the spin one-half
+particle and of the spin-one particle change according to
+Table&nbsp;<a href="III_17.html#Ch17-T1">17–1</a> and Table&nbsp;<a href="III_17.html#Ch17-T2">17–2</a>—the linear
+combinations on the right-hand side will change in the proper way for a
+spin $\tfrac{3}{2}$&nbsp;object. Under the same rotation the states
+of&nbsp;(<a href="#mjx-eqn-EqIII1854">18.54</a>) will change as the states of a spin one-half
+object. The results depend only on the rotation properties (that is, the
+spin states) of the two original particles but not in any way on the
+origins of their angular momenta. We have only made use of this fact to
+work out the formulas by choosing a special case in which one of the
+component parts is itself made up of two spin one-half particles in a
+symmetric state. We have put all our results together in
+Table&nbsp;<a href="#Ch18-T6">18–6</a>, changing the notation “e” and&nbsp;“d” to
+“$a$” and&nbsp;“$b$” to emphasize the generality of the conclusions.
+</p>
+</div>
+
+<div id="Ch18-T6" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 18–6</span>Composition of a spin one-half particle
+($\boldsymbol{j_a=\tfrac{1}{2}}$) and a spin-one particle ($\boldsymbol{j_b=1}$)
+</div>
+<div align="center">
+<table border="1" style="width: 65%">
+	<tr>
+		<td class="l t r center">
+		\begin{aligned}
+		\ket{J=\tfrac{3}{2},M=+\tfrac{3}{2}}&=\ket{a,+\tfrac{1}{2};b,+1}\\
+		\ket{J=\tfrac{3}{2},M=+\tfrac{1}{2}}&=\sqrt{2/3}\,\ket{a,+\tfrac{1}{2};b,0}+\sqrt{1/3}\,\ket{a,-\tfrac{1}{2};b,+1}\\
+		\ket{J=\tfrac{3}{2},M=-\tfrac{1}{2}}&=\sqrt{1/3}\,\ket{a,+\tfrac{1}{2};b,-1}+\sqrt{2/3}\,\ket{a,-\tfrac{1}{2};b,0}\\
+		\ket{J=\tfrac{3}{2},M=-\tfrac{3}{2}}&=\ket{a,-\tfrac{1}{2};b,-1}
+		\end{aligned}
+		</td>
+	</tr>
+	<tr>
+		<td class="l t b r center">
+		\begin{aligned}
+		\ket{J=\tfrac{1}{2},M=+\tfrac{1}{2}}&=\sqrt{1/3}\,\ket{a,+\tfrac{1}{2};b,0}-\sqrt{2/3}\,\ket{a,-\tfrac{1}{2};b,+1}\\
+		\ket{J=\tfrac{1}{2},M=-\tfrac{1}{2}}&=\sqrt{2/3}\,\ket{a,+\tfrac{1}{2};b,-1}-\sqrt{1/3}\,\ket{a,-\tfrac{1}{2};b,0}
+		\end{aligned}
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch18-S6-p14" class="para">
+<p class="p">Suppose we have the general problem of finding the states which can be
+formed when two objects of arbitrary spins are combined. Say one
+has&nbsp;$j_a$ (so its $z$-component&nbsp;$m_a$ runs over the $2j_a+1$&nbsp;values from
+$-j_a$ to&nbsp;$+j_a$) and the other has&nbsp;$j_b$ (with $z$-component&nbsp;$m_b$
+running over the values from $-j_b$ to&nbsp;$+j_b$). The combined states
+are&nbsp;$\ket{a,m_a;b,m_b}$, and there are $(2j_a+1)(2j_b+1)$&nbsp;different
+ones. Now what states of total spin&nbsp;$J$ can be found?
+</p>
+</div>
+
+<div id="Ch18-S6-p15" class="para">
+<p class="p">The total $z$-component of angular momentum&nbsp;$M$ is equal to&nbsp;$m_a+m_b$,
+and the states can all be listed according to&nbsp;$M$ [as
+in&nbsp;(<a href="#mjx-eqn-EqIII1842">18.42</a>)]. The largest&nbsp;$M$ is unique; it corresponds to
+$m_a=j_a$ and&nbsp;$m_b=j_b$, and is, therefore, just&nbsp;$j_a+j_b$. That means
+that the largest total spin&nbsp;$J$ is also equal to the sum&nbsp;$j_a+j_b$:
+\begin{equation*}
+J=(M)_{\text{max}}=j_a+j_b.
+\end{equation*}
+For the first $M$&nbsp;value smaller than&nbsp;$(M)_{\text{max}}$, there are two
+states (either $m_a$ or&nbsp;$m_b$ is one unit less than its maximum). They
+must contribute one state to the set that goes with&nbsp;$J=j_a+j_b$, and
+the one left over will belong to a new set with&nbsp;$J=j_a+j_b-1$. The
+next $M$-value—the third from the top of the list—can be formed in
+<i>three</i> ways. (From $m_a=j_a-2$, $m_b=j_b$; from $m_a=j_a-1$,
+$m_b=j_b-1$; and from $m_a=j_a$, $m_b=j_b-2$.) Two of these belong to
+groups already started above; the third tells us that states
+of&nbsp;$J=j_a+j_b-2$ must also be included. This argument continues until we
+reach a stage where in our list we can no longer go one more step down
+in one of the&nbsp;$m$’s to make new states.
+</p>
+</div>
+
+<div id="Ch18-S6-p16" class="para">
+<p class="p">Let&nbsp;$j_b$ be the smaller of $j_a$ and&nbsp;$j_b$ (if they are equal take
+either one); then only $2j_b$&nbsp;values of&nbsp;$J$ are required—going in
+integer steps from&nbsp;$j_a+j_b$ down to&nbsp;$j_a-j_b$. That is, when two
+objects of spin $j_a$ and&nbsp;$j_b$ are combined, the system can have a
+total angular momentum&nbsp;$J$ equal to any one of the values
+\begin{equation}
+\label{Eq:III:18:58}
+J=\left\{
+\begin{aligned}
+&j_a+j_b\\
+&j_a+j_b-1\\
+&j_a+j_b-2\\
+&\;\vdots\\
+|&j_a-j_b|.
+\end{aligned}
+\right.
+\end{equation}
+(By writing&nbsp;$\abs{j_a-j_b}$ instead of&nbsp;$j_a-j_b$ we can avoid the
+extra admonition that&nbsp;$j_a\geq j_b$.)
+</p>
+</div>
+
+<div id="Ch18-S6-p17" class="para">
+<p class="p">For <i>each</i> of these $J$&nbsp;values there are the $2J+1$&nbsp;states of different
+$M$-values—with $M$ going from $+J$ to&nbsp;$-J$. Each of these is formed
+from linear combinations of the original states&nbsp;$\ket{a,m_a;b,m_b}$
+with appropriate factors—the Clebsch-Gordan
+coefficients for each
+particular term. We can consider that these coefficients give the
+“amount” of the state&nbsp;$\ket{j_a,m_a;j_b,m_b}$ which appears in the
+state&nbsp;$\ket{J,M}$. So each of the Clebsch-Gordan coefficients has, if
+you wish, <em class="emph">six</em> indices identifying its position in the formulas
+like those of Tables <a href="#Ch18-T3">18–3</a> and&nbsp;<a href="#Ch18-T6">18–6</a>. That is,
+calling these coefficients&nbsp;$C(J,M;j_a,m_a;j_b,m_b)$, we could express
+the equality of the second line of Table&nbsp;<a href="#Ch18-T6">18–6</a> by writing
+\begin{align*}
+C(\tfrac{3}{2},+\tfrac{1}{2};\tfrac{1}{2},+\tfrac{1}{2};1,0)=
+\sqrt{2/3},\\[.5ex]
+C(\tfrac{3}{2},+\tfrac{1}{2};\tfrac{1}{2},-\tfrac{1}{2};1,+1)=
+\sqrt{1/3}.
+\end{align*}
+</p>
+</div>
+
+<div id="Ch18-S6-p18" class="para">
+<p class="p">We will not calculate here the coefficients for any other special
+cases.<a name="footnote_source_9" href="#footnote_9"><sup class="mark">9</sup></a> You can, however,
+find tables in many books. You might wish to try another special case
+for yourself. The next one to do would be the composition of two
+spin-one particles. We give just the final result in
+Table&nbsp;<a href="#Ch18-T7">18–7</a>.
+</p>
+</div>
+
+<div id="Ch18-T7" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 18–7</span>Composition of two spin-one particles ($\boldsymbol{j_a=1}$, $\boldsymbol{j_b=1}$)
+</div>
+<div align="center">
+<table border="1" style="width: 35%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="center">
+		\begin{equation*}
+		\boxed{
+		\begin{aligned}
+		\ket{J=2,M=+2}&=\ket{a,+1;b,+1}\\
+		\ket{J=2,M=+1}&=\dfrac{1}{\sqrt{2}}\,\ket{a,+1;b,0}+\dfrac{1}{\sqrt{2}}\,\ket{a,0;b,+1}\\
+		\ket{J=2,M=\phantom{+}0}&=\dfrac{1}{\sqrt{6}}\,\ket{a,+1;b,-1}+\dfrac{1}{\sqrt{6}}\,\ket{a,-1;b,+1}+\dfrac{2}{\sqrt{6}}\,\ket{a,0;b,0}\\
+		\ket{J=2,M=-1}&=\dfrac{1}{\sqrt{2}}\,\ket{a,0;b,-1}+\dfrac{1}{\sqrt{2}}\,\ket{a,-1;b,0}\\
+		\ket{J=2,M=-2}&=\ket{a,-1;b,-1}\strut\\
+		\hline\\
+		\ket{J=1,M=+1}&=\dfrac{1}{\sqrt{2}}\,\ket{a,+1;b,0}-\dfrac{1}{\sqrt{2}}\,\ket{a,0;b,+1}\\
+		\ket{J=1,M=\phantom{+}0}&=\dfrac{1}{\sqrt{2}}\,\ket{a,+1;b,-1}-\dfrac{1}{\sqrt{2}}\,\ket{a,-1;b,+1}\\
+		\ket{J=1,M=-1}&=\dfrac{1}{\sqrt{2}}\,\ket{a,0;b,-1}-\dfrac{1}{\sqrt{2}}\,\ket{a,-1;b,0}\strut\\
+		\hline\\
+		\ket{J=0,M=\phantom{+}0}&=\dfrac{1}{\sqrt{3}}\,\{\ket{a,+1;b,-1}+\ket{a,-1;b,+1}-\ket{a,0;b,0}\}\\
+		\end{aligned}
+		}
+		\end{equation*}
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch18-S6-p19" class="para">
+<p class="p">These laws of the composition of angular momenta are very important in
+particle physics—where they have innumerable
+applications. Unfortunately, we have no time to look at more examples
+here.
+</p>
+</div>
+
+</div> <!-- end of section -->
+
+<div id="Ch18-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">18–7</span>Added Note 1: Derivation of the rotation 
+matrix<a name="footnote_source_10" href="#footnote_10"><sup class="mark">10</sup></a></h3>
+
+<div id="Ch18-S7-p1" class="para">
+<p class="p">For those who would like to see the details, we work out here the
+general rotation matrix for a system with spin (total angular
+momentum)&nbsp;$j$. It is really not very important to work out the general
+case; once you have the idea, you can find the general results in
+tables in many books. On the other hand, after coming this far you
+might like to see that you can indeed understand even the very
+complicated formulas of quantum mechanics, such as
+Eq.&nbsp;(<a href="#mjx-eqn-EqIII1835">18.35</a>), that come into the description of angular
+momentum.
+</p>
+</div>
+
+<div id="Ch18-S7-p2" class="para">
+<p class="p">We extend the arguments of Section&nbsp;<a href="III_18.html#Ch18-S4">18-4</a> to a system
+with spin&nbsp;$j$, which we consider to be made up of $2j$&nbsp;spin one-half
+objects. The state with&nbsp;$m=j$ would be&nbsp;$\ket{+\,+\,+\dotsb+}$ (with
+$2j$&nbsp;plus signs). For&nbsp;$m=j-1$, there will be $2j$&nbsp;terms
+like&nbsp;$\ket{+\,+\dotsb+\,+\,-}$, $\ket{+\,+\dotsb+\,-\,+}$, and so on. Let’s
+consider the general case in which there are $r$&nbsp;plusses and
+$s$&nbsp;minuses—with&nbsp;$r+s=2j$. Under a rotation about the $z$-axis each of
+the $r$&nbsp;plusses will contribute&nbsp;$e^{+i\phi/2}$. The result is a phase
+change of&nbsp;$(r/2-s/2)\phi$. You see that
+\begin{equation}
+\label{Eq:III:18:59}
+m=\frac{r-s}{2}.
+\end{equation}
+Just as for&nbsp;$j=\tfrac{3}{2}$, each state of definite&nbsp;$m$ must be the
+linear combination with plus signs of all the states with the same $r$
+and&nbsp;$s$—that is, states corresponding to every possible arrangement
+which has $r$&nbsp;plusses and $s$&nbsp;minuses. We assume that you can figure
+out that there are&nbsp;$(r+s)!/r!s!$ such arrangements. To normalize each
+state, we should divide the sum by the square root of this number. We
+can write
+\begin{align}
+\biggl[\frac{(r+s)!}{r!s!}\biggr]^{-1/2}\kern{-3.5ex}
+\{\ket{\underbrace{+\,+\,+\dotsb+\,+}_r\,
+\underbrace{-\,-\,-\dotsb-\,-}_s}&\notag\\[1ex]
++\,(\text{all rearrangements of order})\}&\notag\\[1.5ex]
+\label{Eq:III:18:60}
+=\ket{j,m}&
+\end{align}
+with
+\begin{equation}
+\label{Eq:III:18:61}
+j=\frac{r+s}{2},\quad
+m=\frac{r-s}{2}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch18-S7-p3" class="para">
+<p class="p">It will help our work if we now go to still another notation. Once we
+have defined the states by Eq.&nbsp;(<a href="#mjx-eqn-EqIII1860">18.60</a>), the two numbers
+$r$ and&nbsp;$s$ define a state just as well as $j$ and&nbsp;$m$. It will help
+us keep track of things if we write
+\begin{equation}
+\label{Eq:III:18:62}
+\ket{j,m}=\ket{\tover{r}{s}},
+\end{equation}
+where, using the equalities of&nbsp;(<a href="#mjx-eqn-EqIII1861">18.61</a>)
+\begin{equation*}
+r=j+m,\quad
+s=j-m.
+\end{equation*}
+Next, we would like to write Eq.&nbsp;(<a href="#mjx-eqn-EqIII1860">18.60</a>) with a new
+<em class="emph">special notation</em> as
+\begin{equation}
+\label{Eq:III:18:63}
+\ket{j,m}=\ket{\tover{r}{s}}=
+\biggl[\frac{(r+s)!}{r!s!}\biggr]^{+1/2}\kern{-3.5ex}
+\{\ket{+}^r\ket{-}^s\}_{\text{perm}}.
+\end{equation}
+Note that we have changed the exponent of the factor in front to
+<em class="emph">plus</em>&nbsp;$\tfrac{1}{2}$. We do that because there are just
+$N=(r+s)!/r!s!$&nbsp;terms inside the curly brackets.
+Comparing&nbsp;(<a href="#mjx-eqn-EqIII1863">18.63</a>) with&nbsp;(<a href="#mjx-eqn-EqIII1860">18.60</a>) it is clear
+that
+\begin{equation*}
+\{\ket{+}^r\ket{-}^s\}_{\text{perm}}
+\end{equation*}
+is just a shorthand way of writing
+\begin{equation*}
+\frac{\{\ket{+\,+\dotsb-\,-}+\text{all rearrangements}\}}{N},
+\end{equation*}
+where $N$ is the number of different terms in the bracket. The reason
+that this notation is convenient is that each time we make a rotation,
+all of the plus signs contribute the same factor, so we get this
+factor to the $r$th&nbsp;power. Similarly, all together the $s$&nbsp;minus terms
+contribute a factor to the $s$th&nbsp;power no matter what the sequence of
+the terms is.
+</p>
+</div>
+
+<div id="Ch18-S7-p4" class="para">
+<p class="p">Now suppose we rotate our system by the angle&nbsp;$\theta$ about the
+$y$-axis. What we want is&nbsp;$R_y(\theta)\,\ket{\tover{r}{s}}$. When
+$R_y(\theta)$ operates on each&nbsp;$\ket{+}$ it gives
+\begin{equation}
+\label{Eq:III:18:64}
+R_y(\theta)\,\ket{+}=\ket{+}C+\ket{-}S,
+\end{equation}
+where $C=\cos\theta/2$ and&nbsp;$S=-\sin\theta/2$. When $R_y(\theta)$
+operates on each&nbsp;$\ket{-}$ it gives
+\begin{equation*}
+R_y(\theta)\,\ket{-}=\ket{-}C-\ket{+}S.
+\end{equation*}
+So what we want is
+\begin{equation}
+\begin{aligned}
+&R_y(\theta)\ket{\tover{r}{s}}\\[.5ex]
+&=\biggl[\frac{(r\!+\!s)!}{r!s!}\biggr]^{1/2}\kern{-1ex}
+R_y(\theta)\,\{\ket{+}^r\ket{-}^s\}_{\text{perm}}\\[1ex]
+&=\biggl[\frac{(r\!+\!s)!}{r!s!}\biggr]^{1/2}\kern{-1ex}
+\{(R_y(\theta)\,\ket{+})^r(R_y(\theta)\,\ket{-})^s\}_{\text{perm}}\\[1ex]
+&=\biggl[\frac{(r\!+\!s)!}{r!s!}\biggr]^{1/2}\kern{-1ex}
+\{(\ket{+}C\!+\!\ket{-}S)^r(\ket{-}C\!-\!\ket{+}S)^s\}_{\text{perm}}.
+\end{aligned}
+\label{Eq:III:18:65}
+\end{equation}
+Now each binomial has to be expanded out to its appropriate power and
+the two expressions multiplied together. There will be terms
+with&nbsp;$\ket{+}$ to all powers from zero to&nbsp;$(r+s)$. Let’s look at all of the
+terms which have $\ket{+}$ to the $r'$&nbsp;power. They will appear always
+multiplied with&nbsp;$\ket{-}$ to the $s'$&nbsp;power, where&nbsp;$s'=2j-r'$. Suppose
+we collect all such terms. For each permutation they will have some
+numerical coefficient involving the factors of the binomial expansion
+as well as the factors $C$ and&nbsp;$S$. Suppose we call that
+factor&nbsp;$A_{r'}$. Then Eq.&nbsp;(<a href="#mjx-eqn-EqIII1865">18.65</a>) will look like
+\begin{equation}
+\label{Eq:III:18:66}
+R_y(\theta)\,\ket{\tover{r}{s}}=\sum_{r'=0}^{r+s}
+\{A_{r'}\,\ket{+}^{r'}\ket{-}^{s'}\}_{\text{perm}}.
+\end{equation}
+Now let’s say that we divide&nbsp;$A_{r'}$ by the
+factor&nbsp;$[(r'+s')!/r'!s'!]^{1/2}$ and call the quotient&nbsp;$B_{r'}$.
+Equation&nbsp;(<a href="#mjx-eqn-EqIII1866">18.66</a>) is then equivalent to
+\begin{equation}
+\label{Eq:III:18:67}
+R_y(\theta)\,\ket{\tover{r}{s}}\!=\!\sum_{r'=0}^{r+s}
+B_{r'}\!\biggl[\frac{(r'\!+\!s')!}{r'!s'!}\biggr]^{1/2}\kern{-2.5ex}
+\{\ket{+}^{r'}\ket{-}^{s'}\}_{\text{perm}}.
+\end{equation}
+(We could just say that this equation defines&nbsp;$B_{r'}$ by the
+requirement that&nbsp;(<a href="#mjx-eqn-EqIII1867">18.67</a>) gives the same expression that
+appears in&nbsp;(<a href="#mjx-eqn-EqIII1865">18.65</a>).)
+</p>
+</div>
+
+<div id="Ch18-S7-p5" class="para">
+<p class="p">With this definition of&nbsp;$B_{r'}$ the remaining factors on the
+right-hand side of Eq.&nbsp;(<a href="#mjx-eqn-EqIII1867">18.67</a>) are just the
+states&nbsp;$\ket{\tover{r'}{s'}}$. So we have that
+\begin{equation}
+\label{Eq:III:18:68}
+R_y(\theta)\,\ket{\tover{r}{s}}=\sum_{r'=0}^{r+s}
+B_{r'}\,\ket{\tover{r'}{s'}},
+\end{equation}
+with $s'$ always equal to&nbsp;$r+s-r'$. This means, of course, that the
+coefficients&nbsp;$B_{r'}$ are just the matrix elements we want, namely
+\begin{equation}
+\label{Eq:III:18:69}
+\bracket{\tover{r'}{s'}}{R_y(\theta)}{\tover{r}{s}}=B_{r'}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch18-S7-p6" class="para">
+<p class="p">Now we just have to push through the algebra to find the
+various&nbsp;$B_{r'}$. Comparing&nbsp;(<a href="#mjx-eqn-EqIII1865">18.65</a>) with&nbsp;(<a href="#mjx-eqn-EqIII1867">18.67</a>)—and
+remembering that $r'+s'=r+s$—we see that $B_{r'}$ is just the
+coefficient of&nbsp;$a^{r'}b^{s'}$ in the following expression:
+\begin{equation}
+\label{Eq:III:18:70}
+\biggl(\frac{r'!s'!}{r!s!}\biggr)^{1/2}
+(aC+bS)^r(bC-aS)^s.
+\end{equation}
+It is now only a dirty job to make the expansions by the binomial
+theorem, and collect the terms with the given power of $a$ and&nbsp;$b$. If
+you work it all out, you find that the coefficient of&nbsp;$a^{r'}b^{s'}$
+in&nbsp;(<a href="#mjx-eqn-EqIII1870">18.70</a>) is
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:18:71}
+\biggl[\frac{r'!s'!}{r!s!}\biggr]^{1/2}\sum_k
+(-1)^kS^{r-r'+2k}C^{s+r'-2k}\cdot
+\frac{r!}{(r-r'+k)!(r'-k)!}\cdot
+\frac{s!}{(s-k)!k!}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{align}
+\biggl[\frac{r'!s'!}{r!s!}\biggr]^{1/2}\kern{-2.5ex}&\lower .3ex {\sum_k
+(-1)^kS^{r-r'\!+2k}C^{s+r'\!-2k}}\notag\\[-2ex]
+\label{Eq:III:18:71}
+&\quad\;\times\frac{r!}{(r\!-\!r'\!+\!k)!(r'\!-\!k)!}\!\cdot\!
+\frac{s!}{(s\!-\!k)!k!}.
+\end{align}
+
+</span>
+The sum is to be taken over all integers&nbsp;$k$ which give terms of zero
+or greater in the factorials. This expression is then the matrix
+element we wanted.
+</p>
+</div>
+
+<div id="Ch18-S7-p7" class="para">
+<p class="p">Finally, we can return to our original notation in terms of $j$,&nbsp;$m$,
+and&nbsp;$m'$ using
+<span class="eq-wide">
+\begin{equation*}
+r=j+m,\quad
+r'=j+m',\quad
+s=j-m,\quad
+s'=j-m'.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{alignat*}{2}
+&r&=&\,j+m,\quad
+&r'&=&\,j+m',\\[.5ex]
+&s&=&\,j-m,\quad
+&s'&=&\,j-m'.
+\end{alignat*}
+</span>
+Making these substitutions, we get Eq.&nbsp;(<a href="#mjx-eqn-EqIII1835">18.35</a>) in
+Section&nbsp;<a href="III_18.html#Ch18-S4">18-4</a>.
+</p>
+</div>
+
+</div> <!-- end of section -->
+
+<div id="Ch18-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">18–8</span>Added Note 2: Conservation of parity in photon emission</h3>
+
+<div id="Ch18-S8-p1" class="para">
+<p class="p">In Section&nbsp;<a href="III_18.html#Ch18-S1">18-1</a> of this chapter we considered the
+emission of light by an atom that goes from an excited state of
+spin&nbsp;$1$ to a ground state of spin&nbsp;$0$. If the excited state has its spin
+up&nbsp;($m=+1$), it can emit a RHC photon along the $+z$-axis or a LHC
+photon along the $-z$-axis. Let’s call these two states of the photon
+$\ket{R_{\text{up}}}$ and&nbsp;$\ket{L_{\text{dn}}}$. Neither of these
+states has a definite parity. Letting&nbsp;$\Pop$ be the parity operator,
+$\Pop\,\ket{R_{\text{up}}}=\ket{L_{\text{dn}}}$
+and&nbsp;$\Pop\,\ket{L_{\text{dn}}}=\ket{R_{\text{up}}}$.
+</p>
+</div>
+
+<div id="Ch18-S8-p2" class="para">
+<p class="p">What about our earlier proof that an atom in a state of definite
+energy must have a definite parity, and our statement that parity is
+conserved in atomic processes? Shouldn’t the final state in this
+problem (the state after the emission of a photon) have a definite
+parity? It <em class="emph">does</em> if we consider the <em class="emph">complete</em> final state
+which contains amplitudes for the emission of photons into all sorts
+of angles. In Section&nbsp;<a href="III_18.html#Ch18-S1">18-1</a> we chose to consider only a
+part of the complete final state.
+</p>
+</div>
+
+<div id="Ch18-S8-p3" class="para">
+<p class="p">If we wish we can look only at final states that do have a definite
+parity. For example, consider a final state&nbsp;$\ket{\psi_{F}}$
+which has some amplitude&nbsp;$\alpha$ to be a RHC photon going along&nbsp;$+z$
+and some amplitude&nbsp;$\beta$ to be a LHC photon going along&nbsp;$-z$. We can
+write
+\begin{equation}
+\label{Eq:III:18:72}
+\ket{\psi_{F}}=\alpha\,\ket{R_{\text{up}}}+
+\beta\,\ket{L_{\text{dn}}}.
+\end{equation}
+The parity operation on this state gives
+\begin{equation}
+\label{Eq:III:18:73}
+\Pop\,\ket{\psi_{F}}=\alpha\,\ket{L_{\text{dn}}}+
+\beta\,\ket{R_{\text{up}}}.
+\end{equation}
+This state will be&nbsp;$\pm\,\ket{\psi_{F}}$ if $\beta=\alpha$ or
+if $\beta=-\alpha$. So a final state of even parity is
+\begin{equation}
+\label{Eq:III:18:74}
+\ket{\psi_{F}^+}=\alpha\{\ket{R_{\text{up}}}+
+\ket{L_{\text{dn}}}\},
+\end{equation}
+and a state of odd parity is
+\begin{equation}
+\label{Eq:III:18:75}
+\ket{\psi_{F}^-}=\alpha\{\ket{R_{\text{up}}}-
+\ket{L_{\text{dn}}}\}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch18-S8-p4" class="para">
+<p class="p">Next, we wish to consider the decay of an excited state of odd parity
+to a ground state of even parity. If parity is to be conserved, the
+final state of the photon must have odd parity. It must be the state
+in&nbsp;(<a href="#mjx-eqn-EqIII1875">18.75</a>). If the amplitude to find
+$\ket{R_{\text{up}}}$ is&nbsp;$\alpha$, the amplitude to find
+$\ket{L_{\text{dn}}}$ is&nbsp;$-\alpha$.
+</p>
+</div>
+
+<div id="Ch18-S8-p5" class="para">
+<p class="p">Now notice what happens when we perform a rotation of&nbsp;$180^\circ$
+about the $y$-axis. The initial excited state of the atom becomes an
+$m=-1$&nbsp;state (with no change in sign, according to
+Table&nbsp;<a href="III_17.html#Ch17-T2">17–2</a>). And the rotation of the final state gives
+\begin{equation}
+\label{Eq:III:18:76}
+R_y(180^\circ)\,\ket{\psi_{F}^-}=\alpha\{\ket{R_{\text{dn}}}-
+\ket{L_{\text{up}}}\}.
+\end{equation}
+Comparing this equation with&nbsp;(<a href="#mjx-eqn-EqIII1875">18.75</a>), you see that for
+the assumed parity of the final state, the amplitude to get a LHC
+photon along&nbsp;$+z$ from the $m=-1$&nbsp;initial state is the negative of the
+amplitude to get a RHC photon from the $m=+1$&nbsp;initial state. This
+agrees with the result we found in Section&nbsp;<a href="III_18.html#Ch18-S1">18-1</a>.
+</p>
+</div>
+
+</div> <!-- end of section -->
+
+<ol id="footnotes">
+	<li class="footnote">
+	  <a name="footnote_1"></a>
+When we change
+$x,y,z$ into&nbsp;$-x,-y,-z$, you might think that all vectors get reversed.
+That is true for <em class="emph">polar</em> vectors like displacements and velocities,
+but <em class="emph">not</em> for an <em class="emph">axial</em> vector like angular momentum—or any
+vector which is derived from a cross product of two polar vectors. Axial
+vectors have the same components after an inversion.
+	  <a href="#footnote_source_1">↩</a>
+	</li>	
+	<li class="footnote">
+	  <a name="footnote_2"></a>
+Some of you may object to the argument we
+have just made, on the basis that the final states we have been
+considering do not have a definite parity. You will find in <a href="#Ch18-S8">Added
+Note&nbsp;2</a> at the end of this chapter another demonstration, which you may
+prefer.
+	  <a href="#footnote_source_2">↩</a>
+	</li>
+	<li class="footnote">
+	  <a name="footnote_3"></a>
+In the deeper understanding of the world
+today, we do not have an easy way to distinguish whether the energy of
+a photon is less “matter” than the energy of an electron, because as
+you remember all the particles behave very similarly. The only
+distinction is that the photon has zero rest mass.
+	  <a href="#footnote_source_3">↩</a>
+	</li>
+	<li class="footnote">
+	  <a name="footnote_4"></a>
+Note that we always analyze the angular momentum
+about the direction of motion of the particle. If we were to ask about
+the angular momentum about any other axis, we would have to worry
+about the possibility of “orbital” angular momentum—from a
+$\FLPp\times\FLPr$&nbsp;term. For instance, we can’t say that the photons
+leave exactly from the center of the positronium. They could leave
+like two things shot out from the rim of a spinning wheel. We don’t
+have to worry about such possibilities when we take our axis along the
+direction of motion.
+	  <a href="#footnote_source_4">↩</a>
+	</li>
+	<li class="footnote">
+	  <a name="footnote_5"></a>
+We have not normalized
+our amplitudes, or multiplied them by the amplitude for the
+disintegration into any particular final state, but we can see that
+this result is correct because we get zero probability when we look at
+the other alternative—see Eq.&nbsp;(<a href="#mjx-eqn-EqIII1823">18.23</a>).
+	  <a href="#footnote_source_5">↩</a>
+	</li>
+	<li class="footnote">
+	  <a name="footnote_6"></a>
+See also Chapter&nbsp;<a href="III_01.html">1</a> of the present
+volume.
+	  <a href="#footnote_source_6">↩</a>
+	</li>
+	<li class="footnote">
+	  <a name="footnote_7"></a>
+If you want details, they are given in an appendix
+to this chapter.
+	  <a href="#footnote_source_7">↩</a>
+	</li>
+	<li class="footnote">
+	  <a name="footnote_8"></a>
+We can neglect the recoil given to
+the Ne$^{20*}$ in the first collision. Or better still, we can
+calculate what it is and make a correction for it.
+	  <a href="#footnote_source_8">↩</a>
+	</li>
+	<li class="footnote">
+	  <a name="footnote_9"></a>
+A large part of the work is done now that we have the
+general rotation matrix Eq.&nbsp;(<a href="#mjx-eqn-EqIII1835">18.35</a>).
+	  <a href="#footnote_source_9">↩</a>
+	</li>
+	<li class="footnote">
+	  <a name="footnote_10"></a>
+The material of this appendix was originally included
+in the body of the lecture.  We now feel that it is unnecessary to
+include such a detailed treatment of the general case.
+	  <a href="#footnote_source_10">↩</a>
+	</li>
+</ol>
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

@@ -1,0 +1,1316 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 50: Harmonics</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "50." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch50" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">50</span>Harmonics</h2>
+<div id="Ch50-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">50–1</span>Musical tones</h3>
+<div id="Ch50-S1-p1" class="para">
+<p class="p">Pythagoras is said
+to have discovered the fact that two similar strings under the same
+tension and differing only in length, when sounded together give an
+effect that is pleasant to the ear <em class="emph">if</em> the lengths of the strings
+are in the ratio of two small integers. If the lengths are as one is to
+two, they then correspond to the octave in music. If the lengths are as
+two is to three, they correspond to the interval between $C$ and $G$,
+which is called a fifth. These intervals are generally accepted as
+“pleasant” sounding chords.</p>
+</div>
+<div id="Ch50-S1-p2" class="para">
+<p class="p">Pythagoras was so impressed by
+this discovery that he made it the basis of a school—Pythagoreans they
+were called—which held mystic beliefs in the great powers of numbers.
+It was believed that something similar would be found out about the
+planets—or “spheres.” We sometimes hear the expression: “the music
+of the spheres.” The idea was that there would be some numerical
+relationships between the orbits of the planets or between other things
+in nature. People usually think that this is just a kind of superstition
+held by the Greeks. But is it so different from our own scientific
+interest in quantitative relationships?
+Pythagoras’ discovery was
+the first example, outside geometry,
+of any numerical relationship in nature. It must have been very
+surprising to suddenly discover that there was a <em class="emph">fact</em> of nature
+that involved a simple numerical relationship. Simple measurements of
+lengths gave a prediction about something which had no apparent
+connection to geometry—the production of pleasant sounds. This
+discovery led to the extension that perhaps a good tool for
+understanding nature would be arithmetic and mathematical analysis. The
+results of modern science justify that point of view.</p>
+</div>
+<div id="Ch50-S1-p3" class="para">
+<p class="p">Pythagoras could only have made
+his discovery by making an experimental observation. Yet this important
+aspect does not seem to have impressed him. If it had, physics might
+have had a much earlier start. (It is always easy to look back at what
+someone else has done and to decide what he <em class="emph">should</em> have done!)</p>
+</div>
+<div id="Ch50-S1-p4" class="para">
+<p class="p">We might remark on a third aspect of this very interesting discovery:
+that the discovery had to do with two notes that <em class="emph">sound pleasant</em>
+to the ear. We may question whether <em class="emph">we</em> are any better off than
+Pythagoras in understanding
+<em class="emph">why</em> only certain sounds are pleasant to our ear. The general
+theory of aesthetics is probably no further advanced now than in the
+time of Pythagoras. In this one
+discovery of the Greeks, there are the three aspects: experiment,
+mathematical relationships, and aesthetics. Physics has made great
+progress on only the first two parts. This chapter will deal with our
+present-day understanding of the discovery of
+Pythagoras.</p>
+</div>
+<div id="Ch50-S1-p5" class="para">
+<p class="p">Among the sounds that we hear, there is one kind that we call
+<em class="emph">noise</em>. Noise corresponds to a sort of irregular vibration of
+the eardrum that is produced by the irregular vibration of some object
+in the neighborhood. If we make a diagram to indicate the pressure of
+the air on the eardrum (and, therefore, the displacement of the drum)
+as a function of time, the graph which corresponds to a noise might
+look like that shown in Fig. <a href="#Ch50-F1">50–1</a>(a). (Such a noise
+might correspond roughly to the sound of a stamped foot.) The sound of
+<em class="emph">music</em> has a different character. Music is characterized by
+the
+presence of more-or-less <em class="emph">sustained tones</em>—or musical
+“notes.” (Musical instruments may make noises as well!) The tone may
+last for a relatively short time, as when a key is pressed on a piano,
+or it may be sustained almost indefinitely, as when a flute player
+holds a long note.</p>
+</div>
+<div id="Ch50-F1" class="figure">
+<img class="first" src="img/FLP_I/f50-01/f50-01_tc_big_a.svgz"><img class="last" src="img/FLP_I/f50-01/f50-01_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 50–1.</span>Pressure as a function of time for (a) a noise, and (b) a
+musical tone.
+</div>
+</div>
+<div id="Ch50-S1-p6" class="para">
+<p class="p">What is the special character of a musical note from the point of view
+of the pressure in the air? A musical note differs from a noise in
+that there is a periodicity in its graph. There is some uneven shape
+to the variation of the air pressure with time, and the shape repeats
+itself over and over again. An example of a pressure-time function
+that would correspond to a musical note is shown in
+Fig. <a href="#Ch50-F1">50–1</a>(b).</p>
+</div>
+<div id="Ch50-S1-p7" class="para">
+<p class="p">Musicians will usually speak of a musical tone in terms of three
+characteristics: the loudness, the pitch, and the “quality.” The
+“loudness” is found to correspond to the magnitude of the pressure
+changes. The “pitch” corresponds to the period of time for one
+repetition of the basic pressure function. (“Low” notes have longer
+periods than “high” notes.) The “quality” of a tone has to do with
+the differences we may still be able to hear between two notes of the
+same loudness and pitch. An oboe, a violin, or a soprano are still
+distinguishable even when they sound notes of the same pitch. The
+quality has to do with the structure of the repeating pattern.</p>
+</div>
+<div id="Ch50-S1-p8" class="para">
+<p class="p">Let us consider, for a moment, the sound produced by a vibrating
+string. If we pluck the string, by pulling it to one side and
+releasing it, the subsequent motion will be determined by the motions
+of the waves we have produced. We know that these waves will travel in
+both directions, and will be reflected at the ends. They will slosh
+back and forth for a long time. No matter how complicated the wave is,
+however, it will repeat itself. The period of repetition is just the
+time $T$ required for the wave to travel two full lengths of the
+string. For that is just the time required for any wave, once started,
+to reflect off each end and return to its starting position, and be
+proceeding in the original direction. The time is the same for waves
+which start out in either direction. Each point on the string will,
+then, return to its starting position after one period, and again one
+period later, etc. The sound wave produced must also have the same
+repetition. We see why a plucked string produces a musical tone.</p>
+</div>
+</div>
+<div id="Ch50-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">50–2</span>The Fourier series</h3>
+<div id="Ch50-S2-p1" class="para">
+<p class="p">We have discussed in the preceding chapter another way of looking at
+the motion of a vibrating system. We have seen that a string has
+various natural modes of oscillation, and that any particular kind of
+vibration that may be set up by the starting conditions can be thought
+of as a combination—in suitable proportions—of several of the
+natural modes, oscillating together. For a string we found that the
+normal modes of oscillation had the frequencies $\omega_0$, $2\omega_0$,
+$3\omega_0$, … The most general motion of a
+plucked string, therefore, is composed of the sum of a sinusoidal
+oscillation at the fundamental frequency $\omega_0$, another at the
+second harmonic frequency $2\omega_0$, another at the third
+harmonic $3\omega_0$, etc. Now the fundamental mode repeats itself every
+period $T_1 = 2\pi/\omega_0$. The second harmonic mode repeats itself
+every $T_2 = 2\pi/2\omega_0$. It <em class="emph">also</em> repeats itself every $T_1 =
+2T_2$, after <em class="emph">two</em> of its periods. Similarly, the third harmonic
+mode repeats itself after a time $T_1$ which is $3$ of its periods. We
+see again why a plucked string repeats its whole pattern with a
+periodicity of $T_1$. It produces a musical tone.</p>
+</div>
+<div id="Ch50-S2-p2" class="para">
+<p class="p">We have been talking about the motion of the string. But the
+<em class="emph">sound</em>, which is the motion of the air, is produced by the
+motion of the string, so its vibrations too must be composed of the
+same harmonics—though we are no longer thinking about the normal
+modes of the air. Also, the relative strength of the harmonics may be
+different in the air than in the string, particularly if the string is
+“coupled” to the air via a sounding board. The efficiency of the
+coupling to the air is different for different harmonics.</p>
+</div>
+<div id="Ch50-S2-p3" class="para">
+<p class="p">If we let $f(t)$ represent the air pressure as a function of time for
+a musical tone [such as that in Fig. <a href="#Ch50-F1">50–1</a>(b)], then we
+expect that $f(t)$ can be written as the sum of a number of simple
+harmonic functions of time—like $\cos\omega t$—for each of the
+various harmonic frequencies. If the period of the vibration is $T$,
+the fundamental angular frequency will be $\omega = 2\pi/T$, and the
+harmonics will be $2\omega$, $3\omega$, etc.</p>
+</div>
+<div id="Ch50-S2-p4" class="para">
+<p class="p">There is one slight complication. For each frequency we may expect
+that the starting phases will not necessarily be the same for all
+frequencies. We should, therefore, use functions like $\cos\,(\omega t
++ \phi)$. It is, however, simpler to use instead both the sine and
+cosine functions for <em class="emph">each</em> frequency. We recall that
+\begin{equation}
+\label{Eq:I:50:1}
+\cos\,(\omega t + \phi) = (\cos\phi\cos\omega t - 
+\sin\phi\sin\omega t)
+\end{equation}
+and since $\phi$ is a constant, <em class="emph">any</em> sinusoidal oscillation at
+the frequency $\omega$ can be written as the sum of a term
+with $\cos\omega t$ and another term with $\sin\omega t$.</p>
+</div>
+<div id="Ch50-S2-p5" class="para">
+<p class="p">We conclude, then, that <em class="emph">any</em> function $f(t)$ that is periodic
+with the period $T$ can be written mathematically as
+\begin{alignat}{4}
+f(t) &= a_0\notag\\[.5ex]
+&\quad\;+\;a_1\cos&&\omega t &&\;+\;b_1\sin&&\omega t\notag\\[.65ex]
+&\quad\;+\;a_2\cos2&&\omega t &&\;+\;b_2\sin2&&\omega t\notag\\[.65ex]
+&\quad\;+\;a_3\cos3&&\omega t &&\;+\;b_3\sin3&&\omega t\notag\\[.5ex]
+\label{Eq:I:50:2}
+&\quad\;+\;\dotsb && &&\;+\;\dotsb
+\end{alignat}
+where $\omega = 2\pi/T$ and the $a$’s and $b$’s are numerical
+constants which tell us how much of each component oscillation is
+present in the oscillation $f(t)$. We have added the
+“zero-frequency” term $a_0$ so that our formula will be completely
+general, although it is usually zero for a musical tone. It represents
+a shift of the average value (that is, the “zero” level) of the
+sound pressure. With it our formula can take care of any case. The
+equality of Eq. (<a href="#mjx-eqn-EqI502">50.2</a>) is represented schematically in
+Fig. <a href="#Ch50-F2">50–2</a>. (The amplitudes, $a_n$ and $b_n$, of the harmonic
+functions must be suitably chosen. They are shown schematically and
+without any particular scale in the figure.) The
+series (<a href="#mjx-eqn-EqI502">50.2</a>) is called the <em class="emph">Fourier series</em> for $f(t)$.</p>
+</div>
+<div id="Ch50-F2" class="figure">
+<img src="img/FLP_I/f50-02/f50-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 50–2.</span>Any periodic function $f(t)$ is equal to a sum of simple
+harmonic functions.
+</div>
+</div>
+<div id="Ch50-S2-p6" class="para">
+<p class="p">We have said that <em class="emph">any</em> periodic function can be made up in this
+way. We should correct that and say that any sound wave, or any
+function we ordinarily encounter in physics, can be made up of such a
+sum. The mathematicians can invent functions which cannot be made up
+of simple harmonic functions—for instance, a function that has a
+“reverse twist” so that it has two values for some values of $t$! We
+need not worry about such functions here.</p>
+</div>
+</div>
+<div id="Ch50-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">50–3</span>Quality and consonance</h3>
+<div id="Ch50-S3-p1" class="para">
+<p class="p">Now we are able to describe what it is that determines the “quality”
+of a musical tone. It is the relative amounts of the various
+harmonics—the values of the $a$’s and $b$’s. A tone with only the
+first harmonic is a “pure” tone. A tone with many strong harmonics
+is a “rich” tone. A violin produces a different proportion of
+harmonics than does an oboe.</p>
+</div>
+<div id="Ch50-S3-p2" class="para">
+<p class="p">We can “manufacture” various musical tones if we connect several
+“oscillators” to a loudspeaker. (An oscillator usually produces a
+nearly pure simple harmonic function.) We should choose the
+frequencies of the oscillators to be $\omega$, $2\omega$,
+$3\omega$, etc. Then by adjusting the volume control on each oscillator, we can
+add in any amount we wish of each harmonic—thereby producing tones
+of different quality. An electric organ works in much this way. The
+“keys” select the frequency of the fundamental oscillator and the
+“stops” are switches that control the relative proportions of the
+harmonics. By throwing these switches, the organ can be made to sound
+like a flute, or an oboe, or a violin.</p>
+</div>
+<div id="Ch50-S3-p3" class="para">
+<p class="p">It is interesting that to produce such “artificial” tones we need
+only one oscillator for each frequency—we do not need separate
+oscillators for the sine and cosine components. The ear is not very
+sensitive to the relative phases of the harmonics. It pays attention
+mainly to the <em class="emph">total</em> of the sine and cosine parts of each
+frequency. Our analysis is more accurate than is necessary to explain
+the <em class="emph">subjective</em> aspect of music. The response of a microphone or
+other physical instrument does depend on the phases, however, and our
+complete analysis may be needed to treat such cases.</p>
+</div>
+<div id="Ch50-S3-p4" class="para">
+<p class="p">The “quality” of a spoken sound also determines the vowel sounds
+that we recognize in speech. The shape of the mouth determines the
+frequencies of the natural modes of vibration of the air in the
+mouth. Some of these modes are set into vibration by the sound waves
+from the vocal chords. In this way, the amplitudes of some of the
+harmonics of the sound are increased with respect to others. When we
+change the shape of our mouth, harmonics of different frequencies are
+given preference. These effects account for the difference between an
+“e–e–e” sound and an “a–a–a” sound.</p>
+</div>
+<div id="Ch50-S3-p5" class="para">
+<p class="p">We all know that a particular vowel sound—say “e–e–e”—still
+“sounds like” the same vowel whether we say (or sing) it at a high
+or a low pitch. From the mechanism we describe, we would expect that
+<em class="emph">particular</em> frequencies are emphasized when we shape our mouth
+for an “e–e–e,” and that they <em class="emph">do not</em> change as we change
+the pitch of our voice. So the relation of the important harmonics to
+the fundamental—that is, the “quality”—changes as we change
+pitch. Apparently the mechanism by which we recognize speech is not
+based on specific harmonic relationships.</p>
+</div>
+<div id="Ch50-S3-p6" class="para">
+<p class="p">What should we say now about Pythagoras’ discovery? We understand that
+two similar strings with lengths in the ratio of $2$ to $3$ will have
+fundamental frequencies in the ratio $3$ to $2$. But why should they
+“sound pleasant” together? Perhaps we should take our clue from the
+frequencies of the harmonics. The second harmonic of the lower shorter
+string will have the <em class="emph">same</em> frequency as the third harmonic of the
+longer string. (It is easy to show—or to believe—that a plucked
+string produces strongly the several lowest harmonics.)</p>
+</div>
+<div id="Ch50-S3-p7" class="para">
+<p class="p">Perhaps we should make the following rules. Notes sound consonant when
+they have harmonics with the same frequency. Notes sound dissonant if
+their upper harmonics have frequencies near to each other but far
+enough apart that there are rapid beats between the two. Why beats do
+not sound pleasant, and why unison of the upper harmonics does sound
+pleasant, is something that we do not know how to define or
+describe. We cannot say from this knowledge of what <em class="emph">sounds</em>
+good, what ought, for example, to <em class="emph">smell</em> good. In other words,
+our understanding of it is not anything more general than the
+statement that when they are in unison they sound good. It does not
+permit us to deduce anything more than the properties of concordance
+in music.</p>
+</div>
+<div id="Ch50-S3-p8" class="para">
+<p class="p">It is easy to check on the harmonic relationships we have described by
+some simple experiments with a piano. Let us label the $3$ successive
+C’s near the middle of the keyboard by C, C$'$, and C$''$, and the G’s
+just above by G, G$'$, and G$''$. Then the fundamentals will have
+relative frequencies as follows:
+\begin{alignat*}{4}
+&\text{C}&&–2&&\quad
+\text{G}&&–\phantom{1}3\\[1ex]
+&\text{C}'&&–4&&\quad
+\text{G}'&&–\phantom{1}6\\[1ex]
+&\text{C}''&&–8&&\quad
+\text{G}''&&–12
+\end{alignat*}
+These harmonic relationships can be demonstrated in the following way:
+Suppose we press C$'$ <em class="emph">slowly</em>—so that it does not sound but we
+cause the damper to be lifted. If we then sound C, it will produce its
+own fundamental <em class="emph">and</em> some second harmonic. The second harmonic
+will set the strings of C$'$ into vibration. If we now release C
+(keeping C$'$ pressed) the damper will stop the vibration of the C
+strings, and we can hear (softly) the note C$'$ as it dies away. In a
+similar way, the third harmonic of C can cause a vibration of G$'$. Or
+the sixth of C (now getting much weaker) can set up a vibration in the
+fundamental of G$''$.</p>
+</div>
+<div id="Ch50-S3-p9" class="para">
+<p class="p">A somewhat different result is obtained if we press G quietly and then
+sound C$'$. The third harmonic of C$'$ will correspond to the fourth
+harmonic of G, so <em class="emph">only</em> the fourth harmonic of G will be
+excited. We can hear (if we listen closely) the sound of G$''$, which
+is two octaves above the G we have pressed! It is easy to think up
+many more combinations for this game.</p>
+</div>
+<div id="Ch50-S3-p10" class="para">
+<p class="p">We may remark in passing that the major scale can be defined just by
+the condition that the three major chords (F–A–C); (C–E–G); and
+(G–B–D) <em class="emph">each</em> represent tone sequences with the frequency
+ratio $(4:5:6)$. These ratios—plus the fact that an octave (C–C$'$,
+B–B$'$, etc.)  has the ratio $1:2$—determine the whole scale for
+the “ideal” case, or for what is called “just intonation.”
+Keyboard instruments like the piano are <em class="emph">not</em> usually tuned in
+this manner, but a little “fudging” is done so that the frequencies
+are <em class="emph">approximately</em> correct for all possible starting tones. For
+this tuning, which is called “tempered,” the octave (still $1:2$) is
+divided into $12$ equal intervals for which the frequency ratio
+is $(2)^{1/12}$. A fifth no longer has the frequency ratio $3/2$, but
+$2^{7/12} = 1.499$, which is apparently close enough for most ears.</p>
+</div>
+<div id="Ch50-S3-p11" class="para">
+<p class="p">We have stated a rule for consonance in terms of the coincidence of
+harmonics. Is this coincidence perhaps the <em class="emph">reason</em> that two
+notes are consonant? One worker has claimed that two <em class="emph">pure</em>
+tones—tones carefully manufactured to be free of harmonics—do not
+give the <em class="emph">sensations</em> of consonance or dissonance as the relative
+frequencies are placed at or near the expected ratios. (Such
+experiments are difficult because it is difficult to manufacture pure
+tones, for reasons that we shall see later.) We cannot still be
+certain whether the ear is matching harmonics or doing arithmetic when
+we decide that we like a sound.</p>
+</div>
+</div>
+<div id="Ch50-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">50–4</span>The Fourier coefficients</h3>
+<div id="Ch50-S4-p1" class="para">
+<p class="p">Let us return now to the idea that any note—that is, a
+<em class="emph">periodic</em> sound—can be represented by a suitable combination
+of harmonics. We would like to show how we can find out what amount of
+each harmonic is required. It is, of course, easy to compute $f(t)$,
+using Eq. (<a href="#mjx-eqn-EqI502">50.2</a>), if we are <em class="emph">given</em> all the
+coefficients $a$ and $b$. The question now is, if we are given $f(t)$
+how can we know what the coefficients of the various harmonic terms
+should be? (It is easy to make a cake from a recipe; but can we write
+down the recipe if we are given a cake?)</p>
+</div>
+<div id="Ch50-S4-p2" class="para">
+<p class="p">Fourier discovered that it was
+not really very difficult. The term $a_0$ is certainly easy. We have
+already said that it is just the average value of $f(t)$ over one period
+(from $t = 0$ to $t = T$). We can easily see that this is indeed so. The
+average value of a sine or cosine function over one period is zero. Over
+two, or three, or any whole number of periods, it is also zero. So the
+average value of all of the terms on the right-hand side of
+Eq. (<a href="#mjx-eqn-EqI502">50.2</a>) is zero, except for $a_0$. (Recall that we must
+choose $\omega = 2\pi/T$.)</p>
+</div>
+<div id="Ch50-S4-p3" class="para">
+<p class="p">Now the average of a sum is the sum of the averages. So the average
+of $f(t)$ is just the average of $a_0$. But $a_0$ is a <em class="emph">constant</em>, so
+its average is just the same as its value. Recalling the definition of
+an average, we have
+\begin{equation}
+\label{Eq:I:50:3}
+a_0 = \frac{1}{T}\int_0^Tf(t)\,dt.
+\end{equation}</p>
+</div>
+<div id="Ch50-S4-p4" class="para">
+<p class="p">The other coefficients are only a little more difficult. To find them we
+can use a trick discovered by
+Fourier.
+Suppose we multiply both sides of Eq. (<a href="#mjx-eqn-EqI502">50.2</a>)
+by some harmonic function—say by $\cos7\omega t$. We have then
+<span class="eq-wide">
+\begin{alignat}{2}
+f(t)\cdot\cos7\omega t &= a_0\cdot\cos7\omega t\notag\\[.5ex]
+&\quad+\;a_1\cos\hphantom{1}\omega t\cdot\cos7\omega t &&\;+\;
+b_1\sin\hphantom{1}\omega t\cdot\cos7\omega t\notag\\[.65ex]
+&\quad+\;a_2\cos2\omega t\cdot\cos7\omega t &&\;+\;
+b_2\sin2\omega t\cdot\cos7\omega t\notag\\[.65ex]
+&\quad+\;\dotsb &&\;+\; \dotsb\notag\\[.65ex]
+&\quad+\;a_7\cos7\omega t\cdot\cos7\omega t &&\;+\;
+b_7\sin7\omega t\cdot\cos7\omega t\notag\\[.5ex]
+\label{Eq:I:50:4}
+&\quad+\;\dotsb &&\;+\; \dotsb
+\end{alignat}
+</span>
+<span class="eq-narrow">
+\begin{alignat}{2}
+f(t)\cdot\cos7\omega t &= a_0\cdot\cos7\omega t\notag\\[.75ex]
+&\quad+\;a_1\cos\omega t \cdot\cos7\omega t\notag\\
+&\qquad\qquad+\;b_1\sin\omega t\cdot\cos7\omega t&\notag\\[.75ex]
+&\quad+\;a_2\cos2\omega t\cdot\cos7\omega t \notag\\
+&\qquad\qquad+\;b_2\sin2\omega t\cdot\cos7\omega t\notag\\[1ex]
+&\quad+\quad\dotsb\notag\\[2ex]
+&\quad+\;a_7\cos7\omega t\cdot\cos7\omega t\notag\\
+&\qquad\qquad+\;b_7\sin7\omega t\cdot\cos7\omega t\notag\\[.75ex]
+\label{Eq:I:50:4}
+&\quad+\quad\dotsb
+\end{alignat}
+</span>
+<em class="emph">Now</em> let us average both sides. The average of $a_0\cos7\omega
+t$ over the time $T$ is proportional to the average of a cosine over
+$7$ whole periods. But that is just zero. The average of <em class="emph">almost
+all</em> of the rest of the terms is <em class="emph">also</em> zero. Let us look at the
+$a_1$ term. We know, in general, that
+\begin{equation}
+\label{Eq:I:50:5}
+\cos A\cos B = \tfrac{1}{2}\cos\,(A + B) + \tfrac{1}{2}\cos\,(A - B).
+\end{equation}
+The $a_1$ term becomes
+\begin{equation}
+\label{Eq:I:50:6}
+\tfrac{1}{2}a_1(\cos8\omega t + \cos6\omega t).
+\end{equation}
+We thus have two cosine terms, one with $8$ full periods in $T$ and
+the other with $6$. <em class="emph">They both average to zero</em>. The average of
+the $a_1$ term is therefore zero.</p>
+</div>
+<div id="Ch50-S4-p5" class="para">
+<p class="p">For the $a_2$ term, we would find $a_2\cos9\omega t$
+and $a_2\cos5\omega t$, each of which also averages to zero. For the
+$a_9$ term, we would find $\cos16\omega t$ and $\cos\,(-2\omega t)$. But
+$\cos\,(-2\omega t)$ is the same as $\cos2\omega t$, so both of these
+have zero averages. It is clear that <em class="emph">all</em> of the $a$ terms will
+have a zero average <em class="emph">except</em> one. And that one is the
+$a_7$ term. For this one we have
+\begin{equation}
+\label{Eq:I:50:7}
+\tfrac{1}{2}a_7(\cos14\omega t + \cos0).
+\end{equation}
+The cosine of zero is one, and its average, of course, is one. So we
+have the result that the average of all of the $a$ terms of
+Eq. (<a href="#mjx-eqn-EqI504">50.4</a>) equals $\tfrac{1}{2}a_7$.</p>
+</div>
+<div id="Ch50-S4-p6" class="para">
+<p class="p">The $b$ terms are even easier. When we multiply by any cosine term
+like $\cos n\omega t$, we can show by the same method that <em class="emph">all</em>
+of the $b$ terms have the average value zero.</p>
+</div>
+<div id="Ch50-S4-p7" class="para">
+<p class="p">We see that Fourier’s
+“trick” has acted like a sieve. When we multiply by $\cos7\omega t$
+and average, all terms drop out except $a_7$, and we find that
+\begin{equation}
+\label{Eq:I:50:8}
+\operatorname{Average}\,[f(t)\cdot\cos7\omega t]=a_7/2,
+\end{equation}
+or
+\begin{equation}
+\label{Eq:I:50:9}
+a_7 = \frac{2}{T}\int_0^Tf(t)\cdot\cos7\omega t\,dt.
+\end{equation}</p>
+</div>
+<div id="Ch50-S4-p8" class="para">
+<p class="p">We shall leave it for the reader to show that the coefficient $b_7$
+can be obtained by multiplying Eq. (<a href="#mjx-eqn-EqI502">50.2</a>) by $\sin7\omega
+t$ and averaging both sides. The result is
+\begin{equation}
+\label{Eq:I:50:10}
+b_7 = \frac{2}{T}\int_0^Tf(t)\cdot\sin7\omega t\,dt.
+\end{equation}</p>
+</div>
+<div id="Ch50-S4-p9" class="para">
+<p class="p">Now what is true for $7$ we expect is true for any integer. So we can
+summarize our proof and result in the following more elegant
+mathematical form. If $m$ and $n$ are integers other than zero, and if
+$\omega = 2\pi/T$, then
+<span class="eq-wide">
+\begin{align}
+\label{Eq:I:50:11}
+&\text{I.}\quad
+\int_0^T\sin n\omega t\cos m\omega t\,dt = 0.\\[1ex]
+% ebook break
+\label{Eq:I:50:12}
+&\left.\hspace{-2mm}
+\begin{alignedat}{3}
+&\text{II.}\quad
+\int_0^T\cos n\omega t  \cos m\omega t\,dt   ={}\\[1ex]
+&\text{III.}\quad
+\int_0^T\sin n\omega t  \sin m\omega t\,dt   ={}
+\end{alignedat}
+\right\}\;
+\begin{cases}
+0 & \kern{-1ex}\text{if $n \neq m$}.\\[1ex]
+T/2 & \kern{-1ex}\text{if $n = m$}.
+\end{cases}\\[1ex]
+% ebook break
+\label{Eq:I:50:13}
+&\text{IV.}\quad
+f(t) = a_0 + \sum_{n = 1}^\infty a_n\cos n\omega t +
+\sum_{n = 1}^\infty b_n\sin n\omega t.\\[1ex]
+\label{Eq:I:50:14}
+&\text{V.}\quad
+a_0 = \frac{1}{T}\int_0^Tf(t)\,dt.\\[1.5ex]
+\label{Eq:I:50:15}
+&\text{}\qquad
+a_n = \frac{2}{T}\int_0^Tf(t)\cdot\cos n\omega t\,dt.\\[1.5ex]
+\label{Eq:I:50:16}
+&\text{}\qquad
+b_n = \frac{2}{T}\int_0^Tf(t)\cdot\sin n\omega t\,dt.
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:I:50:11}
+&\text{I.}\;
+\int_0^T\!\sin n\omega t\cos m\omega t\,dt = 0.\\[1ex]
+% ebook break
+\label{Eq:I:50:12}
+&\left.\hspace{-2mm}
+\begin{alignedat}{3}
+&\text{II.}\;
+\int_0^T\!\cos n\omega t  \cos m\omega t\,dt   ={}\\[1ex]
+&\text{III.}\;
+\int_0^T\!\sin n\omega t  \sin m\omega t\,dt   ={}
+\end{alignedat}
+\right\}\notag\\
+&\kern{6em}\begin{cases}
+0 & \kern{-1ex}\text{if $n \neq m$}.\\[1ex]
+T/2 & \kern{-1ex}\text{if $n = m$}.
+\end{cases}\\[1ex]
+% ebook break
+\label{Eq:I:50:13}
+&\text{IV.}\;
+f(t) = a_0 + \sum_{n = 1}^\infty a_n\cos n\omega t\notag\\
+&\kern{5.5em}+\sum_{n = 1}^\infty b_n\sin n\omega t.\\[1ex]
+\label{Eq:I:50:14}
+&\text{V.}\;
+a_0 = \frac{1}{T}\int_0^T\!f(t)\,dt.\\[1.5ex]
+\label{Eq:I:50:15}
+&\text{}\quad
+a_n = \frac{2}{T}\int_0^T\!f(t)\cdot\cos n\omega t\,dt.\\[1.5ex]
+\label{Eq:I:50:16}
+&\text{}\quad
+b_n = \frac{2}{T}\int_0^T\!f(t)\cdot\sin n\omega t\,dt.
+\end{align}
+</span>
+</p>
+</div>
+<div id="Ch50-S4-p10" class="para">
+<p class="p">In earlier chapters it was convenient to use the exponential notation
+for representing simple harmonic motion. Instead of $\cos\omega t$ we
+used $\FLPRe e^{i\omega t}$, the real part of the exponential
+function. We have used cosine and sine functions in this chapter
+because it made the derivations perhaps a little clearer. Our final
+result of Eq. (<a href="#mjx-eqn-EqI5013">50.13</a>) can, however, be written in the
+compact form
+\begin{equation}
+\label{Eq:I:50:17}
+f(t) = \FLPRe\sum_{n = 0}^\infty\hat{a}_ne^{in\omega t},
+\end{equation}
+where $\hat{a}_n$ is the complex number $a_n - ib_n$ (with $b_0 =
+0$). If we wish to use the same notation throughout, we can write also
+\begin{equation}
+\label{Eq:I:50:18}
+\hat{a}_n = \frac{2}{T}\int_0^Tf(t)e^{-in\omega t}\,dt\quad
+(n \geq 1).
+\end{equation}</p>
+</div>
+<div id="Ch50-S4-p11" class="para">
+<p class="p">We now know how to “analyze” a periodic wave into its harmonic
+components. The procedure is called <em class="emph">Fourier
+analysis</em>, and the separate terms are called
+Fourier components. We have <em class="emph">not</em>
+shown, however, that once we find all of the Fourier
+components and add them together, we do
+indeed get back our $f(t)$. The mathematicians have shown, for a wide
+class of functions, in fact for all that are of interest to
+physicists, that if we can do the integrals we will get back
+$f(t)$. There is one minor exception. If the function $f(t)$ is
+discontinuous, i.e., if it jumps suddenly from one value to another,
+the Fourier sum will give a value at the
+breakpoint halfway between the upper and lower values at the
+discontinuity. So if we have the strange function $f(t) = 0$, $0 \leq
+t &lt; t_0$, and $f(t) = 1$ for $t_0 \leq t \leq T$, the Fourier
+sum will give the right value everywhere
+<em class="emph">except at</em> $t_0$, where it will have the value $\tfrac{1}{2}$
+instead of $1$. It is rather unphysical anyway to insist that a
+function should be zero <em class="emph">up to</em> $t_0$, but $1$ <em class="emph">right at</em>
+$t_0$. So perhaps we should make the “rule” for physicists that any
+discontinuous function (which can only be a simplification of a
+<em class="emph">real</em> physical function) should be defined with halfway values
+at the discontinuities.  Then any such function—with any finite
+number of such jumps—as well as all other physically interesting
+functions, are given correctly by the Fourier sum.</p>
+</div>
+<div id="Ch50-F3" class="figure">
+<img src="img/FLP_I/f50-03/f50-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 50–3.</span>Square-wave function.
+</div>
+</div>
+<div id="Ch50-S4-p12" class="para">
+<p class="p">As an exercise, we suggest that the reader determine the Fourier
+series for the function shown in
+Fig. <a href="#Ch50-F3">50–3</a>. Since the function cannot be written in an
+explicit algebraic form, you will not be able to do the integrals from
+zero to $T$ in the usual way. The integrals are easy, however, if we
+separate them into two parts: the integral from zero to $T/2$ (over
+which $f(t) = 1$) and the integral from $T/2$ to $T$ (over which $f(t) =
+-1$). The result should be
+\begin{equation}
+\label{Eq:I:50:19}
+f(t) = \frac{4}{\pi}(\sin\omega t + \tfrac{1}{3}\sin3\omega t +
+\tfrac{1}{5}\sin5\omega t + \dotsb),
+\end{equation}
+where $\omega = 2\pi/T$. We thus find that our square wave (with the
+particular phase chosen) has only odd harmonics, and their amplitudes
+are in inverse proportion to their frequencies.</p>
+</div>
+<div id="Ch50-S4-p13" class="para">
+<p class="p">Let us check that Eq. (<a href="#mjx-eqn-EqI5019">50.19</a>) does indeed give us back
+$f(t)$ for some value of $t$. Let us choose $t = T/4$, or $\omega t =
+\pi/2$. We have
+\begin{align}
+\label{Eq:I:50:20}
+f(t) &= \frac{4}{\pi}\biggl(\sin\frac{\pi}{2} +
+\frac{1}{3}\sin\frac{3\pi}{2} + \frac{1}{5}\sin\frac{5\pi}{2} +
+\dotsb\biggr)\\[1.5ex]
+\label{Eq:I:50:21}
+&= \frac{4}{\pi}\biggl(1 - \frac{1}{3} + \frac{1}{5} -
+\frac{1}{7}\pm\dotsb\biggr).
+\end{align}
+The series<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> has the value $\pi/4$, and we find that $f(t) = 1$.</p>
+</div>
+</div>
+<div id="Ch50-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">50–5</span>The energy theorem</h3>
+<div id="Ch50-S5-p1" class="para">
+<p class="p">The energy in a wave is proportional to the square of its
+amplitude. For a wave of complex shape, the energy in one period will
+be proportional to $\int_0^Tf^2(t)\,dt$. We can also relate this
+energy to the Fourier coefficients. We
+write
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:50:22}
+\int_0^Tf^2(t)\,dt =
+\int_0^T\biggl[a_0 + \sum_{n = 1}^\infty
+a_n\cos n\omega t +
+\sum_{n = 1}^\infty
+b_n\sin n\omega t\biggr]^2\,dt.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\label{Eq:I:50:22}
+\int_0^Tf^2(t)\,dt =\\
+\int_0^T\biggl[a_0 + \sum_{n = 1}^\infty
+a_n\cos n\omega t +
+\sum_{n = 1}^\infty
+b_n\sin n\omega t\biggr]^2\,dt.\notag
+\end{gather}
+</span>
+When we expand the square of the bracketed term we will get all possible cross
+terms, such as $a_5\cos5\omega t\cdot a_7\cos7\omega t$ and $a_5\cos5\omega t\cdot b_7\sin7\omega t$. 
+We have shown above,
+however, [Eqs. (<a href="#mjx-eqn-EqI5011">50.11</a>) and (<a href="#mjx-eqn-EqI5012">50.12</a>)] that the
+integrals of all such terms over one period is zero.  We have left only the
+square terms like $a_5^2\cos^2 5\omega t$. The integral of any cosine squared or
+sine squared over one period is equal to $T/2$, so we get
+<span class="eq-wide">
+\begin{align}
+\int_0^Tf^2(t)\,dt &= Ta_0^2 + \frac{T}{2}\,
+(a_1^2 + a_2^2 + \dotsb + b_1^2 + b_2^2 + \dotsb)\notag\\[.5ex]
+\label{Eq:I:50:23}
+&= Ta_0^2 + \frac{T}{2}\sum_{n = 1}^\infty(a_n^2 + b_n^2).
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\label{Eq:I:50:23}
+\int_0^Tf^2(t)\,dt =\\[.5ex]
+Ta_0^2 + \frac{T}{2}\,(a_1^2 + a_2^2 + \dotsb + b_1^2 + b_2^2 + \dotsb)= \notag\\[.5ex]
+Ta_0^2 + \frac{T}{2}\sum_{n = 1}^\infty(a_n^2 + b_n^2).\notag
+\end{gather}
+</span>
+
+This equation is called the “energy theorem,” and says that the total energy
+in a wave is just the sum of the energies in all of the Fourier components. For
+example, applying this theorem to the series (<a href="#mjx-eqn-EqI5019">50.19</a>), since $[f(t)]^2
+= 1$ we get
+\begin{equation*}
+T = \frac{T}{2}\cdot\biggl(\frac{4}{\pi}\biggr)^2\biggl(
+1 + \frac{1}{3^2} + \frac{1}{5^2} + \frac{1}{7^2} + \dotsb\biggr),
+\end{equation*}
+so we learn that the sum of the squares of the reciprocals of the odd integers
+is $\pi^2/8$. In a similar way, by first obtaining the Fourier series for the
+function $f(t)=(t-T/2)^2$ and using the energy theorem, we can prove that $1 +
+1/2^4 + 1/3^4 + \dotsb$ is $\pi^4/90$, a result we needed in
+Chapter <a href="I_45.html">45</a>.</p>
+</div>
+</div>
+<div id="Ch50-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">50–6</span>Nonlinear responses</h3>
+<div id="Ch50-F4" class="figure">
+<img class="first" src="img/FLP_I/f50-04/f50-04_tc_big_a.svgz"><img class="last" src="img/FLP_I/f50-04/f50-04_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 50–4.</span>Linear and nonlinear responses.
+</div>
+</div>
+<div id="Ch50-S6-p1" class="para">
+<p class="p">Finally, in the theory of harmonics there is an important phenomenon
+which should be remarked upon because of its practical
+importance—that of nonlinear effects. In all the systems that we
+have been considering so far, we have supposed that everything was
+linear, that the responses to forces, say the displacements or the
+accelerations, were always proportional to the forces. Or that the
+currents in the circuits were proportional to the voltages, and so
+on. We now wish to consider cases where there is not a strict
+proportionality. We think, at the moment, of some device in which the
+response, which we will call $x_{\text{out}}$ at the time $t$, is
+determined by the input $x_{\text{in}}$ at the time $t$. For example,
+$x_{\text{in}}$ might be the force and $x_{\text{out}}$ might be the
+displacement. Or $x_{\text{in}}$ might be the current
+and $x_{\text{out}}$ the voltage. If the device is linear, we would have
+\begin{equation}
+\label{Eq:I:50:24}
+x_{\text{out}}(t) = Kx_{\text{in}}(t),
+\end{equation}
+where $K$ is a constant independent of $t$ and
+of $x_{\text{in}}$. Suppose, however, that the device is nearly, but not
+exactly, linear, so that we can write
+\begin{equation}
+\label{Eq:I:50:25}
+x_{\text{out}}(t) = K[x_{\text{in}}(t) + \epsilon x_{\text{in}}^2(t)],
+\end{equation}
+where $\epsilon$ is small in comparison with unity. Such linear and
+nonlinear responses are shown in the graphs of Fig. <a href="#Ch50-F4">50–4</a>.</p>
+</div>
+<div id="Ch50-F5" class="figure">
+<img src="img/FLP_I/f50-05/f50-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 50–5.</span>The response of a nonlinear device to the input $\cos\omega
+t$. A linear response is shown for comparison.
+</div>
+</div>
+<div id="Ch50-S6-p2" class="para">
+<p class="p">Nonlinear responses have several important practical consequences. We
+shall discuss some of them now. First we consider what happens if we
+apply a pure tone at the input. We let $x_{\text{in}} = \cos\omega
+t$. If we plot $x_{\text{out}}$ as a function of time we get the solid
+curve shown in Fig. <a href="#Ch50-F5">50–5</a>. The dashed curve gives, for
+comparison, the response of a linear system. We see that the output is
+no longer a cosine function. It is more peaked at the top and flatter
+at the bottom. We say that the output is <em class="emph">distorted</em>. We know,
+however, that such a wave is no longer a pure tone, that it will have
+harmonics. We can find what the harmonics are. Using $x_{\text{in}} =
+\cos\omega t$ with Eq. (<a href="#mjx-eqn-EqI5025">50.25</a>), we have
+\begin{equation}
+\label{Eq:I:50:26}
+x_{\text{out}}(t) = K(\cos\omega t + \epsilon\cos^2\omega t).
+\end{equation}
+From the equality $\cos^2\theta = \tfrac{1}{2}(1 + \cos2\theta)$, we
+have
+\begin{equation}
+\label{Eq:I:50:27}
+x_{\text{out}}(t) = K\Bigl(\cos\omega t + \frac{\epsilon}{2} +
+\frac{\epsilon}{2}\cos2\omega t\Bigr).
+\end{equation}
+The output has not only a component at the fundamental frequency, that
+was present at the input, but also has some of its second
+harmonic. There has also appeared at the output a constant
+term $K(\epsilon/2)$, which corresponds to the shift of the average value,
+shown in Fig. <a href="#Ch50-F5">50–5</a>. The process of producing a shift of
+the average value is called <em class="emph">rectification</em>.</p>
+</div>
+<div id="Ch50-S6-p3" class="para">
+<p class="p">A nonlinear response will rectify and will produce harmonics of the
+frequencies at its input. Although the nonlinearity we assumed
+produced only second harmonics, nonlinearities of higher order—those
+which have terms like $x_{\text{in}}^3$ and $x_{\text{in}}^4$, for
+example—will produce harmonics higher than the second.</p>
+</div>
+<div id="Ch50-S6-p4" class="para">
+<p class="p">Another effect which results from a nonlinear response is
+<em class="emph">modulation</em>. If our input function contains two (or more) pure
+tones, the output will have not only their harmonics, but still other
+frequency components. Let $x_{\text{in}} = A\cos\omega_1t +
+B\cos\omega_2t$, where now $\omega_1$ and $\omega_2$ are <em class="emph">not</em>
+intended to be in a harmonic relation. In addition to the linear term
+(which is $K$ times the input) we shall have a component in the output
+given by
+<span class="eq-wide">
+\begin{align}
+\label{Eq:I:50:28}
+x_{\text{out}} &= K\epsilon(A\cos\omega_1t + B\cos\omega_2t)^2\\[.5ex]
+\label{Eq:I:50:29}
+&= K\epsilon(A^2\cos^2\omega_1t + B^2\cos^2\omega_2t +
+2AB\cos\omega_1t\cos\omega_2t).
+\end{align}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:I:50:28}
+x_{\text{out}} &= K\epsilon(A\cos\omega_1t + B\,\cos\omega_2t)^2&\\[1ex]
+&= K\epsilon(A^2\cos^2\omega_1t + B^2\cos^2\omega_2t \notag\\[.5ex]
+\label{Eq:I:50:29}
+&\phantom{=K\epsilon}+\,2AB\cos\omega_1t\cos\omega_2t).
+\end{align}
+</span>
+The first two terms in the parentheses of Eq. (<a href="#mjx-eqn-EqI5029">50.29</a>) are
+just those which gave the constant terms and second harmonic terms we
+found above. The last term is new.
+</p>
+</div>
+<div id="Ch50-S6-p5" class="para">
+<p class="p">We can look at this new “cross term” $AB\cos\omega_1t\cos\omega_2t$
+in two ways. First, if the two frequencies are widely different (for
+example, if $\omega_1$ is much greater than $\omega_2$) we can
+consider that the cross term represents a cosine oscillation of
+varying amplitude. That is, we can think of the factors in this way:
+\begin{equation}
+\label{Eq:I:50:30}
+AB\cos\omega_1t\cos\omega_2t = C(t)\cos\omega_1t,
+\end{equation}
+with
+\begin{equation}
+\label{Eq:I:50:31}
+C(t)=AB\cos\omega_2t.
+\end{equation}
+We say that the amplitude of $\cos\omega_1t$ is <i>modulated</i> with the
+frequency $\omega_2$.</p>
+</div>
+<div id="Ch50-S6-p6" class="para">
+<p class="p">Alternatively, we can write the cross term in another way:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:50:32}
+AB\cos\omega_1t\cos\omega_2t =
+\frac{AB}{2}\,[\cos\,(\omega_1 + \omega_2)t +
+\cos\,(\omega_1 - \omega_2)t].
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\label{Eq:I:50:32}
+AB\cos\omega_1t\cos\omega_2t =\\
+\frac{AB}{2}\,[\cos\,(\omega_1 + \omega_2)t +
+\cos\,(\omega_1 - \omega_2)t].\notag
+\end{gather}
+</span>
+We would now say that two <em class="emph">new</em> components have been produced,
+one at the <em class="emph">sum</em> frequency $(\omega_1 + \omega_2)$, another at
+the <em class="emph">difference</em> frequency $(\omega_1 - \omega_2)$.</p>
+</div>
+<div id="Ch50-S6-p7" class="para">
+<p class="p">We have two different, but equivalent, ways of looking at the same
+result. In the special case that $\omega_1 \gg \omega_2$, we can
+relate these two different views by remarking that since $(\omega_1 +
+\omega_2)$ and $(\omega_1 - \omega_2)$ are near to each other we would
+expect to observe beats between them. But these beats have just the
+effect of <em class="emph">modulating</em> the amplitude of the <em class="emph">average</em>
+frequency $\omega_1$ by one-half the difference
+frequency $2\omega_2$. We see, then, why the two descriptions are equivalent.</p>
+</div>
+<div id="Ch50-S6-p8" class="para">
+<p class="p">In summary, we have found that a nonlinear response produces several
+effects: rectification, generation of harmonics, and modulation, or
+the generation of components with sum and difference frequencies.</p>
+</div>
+<div id="Ch50-S6-p9" class="para">
+<p class="p">We should notice that all these effects (Eq. <a href="#mjx-eqn-EqI5029">50.29</a>) are
+proportional not only to the nonlinearity coefficient $\epsilon$, but
+also to the product of two amplitudes—either $A^2$, $B^2$,
+or $AB$. We expect these effects to be much more important for
+<em class="emph">strong</em> signals than for weak ones.</p>
+</div>
+<div id="Ch50-S6-p10" class="para">
+<p class="p">The effects we have been describing have many practical
+applications. First, with regard to sound, it is believed that the ear
+is nonlinear. This is believed to account for the fact that with loud
+sounds we have the sensation that we <em class="emph">hear</em> harmonics and also
+sum and difference frequencies even if the sound waves contain only
+pure tones.</p>
+</div>
+<div id="Ch50-S6-p11" class="para">
+<p class="p">The components which are used in sound-reproducing
+equipment—amplifiers, loudspeakers, etc.—always have some
+nonlinearity. They produce distortions in the sound—they generate
+harmonics, etc.—which were not present in the original sound. These
+new components are heard by the ear and are apparently
+objectionable. It is for this reason that “Hi-Fi” equipment is
+designed to be as linear as possible. (Why the nonlinearities of the
+<em class="emph">ear</em> are <em class="emph">not</em> “objectionable” in the same way, or how we
+even know that the nonlinearity is in the <em class="emph">loudspeaker</em> rather
+than in the <em class="emph">ear</em> is not clear!)</p>
+</div>
+<div id="Ch50-S6-p12" class="para">
+<p class="p">Nonlinearities are quite <em class="emph">necessary</em>, and are, in fact,
+intentionally made large in certain parts of radio transmitting and
+receiving equipment. In an <span class="text smallcaps">am</span> transmitter the “voice”
+signal (with frequencies of some kilocycles per second) is combined
+with the “carrier” signal (with a frequency of some megacycles per
+second) in a nonlinear circuit called a <em class="emph">modulator</em>, to produce
+the modulated oscillation that is transmitted. In the receiver, the
+components of the received signal are fed to a nonlinear circuit which
+combines the sum and difference frequencies of the modulated carrier
+to generate again the voice signal.</p>
+</div>
+<div id="Ch50-S6-p13" class="para">
+<p class="p">When we discussed the transmission of light, we assumed that the induced
+oscillations of charges were proportional to the electric field of the
+light—that the response was linear. That is indeed a very good
+approximation. It is only within the last few years that light sources
+have been devised (lasers) which produce an intensity of
+light strong enough so that nonlinear effects can be observed. It is now
+possible to generate harmonics of light frequencies. When a strong red
+light passes through a piece of glass, a little bit of blue
+light—second harmonic—comes out!</p>
+</div>
+</div>
+<ol id="footnotes"><li class="footnote">
+  <a name="footnote_1"></a>
+  The series can be evaluated in the following
+way. First we remark that $\int_0^x[dx/(1 + x^2)] = \tan^{-1}
+x$. Second, we expand the integrand in a series $1/(1 + x^2) = 1 - x^2
++ x^4 - x^6 \pm\dotsb$ We integrate the series term by term (from zero
+to $x$) to obtain $\tan^{-1} x = x - x^3/3 + x^5/5 - x^7/7 \pm\dotsb$
+Setting $x = 1$, we have the stated result, since $\tan^{-1}1 =
+\pi/4$.
+  <a href="#footnote_source_1">↩</a>
+</li></ol>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

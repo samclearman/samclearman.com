@@ -1,0 +1,1630 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 8: The Hamiltonian Matrix</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "8." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0],  slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch8" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">8</span>The Hamiltonian Matrix</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Review:</i>
+		</td>
+		<td>	
+		Chapter&nbsp;<a href="I_49.html">49</a>, Vol. I, <i>Modes</i>
+		</td>
+	</tr>
+</table>
+
+<div id="Ch8-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">8–1</span>Amplitudes and vectors</h3>
+<div id="Ch8-S1-p1" class="para">
+<p class="p">Before we begin the main topic of this chapter, we would like to
+describe a number of mathematical ideas that are used a lot in the
+literature of quantum mechanics. Knowing them will make it easier for
+you to read other books or papers on the subject. The first idea is
+the close mathematical resemblance between the equations of quantum
+mechanics and those of the scalar product of two vectors. You remember
+that if $\chi$ and $\phi$ are two states, the amplitude to start
+in $\phi$ and end up in $\chi$ can be written as a sum over a complete
+set of base states of the amplitude to go from $\phi$ into one of the
+base states and then from that base state out again into $\chi$:
+\begin{equation}
+\label{Eq:III:8:1}
+\braket{\chi}{\phi}=
+\sum_{\text{all $i$}}\braket{\chi}{i}\braket{i}{\phi}.
+\end{equation}
+
+We explained this in terms of a Stern-Gerlach apparatus, but we remind
+you that there is no need to have the apparatus.
+Equation (<a href="#mjx-eqn-EqIII81">8.1</a>) is a mathematical law that is just as true
+whether we put the filtering equipment in or not—it is not always
+necessary to imagine that the apparatus is there. We can think of it
+simply as a formula for the amplitude $\braket{\chi}{\phi}$.</p>
+</div>
+<div id="Ch8-S1-p2" class="para">
+<p class="p">We would like to compare Eq. (<a href="#mjx-eqn-EqIII81">8.1</a>) to the formula for
+the dot product of two vectors $\FLPB$ and $\FLPA$. If $\FLPB$
+and $\FLPA$ are ordinary vectors in three dimensions, we can write the dot
+product this way:
+\begin{equation}
+\label{Eq:III:8:2}
+\sum_{\text{all $i$}}(\FLPB\cdot\FLPe_i)(\FLPe_i\cdot\FLPA),
+\end{equation}
+
+with the understanding that the symbol $\FLPe_i$ stands for the three
+unit vectors in the $x$, $y$, and $z$-directions. Then
+$\FLPB\cdot\FLPe_1$ is what we ordinarily call $B_x$;
+$\FLPB\cdot\FLPe_2$ is what we ordinarily call $B_y$; and so on. So
+Eq. (<a href="#mjx-eqn-EqIII82">8.2</a>) is equivalent to
+\begin{equation*}
+B_xA_x+B_yA_y+B_zA_z,
+\end{equation*}
+
+which is the dot product $\FLPB\cdot\FLPA$.</p>
+</div>
+<div id="Ch8-S1-p3" class="para">
+<p class="p">Comparing Eqs. (<a href="#mjx-eqn-EqIII81">8.1</a>) and (<a href="#mjx-eqn-EqIII82">8.2</a>), we can see the
+following analogy: The states $\chi$ and $\phi$ correspond to the two vectors
+$\FLPB$ and $\FLPA$. The base states $i$ correspond to the special
+vectors $\FLPe_i$ to which we refer all other vectors. Any vector can be
+represented as a linear combination of the three “base vectors” $\FLPe_i$.
+Furthermore, if you know the coefficients of each “base vector” in this
+combination—that is, its three components—you know everything about a
+vector. In a similar way, any quantum mechanical state can be described
+completely by the amplitude $\braket{i}{\phi}$ to go into the base states; and
+if you know these coefficients, you know everything there is to know about the
+state. Because of this close analogy, what we have called a “state” is often
+also called a “state vector.”</p>
+</div>
+<div id="Ch8-S1-p4" class="para">
+<p class="p">Since the base vectors $\FLPe_i$ are all at right angles, we have the
+relation
+\begin{equation}
+\label{Eq:III:8:3}
+\FLPe_i\cdot\FLPe_j=\delta_{ij}.
+\end{equation}
+
+This corresponds to the relations (<a href="III_05.html#mjx-eqn-EqIII525">5.25</a>) among the base
+states $i$,
+\begin{equation}
+\label{Eq:III:8:4}
+\braket{i}{j}=\delta_{ij}.
+\end{equation}
+
+You see now why one says that the base states $i$ are all
+“orthogonal.”</p>
+</div>
+<div id="Ch8-S1-p5" class="para">
+<p class="p">There is one minor difference between Eq. (<a href="#mjx-eqn-EqIII81">8.1</a>) and the
+dot product. We have that
+\begin{equation}
+\label{Eq:III:8:5}
+\braket{\phi}{\chi}=\braket{\chi}{\phi}\cconj.
+\end{equation}
+But in vector algebra
+\begin{equation*}
+\FLPA\cdot\FLPB=\FLPB\cdot\FLPA.\notag
+\end{equation*}
+
+With the complex numbers of quantum mechanics we have to keep straight
+the order of the terms, whereas in the dot product, the order doesn’t
+matter.
+</p>
+</div>
+<div id="Ch8-S1-p6" class="para">
+<p class="p">Now consider the following vector equation:
+\begin{equation}
+\label{Eq:III:8:6}
+\FLPA=\sum_i\FLPe_i(\FLPe_i\cdot\FLPA).
+\end{equation}
+
+It’s a little unusual, but correct. It means the same thing as
+\begin{equation}
+\label{Eq:III:8:7}
+\FLPA=\sum_iA_i\FLPe_i=A_x\FLPe_x+A_y\FLPe_y+A_z\FLPe_z.
+\end{equation}
+
+Notice, though, that Eq. (<a href="#mjx-eqn-EqIII86">8.6</a>) involves a quantity
+which is <em class="emph">different</em> from a dot product. A dot product is just a
+<em class="emph">number</em>, whereas Eq. (<a href="#mjx-eqn-EqIII86">8.6</a>) is a <em class="emph">vector</em>
+equation. One of the great tricks of vector analysis was to abstract
+away from the equations the idea of a <em class="emph">vector</em> itself. One might
+be similarly inclined to abstract a thing that is the analog of a
+“vector” from the quantum mechanical formula
+Eq. (<a href="#mjx-eqn-EqIII81">8.1</a>)—and one can indeed. We remove the $\bra{\chi}$
+from both sides of Eq. (<a href="#mjx-eqn-EqIII81">8.1</a>) and write the following
+equation (don’t get frightened—it’s just a notation and in a few
+minutes you will find out what the symbols mean):
+\begin{equation}
+\label{Eq:III:8:8}
+\ket{\phi}=\sum_i\ket{i}\braket{i}{\phi}.
+\end{equation}
+
+One thinks of the bracket $\braket{\chi}{\phi}$ as being divided into
+two pieces. The second piece $\ket{\phi}$ is often called a
+<em class="emph">ket</em>, and the first piece $\bra{\chi}$ is called a <em class="emph">bra</em>
+(put together, they make a “bra-ket”—a notation proposed by
+Dirac);
+the half-symbols $\ket{\phi}$ and $\bra{\chi}$ are also called
+<em class="emph">state vectors</em>. In any case, they are <em class="emph">not</em> numbers, and,
+in general, we want the results of our calculations to come out as
+numbers; so such “unfinished” quantities are only part-way steps in
+our calculations.</p>
+</div>
+<div id="Ch8-S1-p7" class="para">
+<p class="p">It happens that until now we have written all our results in terms of
+numbers. How have we managed to avoid vectors? It is amusing to note
+that even in ordinary vector
+algebra
+we <em class="emph">could</em> make all
+equations involve only numbers. For instance, instead of a vector
+equation like
+\begin{equation*}
+\FLPF=m\FLPa,
+\end{equation*}
+
+we could always have written
+\begin{equation*}
+\FLPC\cdot\FLPF=\FLPC\cdot(m\FLPa).
+\end{equation*}
+
+We have then an equation between dot products that is true for
+<em class="emph">any</em> vector $\FLPC$. But if it is true for any $\FLPC$, it
+hardly makes sense at all to keep writing the $\FLPC$!</p>
+</div>
+<div id="Ch8-S1-p8" class="para">
+<p class="p">Now look at Eq. (<a href="#mjx-eqn-EqIII81">8.1</a>). It is an equation that is true
+for <em class="emph">any</em> $\chi$. So to save writing, we should just leave
+<em class="emph">out</em> the $\chi$ and write Eq. (<a href="#mjx-eqn-EqIII88">8.8</a>) instead. It
+has the same information <em class="emph">provided</em> we understand that it should
+always be “finished” by “multiplying on the left by”—which
+simply means reinserting—some $\bra{\chi}$ on both sides. So
+Eq. (<a href="#mjx-eqn-EqIII88">8.8</a>) means exactly the same thing as
+Eq. (<a href="#mjx-eqn-EqIII81">8.1</a>)—no more, no less. When you want numbers, you
+put in the $\bra{\chi}$ you want.</p>
+</div>
+<div id="Ch8-S1-p9" class="para">
+<p class="p">Maybe you have already wondered about the $\phi$ in
+Eq. (<a href="#mjx-eqn-EqIII88">8.8</a>). Since the equation is true for
+<em class="emph">any</em> $\phi$, why do we keep <em class="emph">it</em>? Indeed,
+Dirac suggests that the $\phi$
+also can just as well be abstracted away, so that we have only
+\begin{equation}
+\label{Eq:III:8:9}
+|=\sum_i\ket{i}\bra{i}.
+\end{equation}
+
+And this is the great law of quantum mechanics! (There is no analog in
+vector analysis.) It says that if you put <em class="emph">in</em> any two states
+$\chi$ and $\phi$ on the left and right of both sides, you <em class="emph">get
+back</em> Eq. (<a href="#mjx-eqn-EqIII81">8.1</a>). It is not really very useful, but it’s
+a nice reminder that the equation is true for any two states.</p>
+</div>
+</div>
+<div id="Ch8-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">8–2</span>Resolving state vectors</h3>
+<div id="Ch8-S2-p1" class="para">
+<p class="p">Let’s look at Eq. (<a href="#mjx-eqn-EqIII88">8.8</a>) again; we can think of it in
+the following way. Any state vector $\ket{\phi}$ can be represented as
+a linear combination with suitable coefficients of a set of base
+“vectors”—or, if you prefer, as a superposition of “unit
+vectors” in suitable proportions. To emphasize that the
+coefficients $\braket{i}{\phi}$ are just ordinary (complex) numbers, suppose we
+write
+\begin{equation}
+\braket{i}{\phi}=C_i.\notag
+\end{equation}
+
+Then Eq. (<a href="#mjx-eqn-EqIII88">8.8</a>) is the same as
+\begin{equation}
+\label{Eq:III:8:10}
+\ket{\phi}=\sum_i\ket{i}C_i.
+\end{equation}
+
+We can write a similar equation for any other state vector,
+say $\ket{\chi}$, with, of course, different coefficients—say $D_i$.
+Then we have
+\begin{equation}
+\label{Eq:III:8:11}
+\ket{\chi}=\sum_i\ket{i}D_i.
+\end{equation}
+
+The $D_i$ are just the amplitudes $\braket{i}{\chi}$.</p>
+</div>
+<div id="Ch8-S2-p2" class="para">
+<p class="p">Suppose we had started by abstracting the $\phi$ from
+Eq. (<a href="#mjx-eqn-EqIII81">8.1</a>). We would have had
+\begin{equation}
+\label{Eq:III:8:12}
+\bra{\chi}=\sum_i\braket{\chi}{i}\bra{i}.
+\end{equation}
+
+Remembering that $\braket{\chi}{i}=\braket{i}{\chi}\cconj$, we can
+write this as
+\begin{equation}
+\label{Eq:III:8:13}
+\bra{\chi}=\sum_iD_i\cconj\,\bra{i}.
+\end{equation}
+
+Now the interesting thing is that we can just <em class="emph">multiply</em>
+Eq. (<a href="#mjx-eqn-EqIII813">8.13</a>) and Eq. (<a href="#mjx-eqn-EqIII810">8.10</a>) to get
+back $\braket{\chi}{\phi}$. When we do that, we have to be careful of the
+summation indices, because they are quite distinct in the two equations.
+Let’s first rewrite Eq. (<a href="#mjx-eqn-EqIII813">8.13</a>) as
+\begin{equation*}
+\bra{\chi}=\sum_jD_j\cconj\,\bra{j},
+\end{equation*}
+
+which changes nothing. Then putting it together with
+Eq. (<a href="#mjx-eqn-EqIII810">8.10</a>), we have
+\begin{equation}
+\label{Eq:III:8:14}
+\braket{\chi}{\phi}=\sum_{ij}D_j\cconj\,\braket{j}{i}C_i.
+\end{equation}
+
+Remember, though, that $\braket{j}{i}=\delta_{ij}$, so that in the sum
+we have left only the terms with $j=i$. We get
+\begin{equation}
+\label{Eq:III:8:15}
+\braket{\chi}{\phi}=\sum_{i}D_i\cconj\,C_i,
+\end{equation}
+
+where, of course, $D_i\cconj=$ $\braket{i}{\chi}\cconj=$ $\braket{\chi}{i}$,
+and $C_i=\braket{i}{\phi}$. Again we see the close analogy with the
+dot product
+\begin{equation*}
+\FLPB\cdot\FLPA=\sum_iB_iA_i.
+\end{equation*}
+
+The only difference is the complex conjugate on $D_i$. So
+Eq. (<a href="#mjx-eqn-EqIII815">8.15</a>) says that if the state vectors $\bra{\chi}$
+and $\ket{\phi}$ are expanded in terms of the base vectors $\bra{i}$
+or $\ket{i}$, the amplitude to go from $\phi$ to $\chi$ is given by the
+kind of dot product in Eq. (<a href="#mjx-eqn-EqIII815">8.15</a>). This equation is, of
+course, just Eq. (<a href="#mjx-eqn-EqIII81">8.1</a>) written with different symbols. So
+we have just gone in a circle to get used to the new symbols.</p>
+</div>
+<div id="Ch8-S2-p3" class="para">
+<p class="p">We should perhaps emphasize again that while space vectors in three
+dimensions are described in terms of <em class="emph">three</em> orthogonal unit
+vectors, the base vectors $\ket{i}$ of the quantum mechanical states
+must range over the complete set applicable to any particular
+problem. Depending on the situation, two, or three, or five, or an
+infinite number of base states may be involved.</p>
+</div>
+<div id="Ch8-S2-p4" class="para">
+<p class="p">We have also talked about what happens when particles go through an
+apparatus. If we start the particles out in a certain state $\phi$,
+then send them through an apparatus, and afterward make a measurement
+to see if they are in state $\chi$, the result is described by the
+amplitude
+\begin{equation}
+\label{Eq:III:8:16}
+\bracket{\chi}{A}{\phi}.
+\end{equation}
+
+Such a symbol doesn’t have a close analog in vector
+algebra. (It is
+closer to tensor algebra,
+but the analogy is not particularly useful.)
+We saw in Chapter <a href="III_05.html">5</a>, Eq. (<a href="III_05.html#mjx-eqn-EqIII532">5.32</a>), that we
+could write (<a href="#mjx-eqn-EqIII816">8.16</a>) as
+\begin{equation}
+\label{Eq:III:8:17}
+\bracket{\chi}{A}{\phi}=
+\sum_{ij}\braket{\chi}{i}\bracket{i}{A}{j}\braket{j}{\phi}.
+\end{equation}
+
+This is just an example of the fundamental rule Eq. (<a href="#mjx-eqn-EqIII89">8.9</a>),
+used twice.
+</p>
+</div>
+<div id="Ch8-S2-p5" class="para">
+<p class="p">We also found that if another apparatus $B$ was added in series
+with $A$, then we could write
+\begin{equation}
+\label{Eq:III:8:18}
+\bracket{\chi}{BA}{\phi}=
+\sum_{ijk}\braket{\chi}{i}\bracket{i}{B}{j}
+\bracket{j}{A}{k}\braket{k}{\phi}.
+\end{equation}
+
+Again, this comes directly from Dirac’s method of writing Eq. (<a href="#mjx-eqn-EqIII89">8.9</a>)—remember that we
+can always place a bar ($|$), which is just like the factor $1$, between
+$B$ and $A$.</p>
+</div>
+<div id="Ch8-S2-p6" class="para">
+<p class="p">Incidentally, we can think of Eq. (<a href="#mjx-eqn-EqIII817">8.17</a>) in another
+way. Suppose we think of the particle entering apparatus $A$ in the
+state $\phi$ and coming out of $A$ in the state $\psi$, (“psi”). In
+other words, we could ask ourselves this question: Can we find
+a $\psi$ such that the amplitude to get from $\psi$ to $\chi$ is always
+identically and everywhere the same as the
+amplitude $\bracket{\chi}{A}{\phi}$? The answer is yes. We want
+Eq. (<a href="#mjx-eqn-EqIII817">8.17</a>) to be replaced by
+\begin{equation}
+\label{Eq:III:8:19}
+\braket{\chi}{\psi}=
+\sum_i\braket{\chi}{i}\braket{i}{\psi}.
+\end{equation}
+
+We can clearly do this if
+\begin{equation}
+\label{Eq:III:8:20}
+\braket{i}{\psi}=\sum_j\bracket{i}{A}{j}\braket{j}{\phi}=
+\bracket{i}{A}{\phi},
+\end{equation}
+
+which determines $\psi$. “But it doesn’t determine $\psi$,” you say;
+“it only determines $\braket{i}{\psi}$.” However, $\braket{i}{\psi}$
+<em class="emph">does</em> determine $\psi$, because if you have all the coefficients
+that relate $\psi$ to the base states $i$, then $\psi$ is uniquely
+defined. In fact, we can play with our notation and write the last
+term of Eq. (<a href="#mjx-eqn-EqIII820">8.20</a>) as
+\begin{equation}
+\label{Eq:III:8:21}
+\braket{i}{\psi}=\sum_j\braket{i}{j}\bracket{j}{A}{\phi}.
+\end{equation}
+
+Then, since this equation is true for all $i$, we can write simply
+\begin{equation}
+\label{Eq:III:8:22}
+\ket{\psi}=\sum_j\ket{j}\bracket{j}{A}{\phi}.
+\end{equation}
+
+Then we can say: “The state $\psi$ is what we get if we start
+with $\phi$ and go through the apparatus $A$.”
+</p>
+</div>
+<div id="Ch8-S2-p7" class="para">
+<p class="p">One final example of the tricks of the trade. We start again with
+Eq. (<a href="#mjx-eqn-EqIII817">8.17</a>). Since it is true for any $\chi$ and $\phi$,
+we can drop them both!  We then get<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a>
+\begin{equation}
+\label{Eq:III:8:23}
+A=\sum_{ij}\ket{i}\bracket{i}{A}{j}\bra{j}.
+\end{equation}
+
+What does it mean? It means no more, no less, than what you get if you
+put back the $\phi$ and $\chi$. As it stands, it is an “open”
+equation and incomplete. If we multiply it “on the right”
+by $\ket{\phi}$, it becomes
+\begin{equation}
+\label{Eq:III:8:24}
+A\,\ket{\phi}=\sum_{ij}\ket{i}\bracket{i}{A}{j}\braket{j}{\phi},
+\end{equation}
+
+which is just Eq. (<a href="#mjx-eqn-EqIII822">8.22</a>) all over again. In fact, we
+could have just dropped the $j$’s from that equation and written
+\begin{equation}
+\label{Eq:III:8:25}
+\ket{\psi}=A\,\ket{\phi}.
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S2-p8" class="para">
+<p class="p">The symbol $A$ is neither an amplitude, nor a vector; it is a new kind
+of thing called an <em class="emph">operator</em>. It is something
+which “operates on” a state to produce a new
+state—Eq. (<a href="#mjx-eqn-EqIII825">8.25</a>) says that $\ket{\psi}$ is what results
+if $A$ operates on $\ket{\phi}$. Again, it is still an open equation
+until it is completed with some bra like $\bra{\chi}$ to give
+\begin{equation}
+\label{Eq:III:8:26}
+\braket{\chi}{\psi}=\bracket{\chi}{A}{\phi}.
+\end{equation}
+
+The operator $A$ is, of course, described completely if we give the
+matrix of amplitudes $\bracket{i}{A}{j}$—also written $A_{ij}$—in
+terms of any set of base vectors.</p>
+</div>
+<div id="Ch8-S2-p9" class="para">
+<p class="p">We have really added nothing new with all of this new mathematical
+notation. One reason for bringing it all up was to show you the way of
+writing pieces of equations, because in many books you will find the
+equations written in the incomplete forms, and there’s no reason for
+you to be paralyzed when you come across them. If you prefer, you can
+always add the missing pieces to make an equation between numbers that
+will look like something more familiar.</p>
+</div>
+<div id="Ch8-S2-10" class="para">
+<p class="p">Also, as you will see, the “bra” and “ket” notation is a very
+convenient one. For one thing, we can from now on identify a state by
+giving its state vector. When we want to refer to a state of definite
+momentum $\FLPp$ we can say: “the state $\ket{\FLPp}$.” Or we may
+speak of some arbitrary state $\ket{\psi}$. For consistency we will
+always use the ket, writing $\ket{\psi}$, to identify a state. (It is,
+of course an arbitrary choice; we could equally well have chosen to
+use the bra, $\bra{\psi}$.)</p>
+</div>
+</div>
+<div id="Ch8-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">8–3</span>What are the base states of the world?</h3>
+<div id="Ch8-S3-p1" class="para">
+<p class="p">We have discovered that any state in the world can be represented as a
+superposition—a linear combination with suitable coefficients—of
+base states. You may ask, first of all, <em class="emph">what</em> base states? Well,
+there are many different possibilities. You can, for instance, project
+a spin in the $z$-direction or in some other direction. There are
+many, many different <em class="emph">representations</em>, which are the analogs of
+the different <em class="emph">coordinate systems</em> one can use to represent
+ordinary vectors. Next, <em class="emph">what</em> coefficients? Well, that depends
+on the physical circumstances. Different sets of coefficients
+correspond to different physical conditions. The important thing to
+know about is the “space” in which you are working—in other words,
+what the base states mean physically. So the first thing you have to
+know about, in general, is what the base states are like. Then you can
+understand how to describe a situation in terms of these base states.</p>
+</div>
+<div id="Ch8-S3-p2" class="para">
+<p class="p">We would like to look ahead a little and speak a bit about what the
+general quantum mechanical description of nature is going to be—in
+terms of the now current ideas of physics, anyway. First, one decides
+on a particular representation for the base states—different
+representations are always possible. For example, for a spin one-half
+particle we can use the plus and minus states with respect to the
+$z$-axis. But there’s nothing special about the $z$-axis—you can
+take any other axis you like. For consistency we’ll always pick the
+$z$-axis, however. Suppose we begin with a situation with one
+electron. In addition to the two possibilities for the spin (“up”
+and “down” along the $z$-direction), there is also the momentum of
+the electron. We pick a set of base states, each corresponding to one
+value of the momentum. What if the electron doesn’t have a definite
+momentum?  That’s all right; we’re just saying what the <em class="emph">base</em>
+states are. If the electron hasn’t got a definite momentum, it has
+some amplitude to have one momentum and another amplitude to have
+another momentum, and so on. And if it is not necessarily spinning up,
+it has some amplitude to be spinning up going at this momentum, and
+some amplitude to be spinning down going at that momentum, and so
+on. The complete description of an electron, <em class="emph">so far as we know</em>,
+requires only that the base states be described by the <em class="emph">momentum</em>
+and the <em class="emph">spin</em>. So one acceptable set of base states $\ket{i}$
+for a single electron refer to different values of the momentum and
+whether the spin is up or down. Different mixtures of
+amplitudes—that is, different combinations of the $C$’s describe
+different circumstances. What any particular electron is doing is
+described by telling with what amplitude it has an up-spin or a
+down-spin and one momentum or another—for all possible momenta. So
+you can see what is involved in a complete quantum mechanical
+description of a single electron.
+</p>
+</div>
+<div id="Ch8-S3-p3" class="para">
+<p class="p">What about systems with more than one electron? Then the base states
+get more complicated. Let’s suppose that we have two electrons. We
+have, first of all, four possible states with respect to spin: both
+electrons spinning up, the first one down and the second one up, the
+first one up and the second one down, or both down. Also we have to
+specify that the first electron has the momentum $p_1$, and the second
+electron, the momentum $p_2$. The base states for two electrons
+require the specification of two momenta and two spin characters. With
+seven electrons, we have to specify seven of each.</p>
+</div>
+<div id="Ch8-S3-p4" class="para">
+<p class="p">If we have a proton and an electron, we have to specify the spin
+direction of the proton and its momentum, and the spin direction of
+the electron and its momentum. At least that’s approximately
+true. <em class="emph">We do not really know</em> what the correct representation is
+for the world. It is all very well to start out by supposing that if
+you specify the spin in the electron and its momentum, and likewise
+for a proton, you will have the base states; but what about the
+“guts” of the proton? Let’s look at it this way. In a hydrogen atom
+which has one proton and one electron, we have many different base
+states to describe—up and down spins of the proton and electron and
+the various possible momenta of the proton and electron. Then there
+are different combinations of amplitudes $C_i$ which together describe
+the character of the hydrogen atom in different states. But suppose we
+look at the whole hydrogen atom as a “particle.” If we didn’t know
+that the hydrogen atom was made out of a proton and an electron, we
+might have started out and said: “Oh, I know what the base states
+are—they correspond to a particular momentum of the hydrogen atom.”
+No, because the hydrogen atom has internal parts. It may, therefore,
+have various states of different internal energy, and describing the
+real nature requires more detail.</p>
+</div>
+<div id="Ch8-S3-p5" class="para">
+<p class="p">The question is: Does a proton have internal parts? Do we have to
+describe a proton by giving all possible states of protons, and
+mesons, and strange particles? We don’t know. And even though we
+suppose that the electron is simple, so that all we have to tell about
+it is its momentum and its spin, maybe tomorrow we will discover that
+the electron also has inner gears and wheels. It would mean that our
+representation is incomplete, or wrong, or approximate—in the same
+way that a representation of the hydrogen atom which describes only
+its momentum would be incomplete, because it disregarded the fact that
+the hydrogen atom could have become excited inside. If an electron
+could become excited inside and turn into something else like, for
+instance, a muon, then it would be described not just by giving the
+states of the new particle, but presumably in terms of some more
+complicated internal wheels. The <em class="emph">main problem in the study of
+the fundamental particles today</em> is to discover what are the correct
+representations for the description of nature. At the present time, we
+<em class="emph">guess</em> that for the electron it is enough to specify its
+momentum and spin. We also guess that there is an idealized proton
+which has its $\pi$-mesons, and K-mesons, and so on, that all have to
+be specified. Several dozen particles—that’s crazy! The question of
+what <em class="emph">is</em> a fundamental particle and what <em class="emph">is not</em> a
+fundamental particle—a subject you hear so much about these
+days—is the question of what is the final <em class="emph">representation</em>
+going to look like in the ultimate quantum mechanical description of
+the world. Will the electron’s momentum still be the right thing with
+which to describe nature? Or even, should the whole question be put
+this way at all!  This question must always come up in any scientific
+investigation. At any rate, we see a problem—how to find a
+representation. We don’t know the answer. We don’t even know whether
+we have the “right” problem, but if we do, we must first attempt to
+find out whether any particular particle is “fundamental” or not.</p>
+</div>
+<div id="Ch8-S3-p6" class="para">
+<p class="p">In the nonrelativistic quantum mechanics—if the energies are not too
+high, so that you don’t disturb the inner workings of the strange
+particles and so forth—you can do a pretty good job without worrying
+about these details. You can just decide to specify the momenta and
+spins of the electrons and of the nuclei; then everything will be all
+right. In most chemical reactions and other low-energy happenings,
+nothing goes on in the nuclei; they don’t get excited. Furthermore, if
+a hydrogen atom is moving slowly and bumping quietly against other
+hydrogen atoms—never getting excited inside, or radiating, or
+anything complicated like that, but staying always in the ground state
+of energy for internal motion—you can use an approximation in which
+you talk about the hydrogen atom as one object, or particle, and not
+worry about the fact that it <em class="emph">can</em> do something inside. This will
+be a good approximation as long as the kinetic energy in any collision
+is well below $10$ electron volts—the energy required to excite the
+hydrogen atom to a different internal state. We will often be making
+an approximation in which we do not include the possibility of inner
+motion, thereby decreasing the number of details that we have to put
+into our base states. Of course, we then omit some phenomena which
+would appear (usually) at some higher energy, but by making such
+approximations we can simplify very much the analysis of physical
+problems. For example, we can discuss the collision of two hydrogen
+atoms at low energy—or any chemical process—without worrying about
+the fact that the atomic nuclei could be excited. To summarize, then,
+when we can neglect the effects of any internal excited states of a
+particle we can choose a base set which are the states of definite
+momentum and $z$-component of angular momentum.</p>
+</div>
+<div id="Ch8-S3-p7" class="para">
+<p class="p">One problem then in describing nature is to find a suitable
+representation for the base states. But that’s only the beginning. We
+still want to be able to say what “happens.” If we know the
+“condition” of the world at one moment, we would like to know the
+condition at a later moment. So we also have to find the laws that
+determine how things change with time. We now address ourselves to
+this second part of the framework of quantum mechanics—how states
+change with time.
+</p>
+</div>
+</div>
+<div id="Ch8-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">8–4</span>How states change with time</h3>
+<div id="Ch8-S4-p1" class="para">
+<p class="p">We have already talked about how we can represent a situation in which
+we put something through an apparatus. Now one convenient, delightful
+“apparatus” to consider is merely a wait of a few minutes; that is,
+you prepare a state $\phi$, and then before you analyze it, you just
+let it sit. Perhaps you let it sit in some particular electric or
+magnetic field—it depends on the physical circumstances in the
+world. At any rate, whatever the conditions are, you let the object
+sit from time $t_1$ to time $t_2$. Suppose that it is let out of your
+first apparatus in the condition $\phi$ at $t_1$. And then it goes
+through an “apparatus,” but the “apparatus” consists of just delay
+until $t_2$. During the delay, various things could be going
+on—external forces applied or other shenanigans—so that something
+is happening. At the end of the delay, the amplitude to find the thing
+in some state $\chi$ is no longer exactly the same as it would have
+been without the delay. Since “waiting” is just a special case of an
+“apparatus,” we can describe what happens by giving an amplitude
+with the same form as Eq. (<a href="#mjx-eqn-EqIII817">8.17</a>). Because the operation
+of “waiting” is especially important, we’ll call it $U$ instead
+of $A$, and to specify the starting and finishing times $t_1$ and $t_2$,
+we’ll write $U(t_2,t_1)$. The amplitude we want is
+\begin{equation}
+\label{Eq:III:8:27}
+\bracket{\chi}{U(t_2,t_1)}{\phi}.
+\end{equation}
+
+Like any other such amplitude, it can be represented in some base
+system or other by writing it
+\begin{equation}
+\label{Eq:III:8:28}
+\sum_{ij}\braket{\chi}{i}\bracket{i}{U(t_2,t_1)}{j}
+\braket{j}{\phi}.
+\end{equation}
+
+Then $U$ is completely described by giving the whole set of
+amplitudes—the matrix
+\begin{equation}
+\label{Eq:III:8:29}
+\bracket{i}{U(t_2,t_1)}{j}.
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S4-p2" class="para">
+<p class="p">We can point out, incidentally, that the
+matrix $\bracket{i}{U(t_2,t_1)}{j}$ gives much more detail than may be
+needed. The high-class theoretical physicist working in high-energy
+physics considers problems of the following general nature (because
+it’s the way experiments are usually done). He starts with a couple of
+particles, like a proton and a proton, coming together from
+infinity. (In the lab, usually one particle is standing still, and the
+other comes from an accelerator that is practically at infinity on
+atomic level.) The things go crash and out come, say, two K-mesons,
+six $\pi$-mesons, and two neutrons in certain directions with certain
+momenta. What’s the amplitude for this to happen? The mathematics
+looks like this: The $\phi$-state specifies the spins and momenta of
+the incoming particles. The $\chi$ would be the question about what
+comes out. For instance, with what amplitude do you get the six mesons
+going in such-and-such directions, and the two neutrons going off in
+these directions, with their spins so-and-so. In other words, $\chi$
+would be specified by giving all the momenta, and spins, and so on of
+the final products. Then the job of the theorist is to calculate the
+amplitude (<a href="#mjx-eqn-EqIII827">8.27</a>). However, he is really only interested
+in the special case that $t_1$ is $-\infty$ and $t_2$
+is $+\infty$. (There is no experimental evidence on the details of the
+process, only on what comes in and what goes out.) The limiting case
+of $U(t_2,t_1)$ as $t_1\to-\infty$ and $t_2\to+\infty$ is called $S$,
+and what he wants is
+\begin{equation*}
+\bracket{\chi}{S}{\phi}.
+\end{equation*}
+
+Or, using the form (<a href="#mjx-eqn-EqIII828">8.28</a>), he would calculate the matrix
+\begin{equation*}
+\bracket{i}{S}{j},
+\end{equation*}
+
+which is called the $S$-<em class="emph">matrix</em>. So if you see a theoretical
+physicist pacing the floor and saying, “All I have to do is calculate
+the $S$-matrix,” you will know what he is worried about.</p>
+</div>
+<div id="Ch8-S4-p3" class="para">
+<p class="p">How to analyze—how to specify the laws for—the $S$-matrix is an
+interesting question. In relativistic quantum mechanics for high
+energies, it is done one way, but in nonrelativistic quantum mechanics
+it can be done another way, which is very convenient. (This other way
+can also be done in the relativistic case, but then it is not so
+convenient.) It is to work out the $U$-matrix for a small interval of
+time—in other words for $t_2$ and $t_1$ close together. If we can
+find a sequence of such $U$’s for successive intervals of time we can
+watch how things go as a function of time. You can appreciate
+immediately that this way is not so good for relativity, because you
+don’t want to have to specify how everything looks “simultaneously”
+everywhere. But we won’t worry about that—we’re just going to worry
+about nonrelativistic mechanics.</p>
+</div>
+<div id="Ch8-S4-p4" class="para">
+<p class="p">Suppose we think of the matrix $U$ for a delay from $t_1$ until $t_3$
+which is greater than $t_2$. In other words, let’s take three
+successive times: $t_1$ less than $t_2$ less than $t_3$. Then we claim
+that the matrix that goes between $t_1$ and $t_3$ is the
+<em class="emph">product</em> in succession of what happens when you delay from $t_1$
+until $t_2$ and then from $t_2$ until $t_3$. It’s just like the
+situation when we had two apparatuses $B$ and $A$ in series. We can
+then write, following the notation of Section <a href="III_05.html#Ch5-S6">5–6</a>,
+\begin{equation}
+\label{Eq:III:8:30}
+U(t_3,t_1)=U(t_3,t_2)\cdot U(t_2,t_1).
+\end{equation}
+
+In other words, we can analyze any time interval if we can analyze a
+sequence of short time intervals in between. We just multiply together
+all the pieces; that’s the way that quantum mechanics is analyzed
+nonrelativistically.</p>
+</div>
+<div id="Ch8-S4-p5" class="para">
+<p class="p">Our problem, then, is to understand the matrix $U(t_2,t_1)$ for an
+infinitesimal time interval—for $t_2=t_1+\Delta t$. We ask ourselves
+this: If we have a state $\phi$ now, what does the state look like an
+infinitesimal time $\Delta t$ later? Let’s see how we write that
+out. Call the state at the time $t$, $\ket{\psi(t)}$ (we show the time
+dependence of $\psi$ to be perfectly clear that we mean the condition
+at the time $t$). Now we ask the question: What is the condition after
+the small interval of time $\Delta t$ later? The answer is
+\begin{equation}
+\label{Eq:III:8:31}
+\ket{\psi(t+\Delta t)}=U(t+\Delta t,t)\,\ket{\psi(t)}.
+\end{equation}
+
+This means the same as we meant by (<a href="#mjx-eqn-EqIII825">8.25</a>), namely, that
+the amplitude to find $\chi$ at the time $t+\Delta t$, is
+\begin{equation}
+\label{Eq:III:8:32}
+\braket{\chi}{\psi(t+\Delta t)}=\bracket{\chi}{U(t+\Delta t,t)}{\psi(t)}.
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S4-p6" class="para">
+<p class="p">Since we’re not yet too good at these abstract things, let’s project
+our amplitudes into a definite representation. If we multiply both
+sides of Eq. (<a href="#mjx-eqn-EqIII831">8.31</a>) by $\bra{i}$, we get
+\begin{equation}
+\label{Eq:III:8:33}
+\braket{i}{\psi(t+\Delta t)}=\bracket{i}{U(t+\Delta t,t)}{\psi(t)}.
+\end{equation}
+
+We can also resolve the $\ket{\psi(t)}$ into base states and write
+\begin{equation}
+\label{Eq:III:8:34}
+\braket{i}{\psi(t+\Delta t)}=\sum_j
+\bracket{i}{U(t+\Delta t,t)}{j}\braket{j}{\psi(t)}.
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S4-p7" class="para">
+<p class="p">We can understand Eq. (<a href="#mjx-eqn-EqIII834">8.34</a>) in the following way. If
+we let $C_i(t)=\braket{i}{\psi(t)}$ stand for the amplitude to be in
+the base state $i$ at the time $t$, then we can think of this
+amplitude (just a <em class="emph">number</em>, remember!)  varying with time.
+Each $C_i$ becomes a function of $t$. And we also have some information on
+<em class="emph">how</em> the amplitudes $C_i$ vary with time. Each amplitude
+at $(t+\Delta t)$ is proportional to <em class="emph">all of the other</em> amplitudes
+at $t$ multiplied by a set of coefficients. Let’s call the $U$-matrix
+$U_{ij}$, by which we mean
+\begin{equation*}
+U_{ij}=\bracket{i}{U}{j}.
+\end{equation*}
+
+Then we can write Eq. (<a href="#mjx-eqn-EqIII834">8.34</a>) as
+\begin{equation}
+\label{Eq:III:8:35}
+C_i(t+\Delta t)=\sum_jU_{ij}(t+\Delta t,t)C_j(t).
+\end{equation}
+
+This, then, is how the dynamics of quantum mechanics is going to look.</p>
+</div>
+<div id="Ch8-S4-p8" class="para">
+<p class="p">We don’t know much about the $U_{ij}$ yet, except for one thing. We
+know that if $\Delta t$ goes to zero, nothing can happen—we should
+get just the original state. So, $U_{ii}\to1$ and $U_{ij}\to0$, if
+$i\neq j$. In other words, $U_{ij}\to\delta_{ij}$ for $\Delta
+t\to0$. Also, we can suppose that for small $\Delta t$, each of the
+coefficients $U_{ij}$ should differ from $\delta_{ij}$ by amounts
+proportional to $\Delta t$; so we can write
+\begin{equation}
+\label{Eq:III:8:36}
+U_{ij}=\delta_{ij}+K_{ij}\,\Delta t.
+\end{equation}
+
+However, it is usual to take the factor $(-i/\hbar)$<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a> out of the coefficients $K_{ij}$, for
+historical and other reasons; we prefer to write
+\begin{equation}
+\label{Eq:III:8:37}
+U_{ij}(t+\Delta t,t)=\delta_{ij}-\frac{i}{\hbar}\,H_{ij}(t)\,\Delta t.
+\end{equation}
+
+It is, of course, the same as Eq. (<a href="#mjx-eqn-EqIII836">8.36</a>) and, if you
+wish, just defines the coefficients $H_{ij}(t)$. The terms $H_{ij}$
+are just the derivatives with respect to $t_2$ of the
+coefficients $U_{ij}(t_2,t_1)$, evaluated at $t_2=t_1=t$.</p>
+</div>
+<div id="Ch8-S4-p9" class="para">
+<p class="p">Using this form for $U$ in Eq. (<a href="#mjx-eqn-EqIII835">8.35</a>), we have
+\begin{equation}
+\label{Eq:III:8:38}
+C_i(t+\Delta t)=\sum_j\biggl[
+\delta_{ij}-\frac{i}{\hbar}\,H_{ij}(t)\,\Delta t
+\biggr]C_j(t).
+\end{equation}
+
+Taking the sum over the $\delta_{ij}$ term, we get just $C_i(t)$,
+which we can put on the other side of the equation. Then dividing
+by $\Delta t$, we have what we recognize as a derivative
+\begin{equation}
+\frac{C_i(t+\Delta t)-C_i(t)}{\Delta t}=
+-\frac{i}{\hbar}\sum_jH_{ij}(t)C_j(t)\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:III:8:39}
+i\hbar\,\ddt{C_i(t)}{t}=\sum_jH_{ij}(t)C_j(t).
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S4-p10" class="para">
+<p class="p">You remember that $C_i(t)$ is the amplitude $\braket{i}{\psi}$ to find
+the state $\psi$ in one of the base states $i$ (at the time $t$). So
+Eq. (<a href="#mjx-eqn-EqIII839">8.39</a>) tells us how each of the
+coefficients $\braket{i}{\psi}$ varies with time. But that is the same as saying
+that Eq. (<a href="#mjx-eqn-EqIII839">8.39</a>) tells us how the state $\psi$ varies
+with time, since we are describing $\psi$ in terms of the
+amplitudes $\braket{i}{\psi}$. The variation of $\psi$ in time is described in
+terms of the matrix $H_{ij}$, which has to include, of course, the
+things we are doing to the system to cause it to change. If we know
+the $H_{ij}$—which contains the physics of the situation and can, in
+general, depend on the time—we have a complete description of the
+behavior in time of the system. Equation (<a href="#mjx-eqn-EqIII839">8.39</a>) is then
+the quantum mechanical law for the dynamics of the world.</p>
+</div>
+<div id="Ch8-S4-p11" class="para">
+<p class="p">(We should say that we will always take a set of base states which are
+fixed and do not vary with time. There are people who use base states
+that also vary. However, that’s like using a rotating coordinate
+system in mechanics, and we don’t want to get involved in such
+complications.)</p>
+</div>
+</div>
+<div id="Ch8-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">8–5</span>The Hamiltonian matrix</h3>
+<div id="Ch8-S5-p1" class="para">
+<p class="p">The idea, then, is that to describe the quantum mechanical world we
+need to pick a set of base states $i$ and to write the physical laws
+by giving the matrix of coefficients $H_{ij}$. Then we have
+everything—we can answer any question about what will happen. So we
+have to learn what the rules are for finding the $H$’s to go with any
+physical situation—what corresponds to a magnetic field, or an
+electric field, and so on. And that’s the hardest part. For instance,
+for the new strange particles, we have no idea what $H_{ij}$’s to
+use. In other words, no one knows the <em class="emph">complete</em> $H_{ij}$ for the
+whole world. (Part of the difficulty is that one can hardly hope to
+discover the $H_{ij}$ when no one even knows what the base states
+are!) We do have excellent approximations for nonrelativistic
+phenomena and for some other special cases. In particular, we have the
+forms that are needed for the motions of electrons in atoms—to
+describe chemistry. But we don’t know the full true $H$ for the whole
+universe.</p>
+</div>
+<div id="Ch8-S5-p2" class="para">
+<p class="p">The coefficients $H_{ij}$ are called <em class="emph">the Hamiltonian matrix</em> or,
+for short, just <em class="emph">the Hamiltonian</em>. (How
+Hamilton, who worked in
+the 1830s, got his name on a quantum mechanical matrix is a tale of
+history.) It would be much better called the <em class="emph">energy matrix</em>, for
+reasons that will become apparent as we work with it. So <em class="emph">the</em>
+problem is: Know your Hamiltonian!</p>
+</div>
+<div id="Ch8-S5-p3" class="para">
+<p class="p">The Hamiltonian has one property that can be deduced right away,
+namely, that
+\begin{equation}
+\label{Eq:III:8:40}
+H_{ij}\cconj=H_{ji}.
+\end{equation}
+
+This follows from the condition that the total probability that the
+system is in <em class="emph">some</em> state does not change. If you start with a
+particle—an object or the world—then you’ve still got it as time
+goes on. The total probability of finding it somewhere is
+\begin{equation*}
+\sum_i\abs{C_i(t)}^2,
+\end{equation*}
+
+which must not vary with time. If this is to be true for any starting
+condition $\phi$, then Eq. (<a href="#mjx-eqn-EqIII840">8.40</a>) must also be true.</p>
+</div>
+<div id="Ch8-S5-p4" class="para">
+<p class="p">As our first example, we take a situation in which the physical
+circumstances are not changing with time; we mean the <em class="emph">external</em>
+physical conditions, so that $H$ is independent of time. Nobody is
+turning magnets on and off. We also pick a system for which only one
+base state is required for the description; it is an approximation we
+could make for a hydrogen atom at rest, or something similar.
+Equation (<a href="#mjx-eqn-EqIII839">8.39</a>) then says
+\begin{equation}
+\label{Eq:III:8:41}
+i\hbar\,\ddt{C_1}{t}=H_{11}C_1.
+\end{equation}
+
+Only one equation—that’s all! And if $H_{11}$ is constant, this
+differential equation is easily solved to give
+\begin{equation}
+\label{Eq:III:8:42}
+C_1=(\text{const})e^{-(i/\hbar)H_{11}t}.
+\end{equation}
+
+This is the time dependence of a state with a definite
+energy $E=H_{11}$. You see why $H_{ij}$ ought to be called the energy
+matrix. It is the generalization of the energy for more complex
+situations.</p>
+</div>
+<div id="Ch8-S5-p5" class="para">
+<p class="p">Next, to understand a little more about what the equations mean, we
+look at a system which has two base states. Then Eq. (<a href="#mjx-eqn-EqIII839">8.39</a>)
+reads
+\begin{equation}
+\label{Eq:III:8:43}
+\begin{aligned}
+i\hbar\,\ddt{C_1}{t}&=H_{11}C_1+H_{12}C_2,\\[1ex]
+i\hbar\,\ddt{C_2}{t}&=H_{21}C_1+H_{22}C_2.
+\end{aligned}
+\end{equation}
+
+If the $H$’s are again independent of time, you can easily solve these
+equations. We leave you to try for fun, and we’ll come back and do
+them later. Yes, you can solve the quantum mechanics without knowing
+the $H$’s, so long as they are independent of time.</p>
+</div>
+</div>
+<div id="Ch8-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">8–6</span>The ammonia molecule</h3>
+<div id="Ch8-S6-p1" class="para">
+<p class="p">We want now to show you how the dynamical equation of quantum
+mechanics can be used to describe a particular physical
+circumstance. We have picked an interesting but simple example in
+which, by making some reasonable guesses about the Hamiltonian, we can
+work out some important—and even practical—results. We are going
+to take a situation describable by two states: the ammonia molecule.</p>
+</div>
+<div id="Ch8-F1" class="figure">
+<img class="first" src="img/FLP_III/f08-01/f08-01_tc_big_a.svgz"><img class="last" src="img/FLP_III/f08-01/f08-01_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 8–1.</span>Two equivalent geometric arrangements of the ammonia molecule.
+</div>
+</div>
+<div id="Ch8-S6-p2" class="para">
+<p class="p">The ammonia molecule has one nitrogen atom and three hydrogen atoms
+located in a plane below the nitrogen so that the molecule has the
+form of a pyramid, as drawn in Fig. <a href="#Ch8-F1">8–1</a>(a). Now this molecule,
+like
+any other, has an infinite number of states. It can spin around any
+possible axis; it can be moving in any direction; it can be vibrating
+inside, and so on, and so on. It is, therefore, not a two-state system
+at all. But we want to make an approximation that all other states
+remain fixed, because they don’t enter into what we are concerned with
+at the moment. We will consider only that the molecule is spinning
+around its axis of symmetry (as shown in the figure), that it has zero
+translational momentum, and that it is vibrating as little as
+possible. That specifies all conditions except one: <em class="emph">there are
+still the two possible positions for the nitrogen atom</em>—the nitrogen
+may be on one side of the plane of hydrogen atoms or on the other, as
+shown in Fig. <a href="#Ch8-F1">8–1</a>(a) and (b). So we will discuss the molecule as
+though it were a two-state system. We mean that there are only two
+states we are going to really worry about, all other things being
+assumed to stay put. You see, even if we know that it is spinning with
+a certain angular momentum around the axis and that it is moving with
+a certain momentum and vibrating in a definite way, there are still
+two possible states. We will say that the molecule is in the
+state $\ket{\slOne}$ when the nitrogen is “up,” as in
+Fig. <a href="#Ch8-F1">8–1</a>(a),
+and is in the state $\ket{\slTwo}$ when the nitrogen is “down,” as in (b).
+The states $\ket{\slOne}$ and $\ket{\slTwo}$ will be taken as the
+set of base states for our analysis of the behavior of the ammonia
+molecule. At any moment, the actual state $\ket{\psi}$ of the molecule
+can be represented by giving $C_1=\braket{\slOne}{\psi}$, the
+amplitude to be in state $\ket{\slOne}$, and
+$C_2=\braket{\slTwo}{\psi}$, the amplitude to be in
+state $\ket{\slTwo}$. Then, using Eq. (<a href="#mjx-eqn-EqIII88">8.8</a>) we can write the
+state vector $\ket{\psi}$ as
+\begin{equation}
+\ket{\psi} =
+\ket{\slOne}\braket{\slOne}{\psi}+
+\ket{\slTwo}\braket{\slTwo}{\psi}\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:III:8:44}
+\ket{\psi} =\ket{\slOne}C_1+\ket{\slTwo}C_2.
+\end{equation}
+</p>
+</div>
+<div id="Ch8-S6-p3" class="para">
+<p class="p">Now the interesting thing is that if the molecule is known to be in
+some state at some instant, it will <em class="emph">not</em> be in the same state a
+little while later. The two $C$-coefficients will be changing with
+time according to the equations (<a href="#mjx-eqn-EqIII843">8.43</a>)—which hold for
+any two-state system. Suppose, for example, that you had made some
+observation—or had made some selection of the molecules—so that
+you <em class="emph">know</em> that the molecule is <em class="emph">initially</em> in the
+state $\ket{\slOne}$. At some later time, there is some chance that it will
+be found in state $\ket{\slTwo}$. To find out what this chance is, we
+have to solve the differential equation which tells us how the
+amplitudes change with time.</p>
+</div>
+<div id="Ch8-S6-p4" class="para">
+<p class="p">The only trouble is that we don’t know what to use for the
+coefficients $H_{ij}$ in Eq. (<a href="#mjx-eqn-EqIII843">8.43</a>). There are some
+things we <em class="emph">can</em> say, however. Suppose that once the molecule was
+in the state $\ket{\slOne}$ there was no chance that it could ever get
+into $\ket{\slTwo}$, and vice versa. Then $H_{12}$ and $H_{21}$ would
+both be zero, and Eq. (<a href="#mjx-eqn-EqIII843">8.43</a>) would read
+\begin{equation*}
+i\hbar\,\ddt{C_1}{t}=H_{11}C_1,\quad
+i\hbar\,\ddt{C_2}{t}=H_{22}C_2.
+\end{equation*}
+
+We can easily solve these two equations; we get
+\begin{equation}
+\label{Eq:III:8:45}
+C_1=(\text{const})e^{-(i/\hbar)H_{11}t},\quad
+C_2=(\text{const})e^{-(i/\hbar)H_{22}t}.
+\end{equation}
+
+These are just the amplitudes for <em class="emph">stationary</em> states with the
+energies $E_1=H_{11}$ and $E_2=H_{22}$. We note, however, that for the
+ammonia molecule the two states $\ket{\slOne}$ and $\ket{\slTwo}$ have
+a definite symmetry. If nature is at all reasonable, the matrix
+elements $H_{11}$ and $H_{22}$ must be equal. We’ll call them
+both $E_0$, because they correspond to the energy the states would have if
+$H_{12}$ and $H_{21}$ were zero. But Eqs. (<a href="#mjx-eqn-EqIII845">8.45</a>) do not
+tell us what ammonia really does. It turns out that it is possible for
+the nitrogen to push its way through the three hydrogens and flip to
+the other side. It is quite difficult; to get half-way through
+requires a lot of energy. How can it get through if it hasn’t got
+enough energy?  There is <em class="emph">some</em> amplitude that it <em class="emph">will</em>
+penetrate the energy barrier. It is possible in quantum mechanics to
+sneak quickly across a region which is illegal energetically. There
+is, therefore, some small amplitude that a molecule which starts
+in $\ket{\slOne}$ will get to the state $\ket{\slTwo}$. The coefficients
+$H_{12}$ and $H_{21}$ are not really zero. Again, by symmetry, they
+should both be the same—at least in magnitude. In fact, we already
+know that, in general, $H_{ij}$ must be equal to the complex conjugate
+of $H_{ji}$, so they can differ only by a phase. It turns out, as you
+will see, that there is no loss of generality if we take them equal to
+each other. For later convenience we set them equal to a negative
+number; we take $H_{12}=H_{21}=-A$. We then have the following pair of
+equations:
+\begin{align}
+\label{Eq:III:8:46}
+i\hbar\,\ddt{C_1}{t}&=E_0C_1-AC_2,\\[1ex]
+\label{Eq:III:8:47}
+i\hbar\,\ddt{C_2}{t}&=E_0C_2-AC_1.
+\end{align}
+</p>
+</div>
+<div id="Ch8-S6-p5" class="para">
+<p class="p">These equations are simple enough and can be solved in any number of
+ways. One convenient way is the following. Taking the sum of the two,
+we get
+\begin{equation}
+i\hbar\,\ddt{}{t}\,(C_1+C_2)=(E_0-A)(C_1+C_2),\notag
+\end{equation}
+
+whose solution is
+\begin{equation}
+\label{Eq:III:8:48}
+C_1+C_2=ae^{-(i/\hbar)(E_0-A)t}.
+\end{equation}
+
+
+Then, taking the difference of (<a href="#mjx-eqn-EqIII846">8.46</a>)
+and (<a href="#mjx-eqn-EqIII847">8.47</a>), we find that
+\begin{equation}
+i\hbar\,\ddt{}{t}\,(C_1-C_2)=(E_0+A)(C_1-C_2),\notag
+\end{equation}
+
+which gives
+\begin{equation}
+\label{Eq:III:8:49}
+C_1-C_2=be^{-(i/\hbar)(E_0+A)t}.
+\end{equation}
+
+We have called the two integration constants $a$ and $b$; they are, of
+course, to be chosen to give the appropriate starting condition for
+any particular physical problem. Now, by adding and subtracting
+(<a href="#mjx-eqn-EqIII848">8.48</a>) and (<a href="#mjx-eqn-EqIII849">8.49</a>), we get $C_1$ and $C_2$:
+\begin{align}
+\label{Eq:III:8:50}
+C_1(t)&=\frac{a}{2}\,e^{-(i/\hbar)(E_0-A)t}+
+\frac{b}{2}\,e^{-(i/\hbar)(E_0+A)t},\\[1ex]
+\label{Eq:III:8:51}
+C_2(t)&=\frac{a}{2}\,e^{-(i/\hbar)(E_0-A)t}-
+\frac{b}{2}\,e^{-(i/\hbar)(E_0+A)t}.
+\end{align}
+
+They are the same except for the sign of the second term.</p>
+</div>
+<div id="Ch8-S6-p6" class="para">
+<p class="p">We have the solutions; now what do they mean? (The trouble with
+quantum mechanics is not only in solving the equations but in
+understanding what the solutions mean!) First, notice that if $b=0$,
+both terms have the same frequency $\omega=(E_0-A)/\hbar$. If
+everything changes at one frequency, it means that the system is in a
+state of definite energy—here, the energy $(E_0-A)$. So there is a
+stationary state of this energy in which the two amplitudes $C_1$
+and $C_2$ are equal. We get the result that <em class="emph">the ammonia molecule has
+a definite energy</em> $(E_0-A)$ if there are equal amplitudes for the
+nitrogen atom to be “up” and to be “down.”</p>
+</div>
+<div id="Ch8-S6-p7" class="para">
+<p class="p">There is another stationary state possible if $a=0$; both amplitudes
+then have the frequency $(E_0+A)/\hbar$. So there is another state
+with the definite energy $(E_0+A)$ if the two amplitudes are equal but
+with the opposite sign; $C_2=-C_1$. These are the only two states of
+definite energy. We will discuss the states of the ammonia molecule in
+more detail in the next chapter; we will mention here only a couple of
+things.</p>
+</div>
+<div id="Ch8-S6-p8" class="para">
+<p class="p">We conclude that <em class="emph">because</em> there is some chance that the nitrogen
+atom can flip from one position to the other, the energy of the
+molecule is not just $E_0$, as we would have expected, but that there
+are <em class="emph">two</em> energy levels $(E_0+A)$ and $(E_0-A)$. Every one of the
+possible states of the molecule, whatever energy it has, is “split”
+into two levels. We say <em class="emph">every</em> one of the states because, you
+remember, we picked out one particular state of rotation, and internal
+energy, and so on. For each possible condition of that kind there is a
+doublet of energy levels because of the flip-flop of the molecule.</p>
+</div>
+<div id="Ch8-S6-p9" class="para">
+<p class="p">Let’s now ask the following question about an ammonia molecule. Suppose that
+at $t=0$, we <i>know</i> that a molecule is in the state $\ket{\slOne}$ or, in other
+words, that $C_1(0)=1$ and $C_2(0)=0$. What is the probability that the molecule
+will be found in the state $\ket{\slTwo}$ at the time $t$, or will still be
+found in state $\ket{\slOne}$ at the time $t$? Our starting condition tells us
+what $a$ and $b$ are in Eqs. (<a href="#mjx-eqn-EqIII850">8.50</a>) and (<a href="#mjx-eqn-EqIII851">8.51</a>).
+Letting $t=0$, we have that
+\begin{equation*}
+C_1(0)=\frac{a+b}{2}=1,\quad
+C_2(0)=\frac{a-b}{2}=0.
+\end{equation*}
+
+Clearly, $a=b=1$. Putting these values into the formulas for $C_1(t)$
+and $C_2(t)$ and rearranging some terms, we have
+\begin{align*}
+C_1(t)&=e^{-(i/\hbar)E_0t}\biggl(
+\frac{e^{(i/\hbar)At}+e^{-(i/\hbar)At}}{2}
+\biggr),\\[1ex]
+C_2(t)&=e^{-(i/\hbar)E_0t}\biggl(
+\frac{e^{(i/\hbar)At}-e^{-(i/\hbar)At}}{2}
+\biggr).
+\end{align*}
+
+We can rewrite these as
+\begin{align}
+\label{Eq:III:8:52}
+C_1(t)&=\phantom{i}e^{-(i/\hbar)E_0t}\cos\frac{At}{\hbar},\\[1ex]
+\label{Eq:III:8:53}
+C_2(t)&=ie^{-(i/\hbar)E_0t}\sin\frac{At}{\hbar}.
+\end{align}
+
+The two amplitudes have a magnitude that varies harmonically with
+time.</p>
+</div>
+<div id="Ch8-S6-p10" class="para">
+<p class="p">The probability that the molecule is found in state $\ket{\slTwo}$ at
+the time $t$ is the absolute square of $C_2(t)$:
+\begin{equation}
+\label{Eq:III:8:54}
+\abs{C_2(t)}^2=\sin^2\frac{At}{\hbar}.
+\end{equation}
+
+The probability starts at zero (as it should), rises to one, and then
+oscillates back and forth between zero and one, as shown in the curve
+marked $P_2$ of Fig. <a href="#Ch8-F2">8–2</a>. The probability of being in
+the $\ket{\slOne}$ state does not, of course, stay at one. It “dumps”
+into the second state until the probability of finding the molecule in
+the first state is zero, as shown by the curve $P_1$ of
+Fig. <a href="#Ch8-F2">8–2</a>. The probability sloshes back and forth between
+the two.</p>
+</div>
+<div id="Ch8-F2" class="figure">
+<img src="img/FLP_III/f08-02/f08-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 8–2.</span>The probability $P_1$ that an ammonia molecule in
+state $\ket{\slOne}$ at $t=0$ will be found in state $\ket{\slOne}$
+at $t$. The probability $P_2$ that it will be found in
+state $\ket{\slTwo}$.
+</div>
+</div>
+<div id="Ch8-S6-p11" class="para">
+<p class="p">A long time ago we saw what happens when we have two equal pendulums
+with a slight coupling. (See Chapter <a href="I_49.html">49</a>, Vol. I.) When we
+lift one back and let go, it swings, but then gradually the other one
+starts to swing. Pretty soon the second pendulum has picked up all the
+energy. Then, the process reverses, and pendulum number one picks up the
+energy. It is exactly the same kind of a thing. The speed at which the
+energy is swapped back and forth depends on the coupling between the two
+pendulums—the rate at which the “oscillation” is able to leak
+across. Also, you remember, with the two pendulums there are two special
+motions—each with a definite frequency—which we call the fundamental
+modes. If we pull both pendulums out together, they swing together at
+one frequency. On the other hand, if we pull one out one way and the
+other out the other way, there is another stationary mode also at a
+definite frequency.</p>
+</div>
+<div id="Ch8-S6-p12" class="para">
+<p class="p">Well, here we have a similar situation—the ammonia molecule is
+mathematically like the pair of pendulums. These are the two
+frequencies—$(E_0-A)/\hbar$ and $(E_0+A)/\hbar$—for when they are
+oscillating together, or oscillating opposite.</p>
+</div>
+<div id="Ch8-S6-p13" class="para">
+<p class="p">The pendulum analogy is not much deeper than the principle that the
+same equations have the same solutions. The linear equations for the
+amplitudes (<a href="#mjx-eqn-EqIII839">8.39</a>) are very much like the linear equations
+of harmonic oscillators. (In fact, this is the reason behind the
+success of our classical theory of the index of refraction, in which
+we replaced the quantum mechanical atom by a harmonic oscillator, even
+though, classically, this is not a reasonable view of electrons
+circulating about a nucleus.) If you pull the nitrogen to one side,
+then you get a <em class="emph">superposition</em> of these two frequencies, and you
+get a kind of <em class="emph">beat</em> note, because the system is <em class="emph">not</em> in
+one or the other states of definite frequency. The splitting of the
+energy levels of the ammonia molecule is, however, strictly a quantum
+mechanical effect.</p>
+</div>
+<div id="Ch8-S6-p14" class="para">
+<p class="p">The splitting of the energy levels of the ammonia molecule has
+important practical applications which we will describe in the next
+chapter. At long last we have an example of a practical physical
+problem that you can understand with the quantum mechanics!</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  You might think we should
+write $|\,A\,|$ instead of just $A$. But then it would look like the
+symbol for “absolute value of $A$,” so the bars are usually
+dropped. In general, the bar ($|$) behaves much like the factor one.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  We are
+in a bit of trouble here with notation. In the factor $(-i/\hbar)$,
+the $i$ means the imaginary unit $\sqrt{-1}$, and <em class="emph">not</em> the
+<em class="emph">index</em> $i$ that refers to the $i$th base state! We hope that you
+won’t find it too confusing.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div>
+
+</div>
+    
+  </body>
+</html>

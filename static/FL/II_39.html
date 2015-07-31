@@ -1,0 +1,1656 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 39: Elastic Materials</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "39." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch39" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">39</span>Elastic Materials</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Reference:</i>
+		</td>
+		<td>
+		C. Kittel, <i>Introduction to Solid State Physics</i>, John Wiley and Sons, Inc., New York, 2nd ed., 1956.
+		</td>
+	</tr>
+</table>
+
+<div id="Ch39-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">39–1</span>The tensor of strain</h3>
+<div id="Ch39-S1-p1" class="para">
+<p class="p">In the last chapter we talked about the distortions of particular
+elastic objects.  In this chapter we want to look at what can happen
+<em class="emph">in general</em> inside an elastic material. We would like to be able
+to describe the conditions of stress and strain inside some big glob
+of jello which is twisted and squashed in some complicated way. To do
+this, we need to be able to describe the <em class="emph">local strain</em> at every
+point in an elastic body; we can do it by giving a set of six
+numbers—which are the components of a symmetric tensor—for each
+point. Earlier, we spoke of the stress tensor (Chapter <a href="II_31.html">31</a>);
+now we need the tensor of strain.</p>
+</div>
+<div id="Ch39-F1" class="figure">
+<img class="first" src="img/FLP_II/f39-01/f39-01_tc_big_a.svgz"><img class="last" src="img/FLP_II/f39-01/f39-01_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 39–1.</span>A speck of the material at the point $P$ in an unstrained block
+moves to $P'$ where the block is strained.
+</div>
+</div>
+<div id="Ch39-S1-p2" class="para">
+<p class="p">Imagine that we start with the material initially unstrained and watch
+the motion of a small speck of “dirt” embedded in the material when
+the strain is applied. A speck that was at the point $P$ located at $\FLPr=(x,y,z)$ moves to a
+new position $P'$ at $\FLPr'=(x',y',z')$ as shown in
+Fig. <a href="#Ch39-F1">39–1</a>. We will call $\FLPu$ the vector displacements
+from $P$ to $P'$. Then
+\begin{equation}
+\label{Eq:II:39:1}
+\FLPu=\FLPr'-\FLPr.
+\end{equation}
+
+The displacement $\FLPu$ depends, of course, on which point $P$ we
+start with, so $\FLPu$ is a vector function of $\FLPr$—or, if you
+prefer, of $(x,y,z)$.</p>
+</div>
+<div id="Ch39-F2" class="figure">
+<img src="img/FLP_II/f39-02/f39-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 39–2.</span>A homogenous stretch-type strain.
+</div>
+</div>
+<div id="Ch39-S1-p3" class="para">
+<p class="p">Let’s look first at a simple situation in which the strain is constant
+over the material—so we have what is called a <em class="emph">homogeneous
+strain</em>. Suppose, for instance, that we have a block of material and we
+stretch it uniformly. We just change its dimensions uniformly in one
+direction—say, in the $x$-direction, as shown in
+Fig. <a href="#Ch39-F2">39–2</a>. The motion $u_x$ of a speck at $x$ is
+proportional to $x$. In fact,
+\begin{equation*}
+\frac{u_x}{x}=\frac{\Delta l}{l}.
+\end{equation*}
+
+We will write $u_x$ this way:
+\begin{equation*}
+u_x=e_{xx}x.
+\end{equation*}
+
+The proportionality constant $e_{xx}$ is, of course, the same thing
+as $\Delta l/l$. (You will see shortly why we use a double subscript.)</p>
+</div>
+<div id="Ch39-S1-p4" class="para">
+<p class="p">If the strain is not uniform, the relation between $u_x$ and $x$ will
+vary from place to place in the material. For the general situation,
+we define the $e_{xx}$ by a kind of local $\Delta l/l$, namely by
+\begin{equation}
+\label{Eq:II:39:2}
+e_{xx}=\ddpl{u_x}{x}.
+\end{equation}
+
+This number—which is now a function of $x$, $y$, and $z$—describes
+the amount of stretching in the $x$-direction throughout the hunk of
+jello. There may, of course, also be stretching in the $y$-
+and $z$-directions. We describe them by the numbers
+\begin{equation}
+\label{Eq:II:39:3}
+e_{yy}=\ddp{u_y}{y},\quad
+e_{zz}=\ddp{u_z}{z}.
+\end{equation}
+</p>
+</div>
+<div id="Ch39-F3" class="figure">
+<img class="first" src="img/FLP_II/f39-03/f39-03_tc_big_a.svgz"><img class="last" src="img/FLP_II/f39-03/f39-03_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 39–3.</span>A homogenous shear strain.
+</div>
+</div>
+<div id="Ch39-S1-p5" class="para">
+<p class="p">We need to be able to describe also the shear-type strains. Suppose we
+imagine a little cube marked out in the initially undisturbed
+jello. When the jello is pushed out of shape, this cube may get
+changed into a parallelogram, as sketched in Fig. <a href="#Ch39-F3">39–3</a>.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a>  In this kind of a strain, the $x$-motion of each particle is
+proportional to its $y$-coordinate,
+\begin{equation}
+\label{Eq:II:39:4}
+u_x=\frac{\theta}{2}\,y.
+\end{equation}
+
+And there is also a $y$-motion proportional to $x$,
+\begin{equation}
+\label{Eq:II:39:5}
+u_y=\frac{\theta}{2}\,x.
+\end{equation}
+
+So we can describe such a shear-type strain by writing
+\begin{equation*}
+u_x=e_{xy}y,\quad
+u_y=e_{yx}x
+\end{equation*}
+
+with
+\begin{equation*}
+e_{xy}=e_{yx}=\frac{\theta}{2}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch39-S1-p6" class="para">
+<p class="p">Now you might think that when the strains are not homogeneous we could
+describe the generalized shear strains by defining the quantities
+$e_{xy}$ and $e_{yx}$ by
+\begin{equation}
+\label{Eq:II:39:6}
+e_{xy}=\ddp{u_x}{y},\quad
+e_{yx}=\ddp{u_y}{x}.
+\end{equation}
+But there is one difficulty. Suppose that the displacements $u_x$
+and&nbsp;$u_y$ were given by
+\begin{equation*}
+u_x=\frac{\theta}{2}\,y,\quad
+u_y=-\frac{\theta}{2}\,x
+\end{equation*}
+They are like Eqs. (<a href="#mjx-eqn-EqII394">39.4</a>) and&nbsp;(<a href="#mjx-eqn-EqII395">39.5</a>) except that the sign of&nbsp;$u_y$ is reversed. With these displacements a little cube in the jello simply gets shifted by the angle&nbsp;$\theta/2$, as shown in Fig.&nbsp;<a href="#Ch39-F4">39–4</a>. There is no strain at all&mdash;just a rotation in space. There is no distortion of the material; the <em class="emph">relative</em> positions of all the atoms are not changed at all. We must somehow make our definitions so that pure rotations are not included in our definitions of a shear strain. The key point is that if $\ddpl{u_y}{x}$ and&nbsp;$\ddpl{u_x}{y}$ are equal and opposite, there is no strain; so we can fix things up by <em class="emph">defining</em>
+\begin{equation*}
+e_{xy}=e_{yx}=\tfrac{1}{2}(\ddpl{u_y}{x}+\ddpl{u_x}{y}).
+\end{equation*}
+For a pure rotation they are both zero, but for a pure shear we get
+that $e_{xy}$ is equal to&nbsp;$e_{yx}$, as we would like.
+</p>
+</div>
+
+<div id="Ch39-F4" class="figure">
+<img class="first" src="img/FLP_II/f39-04/f39-04_tc_big_a.svgz"><img class="last" src="img/FLP_II/f39-04/f39-04_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 39–4.</span>A homogenous rotation—there is no strain.
+</div>
+</div>
+<div id="Ch39-S1-p7" class="para">
+<p class="p">In the most general distortion—which may include stretching or
+compression as well as shear—we <em class="emph">define</em> the state of strain by
+giving the nine numbers
+\begin{equation}
+\label{Eq:II:39:7}
+\begin{aligned}
+e_{xx}&=\ddp{u_x}{x},\\[2pt]
+e_{yy}&=\ddp{u_y}{y},\\[-2pt]
+&\qquad\vdots\\
+e_{xy}&=\tfrac{1}{2}(\ddpl{u_y}{x}+\ddpl{u_x}{y}),\\[-4pt]
+&\qquad\vdots
+\end{aligned}
+\end{equation}
+
+These are the terms of a <em class="emph">tensor of strain</em>. Because it is a
+<em class="emph">symmetric tensor</em>—our definitions make $e_{xy}=e_{yx}$,
+always—there are really only six different numbers. You remember
+(see Chapter <a href="II_31.html">31</a>) that the general characteristic of a
+tensor is that the terms transform like the products of the components
+of two vectors. (If $\FLPA$ and $\FLPB$ are vectors, $C_{ij}=A_iB_j$
+is a tensor.) Each term of $e_{ij}$ is a product (or the sum of such
+products) of the components of the vector $\FLPu=(u_x,u_y,u_z)$, and
+of the operator $\FLPnabla=(\ddpl{}{x},\ddpl{}{y},\ddpl{}{z})$, which
+we know transforms like a vector. Let’s let $x_1$, $x_2$, and $x_3$
+stand for $x$, $y$, and $z$ and $u_1$, $u_2$, and $u_3$ stand for
+$u_x$, $u_y$, and $u_z$; then we can write the general term $e_{ij}$
+of the strain tensor as
+\begin{equation}
+\label{Eq:II:39:8}
+e_{ij}=\tfrac{1}{2}(\ddpl{u_j}{x_i}+\ddpl{u_i}{x_j}),
+\end{equation}
+
+where $i$ and $j$ can be $1$, $2$, or $3$.</p>
+</div>
+<div id="Ch39-S1-p8" class="para">
+<p class="p">When we have a homogeneous strain—which may include both stretching
+and shear—all of the $e_{ij}$ are constants, and we can write
+\begin{equation}
+\label{Eq:II:39:9}
+u_x=e_{xx}x+e_{xy}y+e_{xz}z.
+\end{equation}
+
+(We choose our origin of $x$, $y$, $z$ at the point where $\FLPu$ is
+zero.) In this case, the strain tensor $e_{ij}$ gives the relationship
+between two vectors: the coordinate vector $\FLPr=(x,y,z)$ and the
+displacement vector $\FLPu=(u_x,u_y,u_z)$.</p>
+</div>
+<div id="Ch39-S1-p9" class="para">
+<p class="p">When the strains are not homogeneous, any piece of the jello may also
+get somewhat twisted—there will be a local rotation. If the
+distortions are all small, we would have
+\begin{equation}
+\label{Eq:II:39:10}
+\Delta u_i=\sum_j(e_{ij}-\omega_{ij})\,\Delta x_j,
+\end{equation}
+
+where $\omega_{ij}$ is an <em class="emph">antisymmetric</em> tensor,
+\begin{equation}
+\label{Eq:II:39:11}
+\omega_{ij}=\tfrac{1}{2}(\ddpl{u_j}{x_i}-\ddpl{u_i}{x_j}),
+\end{equation}
+
+which describes the rotation. We will, however, not worry any more
+about rotations, but only about the strains described by the symmetric
+tensor $e_{ij}$.</p>
+</div>
+</div>
+<div id="Ch39-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">39–2</span>The tensor of elasticity</h3>
+<div id="Ch39-S2-p1" class="para">
+<p class="p">Now that we have described the strains, we want to relate them to the
+internal forces—the stresses in the material. For each small piece of
+the material, we assume Hooke’s law
+holds and write that the stresses are proportional to the strains. In
+Chapter <a href="II_31.html">31</a> we defined the stress tensor $S_{ij}$ as the
+$i$th component of the force across a unit-area perpendicular to the
+$j$-axis. Hooke’s law says that each
+component of $S_{ij}$ is linearly related to <em class="emph">each</em> of the
+components of strain. Since $S$ and $e$ each have nine components, there
+are $9\times9=81$ possible coefficients which describe the elastic
+properties of the material. They are constants if the material itself is
+homogeneous. We write these coefficients as $C_{ijkl}$ and define them
+by the equation
+\begin{equation}
+\label{Eq:II:39:12}
+S_{ij}=\sum_{k,l}C_{ijkl}e_{kl},
+\end{equation}
+
+where $i$, $j$, $k$, $l$ all take on the values $1$, $2$, or $3$.
+Since the coefficients $C_{ijkl}$ relate one tensor to another,
+they also form a tensor—a tensor of the <em class="emph">fourth rank</em>. We can
+call it the <em class="emph">tensor of elasticity</em>.</p>
+</div>
+<div id="Ch39-S2-p2" class="para">
+<p class="p">Suppose that all the $C$’s are known and that you put a complicated
+force on an object of some peculiar shape. There will be all kinds of
+distortion, and the thing will settle down with some twisted
+shape. What are the displacements? You can see that it is a
+complicated problem. If you knew the strains, you could find the
+stresses from Eq. (<a href="#mjx-eqn-EqII3912">39.12</a>)—or vice versa. But the
+stresses and strains you end up with at any point depend on what
+happens in all the rest of the material.</p>
+</div>
+<div id="Ch39-S2-p3" class="para">
+<p class="p">The easiest way to get at the problem is by thinking of the
+energy. When there is a force $F$ proportional to a displacement $x$,
+say $F=kx$, the work required for any displacement $x$ is $kx^2/2$. In
+a similar way, the work $w$ that goes into <em class="emph">each unit volume</em> of
+a distorted material turns out to be
+\begin{equation}
+\label{Eq:II:39:13}
+w=\tfrac{1}{2}\sum_{ijkl}C_{ijkl}e_{ij}e_{kl}.
+\end{equation}
+
+The total work $W$ done in distorting the body is the integral of $w$
+over its volume:
+\begin{equation}
+\label{Eq:II:39:14}
+W=\int\tfrac{1}{2}\sum_{ijkl}C_{ijkl}e_{ij}e_{kl}\,dV.
+\end{equation}
+
+This is then the potential energy stored in the internal stresses of
+the material. Now when a body is in equilibrium, this internal energy
+must be <em class="emph">at a minimum</em>. So the problem of finding the strains in
+a body can be solved by finding the set of displacements $\FLPu$
+throughout the body which will make $W$ a minimum. In
+Chapter <a href="II_19.html">19</a> we gave some of the general ideas of the
+calculus of variations that are used in tackling minimization problems
+like this. We cannot go into the problem in any more detail here.</p>
+</div>
+<div id="Ch39-S2-p4" class="para">
+<p class="p">What we are mainly interested in now is what we can say about the
+general properties of the tensor of elasticity. First, it is clear
+that there are <em class="emph">not</em> really $81$ <em class="emph">different</em> terms
+in $C_{ijkl}$. Since both $S_{ij}$ and $e_{ij}$ are symmetric tensors,
+each with only six different terms, there can be at most
+$36$ different terms in $C_{ijkl}$. There are, however, usually many fewer
+than this.</p>
+</div>
+<div id="Ch39-S2-p5" class="para">
+<p class="p">Let’s look at the special case of a cubic crystal. In it, the energy
+density $w$ starts out like this:
+\begin{align}
+w=\tfrac{1}{2}\{&C_{xxxx}e_{xx}^2\!+C_{xxxy}e_{xx}e_{xy}\!+C_{xxxz}e_{xx}e_{xz}\notag\\[.5ex]
++\;&C_{xxyx}e_{xx}e_{xy}\!+C_{xxyy}e_{xx}e_{yy}\ldots\text{etc}\ldots\notag\\[.5ex]
+\label{Eq:II:39:15}
++\;&C_{yyyy}e_{yy}^2\!+\ldots\text{etc}\ldots\text{etc}\ldots\},
+\end{align}
+
+with $81$ terms in all! Now a cubic crystal has certain symmetries. In
+particular, if the crystal is rotated $90^\circ$, it has the same
+physical properties. It has the same stiffness for stretching in the
+$y$-direction as for stretching in the $x$-direction. Therefore, if we
+change our definition of the coordinate directions $x$ and $y$ in
+Eq. (<a href="#mjx-eqn-EqII3915">39.15</a>), the energy wouldn’t change. It must be that
+for a cubic crystal
+\begin{equation}
+\label{Eq:II:39:16}
+C_{xxxx}=C_{yyyy}=C_{zzzz}.
+\end{equation}
+</p>
+</div>
+<div id="Ch39-S2-p6" class="para">
+<p class="p">Next we can show that the terms like $C_{xxxy}$ must be zero. A cubic
+crystal has the property that it is symmetric under a
+<em class="emph">reflection</em> about any plane perpendicular to one of the axes. If
+we replace $y$ by $-y$, nothing is different. But changing $y$ to $-y$
+changes $e_{xy}$ to $-e_{xy}$—a displacement which was toward $+y$
+is now toward $-y$. If the energy is not to change, $C_{xxxy}$ must go
+into $-C_{xxxy}$ when we make a reflection. But a reflected crystal is
+the same as before, so $C_{xxxy}$ must be the <em class="emph">same</em> as $-C_{xxxy}$.
+This can happen only if both are zero.</p>
+</div>
+<div id="Ch39-S2-p7" class="para">
+<p class="p">You say, “But the same argument will make $C_{yyyy}=0$!” No, because
+there are <em class="emph">four</em> $y$’s. The sign changes once for each $y$, and
+four minuses make a plus. If there are <em class="emph">two</em> or <em class="emph">four</em> $y$’s,
+the term does not have to be zero. It is zero only when there
+is <em class="emph">one</em>, or <em class="emph">three</em>. So, for a cubic crystal, any nonzero
+term of $C$ will have only an <em class="emph">even number</em> of identical
+subscripts. (The arguments we have made for $y$ obviously hold also
+for $x$ and $z$.) We might then have terms like $C_{xxyy}$,
+$C_{xyxy}$, $C_{xyyx}$, and so on. We have already shown, however,
+that if we change all $x$’s to $y$’s and <em class="emph">vice versa</em> (or all
+$z$’s and $x$’s, and so on) we must get—for a cubic crystal—the
+same number. This means that there are <em class="emph">only three different</em>
+nonzero possibilities:
+\begin{equation}
+\begin{aligned}
+&C_{xxxx}\:(=C_{yyyy}=C_{zzzz}),\\[.5ex]
+&C_{xxyy}\:(=C_{yyxx}=C_{xxzz},\:\text{etc.}),\\[.5ex]
+&C_{xyxy}\:(=C_{yxyx}=C_{xzxz},\:\text{etc.}).
+\end{aligned}
+\label{Eq:II:39:17}
+\end{equation}
+</p>
+</div>
+<div id="Ch39-S2-p8" class="para">
+<p class="p">For a cubic crystal, then, the energy density will look like this:
+\begin{equation}
+\begin{aligned}
+w&=\tfrac{1}{2}\{C_{xxxx}(e_{xx}^2+e_{yy}^2+e_{zz}^2)\\[.5ex]
+&\quad+\,2C_{xxyy}(e_{xx}e_{yy}+e_{yy}e_{zz}+e_{zz}e_{xx})\\[.5ex]
+&\quad+\,4C_{xyxy}(e_{xy}^2+e_{yz}^2+e_{zx}^2)\}.
+\end{aligned}
+\label{Eq:II:39:18}
+\end{equation}
+</p>
+</div>
+<div id="Ch39-S2-p9" class="para">
+<p class="p">For an isotropic—that is, noncrystalline—material, the symmetry is
+still higher. The $C$’s must be the same for <em class="emph">any</em> choice of the
+coordinate system. Then it turns out that there is another relation
+among the $C$’s, namely, that
+\begin{equation}
+\label{Eq:II:39:19}
+C_{xxxx}=C_{xxyy}+2C_{xyxy}.
+\end{equation}
+
+We can see that this is so by the following general argument. The
+stress tensor $S_{ij}$ has to be related to $e_{ij}$ in a way that
+doesn’t depend at all on the coordinate directions—it must be
+related only by <em class="emph">scalar</em> quantities. “That’s easy,” you
+say. “The only way to obtain $S_{ij}$ from $e_{ij}$ is by
+multiplication by a scalar constant. It’s just Hooke’s law. It must be
+that $S_{ij}=(\text{const})e_{ij}$.” But that’s not quite right;
+there could also be the <em class="emph">unit tensor</em> $\delta_{ij}$ multiplied by
+some scalar, linearly related to $e_{ij}$. The only invariant you can
+make that is linear in the $e$’s is $\sum e_{ii}$. (It transforms
+like $x^2+y^2+z^2$, which is a scalar.) So the most general form for the
+equation relating $S_{ij}$ to $e_{ij}$—for isotropic materials—is
+\begin{equation}
+\label{Eq:II:39:20}
+S_{ij}=2\mu e_{ij}+\lambda\Bigl(\sum_ke_{kk}\Bigr)\delta_{ij}.
+\end{equation}
+
+(The first constant is usually written as <em class="emph">two</em> times $\mu$; then
+the coefficient $\mu$ is equal to the shear modulus we defined in the
+last chapter.) The constants $\mu$ and $\lambda$ are called the
+Lamé elastic constants. Comparing
+Eq. (<a href="#mjx-eqn-EqII3920">39.20</a>) with Eq. (<a href="#mjx-eqn-EqII3912">39.12</a>), you see that
+\begin{equation}
+\begin{aligned}
+C_{xxyy}&=\lambda,\\[.5ex]
+C_{xyxy}&=\mu,\\[.5ex]
+C_{xxxx}&=2\mu+\lambda.
+\end{aligned}
+\label{Eq:II:39:21}
+\end{equation}
+
+So we have proved that Eq. (<a href="#mjx-eqn-EqII3919">39.19</a>) is indeed true. You
+also see that the elastic properties of an isotropic material are
+completely given by two constants, as we said in the last chapter.
+</p>
+</div>
+<div id="Ch39-S2-p10" class="para">
+<p class="p">The $C$’s can be put in terms of any two of the elastic constants we
+have used earlier—for instance, in terms of Young’s modulus $Y$ and
+Poisson’s ratio $\sigma$. We will leave it for you to show that
+\begin{equation}
+\begin{aligned}
+C_{xxxx}&=\frac{Y}{1+\sigma}
+\biggl(1+\frac{\sigma}{1-2\sigma}\biggr),\\[.5ex]
+C_{xxyy}&=\frac{Y}{1+\sigma}
+\biggl(\frac{\sigma}{1-2\sigma}\biggr),\\[.5ex]
+C_{xyxy}&=\frac{Y}{2(1+\sigma)}.
+\end{aligned}
+\label{Eq:II:39:22}
+\end{equation}
+</p>
+</div>
+</div>
+<div id="Ch39-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">39–3</span>The motions in an elastic body</h3>
+<div id="Ch39-F5" class="figure">
+<img src="img/FLP_II/f39-05/f39-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 39–5.</span>A small volume element $V$ bounded by the surface $A$.
+</div>
+</div>
+<div id="Ch39-S3-p1" class="para">
+<p class="p">We have pointed out that for an elastic body <em class="emph">in equilibrium</em> the
+internal stresses adjust themselves to make the energy a minimum. Now
+we take a look at what happens when the internal forces are <em class="emph">not</em>
+in equilibrium. Let’s say we have a small piece of the material inside
+some surface $A$. See Fig. <a href="#Ch39-F5">39–5</a>. If the piece is in equilibrium, the
+total force $\FLPF$ acting on it must be zero. We can think of this
+force as being made up of two parts. There could be one part due to
+“external” forces like gravity, which act from a distance on the
+matter in the piece to produce a <em class="emph">force per unit</em>
+volume $\FLPf_{\text{ext}}$. The total external force $\FLPF_{\text{ext}}$ is
+the integral of $\FLPf_{\text{ext}}$ over the volume of the piece:
+\begin{equation}
+\label{Eq:II:39:23}
+\FLPF_{\text{ext}}=\int\FLPf_{\text{ext}}\,dV.
+\end{equation}
+
+In equilibrium, this force would be balanced by the total
+force $\FLPF_{\text{int}}$ from the neighboring material which acts across
+the surface $A$. When the piece is <em class="emph">not</em> in equilibrium—if it
+is moving—the sum of the internal and external forces is equal to
+the mass times the acceleration. We would have
+\begin{equation}
+\label{Eq:II:39:24}
+\FLPF_{\text{ext}}+\FLPF_{\text{int}}=
+\int\rho\ddot{\FLPr}\,dV,
+\end{equation}
+
+where $\rho$ is the density of the material, and $\ddot{\FLPr}$ is its acceleration. We can now combine Eqs. (<a href="#mjx-eqn-EqII3923">39.23</a>) and (<a href="#mjx-eqn-EqII3924">39.24</a>), writing
+\begin{equation}
+\label{Eq:II:39:25}
+\FLPF_{\text{int}}=\int_v(-\FLPf_{\text{ext}}+\rho\ddot{\FLPr})\,dV.
+\end{equation}
+
+We will simplify our writing by defining
+\begin{equation}
+\label{Eq:II:39:26}
+\FLPf=-\FLPf_{\text{ext}}+\rho\ddot{\FLPr}.
+\end{equation}
+
+Then Eq. (<a href="#mjx-eqn-EqII3925">39.25</a>) is written
+\begin{equation}
+\label{Eq:II:39:27}
+\FLPF_{\text{int}}=\int_v\FLPf\,dV.
+\end{equation}
+</p>
+</div>
+<div id="Ch39-S3-p2" class="para">
+<p class="p">What we have called $\FLPF_{\text{int}}$ is related to the stresses in
+the material. The stress tensor $S_{ij}$ was defined
+(Chapter <a href="II_31.html">31</a>) so that the $x$-component of the force $dF$
+across a surface element $da$, whose unit normal is $\FLPn$, is given by
+\begin{equation}
+\label{Eq:II:39:28}
+dF_x=(S_{xx}n_x+S_{xy}n_y+S_{xz}n_z)\,da.
+\end{equation}
+
+The $x$-component of $\FLPF_{\text{int}}$ on our little piece is then
+the integral of $dF_x$ over the surface. Substituting this into the
+$x$-component of Eq. (<a href="#mjx-eqn-EqII3927">39.27</a>), we get
+\begin{equation}
+\label{Eq:II:39:29}
+\int_A(S_{xx}n_x+S_{xy}n_y+S_{xz}n_z)\,da=\int_vf_x\,dV.
+\end{equation}
+</p>
+</div>
+<div id="Ch39-S3-p3" class="para">
+<p class="p">We have a surface integral related to a volume integral—and that
+reminds us of something we learned in electricity. Note that if you
+ignore the first subscript $x$ on each of the $S$’s in the left-hand
+side of Eq. (<a href="#mjx-eqn-EqII3929">39.29</a>), it looks just like the integral of
+a quantity $\text{``}\FLPS\text{''}\cdot\FLPn$—that is, the normal
+component of a vector—over the surface. It would be the flux
+of “$\FLPS$” out of the volume. And this could be written, using Gauss
+law, as the volume integral of the divergence of “$\FLPS$”. It is,
+in fact, true whether the $x$-subscript is there or not—it is just a
+mathematical theorem you get by integrating by parts. In other words,
+we can change Eq. (<a href="#mjx-eqn-EqII3929">39.29</a>) into
+\begin{equation}
+\label{Eq:II:39:30}
+\int_v\biggl(
+\ddp{S_{xx}}{x}+\ddp{S_{xy}}{y}+\ddp{S_{xz}}{z}
+\biggr)dV=\int_vf_x\,dV.
+\end{equation}
+
+Now we can leave off the volume integrals and write the differential
+equation for the general component of $\FLPf$ as
+\begin{equation}
+\label{Eq:II:39:31}
+f_i=\sum_j\ddp{S_{ij}}{x_j}.
+\end{equation}
+
+This tells us how the force per unit volume is related to the stress
+tensor $S_{ij}$.</p>
+</div>
+<div id="Ch39-S3-p4" class="para">
+<p class="p">The theory of the motions inside a solid works this way. If we start out
+knowing the initial displacements—given by, say, $\FLPu$—we can work
+out the strains $e_{ij}$. From the strains we can get the stresses from
+Eq. (<a href="#mjx-eqn-EqII3912">39.12</a>). From the stresses we can get the force
+density $\FLPf$ in Eq. (<a href="#mjx-eqn-EqII3931">39.31</a>). Knowing $\FLPf$, we can get, from
+Eq. (<a href="#mjx-eqn-EqII3926">39.26</a>), the acceleration $\ddot{\FLPr}$ of the
+material, which tells us how the displacements will be changing. Putting
+everything together, we get the horrible equation of motion for an
+elastic solid. We will just write down the results that come out for an
+isotropic material. If you use (<a href="#mjx-eqn-EqII3920">39.20</a>) for $S_{ij}$, and
+write the $e_{ij}$ as $\tfrac{1}{2}(\ddpl{u_i}{x_j}+\ddpl{u_j}{x_i})$,
+you end up with the vector equation
+\begin{equation}
+\label{Eq:II:39:32}
+\FLPf=(\lambda+\mu)\,\FLPgrad{(\FLPdiv{\FLPu})}+\mu\,\nabla^2\FLPu.
+\end{equation}
+</p>
+</div>
+<div id="Ch39-S3-p5" class="para">
+<p class="p">You can, in fact, see that the equation relating $\FLPf$ and $\FLPu$
+<em class="emph">must</em> have this form. The force must depend on the second
+derivatives of the displacements $\FLPu$. What second derivatives
+of $\FLPu$ are there that are vectors? One
+is $\FLPgrad{(\FLPdiv{\FLPu})}$; that’s a true vector. The only other one
+is $\nabla^2\FLPu$. So the most general form is
+\begin{equation*}
+\FLPf=a\,\FLPgrad{(\FLPdiv{\FLPu})}+b\,\nabla^2\FLPu,
+\end{equation*}
+
+which is just (<a href="#mjx-eqn-EqII3932">39.32</a>) with a different definition of the
+constants. You may be wondering why we don’t have a third term using
+$\FLPcurl{\FLPcurl{\FLPu}}$, which is also a vector. But remember that
+$\FLPcurl{\FLPcurl{\FLPu}}$ is the same thing
+as $\FLPgrad{(\FLPdiv{\FLPu})}-\nabla^2\FLPu$, so it is a linear
+combination of the two terms we have. Adding it would add nothing
+new. We have proved once more that isotropic material has only two
+elastic constants.
+</p>
+</div>
+<div id="Ch39-S3-p6" class="para">
+<p class="p">For the equation of motion of the material, we can
+set (<a href="#mjx-eqn-EqII3932">39.32</a>) equal to $\rho\,\partial^2\FLPu/\partial
+t^2$—neglecting for now any body forces like gravity—and get
+\begin{equation}
+\label{Eq:II:39:33}
+\rho\,\frac{\partial^2\FLPu}{\partial t^2}=
+(\lambda+\mu)\,\FLPgrad{(\FLPdiv{\FLPu})}+\mu\,\nabla^2\FLPu.
+\end{equation}
+
+It looks something like the wave equation we had in electromagnetism,
+except that there is an additional complicating term. For materials
+whose elastic properties are everywhere the same we can see what the
+general solutions look like in the following way. You will remember
+that any vector field can be written as the sum of two vectors: one
+whose divergence is zero, and the other whose curl is zero. In other
+words, we can put
+\begin{equation}
+\label{Eq:II:39:34}
+\FLPu=\FLPu_1+\FLPu_2,
+\end{equation}
+
+where
+\begin{equation}
+\label{Eq:II:39:35}
+\FLPdiv{\FLPu_1}=0,\quad
+\FLPcurl{\FLPu_2}=\FLPzero.
+\end{equation}
+
+Substituting $\FLPu_1+\FLPu_2$ for $\FLPu$ in (<a href="#mjx-eqn-EqII3933">39.33</a>), we
+get
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:39:36}
+\rho\,\partial^2/\partial t^2[\FLPu_1+\FLPu_2]=
+(\lambda+\mu)\,\FLPgrad{(\FLPdiv{\FLPu_2})}+
+\mu\,\nabla^2(\FLPu_1+\FLPu_2).
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\rho\,\partial^2/&\partial t^2[\FLPu_1+\FLPu_2]=\notag\\[1ex]
+\label{Eq:II:39:36}
+&(\lambda+\mu)\,\FLPgrad{(\FLPdiv{\FLPu_2})}+
+\mu\,\nabla^2(\FLPu_1+\FLPu_2).
+\end{align}
+</span>
+
+
+We can eliminate $\FLPu_1$ by taking the divergence of this equation,
+<span class="eq-wide">
+\begin{equation*}
+\rho\,\partial^2/\partial t^2(\FLPdiv{\FLPu_2})=
+(\lambda+\mu)\,\nabla^2(\FLPdiv{\FLPu_2})+
+\mu\,\FLPdiv{\nabla^2(\FLPu_2)}.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+
+\begin{align*}
+\rho\,\partial^2/&\partial t^2(\FLPdiv{\FLPu_2})=\notag\\[1ex]
+&(\lambda+\mu)\,\nabla^2(\FLPdiv{\FLPu_2})+
+\mu\,\FLPdiv{\nabla^2(\FLPu_2)}.
+\end{align*}
+
+</span>
+Since the operators ($\nabla^2$) and ($\FLPdiv{}$) can be
+interchanged, we can factor out the divergence to get
+\begin{equation}
+\label{Eq:II:39:37}
+\FLPdiv{\{\rho\,\partial^2\FLPu_2/\partial t^2-
+(\lambda+2\mu)\,\nabla^2\FLPu_2\}}=0.
+\end{equation}
+
+Since $\FLPcurl{\FLPu_2}$ is zero by definition, the curl of the
+bracket $\{\}$ is also zero; so the bracket itself is identically
+zero, and
+\begin{equation}
+\label{Eq:II:39:38}
+\rho\,\partial^2\FLPu_2/\partial t^2=
+(\lambda+2\mu)\,\nabla^2\FLPu_2.
+\end{equation}
+
+This is the vector wave equation for waves which move at the
+speed $C_2=\sqrt{(\lambda+2\mu)/\rho}$. Since the curl of $\FLPu_2$ is zero,
+there is no shearing associated with this wave; this wave is just the
+compressional—sound-type—wave we discussed in the last chapter,
+and the velocity is just what we found for $C_{\text{long}}$.</p>
+</div>
+<div id="Ch39-S3-p7" class="para">
+<p class="p">In a similar way—by taking the curl of Eq. (<a href="#mjx-eqn-EqII3936">39.36</a>)—we
+can show that $\FLPu_1$ satisfies the
+equation
+\begin{equation}
+\label{Eq:II:39:39}
+\rho\,\partial^2\FLPu_1/\partial t^2=\mu\,\nabla^2\FLPu_1.
+\end{equation}
+
+This is again a vector wave equation for waves with the
+speed $C_1=\sqrt{\mu/\rho}$. Since $\FLPdiv{\FLPu_1}$ is zero, $\FLPu_1$
+produces no changes in density; the vector $\FLPu_1$ corresponds to
+the transverse, or shear-type, wave we saw in the last chapter,
+and $C_1=C_{\text{shear}}$.</p>
+</div>
+<div id="Ch39-S3-p8" class="para">
+<p class="p">If we wished to know the static stresses in an isotropic material, we
+could, in principle, find them by solving Eq. (<a href="#mjx-eqn-EqII3932">39.32</a>)
+with $\FLPf$ equal to zero—or equal to the static body forces from
+gravity such as $\rho\FLPg$—under certain conditions which are
+related to the forces acting on the surfaces of our large block of
+material. This is somewhat more difficult to do than the corresponding
+problems in electromagnetism. It is more difficult, first, because the
+equations are a little more difficult to handle, and second, because
+the shape of the elastic bodies we are likely to be interested in are
+usually much more complicated. In electromagnetism, we are often
+interested in solving Maxwell’s
+equations around relatively simple
+geometric shapes such as cylinders, spheres, and so on, since these are
+convenient shapes for electrical devices. In elasticity, the objects we
+would like to analyze may have quite complicated shapes—like a crane
+hook, or an automobile crankshaft, or the rotor of a gas turbine. Such
+problems can sometimes be worked out approximately by numerical methods,
+using the minimum energy principle we mentioned earlier. Another way is
+to use a model of the object and measure the internal strains
+experimentally, using polarized light.
+</p>
+</div>
+<div id="Ch39-F6" class="figure">
+<img src="img/FLP_II/f39-06/f39-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 39–6.</span>Measuring internal stresses with polarized light.
+</div>
+</div>
+<div id="Ch39-S3-p9" class="para">
+<p class="p">It works this way: When a transparent isotropic material—for example,
+a clear plastic like lucite—is put under stress, it becomes
+birefringent. If you put polarized light through it, the plane of
+polarization will be rotated by an amount related to the stress: by
+measuring the rotation, you can measure the stress.
+Figure <a href="#Ch39-F6">39–6</a> shows how such a setup might look.
+Figure <a href="#Ch39-F7">39–7</a> is a photograph of a photoelastic model of a
+complicated shape under stress.
+</p>
+</div>
+<div id="Ch39-F7" class="figure">
+<img src="img/FLP_II/f39-07/f39-07_mg.jpg"><div class="caption">
+<span class="tag">Fig. 39–7.</span>A stressed plastic model as seen between crossed polaroids.
+[From F. W. Sears, <span class="text italic">Optics</span>, Addison-Wesley Publishing
+Co., Mass., 1949.]
+</div>
+</div>
+</div>
+<div id="Ch39-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">39–4</span>Nonelastic behavior</h3>
+<div id="Ch39-S4-p1" class="para">
+<p class="p">In all that has been said so far, we have assumed that stress is
+proportional to strain; in general, that is <em class="emph">not</em> true.
+Figure <a href="#Ch39-F8">39–8</a> shows a typical stress-strain curve for a
+ductile material. For small strains, the stress is proportional to the
+strain. Eventually, however, after a certain point, the relationship
+between stress and strain begins to deviate from a straight line. For
+many materials—the ones we would call “brittle”—the object breaks
+for strains only a little above the point where the curve starts to bend
+over. In general, there are other complications in the stress-strain
+relationship. For example, if you strain an object, the stresses may be
+high at first, but decrease slowly with time. Also if you go to high
+stresses, but still not to the “breaking” point, when you lower the
+strain the stress will return along a different curve. There is a small
+hysteresis effect (like the one we saw between $B$ and $H$ in magnetic
+materials).</p>
+</div>
+<div id="Ch39-F8" class="figure">
+<img src="img/FLP_II/f39-08/f39-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 39–8.</span>A typical stress-strain relation for large strains.
+</div>
+</div>
+<div id="Ch39-S4-p2" class="para">
+<p class="p">The stress at which a material will break varies widely from one
+material to another. Some materials will break when the maximum
+<em class="emph">tensile</em> stress reaches a certain value. Other materials will fail
+when the maximum <em class="emph">shear</em> stress reaches a certain value. Chalk is
+an example of a material which is much weaker in tension than in shear.
+If you pull on the ends of a piece of blackboard chalk, the chalk will
+break perpendicular to the direction of the applied stress, as shown in
+Fig. <a href="#Ch39-F9">39–9</a>(a). It breaks perpendicular to the applied force
+because it is only a bunch of particles packed together which are easily
+pulled apart. The material is, however, much harder to shear, because
+the particles get in each other’s way. Now you will remember that when
+we had a rod in torsion there was a shear all around it. Also, we showed
+that a shear was equivalent to a combination of a tension and
+compression at $45^\circ$. For these reasons, if you <em class="emph">twist</em> a
+piece of blackboard chalk, it will break along a complicated surface
+which starts out at $45^\circ$ to the axis. A photograph of a piece of
+chalk broken in this way is shown in Fig. <a href="#Ch39-F9">39–9</a>(b). The
+chalk breaks where the material is in maximum tension.</p>
+</div>
+<div id="Ch39-F9" class="figure">
+<img class="first" src="img/FLP_II/f39-09/f39-09_mg_a.jpg">
+<img class="last" src="img/FLP_II/f39-09/f39-09_mg_b.jpg"><div class="caption">
+<span class="tag">Fig. 39–9.</span>(a) A piece of chalk broken by pulling on the ends; (b) a piece
+broken by twisting.
+</div>
+</div>
+<div id="Ch39-S4-p3" class="para">
+<p class="p">Other materials behave in strange and complicated ways. The more
+complicated the materials are, the more interesting their behavior. If
+we take a sheet of “Saran-Wrap” and crumple it up into a ball and
+throw it on the table, it slowly unfolds itself and returns toward its
+original flat form. At first sight, we might be tempted to think that
+it is inertia which prevents it from returning to its original
+form. However, a simple calculation shows that the inertia is several
+orders of magnitude too small to account for the effect. There appear
+to be two important competing effects: “something” inside the
+material “remembers” the shape it had initially and “tries” to get
+back there, but something else “prefers” the new shape and
+“resists” the return to the old shape.</p>
+</div>
+<div id="Ch39-S4-p4" class="para">
+<p class="p">We will not attempt to describe the mechanism at play in the Saran
+plastic, but you can get an idea of how such an effect might come
+about from the following <em class="emph">model</em>. Suppose you imagine a material
+made of long, flexible, but strong, fibers mixed together with some
+hollow cells filled with a viscous liquid. Imagine also that there are
+narrow pathways from one cell to the next so the liquid can leak
+slowly from a cell to its neighbor. When we crumple a sheet of this
+stuff, we distort the long fibers, squeezing the liquid out of the
+cells in one place and forcing it into other cells which are being
+stretched. When we let go, the long fibers try to return to their
+original shape. But to do this, they have to force the liquid back to
+its original location—which will happen relatively slowly because of
+the viscosity. The forces we apply in crumpling the sheet are much
+larger than the forces exerted by the fibers. We can crumple the sheet
+quickly, but it will return more slowly. It is undoubtedly a
+combination of large stiff molecules and smaller, movable ones in the
+Saran-Wrap that is responsible for its behavior. This idea also fits
+with the fact that the material returns more quickly to its original
+shape when it’s warmed up than when it’s cold—the heat increases the
+mobility (decreases the viscosity) of the smaller molecules.</p>
+</div>
+<div id="Ch39-S4-p5" class="para">
+<p class="p">Although we have been discussing how Hooke’s law breaks down, the
+remarkable thing is perhaps not that Hooke’s law breaks down for large
+strains but that it should be so generally true. We can get some idea
+of why this might be by looking at the strain energy in a material. To
+say that the stress is proportional to the strain is the same thing as
+saying that the strain energy varies as the square of the
+strain. Suppose we have a rod and we twist it through a small angle $\theta$.
+If Hooke’s law holds, the strain energy should be
+proportional to the square of $\theta$. Suppose we were to assume that
+the energy were some arbitrary function of the angle; we could write
+it as a Taylor expansion about zero angle
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:39:40}
+U(\theta)=U(0)+U'(0)\,\theta+\tfrac{1}{2}U''(0)\,\theta^2+
+\tfrac{1}{6}U'''(0)\,\theta^3+\dotsb
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+U(\theta)=U(0)&+U'(0)\,\theta+\!\tfrac{1}{2}U''(0)\,\theta^2\notag\\[.5ex]
+\label{Eq:II:39:40}
+&+\tfrac{1}{6}U'''(0)\,\theta^3\!+\dotsb
+\end{align}
+</span>
+The torque $\tau$ is the derivative of $U$ with respect to angle; we
+would have
+\begin{equation}
+\label{Eq:II:39:41}
+\tau(\theta)=U'(0)+U''(0)\,\theta+\!\tfrac{1}{2}U'''(0)\,\theta^2\!+\dotsb
+\end{equation}
+
+Now if we measure our angles from the <em class="emph">equilibrium</em> position, the
+first term is zero. So the first remaining term is proportional
+to $\theta$; and for small enough angles, it will dominate the term
+in $\theta^2$. [Actually, materials are sufficiently symmetric internally
+so that $\tau(\theta)=-\tau(-\theta)$; the term in $\theta^2$ will be
+zero, and the departures from linearity would come only from the
+$\theta^3$ term. There is, however, no reason why this should be true
+for compressions and tensions.] The thing we have not explained is why
+materials usually break soon after the higher-order terms become
+significant.
+</p>
+</div>
+</div>
+<div id="Ch39-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">39–5</span>Calculating the elastic constants</h3>
+<div id="Ch39-S5-p1" class="para">
+<p class="p">As our last topic on elasticity we would like to show how one could
+try to calculate the elastic constants of a material, starting with
+some knowledge of the properties of the atoms which make up the
+material. We will take only the simple case of an <em class="emph">ionic</em> cubic
+crystal like sodium chloride. When a crystal is strained, its volume
+or its shape is changed. Such changes result in an increase in the
+potential energy of the crystal. To calculate the change in strain
+energy, we have to know where each atom goes. In complicated crystals,
+the atoms will rearrange themselves in the lattice in very complicated
+ways to make the total energy as small as possible. This makes the
+computation of the strain energy rather difficult. In the case of a
+simple cubic crystal, however, it is easy to see what will happen. The
+distortions inside the crystal will be geometrically similar to the
+distortions of the outside boundaries of the crystal.</p>
+</div>
+<div id="Ch39-S5-p2" class="para">
+<p class="p">We can calculate the elastic constants for a cubic crystal in the
+following way. First, we assume some force law between each pair of
+atoms in the crystal. Then, we calculate the change in the internal
+energy of the crystal when it is distorted from its equilibrium
+shape. This gives us a relation between the energy and the strains
+which is quadratic in all the strains. Comparing the energy obtained
+this way with Eq. (<a href="#mjx-eqn-EqII3913">39.13</a>), we can identify the
+coefficient of each term with the elastic constants $C_{ijkl}$.</p>
+</div>
+<div id="Ch39-S5-p3" class="para">
+<p class="p">For our example we will assume a simple force law: that the force
+between neighboring atoms is a <em class="emph">central</em> force, by which we mean
+that it acts along the line between the two atoms. We would expect the
+forces in ionic crystals to be like this, since they are just
+primarily Coulomb forces. (The forces of covalent bonds are usually
+more complicated, since they can exert a sideways push on a nearby
+atom; we will leave out this complication.) We are also going to
+include only the forces between each atom and its <em class="emph">nearest</em> and
+<em class="emph">next-nearest</em> neighbors. In other words, we will make an
+approximation which neglects all forces beyond the next-nearest
+neighbor. The forces we will include are shown for the $xy$-plane in
+Fig. <a href="#Ch39-F10">39–10</a>(a). The corresponding forces in the $yz$- and $zx$-planes
+also have to be included.</p>
+</div>
+<div id="Ch39-F10" class="figure">
+<img class="first" src="img/FLP_II/f39-10/f39-10_tc_big_a.svgz"><img class="last" src="img/FLP_II/f39-10/f39-10_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 39–10.</span>(a) The interatomic forces we are taking into account; (b) a
+model in which the atoms are connected by springs.
+</div>
+</div>
+<div id="Ch39-S5-p4" class="para">
+<p class="p">Since we are only interested in the elastic coefficients which apply
+to small strains, and therefore only want the terms in the energy
+which vary quadratically with the strains, we can imagine that the
+force between each atom pair varies linearly with the
+displacements. We can then imagine that each pair of atoms is joined
+by a linear spring, as drawn in Fig. <a href="#Ch39-F10">39–10</a>(b). All of the springs
+between a sodium atom and a chlorine atom should have the same spring
+constant, say $k_1$. The springs between two sodiums and between two
+chlorines could have different constants, but we will make our
+discussion simpler by taking them equal; we call them $k_2$. (We could
+come back later and make them different after we have seen how the
+calculations go.)</p>
+</div>
+<div id="Ch39-F11" class="figure">
+<img src="img/FLP_II/f39-11/f39-11_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 39–11.</span>The displacements of the nearest and next-nearest neighbors of
+atom $1$ (exaggerated).
+</div>
+</div>
+<div id="Ch39-S5-p5" class="para">
+<p class="p">Now we assume that the crystal is distorted by a homogeneous strain
+described by the strain tensor $e_{ij}$. In general, it will have
+components involving $x$, $y$, and $z$; but we will consider now only a
+strain with the three components $e_{xx}$, $e_{xy}$, and $e_{yy}$ so
+that it will be easy to visualize. If we pick one atom as our origin,
+the displacement of every other atom is given by equations like
+Eq. (<a href="#mjx-eqn-EqII399">39.9</a>):
+\begin{equation}
+\label{Eq:II:39:42}
+\begin{aligned}
+u_x&=e_{xx}x+e_{xy}y,\\
+u_y&=e_{xy}x+e_{yy}y.
+\end{aligned}
+\end{equation}
+
+Suppose we call the atom at $x=y=0$ “atom $1$” and number its
+neighbors in the $xy$-plane as shown in Fig. <a href="#Ch39-F11">39–11</a>. Calling
+the lattice constant $a$, we get the $x$ and $y$ displacements
+$u_x$ and $u_y$ listed in Table <a href="#Ch39-T1">39–1</a>.</p>
+</div>
+
+<div id="Ch39-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 39–1</span>
+</div>
+<table class="tabular ltx_centering">
+<tr class="tr">
+<td class="td l r t"></td>
+<td class="td r t center">Location</td>
+<td class="td r t"></td>
+<td class="td r t"></td>
+<td class="td r t"></td>
+</tr>
+<tr class="tr">
+<td class="td l r center">Atom</td>
+<td class="td r center">$x,y$</td>
+<td class="td r center">$u_x$</td>
+<td class="td r center">$u_y$</td>
+<td class="td r center">$k$</td>
+</tr>
+<tr class="tr">
+<td class="td l r tt center">$1$</td>
+<td class="td r tt center">$\phantom{-}0,0\phantom{-}$</td>
+<td class="td r tt center">$0$</td>
+<td class="td r tt center">$0$</td>
+<td class="td r tt center">—</td>
+</tr>
+<tr class="tr">
+<td class="td l r center">$2$</td>
+<td class="td r center">$\phantom{-}a,0\phantom{-}$</td>
+<td class="td r center">$e_{xx}a$</td>
+<td class="td r center">$e_{yx}a$</td>
+<td class="td r center">$k_1$</td>
+</tr>
+<tr class="tr">
+<td class="td l r center">$3$</td>
+<td class="td r center">$\phantom{-}a,a\phantom{-}$</td>
+<td class="td r center">$(e_{xx}+e_{xy})a$</td>
+<td class="td r center">$(e_{yx}+e_{yy})a$</td>
+<td class="td r center">$k_2$</td>
+</tr>
+<tr class="tr">
+<td class="td l r center">$4$</td>
+<td class="td r center">$\phantom{-}0,a\phantom{-}$</td>
+<td class="td r center">$e_{xy}a$</td>
+<td class="td r center">$e_{yy}a$</td>
+<td class="td r center">$k_1$</td>
+</tr>
+<tr class="tr">
+<td class="td l r center">$5$</td>
+<td class="td r center">$-a,a\phantom{-}$</td>
+<td class="td r center">$(-e_{xx}+e_{xy})a$</td>
+<td class="td r center">$(-e_{yx}+e_{yy})a$</td>
+<td class="td r center">$k_2$</td>
+</tr>
+<tr class="tr">
+<td class="td l r center">$6$</td>
+<td class="td r center">$-a,0\phantom{-}$</td>
+<td class="td r center">$-e_{xx}a$</td>
+<td class="td r center">$-e_{yx}a$</td>
+<td class="td r center">$k_1$</td>
+</tr>
+<tr class="tr">
+<td class="td l r center">$7$</td>
+<td class="td r center">$-a,-a$</td>
+<td class="td r center">$-(e_{xx}+e_{xy})a$</td>
+<td class="td r center">$-(e_{yx}+e_{yy})a$</td>
+<td class="td r center">$k_2$</td>
+</tr>
+<tr class="tr">
+<td class="td l r center">$8$</td>
+<td class="td r center">$\phantom{-}0,-a$</td>
+<td class="td r center">$-e_{xy}a$</td>
+<td class="td r center">$-e_{yy}a$</td>
+<td class="td r center">$k_1$</td>
+</tr>
+<tr class="tr">
+<td class="td b l r center">$9$</td>
+<td class="td b r center">$\phantom{-}a,-a$</td>
+<td class="td b r center">$(e_{xx}-e_{xy})a$</td>
+<td class="td b r center">$(e_{yx}-e_{yy})a$</td>
+<td class="td b r center">$k_2$</td>
+</tr>
+</table>
+</div>
+
+
+<div id="Ch39-S5-p6" class="para">
+<p class="p">Now we can calculate the energy stored in the springs, which is $k/2$
+times the square of the extension for each spring. For example, the
+energy in the horizontal spring between atom $1$ and atom $2$ is
+\begin{equation}
+\label{Eq:II:39:43}
+\frac{k_1(e_{xx}a)^2}{2}.
+\end{equation}
+
+Note that to first order, the $y$-displacement of atom $2$ does not
+change the length of the spring between atom $1$ and atom $2$. To get
+the strain energy in a diagonal spring, such as that to atom $3$,
+however, we need to calculate the change in length due to both the
+horizontal and vertical displacements. For small displacements from
+the original cube, we can write the change in the distance to atom $3$
+as the sum of the components of $u_x$ and $u_y$ in the diagonal
+direction, namely as
+\begin{equation*}
+\frac{1}{\sqrt{2}}\,(u_x+u_y).
+\end{equation*}
+
+Using the values of $u_x$ and $u_y$ from the table, we get the energy
+\begin{equation}
+\label{Eq:II:39:44}
+\frac{k_2}{2}\!\biggl(\!\frac{u_x\!+u_y}{\sqrt{2}}\!\biggr)^2\!\!\!=\!
+\frac{k_2a^2}{4}(e_{xx}\!+e_{yx}\!+e_{xy}\!+e_{yy})^2.
+\end{equation}
+</p>
+</div>
+<div id="Ch39-S5-p7" class="para">
+<p class="p">For the total energy for all the springs in the $xy$-plane, we need the
+sum of eight terms like (<a href="#mjx-eqn-EqII3943">39.43</a>) and (<a href="#mjx-eqn-EqII3944">39.44</a>).
+Calling this energy $U_0$, we get
+\begin{align}
+U_0=\,&\frac{a^2}{2}\bigg\{\!k_1e_{xx}^2\!+\!
+\frac{k_2}{2}(e_{xx}\!+e_{yx}\!+e_{xy}\!+e_{yy})^2\notag\\[-2pt]
+&+k_1e_{yy}^2\!+\!
+\frac{k_2}{2}(e_{xx}\!-e_{yx}\!-e_{xy}\!+e_{yy})^2\notag\\
+&+k_1e_{xx}^2\!+\!
+\frac{k_2}{2}(e_{xx}\!+e_{yx}\!+e_{xy}\!+e_{yy})^2\notag\\
+\label{Eq:II:39:45}
+&+k_1e_{yy}^2\!+\!
+\frac{k_2}{2}(e_{xx}\!-e_{yx}\!-e_{xy}\!+e_{yy})^2\!\biggr\}.
+\end{align}
+
+To get the total energy of all the springs connected to atom $1$, we
+must make one addition to the energy in Eq. (<a href="#mjx-eqn-EqII3945">39.45</a>). Even
+though we have only $x$- and $y$-components of the strain, there are
+still some energies associated with the next-nearest neighbors off the
+$xy$-plane. This additional energy is
+\begin{equation}
+\label{Eq:II:39:46}
+k_2(e_{xx}^2a^2+e_{yy}^2a^2).
+\end{equation}
+</p>
+</div>
+<div id="Ch39-S5-p8" class="para">
+<p class="p">The elastic constants are related to the energy density $w$ by
+Eq. (<a href="#mjx-eqn-EqII3913">39.13</a>). The energy we have calculated is the energy
+associated with one atom, or rather, it is <em class="emph">twice</em> the energy per
+atom, since one-half of the energy of each spring should be assigned to
+each of the two atoms it joins. Since there are $1/a^3$ atoms per unit
+volume, $w$ and $U_0$ are related by
+\begin{equation*}
+w=\frac{U_0}{2a^3}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch39-S5-p9" class="para">
+<p class="p">To find the elastic constants $C_{ijkl}$, we need only to expand out the
+squares in Eq. (<a href="#mjx-eqn-EqII3945">39.45</a>)—adding the terms
+of (<a href="#mjx-eqn-EqII3946">39.46</a>)—and compare the coefficients of $e_{ij}e_{kl}$
+with the corresponding coefficient in Eq. (<a href="#mjx-eqn-EqII3913">39.13</a>). For
+example, collecting the terms in $e_{xx}^2$ and in $e_{yy}^2$, we get
+the factor
+\begin{equation*}
+(k_1+2k_2)a^2,
+\end{equation*}
+
+so
+\begin{equation*}
+C_{xxxx}=C_{yyyy}=\frac{k_1+2k_2}{a}.
+\end{equation*}
+
+For the remaining terms, there is a slight complication. Since we
+cannot distinguish the product of two terms like $e_{xx}e_{yy}$, from
+$e_{yy}e_{xx}$, the coefficient of such terms in our energy is equal
+to the sum of two terms in Eq. (<a href="#mjx-eqn-EqII3913">39.13</a>). The coefficient
+of $e_{xx}e_{yy}$ in Eq. (<a href="#mjx-eqn-EqII3945">39.45</a>) is $2k_2$, so we have
+that
+\begin{equation*}
+(C_{xxyy}+C_{yyxx})=\frac{2k_2}{a}.
+\end{equation*}
+
+But because of the symmetry in our crystal, $C_{xxyy}=C_{yyxx}$, so we
+have that
+\begin{equation*}
+C_{xxyy}=C_{yyxx}=\frac{k_2}{a}.
+\end{equation*}
+
+By a similar process, we can also get
+\begin{equation*}
+C_{xyxy}=C_{yxyx}=\frac{k_2}{a}.
+\end{equation*}
+
+Finally, you will notice that any term which involves either $x$ or $y$
+only once is zero—as we concluded earlier from symmetry arguments.
+Summarizing our results:
+\begin{equation}
+\begin{aligned}
+C_{xxxx}&=C_{yyyy}=\frac{k_1+2k_2}{a},\\[-.5ex]
+C_{xyxy}&=C_{yxyx}=\frac{k_2}{a},\\[-.5ex]
+C_{xxyy}&=C_{yyxx}=C_{xyyx}=C_{yxxy}=\frac{k_2}{a},\\[.5ex]
+C_{xxxy}&=C_{xyyy}=\text{etc.}=0.
+\end{aligned}
+\label{Eq:II:39:47}
+\end{equation}
+</p>
+</div>
+<div id="Ch39-S5-p10" class="para">
+<p class="p">We have been able to relate the bulk elastic constants to the atomic
+properties which appear in the constants $k_1$ and $k_2$. In our
+particular case, $C_{xyxy}=C_{xxyy}$. It turns out—as you can
+perhaps see from the way the calculations went—that these terms are
+<em class="emph">always</em> equal for a cubic crystal, no matter how many force
+terms are taken into account, <em class="emph">provided</em> only that the forces act
+along the line joining each pair of atoms—that is, so long as the
+forces between atoms are like springs and don’t have a sideways part
+such as you might get from a cantilevered beam (and you do get in
+covalent bonds).</p>
+</div>
+
+<div id="Ch39-S5-p11" class="para">
+<p class="p">We can check this conclusion with the experimental measurements of the
+elastic constants. In Table <a href="#Ch39-T2">39–2</a> we give the observed
+values of the three elastic coefficients for several cubic
+crystals.<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a> You will
+notice that $C_{xxyy}$ and $C_{xyxy}$ are, in general, not equal. The
+reason is that in metals like sodium and potassium the interatomic
+forces are not along the line joining the atoms, as we assumed in our
+model. Diamond does not obey the law either, because the forces in
+diamond are covalent forces and have some directional properties—the
+bonds would prefer to be at the tetrahedral angle. The ionic crystals
+like lithium fluoride, sodium chloride, and so on, do have nearly all
+the physical properties assumed in our model, and the table shows that
+the constants $C_{xxyy}$ and $C_{xyxy}$ are almost equal. It is not
+clear why silver chloride should not satisfy the condition
+that $C_{xxyy}=C_{xyxy}$.</p>
+</div>
+
+<div id="Ch39-T2" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 39–2</span>Elastic Moduli of Cubic Crystals in $10^{12}$ dynes/cm$^{2*}$
+</div>
+<table class="tabular ltx_centering" style="max-width:20em">
+	<tr>
+		<td>&nbsp;</td>
+		<td>$\underline{C_{xxxx}}$</td>
+		<td>$\underline{C_{xxyy}}$</td>
+		<td>$\underline{C_{xyxy}}$</td>
+	</tr>
+	<tr>
+		<td>Na</td>
+		<td>0.055</td>
+		<td>0.042</td>
+		<td>0.049</td>
+	</tr>
+	<tr>
+		<td>K</td>
+		<td>0.046</td>
+		<td>0.037</td>
+		<td>0.026</td>
+	</tr>
+	<tr>
+		<td>Fe</td>
+		<td>2.37</td>
+		<td>1.41</td>
+		<td>1.16</td>
+	</tr>
+	<tr>
+		<td>Diamond</td>
+		<td>10.76</td>
+		<td>1.25</td>
+		<td>5.76</td>
+	</tr>
+	<tr>
+		<td>Al</td>
+		<td>1.08</td>
+		<td>0.62</td>
+		<td>0.28</td>
+	</tr>
+	<tr>
+		<td>LiF</td>
+		<td>1.19</td>
+		<td>0.54</td>
+		<td>0.53</td>
+	</tr>
+	<tr>
+		<td>NaCl</td>
+		<td>0.486</td>
+		<td>0.127</td>
+		<td>0.128</td>
+	</tr>
+	<tr>
+		<td>KCl</td>
+		<td>0.40</td>
+		<td>0.062</td>
+		<td>0.062</td>
+	</tr>
+	<tr>
+		<td>NaBr</td>
+		<td>0.33</td>
+		<td>0.13</td>
+		<td>0.13</td>
+	</tr>
+	<tr>
+		<td>KI</td>
+		<td>0.27</td>
+		<td>0.043</td>
+		<td>0.042</td>
+	</tr>
+	<tr>
+		<td class="td b">AgCl</td>
+		<td>0.60</td>
+		<td>0.36</td>
+		<td>0.062</td>
+	</tr>
+	<tr class="tr">
+		<td style="text-align:left;" colspan="4" align="left"><span class="text small">&nbsp;*From: C. Kittel, <i>Introduction to Solid State Physics,</i> John Wiley and Sons, Inc., New York, 2nd ed., 1956, p. 93.</span></td>
+	</tr>
+</table>
+</div>
+
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  We
+choose for the moment to split the total shear angle $\theta$ into two
+equal parts and make the strain symmetric with respect to $x$
+and $y$.
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  In the literature you will often find that a
+different notation is used. For instance, people usually write
+$C_{xxxx}=C_{11}$, $C_{xxyy}=C_{12}$, and $C_{xyxy}=C_{44}$.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

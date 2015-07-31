@@ -1,0 +1,1356 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 52: Symmetry in Physical Laws</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "52." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch52" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">52</span>Symmetry in Physical Laws</h2>
+<div id="Ch52-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">52–1</span>Symmetry operations</h3>
+<div id="Ch52-S1-p1" class="para">
+<p class="p">The subject of this chapter is what we may call
+<em class="emph">symmetry in physical laws</em>. We have already discussed certain
+features of symmetry in physical laws in connection with vector analysis
+(Chapter <a href="I_11.html">11</a>), the theory of relativity
+(Chapter <a href="I_16.html">16</a>), and rotation (Chapter <a href="I_20.html">20</a>).</p>
+</div>
+<div id="Ch52-S1-p2" class="para">
+<p class="p">Why should we be concerned with symmetry? In the first place, symmetry
+is fascinating to the human mind, and everyone likes objects or patterns
+that are in some way symmetrical. It is an interesting fact that nature
+often exhibits certain kinds of symmetry in the objects we find in the
+world around us. Perhaps the most symmetrical object imaginable is a
+sphere, and nature is full of spheres—stars, planets, water droplets
+in clouds. The crystals found in rocks exhibit many different kinds of
+symmetry, the study of which tells us some important things about the
+structure of solids. Even the animal and vegetable worlds show some
+degree of symmetry, although the symmetry of a flower or of a bee is not
+as perfect or as fundamental as is that of a crystal.</p>
+</div>
+<div id="Ch52-S1-p3" class="para">
+<p class="p">But our main concern here is not with the fact that the <em class="emph">objects</em>
+of nature are often symmetrical. Rather, we wish to examine some of the
+even more remarkable symmetries of the universe—the symmetries that
+exist in the <em class="emph">basic laws themselves</em> which govern the operation of
+the physical world.</p>
+</div>
+<div id="Ch52-S1-p4" class="para">
+<p class="p">First, what <em class="emph">is</em> symmetry? How can a physical <em class="emph">law</em> be
+“symmetrical”? The problem of defining symmetry is an interesting one
+and we have already noted that Weyl gave a good definition, the substance of which is that a
+thing is symmetrical if there is something we can do to it so that after
+we have done it, it looks the same as it did before. For example, a
+symmetrical vase is of such a kind that if we reflect or turn it, it
+will look the same as it did before. The question we wish to consider
+here is what we can do to physical phenomena, or to a physical situation
+in an experiment, and yet leave the result the same. A list of the known
+operations under which various physical phenomena remain invariant is
+shown in Table <a href="#Ch52-T1">52–1</a>.</p>
+</div>
+
+<div id="Ch52-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 52–1</span>Symmetry Operations
+</div>
+<table class="tabular ltx_centering" style="width:100%">
+<tr class="tr">
+<td class="td"><span class="text small">Translation in space</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">Translation in time</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">Rotation through a fixed angle</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small" >Uniform velocity in a straight line (Lorentz transformation)</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">Reversal of time</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">Reflection of space</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">Interchange of identical atoms or identical particles</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">Quantum-mechanical phase</span></td>
+</tr>
+<tr class="tr">
+<td class="td"><span class="text small">Matter-antimatter (charge conjugation)</span></td>
+</tr>
+</table>
+</div>
+
+</div>
+<div id="Ch52-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">52–2</span>Symmetry in space and time</h3>
+<div id="Ch52-S2-p1" class="para">
+<p class="p">The first thing we might try to do, for example, is to <em class="emph">translate</em>
+the phenomenon in space. If we do an experiment in a certain region, and
+then build another apparatus at another place in space (or move the
+original one over) then, whatever went on in one apparatus, in a certain
+order in time, will occur in the same way if we have arranged the same
+condition, with all due attention to the restrictions that we mentioned
+before: that all of those features of the environment which make it not
+behave the same way have also been moved over—we talked about how to
+define how much we should include in those circumstances, and we shall
+not go into those details again.</p>
+</div>
+<div id="Ch52-S2-p2" class="para">
+<p class="p">In the same way, we also believe today that <em class="emph">displacement in time</em>
+will have no effect on physical laws. (That is, <em class="emph">as far as we know
+today</em>—all of these things are as far as we know today!) That means
+that if we build a certain apparatus and start it at a certain time, say
+on Thursday at 10:00 a.m., and then build the same apparatus and start
+it, say, three days later in the same condition, the two apparatuses
+will go through the same motions in exactly the same way as a function
+of time no matter what the starting time, provided again, of course,
+that the relevant features of the environment are also modified
+appropriately in <em class="emph">time</em>. That symmetry means, of course, that if
+one bought General Motors stock three months ago, the same thing would
+happen to it if he bought it now!</p>
+</div>
+<div id="Ch52-S2-p3" class="para">
+<p class="p">We have to watch out for geographical differences too, for there are, of
+course, variations in the characteristics of the earth’s surface. So,
+for example, if we measure the magnetic field in a certain region and
+move the apparatus to some other region, it may not work in precisely
+the same way because the magnetic field is different, but we say that is
+because the magnetic field is associated with the earth. We can imagine
+that if we move the whole earth and the equipment, it would make no
+difference in the operation of the apparatus.</p>
+</div>
+<div id="Ch52-S2-p4" class="para">
+<p class="p">Another thing that we discussed in considerable detail was rotation in
+space: if we turn an apparatus at an angle it works just as well,
+provided we turn everything else that is relevant along with it. In
+fact, we discussed the problem of symmetry under rotation in space in
+some detail in Chapter <a href="I_11.html">11</a>, and we invented a mathematical
+system called <em class="emph">vector analysis</em> to handle it as neatly as possible.</p>
+</div>
+<div id="Ch52-S2-p5" class="para">
+<p class="p">On a more advanced level we had another symmetry—the symmetry under
+uniform velocity in a straight line. That is to say—a rather
+remarkable effect—that if we have a piece of apparatus working a
+certain way and then take the same apparatus and put it in a car, and
+move the whole car, plus all the relevant surroundings, at a uniform
+velocity in a straight line, then so far as the phenomena inside the car
+are concerned there is no difference: all the laws of physics appear the
+same. We even know how to express this more technically, and that is
+that the mathematical equations of the physical laws must be unchanged
+under a <em class="emph">Lorentz
+transformation</em>. As a matter of
+fact, it was a study of the relativity problem that concentrated
+physicists’ attention most sharply on symmetry in physical laws.</p>
+</div>
+<div id="Ch52-S2-p6" class="para">
+<p class="p">Now the above-mentioned symmetries have all been of a geometrical
+nature, time and space being more or less the same, but there are other
+symmetries of a different kind. For example, there is a symmetry which
+describes the fact that we can replace one atom by another of the same
+kind; to put it differently, there <em class="emph">are</em> atoms of the same kind. It
+is possible to find groups of atoms such that if we change a pair
+around, it makes no difference—the atoms are identical. Whatever one
+atom of oxygen of a certain type will do, another atom of oxygen of that
+type will do. One may say, “That is ridiculous, that is the
+<em class="emph">definition</em> of equal types!” That may be merely the definition,
+but then we still do not know whether there <em class="emph">are</em> any “atoms of
+the same type”; the <em class="emph">fact</em> is that there are many, many atoms of
+the same type. Thus it does mean something to say that it makes no
+difference if we replace one atom by another of the same type. The
+so-called elementary particles of which the atoms are made are also
+identical particles in the above sense—all electrons are the same; all
+protons are the same; all positive pions are the same; and so on.</p>
+</div>
+<div id="Ch52-S2-p7" class="para">
+<p class="p">After such a long list of things that can be done without changing the
+phenomena, one might think we could do practically anything; so let us
+give some examples to the contrary, just to see the difference. Suppose
+that we ask: “Are the physical laws symmetrical under a change of
+scale?” Suppose we build a certain piece of apparatus, and then build
+another apparatus five times bigger in every part, will it work exactly
+the same way? The answer is, in this case, <em class="emph">no</em>! The wavelength of
+light emitted, for example, by the atoms inside one box of sodium atoms
+and the wavelength of light emitted by a gas of sodium atoms five times
+in volume is not five times longer, but is in fact exactly the same as
+the other. So the ratio of the wavelength to the size of the emitter
+will change.</p>
+</div>
+<div id="Ch52-S2-p8" class="para">
+<p class="p">Another example: we see in the newspaper, every once in a while pictures
+of a great cathedral made with little matchsticks—a tremendous work of
+art by some retired fellow who keeps gluing matchsticks together. It is
+much more elaborate and wonderful than any real cathedral. If we imagine
+that this wooden cathedral were actually built on the scale of a real
+cathedral, we see where the trouble is; it would not last—the whole
+thing would collapse because of the fact that scaled-up matchsticks are
+just not strong enough. “Yes,” one might say, “but we also know that
+when there is an influence from the outside, it also must be changed in
+proportion!” We are talking about the ability of the object to
+withstand gravitation. So what we should do is first to take the model
+cathedral of real matchsticks and the real earth, and then we know it is
+stable. Then we should take the larger cathedral and take a bigger
+earth. But then it is even worse, because the gravitation is increased
+still more!</p>
+</div>
+<div id="Ch52-S2-p9" class="para">
+<p class="p">Today, of course, we understand the fact that phenomena depend on the
+scale on the grounds that matter is atomic in nature, and certainly if
+we built an apparatus that was so small there were only five atoms in
+it, it would clearly be something we could not scale up and down
+arbitrarily. The scale of an individual atom is not at all
+arbitrary—it is quite definite.</p>
+</div>
+<div id="Ch52-S2-p10" class="para">
+<p class="p">The fact that the laws of physics are not unchanged under a change of
+scale was discovered by Galileo.
+He realized that the strengths of materials were not in exactly the
+right proportion to their sizes, and he illustrated this property that
+we were just discussing, about the cathedral of matchsticks, by drawing
+two bones, the bone of one dog, in the right proportion for holding up
+his weight, and the imaginary bone of a “super dog” that would be,
+say, ten or a hundred times bigger—that bone was a big, solid thing
+with quite different proportions. We do not know whether he ever carried
+the argument quite to the conclusion that the laws of nature must have a
+definite scale, but he was so impressed with this discovery that he
+considered it to be as important as the discovery of the laws of motion,
+because he published them both in the same volume, called “On Two New
+Sciences.”</p>
+</div>
+<div id="Ch52-S2-p11" class="para">
+<p class="p">Another example in which the laws are not symmetrical, that we know
+quite well, is this: a system in rotation at a uniform angular velocity
+does not give the same apparent laws as one that is not rotating. If we
+make an experiment and then put everything in a space ship and have the
+space ship spinning in empty space, all alone at a constant angular
+velocity, the apparatus will not work the same way because, as we know,
+things inside the equipment will be thrown to the outside, and so on, by
+the centrifugal
+or Coriolis forces,
+etc. In fact, we can tell that the earth is rotating by using a
+so-called Foucault pendulum, without looking outside.
+</p>
+</div>
+<div id="Ch52-S2-p12" class="para">
+<p class="p">Next we mention a very interesting symmetry which is obviously false,
+i.e., <em class="emph">reversibility in time</em>. The physical laws apparently cannot
+be reversible in time, because, as we know, all obvious phenomena are
+irreversible on a large scale: “The moving finger writes, and having
+writ, moves on.” So far as we can tell, this irreversibility is due to
+the very large number of particles involved, and if we could see the
+individual molecules, we would not be able to discern whether the
+machinery was working forward or backwards. To make it more precise: we
+build a small apparatus in which we know what all the atoms are doing,
+in which we can watch them jiggling. Now we build another apparatus like
+it, but which starts its motion in the final condition of the other one,
+with all the velocities precisely reversed. <em class="emph">It will then go
+through the same motions, but exactly in reverse</em>. Putting it another
+way: if we take a motion picture, with sufficient detail, of all the
+inner works of a piece of material and shine it on a screen and run it
+backwards, no physicist will be able to say, “That is against the laws
+of physics, that is doing something wrong!” If we do not see all the
+details, of course, the situation will be perfectly clear. If we see the
+egg splattering on the sidewalk and the shell cracking open, and so on,
+then we will surely say, “That is irreversible, because if we run the
+moving picture backwards the egg will all collect together and the shell
+will go back together, and that is obviously ridiculous!” But if we
+look at the individual atoms themselves, the laws look completely
+reversible. This is, of course, a much harder discovery to have made,
+but apparently it is true that the fundamental physical laws, on a
+microscopic and fundamental level, are completely reversible in time!</p>
+</div>
+</div>
+<div id="Ch52-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">52–3</span>Symmetry and conservation laws</h3>
+<div id="Ch52-S3-p1" class="para">
+<p class="p">The symmetries of the physical laws are very interesting at this level,
+but they turn out, in the end, to be even more interesting and exciting
+when we come to quantum mechanics. For a reason which we cannot make
+clear at the level of the present discussion—a fact that most
+physicists still find somewhat staggering, a most profound and beautiful
+thing, is that, in quantum mechanics, <em class="emph">for each of the rules of
+symmetry there is a corresponding conservation law;</em> there is a definite
+connection between the laws of conservation and the symmetries of
+physical laws. We can only state this at present, without any attempt at
+explanation.</p>
+</div>
+<div id="Ch52-S3-p2" class="para">
+<p class="p">The fact, for example, that the laws are symmetrical for translation in
+space when we add the principles of quantum mechanics, turns out to mean
+that <em class="emph">momentum is conserved</em>.</p>
+</div>
+<div id="Ch52-S3-p3" class="para">
+<p class="p">That the laws are symmetrical under translation in time means, in
+quantum mechanics, that <em class="emph">energy is conserved</em>.</p>
+</div>
+<div id="Ch52-S3-p4" class="para">
+<p class="p">Invariance under rotation through a fixed angle in space corresponds to
+the <em class="emph">conservation of angular momentum</em>. These connections are very
+interesting and beautiful things, among the most beautiful and profound
+things in physics.</p>
+</div>
+<div id="Ch52-S3-p5" class="para">
+<p class="p">Incidentally, there are a number of symmetries which appear in quantum
+mechanics which have no classical analog, which have no method of
+description in classical physics. One of these is as follows: If $\psi$
+is the amplitude for some process or other, we know that the absolute
+square of $\psi$ is the probability that the process will occur. Now if
+someone else were to make his calculations, not with this $\psi$, but
+with a $\psi'$ which differs merely by a change in phase (let $\Delta$
+be some constant, and multiply $e^{i\Delta}$ times the old $\psi$), the
+absolute square of $\psi'$, which is the probability of the event, is
+then equal to the absolute square of $\psi$:
+\begin{equation}
+\label{Eq:I:52:1}
+\psi' = \psi e^{i\Delta};\quad
+\abs{\psi'}^2 = \abs{\psi}^2.
+\end{equation}
+Therefore the physical laws are unchanged if the phase of the wave
+function is shifted by an arbitrary constant. That is another symmetry.
+Physical laws must be of such a nature that a shift in the
+quantum-mechanical phase makes no difference. As we have just mentioned,
+in quantum mechanics there is a conservation law for every symmetry. The
+conservation law which is connected with the quantum-mechanical phase
+seems to be the <em class="emph">conservation of electrical charge</em>. This is
+altogether a very interesting business!</p>
+</div>
+</div>
+<div id="Ch52-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">52–4</span>Mirror reflections</h3>
+<div id="Ch52-S4-p1" class="para">
+<p class="p">Now the next question, which is going to concern us for most of the rest
+of this chapter, is the question of symmetry under <em class="emph">reflection in
+space</em>. The problem is this: Are the physical laws symmetrical under
+reflection? We may put it this way: Suppose we build a piece of
+equipment, let us say a clock, with lots of wheels and hands and
+numbers; it ticks, it works, and it has things wound up inside. We look
+at the clock in the mirror. How it <em class="emph">looks</em> in the mirror is not the
+question. But let us actually <em class="emph">build</em> another clock which is
+exactly the same as the first clock looks in the mirror—every time
+there is a screw with a right-hand thread in one, we use a screw with a
+left-hand thread in the corresponding place of the other; where one is
+marked “$2$” on the face, we mark a “<img src="img/mirror_2.svgz" class="reflectbox">” on the face
+of the other; each coiled spring is twisted one way in one clock and the
+other way in the mirror-image clock; when we are all finished, we have
+two clocks, both physical, which bear to each other the relation of an
+object and its mirror image, although they are both actual, material
+objects, we emphasize. Now the question is: If the two clocks are
+started in the same condition, the springs wound to corresponding
+tightnesses, will the two clocks tick and go around, forever after, as
+exact mirror images? (This is a physical question, not a philosophical
+question.) Our intuition about the laws of physics would suggest that
+they <em class="emph">would</em>.</p>
+</div>
+<div id="Ch52-S4-p2" class="para">
+<p class="p">We would suspect that, at least in the case of these clocks, reflection
+in space is one of the symmetries of physical laws, that if we change
+everything from “right” to “left” and leave it otherwise the same,
+we cannot tell the difference. Let us, then, suppose for a moment that
+this is true. If it is true, then it would be impossible to distinguish
+“right” and “left” by any physical phenomenon, just as it is, for
+example, impossible to define a particular absolute velocity by a
+physical phenomenon. So it should be impossible, by any physical
+phenomenon, to define absolutely what we mean by “right” as opposed to
+“left,” because the physical laws should be symmetrical.</p>
+</div>
+<div id="Ch52-S4-p3" class="para">
+<p class="p">Of course, the world does not <em class="emph">have</em> to be symmetrical. For
+example, using what we may call “geography,” surely “right” can be
+defined. For instance, we stand in New Orleans and look at Chicago, and
+Florida is to our right (when our feet are on the ground!). So we can
+define “right” and “left” by geography. Of course, the actual
+situation in any system does not have to have the symmetry that we are
+talking about; it is a question of whether the <em class="emph">laws</em> are
+symmetrical—in other words, whether it is <em class="emph">against the physical
+laws</em> to have a sphere like the earth with “left-handed dirt” on it
+and a person like ourselves standing looking at a city like Chicago from
+a place like New Orleans, but with everything the other way around, so
+Florida is on the other side. It clearly seems not impossible, not
+against the physical laws, to have everything changed left for right.</p>
+</div>
+<div id="Ch52-S4-p4" class="para">
+<p class="p">Another point is that our definition of “right” should not depend on
+history. An easy way to distinguish right from left is to go to a
+machine shop and pick up a screw at random. The odds are it has a
+right-hand thread—not necessarily, but it is much more likely to have
+a right-hand thread than a left-hand one. This is a question of history
+or convention, or the way things happen to be, and is again not a
+question of fundamental laws. As we can well appreciate, everyone could
+have started out making left-handed screws!</p>
+</div>
+<div id="Ch52-S4-p5" class="para">
+<p class="p">So we must try to find some phenomenon in which “right hand” is
+involved fundamentally. The next possibility we discuss is the fact that
+polarized light rotates its plane of polarization as it goes through,
+say, sugar water. As we saw in Chapter <a href="I_33.html">33</a>, it rotates, let
+us say, to the right in a certain sugar solution. That is a way of
+defining “right-hand,” because we may dissolve some sugar in the water
+and then the polarization goes to the right. But sugar has come from
+living things, and if we try to make the sugar artificially, then we
+discover that it <em class="emph">does not</em> rotate the plane of polarization!  But
+if we then take that same sugar which is made artificially and which
+does not rotate the plane of polarization, and put bacteria in it (they
+eat some of the sugar) and then filter out the bacteria, we find that we
+still have sugar left (almost half as much as we had before), and this
+time it does rotate the plane of polarization, but <em class="emph">the other way</em>!
+It seems very confusing, but is easily explained.</p>
+</div>
+<div id="Ch52-F1" class="figure">
+<img src="img/FLP_I/f52-01/f52-01_small.jpg"><div class="caption">
+<span class="tag">Fig. 52–1.</span>(a) L-alanine (left), and (b) D-alanine (right).
+</div>
+</div>
+<div id="Ch52-S4-p6" class="para">
+<p class="p">Take another example: One of the substances which is common to all
+living creatures and that is fundamental to life is protein. Proteins
+consist of chains of amino acids. Figure <a href="#Ch52-F1">52–1</a> shows a model
+of an amino acid that comes out of a protein. This amino acid is called
+alanine, and the molecular arrangement would look like that in
+Fig. <a href="#Ch52-F1">52–1</a>(a) if it came out of a protein of a real living
+thing. On the other hand, if we try to make alanine from carbon dioxide,
+ethane, and ammonia (and we <em class="emph">can</em> make it, it is not a complicated
+molecule), we discover that we are making equal amounts of this molecule
+and the one shown in Fig. <a href="#Ch52-F1">52–1</a>(b)! The first molecule, the
+one that comes from the living thing, is called <em class="emph">L-alanine</em>. The
+other one, which is the same chemically, in that it has the same kinds
+of atoms and the same connections of the atoms, is a “right-hand”
+molecule, compared with the “left-hand” L-alanine, and it is called
+<em class="emph">D-alanine</em>. The interesting thing is that when we make alanine at
+home in a laboratory from simple gases, we get an equal mixture of both
+kinds. However, the only thing that life uses is L-alanine. (This is not
+exactly true. Here and there in living creatures there is a special use
+for D-alanine, but it is very rare. All proteins use L-alanine
+exclusively.) Now if we make both kinds, and we feed the mixture to some
+animal which likes to “eat,” or use up, alanine, it cannot use
+D-alanine, so it only uses the L-alanine; that is what happened to our
+sugar—after the bacteria eat the sugar that works well for them, only
+the “wrong” kind is left! (Left-handed sugar tastes sweet, but not the
+same as right-handed sugar.)</p>
+</div>
+<div id="Ch52-S4-p7" class="para">
+<p class="p">So it looks as though the phenomena of life permit a distinction between
+“right” and “left,” or chemistry permits a distinction, because the
+two molecules are chemically different. But no, it does not! So far as
+physical measurements can be made, such as of energy, the rates of
+chemical reactions, and so on, the two kinds work exactly the same way
+if we make everything else in a mirror image too. One molecule will
+rotate light to the right, and the other will rotate it to the left in
+precisely the same amount, through the same amount of fluid. Thus, so
+far as physics is concerned, these two amino acids are equally
+satisfactory. So far as we understand things today, the fundamentals of
+the Schrödinger equation have it that the two molecules should behave in
+exactly corresponding ways, so that one is to the right as the other is
+to the left. Nevertheless, in life it is all one way!</p>
+</div>
+<div id="Ch52-S4-p8" class="para">
+<p class="p">It is presumed that the reason for this is the following. Let us
+suppose, for example, that life is somehow at one moment in a certain
+condition in which all the proteins in some creatures have left-handed
+amino acids, and all the enzymes are lopsided—every substance in the
+living creature is lopsided—it is not symmetrical. So when the
+digestive enzymes try to change the chemicals in the food from one kind
+to another, one kind of chemical “fits” into the enzyme, but the other
+kind does not (like Cinderella and the slipper, except that it is a
+“left foot” that we are testing). So far as we know, in principle, we
+could build a frog, for example, in which every molecule is reversed,
+everything is like the “left-hand” mirror image of a real frog; we
+have a left-hand frog. This left-hand frog would go on all right for a
+while, but he would find nothing to eat, because if he swallows a fly,
+his enzymes are not built to digest it. The fly has the wrong “kind”
+of amino acids (unless we give him a left-hand fly). So as far as we
+know, the chemical and life processes would continue in the same manner
+if everything were reversed.</p>
+</div>
+<div id="Ch52-S4-p9" class="para">
+<p class="p">If life is entirely a physical and chemical phenomenon, then we can
+understand that the proteins are all made in the same corkscrew only
+from the idea that at the very beginning some living molecules, by
+accident, got started and a few won. Somewhere, once, one organic
+molecule was lopsided in a certain way, and from this particular thing
+the “right” happened to evolve in our particular geography; a
+particular historical accident was one-sided, and ever since then the
+lopsidedness has propagated itself. Once having arrived at the state
+that it is in now, of course, it will always continue—all the enzymes
+digest the right things, manufacture the right things: when the carbon
+dioxide and the water vapor, and so on, go in the plant leaves, the
+enzymes that make the sugars make them lopsided because the enzymes are
+lopsided. If any new kind of virus or living thing were to originate at
+a later time, it would survive only if it could “eat” the kind of
+living matter already present. Thus it, too, must be of the same kind.</p>
+</div>
+<div id="Ch52-S4-p10" class="para">
+<p class="p">There is no conservation of the number of right-handed molecules. Once
+started, we could keep increasing the number of right-handed molecules.
+So the presumption is, then, that the phenomena in the case of life do
+not show a lack of symmetry in physical laws, but do show, on the
+contrary, the universal nature and the commonness of ultimate origin of
+all creatures on earth, in the sense described above.</p>
+</div>
+</div>
+<div id="Ch52-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">52–5</span>Polar and axial vectors</h3>
+<div id="Ch52-S5-p1" class="para">
+<p class="p">Now we go further. We observe that in physics there are a lot of other
+places where we have “right” and “left” hand rules. As a matter of
+fact, when we learned about vector analysis we learned about the
+right-hand rules we have to use in order to get the angular momentum,
+torque, magnetic field, and so on, to come out right. The force on a
+charge moving in a magnetic field, for example, is $\FLPF =
+q\FLPv\times\FLPB$. In a given situation, in which we know
+$\FLPF$, $\FLPv$, and $\FLPB$, isn’t that equation enough to define
+right-handedness?  As a matter of fact, if we go back and look at where
+the vectors came from, we know that the “right-hand rule” was merely a
+convention; it was a trick. The original quantities, like the angular
+momenta and the angular velocities, and things of this kind, were not
+really vectors at all! They are all somehow associated with a certain
+plane, and it is just because there are three dimensions in space that
+we can associate the quantity with a direction perpendicular to that
+plane. Of the two possible directions, we chose the “right-hand”
+direction.</p>
+</div>
+<div id="Ch52-S5-p2" class="para">
+<p class="p">So if the laws of physics are symmetrical, we should find that if some
+demon were to sneak into all the physics laboratories and replace the
+word “right” for “left” in every book in which “right-hand rules”
+are given, and instead we were to use all “left-hand rules,”
+uniformly, then it should make no difference whatever in the physical
+laws.
+</p>
+</div>
+<div id="Ch52-S5-p3" class="para">
+<p class="p">Let us give an illustration. There are two kinds of vectors. There are
+“honest” vectors, for example a step $\FLPr$ in space. If in our
+apparatus there is a piece here and something else there, then in a
+mirror apparatus there will be the image piece and the image something
+else, and if we draw a vector from the “piece” to the “something
+else,” one vector is the mirror image of the other
+(Fig. <a href="#Ch52-F2">52–2</a>). The vector arrow changes its head, just as the
+whole space turns inside out; such a vector we call a <em class="emph">polar
+vector</em>.</p>
+</div>
+<div id="Ch52-F2" class="figure">
+<img src="img/FLP_I/f52-02/f52-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 52–2.</span>A step in space and its mirror image.
+</div>
+</div>
+<div id="Ch52-S5-p4" class="para">
+<p class="p">But the other kind of vector, which has to do with rotations, is of a
+different nature. For example, suppose that in three dimensions
+something is rotating as shown in Fig. <a href="#Ch52-F3">52–3</a>. Then if we look
+at it in a mirror, it will be rotating as indicated, namely, as the
+mirror image of the original rotation. Now we have agreed to represent
+the mirror rotation by the same rule, it is a “vector” which, on
+reflection, does <em class="emph">not</em> change about as the polar vector does, but
+is reversed relative to the polar vectors and to the geometry of the
+space; such a vector is called an <em class="emph">axial vector</em>.</p>
+</div>
+<div id="Ch52-F3" class="figure">
+<img src="img/FLP_I/f52-03/f52-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 52–3.</span>A rotating wheel and its mirror image. Note that the angular
+velocity “vector” is not reversed in direction.
+</div>
+</div>
+<div id="Ch52-S5-p5" class="para">
+<p class="p">Now if the law of reflection symmetry is right in physics, then it must
+be true that the equations must be so designed that if we change the
+sign of each axial vector and each cross-product of
+vectors, which would be what corresponds to reflection, nothing will
+happen. For instance, when we write a formula which says that the
+angular momentum is $\FLPL = \FLPr\times\FLPp$, that equation is all
+right, because if we change to a left-hand coordinate system, we change
+the sign of $\FLPL$, but $\FLPp$ and $\FLPr$ do not change; the
+cross-product sign is changed, since we must change from a right-hand
+rule to a left-hand rule. As another example, we know that the force on
+a charge moving in a magnetic field is $\FLPF = q\FLPv\times\FLPB$, but
+if we change from a right- to a left-handed system, since $\FLPF$
+and $\FLPv$ are known to be polar vectors the sign change required by
+the cross-product must be cancelled by a sign change in $\FLPB$, which
+means that $\FLPB$ must be an axial vector. In other
+words, if we make such a reflection, $\FLPB$ must go to $-\FLPB$. So if
+we change our coordinates from right to left, we must also change the
+poles of magnets from north to south.
+</p>
+</div>
+<div id="Ch52-F4" class="figure">
+<img src="img/FLP_I/f52-04/f52-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 52–4.</span>A magnet and its mirror image.
+</div>
+</div>
+<div id="Ch52-S5-p6" class="para">
+<p class="p">Let us see how that works in an example. Suppose that we have two
+magnets, as in Fig. <a href="#Ch52-F4">52–4</a>. One is a magnet with the coils
+going around a certain way, and with current in a given direction. The
+other magnet looks like the reflection of the first magnet in a
+mirror—the coil will wind the other way, everything that happens
+inside the coil is exactly reversed, and the current goes as shown. Now,
+from the laws for the production of magnetic fields, which we do not
+know yet officially, but which we most likely learned in high school, it
+turns out that the magnetic field is as shown in the figure. In one case
+the pole is a south magnetic pole, while in the other magnet the current
+is going the other way and the magnetic field is reversed—it is a
+north magnetic pole. So we see that when we go from right to left we
+must indeed change from north to south!</p>
+</div>
+<div id="Ch52-S5-p7" class="para">
+<p class="p">Never mind changing north to south; these too are mere conventions. Let
+us talk about <em class="emph">phenomena</em>. Suppose, now, that we have an electron
+moving through one field, going into the page. Then, if we use the
+formula for the force, $\FLPv\times\FLPB$ (remember the charge is
+minus), we find that the electron will deviate in the indicated
+direction according to the physical law. So the phenomenon is that we
+have a coil with a current going in a specified sense and an electron
+curves in a certain way—that is the physics—never mind how we label
+everything.</p>
+</div>
+<div id="Ch52-S5-p8" class="para">
+<p class="p">Now let us do the same experiment with a mirror: we send an electron
+through in a corresponding direction and now the force is reversed, if
+we calculate it from the same rule, and that is very good because the
+corresponding <em class="emph">motions</em> are then mirror images!</p>
+</div>
+</div>
+<div id="Ch52-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">52–6</span>Which hand is right?</h3>
+<div id="Ch52-S6-p1" class="para">
+<p class="p">So the fact of the matter is that in studying any phenomenon there are
+always two right-hand rules, or an even number of them, and the net
+result is that the phenomena always look symmetrical. In short,
+therefore, we cannot tell right from left if we also are not able to
+tell north from south. However, it may seem that we <em class="emph">can</em> tell the
+north pole of a magnet. The north pole of a compass needle, for example,
+is one that points to the north. But of course that is again a local
+property that has to do with geography of the earth; that is just like
+talking about in which direction is Chicago, so it does not count. If we
+have seen compass needles, we may have noticed that the north-seeking
+pole is a sort of bluish color. But that is just due to the man who
+painted the magnet. These are all local, conventional criteria.</p>
+</div>
+<div id="Ch52-S6-p2" class="para">
+<p class="p">However, if a magnet were to have the property that if we looked at it
+closely enough we would see small hairs growing on its north pole but
+not on its south pole, if that were the general rule, or if there were
+<em class="emph">any</em> unique way to distinguish the north from the south pole of a
+magnet, then we could tell which of the two cases we actually had, and
+<em class="emph">that would be the end of the law of reflection symmetry</em>.</p>
+</div>
+<div id="Ch52-S6-p3" class="para">
+<p class="p">To illustrate the whole problem still more clearly, imagine that we were
+talking to a Martian, or someone very far away, by telephone. We are not
+allowed to send him any actual samples to inspect; for instance, if we
+could send light, we could send him right-hand circularly polarized
+light and say, “That is right-hand light—just watch the way it is
+going.” But we cannot <em class="emph">give</em> him anything, we can only talk to
+him. He is far away, or in some strange location, and he cannot see
+anything we can see. For instance, we cannot say, “Look at Ursa major;
+now see how those stars are arranged. What we mean by ‘right’ is
+…” We are only allowed to telephone him.</p>
+</div>
+<div id="Ch52-S6-p4" class="para">
+<p class="p">Now we want to tell him all about us. Of course, first we start defining
+numbers, and say, “Tick, tick, <em class="emph">two</em>, tick, tick, tick,
+<em class="emph">three</em>, …,” so that gradually he can understand a couple of
+words, and so on. After a while we may become very familiar with this
+fellow, and he says, “What do you guys look like?” We start to
+describe ourselves, and say, “Well, we are six feet tall.” He says,
+“Wait a minute, what is six feet?” Is it possible to tell him what six
+feet is? Certainly!  We say, “You know about the diameter of hydrogen
+atoms—we are $17{,}000{,}000{,}000$ hydrogen atoms high!” That is
+possible because physical laws are not invariant under change of scale,
+and therefore we <em class="emph">can</em> define an absolute length. And so we define
+the size of the body, and tell him what the general shape is—it has
+prongs with five bumps sticking out on the ends, and so on, and he
+follows us along, and we finish describing how we look on the outside,
+presumably without encountering any particular difficulties. He is even
+making a model of us as we go along. He says, “My, you are certainly
+very handsome fellows; now what is on the inside?” So we start to
+describe the various organs on the inside, and we come to the heart, and
+we carefully describe the shape of it, and say, “Now put the heart on
+the left side.” He says, “Duhhh—the left side?” Now our problem is
+to describe to him which side the heart goes on without his ever seeing
+anything that we see, and without our ever sending any sample to him of
+what we mean by “right”—no standard right-handed object. Can we do
+it?</p>
+</div>
+</div>
+<div id="Ch52-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">52–7</span>Parity is not conserved!</h3>
+<div id="Ch52-S7-p1" class="para">
+<p class="p">It turns out that the laws of gravitation, the laws of electricity and
+magnetism, nuclear forces, all satisfy the principle of reflection
+symmetry, so these laws, or anything derived from them, cannot be used.
+But associated with the many particles that are found in nature there is
+a phenomenon called <em class="emph">beta decay</em>, or <em class="emph">weak decay</em>. One of the
+examples of weak decay, in connection with a particle discovered in
+about 1954, posed a strange puzzle. There was a certain charged particle
+which disintegrated into three $\pi$-mesons, as shown schematically in
+Fig. <a href="#Ch52-F5">52–5</a>. This particle was called, for a while, a
+$\tau$-meson. Now in Fig. <a href="#Ch52-F5">52–5</a> we also see another particle
+which disintegrates into <em class="emph">two</em> mesons; one must be neutral, from
+the conservation of charge. This particle was called a $\theta$-meson.
+So on the one hand we have a particle called a $\tau$, which
+disintegrates into three $\pi$-mesons, and a $\theta$, which
+disintegrates into two $\pi$-mesons. Now it was soon discovered that
+the $\tau$ and the $\theta$ are almost equal in mass; in fact, within
+the experimental error, they are equal. Next, the length of time it took
+for them to disintegrate into three $\pi$’s and two $\pi$’s was found to
+be almost exactly the same; they live the same length of time. Next,
+whenever they were made, they were made in the same proportions, say,
+$14$ percent $\tau$’s to $86$ percent $\theta$’s.</p>
+</div>
+<div id="Ch52-F5" class="figure">
+<img class="first" src="img/FLP_I/f52-05/f52-05_tc_big_a.svgz"><img class="last" src="img/FLP_I/f52-05/f52-05_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 52–5.</span>A schematic diagram of the disintegration of a $\tau^+$ and
+a $\theta^+$ particle.
+</div>
+</div>
+<div id="Ch52-S7-p2" class="para">
+<p class="p">Anyone in his right mind realizes immediately that they must be the same
+particle, that we merely produce an object which has two different ways
+of disintegrating—not two different particles. This object that can
+disintegrate in two different ways has, therefore, the same lifetime and
+the same production ratio (because this is simply the ratio of the odds
+with which it disintegrates into these two kinds).</p>
+</div>
+<div id="Ch52-S7-p3" class="para">
+<p class="p">However, it was possible to prove (and we cannot here explain at all
+<em class="emph">how</em>), from the principle of reflection symmetry in quantum
+mechanics, that it was <em class="emph">impossible</em> to have these both come from
+the same particle—the same particle <em class="emph">could not</em> disintegrate in
+both of these ways. The conservation law corresponding to the principle
+of reflection symmetry is something which has no classical analog, and
+so this kind of quantum-mechanical conservation was called the
+<em class="emph">conservation of parity</em>. So, it was a result of the conservation
+of parity or, more precisely, from the symmetry of the
+quantum-mechanical equations of the weak decays under reflection, that
+the same particle could not go into both, so it must be some kind of
+coincidence of masses, lifetimes, and so on. But the more it was
+studied, the more remarkable the coincidence, and the suspicion
+gradually grew that possibly the deep law of the reflection symmetry of
+nature may be false.</p>
+</div>
+<div id="Ch52-S7-p4" class="para">
+<p class="p">As a result of this apparent failure, the physicists Lee and Yang
+suggested that other experiments be done in related decays to try to
+test whether the law was correct in other cases. The first such
+experiment was carried out by Miss Wu from Columbia, and was done as
+follows. Using a very strong magnet at a very low temperature, it turns
+out that a certain isotope of cobalt, which
+disintegrates by emitting an electron, is magnetic, and if the
+temperature is low enough that the thermal oscillations do not jiggle
+the atomic magnets about too much, they line up in the magnetic field.
+So the cobalt atoms will all line up in this strong field. They then
+disintegrate, emitting an electron, and it was discovered that when the
+atoms were lined up in a field whose $\FLPB$ vector points upward, most
+of the electrons were emitted in a downward direction.
+</p>
+</div>
+<div id="Ch52-S7-p5" class="para">
+<p class="p">If one is not really “hep” to the world, such a remark does not sound
+like anything of significance, but if one appreciates the problems and
+interesting things in the world, then he sees that it is a most dramatic
+discovery: When we put cobalt atoms in an extremely strong magnetic
+field, more disintegration electrons go down than up. Therefore if we
+were to put it in a corresponding experiment in a “mirror,” in which
+the cobalt atoms would be lined up in the opposite direction, they would
+spit their electrons <em class="emph">up</em>, not <em class="emph">down;</em> the action is
+<em class="emph">unsymmetrical</em>. <em class="emph">The magnet has grown hairs!</em>  The south pole
+of a magnet is of such a kind that the electrons in a
+$\beta$-disintegration tend to go away from it; that distinguishes, in a
+physical way, the north pole from the south pole.</p>
+</div>
+<div id="Ch52-S7-p6" class="para">
+<p class="p">After this, a lot of other experiments were done: the disintegration of
+the $\pi$ into $\mu$ and $\nu$; $\mu$ into an electron and two
+neutrinos; nowadays, the $\Lambda$ into proton and $\pi$; disintegration
+of $\Sigma$’s; and many other disintegrations. In fact, in almost all
+cases where it could be expected, all have been found <em class="emph">not</em> to obey
+reflection symmetry!  Fundamentally, the law of reflection symmetry, at
+this level in physics, is incorrect.</p>
+</div>
+<div id="Ch52-S7-p7" class="para">
+<p class="p">In short, we can tell a Martian where to put the heart: we say,
+“Listen, build yourself a magnet, and put the coils in, and put the
+current on, and then take some cobalt and lower the temperature. Arrange
+the experiment so the electrons go from the foot to the head, then the
+direction in which the current goes through the coils is the direction
+that goes in on what we call the right and comes out on the left.”  So
+it is possible to define right and left, now, by doing an experiment of
+this kind.
+</p>
+</div>
+<div id="Ch52-S7-p8" class="para">
+<p class="p">There are a lot of other features that were predicted. For example, it
+turns out that the spin, the angular momentum, of the cobalt nucleus
+before disintegration is $5$ units of $\hbar$, and after disintegration
+it is $4$ units. The electron carries spin angular momentum, and there
+is also a neutrino involved. It is easy to see from this that the
+electron must carry its spin angular momentum aligned along its
+direction of motion, the neutrino likewise. So it looks as though the
+electron is spinning to the left, and that was also checked. In fact, it
+was checked right here at Caltech by Boehm and Wapstra,
+that the electrons spin mostly to the left. (There were some other
+experiments that gave the opposite answer, but they were wrong!)</p>
+</div>
+<div id="Ch52-S7-p9" class="para">
+<p class="p">The next problem, of course, was to find the law of the failure of
+parity conservation. What is the rule that tells us how strong the
+failure is going to be? The rule is this: it occurs only in these very
+slow reactions, called weak decays, and when it occurs, the rule is that
+the particles which carry spin, like the electron, neutrino, and so on,
+come out with a spin tending to the left. That is a lopsided rule; it
+connects a polar vector velocity and an axial vector
+angular momentum, and says that the angular momentum is more likely to
+be opposite to the velocity than along it.
+</p>
+</div>
+<div id="Ch52-S7-p10" class="para">
+<p class="p">Now that is the rule, but today we do not really understand the whys and
+wherefores of it. <em class="emph">Why</em> is this the right rule, what is the
+fundamental reason for it, and how is it connected to anything else? At
+the moment we have been so shocked by the fact that this thing is
+unsymmetrical that we have not been able to recover enough to understand
+what it means with regard to all the other rules. However, the subject
+is interesting, modern, and still unsolved, so it seems appropriate that
+we discuss some of the questions associated with it.</p>
+</div>
+</div>
+<div id="Ch52-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">52–8</span>Antimatter</h3>
+<div id="Ch52-S8-p1" class="para">
+<p class="p">The first thing to do when one of the symmetries is lost is to
+immediately go back over the list of known or assumed symmetries and ask
+whether any of the others are lost. Now we did not mention one operation
+on our list, which must necessarily be questioned, and that is the
+relation between matter and antimatter. Dirac predicted that in addition to electrons there
+must be another particle, called the positron (discovered at Caltech by
+Anderson), that is necessarily
+related to the electron. All the properties of these two particles obey
+certain rules of correspondence: the energies are equal; the masses are
+equal; the charges are reversed; but, more important than anything, the
+two of them, when they come together, can annihilate each other and
+liberate their entire mass in the form of energy, say $\gamma$-rays. The
+positron is called an <em class="emph">antiparticle</em> to the electron, and these are
+the characteristics of a particle and its antiparticle. It was clear
+from Dirac’s argument that all the rest of the particles in the world
+should also have corresponding antiparticles. For instance, for the
+proton there should be an antiproton, which is now symbolized by
+a $\overline{p}$. The $\overline{p}$ would have a negative electrical
+charge and the same mass as a proton, and so on. The most important
+feature, however, is that a proton and an antiproton coming together can
+annihilate each other. The reason we emphasize this is that people do
+not understand it when we say there is a neutron and also an
+antineutron, because they say, “A neutron is neutral, so how <em class="emph">can</em>
+it have the opposite charge?” The rule of the “anti” is not just that
+it has the opposite charge, it has a certain set of properties, the
+whole lot of which are opposite. The antineutron is distinguished from
+the neutron in this way: if we bring two neutrons together, they just
+stay as two neutrons, but if we bring a neutron and an antineutron
+together, they annihilate each other with a great explosion of energy
+being liberated, with various $\pi$-mesons, $\gamma$-rays, and whatnot.</p>
+</div>
+<div id="Ch52-S8-p2" class="para">
+<p class="p">Now if we have antineutrons, antiprotons, and antielectrons, we can make
+antiatoms, in principle. They have not been made yet, but it is possible
+in principle. For instance, a hydrogen atom has a proton in the center
+with an electron going around outside. Now imagine that somewhere we can
+make an antiproton with a positron going around, would it go around?
+Well, first of all, the antiproton is electrically negative and the
+antielectron is electrically positive, so they attract each other in a
+corresponding manner—the masses are all the same; everything is the
+same. It is one of the principles of the symmetry of physics, the
+equations seem to show, that if a clock, say, were made of matter on one
+hand, and then we made the same clock of antimatter, it would run in
+this way. (Of course, if we put the clocks together, they would
+annihilate each other, but that is different.)</p>
+</div>
+<div id="Ch52-S8-p3" class="para">
+<p class="p">An immediate question then arises. We can build, out of matter, two
+clocks, one which is “left-hand” and one which is “right-hand.” For
+example, we could build a clock which is not built in a simple way, but
+has cobalt and magnets and electron detectors which detect the presence
+of $\beta$-decay electrons and count them. Each time one is counted, the
+second hand moves over. Then the mirror clock, receiving fewer
+electrons, will not run at the same rate. So evidently we can make two
+clocks such that the left-hand clock does not agree with the right-hand
+one. Let us make, out of matter, a clock which we call the standard or
+right-hand clock. Now let us make, also out of matter, a clock which we
+call the left-hand clock. We have just discovered that, in general,
+these two will <em class="emph">not</em> run the same way; prior to that famous
+physical discovery, it was thought that they would. Now it was also
+supposed that matter and antimatter were equivalent. That is, if we made
+an antimatter clock, right-hand, the same shape, then it would run the
+same as the right-hand matter clock, and if we made the same clock to
+the left it would run the same. In other words, in the beginning it was
+believed that <em class="emph">all four</em> of these clocks were the same; now of
+course we know that the right-hand and left-hand matter are not the
+same. Presumably, therefore, the right-handed antimatter and the
+left-handed antimatter are not the same.</p>
+</div>
+<div id="Ch52-S8-p4" class="para">
+<p class="p">So the obvious question is, which goes with which, if either? In other
+words, does the right-handed matter behave the same way as the
+right-handed antimatter? Or does the right-handed matter behave the same
+as the left-handed antimatter? $\beta$-decay experiments, using positron
+decay instead of electron decay, indicate that this is the
+interconnection: matter to the “right” works the same way as
+antimatter to the “left.”</p>
+</div>
+<div id="Ch52-S8-p5" class="para">
+<p class="p">Therefore, at long last, it is really true that right and left symmetry
+is still maintained! If we made a left-hand clock, but made it out of
+the other kind of matter, antimatter instead of matter, it would run in
+the same way. So what has happened is that instead of having two
+independent rules in our list of symmetries, two of these rules go
+together to make a new rule, which says that matter to the right is
+symmetrical with antimatter to the left.</p>
+</div>
+<div id="Ch52-S8-p6" class="para">
+<p class="p">So if our Martian is made of antimatter and we give him instructions to
+make this “right” handed model like us, it will, of course, come out
+the other way around. What would happen when, after much conversation
+back and forth, we each have taught the other to make space ships and we
+meet halfway in empty space? We have instructed each other on our
+traditions, and so forth, and the two of us come rushing out to shake
+hands. Well, if he puts out his left hand, watch out!</p>
+</div>
+</div>
+<div id="Ch52-S9" class="section">
+<h3 class="title section-title">
+<span class="tag">52–9</span>Broken symmetries</h3>
+<div id="Ch52-S9-p1" class="para">
+<p class="p">The next question is, what can we make out of laws which are
+<em class="emph">nearly</em> symmetrical? The marvelous thing about it all is that for
+such a wide range of important, strong phenomena—nuclear forces,
+electrical phenomena, and even weak ones like gravitation—over a
+tremendous range of physics, all the laws for these seem to be
+symmetrical. On the other hand, this little extra piece says, “No, the
+laws are not symmetrical!” How is it that nature can be almost
+symmetrical, but not perfectly symmetrical? What shall we make of this?
+First, do we have any other examples? The answer is, we do, in fact,
+have a few other examples. For instance, the nuclear part of the force
+between proton and proton, between neutron and neutron, and between
+neutron and proton, is all exactly the same—there is a symmetry for
+nuclear forces, a new one, that we can interchange neutron and
+proton—but it evidently is not a general symmetry, for the electrical
+repulsion between two protons at a distance does not exist for neutrons.
+So it is not generally true that we can <em class="emph">always</em> replace a proton
+with a neutron, but only to a good approximation. Why <em class="emph">good?</em>
+Because the nuclear forces are much stronger than the electrical forces.
+So this is an “almost” symmetry also. So we do have examples in other
+things.</p>
+</div>
+<div id="Ch52-S9-p2" class="para">
+<p class="p">We have, in our minds, a tendency to accept symmetry as some kind of
+perfection. In fact it is like the old idea of the Greeks that circles
+were perfect, and it was rather horrible to believe that the planetary
+orbits were not circles, but only nearly circles. The difference between
+being a circle and being nearly a circle is not a small difference, it
+is a fundamental change so far as the mind is concerned. There is a sign
+of perfection and symmetry in a circle that is not there the moment the
+circle is slightly off—that is the end of it—it is no longer
+symmetrical. Then the question is why it is only <em class="emph">nearly</em> a
+circle—that is a much more difficult question. The actual motion of
+the planets, in general, should be ellipses, but during the ages,
+because of tidal forces, and so on, they have been made almost
+symmetrical. Now the question is whether we have a similar problem here.
+The problem from the point of view of the circles is if they were
+perfect circles there would be nothing to explain, that is clearly
+simple. But since they are only nearly circles, there is a lot to
+explain, and the result turned out to be a big dynamical problem, and
+now our problem is to explain why they are nearly symmetrical by looking
+at tidal forces and so on.
+</p>
+</div>
+<div id="Ch52-S9-p3" class="para">
+<p class="p">So our problem is to explain where symmetry comes from. Why is nature so
+nearly symmetrical? No one has any idea why. The only thing we might
+suggest is something like this: There is a gate in Japan, a gate in
+Neiko, which is sometimes called by the Japanese the most beautiful gate
+in all Japan; it was built in a time when there was great influence from
+Chinese art. This gate is very elaborate, with lots of gables and
+beautiful carving and lots of columns and dragon heads and princes
+carved into the pillars, and so on. But when one looks closely he sees
+that in the elaborate and complex design along one of the pillars, one
+of the small design elements is carved upside down; otherwise the thing
+is completely symmetrical. If one asks why this is, the story is that it
+was carved upside down so that the gods will not be jealous of the
+perfection of man. So they purposely put an error in there, so that the
+gods would not be jealous and get angry with human beings.</p>
+</div>
+<div id="Ch52-S9-p4" class="para">
+<p class="p">We might like to turn the idea around and think that the true
+explanation of the near symmetry of nature is this: that God made the
+laws only nearly symmetrical so that we should not be jealous of His
+perfection!</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

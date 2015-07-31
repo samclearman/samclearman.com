@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 32: Refractive Index of Dense Materials</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "32." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch32" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">32</span>Refractive Index of Dense Materials</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Review:</i>
+		</td>
+		<td>
+		See Table <a href="#Ch32-T1">32–1</a>.
+		</td>
+	</tr>
+</table>
+
+<div id="Ch32-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">32–1</span>Polarization of matter</h3>
+<div id="Ch32-S1-p1" class="para">
+<p class="p">We want now to discuss the phenomenon of the refraction of
+light—and also, therefore, the absorption of light—by dense
+materials. In Chapter <a href="I_31.html">31</a> of Volume I we discussed the
+theory of the index of refraction, but because of our limited
+mathematical abilities at that time, we had to restrict ourselves to
+finding the index only for materials of low density, like gases. The
+physical principles that produced the index were, however, made clear.
+The electric field of the light wave polarizes the molecules of the gas,
+producing oscillating dipole moments. The acceleration of the
+oscillating charges radiates new waves of the field. This new field,
+interfering with the old field, produces a changed field which is
+equivalent to a phase shift of the original wave. Because this phase
+shift is proportional to the thickness of the material, the effect is
+equivalent to having a different phase velocity in the material. When we
+looked at the subject before, we neglected the complications that arise
+from such effects as the new wave changing the fields at the oscillating
+dipoles. We assumed that the forces on the charges in the atoms came
+just from the <em class="emph">incoming</em> wave, whereas, in fact, their oscillations
+are driven not only by the incoming wave but also by the radiated waves
+of all the other atoms. It would have been difficult for us at that time
+to include this effect, so we studied only the rarefied gas, where such
+effects are not important.</p>
+</div>
+
+<div id="Ch32-S1-p2" class="para">
+<p class="p">Now, however, we will find that it is very easy to treat the problem
+by the use of differential equations. This method obscures the
+physical origin of the index (as coming from the re-radiated waves
+interfering with the original waves), but it makes the theory for
+dense materials much simpler. This chapter will bring together a large
+number of pieces from our earlier work. We’ve taken up practically
+everything we will need, so there are relatively few really new ideas
+to be introduced. Since you may need to refresh your memory about what
+we are going to need, we give in Table <a href="#Ch32-T1">32–1</a> a list of the
+equations we are going to use, together with a reference to the place
+where each can be found. In most instances, we will not take the time
+to give the physical arguments again, but will just use the equations.
+</p>
+</div>
+
+<div id="Ch32-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 32–1</span>Our work in this chapter will be based 
+on the following material, already covered in earlier chapters
+</div>
+<table class="tabular ltx_centering" height="350">
+<tr class="tr">
+<td class="td l r t center" >Subject</td>
+<td class="td r t center" >Reference</td>
+<td class="td r t center" >Equation</td>
+</tr>
+<tr class="tr">
+<td class="td l r t" >Damped oscillations</td>
+<td class="td r t" ><span class="text small">Vol. I, Chap. <a href="I_23.html">23</a></span></td>
+<td class="td r t" ><span class="text small">$m(\ddot{x}+\gamma\dot{x}+\omega_0^2x)=F$</span></td>
+</tr>
+<tr class="tr">
+<td class="td l r" >Index of gases</td>
+<td class="td r" >Vol. I, Chap. <a href="I_31.html">31</a></td>
+<td class="td r" >$n=1+\dfrac{1}{2}\,\dfrac{Nq_e^2}{\epsO m(\omega_0^2-\omega^2)}$</td>
+</tr>
+<tr class="tr">
+<td class="td l r" ></td>
+<td class="td r" ></td>
+<td class="td r" >$n=n'-in''$</td>
+</tr>
+<tr class="tr">
+<td class="td l r" >Mobility</td>
+<td class="td r" >Vol. I, Chap. <a href="I_41.html">41</a></td>
+<td class="td r" >$m\ddot{x}+\mu\dot{x}=F$</td>
+</tr>
+<tr class="tr">
+<td class="td l r" >Electrical conductivity</td>
+<td class="td r" >Vol. I, Chap. <a href="I_43.html">43</a></td>
+<td class="td r" >$\mu=\dfrac{\tau}{m};\,\sigma=\dfrac{Nq_e^2\tau}{m}$</td>
+</tr>
+<tr class="tr">
+<td class="td l r" >Polarizability</td>
+<td class="td r" >Vol. II, Chap. <a href="II_10.html">10</a></td>
+<td class="td r" >$\rho_{\text{pol}}=-\FLPdiv{\FLPP}$</td>
+</tr>
+<tr class="tr">
+<td class="td b l r" >Inside dielectrics</td>
+<td class="td b r" >Vol. II, Chap. <a href="II_11.html">11</a></td>
+<td class="td b r" >$\FLPE_{\text{local}}=\FLPE+\dfrac{1}{3\epsO}\,\FLPP$</td>
+</tr>
+</table>
+</div>
+
+<div id="Ch32-S1-p3" class="para">
+<p class="p">We begin by recalling the machinery of the index of refraction for a
+gas. We suppose that there are $N$ particles per unit volume and that
+each particle behaves as a harmonic oscillator. We use a model of an
+atom or molecule in which the electron is bound with a force
+proportional to its displacement (as though the electron were held in
+place by a spring). We emphasized that this was not a legitimate
+<em class="emph">classical</em> model of an atom, but we will show later that the
+correct quantum mechanical theory gives results equivalent to this
+model (in simple cases). In our earlier treatment, we did not include
+the possibility of a damping force in the atomic oscillators, but we
+will do so now. Such a force corresponds to a resistance to the
+motion, that is, to a force proportional to the velocity of the
+electron. Then the equation of motion is
+\begin{equation}
+\label{Eq:II:32:1}
+F=q_eE=m(\ddot{x}+\gamma\dot{x}+\omega_0^2x),
+\end{equation}
+
+where $x$ is the displacement parallel to the direction
+of $\FLPE$. (We are assuming an <em class="emph">isotropic</em> oscillator whose
+restoring force is the same in all directions. Also, we are taking,
+for the moment, a linearly polarized wave, so that $\FLPE$ doesn’t
+change direction.) If the electric field acting on the atom varies
+sinusoidally with time, we write
+\begin{equation}
+\label{Eq:II:32:2}
+E=E_0e^{i\omega t}.
+\end{equation}
+
+The displacement will then oscillate with the same frequency, and we
+can let
+\begin{equation*}
+x=x_0e^{i\omega t}.
+\end{equation*}
+
+Substituting $\dot{x}=i\omega x$ and $\ddot{x}=-\omega^2x$, we can
+solve for $x$ in terms of $E$:
+\begin{equation}
+\label{Eq:II:32:3}
+x=\frac{q_e/m}{-\omega^2+i\gamma\omega+\omega_0^2}\,E.
+\end{equation}
+
+Knowing the displacement, we can calculate the acceleration $\ddot{x}$
+and find the radiated wave responsible for the index. This was the way
+we computed the index in Chapter <a href="I_31.html">31</a> of Volume I.</p>
+</div>
+<div id="Ch32-S1-p4" class="para">
+<p class="p">Now, however, we want to take a different approach. The induced dipole
+moment $p$ of an atom is $q_ex$ or, using Eq. (<a href="#mjx-eqn-EqII323">32.3</a>),
+\begin{equation}
+\label{Eq:II:32:4}
+\FLPp=\frac{q_e^2/m}{-\omega^2+i\gamma\omega+\omega_0^2}\,\FLPE.
+\end{equation}
+
+Since $\FLPp$ is proportional to $\FLPE$, we write
+\begin{equation}
+\label{Eq:II:32:5}
+\FLPp=\epsO\alpha(\omega)\FLPE,
+\end{equation}
+
+where $\alpha$ is called the <em class="emph">atomic
+polarizability</em>.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a>
+With this definition, we have
+\begin{equation}
+\label{Eq:II:32:6}
+\alpha=\frac{q_e^2/m\epsO}{-\omega^2+i\gamma\omega+\omega_0^2}.
+\end{equation}
+</p>
+</div>
+<div id="Ch32-S1-p5" class="para">
+<p class="p">The quantum mechanical solution for the motions of electrons in atoms
+gives a similar answer except with the following modifications. The
+atoms have several natural frequencies, each frequency with its own
+dissipation constant $\gamma$. Also the effective “strength” of each
+mode is different, which we can represent by multiplying the
+polarizability for each frequency by a strength factor $f$, which is a
+number we expect to be of the order of $1$. Representing the three
+parameters $\omega_0$, $\gamma$, and $f$ by $\omega_{0k}$, $\gamma_k$,
+and $f_k$ for each mode of oscillation, and summing over the various
+modes, we modify Eq. (<a href="#mjx-eqn-EqII326">32.6</a>) to read
+\begin{equation}
+\label{Eq:II:32:7}
+\alpha(\omega)=\frac{q_e^2}{\epsO m}
+\sum_k\frac{f_k}{-\omega^2+i\gamma_k\omega+\omega_{0k}^2}.
+\end{equation}
+</p>
+</div>
+<div id="Ch32-S1-p6" class="para">
+<p class="p">If $N$ is the number of atoms per unit volume in the material, the
+polarization $P$ is just $Np=\epsO N\alpha E$, and is proportional
+to $E$:
+\begin{equation}
+\label{Eq:II:32:8}
+\FLPP=\epsO N\alpha(\omega)\FLPE.
+\end{equation}
+
+In other words, when there is a sinusoidal electric field acting in a
+material, there is an induced dipole moment per unit volume which is
+proportional to the electric field—with a proportionality
+constant $\alpha$ that, we emphasize, depends upon the frequency. At very high
+frequencies, $\alpha$ is small; there is not much response. However,
+at low frequencies there can be a strong response. Also, the
+proportionality constant is a complex number, which means that the
+polarization does not exactly follow the electric field, but may be
+shifted in phase to some extent. At any rate, there is a polarization
+per unit volume whose magnitude is proportional to the strength of the
+electric field.</p>
+</div>
+</div>
+<div id="Ch32-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">32–2</span>Maxwell’s equations in a dielectric</h3>
+<div id="Ch32-S2-p1" class="para">
+<p class="p">The existence of polarization in matter means that there are
+polarization charges and currents inside of the material, and these
+must be put into the complete Maxwell equations in order to find the
+fields. We are going to solve Maxwell’s equations this time in a
+situation in which the charges and currents are not zero, as in a
+vacuum, but are given implicitly by the polarization vector. Our first
+step is to find explicitly the charge density $\rho$ and current
+density $\FLPj$, averaged over a small volume of the same size we had
+in mind when we defined $\FLPP$. Then the $\rho$ and $\FLPj$ we need
+can be obtained from the polarization.</p>
+</div>
+<div id="Ch32-S2-p2" class="para">
+<p class="p">We have seen in Chapter <a href="II_10.html">10</a> that when the
+polarization $\FLPP$ varies from place to place, there is a charge
+density given by
+\begin{equation}
+\label{Eq:II:32:9}
+\rho_{\text{pol}}=-\FLPdiv{\FLPP}.
+\end{equation}
+
+At that time, we were dealing with static fields, but the same formula
+is valid also for time-varying fields. However, when $\FLPP$ varies with
+time, there are charges in motion, so there is also a polarization
+<em class="emph">current</em>. Each of the oscillating charges contributes a current
+equal to its charge $q_e$, times its velocity $v$. With $N$ such charges
+per unit volume, the current density $\FLPj$ is
+\begin{equation*}
+\FLPj=Nq_e\FLPv.
+\end{equation*}
+
+Since we know that $v=dx/dt$, then $j=Nq_e(dx/dt)$, which is
+just $dP/dt$. Therefore the current density from the varying
+polarization is
+\begin{equation}
+\label{Eq:II:32:10}
+\FLPj_{\text{pol}}=\ddp{\FLPP}{t}.
+\end{equation}
+</p>
+</div>
+<div id="Ch32-S2-p3" class="para">
+<p class="p">Our problem is now direct and simple. We write Maxwell’s equations with the
+charge density and current density expressed in terms of $\FLPP$, using
+Eqs. (<a href="#mjx-eqn-EqII329">32.9</a>) and (<a href="#mjx-eqn-EqII3210">32.10</a>). (We assume that there
+are no other currents and charges in the material.) We then relate $\FLPP$
+to $\FLPE$ with Eq. (<a href="#mjx-eqn-EqII328">32.8</a>), and we solve the equation for $\FLPE$
+and $\FLPB$—looking for the wave solutions.</p>
+</div>
+<div id="Ch32-S2-p4" class="para">
+<p class="p">Before we do this, we would like to make an historical note.
+Maxwell
+originally wrote his equations in a form which was different from the
+one we have been using. Because the equations were written in this
+different form for many years—and are still written that way by many
+people—we will explain the difference. In the early days, the
+mechanism of the dielectric constant was not fully and clearly
+appreciated. The nature of atoms was not understood, nor that there
+was a polarization of the material. So people did not appreciate that
+there was a contribution to the charge density $\rho$
+from $\FLPdiv{\FLPP}$. They thought only in terms of charges that were not
+bound to atoms (such as the charges that flow in wires or are rubbed
+off surfaces).</p>
+</div>
+<div id="Ch32-S2-p5" class="para">
+<p class="p">Today, we prefer to let $\rho$ represent the <em class="emph">total</em> charge
+density, including the part from the bound atomic charges. If we call
+that part $\rho_{\text{pol}}$, we can write
+\begin{equation*}
+\rho=\rho_{\text{pol}}+\rho_{\text{other}},
+\end{equation*}
+
+where $\rho_{\text{other}}$ is the charge density considered by
+Maxwell
+and refers not bound to individual atoms. We would then write
+\begin{equation*}
+\FLPdiv{\FLPE}=\frac{\rho_{\text{pol}}+\rho_{\text{other}}}{\epsO}.
+\end{equation*}
+
+Substituting $\rho_{\text{pol}}$ from Eq. (<a href="#mjx-eqn-EqII329">32.9</a>),
+\begin{equation}
+\FLPdiv{\FLPE}=\frac{\rho_{\text{other}}}{\epsO}-
+\frac{1}{\epsO}\,\FLPdiv{\FLPP}\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:32:11}
+\FLPdiv{(\epsO\FLPE+\FLPP)}=\rho_{\text{other}}.
+\end{equation}
+</p>
+</div>
+<div id="Ch32-S2-p6" class="para">
+<p class="p">The current density in the Maxwell equations for $\FLPcurl{\FLPB}$ also
+has, in general, contributions from bound atomic currents. We can therefore write
+\begin{equation*}
+\FLPj=\FLPj_{\text{pol}}+\FLPj_{\text{other}},
+\end{equation*}
+
+and the Maxwell equation becomes
+\begin{equation}
+\label{Eq:II:32:12}
+c^2\FLPcurl{\FLPB}=\frac{\FLPj_{\text{other}}}{\epsO}+
+\frac{\FLPj_{\text{pol}}}{\epsO}+\ddp{\FLPE}{t}.
+\end{equation}
+
+Using Eq. (<a href="#mjx-eqn-EqII3210">32.10</a>), we get
+\begin{equation}
+\label{Eq:II:32:13}
+\epsO c^2\FLPcurl{\FLPB}=\FLPj_{\text{other}}+
+\ddp{}{t}(\epsO\FLPE+\FLPP).
+\end{equation}
+
+</p>
+</div>
+<div id="Ch32-S2-p7" class="para">
+<p class="p">Now you can see that if we were to <em class="emph">define</em> a new vector $\FLPD$
+by
+\begin{equation}
+\label{Eq:II:32:14}
+\FLPD=\epsO\FLPE+\FLPP,
+\end{equation}
+
+the two field equations would become
+\begin{equation}
+\label{Eq:II:32:15}
+\FLPdiv{\FLPD}=\rho_{\text{other}}
+\end{equation}
+
+and
+\begin{equation}
+\label{Eq:II:32:16}
+\epsO c^2\FLPcurl{\FLPB}=\FLPj_{\text{other}}+\ddp{\FLPD}{t}.
+\end{equation}
+
+These are actually the forms that
+Maxwell used for dielectrics. His
+two remaining equations were
+\begin{equation*}
+\FLPcurl{\FLPE}=-\ddp{\FLPB}{t},
+\end{equation*}
+
+and
+\begin{equation*}
+\FLPdiv{\FLPB}=0,
+\end{equation*}
+
+which are the same as we have been using.</p>
+</div>
+<div id="Ch32-S2-p8" class="para">
+<p class="p">Maxwell and the other
+early workers also had a problem with magnetic
+materials (which we will take up soon). Because they did not know
+about the circulating currents responsible for atomic magnetism, they
+used a current density that was missing still another part. Instead of
+Eq. (<a href="#mjx-eqn-EqII3216">32.16</a>), they actually wrote
+\begin{equation}
+\label{Eq:II:32:17}
+\FLPcurl{\FLPH}=\FLPj'+\ddp{\FLPD}{t},
+\end{equation}
+
+where $\FLPH$ differs from $\epsO c^2\FLPB$ because it includes the
+effects of atomic currents. (Then $\FLPj'$ represents what is left of the currents.) So
+Maxwell had <em class="emph">four</em> field
+vectors—$\FLPE$, $\FLPD$, $\FLPB$, and $\FLPH$—the $\FLPD$
+and $\FLPH$ were hidden ways of not paying attention to what was going
+on inside the material. You will find the equations written this way in
+many places.</p>
+</div>
+<div id="Ch32-S2-p9" class="para">
+<p class="p">To solve the equations, it is necessary to relate $\FLPD$ and $\FLPH$
+to the other fields, and people used to write
+\begin{equation}
+\label{Eq:II:32:18}
+\FLPD=\epsilon\FLPE\quad\text{and}\quad
+\FLPB=\mu\FLPH.
+\end{equation}
+
+However, these relations are only approximately true for some
+materials and even then only if the fields are not changing rapidly
+with time. (For sinusoidally varying fields one often <em class="emph">can</em> write
+the equations this way by making $\epsilon$ and $\mu$ complex
+functions of the frequency, but not for an arbitrary time variation of
+the fields.) So there used to be all kinds of cheating in solving the
+equations. We think the right way is to keep the equations in terms of
+the fundamental quantities as we now understand them—and that’s how
+we have done it.</p>
+</div>
+</div>
+<div id="Ch32-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">32–3</span>Waves in a dielectric</h3>
+<div id="Ch32-S3-p1" class="para">
+<p class="p">We want now to find out what kind of electromagnetic waves can exist in
+a dielectric material in which there are no extra charges other than
+those bound in atoms. So we take $\rho=-\FLPdiv{\FLPP}$
+and $\FLPj=\ddpl{\FLPP}{t}$. Maxwell’s
+equations then become
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:32:19}
+\begin{array}{llll}
+(\text{a}) &
+\FLPdiv{\FLPE}=-\dfrac{\FLPdiv{\FLPP}}{\epsO}\quad &
+(\text{b}) &
+c^2\FLPcurl{\FLPB}=\displaystyle\ddp{}{t}\biggl(\dfrac{\FLPP}{\epsO}+
+\FLPE\biggr)\\
+\\
+(\text{c}) &
+\FLPcurl{\FLPE}=-\displaystyle\ddp{\FLPB}{t} &
+(\text{d}) &
+\FLPdiv{\FLPB}=0
+\end{array}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\label{Eq:II:32:19}
+\begin{aligned}
+&(\text{a})\;\;\FLPdiv{\FLPE}=-\dfrac{\FLPdiv{\FLPP}}{\epsO}\\[1ex]
+&(\text{b})\;\;c^2\FLPcurl{\FLPB}=\displaystyle\ddp{}{t}\biggl(\dfrac{\FLPP}{\epsO}+\FLPE\biggr)\\[1ex]
+&(\text{c})\;\;\FLPcurl{\FLPE}=-\displaystyle\ddp{\FLPB}{t}\\[1.5ex]
+&(\text{d})\;\;\FLPdiv{\FLPB}=0
+\end{aligned}
+\end{equation}
+</span>
+</p>
+</div>
+<div id="Ch32-S3-p2" class="para">
+<p class="p">We can solve these equations as we have done before. We start by
+taking the curl of Eq. (<a href="#mjx-eqn-EqII3219">32.19</a>c):
+\begin{equation*}
+\FLPcurl{(\FLPcurl{\FLPE})}=-\ddp{}{t}\,\FLPcurl{\FLPB}.
+\end{equation*}
+
+Next, we make use of the vector identity
+\begin{equation*}
+\FLPcurl{(\FLPcurl{\FLPE})}=\FLPgrad{(\FLPdiv{\FLPE})}-\nabla^2\FLPE,
+\end{equation*}
+
+and also substitute for $\FLPcurl{\FLPB}$, using
+Eq. (<a href="#mjx-eqn-EqII3219">32.19</a>b); we get
+\begin{equation*}
+\FLPgrad{(\FLPdiv{\FLPE})}-\nabla^2\FLPE=
+-\frac{1}{\epsO c^2}\,\frac{\partial^2\FLPP}{\partial t^2}-
+\frac{1}{c^2}\,\frac{\partial^2\FLPE}{\partial t^2}.
+\end{equation*}
+
+Using Eq. (<a href="#mjx-eqn-EqII3219">32.19</a>a) for $\FLPdiv{\FLPE}$, we get
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:32:20}
+\nabla^2\FLPE-\frac{1}{c^2}\,\frac{\partial^2\FLPE}{\partial t^2}=
+-\frac{1}{\epsO}\,\FLPgrad{(\FLPdiv{\FLPP})}+
+\frac{1}{\epsO c^2}\,\frac{\partial^2\FLPP}{\partial t^2}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:II:32:20}
+\nabla^2\FLPE&-\frac{1}{c^2}\,\frac{\partial^2\FLPE}{\partial t^2}=\\[1ex]
+&-\frac{1}{\epsO}\,\FLPgrad{(\FLPdiv{\FLPP})}+
+\frac{1}{\epsO c^2}\,\frac{\partial^2\FLPP}{\partial t^2}.\notag
+\end{align}
+</span>
+So instead of the wave equation, we now get that the D’Alembertian
+of $\FLPE$ is equal to two terms involving the polarization $\FLPP$.</p>
+</div>
+<div id="Ch32-S3-p3" class="para">
+<p class="p">Since $\FLPP$ depends on $\FLPE$, however, Eq. (<a href="#mjx-eqn-EqII3220">32.20</a>)
+can still have wave solutions. We will now limit ourselves to
+<em class="emph">isotropic</em> dielectrics, so that $\FLPP$ is always in the same
+direction as $\FLPE$. Let’s try to find a solution for a wave going in
+the $z$-direction. Then, the electric field might vary as $e^{i(\omega
+t-kz)}$. We will also suppose that the wave is polarized in the
+$x$-direction—that the electric field has only an $x$-component. We
+write
+\begin{equation}
+\label{Eq:II:32:21}
+E_x=E_0e^{i(\omega t-kz)}.
+\end{equation}
+</p>
+</div>
+<div id="Ch32-S3-p4" class="para">
+<p class="p">You know that any function of $(z-vt)$ represents a wave that travels
+with the speed $v$. The exponent of Eq. (<a href="#mjx-eqn-EqII3221">32.21</a>) can be
+written as
+\begin{equation*}
+-ik\biggl(z-\frac{\omega}{k}\,t\biggr),
+\end{equation*}
+
+so, Eq. (<a href="#mjx-eqn-EqII3221">32.21</a>) represents a wave with the phase
+velocity
+\begin{equation*}
+v_{\text{ph}}=\omega/k.
+\end{equation*}
+
+The index of refraction $n$ is defined (see Chapter <a href="I_31.html">31</a>,
+Vol. I) by letting
+\begin{equation*}
+v_{\text{ph}}=\frac{c}{n}.
+\end{equation*}
+
+Thus Eq. (<a href="#mjx-eqn-EqII3221">32.21</a>) becomes
+\begin{equation*}
+E_x=E_0e^{i\omega(t-nz/c)}.
+\end{equation*}
+
+So we can find $n$ by finding what value of $k$ is required if
+Eq. (<a href="#mjx-eqn-EqII3221">32.21</a>) is to satisfy the proper field equations, and
+then using
+\begin{equation}
+\label{Eq:II:32:22}
+n=\frac{kc}{\omega}.
+\end{equation}
+
+In an isotropic material, there will be only an $x$-component of the
+polarization; then $\FLPP$ has no variation with the $x$-coordinate,
+so $\FLPdiv{\FLPP}=0$, and we get rid of the first term on the
+right-hand side of Eq. (<a href="#mjx-eqn-EqII3220">32.20</a>). Also, since we are
+assuming a linear dielectric, $P_x$ will vary as $e^{i\omega t}$, and
+$\partial^2P_x/\partial t^2=-\omega^2P_x$. The Laplacian in
+Eq. (<a href="#mjx-eqn-EqII3220">32.20</a>) becomes simply $\partial^2E_x/\partial
+z^2=-k^2E_x$, so we get
+\begin{equation}
+\label{Eq:II:32:23}
+-k^2E_x+\frac{\omega^2}{c^2}\,E_x=-\frac{\omega^2}{\epsO c^2}\,P_x.
+\end{equation}
+</p>
+</div>
+<div id="Ch32-S3-p5" class="para">
+<p class="p">Now let us assume for the moment that since $\FLPE$ is varying
+sinusoidally, we can set $\FLPP$ proportional to $\FLPE$, as in
+Eq. (<a href="#mjx-eqn-EqII328">32.8</a>). (We’ll come back to discuss this assumption
+later.) We write
+\begin{equation*}
+P_x=\epsO N\alpha E_x.
+\end{equation*}
+
+Then $E_x$ drops out of Eq. (<a href="#mjx-eqn-EqII3223">32.23</a>), and we find
+\begin{equation}
+\label{Eq:II:32:24}
+k^2=\frac{\omega^2}{c^2}\,(1+N\alpha).
+\end{equation}
+
+We have found that a wave like Eq. (<a href="#mjx-eqn-EqII3221">32.21</a>), with the
+wave number $k$ given by Eq. (<a href="#mjx-eqn-EqII3224">32.24</a>), will satisfy the
+field equations. Using Eq. (<a href="#mjx-eqn-EqII3222">32.22</a>), the index $n$ is
+given by
+\begin{equation}
+\label{Eq:II:32:25}
+n^2=1+N\alpha.
+\end{equation}
+</p>
+</div>
+<div id="Ch32-S3-p6" class="para">
+<p class="p">Let’s compare this formula with what we obtained in our theory of the
+index of a gas (Chapter <a href="I_31.html">31</a>, Vol. I). There, we got
+Eq. (<a href="I_31.html#mjx-eqn-EqI3119">31.19</a>), which is
+\begin{equation}
+\label{Eq:II:32:26}
+n=1+\frac{1}{2}\,\frac{Nq_e^2}{m\epsO}\,\frac{1}{-\omega^2+\omega_0^2}.
+\end{equation}
+
+Taking $\alpha$ from Eq. (<a href="#mjx-eqn-EqII326">32.6</a>), Eq. (<a href="#mjx-eqn-EqII3225">32.25</a>)
+would give us
+\begin{equation}
+\label{Eq:II:32:27}
+n^2=1+\frac{Nq_e^2}{m\epsO}\,\frac{1}{-\omega^2+i\gamma\omega+\omega_0^2}.
+\end{equation}
+
+First, we have the new term in $i\gamma\omega$, because we are
+including the dissipation of the oscillators. Second, the left-hand
+side is $n$ instead of $n^2$, and there is an extra factor
+of $1/2$. But notice that if $N$ is small enough so that $n$ is close to
+one (as it is for a gas), then Eq. (<a href="#mjx-eqn-EqII3227">32.27</a>) says that
+$n^2$ is one plus a small number: $n^2=1+\epsilon$. We can then write
+$n=\sqrt{1+\epsilon}\approx1+\epsilon/2$, and the two expressions are
+equivalent. Thus our new method gives for a gas the same result we
+found earlier.</p>
+</div>
+<div id="Ch32-S3-p7" class="para">
+<p class="p">Now you might think that Eq. (<a href="#mjx-eqn-EqII3227">32.27</a>) should give the
+index of refraction for dense materials also. It needs to be modified,
+however, for several reasons. First, the derivation of this equation
+assumes that the polarizing field on each atom is the
+field $E_x$. That assumption is <em class="emph">not</em> right, however, because in dense
+materials there is also the field produced by other atoms in the
+vicinity, which may be comparable to $E_x$. We considered a similar
+problem when we studied the static fields in dielectrics. (See
+Chapter <a href="II_11.html">11</a>.) You will remember that we estimated the field
+at a single atom by imagining that it sat in a spherical hole in the
+surrounding dielectric. The field in such a hole—which we called the
+<em class="emph">local</em> field—is increased over the average field $E$ by the
+amount $P/3\epsO$. (Remember, however, that this result is only strictly
+true in isotropic materials—including the special case of a cubic
+crystal.)</p>
+</div>
+<div id="Ch32-S3-p8" class="para">
+<p class="p">The same arguments will hold for the electric field in a wave, so long
+as the wavelength of the wave is much longer than the spacing between
+atoms. Limiting ourselves to such cases, we write
+\begin{equation}
+\label{Eq:II:32:28}
+E_{\text{local}}=E+\frac{P}{3\epsO}.
+\end{equation}
+
+This local field is the one that should be used for $E$ in
+Eq. (<a href="#mjx-eqn-EqII323">32.3</a>); that is, Eq. (<a href="#mjx-eqn-EqII328">32.8</a>) should be
+rewritten:
+\begin{equation}
+\label{Eq:II:32:29}
+P=\epsO N\alpha E_{\text{local}}.
+\end{equation}
+
+Using $E_{\text{local}}$ from Eq. (<a href="#mjx-eqn-EqII3228">32.28</a>), we find
+\begin{equation}
+P=\epsO N\alpha\biggl(E+\frac{P}{3\epsO}\biggr)\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:32:30}
+P=\frac{N\alpha}{1-(N\alpha/3)}\,\epsO E.
+\end{equation}
+
+In other words, for dense materials $P$ is still proportional to $E$
+(for sinusoidal fields). However, the constant of proportionality is
+not $\epsO N\alpha$, as we wrote below Eq. (<a href="#mjx-eqn-EqII3223">32.23</a>), but
+should be $\epsO N\alpha/[1-(N\alpha/3)]$. So we should correct
+Eq. (<a href="#mjx-eqn-EqII3225">32.25</a>) to read
+\begin{equation}
+\label{Eq:II:32:31}
+n^2=1+\frac{N\alpha}{1-(N\alpha/3)}.
+\end{equation}
+
+It will be more convenient if we rewrite this equation as
+\begin{equation}
+\label{Eq:II:32:32}
+3\,\frac{n^2-1}{n^2+2}=N\alpha,
+\end{equation}
+
+which is algebraically equivalent. This is known as the
+Clausius-Mossotti equation.
+</p>
+</div>
+<div id="Ch32-S3-p9" class="para">
+<p class="p">There is another complication in dense materials. Because neighboring
+atoms are so close, there are strong interactions between them. The
+internal modes of oscillation are, therefore, modified. The natural
+frequencies of the atomic oscillations are spread out by the
+interactions, and they are usually quite heavily damped—the
+resistance coefficient becomes quite large. So the $\omega_0$’s
+and $\gamma$’s of the solid will be quite different from those of the free
+atoms. With these reservations, we can still represent $\alpha$, at
+least approximately, by Eq. (<a href="#mjx-eqn-EqII327">32.7</a>). We have then that
+\begin{equation}
+\label{Eq:II:32:33}
+3\,\frac{n^2-1}{n^2+2}=\frac{Nq_e^2}{m\epsO}
+\sum_k\frac{f_k}{-\omega^2+i\gamma_k\omega+\omega_{0k}^2}.
+\end{equation}
+</p>
+</div>
+<div id="Ch32-S3-p10" class="para">
+<p class="p">One final complication. If the dense material is a mixture of several
+components, each will contribute to the polarization. The
+total $\alpha$ will be the sum of the contributions from each component of
+the mixture [except for the inaccuracy of the local field
+approximation, Eq. (<a href="#mjx-eqn-EqII3228">32.28</a>), in ordered
+crystals—effects we discussed when analyzing
+ferroelectrics]. Writing $N_j$ as the number of atoms of each
+component per unit volume, we should replace Eq. (<a href="#mjx-eqn-EqII3232">32.32</a>)
+by
+\begin{equation}
+\label{Eq:II:32:34}
+3\biggl(\frac{n^2-1}{n^2+2}\biggr)=
+\sum_jN_j\alpha_j,
+\end{equation}
+
+where each $\alpha_j$ will be given by an expression like
+Eq. (<a href="#mjx-eqn-EqII327">32.7</a>). Equation (<a href="#mjx-eqn-EqII3234">32.34</a>) completes our
+theory of the index of refraction. The quantity $3(n^2-1)/(n^2+2)$ is
+given by some complex function of frequency, which is the mean atomic
+polarizability $\alpha(\omega)$. The precise evaluation
+of $\alpha(\omega)$ (that is, finding $f_k$, $\gamma_k$ and $\omega_{0k}$)
+in dense substances is a difficult problem of quantum mechanics. It has
+been done from first principles only for a few especially simple
+substances.</p>
+</div>
+</div>
+<div id="Ch32-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">32–4</span>The complex index of refraction</h3>
+<div id="Ch32-S4-p1" class="para">
+<p class="p">We want to look now at the consequences of our result,
+Eq. (<a href="#mjx-eqn-EqII3233">32.33</a>). First, we notice that $\alpha$ is complex, so
+the index $n$ is going to be a complex number. What does that mean?
+Let’s say that we write $n$ as the sum of a real and an imaginary part:
+\begin{equation}
+\label{Eq:II:32:35}
+n=n_R-in_I,
+\end{equation}
+
+where $n_R$ and $n_I$ are real functions of $\omega$. We write $in_I$
+with a minus sign, so that $n_I$ will be a positive quantity in all
+ordinary optical materials. (In ordinary inactive materials—that are
+not, like lasers, light sources themselves—$\gamma$ is a positive
+number, and that makes the imaginary part of $n$ negative.) Our plane
+wave of Eq. (<a href="#mjx-eqn-EqII3221">32.21</a>) is written in terms of $n$ as
+\begin{equation*}
+E_x=E_0e^{i\omega(t-nz/c)}.
+\end{equation*}
+
+Writing $n$ as in Eq. (<a href="#mjx-eqn-EqII3235">32.35</a>), we would have
+\begin{equation}
+\label{Eq:II:32:36}
+E_x=E_0e^{-\omega n_Iz/c}e^{i\omega(t-n_Rz/c)}.
+\end{equation}
+
+The term $e^{i\omega(t-n_Rz/c)}$ represents a wave travelling with the
+speed $c/n_R$, so $n_R$ represents what we normally think of as the
+index of refraction. But the <em class="emph">amplitude</em> of this wave is
+\begin{equation*}
+E_0e^{-\omega n_Iz/c},
+\end{equation*}
+
+which decreases exponentially with $z$. A graph of the strength of the
+electric field at some instant as a function of $z$ is shown in
+Fig. <a href="#Ch32-F1">32–1</a>, for $n_I\approx n_R/2\pi$. The imaginary part of
+the index represents the attenuation of the wave due to the energy
+losses in the atomic oscillators. The <em class="emph">intensity</em> of the wave is
+proportional to the square of the amplitude, so
+\begin{equation*}
+\text{Intensity}\propto e^{-2\omega n_Iz/c}.
+\end{equation*}
+
+This is often written as
+\begin{equation*}
+\text{Intensity}\propto e^{-\beta z}.
+\end{equation*}
+
+where $\beta=2\omega n_I/c$ is called the <em class="emph">absorption
+coefficient</em>. Thus we have in Eq. (<a href="#mjx-eqn-EqII3233">32.33</a>) not only the theory of
+the index of refraction of materials, but the theory of their absorption
+of light as well.</p>
+</div>
+<div id="Ch32-F1" class="figure">
+<img src="img/FLP_II/f32-01/f32-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 32–1.</span>A graph of $E_x$ for some instant $t$, if $n_I\approx
+  n_R/2\pi$.
+</div>
+</div>
+<div id="Ch32-S4-p2" class="para">
+<p class="p">In what we usually consider to be transparent material, the
+quantity $c/\omega n_I$—which has the dimensions of a length—is quite large
+in comparison with the thickness of the material.</p>
+</div>
+</div>
+<div id="Ch32-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">32–5</span>The index of a mixture</h3>
+<div id="Ch32-S5-p1" class="para">
+<p class="p">There is another prediction of our theory of the index of refraction
+that we can check against experiment. Suppose we consider a mixture of
+two materials. The index of the mixture is not the average of the two
+indexes, but should be given in terms of the sum of the two
+polarizabilities, as in Eq. (<a href="#mjx-eqn-EqII3234">32.34</a>). If we ask about the
+index of, say, a sugar solution, the total polarizability is the sum
+of the polarizability of the water and that of the sugar. Each must,
+of course, be calculated using for $N$ the number per unit volume of
+the molecules of the particular kind. In other words, if a given
+solution has $N_1$ molecules of water, whose polarizability
+is $\alpha_1$, and $N_2$ molecules of sucrose (C$_{12}$H$_{22}$O$_{11}$),
+whose polarizability is $\alpha_2$, we should have that
+\begin{equation}
+\label{Eq:II:32:37}
+3\biggl(\frac{n^2-1}{n^2+2}\biggr)=
+N_1\alpha_1+N_2\alpha_2.
+\end{equation}
+</p>
+</div>
+<div id="Ch32-S5-p2" class="para">
+<p class="p">We can use this formula to test our theory against experiment by
+measuring the index for various concentrations of sucrose in water. We
+are making several assumptions here, however. Our formula assumes that
+there is no chemical action when the sucrose is dissolved and that the
+disturbances to the individual atomic oscillators are not too
+different for various concentrations. So our result is certainly only
+approximate. Anyway, let’s see how good it is.</p>
+</div>
+<div id="Ch32-S5-p3" class="para">
+<p class="p">We have picked the example of a sugar solution because there is a good
+table of measurements of the index of refraction in the
+<span class="text italic">Handbook of Chemistry and Physics</span> and also because sugar is a
+molecular crystal that goes into solution without ionizing or
+otherwise changing its chemical state.</p>
+</div>
+
+<div id="Ch32-T2" class="table">
+<div class="caption">
+<span class="tag">Table 32–2</span>Refractive index of sucrose solutions, and comparison with predictions of Eq. (<a href="#mjx-eqn-EqII3237">32.37</a>).</div>
+<table class="tabular">
+<tr class="tr">
+<td colspan="9">Data from Handbook</td>
+</tr>
+<tr class="tr">
+<td class="td center">A</td>
+<td class="td l center">B</td>
+<td class="td l center">C</td>
+<td class="td ll center">D</td>
+<td class="td l center">E</td>
+<td class="td l center">F</td>
+<td class="td l center">G</td>
+<td class="td l center">H</td>
+<td class="td l center">J</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:center;" align="center">Fraction of sucrose by weight</td>
+<td class="td l" style="text-align:center;" align="center">Density (g/cm$^3$)</td>
+<td class="td l" style="text-align:center;" align="center">$n$ at $20^\circ$C</td>
+<td class="td ll" style="text-align:center;" align="center">Moles of sucrose<sup>d</sup> per liter, $N_2/N_0$</td>
+<td class="td l" style="text-align:center;" align="center">Moles of water<sup>e</sup> per liter, $N_1/N_0$</td>
+<td class="td l" style="text-align:center;" align="center">$3\biggl(\dfrac{n^2-1}{n^2+2}\biggr)$</td>
+<td class="td l" style="text-align:center;" align="center">$N_1\alpha_1$</td>
+<td class="td l" style="text-align:center;" align="center">$N_2\alpha_2$</td>
+<td class="td l" style="text-align:center;" align="center">$N_0\alpha_2$ </td>
+</tr>
+<tr class="tr">
+<td class="td t center">$0$<sup>a</sup></td>
+<td class="td t l center">$0.9982$</td>
+<td class="td t l center">$1.333\phantom{0}$</td>
+<td class="td t ll center">$0$</td>
+<td class="td t l center">$55.5\phantom{0}$</td>
+<td class="td t l center">$0.617$</td>
+<td class="td t l center">$\underline{0.617}\phantom{0}$</td>
+<td class="td t l center">$0$</td>
+<td class="td t l center">—</td>
+</tr>
+<tr class="tr">
+<td class="td center">$0.30$</td>
+<td class="td l center">$1.1270$</td>
+<td class="td l center">$1.3811$</td>
+<td class="td ll center">$0.970$</td>
+<td class="td l center">$43.8\phantom{0}$</td>
+<td class="td l center">$0.698$</td>
+<td class="td l center">$0.487\phantom{0}$</td>
+<td class="td l center">$0.211$</td>
+<td class="td l center">$0.213$</td>
+</tr>
+<tr class="tr">
+<td class="td center">$0.50$</td>
+<td class="td l center">$1.2296$</td>
+<td class="td l center">$1.4200$</td>
+<td class="td ll center">$1.798$</td>
+<td class="td l center">$34.15$</td>
+<td class="td l center">$0.759$</td>
+<td class="td l center">$0.379\phantom{0}$</td>
+<td class="td l center">$0.380$</td>
+<td class="td l center">$0.211$</td>
+</tr>
+<tr class="tr">
+<td class="td center">$0.85$</td>
+<td class="td l center">$1.4454$</td>
+<td class="td l center">$1.5033$</td>
+<td class="td ll center">$3.59\phantom{0}$</td>
+<td class="td l center">$12.02$</td>
+<td class="td l center">$0.886$</td>
+<td class="td l center">$0.1335$</td>
+<td class="td l center">$0.752$</td>
+<td class="td l center">$0.210$</td>
+</tr>
+<tr class="tr">
+<td class="td center">$1.00$<sup>b</sup></td>
+<td class="td l center">$1.588\phantom{0}$</td>
+<td class="td l center">$1.5577$<sup>c</sup></td>
+<td class="td ll center">$4.64\phantom{0}$</td>
+<td class="td l center">$0$</td>
+<td class="td l center">$0.960$</td>
+<td class="td l center">$0$</td>
+<td class="td l center">$0.960$</td>
+<td class="td l center">$0.207$</td>
+</tr>
+<tr class="tr">
+<td class="td" colspan="9"><span class="text small"><sup>a</sup>pure&nbsp;water&nbsp;&nbsp; <sup>b</sup>sugar&nbsp;crystals&nbsp;&nbsp; <sup>c</sup>average&nbsp;(see&nbsp;text)&nbsp;&nbsp; <sup>d</sup>molecular&nbsp;weight&nbsp;of&nbsp;sucrose$=342$&nbsp;&nbsp; <sup>e</sup>molecular&nbsp;weight&nbsp;of&nbsp;water$=18$&nbsp;&nbsp;</span></td>
+</tr>
+</table>
+</div>
+
+<div id="Ch32-S5-p4" class="para">
+<p class="p">We give in the first three columns of Table <a href="#Ch32-T2">32–2</a> the data
+from the handbook. Column A is the percent of sucrose by weight,
+column B is the measured density (g/cm$^3$), and column C is the
+measured index of refraction for light whose wavelength is
+$589.3$ millimicrons. For pure sugar we have taken the measured index of
+sugar crystals. The crystals are not isotropic, so the measured index is
+different along different directions. The handbook gives three values:
+\begin{equation*}
+n_1=1.5376,\quad n_2=1.5651,\quad n_3=1.5705.
+\end{equation*}
+We have taken the average.</p>
+</div>
+
+<div id="Ch32-S5-p5" class="para">
+<p class="p">Now we could try to compute $n$ for each concentration, but we don’t
+know what value to take for $\alpha_1$ or $\alpha_2$. Let’s test the
+theory this way: We will assume that the polarizability of
+water ($\alpha_1$) is the same at all concentrations and compute the
+polarizability of sucrose by using the experiment of values for $n$
+and solving Eq. (<a href="#mjx-eqn-EqII3237">32.37</a>) for $\alpha_2$. If the theory is
+correct, we should get the same $\alpha_2$ for all concentrations.</p>
+</div>
+<div id="Ch32-S5-p6" class="para">
+<p class="p">First, we need to know $N_1$ and $N_2$: let’s express them in terms of
+Avogadro’s number, $N_0$. Let’s take one liter ($1000$ cm$^3$) for our
+unit of volume. Then $N_i/N_0$ is the weight per liter divided by the
+gram-molecular weight. And the weight per liter is the density
+(multiplied by $1000$ to get grams per liter) times the fractional
+weight of either the sucrose or the water. In this way, we get
+$N_2/N_0$ and $N_1/N_0$ as in columns D and E of the table.</p>
+</div>
+<div id="Ch32-S5-p7" class="para">
+<p class="p">In column F we have computed $3(n^2-1)/(n^2+2)$ from the experimental
+values of $n$ in column C. For pure water, $3(n^2-1)/(n^2+2)$
+is $0.617$, which is equal to just $N_1\alpha_1$. We can then fill in
+the rest of Column G, since for each row G/E may be in the same
+ratio—namely, $0.617:55.5$. Subtracting column G from column F, we get
+the contribution $N_2\alpha_2$ of the sucrose, shown in column H.
+Dividing these entries by the values of $N_2/N_0$ in column D, we get
+the value of $N_0\alpha_2$ shown in column J.</p>
+</div>
+<div id="Ch32-S5-p8" class="para">
+<p class="p">From our theory we would expect all the values of $N_0\alpha_2$ to be
+the same. They are not exactly equal, but pretty close. We can
+conclude that our ideas are fairly correct. Even more, we find that
+the polarizability of the sugar molecule doesn’t seem to depend much
+on its surroundings—its polarizability is nearly the same in a
+dilute solution as it is in the crystal.</p>
+</div>
+</div>
+<div id="Ch32-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">32–6</span>Waves in metals</h3>
+<div id="Ch32-S6-p1" class="para">
+<p class="p">The theory we have worked out in this chapter for solid materials can
+also be applied to good conductors, like metals, with very little
+modification. In metals some of the electrons have no binding force
+holding them to any particular atom; it is these “free” electrons
+which are responsible for the conductivity. There
+are other electrons which are bound, and the theory above is directly
+applicable to them. Their influence, however, is usually swamped by the
+effects of the conduction electrons. We will consider now only the
+effects of the free electrons.
+</p>
+</div>
+<div id="Ch32-S6-p2" class="para">
+<p class="p">If there is no restoring force on an electron—but still some
+resistance to its motion—its equation of motion differs from
+Eq. (<a href="#mjx-eqn-EqII321">32.1</a>) only because the term in $\omega_0^2x$ is
+lacking. So all we have to do is set $\omega_0^2=0$ in the rest of our
+derivations—except that there is one more difference. The reason that
+we had to distinguish between the average field and the local field in a
+dielectric is that in an insulator each of the dipoles is fixed in
+position, so that it has a definite relationship to the position of the
+others. But because the conduction electrons in a metal move around all
+over the place, the field on them <em class="emph">on the average</em> is just the
+average field $\FLPE$. So the correction we made to
+Eq. (<a href="#mjx-eqn-EqII328">32.8</a>) by using Eq. (<a href="#mjx-eqn-EqII3228">32.28</a>) should
+<em class="emph">not</em> be made for conduction electrons. Therefore the formula for
+the index of refraction for metals should look like
+Eq. (<a href="#mjx-eqn-EqII3227">32.27</a>), except with $\omega_0$ set equal to zero,
+namely,
+\begin{equation}
+\label{Eq:II:32:38}
+n^2=1+\frac{Nq_e^2}{m\epsO}\,\frac{1}{-\omega^2+i\gamma\omega}.
+\end{equation}
+
+This is only the contribution from the conduction electrons, which we
+will assume is the major term for metals.</p>
+</div>
+<div id="Ch32-F2" class="figure">
+<img src="img/FLP_II/f32-02/f32-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 32–2.</span>The motion of a free electron.
+</div>
+</div>
+<div id="Ch32-S6-p3" class="para">
+<p class="p">Now we even know how to find what value to use for $\gamma$, because it
+is related to the conductivity of the metal. In Chapter <a href="I_43.html">43</a>
+of Volume I we discussed how the conductivity of a metal comes from the
+diffusion of the free electrons through the crystal. The electrons go on
+a jagged path from one scattering to the next, and between scatterings
+they move freely except for an acceleration due to any average electric
+field (as shown in Fig. <a href="#Ch32-F2">32–2</a>). We found in
+Chapter <a href="I_43.html">43</a> of Volume I that the average drift velocity is
+just the acceleration times the average time $\tau$ between collisions.
+The acceleration is $q_eE/m$, so
+\begin{equation}
+\label{Eq:II:32:39}
+v_{\text{drift}}=\frac{q_eE}{m}\,\tau.
+\end{equation}
+
+This formula assumed that $E$ was constant, so that $v_{\text{drift}}$
+was a steady velocity. Since there is no average acceleration, the drag
+force is equal to the applied force. We have defined $\gamma$ by saying
+that $\gamma mv$ is the drag force [see Eq. (<a href="#mjx-eqn-EqII321">32.1</a>)], which
+is $q_eE$; therefore we have that
+\begin{equation}
+\label{Eq:II:32:40}
+\gamma=\frac{1}{\tau}.
+\end{equation}
+</p>
+</div>
+<div id="Ch32-S6-p4" class="para">
+<p class="p">Although we cannot easily measure $\tau$ directly, we can determine it
+by measuring the conductivity of the metal. It is found experimentally
+that an electric field $\FLPE$ in a metal produces a current with the
+density $\FLPj$ proportional to $\FLPE$ (for isotropic materials):
+\begin{equation*}
+\FLPj=\sigma\FLPE.
+\end{equation*}
+
+The proportionality constant $\sigma$ is called the <em class="emph">conductivity</em>.
+This is just what we expect from Eq. (<a href="#mjx-eqn-EqII3239">32.39</a>) if we set
+\begin{equation}
+j=Nq_ev_{\text{drift}}.\notag
+\end{equation}
+
+Then
+\begin{equation}
+\label{Eq:II:32:41}
+\sigma=\frac{Nq_e^2}{m}\,\tau.
+\end{equation}
+
+So $\tau$—and therefore $\gamma$—can be related to the observed electrical
+conductivity. Using Eqs. (<a href="#mjx-eqn-EqII3240">32.40</a>) and (<a href="#mjx-eqn-EqII3241">32.41</a>), we
+can rewrite our formula for the index, Eq. (<a href="#mjx-eqn-EqII3238">32.38</a>), in the following
+form:
+\begin{equation}
+\label{Eq:II:32:42}
+n^2=1+\frac{\sigma/\epsO}{i\omega(1+i\omega\tau)},
+\end{equation}
+
+where
+\begin{equation}
+\label{Eq:II:32:43}
+\tau=\frac{1}{\gamma}=\frac{m\sigma}{Nq_e^2}.
+\end{equation}
+
+This is a convenient formula for the index of refraction of metals.</p>
+</div>
+</div>
+<div id="Ch32-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">32–7</span>Low-frequency and high-frequency approximations; the skin depth and the plasma
+frequency</h3>
+<div id="Ch32-S7-p1" class="para">
+<p class="p">Our result, Eq. (<a href="#mjx-eqn-EqII3242">32.42</a>), for the index of refraction for
+metals predicts quite different characteristics for wave propagation
+at different frequencies. Let’s first see what happens at very
+<em class="emph">low</em> frequencies. If $\omega$ is small enough, we can
+approximate Eq. (<a href="#mjx-eqn-EqII3242">32.42</a>) by
+\begin{equation}
+\label{Eq:II:32:44}
+n^2=-i\,\frac{\sigma}{\epsO\omega}.
+\end{equation}
+
+Now, as you can check by taking the square,<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+\begin{equation}
+\sqrt{-i}=\frac{1-i}{\sqrt{2}};\notag
+\end{equation}
+
+so for low frequencies,
+\begin{equation}
+\label{Eq:II:32:45}
+n=\sqrt{\sigma/2\epsO\omega}\,(1-i).
+\end{equation}
+
+The real and imaginary parts of $n$ have the same magnitude. With such
+a large imaginary part to $n$, the wave is rapidly attenuated in the
+metal. Referring to Eq. (<a href="#mjx-eqn-EqII3236">32.36</a>), the amplitude of a wave
+going in the z-direction decreases as
+\begin{equation}
+\label{Eq:II:32:46}
+\exp\bigl[-\sqrt{\sigma\omega/2\epsO c^2}\,z\bigr].
+\end{equation}
+
+Let’s write this as
+\begin{equation}
+\label{Eq:II:32:47}
+e^{-z/\delta},
+\end{equation}
+
+where $\delta$ is then the distance in which the wave amplitude
+decreases by the factor $e^{-1}=1/2.72$—or roughly one-third. The
+amplitude of such a wave as a function of $z$ is shown in
+Fig. <a href="#Ch32-F3">32–3</a>. Since electromagnetic waves will penetrate into
+a metal only this distance, $\delta$ is called the <em class="emph">skin depth</em>. It
+is given by
+\begin{equation}
+\label{Eq:II:32:48}
+\delta=\sqrt{2\epsO c^2/\sigma\omega}.
+\end{equation}
+</p>
+</div>
+<div id="Ch32-F3" class="figure">
+<img src="img/FLP_II/f32-03/f32-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 32–3.</span>The amplitude of a transverse electromagnetic wave as a
+function of distance into a metal.
+</div>
+</div>
+<div id="Ch32-S7-p2" class="para">
+<p class="p">Now what do we mean by “low” frequencies? Looking at
+Eq. (<a href="#mjx-eqn-EqII3242">32.42</a>), we see that it can be approximated by
+Eq. (<a href="#mjx-eqn-EqII3244">32.44</a>) only if $\omega\tau$ is much less than one
+<em class="emph">and</em> if $\omega\epsO/\sigma$ is also much less than one—that is,
+our low-frequency approximation applies when
+\begin{equation}
+\omega\ll\frac{1}{\tau}\notag
+\end{equation}
+
+and
+\begin{equation}
+\label{Eq:II:32:49}
+\omega\ll\frac{\sigma}{\epsO}.
+\end{equation}
+</p>
+</div>
+<div id="Ch32-S7-p3" class="para">
+<p class="p">Let’s see what frequencies these correspond to for a typical metal
+like copper. We compute $\tau$ by using Eq. (<a href="#mjx-eqn-EqII3243">32.43</a>),
+and $\sigma/\epsO$, by using the measured conductivity. We take the
+following data from a handbook:
+<span class="eq-wide">
+\begin{align*}
+ &\sigma=5.76\times10^7\text{ (ohm$\cdot$meter)}^{-1},\\[2pt]
+ &\text{atomic weight${}=63.5$ grams},\\[2pt]
+ &\text{density${}=8.9$ grams$\cdot$cm$^{-3}$},\\[2pt]
+ &\text{Avogadro’s number${}=6.02\times10^{23}$ (gram atomic weight)$^{-1}$}.
+\end{align*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+ &\sigma=5.76\times10^7\text{ (ohm$\cdot$meter)}^{-1},\\[2pt]
+ &\text{atomic weight${}=63.5$ grams},\\[2pt]
+ &\text{density${}=8.9$ grams$\cdot$cm$^{-3}$},\\[2pt]
+ &\text{Avogadro’s number${}=$}\\[2pt]
+ &\phantom{Av}\text{$6.02\times 10^{23}$ (gram atomic weight)$^{-1}$}.
+\end{align*}
+</span>
+If we assume that there is one free electron per atom, then the number
+of electrons per cubic meter is
+\begin{equation*}
+N=8.5\times10^{28}\text{ meter}^{-3}.
+\end{equation*}
+
+Using
+\begin{align*}
+q_e &=1.6\times10^{-19}\text{ coulomb},\\[2pt]
+\epsO &=8.85\times10^{-12}\text{ farad}\cdot\text{meter}^{-1},\\[2pt]
+m &=9.11\times10^{-31}\text{ kg},
+\end{align*}
+
+we get
+\begin{align*}
+\tau &=2.4\times10^{-14}\text{ sec},\\[5pt]
+\frac{1}{\tau} &=4.1\times10^{13}\text{ sec}^{-1},\\[5pt]
+\frac{\sigma}{\epsO} &=6.5\times10^{18}\text{ sec}^{-1}.
+\end{align*}
+
+So for frequencies less than about $10^{12}$ cycles per second, copper
+will have the “low-frequency” behavior we describe (that means for
+waves whose free-space wavelength is longer than
+$0.3$ millimeters—<em class="emph">very</em> short radio waves!).</p>
+</div>
+<div id="Ch32-S7-p4" class="para">
+<p class="p">For these waves, the skin depth in copper is
+\begin{equation*}
+\delta=\sqrt{\frac{0.028\:\text{m}^2\cdot\text{sec}^{-1}}{\omega}}
+\end{equation*}
+
+For microwaves of $10{,}000$ megacycles per second ($3$-cm waves)
+\begin{equation*}
+\delta=6.7\times10^{-5}\text{ cm}.
+\end{equation*}
+
+The wave penetrates a very small distance.</p>
+</div>
+<div id="Ch32-S7-p5" class="para">
+<p class="p">We can see from this why in studying cavities (or waveguides) we
+needed to worry only about the fields inside the cavity, and not in
+the metal or outside the cavity. Also, we see why the losses in a
+cavity are reduced by a thin plating of silver or gold. The losses
+come from the current, which are appreciable only in a thin layer
+equal to the skin depth.</p>
+</div>
+<div id="Ch32-S7-p6" class="para">
+<p class="p">Suppose we look now at the index of a metal like copper at high
+frequencies. For very high frequencies $\omega\tau$ is much greater
+than one, and Eq. (<a href="#mjx-eqn-EqII3242">32.42</a>) is well approximated by
+\begin{equation}
+\label{Eq:II:32:50}
+n^2=1-\frac{\sigma}{\epsO\omega^2\tau}.
+\end{equation}
+
+For waves of high frequencies the index of a metal becomes real—and
+less than one! This is also evident from Eq. (<a href="#mjx-eqn-EqII3238">32.38</a>) if
+the dissipation term with $\gamma$ is neglected, as can be done for
+very large $\omega$. Equation (<a href="#mjx-eqn-EqII3238">32.38</a>) gives
+\begin{equation}
+\label{Eq:II:32:51}
+n^2=1-\frac{Nq_e^2}{m\epsO\omega^2},
+\end{equation}
+
+which is, of course, the same as Eq. (<a href="#mjx-eqn-EqII3250">32.50</a>). We have
+seen before the quantity $Nq_e^2/m\epsO$, which we called the square
+of the plasma frequency (Section <a href="II_07.html#Ch7-S3">7–3</a>):
+\begin{equation*}
+\omega_p^2=\frac{Nq_e^2}{\epsO m},
+\end{equation*}
+
+so we can write Eq. (<a href="#mjx-eqn-EqII3250">32.50</a>) or Eq. (<a href="#mjx-eqn-EqII3251">32.51</a>)
+as
+\begin{equation*}
+n^2=1-\biggl(\frac{\omega_p}{\omega}\biggr)^2.
+\end{equation*}
+
+The plasma frequency is a kind of “critical” frequency.</p>
+</div>
+<div id="Ch32-S7-p7" class="para">
+<p class="p">For $\omega&lt;\omega_p$ the index of a metal has an imaginary part, and
+waves are attenuated; but for $\omega\gg\omega_p$ the index is real,
+and the metal becomes transparent. You know, of course, that metals
+are reasonably transparent to x-rays. But some metals are even
+transparent in the ultraviolet. In Table <a href="#Ch32-T3">32–3</a> we give for
+several metals the experimental observed wavelength at which they
+begin to become transparent. In the second column we give the
+calculated critical wavelength $\lambda_p=2\pi
+c/\omega_p$. Considering that the experimental wavelength is not too
+well defined, the fit of the theory is fairly good.</p>
+</div>
+<div id="Ch32-T3" class="table">
+<div class="caption">
+<span class="tag">Table 32–3</span>Wavelengths below which the metal becomes transparent<sup>*</sup></div>
+<table class="tabular">
+<tr class="tr">
+<td class="td t l center">Metal</td>
+<td class="td t l center">$\lambda$ (experimental)</td>
+<td class="td t l r center">$\lambda_p=2\pi c/\omega_p$</td>
+</tr>
+<tr class="tr">
+<td class="td t l center">Li</td>
+<td class="td t l center">$1550$ <b>Å</b></td>
+<td class="td t l r center">$1550$ <b>Å</b></td>
+</tr>
+<tr class="tr">
+<td class="td l center">Na</td>
+<td class="td l center">$2100$&nbsp;&nbsp;&nbsp;</td>
+<td class="td l r center">$2090$&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="tr">
+<td class="td l center">K</td>
+<td class="td l center">$3150$&nbsp;&nbsp;&nbsp;</td>
+<td class="td l r center">$2870$&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="tr">
+<td class="td l center">Rb</td>
+<td class="td l center">$3400$&nbsp;&nbsp;&nbsp;</td>
+<td class="td l r center">$3220$&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="tr">
+<td class="td t" colspan="3"><span class="text small"><sup>*</sup>From: C. Kittel, <em>Introduction to Solid State Physics</em>, John Wiley and Sons, Inc., New York, 2nd ed., 1956, p. 266.</span></td>
+</tr>
+</table>
+</div>
+<div id="Ch32-S7-p8" class="para">
+<p class="p">You may wonder why the plasma frequency $\omega_p$ should have
+anything to do with the propagation of electromagnetic waves in
+metals. The plasma frequency came up in Chapter <a href="II_07.html">7</a> as the
+natural frequency of <em class="emph">density</em> oscillations of the free
+electrons. (A clump of electrons is repelled by electric forces, and
+the inertia of the electrons leads to an oscillation of density.) So
+<em class="emph">longitudinal</em> plasma waves are resonant at $\omega_p$. But we
+are now talking about <em class="emph">transverse</em> electromagnetic waves, and we
+have found that transverse waves are absorbed for frequencies
+below $\omega_p$. (It’s an interesting and <em class="emph">not</em> accidental
+coincidence.)</p>
+</div>
+<div id="Ch32-S7-p9" class="para">
+<p class="p">Although we have been talking about wave propagation in metals, you
+appreciate by this time the universality of the phenomena of
+physics—that it doesn’t make any difference whether the free electrons
+are in a metal or whether they are in the plasma of the
+ionosphere of the earth, or in the atmosphere of a
+star. To understand radio propagation in the
+ionosphere, we can use the same expressions—using,
+of course, the proper values for $N$ and $\tau$. We can see now why long
+radio waves are absorbed or reflected by the
+ionosphere, whereas short waves go right through.
+(Short waves must be used for communication with satellites.)
+</p>
+</div>
+<div id="Ch32-S7-p10" class="para">
+<p class="p">We have talked about the high- and low-frequency extremes for wave
+propagation in metals. For the in-between frequencies the full-blown
+formula of Eq. (<a href="#mjx-eqn-EqII3242">32.42</a>) must be used. In general, the
+index will have real and imaginary parts; the wave is attenuated as it
+propagates into the metal. For very thin layers, metals are somewhat
+transparent even at optical frequencies. As an example, special
+goggles for people who work around high-temperature furnaces are made
+by evaporating a thin layer of gold on glass. The visible light is
+transmitted fairly well—with a strong green tinge—but the infrared
+is strongly absorbed.</p>
+</div>
+<div id="Ch32-S7-p11" class="para">
+<p class="p">Finally, it cannot have escaped the reader that many of these formulas
+resemble in some ways those for the dielectric constant $\kappa$
+discussed in Chapter <a href="II_10.html">10</a>. The dielectric constant $\kappa$
+measures the response of the material to a constant field, that is,
+for $\omega=0$. If you look carefully at the definition of $n$
+and $\kappa$ you see that $\kappa$ is simply the limit of $n^2$
+as $\omega\to0$. Indeed, placing $\omega=0$ and $n^2=\kappa$ in equations
+of this chapter will reproduce the equations of the theory of the
+dielectric constant of Chapter <a href="II_11.html">11</a>.</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  Throughout
+this chapter we follow the
+notation of Chapter <a href="I_31.html">31</a> of Volume I, and let $\alpha$
+represent the <em class="emph">atomic</em> polarizability
+as defined here. In the
+last chapter, we used $\alpha$ to represent the <em class="emph">volume</em>
+polarizability—the ratio of $P$ to $E$. In the notation of
+<em class="emph">this</em> chapter $P=N\alpha\epsO E$ (see Eq. <a href="#mjx-eqn-EqII328">32.8</a>).
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  Or writing
+$-i=e^{-i\pi/2}$; $\sqrt{-i}=$ $e^{-i\pi/4}=$ $\cos\pi/4-i\sin\pi/4$, which
+gives the same result.
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

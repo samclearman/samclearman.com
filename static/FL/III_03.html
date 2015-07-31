@@ -1,0 +1,1472 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 3: Probability Amplitudes</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "3." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch3" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">3</span>Probability Amplitudes</h2>
+<div id="Ch3-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">3–1</span>The laws for combining amplitudes</h3>
+<div id="Ch3-S1-p1" class="para">
+<p class="p">When Schrödinger first
+discovered the correct laws of quantum mechanics, he wrote an equation which
+described the amplitude to find a particle in various places. This equation was
+very similar to the equations that were already known to classical
+physicists—equations that they had used in describing the motion of air in a
+sound wave, the transmission of light, and so on. So most of the time at the
+beginning of quantum mechanics was spent in solving this equation. But at the
+same time an understanding was being developed, particularly by
+Born and Dirac, of the basically new physical ideas behind quantum mechanics. As
+quantum mechanics developed further, it turned out that there were a large
+number of things which were not directly encompassed in the Schrödinger
+equation—such as the spin of the electron, and various relativistic phenomena.
+Traditionally, all courses in quantum mechanics have begun in the same way,
+retracing the path followed in the historical development of the subject. One
+first learns a great deal about classical mechanics so that he will be able to
+understand how to solve the Schrödinger equation. Then he spends a long time
+working out various solutions. Only after a detailed study of this equation does
+he get to the “advanced” subject of the electron’s spin.</p>
+</div>
+<div id="Ch3-S1-p2" class="para">
+<p class="p">We had also originally considered that the right way to conclude these
+lectures on physics was to show how to solve the equations of
+classical physics in complicated situations—such as the description
+of sound waves in enclosed regions, modes of electromagnetic radiation
+in cylindrical cavities, and so on. That was the original plan for
+this course. However, we have decided to abandon that plan and to give
+instead an introduction to the quantum mechanics. We have come to the
+conclusion that what are usually called the advanced parts of quantum
+mechanics are, in fact, quite simple. The mathematics that is involved
+is particularly simple, involving simple algebraic operations and no
+differential equations or at most only very simple ones. The only
+problem is that we must jump the gap of no longer being able to
+describe the behavior <em class="emph">in detail</em> of particles in space. So this
+is what we are going to try to do: to tell you about what
+conventionally would be called the “advanced” parts of quantum
+mechanics. But they are, we assure you, by all odds the simplest
+parts—in a deep sense of the word—as well as the most basic
+parts. This is frankly a pedagogical experiment; it has never been
+done before, as far as we know.</p>
+</div>
+<div id="Ch3-S1-p3" class="para">
+<p class="p">In this subject we have, of course, the difficulty that the quantum
+mechanical behavior of things is quite strange. Nobody has an everyday
+experience to lean on to get a rough, intuitive idea of what will
+happen. So there are two ways of presenting the subject: We could
+either describe what can happen in a rather rough physical way,
+telling you more or less what happens without giving the precise laws
+of everything; or we could, on the other hand, give the precise laws
+in their abstract form. But, then because of the abstractions, you
+wouldn’t know what they were all about, physically. The latter method
+is unsatisfactory because it is completely abstract, and the first way
+leaves an uncomfortable feeling because one doesn’t know exactly what
+is true and what is false. We are not sure how to overcome this
+difficulty. You will notice, in fact, that Chapters <a href="III_01.html">1</a>
+and <a href="III_02.html">2</a> showed this problem. The first chapter was
+relatively precise; but the second chapter was a rough description of
+the characteristics of different phenomena. Here, we will try to find
+a happy medium between the two extremes.</p>
+</div>
+<div id="Ch3-S1-p4" class="para">
+<p class="p">We will begin in this chapter by dealing with some general quantum
+mechanical ideas. Some of the statements will be quite precise, others
+only partially precise. It will be hard to tell you as we go along
+which is which, but by the time you have finished the rest of the
+book, you will understand in looking back which parts hold up and
+which parts were only explained roughly. The chapters which follow
+this one will not be so imprecise. In fact, one of the reasons we have
+tried carefully to be precise in the succeeding chapters is so that we
+can show you one of the most beautiful things about quantum
+mechanics—how much can be deduced from so little.</p>
+</div>
+<div id="Ch3-F1" class="figure">
+<img src="img/FLP_III/f03-01/f03-01_tc_iPad_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–1.</span>Interference experiment with electrons.
+</div>
+</div>
+<div id="Ch3-S1-p5" class="para">
+<p class="p">We begin by discussing again the superposition of <em class="emph">probability
+amplitudes</em>. As an example we will refer to the experiment described in
+Chapter <a href="III_01.html">1</a>, and shown again here in
+Fig. <a href="#Ch3-F1">3–1</a>. There is a source $s$ of particles, say
+electrons; then there is a wall with two slits in it; after the wall,
+there is a detector located at some position $x$. We ask for the
+probability that a particle will be found at $x$. Our <em class="emph">first
+general principle</em> in quantum mechanics is that the <em class="emph">probability</em>
+that a particle will arrive at $x$, when let out at the source $s$, can
+be represented quantitatively by the absolute square of a complex number
+called a <em class="emph">probability amplitude</em>—in this case, the “amplitude
+that a particle from $s$ will arrive at $x$.” We will use such
+amplitudes so frequently that we will use a shorthand
+notation—invented by Dirac
+and generally used in quantum
+mechanics—to represent this idea. We write the probability amplitude
+this way:
+\begin{equation}
+\label{Eq:III:3:1}
+\braket{\text{Particle arrives at $x$}}{\text{particle leaves $s$}}.
+\end{equation}
+
+In other words, the two brackets $\langle\:\rangle$ are a sign
+equivalent to “the amplitude that”; the expression at the
+<em class="emph">right</em> of the vertical line always gives the <em class="emph">starting</em>
+condition, and the one at the left, the <em class="emph">final</em>
+condition. Sometimes it will also be convenient to abbreviate still
+more and describe the initial and final conditions by single
+letters. For example, we may on occasion write the
+amplitude (<a href="#mjx-eqn-EqIII31">3.1</a>) as
+\begin{equation}
+\label{Eq:III:3:2}
+\braket{x}{s}.
+\end{equation}
+
+We want to emphasize that such an amplitude is, of course, just a
+single number—a <em class="emph">complex</em> number.</p>
+</div>
+<div id="Ch3-S1-p6" class="para">
+<p class="p">We have already seen in the discussion of Chapter <a href="III_01.html">1</a>
+that when there are two ways for the particle to reach the detector,
+the resulting probability is not the sum of the two probabilities, but
+must be written as the absolute square of the sum of two
+amplitudes. We had that the probability that an electron arrives at
+the detector when both paths are open is
+\begin{equation}
+\label{Eq:III:3:3}
+P_{12}=\abs{\phi_1+\phi_2}^2.
+\end{equation}
+
+We wish now to put this result in terms of our new notation. First,
+however, we want to state our <em class="emph">second general principle</em> of
+quantum mechanics: When a particle can reach a given state by two
+possible routes, the total amplitude for the process is the <em class="emph">sum
+of the amplitudes</em> for the two routes considered separately. In our
+new notation we write that
+\begin{equation}
+\label{Eq:III:3:4}
+\braket{x}{s}_{\text{both holes open}}=
+\braket{x}{s}_{\text{through $1$}}+
+\braket{x}{s}_{\text{through $2$}}.
+\end{equation}
+
+Incidentally, we are going to suppose that the holes $1$ and $2$ are
+small enough that when we say an electron goes through the hole, we
+don’t have to discuss which part of the hole. We could, of course,
+split each hole into pieces with a certain amplitude that the electron
+goes to the top of the hole and the bottom of the hole and so on. We
+will suppose that the hole is small enough so that we don’t have to
+worry about this detail. That is part of the roughness involved; the
+matter can be made more precise, but we don’t want to do so at this
+stage.</p>
+</div>
+<div id="Ch3-S1-p7" class="para">
+<p class="p">Now we want to write out in more detail what we can say about the
+amplitude for the process in which the electron reaches the detector
+at $x$ by way of hole $1$. We can do that by using our <em class="emph">third
+general principle</em>: When a particle goes by some particular route the
+amplitude for that route can be written as the <em class="emph">product</em> of the
+<em class="emph">amplitude</em> to go part way with the <em class="emph">amplitude</em> to go the
+rest of the way. For the setup of Fig. <a href="#Ch3-F1">3–1</a> the amplitude
+to go from $s$ to $x$ by way of hole $1$ is equal to the amplitude to go
+from $s$ to $1$, multiplied by the amplitude to go from $1$ to $x$.
+\begin{equation}
+\label{Eq:III:3:5}
+\braket{x}{s}_{\text{via $1$}}=\braket{x}{1}\braket{1}{s}.
+\end{equation}
+
+Again this result is not completely precise. We should also include a
+factor for the amplitude that the electron will get through the hole
+at $1$; but in the present case it is a simple hole, and we will take
+this factor to be unity.</p>
+</div>
+<div id="Ch3-S1-p8" class="para">
+<p class="p">You will note that Eq. (<a href="#mjx-eqn-EqIII35">3.5</a>) appears to be written in
+reverse order. It is to be read from right to left: The electron goes
+from $s$ to $1$ and then from $1$ to $x$. In summary, if events occur
+in succession—that is, if you can analyze one of the routes of the
+particle by saying it does this, then it does this, then it does
+that—the resultant amplitude for that route is calculated by
+multiplying in succession the amplitude for each of the successive
+events. Using this law we can rewrite Eq. (<a href="#mjx-eqn-EqIII34">3.4</a>) as
+\begin{equation*}
+\braket{x}{s}_{\text{both}}=\braket{x}{1}\braket{1}{s}+
+\braket{x}{2}\braket{2}{s}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch3-F2" class="figure">
+<img src="img/FLP_III/f03-02/f03-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–2.</span>A more complicated interference experiment.
+</div>
+</div>
+<div id="Ch3-S1-p9" class="para">
+<p class="p">Now we wish to show that just using these principles we can calculate
+a much more complicated problem like the one shown in
+Fig. <a href="#Ch3-F2">3–2</a>. Here we have two walls, one with two holes, $1$
+and $2$, and another which has three holes, $a$, $b$, and $c$. Behind
+the second wall there is a detector at $x$, and we want to know the
+amplitude for a particle to arrive there. Well, one way you can find
+this is by calculating the superposition, or interference, of the waves
+that go through; but you can also do it by saying that there are six
+possible routes and superposing an amplitude for each. The electron can
+go through hole $1$, then through hole $a$, and then to $x$; or it could
+go through hole $1$, then through hole $b$, and then to $x$; and so on.
+According to our second principle, the amplitudes for alternative routes
+add, so we should be able to write the amplitude from $s$ to $x$ as a
+sum of six separate amplitudes. On the other hand, using the third
+principle, each of these separate amplitudes can be written as a product
+of three amplitudes. For example, one of them is the amplitude for $s$
+to $1$, times the amplitude for $1$ to $a$, times the amplitude for $a$
+to $x$. Using our shorthand notation, we can write the complete
+amplitude to go from $s$ to $x$ as
+<span class="eq-wide">
+\begin{equation*}
+\braket{x}{s}=
+\braket{x}{a}\braket{a}{1}\braket{1}{s}+
+\braket{x}{b}\braket{b}{1}\braket{1}{s}+
+\dotsb+
+\braket{x}{c}\braket{c}{2}\braket{2}{s}.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+
+\begin{align*}
+\braket{x}{s}&=
+\braket{x}{a}\braket{a}{1}\braket{1}{s}+
+\braket{x}{b}\braket{b}{1}\braket{1}{s}+\\[.75ex]
+&\dotsb+\braket{x}{c}\braket{c}{2}\braket{2}{s}.
+\end{align*}
+
+</span>
+We can save writing by using the summation notation
+\begin{equation}
+\label{Eq:III:3:6}
+\braket{x}{s}=\sum_{\substack{i=1,2\\\alpha=a,b,c}}
+\braket{x}{\alpha}\braket{\alpha}{i}\braket{i}{s}.
+\end{equation}
+</p>
+</div>
+<div id="Ch3-S1-p10" class="para">
+<p class="p">In order to make any calculations using these methods, it is,
+naturally, necessary to know the amplitude to get from one place to
+another. We will give a rough idea of a typical amplitude. It leaves
+out certain things like the polarization of light or the spin of the
+electron, but aside from such features it is quite accurate. We give
+it so that you can solve problems involving various combinations of
+slits. Suppose a particle with a definite energy is going in empty
+space from a location $\FLPr_1$ to a location $\FLPr_2$. In other
+words, it is a free particle with no forces on it. Except for a
+numerical factor in front, the amplitude to go from $\FLPr_1$
+to $\FLPr_2$ is
+\begin{equation}
+\label{Eq:III:3:7}
+\braket{\FLPr_2}{\FLPr_1}=\frac{e^{i\FLPp\cdot\FLPr_{12}/\hbar}}{r_{12}},
+\end{equation}
+
+where $\FLPr_{12}=\FLPr_2-\FLPr_1$, and $\FLPp$ is the momentum which
+is related to the energy $E$ by the relativistic equation
+\begin{equation*}
+p^2c^2=E^2-(m_0c^2)^2,
+\end{equation*}
+
+or the nonrelativistic equation
+\begin{equation*}
+\frac{p^2}{2m}=\text{Kinetic energy}.
+\end{equation*}
+
+Equation (<a href="#mjx-eqn-EqIII37">3.7</a>) says in effect that the particle has
+wavelike properties, the amplitude propagating as a wave with a wave
+number equal to the momentum divided by $\hbar$.</p>
+</div>
+<div id="Ch3-S1-p11" class="para">
+<p class="p">In the most general case, the amplitude and the
+corresponding probability will also involve the time. For most of these
+initial discussions we will suppose that the source always emits the
+particles with a given energy so we will not need to worry about the
+time. But we could, in the general case, be interested in some other
+questions. Suppose that a particle is liberated at a certain place $P$
+at a certain time, and you would like to know the amplitude for it to
+arrive at some location, say $\FLPr$, at some later time. This could be
+represented symbolically as the amplitude $\braket{\FLPr,t=t_1}{P,t=0}$.
+Clearly, this will depend upon both $\FLPr$ and $t$. You will get
+different results if you put the detector in different places and
+measure at different times. This function of $\FLPr$ and $t$, in
+general, satisfies a differential equation which is a wave equation. For
+example, in a nonrelativistic case it is the Schrödinger equation. One
+has then a wave equation analogous to the equation for electromagnetic
+waves or waves of sound in a gas. However, it must be emphasized that
+the wave function that satisfies the equation is not like a real wave in
+space; one cannot picture any kind of reality to this wave as one does
+for a sound wave.</p>
+</div>
+<div id="Ch3-S1-p12" class="para">
+<p class="p">Although one may be tempted to think in terms of “particle waves”
+when dealing with one particle, it is not a good idea, for if there
+are, say, two particles, the amplitude to find one at $\FLPr_1$ and
+the other at $\FLPr_2$ is not a simple wave in three-dimensional space,
+but depends on the <em class="emph">six</em> space variables $\FLPr_1$
+and $\FLPr_2$. If we are, for example, dealing with two (or more)
+particles, we will need the following additional principle: Provided
+that the two particles do not interact, the amplitude that one
+particle will do one thing <em class="emph">and</em> the other one something else is
+the product of the two amplitudes that the two particles would do the
+two things separately. For example, if $\braket{a}{s_1}$ is the
+amplitude for particle $1$ to go from $s_1$ to $a$, and
+$\braket{b}{s_2}$ is the amplitude for particle $2$ to go from $s_2$
+to $b$, the amplitude that <i>both</i> things will happen together is
+\begin{equation*}
+\braket{a}{s_1}\braket{b}{s_2}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch3-S1-p13" class="para">
+<p class="p">There is one more point to emphasize. Suppose that we didn’t know
+where the particles in Fig. <a href="#Ch3-F2">3–2</a> come from before arriving
+at holes $1$ and $2$ of the first wall. We can still make a prediction
+of what will happen beyond the wall (for example, the amplitude to
+arrive at $x$) provided that we are given two numbers: the amplitude to
+have arrived at $1$ and the amplitude to have arrived at $2$. In other
+words, because of the fact that the amplitude for successive events
+multiplies, as shown in Eq. (<a href="#mjx-eqn-EqIII36">3.6</a>), all you need to know to
+continue the analysis is two numbers—in this particular case
+$\braket{1}{s}$ and $\braket{2}{s}$. These two complex numbers are
+enough to predict all the future. That is what really makes quantum
+mechanics easy. It turns out that in later chapters we are going to do
+just such a thing when we specify a starting condition in terms of two
+(or a few) numbers. Of course, these numbers depend upon where the
+source is located and possibly other details about the apparatus, but
+given the two numbers, we do not need to know any more about such
+details.</p>
+</div>
+</div>
+<div id="Ch3-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">3–2</span>The two-slit interference pattern</h3>
+<div id="Ch3-S2-p1" class="para">
+<p class="p">Now we would like to consider a matter which was discussed in some
+detail in Chapter <a href="III_01.html">1</a>. This time we will do it with the
+full glory of the amplitude idea to show you how it works out. We take
+the same experiment shown in Fig. <a href="#Ch3-F1">3–1</a>, but now with the
+addition of a light source behind the two holes, as shown in
+Fig. <a href="#Ch3-F3">3–3</a>. In Chapter <a href="III_01.html">1</a>, we discovered the
+following interesting result. If we looked behind slit $1$ and saw a
+photon scattered from there, then the distribution obtained for the
+electrons at $x$ in coincidence with these photons was the same as
+though slit $2$ were closed. The total distribution for electrons that
+had been “seen” at either slit $1$ or slit $2$ was the sum of the
+separate distributions and was completely different from the
+distribution with the light turned off. This was true at least if we
+used light of short enough wavelength. If the wavelength was made longer
+so we could not be sure at which hole the scattering had occurred, the
+distribution became more like the one with the light turned off.</p>
+</div>
+<div id="Ch3-F3" class="figure">
+<img src="img/FLP_III/f03-03/f03-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–3.</span>An experiment to determine which hole the electron goes through.
+</div>
+</div>
+<div id="Ch3-S2-p2" class="para">
+<p class="p">Let’s examine what is happening by using our new notation and the
+principles of combining amplitudes. To simplify the writing, we can
+again let $\phi_1$ stand for the amplitude that the electron will
+arrive at $x$ by way of hole $1$, that is,
+\begin{equation*}
+\phi_1=\braket{x}{1}\braket{1}{s}.
+\end{equation*}
+
+Similarly, we’ll let $\phi_2$ stand for the amplitude that the
+electron gets to the detector by way of hole $2$:
+\begin{equation*}
+\phi_2=\braket{x}{2}\braket{2}{s}.
+\end{equation*}
+
+These are the amplitudes to go through the two holes and arrive at $x$
+if there is no light. Now if there is light, we ask ourselves the
+question: What is the amplitude for the process in which the electron
+starts at $s$ and a photon is liberated by the light source $L$,
+ending with the electron at $x$ and a photon seen behind slit $1$?
+Suppose that we observe the photon behind slit $1$ by means of a
+detector $D_1$, as shown in Fig. <a href="#Ch3-F3">3–3</a>, and use a similar
+detector $D_2$ to count photons scattered behind hole $2$. There will be
+an amplitude for a photon to arrive at $D_1$ and an electron at $x$, and
+also an amplitude for a photon to arrive at $D_2$ and an electron
+at $x$. Let’s try to calculate them.</p>
+</div>
+<div id="Ch3-S2-p3" class="para">
+<p class="p">Although we don’t have the correct mathematical formula for all the
+factors that go into this calculation, you will see the spirit of it
+in the following discussion. First, there is the
+amplitude $\braket{1}{s}$ that an electron goes from the source to
+hole $1$. Then we can suppose that there is a certain amplitude that while
+the electron is at hole $1$ it scatters a photon into the
+detector $D_1$. Let us represent this amplitude by $a$. Then there is the
+amplitude $\braket{x}{1}$ that the electron goes from slit $1$ to the
+electron detector at $x$. The amplitude that the electron goes from
+$s$ to $x$ via slit $1$ <em class="emph">and</em> scatters a photon into $D_1$ is
+then
+\begin{equation*}
+\braket{x}{1}\,a\,\braket{1}{s}.
+\end{equation*}
+
+Or, in our previous notation, it is just $a\phi_1$.</p>
+</div>
+<div id="Ch3-S2-p4" class="para">
+<p class="p">There is also some amplitude that an electron going through slit $2$
+will scatter a photon into counter $D_1$. You say, “That’s
+impossible; how can it scatter into counter $D_1$ if it is only
+looking at hole $1$?”  If the wavelength is long enough, there are
+diffraction effects, and it is certainly possible. If the apparatus is
+built well and if we use photons of short wavelength, then the
+amplitude that a photon will be scattered into detector $1$, from an
+electron at $2$ is very small. But to keep the discussion general we
+want to take into account that there is always some such amplitude,
+which we will call $b$. Then the amplitude that an electron goes via
+slit $2$ <em class="emph">and</em> scatters a photon into $D_1$ is
+\begin{equation*}
+\braket{x}{2}\,b\,\braket{2}{s}=b\phi_2.
+\end{equation*}
+
+</p>
+</div>
+<div id="Ch3-S2-p5" class="para">
+<p class="p">The amplitude to find the electron at $x$ and the photon in $D_1$ is
+the sum of two terms, one for each possible path for the
+electron. Each term is in turn made up of two factors: first, that the
+electron went through a hole, and second, that the photon is scattered
+by such an electron into detector $1$; we have
+\begin{equation}
+\label{Eq:III:3:8}
+\biggl\langle
+\begin{subarray}{l}
+\displaystyle
+\text{electron at $x$}\\[1ex]
+\displaystyle
+\text{photon at $D_1$}
+\end{subarray}
+\!\!
+\biggm|
+\!
+\begin{subarray}{l}
+\displaystyle
+\text{electron from $s$}\\[1ex]
+\displaystyle
+\text{photon from $L$}
+\end{subarray}
+\biggr\rangle=
+a\phi_1\!+b\phi_2.
+\end{equation}
+</p>
+</div>
+<div id="Ch3-S2-p6" class="para">
+<p class="p">We can get a similar expression when the photon is found in the other
+detector $D_2$. If we assume for simplicity that the system is
+symmetrical, then $a$ is also the amplitude for a photon in $D_2$ when
+an electron passes through hole $2$, and $b$ is the amplitude for a
+photon in $D_2$ when the electron passes through hole $1$. The
+corresponding total amplitude for a photon at $D_2$ and an electron
+at $x$ is
+\begin{equation}
+\label{Eq:III:3:9}
+\biggl\langle
+\begin{subarray}{l}
+\displaystyle
+\text{electron at $x$}\\[1ex]
+\displaystyle
+\text{photon at $D_2$}
+\end{subarray}
+\!\!
+\biggm|
+\!
+\begin{subarray}{l}
+\displaystyle
+\text{electron from $s$}\\[1ex]
+\displaystyle
+\text{photon from $L$}
+\end{subarray}
+\biggr\rangle=
+a\phi_2\!+b\phi_1.
+\end{equation}
+</p>
+</div>
+<div id="Ch3-S2-p7" class="para">
+<p class="p">Now we are finished. We can easily calculate the probability for
+various situations. Suppose that we want to know with what probability
+we get a count in $D_1$ and an electron at $x$. That will be the
+absolute square of the amplitude given in Eq. (<a href="#mjx-eqn-EqIII38">3.8</a>),
+namely, just $\abs{a\phi_1+b\phi_2}^2$. Let’s look more carefully at
+this expression. First of all, if $b$ is zero—which is the way we
+would like to design the apparatus—then the answer is
+simply $\abs{\phi_1}^2$ diminished in total amplitude by the
+factor $\abs{a}^2$. This is the probability distribution that you would get
+if there were only one hole—as shown in the graph of
+Fig. <a href="#Ch3-F4">3–4</a>(a). On the other hand, if the wavelength is very
+long, the scattering behind hole $2$ into $D_1$ may be just about the
+same as for hole $1$. Although there may be some phases involved in $a$
+and $b$, we can ask about a simple case in which the two phases are
+equal. If $a$ is practically equal to $b$, then the total probability
+becomes $\abs{\phi_1+\phi_2}^2$ multiplied by $\abs{a}^2$, since the
+common factor $a$ can be taken out. This, however, is just the
+probability distribution we would have gotten without the photons at
+all. Therefore, in the case that the wavelength is very long—and the
+photon detection ineffective—you return to the original distribution
+curve which shows interference effects, as shown in
+Fig. <a href="#Ch3-F4">3–4</a>(b). In the case that the detection is partially
+effective, there is an interference between a lot of $\phi_1$ and a
+little of $\phi_2$, and you will get an intermediate distribution such
+as is sketched in Fig. <a href="#Ch3-F4">3–4</a>(c). Needless to say, if we
+look for coincidence counts of photons at $D_2$ and electrons at $x$, we
+will get the same kinds of results. If you remember the discussion in
+Chapter <a href="III_01.html">1</a>, you will see that these results give a
+quantitative description of what was described there.</p>
+</div>
+<div id="Ch3-F4" class="figure">
+<img src="img/FLP_III/f03-04/f03-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–4.</span>The probability of counting an electron at $x$ in coincidence with a
+photon at $D$ in the experiment of Fig. <a href="#Ch3-F3">3–3</a>: (a) for
+$b=0$; (b) for $b=a$; (c) for $0&lt;b&lt;a$.
+</div>
+</div>
+<div id="Ch3-S2-p8" class="para">
+<p class="p">Now we would like to emphasize an important point so that you will
+avoid a common error. Suppose that you only want the amplitude that
+the electron arrives at $x$, <em class="emph">regardless</em> of whether the photon
+was counted at $D_1$ or $D_2$. Should you add the amplitudes given in
+Eqs. (<a href="#mjx-eqn-EqIII38">3.8</a>) and (<a href="#mjx-eqn-EqIII39">3.9</a>)? No! You must
+<em class="emph">never add amplitudes for different and distinct final
+states</em>. Once the photon is accepted by one of the photon counters, we
+can always determine which alternative occurred if we want, without
+any further disturbance to the system. Each alternative has a
+probability completely independent of the other. To repeat, do not add
+amplitudes for different <em class="emph">final</em> conditions, where by “final”
+we mean at that moment the <em class="emph">probability</em> is desired—that is,
+when the experiment is “finished.” You do add the amplitudes for the
+different <em class="emph">indistinguishable</em> alternatives inside the experiment,
+before the complete process is finished. At the end of the process you
+may say that you “don’t want to look at the photon.” That’s your
+business, but you still do not add the amplitudes. Nature does not
+know what you are looking at, and she behaves the way she is going to
+behave whether you bother to take down the data or not. So here we
+must not add the amplitudes. We first square the amplitudes for all
+possible different final events and then sum. The correct result for
+an electron at $x$ and a photon at either $D_1$ or $D_2$ is
+\begin{gather}
+\biggl\lvert
+\biggl\langle
+\begin{subarray}{l}
+\displaystyle
+\text{e at $x$}\\[1ex]
+\displaystyle
+\text{ph at $D_1$}
+\end{subarray}\!\!
+\biggm|\!
+\begin{subarray}{l}
+\displaystyle
+\text{e from $s$}\\[1ex]
+\displaystyle
+\text{ph from $L$}
+\end{subarray}
+\biggr\rangle
+\biggr\rvert^2\!\!+
+\biggl\lvert
+\biggl\langle
+\begin{subarray}{l}
+\displaystyle
+\text{e at $x$}\\[1ex]
+\displaystyle
+\text{ph at $D_2$}
+\end{subarray}\!\!
+\biggm|\!
+\begin{subarray}{l}
+\displaystyle
+\text{e from $s$}\\[1ex]
+\displaystyle
+\text{ph from $L$}
+\end{subarray}
+\biggr\rangle
+\biggr\rvert^2\notag\\[2ex]
+\label{Eq:III:3:10}
+=\abs{a\phi_1\!+b\phi_2}^2+\;\abs{a\phi_2\!+b\phi_1}^2.
+\end{gather}
+</p>
+</div>
+</div>
+<div id="Ch3-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">3–3</span>Scattering from a crystal</h3>
+<div id="Ch3-F5" class="figure">
+<img src="img/FLP_III/f03-05/f03-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 3–5.</span>Measuring the scattering of neutrons by a crystal.
+</div>
+</div>
+<div id="Ch3-S3-p1" class="para">
+<p class="p">Our next example is a phenomenon in which we have to analyze the
+interference of probability amplitudes somewhat carefully. We look at
+the process of the scattering of neutrons from a crystal. Suppose we
+have a crystal which has a lot of atoms with nuclei at their centers,
+arranged in a periodic array, and a neutron beam that comes from far
+away. We can label the various nuclei in the crystal by an index $i$,
+where $i$ runs over the integers $1$, $2$, $3$, …, $N$, with $N$
+equal to the total number of atoms. The problem is to calculate the
+probability of getting a neutron into a counter with the arrangement
+shown in Fig. <a href="#Ch3-F5">3–5</a>. For any particular atom $i$, the
+amplitude that the neutron arrives at the counter $C$ is the amplitude
+that the neutron gets from the source $S$ to nucleus $i$, multiplied by
+the amplitude $a$ that it gets scattered there, multiplied by the
+amplitude that it gets from $i$ to the counter $C$. Let’s write that
+down:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:3:11}
+\braket{\text{neutron at $C$}}{\text{neutron from $S$}}_{\text{via $i$}}=
+\braket{C}{i}\,a\,\braket{i}{S}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\braket{\text{neutron at $C$}}{\text{neutron from $S$}}_{\text{via $i$}}\notag\\[.5ex]
+\label{Eq:III:3:11}
+=\braket{C}{i}\,a\,\braket{i}{S}.
+\end{gather}
+</span>
+In writing this equation we have assumed that the scattering
+amplitude $a$ is the same for all atoms. We have here a large number of
+apparently indistinguishable routes. They are indistinguishable
+because a low-energy neutron is scattered from a nucleus without
+knocking the atom out of its place in the crystal—no “record” is
+left of the scattering. According to the earlier discussion, the total
+amplitude for a neutron at $C$ involves a sum of Eq. (<a href="#mjx-eqn-EqIII311">3.11</a>)
+over all the atoms:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:3:12}
+\braket{\text{neutron at $C$}}{\text{neutron from $S$}}=
+\sum_{i=1}^N\braket{C}{i}\,a\,\braket{i}{S}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\braket{\text{neutron at $C$}}{\text{neutron from $S$}}\notag\\[.75ex]
+\label{Eq:III:3:12}
+=\sum_{i=1}^N\braket{C}{i}\,a\,\braket{i}{S}.
+\end{gather}
+</span>
+Because we are adding amplitudes of scattering from atoms with
+different space positions, the amplitudes will have different phases
+giving the characteristic interference pattern that we have already
+analyzed in the case of the scattering of light from a grating.</p>
+</div>
+<div id="Ch3-S3-p2" class="para">
+<p class="p">The neutron intensity as a function of angle in such an experiment is
+indeed often found to show tremendous variations, with very sharp
+interference peaks and almost nothing in between—as shown in
+Fig. <a href="#Ch3-F6">3–6</a>(a). However, for certain kinds of crystals it
+does not work this way, and there is—along with the interference peaks
+discussed above—a general background of scattering in all directions.
+We must try to understand the apparently mysterious reasons for this.
+Well, we have not considered one important property of the neutron. It
+has a spin of one-half, and so there are two conditions in which it can
+be: either spin “up” (say perpendicular to the page in
+Fig. <a href="#Ch3-F5">3–5</a>) or spin “down.”  If the nuclei of the crystal
+have no spin, the neutron spin doesn’t have any effect. But when the
+nuclei of the crystal also have a spin, say a spin of one-half, you will
+observe the background of smeared-out scattering described above. The
+explanation is as follows.</p>
+</div>
+<div id="Ch3-S3-p3" class="para">
+<p class="p">If the neutron has one direction of spin and the atomic nucleus has
+the same spin, then no change of spin can occur in the scattering
+process. If the neutron and atomic nucleus have opposite spin, then
+scattering can occur by two processes, one in which the spins are
+unchanged and another in which the spin directions are exchanged. This
+rule for no net change of the sum of the spins is analogous to our
+classical law of conservation of angular momentum. We can begin to
+understand the phenomenon if we assume that all the scattering nuclei
+are set up with spins in one direction. A neutron with the same spin
+will scatter with the expected sharp interference distribution. What
+about one with opposite spin? If it scatters without spin flip, then
+nothing is changed from the above; but if the two spins flip over in
+the scattering, we could, in principle, find out which nucleus had
+done the scattering, since it would be the only one with spin turned
+over. Well, if we can tell which atom did the scattering, what have
+the other atoms got to do with it? Nothing, of course. The scattering
+is exactly the same as that from a single atom.</p>
+</div>
+<div id="Ch3-F6" class="figure">
+<img class="first" src="img/FLP_III/f03-06/f03-06_tc_big_a.svgz"><img class="middle" src="img/FLP_III/f03-06/f03-06_tc_big_b.svgz"><img class="last" src="img/FLP_III/f03-06/f03-06_tc_big_c.svgz"><div class="caption">
+<span class="tag">Fig. 3–6.</span>The neutron counting rate as a function of angle: (a) for spin
+zero nuclei; (b) the probability of scattering with spin flip; (c) the
+observed counting rate with a spin one-half nucleus.
+</div>
+</div>
+<div id="Ch3-S3-p4" class="para">
+<p class="p">To include this effect, the mathematical formulation of
+Eq. (<a href="#mjx-eqn-EqIII312">3.12</a>) must be modified since we haven’t described the
+states completely in that analysis. Let’s start with all neutrons from
+the source having spin up and all the nuclei of the crystal having spin
+down. First, we would like the amplitude that at the counter the spin of
+the neutron is up <em class="emph">and</em> all spins of the crystal are still down.
+This is not different from our previous discussion. We will let $a$ be
+the amplitude to scatter with no flip or spin. The amplitude for
+scattering from the $i$th atom is, of course,
+<span class="eq-wide">
+\begin{equation*}
+\braket{\text{$C_{\text{up}}$, crystal all down}}
+{\text{$S_{\text{up}}$, crystal all down}}=
+\braket{C}{i}\,a\,\braket{i}{S}.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{gather*}
+\braket{\text{$C_{\text{up}}$, crystal all down}}
+{\text{$S_{\text{up}}$, crystal all down}}\\[.5ex]
+=\braket{C}{i}\,a\,\braket{i}{S}.
+\end{gather*}
+</span>
+Since all the atomic spins are still down, the various alternatives
+(different values of $i$) cannot be distinguished. There is clearly no
+way to tell which atom did the scattering. For this process, all the
+amplitudes interfere.</p>
+</div>
+<div id="Ch3-S3-p5" class="para">
+<p class="p">We have another case, however, where the spin of the detected neutron
+is down although it started from $S$ with spin up. In the crystal, one
+of the spins must be changed to the up direction—let’s say that of
+the $k$th atom. We will assume that there is the same scattering
+amplitude with spin flip for every atom, namely $b$. (In a real
+crystal there is the disagreeable possibility that the reversed spin
+moves to some other atom, but let’s take the case of a crystal for
+which this probability is very low.) The scattering amplitude is then
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:3:13}
+\braket{\text{$C_{\text{down}}$, nucleus $k$ up}}
+{\text{$S_{\text{up}}$, crystal all down}}=
+\braket{C}{k}\,b\,\braket{k}{S}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\braket{\text{$C_{\text{down}}$, nucleus $k$ up}}
+{\text{$S_{\text{up}}$, crystal all down}}\notag\\[.5ex]
+\label{Eq:III:3:13}
+=\braket{C}{k}\,b\,\braket{k}{S}.
+\end{gather}
+</span>
+If we ask for the probability of finding the neutron spin down and the
+$k$th nucleus spin up, it is equal to the absolute square of this
+amplitude, which is simply $\abs{b}^2$
+times $\abs{\braket{C}{k}\braket{k}{S}}^2$. The second factor is almost
+independent of location in the crystal, and all phases have
+disappeared in taking the absolute square. The probability of
+scattering from <em class="emph">any nucleus</em> in the crystal with spin flip is
+now
+\begin{equation*}
+\abs{b}^2\sum_{k=1}^N\abs{\braket{C}{k}\braket{k}{S}}^2,
+\end{equation*}
+
+which will show a smooth distribution as in Fig. <a href="#Ch3-F6">3–6</a>(b).</p>
+</div>
+<div id="Ch3-S3-p6" class="para">
+<p class="p">You may argue, “I don’t care which atom is up.” Perhaps you don’t,
+but nature knows; and the probability is, in fact, what we gave
+above—there isn’t any interference. On the other hand, if we ask for
+the probability that the spin is up at the detector and all the atoms
+still have spin down, then we must take the absolute square of
+\begin{equation*}
+\sum_{i=1}^N\braket{C}{i}\,a\,\braket{i}{S}.
+\end{equation*}
+
+Since the terms in this sum have phases, they do interfere, and we get
+a sharp interference pattern. If we do an experiment in which we don’t
+observe the spin of the detected neutron, then both kinds of events
+can occur; and the separate probabilities add. The total probability
+(or counting rate) as a function of angle then looks like the graph in
+Fig. <a href="#Ch3-F6">3–6</a>(c).</p>
+</div>
+<div id="Ch3-S3-p7" class="para">
+<p class="p">Let’s review the physics of this experiment. If you could, <em class="emph">in
+principle</em>, distinguish the alternative <em class="emph">final</em> states (even
+though you do not bother to do so), the total, final probability is
+obtained by calculating the <em class="emph">probability</em> for each state (not the
+amplitude) and then adding them together. If you <em class="emph">cannot</em>
+distinguish the final states <em class="emph">even in principle</em>, then the
+probability amplitudes must be summed before taking the absolute
+square to find the actual probability. The thing you should notice
+particularly is that if you were to try to represent the neutron by a
+wave alone, you would get the same kind of distribution for the
+scattering of a down-spinning neutron as for an up-spinning
+neutron. You would have to say that the “wave” would come from all
+the different atoms and interfere just as for the up-spinning one with
+the same wavelength. But we know that is not the way it works. So as
+we stated earlier, we must be careful not to attribute too much
+reality to the waves in space. They are useful for certain problems
+but not for all.</p>
+</div>
+</div>
+<div id="Ch3-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">3–4</span>Identical particles</h3>
+<div id="Ch3-S4-p1" class="para">
+<p class="p">The next experiment we will describe is one which shows one of the
+beautiful consequences of quantum mechanics. It again involves a
+physical situation in which a thing can happen in two
+<em class="emph">indistinguishable</em> ways, so that there is an interference of
+amplitudes—as is <em class="emph">always</em> true in such circumstances. We are
+going to discuss the scattering, at relatively low energy, of nuclei
+on other nuclei. We start by thinking of $\alpha$-particles (which, as
+you know, are helium nuclei) bombarding, say, oxygen. To make it
+easier for us to analyze the reaction, we will look at it in the
+center-of-mass system, in which the oxygen nucleus and the
+$\alpha$-particle have their velocities in opposite directions before
+the collision and again in exactly opposite directions after the
+collision. See Fig. <a href="#Ch3-F7">3–7</a>(a). (The magnitudes of the
+velocities are, of course, different, since the masses are different.)
+We will also suppose that there is conservation of energy and that the
+collision energy is low enough that neither particle is broken up or
+left in an excited state. The reason that the two particles deflect each
+other is, of course, that each particle carries a positive charge and,
+classically speaking, there is an electrical repulsion as they go by.
+The scattering will happen at different angles with different
+probabilities, and we would like to discuss something about the angle
+dependence of such scatterings. (It is possible, of course, to calculate
+this thing classically, and it is one of the most remarkable accidents
+of quantum mechanics that the answer to this problem comes out the same
+as it does classically. This is a curious point because it happens for
+no other force except the inverse square law—so it is indeed an
+accident.)</p>
+</div>
+<div id="Ch3-S4-p2" class="para">
+<p class="p">The probability of scattering in different directions can be measured
+by an experiment as shown in Fig. <a href="#Ch3-F7">3–7</a>(a). The counter at
+position $1$ could be designed to detect only $\alpha$-particles; the
+counter at position $2$ could be designed to detect only oxygen—just
+as a check. (In the laboratory system the detectors would not be
+opposite; but in the CM system they are.) Our experiment consists in
+measuring the probability of scattering in various directions. Let’s
+call $f(\theta)$ the amplitude to scatter into the counters when they
+are at the angle $\theta$; then $\abs{f(\theta)}^2$ will be our
+experimentally determined probability.</p>
+</div>
+<div id="Ch3-F7" class="figure">
+<img class="first" src="img/FLP_III/f03-07/f03-07_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_III/f03-07/f03-07_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 3–7.</span>The scattering of $\alpha$-particles from oxygen nuclei, as
+seen in the center-of-mass system.
+</div>
+</div>
+<div id="Ch3-S4-p3" class="para">
+<p class="p">Now we could set up another experiment in which our counters would
+respond to <em class="emph">either</em> the $\alpha$-particle <em class="emph">or</em> the oxygen
+nucleus. Then we have to work out what happens when we do not bother
+to distinguish which particles are counted. Of course, if we are to
+get an oxygen in the position $\theta$, there must be an
+$\alpha$-particle on the opposite side at the angle $(\pi-\theta)$, as
+shown in Fig. <a href="#Ch3-F7">3–7</a>(b). So if $f(\theta)$ is the amplitude for
+$\alpha$-scattering through the angle $\theta$, then $f(\pi-\theta)$
+is the amplitude for oxygen scattering through the
+angle $\theta$.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a>  Thus, the
+probability for having <em class="emph">some</em> particle in the detector at
+position $1$ is:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:3:14}
+\text{Probability of $some$ particle in $D_1$}=
+\abs{f(\theta)}^2+\abs{f(\pi-\theta)}^2.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\text{Probability of $some$ particle in $D_1$}\notag\\[.5ex]
+\label{Eq:III:3:14}
+=\abs{f(\theta)}^2+\abs{f(\pi-\theta)}^2.
+\end{gather}
+</span>
+Note that the two states are distinguishable in principle. Even though
+in this experiment we <em class="emph">do not</em> distinguish them, <em class="emph">we
+could</em>. According to the earlier discussion, then, we must add the
+probabilities, not the amplitudes.</p>
+</div>
+<div id="Ch3-S4-p4" class="para">
+<p class="p">The result given above is correct for a variety of target nuclei—for
+$\alpha$-particles on oxygen, on carbon, on beryllium, on
+hydrogen. <em class="emph">But it is wrong for</em> $\alpha$-particles on
+$\alpha$-particles. For the one case in which both particles are
+exactly the same, the experimental data disagree with the prediction
+of (<a href="#mjx-eqn-EqIII314">3.14</a>). For example, the scattering probability
+at $90^\circ$ is exactly twice what the above theory predicts and has
+nothing to do with the particles being “helium” nuclei. If the
+target is He$^3$, but the projectiles are $\alpha$-particles (He$^4$),
+then there is agreement. Only when the target is He$^4$—so its
+nuclei are identical with the incoming $\alpha$-particle—does the
+scattering vary in a peculiar way with angle.</p>
+</div>
+<div id="Ch3-S4-p5" class="para">
+<p class="p">Perhaps you can already see the explanation. There are two ways to get
+an $\alpha$-particle into the counter: by scattering the bombarding
+$\alpha$-particle at an angle $\theta$, or by scattering it at an
+angle of $(\pi-\theta)$. How can we tell whether the bombarding
+particle or the target particle entered the counter? The answer is
+that we cannot. In the case of $\alpha$-particles with
+$\alpha$-particles there are two alternatives that cannot be
+distinguished. Here, we must let the probability <em class="emph">amplitudes</em>
+interfere by addition, and the probability of finding an
+$\alpha$-particle in the counter is the square of their sum:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:3:15}
+\text{Probability of an $\alpha$-particle at $D_1$}=
+\abs{f(\theta)+f(\pi-\theta)}^2.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{gather}
+\text{Probability of an $\alpha$-particle at $D_1$}\notag\\[.5ex]
+\label{Eq:III:3:15}
+=\abs{f(\theta)+f(\pi-\theta)}^2.
+\end{gather}
+</span>
+</p>
+</div>
+<div id="Ch3-S4-p6" class="para">
+<p class="p">This is quite a different result than that in Eq. (<a href="#mjx-eqn-EqIII314">3.14</a>).
+We can take an angle of $\pi/2$ as an example, because it is easy to
+figure out. For $\theta=\pi/2$, we obviously
+have $f(\theta)=f(\pi-\theta)$, so the probability in Eq. (<a href="#mjx-eqn-EqIII315">3.15</a>)
+becomes $\abs{f(\pi/2)+f(\pi/2)}^2=4\abs{f(\pi/2)}^2$.</p>
+</div>
+<div id="Ch3-S4-p7" class="para">
+<p class="p">On the other hand, if they did not interfere, the result of
+Eq. (<a href="#mjx-eqn-EqIII314">3.14</a>) gives only $2\abs{f(\pi/2)}^2$. So there is
+twice as much scattering at $90^\circ$ as we might have expected. Of
+course, at other angles the results will also be different. And so you
+have the unusual result that when particles are identical, a certain new
+thing happens that doesn’t happen when particles can be distinguished.
+In the mathematical description you must add the amplitudes for
+alternative process in which the two particles simply exchange roles and
+there is an interference.</p>
+</div>
+<div id="Ch3-S4-p8" class="para">
+<p class="p">An even more perplexing thing happens when we do the same kind of
+experiment by scattering electrons on electrons, or protons on
+protons. Neither of the above results is then correct! For these
+particles, we must invoke still a new rule, a most peculiar rule,
+which is the following: When you have a situation in which the
+identity of the electron which is arriving at a point is exchanged
+with another one, the new amplitude interferes with the old one with
+an <em class="emph">opposite phase</em>. It is interference all right, but with a
+minus sign. In the case of $\alpha$-particles, when you exchange the
+$\alpha$-particle entering the detector, the interfering amplitudes
+interfere with the positive sign. <em class="emph">In the case of electrons, the
+interfering amplitudes for exchange interfere with a negative
+sign</em>. Except for another detail to be discussed below, the proper
+equation for electrons in an experiment like the one shown in
+Fig. <a href="#Ch3-F8">3–8</a> is
+\begin{equation}
+\label{Eq:III:3:16}
+\text{Probability of e at $D_1$}=
+\abs{f(\theta)-f(\pi-\theta)}^2.
+\end{equation}
+</p>
+</div>
+<div id="Ch3-S4-p9" class="para">
+<p class="p">The above statement must be qualified, because we have not considered
+the spin of the electron ($\alpha$-particles have no spin). The
+electron spin may be considered to be either “up” or “down” with
+respect to the plane of the scattering. If the energy of the
+experiment is low enough, the magnetic forces due to the currents will
+be small and the spin will not be affected. We will assume that this
+is the case for the present analysis, so that there is no chance that
+the spins are changed during the collision. Whatever spin the electron
+has, it carries along with it. Now you see there are many
+possibilities. The bombarding and target particles can have both spins
+up, both down, or opposite spins. If both spins are up, as in
+Fig. <a href="#Ch3-F8">3–8</a> (or if both spins are down), the same will be
+true of the recoil particles and the <em class="emph">amplitude</em> for the process is
+the <em class="emph">difference</em> of the amplitudes for the two possibilities shown
+in Fig. <a href="#Ch3-F8">3–8</a>(a) and (b). The <em class="emph">probability</em> of
+detecting an electron in $D_1$ is then given by Eq. (<a href="#mjx-eqn-EqIII316">3.16</a>).</p>
+</div>
+<div id="Ch3-F8" class="figure">
+<img class="first" src="img/FLP_III/f03-08/f03-08_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_III/f03-08/f03-08_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 3–8.</span>The scattering of electrons on electrons. If the incoming
+electrons have parallel spins, the processes (a) and (b) are
+indistinguishable.
+</div>
+</div>
+<div id="Ch3-S4-p10" class="para">
+<p class="p">Suppose, however, the “bombarding” spin is up and the “target” spin is down.
+The electron entering counter $1$ can have spin up or spin down, and by
+measuring this spin we can tell whether it came from the bombarding beam or from
+the target. The two possibilities are shown in Fig. <a href="#Ch3-F9">3–9</a>(a)
+and (b); they are distinguishable in principle, and hence there will be no
+interference—merely an addition of the two probabilities. The same argument
+holds if both of the original spins are reversed—that is, if the left-hand
+spin is down and the right-hand spin is up.</p>
+</div>
+<div id="Ch3-F9" class="figure">
+<img class="first" src="img/FLP_III/f03-09/f03-09_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_III/f03-09/f03-09_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 3–9.</span>The scattering of electrons with antiparallel spins.
+</div>
+</div>
+<div id="Ch3-S4-p11" class="para">
+<p class="p">Now if we take our electrons at random—as from a tungsten filament
+in which the electrons are completely unpolarized—then the odds are
+fifty-fifty that any particular electron comes out with spin up or
+spin down. If we don’t bother to measure the spin of the electrons at
+any point in the experiment, we have what we call an unpolarized
+experiment. The results for this experiment are best calculated by
+listing all of the various possibilities as we have done in
+Table <a href="#Ch3-T1">3–1</a>. A separate <em class="emph">probability</em> is computed for
+each distinguishable alternative. The total probability is then the sum
+of all the separate probabilities. Note that for unpolarized beams the
+result for $\theta=\pi/2$ is one-half that of the classical result with
+independent particles. The behavior of identical particles has many
+interesting consequences; we will discuss them in greater detail in the
+next chapter.</p>
+</div>
+
+<div id="Ch3-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 3–1</span>Scattering of unpolarized spin one-half particles
+</div>
+<table class="tabular ltx_centering"><tbody class="tbody">
+<tr class="tr">
+<td class="td l r t" style="text-align:center;" align="center">Fraction of cases</td>
+<td class="td t" style="text-align:center;" align="center">Spin of particle $1$</td>
+<td class="td t" style="text-align:center;" align="center">Spin of particle $2$</td>
+<td class="td r t"></td>
+<td class="td t" style="text-align:center;" align="center">Spin at $D_1$</td>
+<td class="td r t" style="text-align:center;" align="center">Spin at $D_2$</td>
+<td class="td r t" style="text-align:center;" align="center">Probability</td>
+</tr>
+<tr class="tr">
+<td class="td l r tt center" >$\tfrac{1}{4}$</td>
+<td class="td tt center" >up</td>
+<td class="td tt center" >up</td>
+<td class="td r tt"></td>
+<td class="td tt center" >up</td>
+<td class="td r tt center" >up</td>
+<td class="td r tt center" >$\abs{f(\theta)-f(\pi-\theta)}^2$</td>
+</tr>
+<tr class="tr">
+<td class="td l r center" >$\tfrac{1}{4}$</td>
+<td class="td center" >down</td>
+<td class="td center" >down</td>
+<td class="td r"></td>
+<td class="td center" >down</td>
+<td class="td r center" >down</td>
+<td class="td r center" >$\abs{f(\theta)-f(\pi-\theta)}^2$</td>
+</tr>
+<tr class="tr">
+<td class="td l r center" rowspan="2" align="center">$\tfrac{1}{4}$</td>
+<td class="td center" rowspan="2">up</td>
+<td class="td center" rowspan="2">down</td>
+<td class="td r right" rowspan="2"><div class="curly_brace"><img src="img/left_curly_brace.svgz"></div>
+</td>
+<td class="td center" >up</td>
+<td class="td r center" >down</td>
+<td class="td r center" >$\abs{f(\theta)}^2$</td>
+</tr>
+<tr class="tr">
+<td class="td center" >down</td>
+<td class="td r center" >up</td>
+<td class="td r center" >$\abs{f(\pi-\theta)}^2$</td>
+</tr>
+<tr class="tr">
+<td class="td l r center" rowspan="2" >$\tfrac{1}{4}$</td>
+<td class="td center" rowspan="2">down</td>
+<td class="td center" rowspan="2" >up</td>
+<td class="td r right" rowspan="2"><div class="curly_brace"><img src="img/left_curly_brace.svgz"></div>
+</td>
+<td class="td center" >up</td>
+<td class="td r center" >down</td>
+<td class="td r center" >$\abs{f(\pi-\theta)}^2$</td>
+</tr>
+<tr class="tr">
+<td class="td center" >down</td>
+<td class="td r center" >up</td>
+<td class="td r center" >$\abs{f(\theta)}^2$</td>
+</tr>
+<tr class="tr">
+<td class="td b l r t center"colspan="7">
+$\text{Total probability}=
+\tfrac{1}{2}\abs{f(\theta)-f(\pi-\theta)}^2+
+\tfrac{1}{2}\abs{f(\theta)}^2+
+\tfrac{1}{2}\abs{f(\pi-\theta)}^2$</td>
+</tr>
+</tbody></table>
+</div>
+
+</div>
+<ol id="footnotes"><li class="footnote">
+  <a name="footnote_1"></a>
+  In general, a scattering direction should, of
+course, be described by two angles, the polar angle $\phi$, as well as
+the azimuthal angle $\theta$. We would then say that an oxygen nucleus
+at $(\theta,\phi)$ means that the $\alpha$-particle is
+at $(\pi-\theta,\phi+\pi)$. However, for Coulomb scattering (and for many
+other cases), the scattering amplitude is independent of $\phi$. Then
+the amplitude to get an oxygen at $\theta$ is the same as the
+amplitude to get the $\alpha$-particle at $(\pi-\theta)$.
+  <a href="#footnote_source_1">↩</a>
+</li></ol>
+</div>
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div>
+
+</div>
+    
+  </body>
+</html>

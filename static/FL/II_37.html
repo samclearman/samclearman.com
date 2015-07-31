@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 37: Magnetic Materials</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "37." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch37" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">37</span>Magnetic Materials</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref" rowspan=2>
+		<i>References:</i>
+		</td>
+		<td>
+		Bozorth, R.&nbsp;M., “Magnetism,” <i>Encyclopaedia Britannica</i>, Vol.&nbsp;14, 1957, pp.&nbsp;636–667.
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Kittel, C., <i>Introduction to Solid State Physics</i>, John Wiley and Sons, Inc., New York, 2nd ed., 1956.
+		</td>
+	</tr>
+</table>
+
+<div id="Ch37-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">37–1</span>Understanding ferromagnetism</h3>
+<div id="Ch37-S1-p1" class="para">
+<p class="p">In this chapter we will discuss the behavior and peculiarities of
+ferromagnetic materials and of other strange magnetic
+materials. Before proceeding to study magnetic materials, however, we
+will review very quickly some of the things about the general theory
+of magnets that we learned in the last chapter.</p>
+</div>
+<div id="Ch37-S1-p2" class="para">
+<p class="p">First, we imagine the atomic currents inside the material that are
+responsible for the magnetism, and then describe them in terms of a
+volume current density $\FLPj_{\text{mag}}=\FLPcurl{\FLPM}$. We
+emphasize that this is not supposed to represent the <em class="emph">actual</em>
+currents. When the magnetization is uniform the currents do not
+<em class="emph">really</em> cancel out precisely; that is, the whirling currents of
+one electron in one atom and the whirling currents of an electron in
+another atom do not overlap in such a way that the sum is exactly
+zero. Even within a single atom the distribution of magnetism is
+<em class="emph">not</em> smooth. For instance, in an iron atom the magnetization is
+distributed in a more or less spherical shell, not too close to the
+nucleus and not too far away. Thus, magnetism in matter is quite a
+complicated thing in its details; it is very irregular. However, we
+are obliged now to ignore this detailed complexity and discuss
+phenomena from a gross, average point of view. Then it is true that
+the <em class="emph">average</em> current in the interior region, over any finite
+area that is big compared with an atom, is zero when
+$\FLPM=\FLPzero$. So, what we mean by magnetization per unit volume
+and $\FLPj_{\text{mag}}$ and so on, at the level we are now
+considering, is an average over regions that are large compared with
+the space occupied by a single atom.</p>
+</div>
+<div id="Ch37-S1-p3" class="para">
+<p class="p">In the last chapter, we also discovered that a ferromagnetic material
+has the following interesting property: above a certain temperature it
+is not strongly magnetic, whereas below this temperature it becomes
+magnetic. This fact is easily demonstrated. A piece of nickel wire at
+room temperature is attracted by a magnet. However, if we heat it
+above its Curie temperature with a gas flame, it becomes nonmagnetic
+and is not attracted toward the magnet—even when brought quite close
+to the magnet. If we let it lie near the magnet while it cools off, at
+the instant its temperature falls below the critical temperature it is
+suddenly attracted again by the magnet!</p>
+</div>
+<div id="Ch37-S1-p4" class="para">
+<p class="p">The general theory of ferromagnetism that we will use supposes that the
+spin of the electron is responsible for the magnetization. The electron
+has spin one-half and carries one Bohr magneton of magnetic
+moment $\mu=$ $\mu_B=$ $q_e\hbar/2m$. The electron spin can be pointed either
+“up” or “down.” Because the electron has a negative charge, when its
+spin is “up” it has a <em class="emph">negative</em> moment, and when its spin is
+“down” it has a <em class="emph">positive</em> moment. With our usual conventions,
+the moment $\FLPmu$ of the electron is opposite its spin. We have found
+that the energy of orientation of a magnetic dipole in a given applied
+field $\FLPB$ is $-\FLPmu\cdot\FLPB$, but the energy of the spinning
+electrons depends on the neighboring spin alignments as well. In iron,
+if the moment of a nearby atom is “up,” there is a very strong
+tendency that the moment of the one next to it will also be “up.” That
+is what makes iron, cobalt, and nickel so strongly magnetic—the
+moments all want to be parallel. The first question we have to discuss
+is <em class="emph">why</em>.</p>
+</div>
+<div id="Ch37-S1-p5" class="para">
+<p class="p">Soon after the development of quantum mechanics, it was noticed that
+there is a very strong <em class="emph">apparent</em> force—not a magnetic force or
+any other kind of actual force, but only an apparent force—trying to
+line the spins of nearby electrons <em class="emph">opposite</em> to one another. These
+forces are closely related to chemical valence forces. There is a
+principle in quantum mechanics—called the <em class="emph">exclusion
+principle</em>—that two electrons cannot occupy exactly the same state,
+that they cannot be in exactly the same condition as to location and
+spin orientation.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> For example, if they are at the same
+point, the only alternative is to have their spins opposite. So, if
+there is a region of space between atoms where electrons like to
+congregate (as in a chemical bond) and we want to put another electron
+on top of one already there, the only way to do it is to have the spin
+of the second one pointed opposite to the spin of the first one. To have
+the spins parallel is against the law, unless the electrons stay away
+from each other. This has the effect that a pair of parallel-spin
+electrons near to each other have much more energy than a pair of
+opposite-spin electrons; the net effect is as though there were a force
+trying to turn the spin over. Sometimes this spin-turning force is
+called the <em class="emph">exchange force</em>, but that only makes it more
+mysterious—it is not a very good term. It is just because of the
+exclusion principle that electrons have a tendency to make their spins
+opposite. In fact, that is the explanation of the <em class="emph">lack</em> of
+magnetism in almost all substances! The spins of the free electrons on
+the outside of the atoms have tremendous tendency to balance in opposite
+directions. The problem is to explain why for materials like iron it is
+just the reverse of what we should expect.</p>
+</div>
+<div id="Ch37-S1-p6" class="para">
+<p class="p">We have summarized the supposed alignment effect by adding a suitable
+term in the energy equation, by saying that if the electron magnets in
+the neighborhood have a mean magnetization $M$, then the moment of an
+electron has a strong tendency to be in the same direction as the
+average magnetization of the atoms in the neighborhood. Thus, we may
+write for the two possible spin orientations,<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+\begin{equation}
+\label{Eq:II:37:1}
+\begin{aligned}
+\text{Spin “up” energy}
+&=+\mu\biggl(H+\frac{\lambda M}{\epsO c^2}\biggr),\\[1ex]
+\text{Spin “down” energy}
+&=-\mu\biggl(H+\frac{\lambda M}{\epsO c^2}\biggr).
+\end{aligned}
+\end{equation}
+</p>
+</div>
+<div id="Ch37-S1-p7" class="para">
+<p class="p">When it was clear that quantum mechanics could supply a tremendous
+spin-orientating force—even if, apparently, of the wrong sign—it
+was suggested that ferromagnetism might have its origin in this same
+force, that due to the complexities of iron and the large number of
+electrons involved, the sign of the interaction energy would come out
+the other way around. Since the time this was thought of—in about
+1927 when quantum mechanics was first being understood—many people
+have been making various estimates and semicalculations, trying to get
+a theoretical prediction for $\lambda$. The most recent calculations
+of the energy between the two electron spins in iron—assuming that
+the interaction is a direct one between the two electrons in
+neighboring atoms—still give the <em class="emph">wrong sign</em>. The present
+understanding of this is again to assume that the complexity of the
+situation is somehow responsible and to hope that the next man who
+makes the calculation with a more complicated situation will get the
+right answer!</p>
+</div>
+<div id="Ch37-S1-p8" class="para">
+<p class="p">It is believed that the up-spin of one of the electrons in the inside
+shell, which is making the magnetism, tends to make the conduction
+electrons which fly around the outside have the opposite spin. One
+might expect this to happen because the conduction electrons come into
+the same region as the “magnetic” electrons. Since they move around,
+they can carry their prejudice for being upside down over to the next
+atom; that is, one “magnetic” electron tries to force the conduction
+electrons to be opposite, and the conduction electron then makes the
+next “magnetic” electron opposite to <em class="emph">it</em>. The double
+interaction is equivalent to an interaction which tries to line up the
+two “magnetic” electrons. In other words, the tendency to make
+parallel spins is the result of an intermediary that tends to some
+extent to be opposite to both. This mechanism does not require that
+the conduction electrons be completely “upside down.” They could
+just have a slight prejudice to be down, just enough to load the
+“magnetic” odds the other way. This is the mechanism that the people
+who have calculated such things now believe is responsible for
+ferromagnetism. But we must emphasize that to this day nobody can
+calculate the magnitude of $\lambda$ simply by knowing that the
+material is number $26$ in the periodic table. In short, we don’t
+thoroughly understand it.</p>
+</div>
+<div id="Ch37-S1-p9" class="para">
+<p class="p">Now let us continue with the theory, and then come back later to
+discuss a certain error involved in the way we have set it up. If the
+magnetic moment of a certain electron is “up,” energy comes both
+from the external field and also from the tendency of the spins to be
+parallel. Since the energy is lower when the spins are parallel, the
+effect is sometimes thought of as due to an “effective internal
+field.” But remember, it is <em class="emph">not</em> due to a true <em class="emph">magnetic</em>
+force; it is an interaction that is more complicated. In any case, we
+take Eqs. (<a href="#mjx-eqn-EqII371">37.1</a>) as the formulas for the energies of the
+two spin states of a “magnetic” electron. At a temperature $T$, the
+relative probability of these two states is proportional
+to $e^{-\text{energy}/kT}$, which we can write as $e^{\pm x}$, with
+$x=\mu(H+\lambda M/\epsO c^2)/kT$. Then, if we calculate the mean
+value of the magnetic moment, we find (as in the last chapter) that it
+is
+\begin{equation}
+\label{Eq:II:37:2}
+M=N\mu\tanh x.
+\end{equation}
+</p>
+</div>
+<div id="Ch37-S1-p10" class="para">
+<p class="p">Now we would like to calculate the internal energy of the material. We
+note that the energy of an electron is exactly proportional to the
+magnetic moment, so that the calculation of the mean moment and the
+calculation of the mean energy are the same—except that in place
+of $\mu$ in Eq. (<a href="#mjx-eqn-EqII372">37.2</a>) we would write $-\mu B$, which
+is $-\mu(H+\lambda M/\epsO c^2)$. The mean energy is then
+\begin{equation*}
+\av{U} = -N\mu\biggl(H+
+\frac{\lambda M}{\epsO c^2}\biggr)\tanh x.
+\end{equation*}
+</p>
+</div>
+<div id="Ch37-S1-p11" class="para">
+<p class="p">Now this is not quite correct. The term $\lambda M/\epsO c^2$
+represents interactions of all possible <em class="emph">pairs</em> of atoms, and we
+must remember to count each pair only <em class="emph">once</em>. (When we consider
+the energy of one electron in the field of the rest and then the
+energy of a second electron in the field of the rest, we have counted
+part of the first energy once more.) Thus, we must divide the
+<em class="emph">mutual interaction term</em> by two, and our formula for the energy
+then turns out to be
+\begin{equation}
+\label{Eq:II:37:3}
+\av{U} = -N\mu\biggl(H+
+\frac{\lambda M}{2\epsO c^2}\biggr)\tanh x.
+\end{equation}
+</p>
+</div>
+<div id="Ch37-S1-p12" class="para">
+<p class="p">In the last chapter we discovered an interesting thing—that below a
+certain temperature the material finds a solution to the equations in
+which the magnetic moment <em class="emph">is not zero</em>, even with no external
+magnetizing field. When we set $H=0$ in Eq. (<a href="#mjx-eqn-EqII372">37.2</a>), we
+found that
+\begin{equation}
+\label{Eq:II:37:4}
+\frac{M}{M_{\text{sat}}}=\tanh\biggl(\frac{T_c}{T}\,
+\frac{M}{M_{\text{sat}}}\biggr),
+\end{equation}
+
+where $M_{\text{sat}}=N\mu$, and $T_c=\mu\lambda M_{\text{sat}}/k\epsO
+c^2$. When we solve this equation (graphically or otherwise), we find
+that the ratio $M/M_{\text{sat}}$ as a function of $T/T_c$ is a curve
+like that labeled “quantum theory” in Fig. <a href="#Ch37-F1">37–1</a>. The dashed curve
+marked “cobalt, nickel” shows the experimental results for crystals
+of these elements. The theory and experiment are in reasonably good
+agreement. The figure also shows the result of the classical theory in
+which the calculation is carried out assuming that the atomic magnets
+can have all possible orientations in space. You can see that this
+assumption gives a prediction that is not even close to the
+experimental facts.</p>
+</div>
+<div id="Ch37-F1" class="figure">
+<img src="img/FLP_II/f37-01/f37-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 37–1.</span>The spontaneous magnetization ($H=0$) of ferromagnetic crystals
+as a function of temperature. [Permission from <span class="text italic">Encyclopaedia
+Britannica</span>.]
+</div>
+</div>
+<div id="Ch37-S1-p13" class="para">
+<p class="p">Even the quantum theory deviates from the observed behavior at both
+high and low temperatures. The reason for the deviations is that we
+have made a rather sloppy approximation in the theory: We have assumed
+that the energy of an atom depends upon the <em class="emph">mean</em> magnetization
+of its neighboring atoms. In other words, for each one that is “up”
+in the neighborhood of a given atom, there will be a contribution of
+energy due to that quantum mechanical alignment effect.  But how many
+are there pointed “up”? On the average, that is measured by the
+magnetization $M$—but only <em class="emph">on the average</em>. A particular atom
+somewhere might find <em class="emph">all</em> its neighbors “up.” Then its energy
+will be larger than the average. Another one might find some up and
+some down, perhaps averaging to zero, and it would have <em class="emph">no</em>
+energy from that term, and so on. What we ought to do is to use some
+more complicated kind of average, because the atoms in different
+places have different environments, and the numbers up and down are
+different for different ones. Instead of just taking one atom
+subjected to the average influence, we should take each one in its
+actual situation, compute its energy, and find the <em class="emph">average
+energy</em>. But how do we find out how many are “up” and how many are
+“down” in the neighborhood?  That is, of course, just what we are
+trying to calculate—the number “up” and “down”—so we have a
+very complicated interconnected problem of correlations, a problem
+which has never been solved. It is an intriguing and exciting one
+which has existed for years and on which some of the greatest names in
+physics have written papers, but even they have not completely solved
+it.</p>
+</div>
+<div id="Ch37-S1-p14" class="para">
+<p class="p">It turns out that at low temperatures, when almost all the atomic
+magnets are “up” and only a few are “down,” it is easy to solve;
+and at high temperatures, far above the Curie temperature $T_c$ when
+they are almost all random, it is again easy. It is often easy to
+calculate small departures from some simple, idealized situation, so
+it is fairly well understood why there are deviations from the simple
+theory at low temperature. It is also understood physically that for
+statistical reasons the magnetization <em class="emph">should</em> deviate at high
+temperatures. But the exact behavior near the Curie point has never
+been thoroughly figured out. That’s an interesting problem to work out
+some day if you want a problem that has never been solved.</p>
+</div>
+</div>
+<div id="Ch37-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">37–2</span>Thermodynamic properties</h3>
+<div id="Ch37-S2-p1" class="para">
+<p class="p">In the last chapter we laid the groundwork necessary for calculating the
+thermodynamic properties of ferromagnetic materials. These are,
+naturally, related to the internal energy of the crystal, which includes
+interactions of the various spins, given by Eq. (<a href="#mjx-eqn-EqII373">37.3</a>). For
+the energy of the spontaneous magnetization below the Curie point, we
+can set $H=0$ in Eq. (<a href="#mjx-eqn-EqII373">37.3</a>), and—noticing that $\tanh
+x=M/M_{\text{sat}}$—we find a mean energy proportional to $M^2$:
+\begin{equation}
+\label{Eq:II:37:5}
+\av{U} = -\frac{N\mu\lambda M^2}
+{2\epsO c^2M_{\text{sat}}}.
+\end{equation}
+
+If we now plot the energy due to the magnetism as a function of
+temperature, we get a curve which is the negative of the square of the
+curve of Fig. <a href="#Ch37-F1">37–1</a>, as drawn in Fig. <a href="#Ch37-F2">37–2</a>(a).
+If we were to measure then the <em class="emph">specific heat</em> of such a material we would obtain a
+curve which is the derivative of <a href="#Ch37-F2">37–2</a>(a). It is shown in
+Fig. <a href="#Ch37-F2">37–2</a>(b). It rises slowly with increasing temperature,
+but falls suddenly to zero at $T=T_c$. The sharp drop is due to the
+change in slope of the magnetic energy and is reached right at the
+Curie point. So without any magnetic measurements at all we
+could have discovered that something was going on inside of iron or
+nickel by measuring this thermodynamic property. However, both
+experiment and improved theory (with fluctuations included) suggest that
+this simple curve is wrong and that the true situation is really more
+complicated. The curve goes higher at the peak and falls to zero
+somewhat slowly. Even if the temperature is high enough to randomize the
+spins <em class="emph">on the average</em>, there are still local regions where there
+is a certain amount of polarization, and in these regions the spins
+still have a little extra energy of interaction—which only dies out
+slowly as things get more and more random with further increases in
+temperature. So the actual curve looks like Fig. <a href="#Ch37-F2">37–2</a>(c).
+One of the challenges of theoretical physics today is to find an exact
+theoretical description of the character of the specific heat near the
+Curie transition—an intriguing problem which has not yet been solved.
+Naturally, this problem is very closely related to the shape of the
+magnetization curve in the same region.</p>
+</div>
+<div id="Ch37-F2" class="figure">
+<img class="first" src="img/FLP_II/f37-02/f37-02_tc_big_a.svgz"><img class="middle" src="img/FLP_II/f37-02/f37-02_tc_big_b.svgz"><img class="last" src="img/FLP_II/f37-02/f37-02_tc_big_c.svgz">
+<div class="caption">
+<span class="tag">Fig. 37–2.</span>The energy per unit volume and specific heat of a ferromagnetic
+crystal.
+</div>
+</div>
+<div id="Ch37-S2-p2" class="para">
+<p class="p">Now we want to describe some experiments, other than thermodynamic
+ones, which show that there is something <em class="emph">right</em> about our
+interpretation of magnetism. When the material is magnetized to
+saturation at low enough temperatures, $M$ is very nearly equal
+to $M_{\text{sat}}$—nearly all the spins are parallel, as well as their
+magnetic moments. We can check this by an experiment. Suppose we
+suspend a bar magnet by a thin fiber and then surround it by a coil so
+that we can reverse the magnetic field without touching the magnet or
+putting any torque on it. This is a very difficult experiment because
+the magnetic forces are so enormous that any irregularities, any
+lopsidedness, or any lack of perfection in the iron will produce
+accidental torques. However, the experiment has been done under
+careful conditions in which such accidental torques are minimized. By
+means of the magnetic field from a coil that surrounds the bar, we
+turn all the atomic magnets over at once. When we do this we also
+change the angular momenta of all the spins from “up” to “down”
+(see Fig. <a href="#Ch37-F3">37–3</a>). If angular momentum is to be conserved when the
+spins all turn over, the rest of the bar must have an opposite change
+in angular momentum. The whole magnet will start to spin. And sure
+enough, when we do the experiment, we find a slight turning of the
+magnet. We can measure the total angular momentum given to the whole
+magnet, and this is simply $N$ times $\hbar$, the change in the
+angular momentum of each spin. The ratio of angular momentum to
+magnetic moment measured this way comes out to within about
+$10$ percent of what we calculate. Actually, our calculations assume that
+the atomic magnets are due purely to the electron spin, but there is,
+in addition, some orbital motion also in most materials. The orbital
+motion is not completely free of the lattice and does not contribute
+much more than a few percent to the magnetism. As a matter of fact,
+the saturation magnetic field that one gets taking
+$M_{\text{sat}}=N\mu$ and using the density of iron of $7.9$ and the
+moment $\mu$ of the spinning electron is about $20{,}000$ gauss. But
+according to experiment, it is actually in the neighborhood
+of $21{,}500$ gauss. This is a typical magnitude of error—$5$ or
+$10$ percent—due to neglecting the contributions of the orbital moments
+that have not been included in making the analysis. Thus, a slight
+discrepancy with the gyromagnetic measurements is quite
+understandable.</p>
+</div>
+<div id="Ch37-F3" class="figure">
+<img src="img/FLP_II/f37-03/f37-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 37–3.</span>When the magnetization of a bar of iron is reversed, the bar is
+given some angular momentum.
+</div>
+</div>
+</div>
+<div id="Ch37-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">37–3</span>The hysteresis curve</h3>
+<div id="Ch37-S3-p1" class="para">
+<p class="p">We have concluded from our theoretical analysis that a ferromagnetic
+material should spontaneously become magnetized below a certain
+temperature so that all the magnetism would be in the same
+direction. But we know that this is not true for an ordinary piece of
+<em class="emph">unmagnetized</em> iron. Why isn’t all iron magnetized? We can
+explain it with the help of Fig. <a href="#Ch37-F4">37–4</a>. Suppose the iron were all a
+big single crystal of the shape shown in Fig. <a href="#Ch37-F4">37–4</a>(a) and
+spontaneously magnetized all in one direction. Then there would be a
+considerable external magnetic field, which would have a lot of
+energy. We can reduce that field energy if we arrange that one side of
+the block is magnetized “up” and the other side magnetized “down,”
+as in Fig. <a href="#Ch37-F4">37–4</a>(b). Then, of course, the fields outside the iron
+would extend over less volume, so there would be less energy there.</p>
+</div>
+<div id="Ch37-F4" class="figure">
+<img src="img/FLP_II/f37-04/f37-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 37–4.</span>The formation of domains in a single crystal of iron. [From
+Charles Kittel, <span class="text italic">Introduction to Solid State Physics</span>, John Wiley
+and Sons, Inc., New York, 2nd ed., 1956.]
+</div>
+</div>
+<div id="Ch37-S3-p2" class="para">
+<p class="p">Ah, but wait! In the layer between the two regions we have up-spinning
+electrons adjacent to down-spinning electrons. But ferromagnetism
+appears only in those materials for which the energy is <em class="emph">reduced</em>
+if the electrons are <em class="emph">parallel</em> rather than opposite. So, we have
+added some extra energy along the dotted line in
+Fig. <a href="#Ch37-F4">37–4</a>(b); this energy is sometimes called <em class="emph">wall
+energy</em>. A region having
+only one direction of magnetization is called a
+<em class="emph">domain</em>. At the interface—the “wall”—between
+two domains, where we have atoms on opposite sides which are spinning in
+different directions, there is an energy per unit area of the wall. We
+have described it as though two adjacent atoms were spinning exactly
+opposite, but it turns out that nature adjusts things so that the
+transition is more gradual. But we don’t need to worry about such fine
+details at this point.</p>
+</div>
+<div id="Ch37-S3-p3" class="para">
+<p class="p">Now the question is: When is it better or worse to make a wall? The
+answer is that it depends on the <em class="emph">size</em> of the domains. Suppose
+that we were to scale up a block so that the whole thing was twice as
+big. The volume in the space outside filled with a given magnetic field
+strength would be <em class="emph">eight</em> times bigger, and the energy in the
+magnetic field, which is proportional to the volume, would also be eight
+times greater. But the <em class="emph">surface</em> area between two domains, which
+will give the wall energy,
+would be only <em class="emph">four</em> times as big. Therefore, if the piece of iron
+is big enough, it will pay to split it into more domains. This is why
+only the very tiny crystals can have but a single domain. Any large
+object—one more than about a hundredth of a millimeter in size—will
+have at least one domain wall; and any ordinary, “centimeter-size”
+object will be split into many domains, as shown in the figure.
+Splitting into domains goes on <em class="emph">until the energy needed to put in
+one extra wall is as large as the energy decrease in the magnetic field
+outside the crystal</em>.</p>
+</div>
+<div id="Ch37-S3-p4" class="para">
+<p class="p">Actually nature has discovered still another way to lower the energy: It
+is not necessary to have the field go outside at all, if a little
+triangular region is magnetized <em class="emph">sideways</em>, as in
+Fig. <a href="#Ch37-F4">37–4</a>(d).<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a> Then
+with the arrangement of Fig. <a href="#Ch37-F4">37–4</a>(d) we see that there is
+<em class="emph">no</em> external field, but instead only a little more domain wall.</p>
+</div>
+<div id="Ch37-S3-p5" class="para">
+<p class="p">But that introduces a new kind of problem. It turns out that when a
+single crystal of iron is magnetized, it changes its length in the
+direction of magnetization, so an “ideal” cube with its magnetization,
+say, “up,” is no longer a perfect cube. The “vertical” dimension
+will be different from the “horizontal” dimension. This effect is
+called <em class="emph">magnetostriction</em>. Because of such
+geometric changes, the little triangular pieces of
+Fig. <a href="#Ch37-F4">37–4</a>(d) do not, so to speak, “fit” into the
+available space anymore—the crystal has got too long one way and too
+short the other way. Of course, it <em class="emph">does</em> fit, really, but only by
+being squashed in; and this involves some mechanical stresses. So, this
+arrangement <em class="emph">also</em> introduces an extra energy. It is the balance of
+all these various energies which determines how the domains finally
+arrange themselves in their complicated fashion in a piece of
+unmagnetized iron.</p>
+</div>
+<div id="Ch37-S3-p6" class="para">
+<p class="p">Now, what happens when we put on an external magnetic field? To take a
+simple case, consider a crystal whose domains are as shown in
+Fig. <a href="#Ch37-F4">37–4</a>(d). If we apply an external magnetic field in the
+upward direction, in what manner does the crystal become magnetized?
+First, the middle domain wall can <em class="emph">move over sideways</em> (to the
+right) and reduce the energy. It moves over so that the region which is
+“up” becomes bigger than the region which is “down.” There are more
+elementary magnets lined up with the field, and this gives a lower
+energy. So, for a piece of iron in weak fields—at the very beginning
+of magnetization—the domain walls begin to move and eat into the
+regions which are magnetized opposite to the field. As the field
+continues to increase, a whole crystal shifts gradually into a single
+large domain which the external field helps to keep lined up. In a
+strong field the crystal “likes” to be all one way <em class="emph">just because</em>
+its energy in the applied field is reduced—it is no longer merely the
+crystal’s own external field which matters.</p>
+</div>
+<div id="Ch37-F5" class="figure">
+<img src="img/FLP_II/f37-05/f37-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 37–5.</span>A magnetizing field $\FigH$ at an angle with respect to the
+crystal axis will gradually change the direction of the magnetization
+without changing its magnitude.
+</div>
+</div>
+<div id="Ch37-S3-p7" class="para">
+<p class="p">What if the geometry is not so simple? What if the axes of the crystal
+and its spontaneous magnetization are in one direction, but we apply
+the magnetic field in <em class="emph">some other direction</em>—say at $45^\circ$?
+We might think that domains would reform themselves with their
+magnetization parallel to the field, and then as before, they could
+all grow into one domain. But this is not easy for the iron to do,
+<em class="emph">for the energy needed to magnetize a crystal depends on the
+direction of magnetization relative to the crystal axis</em>. It is
+relatively easy to magnetize iron in a direction parallel to the
+crystal axes, but it takes <em class="emph">more</em> energy to magnetize it in some
+other direction—like $45^\circ$ with respect to one of the
+axes. Therefore, if we apply a magnetic field in such a direction,
+what happens first is that the domains which point along one of the
+preferred directions which is <em class="emph">near</em> to the applied field grow
+until the magnetization is all along one of these directions. Then
+<em class="emph">with much stronger fields</em>, the magnetization is gradually
+pulled around parallel to the field, as sketched in Fig. <a href="#Ch37-F5">37–5</a>.</p>
+</div>
+<div id="Ch37-F6" class="figure">
+<img src="img/FLP_II/f37-06/f37-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 37–6.</span>The components of $\FigM$ parallel to $\FigH$, for different
+directions of $\FigH$ (with respect to the crystal axes). [From
+F. Bitter, <span class="text italic">Introduction to Ferromagnetism</span>, McGraw-Hill
+Book Co., Inc., 1937.]
+</div>
+</div>
+<div id="Ch37-S3-p8" class="para">
+<p class="p">In Fig. <a href="#Ch37-F6">37–6</a> are shown some observations of the
+magnetization curves of single crystals of iron. To understand them, we
+must first explain something about the notation that is used in
+describing directions in a crystal. There are many ways in which a
+crystal can be sliced so as to produce a face which is a plane of atoms.
+Everyone who has driven past an orchard or vineyard knows this—it is
+fascinating to watch. If you look one way, you see lines of trees—if
+you look another way, you see different lines of trees, and so on. In a
+similar way, a crystal has definite families of planes that hold many
+atoms, and the planes have this important characteristic (we consider a
+cubic crystal to make it easier): If we observe where the planes
+intersect the three coordinate axes—we find that the
+<em class="emph">reciprocals</em> of the three distances from the origin are in the
+ratio of simple whole numbers. These three whole numbers are taken as
+the definition of the planes. For example, in Fig. <a href="#Ch37-F7">37–7</a>(a),
+a plane parallel to the $yz$-plane is shown. This is called a
+$[100]$ plane; the reciprocals of its intersection of the $y$- and $z$-axes are
+both zero. The direction perpendicular to such a plane (in a cubic
+crystal) is given the same set of numbers. It is easy to understand the
+idea in a cubic crystal, for then the indices $[100]$ mean a vector
+which has a unit component in the $x$-direction and none in the $y$-
+or $z$-directions. The $[110]$ direction is in a direction $45^\circ$ from
+the $x$- and $y$-axes, as in Fig. <a href="#Ch37-F7">37–7</a>(b); and the
+$[111]$ direction is in the direction of the cube diagonal, as in
+Fig. <a href="#Ch37-F7">37–7</a>(c).</p>
+</div>
+<div id="Ch37-F7" class="figure">
+<img class="first" src="img/FLP_II/f37-07/f37-07_tc_iPad_big_a.svgz"><img class="middle" src="img/FLP_II/f37-07/f37-07_tc_iPad_big_b.svgz"><img class="last" src="img/FLP_II/f37-07/f37-07_tc_iPad_big_c.svgz">
+<div class="caption">
+<span class="tag">Fig. 37–7.</span>The way crystal planes are labeled.
+</div>
+</div>
+<div id="Ch37-S3-p9" class="para">
+<p class="p">Returning now to Fig. <a href="#Ch37-F6">37–6</a>, we see the magnetization curves
+of a single crystal of iron for various directions. First, note that for
+very tiny fields—so weak that it is hard to see them on the scale at
+all—the magnetization increases extremely rapidly to quite large
+values. If the field is in the $[100]$ direction—namely along one of
+those nice, easy directions of magnetization—the curve goes up to a
+high value, curves around a little, and then is saturated. What happened
+is that the domains which were already there are very easily removed.
+Only a small field is required to make the domain walls move and eat up
+all of the “wrong-way” domains. Single crystals of iron are enormously
+permeable (magnetic sense), much more so than ordinary polycrystalline
+iron. A perfect crystal magnetizes extremely easily. Why is it curved at
+all? Why doesn’t it just go right up to saturation? We are not sure. You
+might study that some day. We do understand why it is flat for high
+fields. When the whole block is a single domain, the extra magnetic
+field cannot make any more magnetization—it is already
+at $M_{\text{sat}}$, with all the electrons lines up.</p>
+</div>
+<div id="Ch37-S3-p10" class="para">
+<p class="p">Now, if we try to do the same thing in the $[110]$ direction—which
+is at $45^\circ$ to the crystal axes—what will happen? We turn on a
+little bit of field and the magnetization leaps up as the domains
+grow. Then as we increase the field some more, we find that it takes
+quite a lot of field to get up to saturation, because now the
+magnetization is <em class="emph">turning away</em> from an “easy” direction. If
+this explanation is correct, the point at which the $[110]$ curve
+extrapolates back to the vertical axis should be at $1/\sqrt{2}$ of
+the saturation value. It turns out, in fact, to be very, very close
+to $1/\sqrt{2}$. Similarly, in the $[111]$ direction—which is along the
+cube diagonal—we find, as we would expect, that the curve
+extrapolates back to nearly $1/\sqrt{3}$ of saturation.</p>
+</div>
+<div id="Ch37-F8" class="figure">
+<img class="first"  src="img/FLP_II/f37-08/f37-08_tc_big_a.svgz"><img class="middle" src="img/FLP_II/f37-08/f37-08_tc_big_b.svgz"><img class="last"   src="img/FLP_II/f37-08/f37-08_tc_big_c.svgz">
+<div class="caption">
+<span class="tag">Fig. 37–8.</span>Magnetization curves for single crystals of iron, nickel, and
+cobalt. [From Charles Kittel, <span class="text italic">Introduction to Solid State
+Physics</span>, John Wiley and Sons, Inc., New York, 2nd ed., 1956.]
+</div>
+</div>
+<div id="Ch37-S3-p11" class="para">
+<p class="p">Figure <a href="#Ch37-F8">37–8</a> shows the corresponding situation for two other
+materials, nickel and cobalt. Nickel is different from iron. In nickel,
+it turns out that the $[111]$ direction is the easy direction of
+magnetization. Cobalt has a hexagonal crystal form, and people have
+botched up the system of nomenclature for this case. They want to have
+three axes on the bottom of the hexagon and one perpendicular to these,
+so they have used four indices. The $[0001]$ direction is the direction
+of the axis of the hexagon, and $[1010]$ is perpendicular to that axis.
+We see that crystals of different metals behave in different ways.</p>
+</div>
+<div id="Ch37-F9" class="figure">
+<img src="img/FLP_II/f37-09/f37-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 37–9.</span>The microscopic structure of an unmagnetized ferromagnetic
+material. Each crystal grain has an easy direction of magnetization and
+is broken up into domains which are spontaneously magnetized (usually)
+parallel to this direction.
+</div>
+</div>
+<div id="Ch37-S3-p12" class="para">
+<p class="p">Now we must discuss a polycrystalline material, such as an ordinary
+piece of iron. Inside such materials there are many, many little
+crystals with their crystalline axes pointing every which way.
+<em class="emph">These are not the same as domains</em>. Remember that the domains were
+all part of a <em class="emph">single crystal</em>, but in a piece of iron there are
+many <em class="emph">different crystals</em> with axes at different orientations, as
+shown in Fig. <a href="#Ch37-F9">37–9</a>. Within each of these crystals, there
+will also generally be some domains. When we apply a <em class="emph">small</em>
+magnetic field to a piece of polycrystalline material, what happens is
+that the domain walls begin to move, and the domains which have a
+favorable direction of easy magnetization grow larger. This growth is
+reversible so long as the field stays very small—if we turn the field
+off, the magnetization will return to zero. This part of the
+magnetization curve is marked $a$ in Fig. <a href="#Ch37-F10">37–10</a>.</p>
+</div>
+<div id="Ch37-F10" class="figure">
+<img src="img/FLP_II/f37-10/f37-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 37–10.</span>The magnetization curve for polycrystalline iron.
+</div>
+</div>
+<div id="Ch37-S3-p13" class="para">
+<p class="p">For larger fields—in the region $b$ of the magnetization curve
+shown—things get much more complicated. In every small crystal of
+the material, there are strains and dislocations; there are
+impurities, dirt, and imperfections. And at all but the smallest
+fields, the domain wall, in moving, gets stuck on these. There is an
+interaction energy between the domain wall and a dislocation, or a
+grain boundary, or an impurity. So when the wall gets to one of them,
+it gets stuck; it sticks there at a certain field. But then if the
+field is raised some more, the wall suddenly snaps past. So the motion
+of the domain wall is not smooth the way it is in a perfect
+crystal—it gets hung up every once in a while and moves in jerks. If
+we were to look at the magnetization on a microscopic scale, we would
+see something like the insert of Fig. <a href="#Ch37-F10">37–10</a>.</p>
+</div>
+<div id="Ch37-S3-p14" class="para">
+<p class="p">Now the important thing is that these jerks in the magnetization can
+cause an energy loss. In the first place, when a boundary finally
+slips past an impediment, it moves very quickly to the next one, since
+the field is already above what would be required for the unimpeded
+motion. The rapid motion means that there are rapidly changing
+magnetic fields which produce eddy currents in the crystal. These
+currents lose energy in heating the metal. A second effect is that
+when a domain suddenly changes, part of the crystal changes its
+dimensions from the magnetostriction. Each sudden shift of a domain
+wall sets up a little sound wave that carries away energy. Because of
+such effects, the second part of magnetization curve is
+<em class="emph">irreversible</em>, and <em class="emph">there is energy being lost</em>. This is
+the origin of the hysteresis effect, because to move a boundary wall
+forward—snap—and then to move it backward—snap—produces a
+different result. It’s like “jerky” friction, and it takes energy.</p>
+</div>
+<div id="Ch37-S3-p15" class="para">
+<p class="p">Eventually, for high enough fields, when we have moved all the domain
+walls and magnetized each crystal in its best direction, there are
+still some crystallites which happen to have their easy directions of
+magnetization not in the direction of our external magnetic
+field. Then it takes a lot of extra field to turn those magnetic
+moments around. So the magnetization increases slowly, but smoothly,
+for high fields—namely in the region marked $c$ in the figure. The
+magnetization does not come sharply to its saturation value, because
+in the last part of the curve the atomic magnets are <em class="emph">turning</em> in
+the strong field. So we see why the magnetization curve of an ordinary
+polycrystalline materials, such as the one shown in Fig. <a href="#Ch37-F10">37–10</a>,
+rises a little bit and <em class="emph">reversibly</em> at first, then rises
+irreversibly, and then curves over slowly. Of course, there is no
+sharp break-point between the three regions—they blend smoothly, one
+into the other.</p>
+</div>
+<div id="Ch37-S3-p16" class="para">
+<p class="p">It is not hard to show that the magnetization process in the middle
+part of the magnetization curve is jerky—that the domain walls jerk
+and snap as they shift. All you need is a coil of wire—with many
+thousands of turns—connected to an amplifier and a loudspeaker, as
+shown in Fig. <a href="#Ch37-F11">37–11</a>. If you put a few silicon steel sheets (of the
+type used in transformers) at the center of the coil and bring a bar
+magnet slowly near the stack, the sudden changes in magnetization will
+produce impulses of emf in the coil, which are heard as distinct
+clicks in the loudspeaker. As you move the magnet nearer to the iron
+you will hear a whole rush of clicks that sound something like the
+noise of sand grains falling over each other as a can of sand is tilted.
+The domain walls are jumping, snapping, and jiggling as the field is
+increased. This phenomenon is called the
+<em class="emph">Barkhausen effect</em>.</p>
+</div>
+<div id="Ch37-F11" class="figure">
+<img src="img/FLP_II/f37-11/f37-11_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 37–11.</span>The sudden changes in the magnetization of the steel strip are
+heard as clicks in the loudspeaker.
+</div>
+</div>
+<div id="Ch37-S3-p17" class="para">
+<p class="p">As you move the magnet even closer to the iron sheets, the noise grows
+louder and louder for a while but then there is relatively little
+noise when the magnet gets very close. Why? Because nearly all the
+domain walls have moved as far as they can go. Any greater field is
+merely <em class="emph">turning</em> the magnetization in each domain, which is a
+smooth process.</p>
+</div>
+<div id="Ch37-S3-p18" class="para">
+<p class="p">If you now withdraw the magnet, so as to come back on the downward
+branch of the hysteresis loop, the domains all try to get back to low
+energy again, and you hear another rush of backward-going jerks. You
+can also note that if you bring the magnet to a given place and move
+it back and forth a little bit, there is relatively little noise. It
+is again like tilting a can of sand—once the grains shift into
+place, small movements of the can don’t disturb them. In the iron the
+small variations in the magnetic field aren’t enough to move any
+boundaries over any of the “humps.”</p>
+</div>
+</div>
+<div id="Ch37-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">37–4</span>Ferromagnetic materials</h3>
+<div id="Ch37-S4-p1" class="para">
+<p class="p">Now we would like to talk about the various kinds of magnetic
+materials that there are in the technical world and to consider some
+of the problems involved in designing magnetic materials for different
+purposes. First, the term “the magnetic properties of iron,” which
+one often hears, is a misnomer—there is no such thing. “Iron” is
+not a well-defined material—the properties of iron depend critically
+on the amount of impurities and also on <em class="emph">how</em> the iron is
+formed. You can appreciate that the magnetic properties will depend on
+how easily the domain walls move and that this is a <em class="emph">gross</em>
+property, not a property of the individual atoms. So practical
+ferromagnetism is not really a property of an iron <em class="emph">atom</em>—it is
+a property of <em class="emph">solid iron</em> in a <em class="emph">certain form</em>. For example,
+iron can take on two different crystalline forms. The common form has
+a body-centered cubic lattice, but it can also have a face-centered
+cubic lattice, which is, however, stable only at temperatures
+above $1100^\circ$C. Of course, at that temperature the body-centered cubic
+structure is already past the Curie point. However, by alloying
+chromium and nickel with the iron (one possible mixture is
+$18$ percent chromium and $8$ percent nickel) we can get what is called
+stainless steel, which, although it is mainly iron, retains the
+face-centered lattice even at low temperatures. Because its crystal
+structure is different, it has completely different magnetic
+properties. Most kinds of stainless steel are not magnetic to any
+appreciable degree, although there are some kinds which are somewhat
+magnetic—it depends on the composition of the alloy. Even when such
+an alloy is magnetic, it is not <em class="emph">ferro</em>magnetic like ordinary
+iron—even though it is mostly just iron.</p>
+</div>
+<div id="Ch37-S4-p2" class="para">
+<p class="p">We would like now to describe a few of the special materials which
+have been developed for their particular magnetic properties. First,
+if we want to make a <em class="emph">permanent</em> magnet, we would like material
+with an enormously <em class="emph">wide</em> hysteresis loop so that, when we turn
+the current off and come down to zero magnetizing field, the
+magnetization will remain large. For such materials the domain
+boundaries should be “frozen” in place as much as possible. One such
+material is the remarkable alloy “Alnico V” ($51\%$ Fe, $8\%$ Al,
+$14\%$ Ni, $24\%$ Co, $3\%$ Cu). (The rather complex composition of
+this alloy is indicative of the kind of detailed effort that has gone
+into making good magnets. What patience it takes to mix five things
+together and test them until you find the most ideal substance!) When
+Alnico solidifies, there is a “second phase” which precipitates out,
+making many tiny grains and very high internal strains. In this
+material, the domain boundaries have a hard time moving at all. In
+addition to having a precise composition, Alnico is mechanically
+“worked” in a way that makes the crystals appear in the form of long
+grains along the direction in which the magnetization is going to
+be. Then the magnetization will have a natural tendency to be lined up
+in these directions and will be held there from the anisotropic
+effects. Furthermore, the material is even cooled in an external
+magnetic field when it is manufactured, so that the grains will grow
+with the right crystal orientation. The hysteresis loop of
+Alnico V is shown in Fig. <a href="#Ch37-F12">37–12</a>. You see that it is
+about $700$ times wider than the hysteresis curve for soft iron that we
+showed in the last chapter in Fig. <a href="II_36.html#Ch36-F8">36–8</a>.</p>
+</div>
+<div id="Ch37-F12" class="figure">
+<img src="img/FLP_II/f37-12/f37-12_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 37–12.</span>The hysteresis curve of Alnico V.
+</div>
+</div>
+<div id="Ch37-S4-p3" class="para">
+<p class="p">Let’s turn now to a different kind of material. For building
+transformers and motors, we want a material which is magnetically
+“soft”—one in which the magnetism is easily changed so that an
+enormous amount of magnetization results from a very small applied
+field. To arrange this, we need pure, well-annealed material which
+will have very few dislocations and impurities so that the domain
+walls can move easily. It would also be nice if we could make the
+anisotropy small. Then, even if a grain of the material sits at the
+wrong angle with respect to the field, it will still magnetize
+easily. Now we have said that iron prefers to magnetize along the
+$[100]$ direction, whereas nickel prefers the $[111]$ direction; so if
+we mix iron and nickel in various proportions, we might hope to find
+that with just the right proportions the alloy wouldn’t prefer
+<em class="emph">any</em> direction—the $[100]$ and $[111]$ directions would be
+equivalent. It turns out that this happens with a mixture of
+$70$ percent nickel and $30$ percent iron. In addition—possibly by luck
+or maybe because of some physical relationship between the anisotropy
+and the magnetostriction effects—it turns out
+that the <em class="emph">magnetostriction</em> of iron and nickel has the opposite
+sign. And in an alloy of the two metals, this property goes through zero
+at about $80$ percent nickel. So somewhere between $70$ and $80$ percent
+nickel we get very “soft” magnetic materials—alloys that are very
+easy to magnetize. They are called the
+<em class="emph">permalloys</em>. Permalloys are
+useful for high-quality transformers (at low signal levels), but they
+would be no good at all for permanent magnets.
+Permalloys must be very carefully made and handled. The
+magnetic properties of a piece of permalloy are
+drastically changed if it is stressed beyond its elastic limit—it
+mustn’t be bent. Then, its permeability is reduced because of the
+dislocations, slip bands, and so on, which are produced by the
+mechanical deformations. The domain boundaries are no longer easy to
+move. The high permeability can, however, be restored by annealing at
+high temperatures.
+</p>
+</div>
+
+<div id="Ch37-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 37–1</span>Properties of some ferromagnetic materials
+</div>
+<table class="tabular">
+<tr class="tr">
+<td class="td"></td>
+<td class="td center">$B_r$</td>
+<td class="td center">$H_c$</td>
+</tr>
+<tr class="tr">
+<td class="td"></td>
+<td class="td center">Residual</td>
+<td class="td center">Coercive</td>
+</tr>
+<tr class="tr">
+<td class="td"></td>
+<td class="td center">magnetic</td>
+<td class="td center">force</td>
+</tr>
+<tr class="tr">
+<td class="td"></td>
+<td class="td center">field</td>
+<td class="td center">(gauss)</td>
+</tr>
+<tr class="tr">
+<td class="td center">Material</td>
+<td class="td center">(gauss)</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td t left">Supermalloy</td>
+<td class="td t center">$(\approx5000)$</td>
+<td class="td t center">$\phantom{55}0.004$</td>
+</tr>
+<tr class="tr">
+<td class="td left">Silicon steel</td>
+<td class="td"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td left">(transformer)</td>
+<td class="td center">$12{,}000$</td>
+<td class="td center">$\phantom{55}0.05\phantom{4}$</td>
+</tr>
+<tr class="tr">
+<td class="td left">Armco iron</td>
+<td class="td center">$\phantom{1}4{,}000$</td>
+<td class="td center">$\phantom{55}0.6\phantom{54}$</td>
+</tr>
+<tr class="tr">
+<td class="td left">Alnico V</td>
+<td class="td center">$13{,}000$</td>
+<td class="td center">$550.\phantom{654}$</td>
+</tr>
+</table>
+</div>
+
+<div id="Ch37-S4-p4" class="para">
+<p class="p">It is often convenient to have some numbers to characterize the various
+magnetic materials. Two useful numbers are the intercepts of the
+hysteresis loop with the $B$- and $H$-axes, as indicated in
+Fig. <a href="#Ch37-F12">37–12</a>. These intercepts are called the <em class="emph">remanent
+magnetic field</em> $B_r$ and the <em class="emph">coercive force</em> $H_c$. In
+Table <a href="#Ch37-T1">37–1</a> we list these numbers for a few magnetic
+materials.</p>
+</div>
+</div>
+
+<div id="Ch37-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">37–5</span>Extraordinary magnetic materials</h3>
+
+<div id="Ch37-F13" class="figure">
+<img src="img/FLP_II/f37-13/f37-13_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 37–13.</span>Relative orientation of electron spins in various materials:
+(a) ferromagnetic, (b) antiferromagnetic, (c) ferrite, (d) yttrium-iron
+alloy. (Broken arrows show direction of total angular momentum,
+including orbital motion.
+</div>
+</div>
+
+<div id="Ch37-S5-p1" class="para">
+<p class="p">We would now like to discuss some of the more exotic magnetic materials.
+There are many elements in the periodic table which have incomplete
+inner electron shells and hence have atomic magnetic moments. For
+instance, right next to the ferromagnetic elements iron, nickel, and
+cobalt you will find chromium and manganese. Why aren’t <em class="emph">they</em>
+ferromagnetic? The answer is that the $\lambda$ term in
+Eq. (<a href="#mjx-eqn-EqII371">37.1</a>) has the <em class="emph">opposite sign</em> for these elements.
+In the chromium lattice, for example, the spins of the chromium atoms
+alternate <em class="emph">atom by atom</em>, as shown in Fig. <a href="#Ch37-F13">37–13</a>(b).
+So chromium <em class="emph">is</em> “magnetic” from its own point of view, but it is
+not technically interesting because there are no <em class="emph">external</em>
+magnetic effects. Chromium, then, is an example of a material in which
+quantum mechanical effects make the spins alternate. Such a material is
+called <em class="emph">antiferromagnetic</em>. The
+alignment in antiferromagnetic materials is also temperature dependent.
+Below a critical temperature, all the spins are lined up in the
+alternating array, but when the material is heated above a certain
+temperature—which is again called the Curie temperature—the
+spins suddenly become random. There is, internally, a sudden transition.
+This transition can be seen in the specific heat curve. Also it shows up
+in some special “magnetic” effects. For instance, the existence of the
+alternating spins can be verified by scattering neutrons from a crystal
+of chromium. Because a neutron itself has a spin (and a magnetic
+moment), it has a different amplitude to be scattered, depending on
+whether its spin is parallel or opposite to the spin of the scatterer.
+Thus, we get a different interference pattern when the spins in a
+crystal are alternating than we do when they have a random distribution.</p>
+</div>
+<div id="Ch37-F14" class="figure">
+<img src="img/FLP_II/f37-14/f37-14_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 37–14.</span>Crystal structure of the mineral spinel (MgAl$_2$O$_4$); the
+Mg$^{+2}$ ions occupy tetrahedral sites, each surrounded by four oxygen
+ions; the Al$^{+3}$ ions occupy octahedral sites, each surrounded by six
+oxygen ions. [From Charles Kittel, <span class="text italic">Introduction to Solid State
+Physics</span>, John Wiley and Sons, Inc., New York, 2nd ed., 1956.]
+</div>
+</div>
+<div id="Ch37-S5-p2" class="para">
+<p class="p">There is another kind of substance in which quantum mechanical effects
+make the electron spins alternate, but which is nevertheless
+<em class="emph">ferromagnetic</em>—that is, the crystal has a permanent net
+magnetization. The idea behind such materials is shown in
+Fig. <a href="#Ch37-F14">37–14</a>. The figure shows the crystal structure of
+<em class="emph">spinel</em>, a magnesium-aluminum oxide,
+which—as it is shown—is <em class="emph">not</em> magnetic. The oxide has two kinds
+of metal atoms: magnesium and aluminum. Now if we replace the magnesium
+and the aluminum by two magnetic elements like iron and zinc, or by zinc
+and manganese—in other words, if we put in <em class="emph">magnetic</em> atoms
+instead of the nonmagnetic ones—an interesting thing happens. Let’s
+call one kind of metal atom $a$ and the other kind of metal atom $b$;
+then the following combination of forces must be considered. There is an
+$a$-$b$ interaction which tries to make the $a$ atoms and the $b$ atoms
+have opposite spins—because quantum mechanics always gives the
+opposite sign (except for the mysterious crystals of iron, nickel, and
+cobalt). Then, there is a direct $a$-$a$ interaction which tries to make
+the $a$’s opposite, and also a $b$-$b$ interaction which tries to make
+the $b$’s opposite. Now, of course we cannot have everything opposite
+everything else—$a$ opposite $b$, $a$ opposite $a$, and $b$
+opposite $b$. Presumably because of the distances between the $a$’s and the
+presence of the oxygen (although we really don’t know why), it turns out
+that the $a$-$b$ interaction is stronger than the $a$-$a$ or
+the $b$-$b$. So the solution that nature uses in this case is to make all
+the $a$’s <em class="emph">parallel to each other</em>, and all the $b$’s
+<em class="emph">parallel to each other</em>, but the two systems <em class="emph">opposite</em>. That
+gives the lowest energy because of the stronger $a$-$b$ interaction. The
+result: all the $a$’s are spinning up and all the $b$’s are spinning
+down—or vice versa, of course. But if the <em class="emph">magnetic moments</em> of
+the $a$-type atom and the $b$-type atom <em class="emph">are not equal</em>, we can get
+the situation shown in Fig. <a href="#Ch37-F13">37–13</a>(c), and there can be a
+net magnetization in the material. The material will then be
+ferromagnetic—although somewhat weak. Such materials are called
+<em class="emph">ferrites</em>. They do not have as high a saturation magnetization as
+iron—for obvious reasons—so they are only useful for smaller fields.
+But they have a very important difference—they are insulators; the
+ferrites are <em class="emph">ferromagnetic
+insulators</em>. In high-frequency fields,
+they will have very small eddy currents and so can be used, for example,
+in microwave systems. The microwave fields will be able to get inside
+such an insulating material, whereas they would be kept out by the eddy
+currents in a conductor like iron.</p>
+</div>
+<div id="Ch37-S5-p3" class="para">
+<p class="p">There is another class of magnetic materials which has only recently
+been discovered—members of the family of the orthosilicates called
+<em class="emph">garnets</em>. They are again crystals in which the lattice contains
+two kinds of metallic atoms, and we have again a situation in which two
+kinds of atoms can be substituted almost at will. Among the many
+compounds of interest there is one which is completely ferromagnetic. It
+has yttrium and iron in the garnet structure, and the reason it is
+ferromagnetic is very curious. Here again quantum mechanics is making
+the neighboring spins opposite, so that there is a locked-in system of
+spins with the electron spins of the iron one way and the electron spins
+of the yttrium the opposite way. But the yttrium atom is complicated. It
+is a rare-earth element and gets a large contribution to its magnetic
+moment from <em class="emph">orbital</em> motion of the electrons. For yttrium, the
+orbital motion contribution is <em class="emph">opposite</em> that of the spin and also
+is bigger. Thus, although quantum mechanics, working through the
+exclusion principle, makes the <em class="emph">spins</em> of the yttrium opposite
+those of the iron, it makes the <em class="emph">total</em> magnetic moment of the
+yttrium atom <em class="emph">parallel</em> to the iron because of the orbital
+effect—as sketched in Fig. <a href="#Ch37-F13">37–13</a>(d). The compound is
+therefore a regular ferromagnet.</p>
+</div>
+<div id="Ch37-S5-p4" class="para">
+<p class="p">Another interesting example of ferromagnetism occurs in some of the
+rare-earth elements. It has to do with a still more peculiar
+arrangement of the spins. The material is not ferromagnetic in the
+sense that the spins are all parallel, nor is it antiferromagnetic in
+the sense that every atom is opposite. In these crystals all of the
+spins <em class="emph">in one layer</em> are parallel and lie in the plane of the
+layer. In the next layer all spins are again parallel to each other,
+but point in a somewhat different direction. In the following layer
+they are in still another direction, and so on. The result is that the
+local magnetization vector varies in the form of a spiral—the
+magnetic moments of the successive layers rotate as we proceed along a
+line perpendicular to the layers. It is interesting to try to analyze
+what happens when a field is applied to such a spiral—all the
+twistings and turnings that must go on in all those atomic
+magnets. (Some people <em class="emph">like</em> to amuse themselves with the theory
+of these things!) Not only are there cases of “flat” spirals, but
+there are also cases in which the directions the magnetic moments of
+successive layers map out a cone, so that it has a spiral component
+and also a uniform ferromagnetic component in one direction!</p>
+</div>
+<div id="Ch37-S5-p5" class="para">
+<p class="p">The magnetic properties of materials, worked out on a more advanced
+level than we have been able to do here, have fascinated physicists of
+all kinds. In the first place, there are those practical people who love
+to work out ways of making things in a better way—they love to design
+better and more interesting magnetic materials. The discovery of things
+like ferrites, or their application, immediately
+delights people who like to see clever new ways of doing things. Besides
+this, there are those who find a fascination in the terrible complexity
+that nature can produce using a few basic laws. Starting with one and
+the same general idea, nature goes from the ferromagnetism of iron and
+its domains, to the antiferromagnetism of chromium, to the magnetism of
+ferrites and garnets, to the spiral
+structure of the rare earth elements, and on, and on. It is fascinating
+to discover experimentally all the strange things that go on in these
+special substances. Then, to the theoretical physicists, ferromagnetism
+presents a number of very interesting, unsolved, and beautiful
+challenges. One challenge is to understand why it exists at all. Another
+is to predict the statistics of the interacting spins in an ideal
+lattice. Even neglecting any possible extraneous complications, this
+problem has, so far, defied full understanding. The reason that it is so
+interesting is that it is such an easily stated problem: Given a lot of
+electron spins in a regular lattice, interacting with such-and-such a
+law, what do they do? It is simply stated, but it has defied complete
+analysis for years. Although it has been analyzed rather carefully for
+temperatures not too close to the Curie point, the theory of the
+sudden transition at the Curie point still needs to be
+completed.
+</p>
+</div>
+<div id="Ch37-S5-p6" class="para">
+<p class="p">Finally, the whole subject of the system of spinning atomic
+magnets—in ferromagnetic, or in paramagnetic materials and in
+nuclear magnetism, has also been a fascinating thing to advanced
+students in physics. The system of spins can be pushed on and pulled
+on with external magnetic fields, so one can do many tricks with
+resonances, with relaxation effects, with spin-echoes, and with other
+effects. It serves as a prototype of many complicated thermodynamic
+systems. But in paramagnetic materials the situation is often fairly
+simple, and people have been delighted both to do experiments and to
+explain the phenomena theoretically.</p>
+</div>
+<div id="Ch37-S5-p7" class="para">
+<p class="p">We now close our study of electricity and magnetism. In the first
+chapter, we spoke of the great strides that have been made since the
+early Greek observation of the strange behaviors of amber
+and of lodestone. Yet in all our long and involved
+discussion we have never explained <em class="emph">why it is that when we rub a
+piece of amber we get a charge on it</em>, nor have we
+explained <em class="emph">why a lodestone is magnetized!</em>  You
+may say, “Oh, we just didn’t get the right sign.”  No, it is worse
+than that. Even if we <em class="emph">did</em> get the right sign, we would still have
+the question: Why is the piece of lodestone in the
+ground magnetized?  There is the earth’s magnetic field, of course, but
+<em class="emph">where does the earth’s field come from</em>?  Nobody really
+knows—there have only been some good guesses. So you see, this physics
+of ours is a lot of fakery—we start out with the phenomena of
+lodestone and amber, and we end up not
+understanding either of them very well. But we <em class="emph">have</em> learned a
+tremendous amount of very exciting and very practical information in the
+process!</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  See Chapter <a href="III_04.html">4</a> of Vol. III
+(section <a href="III_04.html#Ch4-S7">4–7</a>).
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  We write these
+equations with $H=B-M/\epsO c^2$ instead of $B$ to agree with the work
+of the last chapter. You might prefer to write $U=\pm\mu
+B_a=\pm\mu(B+\lambda'M/\epsO c^2)$, where $\lambda'=\lambda-1$. It’s
+the same thing.
+  <a href="#footnote_source_2">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_3"></a>
+  You may be wondering how spins that
+have to be either “up” or “down” can also be “sideways”! That’s a
+good question, but we won’t worry about it right now. We’ll simply adopt
+the classical point of view, thinking of the atomic magnets as classical
+dipoles which can be polarized sideways. Quantum mechanics requires
+considerable expertness to understand how things can be quantized both
+“up-and-down,” and “right-and-left,” all at the same time.
+  <a href="#footnote_source_3">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

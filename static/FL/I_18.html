@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 18: Rotation in Two Dimensions</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "18." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch18" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">18</span>Rotation in Two Dimensions</h2>
+<div id="Ch18-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">18–1</span>The center of mass</h3>
+<div id="Ch18-S1-p1" class="para">
+<p class="p">In the previous chapters we have been studying the mechanics
+of points, or small particles whose internal structure does not concern
+us. For the next few chapters we shall study the application of
+Newton’s laws to more complicated
+things. When the world becomes more complicated, it also becomes more
+interesting, and we shall find that the phenomena associated with the
+mechanics of a more complex object than just a point are really quite
+striking. Of course these phenomena involve nothing but combinations of
+Newton’s laws, but it is sometimes
+hard to believe that only $F = ma$ is at work.
+</p>
+</div>
+<div id="Ch18-S1-p2" class="para">
+<p class="p">The more complicated objects we deal with can be of several kinds:
+water flowing, galaxies whirling, and so on. The simplest
+“complicated” object to analyze, at the start, is what we call a
+<em class="emph">rigid body</em>, a solid object that is turning as
+it moves about. However, even such a simple object may have a most
+complex motion, and we shall therefore first consider the simplest
+aspects of such motion, in which an extended body rotates about a
+<em class="emph">fixed axis</em>. A given point on such a body then moves in a plane
+perpendicular to this axis. Such rotation of a body about a fixed axis
+is called <em class="emph">plane rotation</em> or rotation
+in two dimensions. We shall later generalize the results to three
+dimensions, but in doing so we shall find that, unlike the case of
+ordinary particle mechanics, rotations are subtle and hard to understand
+unless we first get a solid grounding in two dimensions.</p>
+</div>
+<div id="Ch18-S1-p3" class="para">
+<p class="p">The first interesting theorem concerning the motion of complicated
+objects can be observed at work if we throw an object made of a lot of
+blocks and spokes, held together by strings, into the air. Of course
+we know it goes in a parabola, because we studied that for a
+particle. But now our object is <em class="emph">not</em> a particle; it wobbles and
+it jiggles, and so on. It does go in a parabola though; one can see
+that. <em class="emph">What</em> goes in a parabola? Certainly not the point on the
+corner of the block, because that is jiggling about; neither is it the
+end of the wooden stick, or the middle of the wooden stick, or the
+middle of the block. But <em class="emph">something</em> goes in a parabola, there is
+an effective “center” which moves in a parabola. So our first
+theorem about complicated objects is to demonstrate that there
+<em class="emph">is</em> a mean position which is mathematically definable, but not
+necessarily a point of the material itself, which goes in a
+parabola. That is called the theorem of the center of the mass, and
+the proof of it is as follows.</p>
+</div>
+<div id="Ch18-S1-p4" class="para">
+<p class="p">We may consider any object as being made of lots of little particles,
+the atoms, with various forces among them. Let $i$ represent an index
+which defines one of the particles. (There are millions of them,
+so $i$ goes to $10^{23}$, or something.) Then the force on the
+$i$th particle is, of course, the mass times the acceleration of that
+particle:
+\begin{equation}
+\label{Eq:I:18:1}
+\FLPF_i=m_i(d^2\FLPr_i/dt^2).
+\end{equation}</p>
+</div>
+<div id="Ch18-S1-p5" class="para">
+<p class="p">In the next few chapters our moving objects will be ones in which all
+the parts are moving at speeds very much slower than the speed of
+light, and we shall use the nonrelativistic approximation for all
+quantities. In these circumstances the mass is constant, so that
+\begin{equation}
+\label{Eq:I:18:2}
+\FLPF_i=d^2(m_i\FLPr_i)/dt^2.
+\end{equation}
+If we now add the force on all the particles, that is, if we take the
+sum of all the $\FLPF_i$’s for all the different indexes, we get the
+total force, $\FLPF$. On the other side of the equation, we get the
+same thing as though we added before the differentiation:
+\begin{equation}
+\label{Eq:I:18:3}
+\sum_i\FLPF_i=\FLPF=\frac{d^2(\sum_im_i\FLPr_i)}{dt^2}.
+\end{equation}
+Therefore the total force is the second derivative of the masses times
+their positions, added together.</p>
+</div>
+<div id="Ch18-S1-p6" class="para">
+<p class="p">Now the total force on all the particles is the same as the
+<em class="emph">external</em> force. Why? Although there are all kinds of forces on
+the particles because of the strings, the wigglings, the pullings and
+pushings, and the atomic forces, and who knows what, and we have to
+add all these together, we are rescued by Newton’s Third Law. Between
+any two particles the action and reaction are equal, so that when we
+add all the equations together, if any two particles have forces
+between them it cancels out in the sum; therefore the net result is
+only those forces which arise from other particles which are not
+included in whatever object we decide to sum over. So if
+Eq. (<a href="#mjx-eqn-EqI183">18.3</a>) is the sum over a certain number of the particles,
+which together are called “the object,” then the <em class="emph">external</em> force
+on the total object is equal to the sum of <em class="emph">all</em> the forces on all
+its constituent particles.</p>
+</div>
+<div id="Ch18-S1-p7" class="para">
+<p class="p">Now it would be nice if we could write Eq. (<a href="#mjx-eqn-EqI183">18.3</a>) as the
+total mass times some acceleration. We can. Let us say $M$ is the sum
+of all the masses, i.e., the total mass. Then if we <em class="emph">define</em> a
+certain vector $\FLPR$ to be
+\begin{equation}
+\label{Eq:I:18:4}
+\FLPR=\sum_im_i\FLPr_i/M,
+\end{equation}
+Eq. (<a href="#mjx-eqn-EqI183">18.3</a>) will be simply
+\begin{equation}
+\label{Eq:I:18:5}
+\FLPF=d^2(M\FLPR)/dt^2=M(d^2\FLPR/dt^2),
+\end{equation}
+since $M$ is a constant. Thus we find that the external force is the
+total mass times the acceleration of an imaginary point whose location
+is $\FLPR$. This point is called the <em class="emph">center of mass</em> of the
+body. It is a point somewhere in the “middle” of the object, a kind
+of average $\FLPr$ in which the different $\FLPr_i$’s have weights or
+importances proportional to the masses.</p>
+</div>
+<div id="Ch18-S1-p8" class="para">
+<p class="p">We shall discuss this important theorem in more detail in a later
+chapter, and we shall therefore limit our remarks to two points: First,
+if the external forces are zero, if the object were floating in empty
+space, it might whirl, and jiggle, and twist, and do all kinds of
+things. But the <em class="emph">center of mass</em>, this artificially invented,
+calculated position, somewhere in the middle, <em class="emph">will move with a
+constant velocity</em>. In particular, if it is initially at rest, it will
+stay at rest. So if we have some kind of a box, perhaps a space ship,
+with people in it, and we calculate the location of the center of mass
+and find it is standing still, then the center of mass will continue to
+stand still if no external forces are acting on the box. Of course, the
+space ship may move a little in space, but that is because the people
+are walking back and forth inside; when one walks toward the front, the
+ship goes toward the back so as to keep the average position of all the
+masses in exactly the same place.</p>
+</div>
+<div id="Ch18-S1-p9" class="para">
+<p class="p">Is rocket propulsion therefore absolutely impossible because one
+cannot move the center of mass? No; but of course we find that to
+propel an interesting part of the rocket, an uninteresting part must
+be thrown away. In other words, if we start with a rocket at zero
+velocity and we spit some gas out the back end, then this little blob
+of gas goes one way as the rocket ship goes the other, but the center
+of mass is still exactly where it was before. So we simply move the
+part that we are interested in against the part we are not interested
+in.</p>
+</div>
+<div id="Ch18-S1-p10" class="para">
+<p class="p">The second point concerning the center of mass, which is the reason we
+introduced it into our discussion at this time, is that it may be
+treated separately from the “internal” motions of an object, and may
+therefore be ignored in our discussion of rotation.</p>
+</div>
+</div>
+<div id="Ch18-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">18–2</span>Rotation of a rigid body</h3>
+<div id="Ch18-S2-p1" class="para">
+<p class="p">Now let us discuss rotations. Of course an ordinary object does not
+simply rotate, it wobbles, shakes, and bends, so to simplify matters
+we shall discuss the motion of a nonexistent ideal object which we
+call a <em class="emph">rigid body</em>. This means an object in which the forces
+between the atoms are so strong, and of such character, that the
+little forces that are needed to move it do not bend it. Its shape
+stays essentially the same as it moves about. If we wish to study the
+motion of such a body, and agree to ignore the motion of its center of
+mass, there is only one thing left for it to do, and that is to
+<em class="emph">turn</em>. We have to describe that. How? Suppose there is some line
+in the body which stays put (perhaps it includes the center of mass
+and perhaps not), and the body is rotating about this particular line
+as an axis. How do we define the rotation? That is easy enough, for if
+we mark a point somewhere on the object, anywhere except on the axis,
+we can always tell exactly where the object is, if we only know where
+this point has gone to. The only thing needed to describe the position
+of that point is an <em class="emph">angle</em>. So rotation consists of a study of
+the variations of the angle with time.</p>
+</div>
+<div id="Ch18-S2-p2" class="para">
+<p class="p">In order to study rotation, we observe the angle through which a body
+has turned. Of course, we are not referring to any particular angle
+<em class="emph">inside</em> the object itself; it is not that we draw some angle
+<em class="emph">on</em> the object. We are talking about the <em class="emph">angular change of
+the position</em> of the whole thing, from one time to another.</p>
+</div>
+<div id="Ch18-S2-p3" class="para">
+<p class="p">First, let us study the kinematics of rotations. The angle will change
+with time, and just as we talked about position and velocity in one
+dimension, we may talk about angular position and angular
+velocity in plane
+rotation. In fact, there is a very interesting relationship between
+rotation in two dimensions and one-dimensional displacement, in which
+almost every quantity has its analog. First, we have the angle $\theta$
+which defines how far the body has gone <em class="emph">around</em>; this replaces the
+distance $y$, which defines how far it has gone <em class="emph">along</em>. In the
+same manner, we have a velocity of turning, $\omega= d\theta/dt$, which
+tells us how much the angle changes in a second, just as $v = ds/dt$
+describes how fast a thing moves, or how far it moves in a second. If
+the angle is measured in radians, then the angular
+velocity $\omega$
+will be so and so many radians per second. The greater the angular
+velocity, the
+faster the object is turning, the faster the angle changes. We can go
+on: we can differentiate the angular velocity with respect to time, and we
+can call $\alpha =$ $d\omega/dt =$ $d^2\theta/dt^2$ the angular
+acceleration. That would be the analog of the ordinary acceleration.
+</p>
+</div>
+<div id="Ch18-F1" class="figure">
+<img src="img/FLP_I/f18-01/f18-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 18–1.</span>Kinematics of two-dimensional rotation.
+</div>
+</div>
+<div id="Ch18-S2-p4" class="para">
+<p class="p">Now of course we shall have to relate the dynamics of rotation to the
+laws of dynamics of the particles of which the object is made, so we
+must find out how a particular particle moves when the angular
+velocity is such and such. To do this, let us take a certain particle
+which is located at a distance $r$ from the axis and say it is in a
+certain location $P(x, y)$ at a given instant, in the usual manner
+(Fig. <a href="#Ch18-F1">18–1</a>). If at a moment $\Delta t$ later the angle
+of the whole object has turned through $\Delta\theta$, then this
+particle is carried with it. It is at the same radius away from $O$ as
+it was before, but is carried to $Q$. The first thing we would like to
+know is how much the distance $x$ changes and how much the
+distance $y$ changes. If $OP$ is called $r$, then the length $PQ$
+is $r\,\Delta\theta$, because of the way angles are defined. The change
+in $x$, then, is simply the projection of $r\,\Delta\theta$ in the
+$x$-direction:
+\begin{equation}
+\label{Eq:I:18:6}
+\Delta x=-PQ\sin\theta=-r\,\Delta\theta\cdot(y/r)=-y\,\Delta\theta.
+\end{equation}
+Similarly,
+\begin{equation}
+\label{Eq:I:18:7}
+\Delta y=+x\,\Delta\theta.
+\end{equation}
+If the object is turning with a given angular velocity $\omega$, we
+find, by dividing both sides of (<a href="#mjx-eqn-EqI186">18.6</a>) and (<a href="#mjx-eqn-EqI187">18.7</a>)
+by $\Delta t$, that the velocity of the particle is
+\begin{equation}
+\label{Eq:I:18:8}
+v_x=-\omega y\quad
+\text{and}\quad
+v_y=+\omega x.
+\end{equation}
+Of course if we want to find the magnitude of the velocity, we just
+write
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:18:9}
+v=\sqrt{v_x^2+v_y^2}=\sqrt{\omega^2y^2+\omega^2x^2}=
+\omega\sqrt{x^2+y^2}=\omega r.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+v=\sqrt{v_x^2+v_y^2}&=\sqrt{\omega^2y^2+\omega^2x^2}\\[1ex]
+&=\omega\sqrt{x^2+y^2}=\omega r.
+\end{aligned}
+\label{Eq:I:18:9}
+\end{equation}
+</span>
+It should not be mysterious that the value of the magnitude of this
+velocity is $\omega r$; in fact, it should be self-evident, because
+the distance that it moves is $r\,\Delta\theta$ and the distance it
+moves per second is $r\,\Delta\theta/\Delta t$, or $r\omega$.</p>
+</div>
+<div id="Ch18-S2-p5" class="para">
+<p class="p">Let us now move on to consider the <em class="emph">dynamics</em> of rotation. Here a new
+concept, <em class="emph">force</em>, must be introduced. Let us inquire whether we can invent
+something which we shall call the <em class="emph">torque</em> (L.
+<em class="emph">torquere</em>, to twist) which bears the same relationship to rotation as
+force does to linear movement. A force is the thing that is needed to make
+linear motion, and the thing that makes something rotate is a “rotary force”
+or a “twisting force,” i.e., a torque. Qualitatively, a torque is a “twist”;
+what is a torque quantitatively? We shall get to the theory of torques
+quantitatively by studying the <em class="emph">work</em> done in turning an object, for one
+very nice way of defining a force is to say how much work it does when it acts
+through a given displacement. We are going to try to maintain the analogy
+between linear and angular quantities by equating the work that we do when we
+turn something a little bit when there are forces acting on it, to the
+<em class="emph">torque</em> times the <em class="emph">angle</em> it turns through. In other words, the
+definition of the torque is going to be so arranged that the theorem of work has
+an absolute analog: force times distance is work, and torque times angle is
+going to be work. That tells us what torque is. Consider, for instance, a rigid
+body of some kind with various forces acting on it, and an axis about which the
+body rotates. Let us at first concentrate on one force and suppose that this
+force is applied at a certain point $(x, y)$. How much work would be done if we
+were to turn the object through a very small angle? That is easy.  The work done
+is
+\begin{equation}
+\label{Eq:I:18:10}
+\Delta W=F_x\,\Delta x+F_y\,\Delta y.
+\end{equation}
+We need only to substitute Eqs. (<a href="#mjx-eqn-EqI186">18.6</a>) and (<a href="#mjx-eqn-EqI187">18.7</a>)
+for $\Delta x$ and $\Delta y$ to obtain
+\begin{equation}
+\label{Eq:I:18:11}
+\Delta W=(xF_y-yF_x)\Delta\theta.
+\end{equation}
+That is, the amount of work that we have done is, in fact, equal to
+the angle through which we have turned the object, multiplied by a
+strange-looking combination of the force and the distance. This
+“strange combination” is what we call the torque. So, defining the
+change in work as the torque times the angle, we now have the formula
+for torque in terms of the forces. (Obviously, torque is not a
+completely new idea independent of Newtonian mechanics—torque must
+have a definite definition in terms of the force.)</p>
+</div>
+<div id="Ch18-S2-p6" class="para">
+<p class="p">When there are several forces acting, the work that is done is, of
+course, the sum of the works done by all the forces, so that $\Delta
+W$ will be a whole lot of terms, all added together, for all the
+forces, <em class="emph">each of which is proportional, however,
+to $\Delta\theta$</em>. We can take the $\Delta\theta$ outside and therefore
+can say that the change in the work is equal to the sum of all the
+torques due to all the different forces that are acting,
+times $\Delta\theta$. This sum we might call the total torque, $\tau$. Thus
+torques add by the ordinary laws of algebra, but we shall later see
+that this is only because we are working in a plane. It is like
+one-dimensional kinematics, where the forces simply add algebraically,
+but only because they are all in the same direction. It is more
+complicated in three dimensions. Thus, for two-dimensional rotation,
+\begin{equation}
+\label{Eq:I:18:12}
+\tau_i=x_iF_{yi}-y_iF_{xi}
+\end{equation}
+and
+\begin{equation}
+\label{Eq:I:18:13}
+\tau=\sum\tau_i.
+\end{equation}
+It must be emphasized that the torque is about a given axis. If a
+different axis is chosen, so that all the $x_i$ and $y_i$ are changed,
+the value of the torque is (usually) changed too.</p>
+</div>
+<div id="Ch18-S2-p7" class="para">
+<p class="p">Now we pause briefly to note that our foregoing introduction of
+torque, through the idea of work, gives us a most important result for
+an object in equilibrium: if all the forces on an object are in
+balance both for translation and rotation, not only is the net
+<em class="emph">force</em> zero, but the total of all the <em class="emph">torques</em> is also
+zero, because if an object is in equilibrium, <em class="emph">no work is done by
+the forces for a small displacement</em>. Therefore, since $\Delta W =
+\tau\,\Delta\theta=0$, the sum of all the torques must be zero. So
+there are two conditions for equilibrium: that the sum of the forces
+is zero, and that the sum of the torques is zero. Prove that it
+suffices to be sure that the sum of torques about any <em class="emph">one</em> axis
+(in two dimensions) is zero.</p>
+</div>
+<div id="Ch18-F2" class="figure">
+<img src="img/FLP_I/f18-02/f18-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 18–2.</span>The torque produced by a force.
+</div>
+</div>
+<div id="Ch18-S2-p8" class="para">
+<p class="p">Now let us consider a single force, and try to figure out,
+geometrically, what this strange thing $xF_y - yF_x$ amounts to. In
+Fig. <a href="#Ch18-F2">18–2</a> we see a force $\FLPF$ acting at a
+point $\FLPr$. When the object has rotated through a small
+angle $\Delta\theta$, the work done, of course, is the component of force in
+the direction of the displacement times the displacement. In other
+words, it is only the tangential component of the force that counts,
+and this must be multiplied by the distance $r\,\Delta\theta$.
+Therefore we see that the torque is also equal to
+the tangential component of force (perpendicular to the radius) times
+the radius. That makes sense in terms of our ordinary idea of the
+torque, because if the force were completely radial, it would not put
+any “twist” on the body; it is evident that the twisting effect
+should involve only the part of the force which is not pulling out
+from the center, and that means the tangential component. Furthermore,
+it is clear that a given force is more effective on a long arm than
+near the axis. In fact, if we take the case where we push right
+<em class="emph">on</em> the axis, we are not twisting at all!  So it makes sense
+that the amount of twist, or torque, is proportional both to the
+radial distance and to the tangential component of the force.</p>
+</div>
+<div id="Ch18-S2-p9" class="para">
+<p class="p">There is still a third formula for the torque which is very
+interesting. We have just seen that the torque is the force times the
+radius times the sine of the angle $\alpha$, in Fig. <a href="#Ch18-F2">18–2</a>.
+But if we extend the line of action of the force and draw the line $OS$,
+the perpendicular distance to the line of action of the force (the
+<em class="emph">lever arm</em> of the force) we notice that this lever arm is shorter
+than $r$ in just the same proportion as the tangential part of the force
+is less than the total force. Therefore the formula for the torque can
+also be written as the magnitude of the force times the length of the
+lever arm.</p>
+</div>
+<div id="Ch18-S2-p10" class="para">
+<p class="p">The torque is also often called the <em class="emph">moment</em> of the
+force. The origin of
+this term is obscure, but it may be related to the fact that “moment”
+is derived from the Latin <em class="emph">movimentum</em>, and that the capability of
+a force to move an object (using the force on a lever or crowbar)
+increases with the length of the lever arm. In mathematics “moment”
+means weighted by how far away it is from an axis.</p>
+</div>
+</div>
+<div id="Ch18-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">18–3</span>Angular momentum</h3>
+<div id="Ch18-S3-p1" class="para">
+<p class="p">Although we have so far considered only the special case of a rigid
+body, the properties of torques and their mathematical relationships
+are interesting also even when an object is not rigid. In fact, we can
+prove a very remarkable theorem: just as external force is the rate of
+change of a quantity $p$, which we call the total momentum of a
+collection of particles, so the external torque is the rate of change
+of a quantity $L$ which we call the <em class="emph">angular momentum</em> of the
+group of particles.</p>
+</div>
+<div id="Ch18-F3" class="figure">
+<img src="img/FLP_I/f18-03/f18-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 18–3.</span>A particle moves about an axis $O$.
+</div>
+</div>
+<div id="Ch18-S3-p2" class="para">
+<p class="p">To prove this, we shall suppose that there is a system of particles on
+which there are some forces acting and find out what happens to the
+system as a result of the torques due to these forces. First, of
+course, we should consider just <em class="emph">one</em> particle. In
+Fig. <a href="#Ch18-F3">18–3</a> is one particle of mass $m$, and an axis $O$; the
+particle is not necessarily rotating in a circle about $O$, it may be
+moving in an ellipse, like a planet going around the sun, or in some
+other curve. It is moving somehow, and there are forces on it, and it
+accelerates according to the usual formula that the $x$-component of
+force is the mass times the $x$-component of acceleration, etc. But let
+us see what the <em class="emph">torque</em> does. The torque equals $xF_y - yF_x$, and
+the force in the $x$- or $y$-direction is the mass times the
+acceleration in the $x$- or $y$-direction:
+\begin{align}
+\tau&=xF_y-yF_x\notag\\[.5ex]
+\label{Eq:I:18:14}
+&=xm(d^2y/dt^2)-ym(d^2x/dt^2).
+\end{align}
+Now, although this does not appear to be the derivative of any simple
+quantity, it is in fact the derivative of the quantity $xm(dy/dt) -
+ym(dx/dt)$:
+<span class="eq-wide">
+\begin{equation}
+\begin{aligned}
+\ddt{}{t}\biggl[xm&\biggl(\ddt{y}{t}\biggr)
+-ym\biggl(\ddt{x}{t}\biggr)\biggr]=
+xm\biggl(\frac{d^2y}{dt^2}\biggr)+\biggl(\ddt{x}{t}\biggr)
+m\biggl(\ddt{y}{t}\biggr)\\[1.25ex]
+&-\,ym\biggl(\frac{d^2x}{dt^2}\biggr)-\biggl(\ddt{y}{t}\biggr)m
+\biggl(\ddt{x}{t}\biggr)=
+xm\biggl(\frac{d^2y}{dt^2}\biggr)-
+ym\biggl(\frac{d^2x}{dt^2}\biggr).
+\end{aligned}
+\label{Eq:I:18:15}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+\ddt{}{t}\biggl[&xm\biggl(\ddt{y}{t}\biggr)-ym\biggl(\ddt{x}{t}\biggr)\biggr]\\[1.5ex]
+=\quad&xm\biggl(\frac{d^2y}{dt^2}\biggr)+\biggl(\ddt{x}{t}\biggr)m\biggl(\ddt{y}{t}\biggr)\\[1ex]
+-\;&ym\biggl(\frac{d^2x}{dt^2}\biggr)-\biggl(\ddt{y}{t}\biggr)m\biggl(\ddt{x}{t}\biggr)\\[1.5ex]
+=\quad&xm\biggl(\frac{d^2y}{dt^2}\biggr)-ym\biggl(\frac{d^2x}{dt^2}\biggr).
+\end{aligned}
+\label{Eq:I:18:15}
+\end{equation}
+</span>
+So it is true that the torque is the rate of change of something with
+time! So we pay attention to the “something,” we give it a name: we
+call it $L$, the angular momentum:
+\begin{align}
+L&=xm(dy/dt)-ym(dx/dt)\notag\\[.5ex]
+\label{Eq:I:18:16}
+&=xp_y-yp_x.
+\end{align}</p>
+</div>
+<div id="Ch18-S3-p3" class="para">
+<p class="p">Although our present discussion is nonrelativistic, the second form
+for $L$ given above is relativistically correct. So we have found that
+there is also a rotational analog for the momentum, and that this
+analog, the angular momentum, is given by an expression in terms of
+the components of linear momentum that is just like the formula for
+torque in terms of the force components! Thus, if we want to know the
+angular momentum of a particle about an axis, we take only the
+component of the momentum that is tangential, and multiply it by the
+radius. In other words, what counts for angular momentum is not how
+fast it is going <em class="emph">away</em> from the origin, but how much it is going
+<em class="emph">around</em> the origin. Only the tangential part of the momentum
+counts for angular momentum. Furthermore, the farther out the line of
+the momentum extends, the greater the angular momentum. And also,
+because the geometrical facts are the same whether the quantity is
+labeled $p$ or $F$, it is true that there is a lever arm (<em class="emph">not</em>
+the same as the lever arm of the force on the particle!) which is
+obtained by extending the line of the <em class="emph">momentum</em> and finding the
+perpendicular distance to the axis. Thus the angular momentum is the
+magnitude of the momentum times the momentum lever arm. So we have
+three formulas for angular momentum, just as we have three formulas
+for the torque:
+\begin{align}
+L&=xp_y-yp_x\notag\\[.5ex]
+&=rp_{\text{tang}}\notag\\
+\label{Eq:I:18:17}
+&=p\cdot\text{lever arm}.
+\end{align}
+Like torque, angular momentum depends upon the position of the axis
+about which it is to be calculated.</p>
+</div>
+<div id="Ch18-S3-p4" class="para">
+<p class="p">Before proceeding to a treatment of more than one particle, let us
+apply the above results to a planet going around the sun. In which
+direction is the force? The force is toward the sun. What, then, is
+the torque on the object? Of course, this depends upon where we take
+the axis, but we get a very simple result if we take it at the sun
+itself, for the torque is the force times the lever arm, or the
+component of force perpendicular to $r$, times $r$. But there is no
+tangential force, so there is no torque about an axis at the sun!
+Therefore, the angular momentum of the planet going around the sun
+must remain constant. Let us see what that means. The tangential
+component of velocity, times the mass, times the radius, will be
+constant, because that is the angular momentum, and the rate of change
+of the angular momentum is the torque, and, in this problem, the
+torque is zero. Of course since the mass is also a constant, this
+means that the tangential velocity times the radius is a constant. But
+this is something we already knew for the motion of a planet. Suppose
+we consider a small amount of time $\Delta t$. How far will the planet
+move when it moves from $P$ to $Q$ (Fig. <a href="#Ch18-F3">18–3</a>)? How much
+<em class="emph">area</em> will it sweep through? Disregarding the very tiny
+area $QQ'P$ compared with the much larger area $OPQ$, it is simply half the
+base $PQ$ times the height, $OR$. In other words, the area that is
+swept through in unit time will be equal to the velocity times the
+lever arm of the velocity (times one-half). Thus the rate of change of
+area is proportional to the angular momentum, which is constant. So
+Kepler’s law about
+equal areas in equal times is a word description of the statement of the
+law of conservation of angular momentum, when there is no torque
+produced by the force.
+</p>
+</div>
+</div>
+<div id="Ch18-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">18–4</span>Conservation of angular momentum</h3>
+<div id="Ch18-S4-p1" class="para">
+<p class="p">Now we shall go on to consider what happens when there is a large
+number of particles, when an object is made of many pieces with many
+forces acting between them and on them from the outside. Of course, we
+already know that, about any given fixed axis, the torque on the
+$i$th particle (which is the force on the $i$th particle times the lever arm
+of that force) is equal to the rate of change of the angular momentum
+of that particle, and that the angular momentum of the $i$th particle
+is its momentum times its momentum lever arm. Now suppose we add the
+torques $\tau_i$ for all the particles and call it the total
+torque $\tau$. Then this will be the rate of change of the sum of the angular
+momenta of all the particles $L_i$, and that defines a new quantity
+which we call the total angular momentum $L$. Just as the total
+<em class="emph">momentum</em> of an object is the sum of the momenta of all the
+parts, so the angular momentum is the sum of the angular momenta of
+all the parts. Then the rate of change of the total $L$ is the total
+torque:
+\begin{equation}
+\label{Eq:I:18:18}
+\tau=\sum\tau_i=\sum\ddt{L_i}{t}=\ddt{L}{t}.
+\end{equation}
+Now it might seem that the total torque is a complicated thing. There
+are all those internal forces and all the outside forces to be
+considered. But, if we take Newton’s law of action and reaction to
+say, not simply that the action and reaction are equal, but also that
+they are <em class="emph">directed exactly oppositely along the same line</em>
+(Newton may or may not actually have
+said this, but he tacitly assumed it), then the two <em class="emph">torques</em> on
+the reacting objects, due to their mutual interaction, will be equal and
+opposite because the lever arms for any axis are equal. Therefore the
+internal torques balance out pair by pair, and so we have the remarkable
+theorem that the <em class="emph">rate of change of the total angular momentum
+about any axis is equal to the external torque about that axis!</em>
+\begin{equation}
+\label{Eq:I:18:19}
+\tau=\sum\tau_i=\tau_{\text{ext}}=dL/dt.
+\end{equation}
+Thus we have a very powerful theorem concerning the motion of large
+collections of particles, which permits us to study the over-all
+motion without having to look at the detailed machinery inside. This
+theorem is true for any collection of objects, whether they form a
+rigid body or not.</p>
+</div>
+<div id="Ch18-S4-p2" class="para">
+<p class="p">One extremely important case of the above theorem is the <em class="emph">law of
+conservation of angular momentum:</em> if no external torques act upon a
+system of particles, the angular momentum remains constant.</p>
+</div>
+<div id="Ch18-S4-p3" class="para">
+<p class="p">A special case of great importance is that of a rigid body, that is,
+an object of a definite shape that is just turning around. Consider an
+object that is fixed in its geometrical dimensions, and which is
+rotating about a fixed axis. Various parts of the object bear the same
+relationship to one another at all times. Now let us try to find the
+total angular momentum of this object. If the mass of one of its
+particles is $m_i$, and its position or location is at $(x_i, y_i)$,
+then the problem is to find the angular momentum of that particle,
+because the total angular momentum is the sum of the angular momenta
+of all such particles in the body. For an object going around in a
+circle, the angular momentum, of course, is the mass times the
+velocity times the distance from the axis, and the velocity is equal
+to the angular velocity times the distance from the axis:
+\begin{equation}
+\label{Eq:I:18:20}
+L_i=m_iv_ir_i=m_ir_i^2\omega,
+\end{equation}
+or, summing over all the particles $i$, we get
+\begin{equation}
+\label{Eq:I:18:21}
+L=I\omega,
+\end{equation}
+where
+\begin{equation}
+\label{Eq:I:18:22}
+I=\sum_im_ir_i^2.
+\end{equation}</p>
+</div>
+<div id="Ch18-S4-p4" class="para">
+<p class="p">This is the analog of the law that the momentum is mass times
+velocity. Velocity is replaced by angular velocity, and we see that
+the mass is replaced by a new thing which we call the <em class="emph">moment of
+inertia $I$</em>,
+which is analogous to the mass. Equations (<a href="#mjx-eqn-EqI1821">18.21</a>)
+and (<a href="#mjx-eqn-EqI1822">18.22</a>) say that a body has inertia for turning which
+depends, not just on the masses, but on <em class="emph">how far away they are</em>
+from the axis. So, if we have two objects of the same mass, when we put
+the masses farther away from the axis, the inertia for turning will be
+higher. This is easily demonstrated by the apparatus shown in
+Fig. <a href="#Ch18-F4">18–4</a>, where a weight $M$ is kept from falling very fast
+because it has to turn the large weighted rod. At first, the masses $m$
+are close to the axis, and $M$ speeds up at a certain rate. But when we
+change the moment of inertia by putting the two masses $m$
+much farther away from the axis, then we see that $M$ accelerates much
+less rapidly than it did before, because the body has much more inertia
+against turning. The moment of inertia is the inertia against turning,
+and is the sum of the contributions of all the masses, times their
+distances <em class="emph">squared</em>, from the axis.</p>
+</div>
+<div id="Ch18-F4" class="figure">
+<img src="img/FLP_I/f18-04/f18-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 18–4.</span>The “inertia for turning” depends upon the lever arm of the
+masses.
+</div>
+</div>
+<div id="Ch18-S4-p5" class="para">
+<p class="p">There is one important difference between mass and moment of inertia
+which is very dramatic. The mass of an object never changes, but its
+moment of inertia <em class="emph">can</em> be changed. If we stand on a frictionless
+rotatable stand with our arms outstretched, and hold some weights in
+our hands as we rotate slowly, we may change our moment of inertia by
+drawing our arms in, but our mass does not change. When we do this,
+all kinds of wonderful things happen, because of the law of the
+conservation of angular momentum: If the external torque is zero, then
+the angular momentum, the moment of inertia times omega, remains
+constant. Initially, we were rotating with a large moment of
+inertia $I_1$ at a low angular velocity $\omega_1$, and the angular momentum
+was $I_1\omega_1$. Then we changed our moment of inertia by pulling
+our arms in, say to a smaller value $I_2$. Then the product $I\omega$,
+which has to stay the same because the total angular momentum has to
+stay the same, was $I_2\omega_2$. So $I_1\omega_1 = I_2\omega_2$. That
+is, if we <em class="emph">reduce</em> the moment of inertia, we have to
+<em class="emph">increase</em> the angular velocity.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

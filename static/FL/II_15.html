@@ -1,0 +1,1870 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 15: The Vector Potential</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "15." + n }
+          },
+          MultLineWidth: "72%",
+                         Macros: {
+                         FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch15" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">15</span>The Vector Potential</h2>
+<div id="Ch15-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">15–1</span>The forces on a current loop; energy of a dipole</h3>
+<div id="Ch15-S1-p1" class="para">
+<p class="p">In the last chapter we studied the magnetic field produced by a small
+rectangular current loop. We found that it is a dipole field, with the
+dipole moment given by
+\begin{equation}
+\label{Eq:II:15:1}
+\mu=IA,
+\end{equation}
+
+where $I$ is the current and $A$ is the area of the loop. The
+direction of the moment is normal to the plane of the loop, so we can
+also write
+\begin{equation*}
+\FLPmu=IA\FLPn,
+\end{equation*}
+
+where $\FLPn$ is the unit normal to the area $A$.</p>
+</div>
+<div id="Ch15-S1-p2" class="para">
+<p class="p">A current loop—or magnetic dipole—not only produces magnetic
+fields, but will also experience forces when placed in the magnetic
+field of other currents. We will look first at the forces on a
+rectangular loop in a uniform magnetic field. Let the $z$-axis be
+along the direction of the field, and the plane of the loop be placed
+through the $y$-axis, making the angle $\theta$ with the $xy$-plane as
+in Fig. <a href="#Ch15-F1">15–1</a>. Then the magnetic moment of the loop—which is normal
+to its plane—will make the angle $\theta$ with the magnetic field.</p>
+</div>
+<div id="Ch15-F1" class="figure">
+<img src="img/FLP_II/f15-01/f15-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–1.</span>A rectangular loop carrying the current $I$ sits in a uniform
+field $\FigB$ (in the $z$-direction). The torque on the loop
+is $\Figtau=\Figmu\times\FigB$, where the magnetic moment $\mu=Iab$.
+</div>
+</div>
+<div id="Ch15-S1-p3" class="para">
+<p class="p">Since the currents are opposite on opposite sides of the loop, the
+forces are also opposite, so there is no net force on the loop (when
+the field is uniform). Because of forces on the two sides marked $1$
+and $2$ in the figure, however, there is a torque which tends to
+rotate the loop about the $y$-axis. The magnitude of these forces
+$F_1$ and $F_2$ is
+\begin{equation*}
+F_1=F_2=IBb.
+\end{equation*}
+
+Their moment arm is
+\begin{equation*}
+a\sin\theta,
+\end{equation*}
+
+so the torque is
+
+\begin{equation*}
+\tau=IabB\sin\theta.
+\end{equation*}
+
+or, since $Iab$ is the magnetic moment of the loop,
+
+\begin{equation*}
+\tau=\mu B\sin\theta.
+\end{equation*}
+
+The torque can be written in vector notation:
+
+\begin{equation}
+\label{Eq:II:15:2}
+\FLPtau=\FLPmu\times\FLPB.
+\end{equation}
+
+Although we have only shown that the torque is given by Eq. (<a href="#mjx-eqn-EqII152">15.2</a>)
+in one rather special case, the result is right for a small loop of any shape,
+as we will see. The same kind of relationship holds for the torque of an electric dipole
+in an electric field:
+
+\begin{equation*}
+\FLPtau=\FLPp\times\FLPE.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch15-S1-p4" class="para">
+<p class="p">We now ask about the mechanical energy of our current loop. Since there is a torque,
+the energy evidently depends on the orientation. The principle of virtual work says that
+the torque is the rate of change of energy with angle, so we can write
+
+\begin{equation*}
+dU=\tau\,d\theta.
+\end{equation*}
+
+Setting $\tau=\mu B\sin\theta$, and integrating, we can write for the energy
+
+\begin{equation}
+\label{Eq:II:15:3}
+U=-\mu B\cos\theta+\text{a constant}.
+\end{equation}
+
+(The sign is negative because the torque tries to line up the moment with the field;
+the energy is lowest when $\FLPmu$ and $\FLPB$ are parallel.)</p>
+</div>
+
+<div id="Ch15-S1-p5" class="para">
+<p class="p">For reasons which we will discuss later, this energy is <em class="emph">not</em> the total energy of
+a current loop. (We have, for one thing, not taken into account the energy required to
+maintain the current in the loop.) We will, therefore, call this energy $U_{\text{mech}}$,
+to remind us that it is only part of the energy. Also, since we are leaving out some of
+energy anyway, we can set the constant of integration equal to zero in Eq. (<a href="#mjx-eqn-EqII153">15.3</a>).
+So we rewrite the equation:
+
+\begin{equation}
+\label{Eq:II:15:4}
+U_{\text{mech}}=-\FLPmu\cdot\FLPB.
+\end{equation}
+
+Again, this corresponds to the result for an electric dipole:
+
+\begin{equation}
+\label{Eq:II:15:5}
+U=-\FLPp\cdot\FLPE.
+\end{equation}
+</p>
+</div>
+<div id="Ch15-S1-p6" class="para">
+<p class="p">Now the electrostatic energy $U$ in Eq. (<a href="#mjx-eqn-EqII155">15.5</a>) is the
+true energy, but $U_{\text{mech}}$ in (<a href="#mjx-eqn-EqII154">15.4</a>) is not the
+real energy. It <em class="emph">can</em>, however, be used in computing forces, by
+the principle of virtual work, supposing that the current in the
+loop—or at least $\mu$—is kept constant.</p>
+</div>
+<div id="Ch15-S1-p7" class="para">
+<p class="p">We can show for our rectangular loop that $U_{\text{mech}}$ also
+corresponds to the mechanical work done in bringing the loop into the
+field. The total force on the loop is zero only in a uniform field; in
+a nonuniform field there <em class="emph">are</em> net forces on a current loop. In
+putting the loop into a region with a field, we must have gone through
+places where the field was not uniform, and so work was done. To make
+the calculation simple, we shall imagine that the loop is brought into
+the field with its moment pointing along the field. (It can be rotated
+to its final position after it is in place.)</p>
+</div>
+<div id="Ch15-S1-p8" class="para">
+<p class="p">Imagine that we want to move the loop in the $x$-direction—toward a
+region of stronger field—and that the loop is oriented as shown in
+Fig. <a href="#Ch15-F2">15–2</a>. We start somewhere where the field is zero and integrate
+the force times the distance as we bring the loop into the field.</p>
+</div>
+<div id="Ch15-F2" class="figure">
+<img src="img/FLP_II/f15-02/f15-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 15–2.</span>A loop is carried along the $x$-direction through the
+field $\FigB$, at right angles to $x$.
+</div>
+</div>
+<div id="Ch15-S1-p9" class="para">
+<p class="p">First, let’s compute the work done on each side separately and then
+take the sum (rather than adding the forces before integrating). The
+forces on sides $3$ and $4$ are at right angles to the direction of
+motion, so no work is done on them. The force on side $2$ is $IbB(x)$
+in the $x$-direction, and to get the work done against the magnetic
+forces we must integrate this from some $x$ where the field is zero,
+say at $x=-\infty$, to $x_2$, its present position:
+\begin{equation}
+\label{Eq:II:15:6}
+W_2=-\int_{-\infty}^{x_2}F_2\,dx=-Ib\int_{-\infty}^{x_2}B(x)\,dx.
+\end{equation}
+
+Similarly, the work done against the forces on side $1$ is
+\begin{equation}
+\label{Eq:II:15:7}
+W_1=-\int_{-\infty}^{x_1}F_1\,dx=Ib\int_{-\infty}^{x_1}B(x)\,dx.
+\end{equation}
+
+To find each integral, we need to know how $B(x)$ depends on $x$. But
+notice that side $1$ follows along right behind side $2$, so that its
+integral includes most of the work done on side $2$. In fact, the sum
+of (<a href="#mjx-eqn-EqII156">15.6</a>) and (<a href="#mjx-eqn-EqII157">15.7</a>) is just
+\begin{equation}
+\label{Eq:II:15:8}
+W=-Ib\int_{x_1}^{x_2}B(x)\,dx.
+\end{equation}
+
+But if we are in a region where $B$ is nearly the same on both sides
+$1$ and $2$, we can write the integral as
+\begin{equation*}
+\int_{x_1}^{x_2}B(x)\,dx=(x_2-x_1)B=aB,
+\end{equation*}
+
+where $B$ is the field at the center of the loop. The total mechanical
+energy we have put in is
+\begin{equation}
+\label{Eq:II:15:9}
+U_{\text{mech}}=W=-Iab\,B=-\mu B.
+\end{equation}
+
+The result agrees with the energy we took for Eq. (<a href="#mjx-eqn-EqII154">15.4</a>).</p>
+</div>
+<div id="Ch15-S1-p10" class="para">
+<p class="p">We would, of course, have gotten the same result if we had added the
+forces on the loop before integrating to find the work. If we
+let $B_1$ be the field at side $1$ and $B_2$ be the field at side $2$,
+then the total force in the $x$-direction is
+\begin{equation*}
+F_x=Ib(B_2-B_1).
+\end{equation*}
+
+If the loop is “small,” that is, if $B_2$ and $B_1$ are not too
+different, we can write
+\begin{equation*}
+B_2=B_1+\ddp{B}{x}\,\Delta x=B_1+\ddp{B}{x}\,a.\notag
+\end{equation*}
+
+So the force is
+\begin{equation}
+\label{Eq:II:15:10}
+F_x=Iab\,\ddp{B}{x}.
+\end{equation}
+
+The total work done on the loop by <em class="emph">external</em> forces is
+\begin{equation*}
+-\int_{-\infty}^xF_x\,dx=-Iab\int\ddp{B}{x}\,dx=-IabB,
+\end{equation*}
+
+which is again just $-\mu B$. Only now we see why it is that the
+<em class="emph">force</em> on a small current loop is proportional to the derivative
+of the magnetic field, as we would expect from
+\begin{equation}
+\label{Eq:II:15:11}
+F_x\,\Delta x=-\Delta U_{\text{mech}}=-\Delta(-\FLPmu\cdot\FLPB).
+\end{equation}
+</p>
+</div>
+<div id="Ch15-S1-p11" class="para">
+<p class="p">Our result, then, is that even though $U_{\text{mech}}=-\FLPmu\cdot\FLPB$
+may not include all the energy of
+a system—it is a fake kind of energy—it can still be used with the
+principle of virtual work to find the forces on steady current loops.</p>
+</div>
+</div>
+<div id="Ch15-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">15–2</span>Mechanical and electrical energies</h3>
+<div id="Ch15-S2-p1" class="para">
+<p class="p">We want now to show why the energy $U_{\text{mech}}$ discussed in the
+previous section is not the correct energy associated with steady
+currents—that it does not keep track of the total energy in the
+world. We have, indeed, emphasized that it can be used like the
+energy, for computing forces from the principle of virtual work,
+<em class="emph">provided</em> that the current in the loop (and all <em class="emph">other</em>
+currents) do not change. Let’s see why all this works.</p>
+</div>
+<div id="Ch15-S2-p2" class="para">
+<p class="p">Imagine that the loop in Fig. <a href="#Ch15-F2">15–2</a> is moving in the
+$+x$-direction and take the $z$-axis in the direction of $\FLPB$. The
+conduction electrons in side $2$ will experience a force along the wire,
+in the $y$-direction. But because of their flow—as an electric
+current—there is a component of their motion in the same direction as
+the force. Each electron is, therefore, having work done on it at the
+rate $F_yv_y$, where $v_y$, is the component of the electron velocity
+along the wire. We will call this work done on the electrons
+<em class="emph">electrical</em> work. Now it turns out that if the loop is moving in a
+<em class="emph">uniform</em> field, the total electrical work is zero, since positive
+work is done on some parts of the loop and an equal amount of negative
+work is done on other parts. But this is not true if the circuit is
+moving in a nonuniform field—then there <em class="emph">will</em> be a net amount of
+work done on the electrons. In general, this work would tend to change
+the flow of the electrons, but if the current is being held constant,
+energy must be absorbed or delivered by the battery or other source that
+is keeping the current steady. This energy was not included when we
+computed $U_{\text{mech}}$ in Eq. (<a href="#mjx-eqn-EqII159">15.9</a>), because our
+computations included only the mechanical forces on the body of the
+wire.</p>
+</div>
+<div id="Ch15-S2-p3" class="para">
+<p class="p">You may be thinking: But the force on the electrons depends on how
+<em class="emph">fast</em> the wire is moved; perhaps if the wire is moved slowly
+enough this electrical energy can be neglected. It is true that the
+<em class="emph">rate</em> at which the electrical energy is delivered is
+proportional to the speed of the wire, but the <em class="emph">total</em> energy
+delivered is proportional also to the <em class="emph">time</em> that this rate goes
+on. So the total electrical energy is proportional to the velocity
+times the time, which is just the distance moved. For a given
+distance moved in a field the same amount of electrical work is done.</p>
+</div>
+<div id="Ch15-S2-p4" class="para">
+<p class="p">Let’s consider a segment of wire of unit length carrying the
+current $I$ and moving in a direction perpendicular to itself and to a
+magnetic field $\FLPB$ with the speed $v_{\text{wire}}$. Because of
+the current the electrons will have a drift velocity $v_{\text{drift}}$
+along the wire. The component of the magnetic force
+on each electron in the direction of the drift is $q_ev_{\text{wire}}B$.
+So the rate at which electrical work is being
+done is $Fv_{\text{drift}}=(q_ev_{\text{wire}}B)v_{\text{drift}}$. If
+there are $N$ conduction electrons in the unit length of the wire, the
+total rate at which electrical work is being done is
+\begin{equation*}
+\ddt{U_{\text{elect}}}{t}=Nq_ev_{\text{wire}}Bv_{\text{drift}}.
+\end{equation*}
+
+But $Nq_ev_{\text{drift}}=I$, the current in the wire, so
+\begin{equation*}
+\ddt{U_{\text{elect}}}{t}=Iv_{\text{wire}}B.
+\end{equation*}
+</p>
+</div>
+<div id="Ch15-S2-p5" class="para">
+<p class="p">Now since the current is held constant, the forces on the conduction
+electrons do not cause them to accelerate; the electrical energy is
+not going into the electrons but into the source that is keeping the
+current constant.</p>
+</div>
+<div id="Ch15-S2-p6" class="para">
+<p class="p">But notice that the force on the <em class="emph">wire</em> is $IB$, so
+$IBv_{\text{wire}}$ is also the rate of <em class="emph">mechanical work</em> done on
+the wire, $dU_{\text{mech}}/dt=IBv_{\text{wire}}$. We conclude that
+the mechanical work done on the wire is just equal to the electrical
+work done on the current source, so the energy of the loop <em class="emph">is a
+constant</em>!</p>
+</div>
+<div id="Ch15-S2-p7" class="para">
+<p class="p">This is not a coincidence, but a consequence of the law we already
+know. The total force on each charge in the wire is
+\begin{equation*}
+\FLPF=q(\FLPE+\FLPv\times\FLPB).
+\end{equation*}
+
+The rate at which work is done is
+\begin{equation}
+\label{Eq:II:15:12}
+\FLPv\cdot\FLPF=q[\FLPv\cdot\FLPE+\FLPv\cdot(\FLPv\times\FLPB)].
+\end{equation}
+
+If there are no electric fields we have only the second term, which is
+always zero. We shall see later that <em class="emph">changing</em> magnetic fields
+produce electric fields, so our reasoning applies only to moving wires
+in steady magnetic fields.</p>
+</div>
+<div id="Ch15-S2-p8" class="para">
+<p class="p">How is it then that the principle of virtual work gives the right
+answer? Because we <em class="emph">still</em> have not taken into account the
+<em class="emph">total</em> energy of the world. We have not included the energy of
+the currents that are <em class="emph">producing</em> the magnetic field we start out
+with.</p>
+</div>
+<div id="Ch15-S2-p9" class="para">
+<p class="p">Suppose we imagine a complete system such as that drawn in
+Fig. <a href="#Ch15-F3">15–3</a>(a), in which we are moving our loop with the
+current $I_1$ into the magnetic field $\FLPB_1$ produced by the
+current $I_2$ in a coil. Now the current $I_1$ in the loop will also be
+producing some magnetic field $\FLPB_2$ at the coil. If the loop is
+moving, the field $\FLPB_2$ will be changing. As we shall see in the
+next chapter, a changing magnetic field generates an $\FLPE$-field; and
+this $\FLPE$-field will do work on the charges in the coil. This energy
+must also be included in our balance sheet of the total energy.
+</p>
+</div>
+<div id="Ch15-F3" class="figure">
+<img class="first" src="img/FLP_II/f15-03/f15-03_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_II/f15-03/f15-03_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 15–3.</span>Finding the energy of a small loop in
+a magnetic field.
+</div>
+</div>
+<div id="Ch15-S2-p10" class="para">
+<p class="p">We could wait until the next chapter to find out about this new energy
+term, but we can also see what it will be if we use the principle of
+relativity in the following way. When we are moving the loop toward
+the stationary coil we know that its electrical energy is just equal
+and opposite to the mechanical work done. So
+\begin{equation*}
+U_{\text{mech}}+U_{\text{elect}}(\text{loop})=0.
+\end{equation*}
+</p>
+</div>
+<div id="Ch15-S2-p11" class="para">
+<p class="p">Suppose now we look at what is happening from a different point of
+view, in which the loop is at rest, and the coil is moved toward
+it. The coil is then moving into the field produced by the loop. The
+same arguments would give that
+\begin{equation*}
+U_{\text{mech}}+U_{\text{elect}}(\text{coil})=0.
+\end{equation*}
+
+The mechanical energy is the same in the two cases because it comes
+from the force between the two circuits.</p>
+</div>
+<div id="Ch15-S2-p12" class="para">
+<p class="p">The sum of the two equations gives
+\begin{equation*}
+2U_{\text{mech}}+U_{\text{elect}}(\text{loop})+
+U_{\text{elect}}(\text{coil})=0.
+\end{equation*}
+
+The total energy of the whole system is, of course, the sum of the two
+electrical energies plus the mechanical energy taken only
+<em class="emph">once</em>. So we have
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:15:13}
+U_{\text{total}}=U_{\text{elect}}(\text{loop})+
+U_{\text{elect}}(\text{coil})+U_{\text{mech}}=-U_{\text{mech}}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+U_{\text{total}}&=\phantom{-}U_{\text{elect}}(\text{loop})+
+U_{\text{elect}}(\text{coil})+U_{\text{mech}}\notag\\[1ex]
+\label{Eq:II:15:13}
+&=-U_{\text{mech}}.
+\end{align}
+</span>
+</p>
+</div>
+<div id="Ch15-S2-p13" class="para">
+<p class="p">The total energy of the world is really the <em class="emph">negative</em>
+of $U_{\text{mech}}$. If we want the true energy of a magnetic dipole,
+for example, we should write
+\begin{equation*}
+U_{\text{total}}=+\FLPmu\cdot\FLPB.
+\end{equation*}
+
+It is only if we make the condition that all currents are constant
+that we can use only a part of the energy, $U_{\text{mech}}$ (which is
+always the negative of the true energy), to find the mechanical
+forces. In a more general problem, we must be careful to include all
+energies.</p>
+</div>
+<div id="Ch15-S2-p14" class="para">
+<p class="p">We have seen an analogous situation in electrostatics. We showed that
+the energy of a capacitor is equal to $Q^2/2C$. When we use the
+principle of virtual work to find the force between the plates of the
+capacitor, the change in energy is equal to $Q^2/2$ times the change
+in $1/C$. That is,
+\begin{equation}
+\label{Eq:II:15:14}
+\Delta U=\frac{Q^2}{2}\,\Delta\biggl(\frac{1}{C}\biggr)=
+-\frac{Q^2}{2}\,\frac{\Delta C}{C^2}.
+\end{equation}
+</p>
+</div>
+<div id="Ch15-S2-p15" class="para">
+<p class="p">Now suppose that we were to calculate the work done in moving two
+conductors subject to the different condition that the voltage between
+them is held constant. Then we can get the right answers for force
+from the principle of virtual work if we do something
+artificial. Since $Q=CV$, the real energy is $\tfrac{1}{2}CV^2$. But
+if we define an artificial energy equal to $-\tfrac{1}{2}CV^2$, then
+the principle of virtual work can be used to get forces by setting the
+change in the artificial energy equal to the mechanical work, provided
+that we insist that the voltage $V$ be held constant. Then
+\begin{equation}
+\label{Eq:II:15:15}
+\Delta U_{\text{mech}}=\Delta\biggl(-\frac{CV^2}{2}\biggr)=
+-\frac{V^2}{2}\,\Delta C,
+\end{equation}
+
+which is the same as Eq. (<a href="#mjx-eqn-EqII1514">15.14</a>). We get the correct
+result even though we are neglecting the work done by the electrical
+system to keep the voltage constant. Again, this electrical energy is
+just twice as big as the mechanical energy and of the opposite sign.</p>
+</div>
+<div id="Ch15-S2-p16" class="para">
+<p class="p">Thus if we calculate artificially, disregarding the fact that the
+source of the potential has to do work to maintain the voltages
+constant, we get the right answer. It is exactly analogous to the
+situation in magnetostatics.</p>
+</div>
+</div>
+<div id="Ch15-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">15–3</span>The energy of steady currents</h3>
+<div id="Ch15-S3-p1" class="para">
+<p class="p">We can now use our knowledge that $U_{\text{total}}=-U_{\text{mech}}$
+to find the true energy of steady currents in magnetic fields. We can
+begin with the true energy of a small current loop.
+Calling $U_{\text{total}}$ just $U$, we write
+\begin{equation}
+\label{Eq:II:15:16}
+U=\FLPmu\cdot\FLPB.
+\end{equation}
+
+Although we calculated this energy for a plane rectangular loop, the
+same result holds for a small plane loop of any shape.</p>
+</div>
+<div id="Ch15-S3-p2" class="para">
+<p class="p">We can find the energy of a circuit of any shape by imagining that it
+is made up of small current loops. Say we have a wire in the shape of
+the loop $\Gamma$ of Fig. <a href="#Ch15-F4">15–4</a>. We fill in this curve with the
+surface $S$, and on the surface mark out a large number of small
+loops, each of which can be considered plane. If we let the
+current $I$ circulate around <em class="emph">each</em> of the little loops, the net result
+will be the same as a current around $\Gamma$, since the currents will
+cancel on all lines internal to $\Gamma$. Physically, the system of
+little currents is indistinguishable from the original circuit. The
+energy must also be the same, and so is just the sum of the energies
+of the little loops.</p>
+</div>
+<div id="Ch15-F4" class="figure">
+<img src="img/FLP_II/f15-04/f15-04_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 15-4.</span>The energy of a large loop in a magnetic field can be
+considered as the sum of energies of smaller loops.
+</div>
+</div>
+<div id="Ch15-S3-p3" class="para">
+<p class="p">If the area of each little loop is $\Delta a$, its energy is $I\Delta
+aB_n$, where $B_n$ is the component normal to $\Delta a$. The total
+energy is
+\begin{equation*}
+U=\sum IB_n\,\Delta a.
+\end{equation*}
+
+Going to the limit of infinitesimal loops, the sum becomes an
+integral, and
+\begin{equation}
+\label{Eq:II:15:17}
+U=I\int B_n\,da=I\int\FLPB\cdot\FLPn\,da,
+\end{equation}
+
+where $\FLPn$ is the unit normal to $da$.</p>
+</div>
+<div id="Ch15-S3-p4" class="para">
+<p class="p">If we set $\FLPB=\FLPcurl{\FLPA}$, we can connect the surface integral
+to a line integral, using Stokes’ theorem,
+\begin{equation}
+\label{Eq:II:15:18}
+I\int_S(\FLPcurl{\FLPA})\cdot\FLPn\,da=I\oint_\Gamma\FLPA\cdot d\FLPs,
+\end{equation}
+
+where $d\FLPs$ is the line element along $\Gamma$. So we have the
+energy for a circuit of any shape:
+\begin{equation}
+\label{Eq:II:15:19}
+U=I\underset{\text{circuit}}{\oint}\FLPA\cdot d\FLPs,
+\end{equation}
+
+In this expression $\FLPA$ refers, of course, to the vector potential
+due to those currents (other than the $I$ in the wire) which produce
+the field $\FLPB$ at the wire.</p>
+</div>
+<div id="Ch15-S3-p5" class="para">
+<p class="p">Now any distribution of steady currents can be imagined to be made up
+of filaments that run parallel to the lines of current flow. For each
+pair of such circuits, the energy is given by (<a href="#mjx-eqn-EqII1519">15.19</a>),
+where the integral is taken around one circuit, using the vector
+potential $\FLPA$ from the other circuit. For the total energy we want
+the sum of all such pairs. If, instead of keeping track of the pairs,
+we take the complete sum over all the filaments, we would be counting
+the energy twice (we saw a similar effect in electrostatics), so the
+total energy can be written
+\begin{equation}
+\label{Eq:II:15:20}
+U=\tfrac{1}{2}\int\FLPj\cdot\FLPA\,dV.
+\end{equation}
+
+This formula corresponds to the result we found for the electrostatic
+energy:
+\begin{equation}
+\label{Eq:II:15:21}
+U=\tfrac{1}{2}\int\rho\phi\,dV.
+\end{equation}
+
+So we may if we wish think of $\FLPA$ as a kind of potential for
+currents in magnetostatics. Unfortunately, this idea is not too
+useful, because it is true only for static fields. In fact, neither of
+the equations (<a href="#mjx-eqn-EqII1520">15.20</a>) and (<a href="#mjx-eqn-EqII1521">15.21</a>) gives the
+correct energy when the fields change with time.</p>
+</div>
+</div>
+<div id="Ch15-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">15–4</span>$\FLPB$ versus $\FLPA$</h3>
+<div id="Ch15-S4-p1" class="para">
+<p class="p">In this section we would like to discuss the following questions: Is
+the vector potential merely a device which is useful in making
+calculations—as the scalar potential is useful in
+electrostatics—or is the vector potential a “real” field? Isn’t
+the magnetic field the “real” field, because it is responsible for
+the force on a moving particle? First we should say that the phrase
+“a real field” is not very meaningful. For one thing, you probably
+don’t feel that the magnetic field is very “real” anyway, because
+even the whole idea of a field is a rather abstract thing. You cannot
+put out your hand and feel the magnetic field. Furthermore, the value
+of the magnetic field is not very definite; by choosing a suitable
+moving coordinate system, for instance, you can make a magnetic field
+at a given point disappear.</p>
+</div>
+<div id="Ch15-S4-p2" class="para">
+<p class="p">What we mean here by a “real” field is this: a real field is a
+mathematical function we use for avoiding the idea of action at a
+distance. If we have a charged particle at the position $P$, it is
+affected by other charges located at some distance from $P$. One way
+to describe the interaction is to say that the other charges make some
+“condition”—whatever it may be—in the environment at $P$. If we
+know that condition, which we describe by giving the electric and
+magnetic fields, then we can determine completely the behavior of the
+particle—with no further reference to how those conditions came
+about.</p>
+</div>
+<div id="Ch15-S4-p3" class="para">
+<p class="p">In other words, if those other charges were altered in some way, but
+the conditions at $P$ that are described by the electric and magnetic
+field at $P$ remain the same, then the motion of the charge will also
+be the same. A “real” field is then a set of numbers we specify in
+such a way that what happens <em class="emph">at a point</em> depends only on the
+numbers <em class="emph">at that point</em>. We do not need to know any more about
+what’s going on at other places. It is in this sense that we will
+discuss whether the vector potential is a “real” field.</p>
+</div>
+<div id="Ch15-S4-p4" class="para">
+<p class="p">You may be wondering about the fact that the vector potential is not
+unique—that it can be changed by adding the gradient of any scalar
+with no change at all in the forces on particles. That has not,
+however, anything to do with the question of reality in the sense that
+we are talking about. For instance, the magnetic field is in a sense
+altered by a relativity change (as are also $\FLPE$ and $\FLPA$). But
+we are not worried about what happens if the field <em class="emph">can</em> be
+changed in this way. That doesn’t really make any difference; that has
+nothing to do with the question of whether the vector potential is a
+proper “real” field for describing magnetic effects, or whether it
+is just a useful mathematical tool.</p>
+</div>
+<div id="Ch15-S4-p5" class="para">
+<p class="p">We should also make some remarks on the usefulness of the vector
+potential $\FLPA$. We have seen that it can be used in a formal
+procedure for calculating the magnetic fields of known currents, just
+as $\phi$ can be used to find electric fields. In electrostatics we
+saw that $\phi$ was given by the scalar integral
+\begin{equation}
+\label{Eq:II:15:22}
+\phi(1)=\frac{1}{4\pi\epsO}\int\frac{\rho(2)}{r_{12}}\,dV_2.
+\end{equation}
+
+From this $\phi$, we get the three components of $\FLPE$ by three
+differential operations. This procedure is usually easier to handle
+than evaluating the three integrals in the vector formula
+\begin{equation}
+\label{Eq:II:15:23}
+\FLPE(1)=\frac{1}{4\pi\epsO}\int\frac{\rho(2)\FLPe_{12}}{r_{12}^2}\,dV_2.
+\end{equation}
+
+First, there are three integrals; and second, each integral is in
+general somewhat more difficult.</p>
+</div>
+<div id="Ch15-S4-p6" class="para">
+<p class="p">The advantages are much less clear for magnetostatics. The integral
+for $\FLPA$ is already a vector integral:
+\begin{equation}
+\label{Eq:II:15:24}
+\FLPA(1)=\frac{1}{4\pi\epsO c^2}\int
+\frac{\FLPj(2)\,dV_2}{r_{12}},
+\end{equation}
+
+which is, of course, three integrals. Also, when we take the curl
+of $\FLPA$ to get $\FLPB$, we have six derivatives to do and combine by
+pairs. It is not immediately obvious whether in most problems this
+procedure is really any easier than computing $\FLPB$ directly from
+\begin{equation}
+\label{Eq:II:15:25}
+\FLPB(1)=\frac{1}{4\pi\epsO c^2}\int
+\frac{\FLPj(2)\times\FLPe_{12}}{r_{12}^2}\,dV_2.
+\end{equation}
+</p>
+</div>
+<div id="Ch15-S4-p7" class="para">
+<p class="p">Using the vector potential is often more difficult for simple problems
+for the following reason. Suppose we are interested only in the
+magnetic field $\FLPB$ at one point, and that the problem has some
+nice symmetry—say we want the field at a point on the axis of a ring
+of current. Because of the symmetry, we can easily get $\FLPB$ by
+doing the integral of Eq. (<a href="#mjx-eqn-EqII1525">15.25</a>). If, however, we were
+to find $\FLPA$ first, we would have to compute $\FLPB$ from
+<em class="emph">derivatives</em> of $\FLPA$, so we must know what $\FLPA$ is at all
+points in the <em class="emph">neighborhood</em> of the point of interest. And most
+of these points are off the axis of symmetry, so the integral
+for $\FLPA$ gets complicated. In the ring problem, for example, we would
+need to use elliptic integrals. In such problems, $\FLPA$ is clearly
+not very useful. It is true that in many complex problems it is easier
+to work with $\FLPA$, but it would be hard to argue that this ease of
+technique would justify making you learn about one more vector field.</p>
+</div>
+<div id="Ch15-S4-p8" class="para">
+<p class="p">We have introduced $\FLPA$ because it <em class="emph">does</em> have an important
+physical significance. Not only is it related to the energies of
+currents, as we saw in the last section, but it is also a “real”
+physical field in the sense that we described above. In classical
+mechanics it is clear that we can write the force on a particle as
+\begin{equation}
+\label{Eq:II:15:26}
+\FLPF=q(\FLPE+\FLPv\times\FLPB),
+\end{equation}
+
+so that, given the forces, everything about the motion is
+determined. In any region where $\FLPB=\FLPzero$ even if $\FLPA$ is
+not zero, such as outside a solenoid, there is no discernible effect
+of $\FLPA$. Therefore for a long time it was believed that $\FLPA$ was
+not a “real” field. It turns out, however, that there are phenomena
+involving quantum mechanics which show that the field $\FLPA$ is in
+fact a “real” field in the sense we have defined it. In the next
+section we will show you how that works.</p>
+</div>
+</div>
+<div id="Ch15-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">15–5</span>The vector potential and quantum mechanics</h3>
+<div id="Ch15-S5-p1" class="para">
+<p class="p">There are many changes in what concepts are important when we go from
+classical to quantum mechanics. We have already discussed some of them
+in Vol. I. In particular, the force concept gradually fades away,
+while the concepts of energy and momentum become of paramount
+importance. You remember that instead of particle motions, one deals
+with probability amplitudes which vary in space and time. In these
+amplitudes there are wavelengths related to momenta, and frequencies
+related to energies. The momenta and energies, which determine the
+phases of wave functions, are therefore the important quantities in
+quantum mechanics. Instead of forces, we deal with the way
+interactions change the wavelength of the waves. The idea of a force
+becomes quite secondary—if it is there at all. When people talk
+about nuclear forces, for example, what they usually analyze and work
+with are the energies of interaction of two nucleons, and not the
+force between them. Nobody ever differentiates the energy to find out
+what the force looks like. In this section we want to describe how the
+vector and scalar potentials enter into quantum mechanics. It is, in
+fact, just because momentum and energy play a central role in quantum
+mechanics that $\FLPA$ and $\phi$ provide the most direct way of
+introducing electromagnetic effects into quantum descriptions.</p>
+</div>
+<div id="Ch15-F5" class="figure">
+<img src="img/FLP_II/f15-05/f15-05_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 15-5.</span>An interference experiment with electrons (see also
+Chapter <a href="I_37.html">37</a> of Vol. I).
+</div>
+</div>
+<div id="Ch15-S5-p2" class="para">
+<p class="p">We must review a little how quantum mechanics works. We will consider
+again the imaginary experiment described in Chapter <a href="I_37.html">37</a>
+of Vol. I, in which electrons are diffracted by two slits. The
+arrangement is shown again in Fig. <a href="#Ch15-F5">15–5</a>. Electrons, all of nearly
+the same energy, leave the source and travel toward a wall with two
+narrow slits. Beyond the wall is a “backstop” with a movable
+detector. The detector measures the rate, which we call $I$, at which
+electrons arrive at a small region of the backstop at the distance $x$
+from the axis of symmetry. The rate is proportional to the probability
+that an individual electron that leaves the source will reach that
+region of the backstop. This probability has the complicated-looking
+distribution shown in the figure, which we understand as due to the
+interference of two amplitudes, one from each slit. The interference
+of the two amplitudes depends on their phase difference. That is, if
+the amplitudes are $C_1e^{i\Phi_1}$ and $C_2e^{i\Phi_2}$, the phase
+difference $\delta=\Phi_1-\Phi_2$ determines their interference
+pattern [see Eq. (<a href="I_29.html#mjx-eqn-EqI2912">29.12</a>) in Vol. I]. If the distance
+between the screen and the slits is $L$, and if the difference in the
+path lengths for electrons going through the two slits is $a$, as
+shown in the figure, then the phase difference of the two waves is
+given by
+\begin{equation}
+\label{Eq:II:15:27}
+\delta=\frac{a}{\lambdabar}.
+\end{equation}
+
+As usual, we let $\lambdabar=\lambda/2\pi$, where $\lambda$ is the
+wavelength of the space variation of the probability amplitude. For
+simplicity, we will consider only values of $x$ much less than $L$;
+then we can set
+\begin{equation}
+a=\frac{x}{L}\,d\notag
+\end{equation}
+
+and
+\begin{equation}
+\label{Eq:II:15:28}
+\delta=\frac{x}{L}\,\frac{d}{\lambdabar}.
+\end{equation}
+
+When $x$ is zero, $\delta$ is zero; the waves are in phase, and the
+probability has a maximum. When $\delta$ is $\pi$, the waves are out
+of phase, they interfere destructively, and the probability is a
+minimum. So we get the wavy function for the electron intensity.</p>
+</div>
+<div id="Ch15-S5-p3" class="para">
+<p class="p">Now we would like to state the law that for quantum mechanics replaces
+the force law $\FLPF=q\FLPv\times\FLPB$. It will be the law that
+determines the behavior of quantum-mechanical particles in an
+electromagnetic field. Since what happens is determined by amplitudes,
+the law must tell us how the magnetic influences affect the
+amplitudes; we are no longer dealing with the acceleration of a
+particle. The law is the following: the phase of the amplitude to
+arrive via any trajectory is changed by the presence of a magnetic
+field by an amount equal to the integral of the vector potential along
+the whole trajectory times the charge of the particle over
+Planck’s constant. That is,
+\begin{equation}
+\label{Eq:II:15:29}
+\text{Magnetic change in phase}=\frac{q}{\hbar}\kern{-2ex}
+\underset{\text{trajectory}}{\int}\kern{-2ex}\FLPA\cdot d\FLPs.
+\end{equation}
+
+If there were no magnetic field there would be a certain phase of
+arrival. If there is a magnetic field anywhere, the phase of the
+arriving wave is increased by the integral in Eq. (<a href="#mjx-eqn-EqII1529">15.29</a>).
+</p>
+</div>
+<div id="Ch15-S5-p4" class="para">
+<p class="p">Although we will not need to use it for our present discussion, we
+mention that the effect of an electrostatic field is to produce a
+phase change given by the <em class="emph">negative</em> of the <em class="emph">time</em> integral
+of the scalar potential $\phi$:
+\begin{equation*}
+\text{Electric change in phase}=-\frac{q}{\hbar}\int\phi\,dt.
+\end{equation*}
+
+These two expressions are correct not only for static fields, but
+together give the correct result for <em class="emph">any</em> electromagnetic field,
+static or dynamic. This is the law that
+replaces $\FLPF=q(\FLPE+\FLPv\times\FLPB)$. We want now, however, to consider
+only a static magnetic field.</p>
+</div>
+<div id="Ch15-S5-p5" class="para">
+<p class="p">Suppose that there is a magnetic field present in the two-slit
+experiment. We want to ask for the phase of arrival at the screen of
+the two waves whose paths pass through the two slits. Their
+interference determines where the maxima in the probability will
+be. We may call $\Phi_1$ the phase of the wave along
+trajectory $(1)$. If $\Phi_1(B=0)$ is the phase without the magnetic field, then
+when the field is turned on the phase will be
+\begin{equation}
+\label{Eq:II:15:30}
+\Phi_1=\Phi_1(B=0)+\frac{q}{\hbar}
+\int_{(1)}\FLPA\cdot d\FLPs.
+\end{equation}
+
+Similarly, the phase for trajectory $(2)$ is
+\begin{equation}
+\label{Eq:II:15:31}
+\Phi_2=\Phi_2(B=0)+\frac{q}{\hbar}
+\int_{(2)}\FLPA\cdot d\FLPs.
+\end{equation}
+
+The interference of the waves at the detector depends on the phase
+difference
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:15:32}
+\delta=\Phi_1(B=0)-\Phi_2(B=0)+
+\frac{q}{\hbar}\int_{(1)}\FLPA\cdot d\FLPs-
+\frac{q}{\hbar}\int_{(2)}\FLPA\cdot d\FLPs.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+\delta=\Phi_1(B=0)-\Phi_2(B=0)+\notag\\[1ex]
+\frac{q}{\hbar}\int_{(1)}\FLPA\cdot d\FLPs-
+\frac{q}{\hbar}\int_{(2)}\FLPA\cdot d\FLPs.
+\end{gathered}
+\label{Eq:II:15:32}
+\end{equation}
+</span>
+The no-field difference we will call $\delta(B=0)$; it is just the
+phase difference we have calculated above in Eq. (<a href="#mjx-eqn-EqII1528">15.28</a>).
+Also, we notice that the two integrals can be written as <em class="emph">one</em>
+integral that goes forward along $(1)$ and back along $(2)$; we call
+this the closed path $(1–2)$. So we have
+\begin{equation}
+\label{Eq:II:15:33}
+\delta=\delta(B=0)+\frac{q}{\hbar}
+\oint_{(1–2)}\FLPA\cdot d\FLPs.
+\end{equation}
+
+This equation tells us how the electron motion is changed by the
+magnetic field; with it we can find the new positions of the intensity
+maxima and minima at the backstop.</p>
+</div>
+<div id="Ch15-S5-p6" class="para">
+<p class="p">Before we do that, however, we want to raise the following interesting
+and important point. You remember that the vector potential function
+has some arbitrariness. Two different vector potential functions
+$\FLPA$ and $\FLPA'$ whose difference is the gradient of some scalar
+function $\FLPgrad{\psi}$, both represent the same magnetic field,
+since the curl of a gradient is zero. They give, therefore, the same
+classical force $q\FLPv\times\FLPB$. If in quantum mechanics the
+effects depend on the vector potential, <em class="emph">which</em> of the many
+possible $\FLPA$-functions is correct?</p>
+</div>
+<div id="Ch15-S5-p7" class="para">
+<p class="p">The answer is that the same arbitrariness in $\FLPA$ continues to
+exist for quantum mechanics. If in Eq. (<a href="#mjx-eqn-EqII1533">15.33</a>) we
+change $\FLPA$ to $\FLPA'=\FLPA+\FLPgrad{\psi}$, the integral on $\FLPA$
+becomes
+\begin{equation*}
+\oint_{(1–2)}\FLPA'\cdot d\FLPs=
+\oint_{(1–2)}\FLPA\cdot d\FLPs+
+\oint_{(1–2)}\FLPgrad{\psi}\cdot d\FLPs.
+\end{equation*}
+
+The integral of $\FLPgrad{\psi}$ is around the <em class="emph">closed</em>
+path $(1–2)$, but the integral of the tangential component of a
+gradient on a closed path is always zero, by Stokes’
+theorem. Therefore both $\FLPA$ and $\FLPA'$ give the same phase
+differences and the same quantum-mechanical interference effects. In
+both classical and quantum theory it is only the curl of $\FLPA$ that
+matters; any choice of the function of $\FLPA$ which has the correct
+curl gives the correct physics.</p>
+</div>
+<div id="Ch15-S5-p8" class="para">
+<p class="p">The same conclusion is evident if we use the results of
+Section <a href="II_14.html#Ch14-S1">14–1</a>. There we found that the line integral
+of $\FLPA$ around a closed path is the flux of $\FLPB$ through the path,
+which here is the flux between paths $(1)$ and $(2)$.
+Equation (<a href="#mjx-eqn-EqII1533">15.33</a>) can, if we wish, be written as
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:15:34}
+\delta=\delta(B=0)+\frac{q}{\hbar}\,
+[\text{flux of $\FLPB$ between $(1)$ and $(2)$}],
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\label{Eq:II:15:34}
+\delta=\delta(B=0)+\frac{q}{\hbar}\,
+\begin{bmatrix}
+\text{flux of $\FLPB$}\\[-.5ex]
+\text{between $(1)$ and $(2)$}
+\end{bmatrix},
+\end{equation}
+</span>
+where by the flux of $\FLPB$ we mean, as usual, the surface integral
+of the normal component of $\FLPB$. The result depends only
+on $\FLPB$, and therefore only on the curl of $\FLPA$.</p>
+</div>
+<div id="Ch15-S5-p9" class="para">
+<p class="p">Now because we can write the result in terms of $\FLPB$ as well as in
+terms of $\FLPA$, you might be inclined to think that the $\FLPB$
+holds its own as a “real” field and that the $\FLPA$ can still be
+thought of as an artificial construction. But the definition of
+“real” field that we originally proposed was based on the idea that
+a “real” field would not act on a particle from a distance. We can,
+however, give an example in which $\FLPB$ is zero—or at least
+arbitrarily small—at any place where there is some chance to find
+the particles, so that it is not possible to think of it acting
+<em class="emph">directly</em> on them.</p>
+</div>
+<div id="Ch15-F6" class="figure">
+<img src="img/FLP_II/f15-06/f15-06_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 15-6.</span>The magnetic field and vector potential of a long solenoid.
+</div>
+</div>
+<div id="Ch15-S5-p10" class="para">
+<p class="p">You remember that for a long solenoid carrying an electric current there
+is a $\FLPB$-field inside but none outside, while there is lots
+of $\FLPA$ circulating around outside, as shown in Fig. <a href="#Ch15-F6">15–6</a>.
+If we arrange a situation in which electrons are to be found only
+<em class="emph">outside</em> of the solenoid—only where there is $\FLPA$—there
+will still be an influence on the motion, according to
+Eq. (<a href="#mjx-eqn-EqII1533">15.33</a>). Classically, that is impossible. Classically,
+the force depends only on $\FLPB$; in order to know that the solenoid is
+carrying current, the particle must go through it. But
+quantum-mechanically you can find out that there is a magnetic field
+inside the solenoid by going <em class="emph">around</em> it—without ever going close
+to it!</p>
+</div>
+<div id="Ch15-S5-p11" class="para">
+<p class="p">Suppose that we put a very long solenoid of small diameter just behind
+the wall and between the two slits, as shown in Fig. <a href="#Ch15-F7">15–7</a>. The
+diameter of the solenoid is to be much smaller than the distance $d$
+between the two slits. In these circumstances, the diffraction of the
+electrons at the slit gives no appreciable probability that the
+electrons will get near the solenoid. What will be the effect on our
+interference experiment?</p>
+</div>
+<div id="Ch15-F7" class="figure">
+<img src="img/FLP_II/f15-07/f15-07_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 15-7.</span>A magnetic field can influence the motion of electrons even
+though it exists only in regions where there is an arbitrarily small
+probability of finding the electrons.
+</div>
+</div>
+<div id="Ch15-S5-p12" class="para">
+<p class="p">We compare the situation with and without a current through the
+solenoid.  If we have no current, we have no $\FLPB$ or $\FLPA$ and we
+get the original pattern of electron intensity at the backstop. If we
+turn the current on in the solenoid and build up a magnetic
+field $\FLPB$ inside, then there is an $\FLPA$ outside. There is a shift in
+the phase difference proportional to the circulation of $\FLPA$
+outside the solenoid, which will mean that the pattern of maxima and
+minima is shifted to a new position. In fact, since the flux
+of $\FLPB$ inside is a constant for any pair of paths, so also is the
+circulation of $\FLPA$. For every arrival point there is the same
+phase change; this corresponds to shifting the entire pattern in $x$
+by a constant amount, say $x_0$, that we can easily calculate. The
+maximum intensity will occur where the phase difference between the
+two waves is zero. Using Eq. (<a href="#mjx-eqn-EqII1533">15.33</a>) or
+Eq. (<a href="#mjx-eqn-EqII1534">15.34</a>) for $\delta$ and Eq. (<a href="#mjx-eqn-EqII1528">15.28</a>)
+for $x$, we have
+\begin{equation}
+\label{Eq:II:15:35}
+x_0=-\frac{L}{d}\,\lambdabar\,\frac{q}{\hbar}
+\oint_{(1–2)}\FLPA\cdot d\FLPs,
+\end{equation}
+
+or
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:15:36}
+x_0=-\frac{L}{d}\,\lambdabar\,\frac{q}{\hbar}\,
+[\text{flux of $\FLPB$ between $(1)$ and $(2)$}].
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\label{Eq:II:15:36}
+x_0=-\frac{L}{d}\,\lambdabar\,\frac{q}{\hbar}\,
+\begin{bmatrix}
+\text{flux of $\FLPB$}\\[-.5ex]
+\text{between $(1)$ and $(2)$}
+\end{bmatrix}.
+\end{equation}
+</span>
+The pattern with the solenoid in place should appear<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> as shown in Fig. <a href="#Ch15-F7">15–7</a>. At least, that is the
+prediction of quantum mechanics.</p>
+</div>
+<div id="Ch15-S5-p13" class="para">
+<p class="p">Precisely this experiment has recently been done. It is a very, very
+difficult experiment. Because the wavelength of the electrons is so
+small, the apparatus must be on a tiny scale to observe the
+interference. The slits must be very close together, and that means
+that one needs an exceedingly small solenoid. It turns out that in
+certain circumstances, iron crystals will grow in the form of very
+long, microscopically thin filaments called whiskers. When these iron
+whiskers are magnetized they are like a tiny solenoid, and there is no
+field outside except near the ends. The electron interference
+experiment was done with such a whisker between two slits, and the
+predicted displacement in the pattern of electrons was observed.</p>
+</div>
+<div id="Ch15-S5-p14" class="para">
+<p class="p">In our sense then, the $\FLPA$-field is “real.” You may say: “But
+there <em class="emph">was</em> a magnetic field.” There was, but remember our
+original idea—that a field is “real” if it is what must be
+specified <em class="emph">at the position</em> of the particle in order to get the
+motion. The $\FLPB$-field in the whisker acts at a distance. If we
+want to describe its influence not as action-at-a-distance, we must
+use the vector potential.</p>
+</div>
+<div id="Ch15-S5-p15" class="para">
+<p class="p">This subject has an interesting history. The theory we have described
+was known from the beginning of quantum mechanics in 1926. The fact that
+the vector potential appears in the wave equation of quantum mechanics
+(called the Schrödinger equation) was obvious from the day it was written. That it cannot be
+replaced by the magnetic field in any easy way was observed by one man
+after the other who tried to do so. This is also clear from our example
+of electrons moving in a region where there is no field and being
+affected nevertheless. But because in classical mechanics $\FLPA$ did
+not appear to have any direct importance and, furthermore, because it
+could be changed by adding a gradient, people repeatedly said that the
+vector potential had no direct physical significance—that only the
+magnetic and electric fields are “right” even in quantum mechanics. It
+seems strange in retrospect that no one thought of discussing this
+experiment until 1956, when Bohm and
+Aharonov first suggested it and made
+the whole question crystal clear. The implication was there all the
+time, but no one paid attention to it. Thus many people were rather
+shocked when the matter was brought up. That’s why someone thought it
+would be worth while to do the experiment to see that it really was
+right, even though quantum mechanics, which had been believed for so
+many years, gave an unequivocal answer. It is interesting that something
+like this can be around for thirty years but, because of certain
+prejudices of what is and is not significant, continues to be ignored.</p>
+</div>
+<div id="Ch15-F8" class="figure">
+<img src="img/FLP_II/f15-08/f15-08_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 15-8.</span>The shift of the interference pattern due to a strip of
+magnetic field.
+</div>
+</div>
+<div id="Ch15-S5-p16" class="para">
+<p class="p">Now we wish to continue in our analysis a little further. We will show
+the connection between the quantum-mechanical formula and the
+classical formula—to show why it turns out that if we look at things
+on a large enough scale it will look as though the particles are acted
+on by a force equal to $q\FLPv\times{}$ the curl of $\FLPA$. To get
+classical mechanics from quantum mechanics, we need to consider cases
+in which all the wavelengths are very small compared with distances
+over which external conditions, like fields, vary appreciably. We
+shall not prove the result in great generality, but only in a very
+simple example, to show how it works. Again we consider the same slit
+experiment. But instead of putting all the magnetic field in a very
+tiny region between the slits, we imagine a magnetic field that
+extends over a larger region behind the slits, as shown in
+Fig. <a href="#Ch15-F8">15–8</a>. We will take the idealized case where we have a
+magnetic field which is uniform in a narrow strip of width $w$,
+considered small as compared with $L$. (That can easily be arranged; the
+backstop can be put as far out as we want.) In order to calculate the
+shift in phase, we must take the two integrals of $\FLPA$ along the two
+trajectories $(1)$ and $(2)$. They differ, as we have seen, merely by
+the flux of $\FLPB$ between the paths. To our approximation, the flux
+is $Bwd$. The phase difference for the two paths is then
+\begin{equation}
+\label{Eq:II:15:37}
+\delta=\delta(B=0)+\frac{q}{\hbar}\,Bwd.
+\end{equation}
+
+We note that, to our approximation, the phase shift is independent of
+the angle. So again the effect will be to shift the whole pattern
+upward by an amount $\Delta x$. Using Eq. (<a href="#mjx-eqn-EqII1535">15.35</a>),
+\begin{equation*}
+\Delta x=-\frac{L\lambdabar}{d}\,\Delta\delta=
+-\frac{L\lambdabar}{d}\,[\delta-\delta(B=0)].
+\end{equation*}
+
+Using (<a href="#mjx-eqn-EqII1537">15.37</a>) for $\delta-\delta(B=0)$,
+\begin{equation}
+\label{Eq:II:15:38}
+\Delta x=-L\lambdabar\,\frac{q}{\hbar}\,Bw.
+\end{equation}
+
+Such a shift is equivalent to deflecting all the trajectories by the
+small angle $\alpha$ (see Fig. <a href="#Ch15-F8">15–8</a>), where
+\begin{equation}
+\label{Eq:II:15:39}
+\alpha=\frac{\Delta x}{L}=-\frac{\lambdabar}{\hbar}\,qBw.
+\end{equation}
+</p>
+</div>
+<div id="Ch15-F9" class="figure">
+<img src="img/FLP_II/f15-09/f15-09_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 15-9.</span>Deflection of a particle due to passage through a strip of
+magnetic field.
+</div>
+</div>
+<div id="Ch15-S5-p17" class="para">
+<p class="p">Now classically we would also expect a thin strip of magnetic field to
+deflect all trajectories through some small angle, say $\alpha'$, as
+shown in Fig. <a href="#Ch15-F9">15–9</a>(a). As the electrons go through the magnetic
+field, they feel a transverse force $q\FLPv\times\FLPB$ which lasts
+for a time $w/v$. The change in their transverse momentum is just
+equal to this impulse, so
+\begin{equation}
+\label{Eq:II:15:40}
+\Delta p_x=-qwB.
+\end{equation}
+
+The angular deflection [Fig. <a href="#Ch15-F9">15–9</a>(b)] is equal to the ratio of this
+transverse momentum to the total momentum $p$. We get that
+\begin{equation}
+\label{Eq:II:15:41}
+\alpha'=\frac{\Delta p_x}{p}=-\frac{qwB}{p}.
+\end{equation}
+</p>
+</div>
+<div id="Ch15-S5-p18" class="para">
+<p class="p">We can compare this result with Eq. (<a href="#mjx-eqn-EqII1539">15.39</a>), which gives
+the same quantity computed quantum-mechanically. But the connection
+between classical mechanics and
+quantum mechanics is this: A particle of momentum $p$ corresponds to a
+quantum amplitude varying with the
+wavelength $\lambdabar=\hbar/p$. With this equality, $\alpha$ and $\alpha'$ are
+identical; the classical and quantum calculations give the same
+result.</p>
+</div>
+<div id="Ch15-S5-p19" class="para">
+<p class="p">From the analysis we see how it is that the vector potential which
+appears in quantum mechanics in an explicit form produces a classical
+force which depends only on its derivatives. In quantum mechanics what
+matters is the interference between nearby paths; it always turns out
+that the effects depend only on how much the field $\FLPA$
+<em class="emph">changes</em> from point to point, and therefore only on the
+derivatives of $\FLPA$ and not on the value itself. Nevertheless, the
+vector potential $\FLPA$ (together with the scalar potential $\phi$
+that goes with it) appears to give the most direct description of the
+physics. This becomes more and more apparent the more deeply we go
+into the quantum theory. In the general theory of quantum
+electrodynamics, one takes the vector and scalar potentials as the
+fundamental quantities in a set of equations that replace the Maxwell
+equations:
+$\FLPE$ and $\FLPB$ are slowly disappearing from the modern expression
+of physical laws; they are being replaced by $\FLPA$ and $\phi$.
+</p>
+</div>
+</div>
+<div id="Ch15-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">15–6</span>What is true for statics is false for dynamics</h3>
+<div id="Ch15-S6-p1" class="para">
+<p class="p">We are now at the end of our exploration of the subject of static
+fields. Already in this chapter we have come perilously close to
+having to worry about what happens when fields change with time. We
+were barely able to avoid it in our treatment of magnetic energy by
+taking refuge in a relativistic argument. Even so, our treatment of
+the energy problem was somewhat artificial and perhaps even
+mysterious, because we ignored the fact that moving coils must, in
+fact, produce changing fields. It is now time to take up the treatment
+of time-varying fields—the subject of electrodynamics. We will do so
+in the next chapter. First, however, we would like to emphasize a few
+points.</p>
+</div>
+<div id="Ch15-S6-p2" class="para">
+<p class="p">Although we began this course with a presentation of the complete and
+correct equations of electromagnetism, we immediately began to study
+some incomplete pieces—because that was easier. There is a great
+advantage in starting with the simpler theory of static fields, and
+proceeding only later to the more complicated theory which includes
+dynamic fields. There is less new material to learn all at once, and
+there is time for you to develop your intellectual muscles in
+preparation for the bigger task.</p>
+</div>
+<div id="Ch15-S6-p3" class="para">
+<p class="p">But there is the danger in this process that before we get to see the
+complete story, the incomplete truths learned on the way may become
+ingrained and taken as the whole truth—that what is true and what is
+only sometimes true will become confused. So we give in
+Table <a href="#Ch15-T1">15–1</a> a summary of the important formulas we have
+covered, separating those which are true in general from those which are
+true for statics, but false for dynamics. This summary also shows, in
+part, where we are going, since as we treat dynamics we will be
+developing in detail what we must just state here without proof.</p>
+</div>
+<div id="Ch15-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 15–1</span>
+</div>
+<table class="tabular">
+<thead class="thead"><tr class="tr">
+<th class="td" style="text-align:center;" colspan="4"><span class="text bold small">FALSE IN GENERAL (true only for statics)</span></th>
+<th class="td" style="text-align:center;" colspan="4"><span class="text bold small">TRUE ALWAYS</span></th>
+</tr></thead>
+<tbody class="tbody">
+<tr class="tr">
+<td class="td l t" style="width:2%;text-align:justify;"><span class="rule" style="width:0.0pt;height:24pt;background:black;display:inline-block;"></span></td>
+<td class="td t" style="width:2%;text-align:justify;"></td>
+<td class="td t" style="width:23%pt;text-align:justify;">$F=\dfrac{1}{4\pi\epsO}\,\dfrac{q_1q_2}{r^2}$</td>
+<td class="td r t" style="width:23%;text-align:right	;">(Coulomb’s law)</td>
+<td class="td t" style="width:2%;text-align:justify"></td>
+<td class="td t" style="width:2%;text-align:justify"></td>
+<td class="td t" style="width:23%;text-align:justify;">$\FLPF=q(\FLPE+\FLPv\times\FLPB)$</td>
+<td class="td r t" style="width:23%;text-align:right;">(Lorentz force)</td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:right;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;">$\rightarrowding$</td>
+<td class="td" style="text-align:justify;">$\FLPdiv{\FLPE}=\dfrac{\rho}{\epsO}$</td>
+<td class="td r" style="text-align:right;">(Gauss’ law)</td>
+</tr>
+<tr class="tr">
+<td class="td l t" style="text-align:justify;"><span class="rule" style="width:0.0pt;height:24pt;background:black;display:inline-block;"></span></td>
+<td class="td t" style="text-align:justify;"></td>
+<td class="td t" style="text-align:justify;">$\FLPcurl{\FLPE}=0$</td>
+<td class="td r t" style="text-align:right;"></td>
+<td class="td t" style="text-align:justify;"></td>
+<td class="td t" style="text-align:justify;">$\rightarrowding$</td>
+<td class="td t" style="text-align:justify;">$\displaystyle\FLPcurl{\FLPE}=-\ddp{\FLPB}{t}$</td>
+<td class="td r t" style="text-align:right;">(Faraday’s law)</td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;">$\FLPE=-\FLPgrad{\phi}$</td>
+<td class="td r" style="text-align:right;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;">$\displaystyle\FLPE=-\FLPgrad{\phi}-\ddp{\FLPA}{t}$</td>
+<td class="td r" style="text-align:right;"></td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:justify;" colspan="2">$\displaystyle\FLPE(1)=\frac{1}{4\pi\epsO}\int\frac{\rho(2)\FLPe_{12}}{r_{12}^2}\,dV_2$</td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:right;"></td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:justify;" colspan="2">For conductors, $\FLPE=0$, $\phi={}$constant. $Q=CV$</td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:justify;" colspan="2">In a conductor, $\FLPE$ makes currents.</td>
+</tr>
+<tr class="tr">
+<td class="td l t" style="text-align:justify;"><span class="rule" style="width:0.0pt;height:17.071654pt;background:black;display:inline-block;"></span></td>
+<td class="td t" style="text-align:justify;"></td>
+<td class="td t" style="text-align:justify;"></td>
+<td class="td r t" style="text-align:right;"></td>
+<td class="td t" style="text-align:justify;"></td>
+<td class="td t" style="text-align:justify;">$\rightarrowding$</td>
+<td class="td t" style="text-align:justify;">$\FLPdiv{\FLPB}=0$</td>
+<td class="td r t" style="text-align:right;">(No magnetic charges)</td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:right;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:justify;" colspan="2">$\FLPB=\FLPcurl{\FLPA}$</td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;">$c^2\FLPcurl{\FLPB}=\dfrac{\FLPj}{\epsO}$</td>
+<td class="td r" style="text-align:right;">(Ampère’s law)</td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;">$\rightarrowding$</td>
+<td class="td r" style="text-align:justify;" colspan="2">$\displaystyle c^2\FLPcurl{\FLPB}=\frac{\FLPj}{\epsO}+\ddp{\FLPE}{t}$</td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:justify;" colspan="2">$\displaystyle\FLPB(1)=\frac{1}{4\pi\epsO c^2}\int\frac{\FLPj(2)\times\FLPe_{12}}{r_{12}^2}\,dV_2$</td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:right;"></td>
+</tr>
+<tr class="tr">
+<td class="td l t" style="text-align:justify;"></td>
+<td class="td t" style="text-align:justify;"></td>
+<td class="td t" style="text-align:justify;">$\nabla^2\phi=-\dfrac{\rho}{\epsO}$</td>
+<td class="td r t" style="text-align:right;">(Poisson’s equation)</td>
+<td class="td t" style="text-align:justify;" rowspan="5"><img src="img/left_bracket.png" style="width:15pt;height:135pt;vertical-align:middle"></td>
+<td class="td t" style="text-align:justify;"></td>
+<td class="td r t" style="text-align:justify;" colspan="2">$\nabla^2\phi-\dfrac{1}{c^2}\dfrac{\partial^2\phi}{\partial t^2}=-\dfrac{\rho}{\epsO}$</td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:right;"></td>
+<td class="td" style="text-align:justify;" colspan="2"><span class="text" style="width:0.0pt;text-align:left;">and</span></td>
+<td class="td r" style="text-align:right;"></td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;" rowspan="3"><img src="img/left_bracket.png" style="width:15pt;height:81pt;vertical-align:middle"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;">$\nabla^2\FLPA=-\dfrac{\FLPj}{\epsO c^2}$</td>
+<td class="td r" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:justify;" colspan="2">$\nabla^2\FLPA-\dfrac{1}{c^2}\dfrac{\partial^2\FLPA}{\partial t^2}=-\dfrac{\FLPj}{\epsO c^2}$</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:justify;" colspan="2">with</td>
+<td class="td r" style="text-align:right;"></td>
+<td class="td" style="text-align:justify;" colspan="2"><span class="text" style="width:0.0pt;text-align:left;">with</span></td>
+<td class="td r" style="text-align:right;"></td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;">$\FLPdiv{\FLPA}=0$</td>
+<td class="td r" style="text-align:right;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:justify;" colspan="2">$\displaystyle c^2\FLPdiv{\FLPA}+\ddp{\phi}{t}=0$</td>
+</tr>
+<tr class="tr">
+<td class="td l t" style="text-align:justify;"></td>
+<td class="td t" style="text-align:justify;"></td>
+<td class="td r t" style="text-align:justify;" colspan="2">$\displaystyle\phi(1)=\frac{1}{4\pi\epsO}\int\frac{\rho(2)}{r_{12}}\,dV_2$</td>
+<td class="td t" style="text-align:justify;" rowspan="5"><img src="img/left_bracket.png" style="width:15pt;height:135pt;vertical-align:middle"></td>
+<td class="td t" style="text-align:justify;"></td>
+<td class="td r t" style="text-align:justify;" colspan="2">$\displaystyle\phi(1,t)=\frac{1}{4\pi\epsO}\int\frac{\rho(2,t')}{r_{12}}\,dV_2$</td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:right;"></td>
+<td class="td" style="text-align:justify;" colspan="2"><span class="text" style="width:0.0pt;text-align:left;">and</span></td>
+<td class="td r" style="text-align:right;"></td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:justify;" colspan="2">$\displaystyle\FLPA(1)=\frac{1}{4\pi\epsO c^2}\int\frac{\FLPj(2)}{r_{12}}\,dV_2$</td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:justify;" colspan="2">$\displaystyle\FLPA(1,t)=\frac{1}{4\pi\epsO c^2}\int\frac{\FLPj(2,t')}{r_{12}}\,dV_2$</td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:right;"></td>
+<td class="td" style="text-align:justify;" colspan="2"><span class="text" style="width:0.0pt;text-align:left;">with</span></td>
+<td class="td r" style="text-align:right;"></td>
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:right;"></td>
+<td class="td" style="text-align:justify;"></td>
+<td class="td r" style="text-align:justify;" colspan="2">$t'=t-\dfrac{r_{12}}{c}$</td>
+</tr>
+<tr class="tr">
+<td class="td l t" style="text-align:justify;"></td>
+<td class="td t" style="text-align:justify;"></td>
+<td class="td r t" style="text-align:justify;" colspan="2">$\displaystyle U=\tfrac{1}{2}\int\rho\phi\,dV+\tfrac{1}{2}\int\FLPj\cdot\FLPA\,dV$</td>
+<td class="td t" style="text-align:justify;"></td>
+<td class="td t" style="text-align:justify;"></td>
+<td class="td r t" style="text-align:justify;" colspan="2">$\displaystyle U=\int\biggl(\frac{\epsO}{2}\,\FLPE\cdot\FLPE+\frac{\epsO c^2}{2}\,\FLPB\cdot\FLPB\biggr)dV$</td>
+</tr>
+<tr class="tr">
+<td class="td t" style="text-align:justify;" colspan="8"><span class="text small">The equations marked with ($\rightarrowding$) are Maxwell’s equations.</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="Ch15-S6-p4" class="para">
+<p class="p">It may be useful to make a few remarks about the table. First, you
+should notice that the equations we started with are the <em class="emph">true</em>
+equations—we have not misled you there. The electromagnetic force
+(often called the <em class="emph">Lorentz force</em>) $\FLPF=q(\FLPE+\FLPv\times\FLPB)$ is <em class="emph">true</em>. It is only
+Coulomb’s law that is false, to be used only for statics. The four
+Maxwell equations for $\FLPE$ and $\FLPB$ are also true. The equations we took
+for statics are false, of course, because we left off all terms with
+time derivatives.
+</p>
+</div>
+<div id="Ch15-S6-p5" class="para">
+<p class="p">Gauss’ law, $\FLPdiv{\FLPE}=\rho/\epsO$, remains, but the curl
+of $\FLPE$ is <em class="emph">not</em> zero in general. So $\FLPE$ cannot always be
+equated to the gradient of a scalar—the electrostatic potential. We
+will see that a scalar potential still remains, but it is a
+time-varying quantity that must be used together with vector
+potentials for a complete description of the electric field. The
+equations governing this new scalar potential are, necessarily, also
+new.</p>
+</div>
+<div id="Ch15-S6-p6" class="para">
+<p class="p">We must also give up the idea that $\FLPE$ is zero in conductors. When
+the fields are changing, the charges in conductors do not, in general,
+have time to rearrange themselves to make the field zero. They are set
+in motion, but never reach equilibrium. The only general statement is:
+electric fields in conductors produce currents. So in varying fields a
+conductor is <em class="emph">not</em> an equipotential. It also follows that the
+idea of a capacitance is no longer precise.</p>
+</div>
+<div id="Ch15-S6-p7" class="para">
+<p class="p">Since there are no magnetic charges, the divergence of $\FLPB$ is
+<em class="emph">always</em> zero. So $\FLPB$ can always be equated
+to $\FLPcurl{\FLPA}$. (Everything doesn’t change!) But the generation
+of $\FLPB$ is not only from currents; $\FLPcurl{\FLPB}$ is proportional
+to the current density <em class="emph">plus</em> a new term $\ddpl{\FLPE}{t}$. This
+means that $\FLPA$ is related to currents by a new equation. It is
+also related to $\phi$. If we make use of our freedom to
+choose $\FLPdiv{\FLPA}$ for our own convenience, the equations for
+$\FLPA$ or $\phi$ can be arranged to take on a simple and elegant form. We
+therefore make the condition that $c^2\FLPdiv{\FLPA}=-\ddpl{\phi}{t}$,
+and the differential equations for $\FLPA$ or $\phi$ appear as shown
+in the table.</p>
+</div>
+<div id="Ch15-S6-p8" class="para">
+<p class="p">The potentials $\FLPA$ and $\phi$ can still be found by integrals over
+the currents and charges, but not the <em class="emph">same</em> integrals as for
+statics. Most wonderfully, though, the true integrals are like the
+static ones, with only a small and physically appealing
+modification. When we do the integrals to find the potentials at some
+point, say point $(1)$ in Fig. <a href="#Ch15-F10">15–10</a>, we must use the values of
+$\FLPj$ and $\rho$ at the point $(2)$ <em class="emph">at an earlier
+time</em> $t'=t-r_{12}/c$. As you would expect, the influences propagate from
+point $(2)$ to point $(1)$ at the speed $c$. With this small change,
+one can solve for the fields of varying currents and charges, because
+once we have $\FLPA$ and $\phi$, we get $\FLPB$ from
+$\FLPcurl{\FLPA}$, as before, and $\FLPE$ from
+$-\FLPgrad{\phi}-\ddpl{\FLPA}{t}$.</p>
+</div>
+<div id="Ch15-F10" class="figure">
+<img src="img/FLP_II/f15-10/f15-10_tc_big.svgz"><div class="caption">
+<span class="tag">Figure 15-10.</span>The potentials at point $(1)$ and at the time $t$ are given by
+summing the contributions from each element of the source at the roving
+point $(2)$, using the currents and charges which were present at the
+earlier time $t-r_{12}/c$.
+</div>
+</div>
+<div id="Ch15-S6-p9" class="para">
+<p class="p">Finally, you will notice that some results—for example, that the
+energy density in an electric field is $\epsO E^2/2$—are true for
+electrodynamics as well as for statics. You should not be misled into
+thinking that this is at all “natural.” The validity of any formula
+derived in the static case must be demonstrated over again for the
+dynamic case. A contrary example is the expression for the
+electrostatic energy in terms of a volume integral of $\rho\phi$. This
+result is true <em class="emph">only</em> for statics.</p>
+</div>
+<div id="Ch15-S6-p10" class="para">
+<p class="p">We will consider all these matters in more detail in due time, but it
+will perhaps be useful to keep in mind this summary, so you will know
+what you can forget, and what you should remember as always true.</p>
+</div>
+</div>
+<ol id="footnotes"><li class="footnote">
+  <a name="footnote_1"></a>
+  If the
+field $\FLPB$ comes out of the plane of the figure, the flux as we have
+defined it is positive and since $q$ for electrons is negative, $x_0$ is
+positive.
+  <a href="#footnote_source_1">↩</a>
+</li></ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 9: Newton’s Laws of Dynamics</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "9." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch9" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">9</span>Newton’s Laws of Dynamics</h2>
+<div id="Ch9-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">9–1</span>Momentum and force</h3>
+<div id="Ch9-S1-p1" class="para">
+<p class="p">The discovery of the laws of dynamics, or the laws of
+motion, was a dramatic moment in the history of science. Before
+Newton’s time, the motions of
+things like the planets were a mystery, but after
+Newton there was complete
+understanding. Even the slight deviations from Kepler’s
+laws, due to the perturbations of the
+planets, were computable. The motions of pendulums, oscillators with
+springs and weights in them, and so on, could all be analyzed completely
+after Newton’s laws were enunciated. So it is with this chapter: before
+this chapter we could not calculate how a mass on a spring would move;
+much less could we calculate the perturbations on the planet Uranus due
+to Jupiter and Saturn. After this chapter we <em class="emph">will</em> be able to
+compute not only the motion of the oscillating mass, but also the
+perturbations on the planet Uranus produced by Jupiter and Saturn!</p>
+</div>
+<div id="Ch9-S1-p2" class="para">
+<p class="p">Galileo made a great advance in
+the understanding of motion when he discovered the <em class="emph">principle of
+inertia</em>:
+if an object is left alone, is not disturbed, it continues to move with
+a constant velocity in a straight line if it was originally moving, or
+it continues to stand still if it was just standing still. Of course
+this never appears to be the case in nature, for if we slide a block
+across a table it stops, but that is because it is <em class="emph">not</em> left to
+itself—it is rubbing against the table. It required a certain
+imagination to find the right rule, and that imagination was supplied by
+Galileo.</p>
+</div>
+<div id="Ch9-S1-p3" class="para">
+<p class="p">Of course, the next thing which is needed is a rule for finding how an
+object <em class="emph">changes</em> its speed if something <em class="emph">is</em> affecting it.
+That is, the contribution of Newton.
+Newton wrote down three laws: The
+First Law was a mere restatement of the Galilean principle of inertia
+just described. The Second Law gave a specific way of determining how
+the velocity changes under different influences called <em class="emph">forces</em>.
+The Third Law describes the forces to some extent, and we shall discuss
+that at another time. Here we shall discuss only the Second Law, which
+asserts that the motion of an object is changed by forces in this way:
+<em class="emph">the time-rate-of-change of a quantity called momentum is
+proportional to the force</em>. We shall state this mathematically shortly,
+but let us first explain the idea.</p>
+</div>
+<div id="Ch9-S1-p4" class="para">
+<p class="p"><em class="emph">Momentum</em> is not the same as <em class="emph">velocity</em>. A lot of words are
+used in physics, and they all have precise meanings in physics,
+although they may not have such precise meanings in everyday
+language. Momentum is an example, and we must define it precisely. If
+we exert a certain push with our arms on an object that is light, it
+moves easily; if we push just as hard on another object that is much
+heavier in the usual sense, then it moves much less rapidly. Actually,
+we must change the words from “light” and “heavy” to <em class="emph">less
+massive</em> and <em class="emph">more massive</em>, because there is a difference to be
+understood between the <em class="emph">weight</em> of an object and its
+<em class="emph">inertia</em>. (How hard it is to get it going is one thing, and how
+much it weighs is something else.)  Weight and inertia are
+<em class="emph">proportional</em>, and on the earth’s surface are often taken to be
+numerically equal, which causes a certain confusion to the student. On
+Mars, weights would be different but the amount of force needed to
+overcome inertia would be the same.</p>
+</div>
+<div id="Ch9-S1-p5" class="para">
+<p class="p">We use the term <em class="emph">mass</em> as a quantitative measure of inertia, and
+we may measure mass, for example, by swinging an object in a circle at
+a certain speed and measuring how much force we need to keep it in the
+circle. In this way we find a certain quantity of mass for every
+object. Now the <em class="emph">momentum</em> of an object is a product of two
+parts: its <em class="emph">mass</em> and its <em class="emph">velocity</em>. Thus Newton’s Second
+Law may be written mathematically this way:
+\begin{equation}
+\label{Eq:I:9:1}
+F=\ddt{}{t}(mv).
+\end{equation}
+Now there are several points to be considered. In writing down any law
+such as this, we use many intuitive ideas, implications, and
+assumptions which are at first combined approximately into our
+“law.”  Later we may have to come back and study in greater detail
+exactly what each term means, but if we try to do this too soon we
+shall get confused. Thus at the beginning we take several things for
+granted. First, that the mass of an object is <em class="emph">constant</em>; it
+isn’t really, but we shall start out with the Newtonian approximation
+that mass is constant, the same all the time, and that, further, when
+we put two objects together, their masses <em class="emph">add</em>. These ideas were
+of course implied by Newton when he
+wrote his equation, for otherwise it is meaningless. For example,
+suppose the mass varied inversely as the velocity; then the momentum
+would <em class="emph">never change</em> in any circumstance, so the law means nothing
+unless you know how the mass changes with velocity. At first we say,
+<em class="emph">it does not change</em>.</p>
+</div>
+<div id="Ch9-S1-p6" class="para">
+<p class="p">Then there are some implications concerning force. As a rough
+approximation we think of force as a kind of push or pull that we make
+with our muscles, but we can define it more accurately now that we
+have this law of motion. The most important thing to realize is that
+this relationship involves not only changes in the <em class="emph">magnitude</em> of
+the momentum or of the velocity but also in their <em class="emph">direction</em>. If
+the mass is constant, then Eq. (<a href="#mjx-eqn-EqI91">9.1</a>) can also be written
+as
+\begin{equation}
+\label{Eq:I:9:2}
+F=m\,\ddt{v}{t}=ma.
+\end{equation}
+The acceleration $a$ is the rate of change of the velocity, and
+Newton’s Second Law says more than that the effect of a given force
+varies inversely as the mass; it says also that the <em class="emph">direction</em>
+of the change in the velocity and the <em class="emph">direction</em> of the force
+are the same. Thus we must understand that a change in a velocity, or
+an acceleration, has a wider meaning than in common language: The
+velocity of a moving object can change by its speeding up, slowing
+down (when it slows down, we say it accelerates with a negative
+acceleration), or changing its direction of motion. An acceleration at
+right angles to the velocity was discussed in Chapter <a href="I_07.html">7</a>.
+There we saw that an object moving in a circle of radius $R$ with a
+certain speed $v$ along the circle falls away from a straightline path
+by a distance equal to $\tfrac{1}{2}(v^2/R)t^2$ if $t$ is very small.
+Thus the formula for acceleration at right angles to the motion is
+\begin{equation}
+\label{Eq:I:9:3}
+a=v^2/R,
+\end{equation}
+and a force at right angles to the velocity will cause an object to
+move in a curved path whose radius of curvature can be found by
+dividing the force by the mass to get the acceleration, and then
+using (<a href="#mjx-eqn-EqI93">9.3</a>).</p>
+</div>
+</div>
+<div id="Ch9-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">9–2</span>Speed and velocity</h3>
+<div id="Ch9-S2-p1" class="para">
+<p class="p">In order to make our language more precise, we shall make one further
+definition in our use of the words <em class="emph">speed</em> and
+<em class="emph">velocity</em>. Ordinarily we think of speed and velocity as being
+the same, and in ordinary language they are the same. But in physics
+we have taken advantage of the fact that there <em class="emph">are</em> two words
+and have chosen to use them to distinguish two ideas. We carefully
+distinguish velocity, which has both magnitude and direction, from
+speed, which we choose to mean the magnitude of the velocity, but
+which does not include the direction. We can formulate this more
+precisely by describing how the $x$-, $y$-, and $z$-coordinates of an
+object change with time. Suppose, for example, that at a certain
+instant an object is moving as shown in Fig. <a href="#Ch9-F1">9–1</a>. In a
+given small interval of time $\Delta t$ it will move a certain
+distance $\Delta x$ in the $x$-direction, $\Delta y$ in the
+$y$-direction, and $\Delta z$ in the $z$-direction. The total effect
+of these three coordinate changes is a displacement $\Delta s$ along
+the diagonal of a parallelepiped whose sides are $\Delta x$, $\Delta
+y$, and $\Delta z$. In terms of the velocity, the displacement $\Delta
+x$ is the $x$-component of the velocity times $\Delta t$, and
+similarly for $\Delta y$ and $\Delta z$:</p>
+</div>
+<div id="Ch9-S2-p2" class="para">
+<p class="p">
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:9:4}
+\Delta x=v_x\,\Delta t,\quad
+\Delta y=v_y\,\Delta t,\quad
+\Delta z=v_z\,\Delta t.
+\end{equation}</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+\Delta x&=v_x\,\Delta t,\\[.5ex]
+\Delta y&=v_y\,\Delta t,\\[.5ex]
+\Delta z&=v_z\,\Delta t.
+\end{aligned}
+\label{Eq:I:9:4}
+\end{equation}
+</span>
+</p>
+</div>
+<div id="Ch9-F1" class="figure">
+<img src="img/FLP_I/f09-01/f09-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 9–1.</span>A small displacement of an object.
+</div>
+</div>
+</div>
+<div id="Ch9-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">9–3</span>Components of velocity, acceleration, and force</h3>
+<div id="Ch9-S3-p1" class="para">
+<p class="p">In Eq. (<a href="#mjx-eqn-EqI94">9.4</a>) <em class="emph">we have resolved the velocity into
+components</em> by telling how fast the object is moving in the
+$x$-direction, the $y$-direction, and the $z$-direction. The velocity
+is completely specified, both as to magnitude and direction, if we
+give the numerical values of its three rectangular components:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:I:9:5}
+v_x=dx/dt,\quad
+v_y=dy/dt,\quad
+v_z=dz/dt.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+\label{Eq:I:9:5}
+v_x&=dx/dt,\\[.5ex]
+v_y&=dy/dt,\\[.5ex]
+v_z&=dz/dt.
+\end{aligned}
+\end{equation}
+</span>
+On the other hand, the speed of the object is
+\begin{equation}
+\label{Eq:I:9:6}
+ds/dt=\abs{v}=\sqrt{v_x^2+v_y^2+v_z^2}.
+\end{equation}</p>
+</div>
+<div id="Ch9-F2" class="figure">
+<img src="img/FLP_I/f09-02/f09-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 9–2.</span>A change in velocity in which both the magnitude and
+direction change.
+</div>
+</div>
+<div id="Ch9-S3-p2" class="para">
+<p class="p">Next, suppose that, because of the action of a force, the velocity
+changes to some other direction and a different magnitude, as shown in
+Fig. <a href="#Ch9-F2">9–2</a>. We can analyze this apparently complex
+situation rather simply if we evaluate the changes in the $x$-, $y$-,
+and $z$-components of velocity. The change in the component of the
+velocity in the $x$-direction in a time $\Delta t$ is $\Delta
+v_x=a_x\,\Delta t$, where $a_x$ is what we call the $x$-component of
+the acceleration. Similarly, we see that $\Delta v_y=a_y\,\Delta t$
+and $\Delta v_z=a_z\,\Delta t$. In these terms, we see that Newton’s
+Second Law, in saying that the force is in the same direction as the
+acceleration, is really three laws, in the sense that the component of
+the force in the $x$-, $y$-, or $z$-direction is equal to the mass
+times the rate of change of the corresponding component of velocity:
+\begin{equation}
+\label{Eq:I:9:7}
+\begin{alignedat}{5}
+&F_x&&=m(dv_x&&/dt)=m(d^2x&&/dt^2)=ma_x&&,\\
+&F_y&&=m(dv_y&&/dt)=m(d^2y&&/dt^2)=ma_y&&,\\
+&F_z&&=m(dv_z&&/dt)=m(d^2z&&/dt^2)=ma_z&&.
+\end{alignedat}
+\end{equation}
+Just as the velocity and acceleration have been resolved into components
+by projecting a line segment representing the quantity, and its
+direction onto three coordinate axes, so, in the same way, a force in a
+given direction is represented by certain components in the $x$-, $y$-,
+and $z$-directions:
+\begin{equation}
+\label{Eq:I:9:8}
+\begin{alignedat}{3}
+&F_x&&=F\cos\,(x&&,F),\\
+&F_y&&=F\cos\,(y&&,F),\\
+&F_z&&=F\cos\,(z&&,F),
+\end{alignedat}
+\end{equation}
+where $F$ is the magnitude of the force and $(x,F)$ represents the
+angle between the $x$-axis and the direction of $F$, etc.</p>
+</div>
+<div id="Ch9-S3-p3" class="para">
+<p class="p">Newton’s Second Law is given in complete form in Eq. (<a href="#mjx-eqn-EqI97">9.7</a>).
+If we know the forces on an object and resolve them into $x$-, $y$-, and
+$z$-components, then we can find the motion of the object from these
+equations. Let us consider a simple example. Suppose there are no forces
+in the $y$- and $z$-directions, the only force being in the
+$x$-direction, say vertically. Equation (<a href="#mjx-eqn-EqI97">9.7</a>) tells us that
+there would be changes in the velocity in the vertical direction, but no
+changes in the horizontal direction. This was demonstrated with a
+special apparatus in Chapter <a href="I_07.html">7</a> (see Fig. <a href="I_07.html#Ch7-F3">7–3</a>).
+A falling body moves horizontally without any change in horizontal
+motion, while it moves vertically the same way as it would move if the
+horizontal motion were zero. In other words, motions in the $x$-, $y$-,
+and $z$-directions are independent if the <em class="emph">forces</em> are not
+connected.</p>
+</div>
+</div>
+<div id="Ch9-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">9–4</span>What is the force?</h3>
+<div id="Ch9-S4-p1" class="para">
+<p class="p">In order to use Newton’s laws, we have to have some formula for the
+force; these laws say <em class="emph">pay attention to the forces</em>. If an object
+is accelerating, some agency is at work; find it. Our program for the
+future of dynamics must be to <em class="emph">find the laws for the force</em>.
+Newton himself went on to give some
+examples. In the case of gravity he gave a specific formula for the
+force. In the case of other forces he gave some part of the information
+in his Third Law, which we will study in the next chapter, having to do
+with the equality of action and reaction.</p>
+</div>
+<div id="Ch9-S4-p2" class="para">
+<p class="p">Extending our previous example, what are the forces on objects near
+the earth’s surface? Near the earth’s surface, the force in the
+vertical direction due to gravity is proportional to the mass of the
+object and is nearly independent of height for heights small compared
+with the earth’s radius $R$: $F=$ $GmM/R^2=$ $mg$, where $g=GM/R^2$ is
+called the <em class="emph">acceleration of gravity</em>. Thus the law of gravity tells us that weight is
+proportional to mass; the force is in the vertical direction and is the
+mass times $g$. Again we find that the motion in the horizontal
+direction is at constant velocity. The interesting motion is in the
+vertical direction, and Newton’s Second Law tells us
+\begin{equation}
+\label{Eq:I:9:9}
+mg=m(d^2x/dt^2).
+\end{equation}
+Cancelling the $m$’s, we find that the acceleration in the
+$x$-direction is constant and equal to $g$. This is of course the well
+known law of free fall under gravity, which leads to the equations
+\begin{alignat}{2}
+v_x&=v_0&&+gt,\notag\\
+\label{Eq:I:9:10}
+x&=x_0&&+v_0t+\tfrac{1}{2}gt^2.
+\end{alignat}</p>
+</div>
+<div id="Ch9-F3" class="figure">
+<img src="img/FLP_I/f09-03/f09-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 9–3.</span>A mass on a spring.
+</div>
+</div>
+<div id="Ch9-S4-p3" class="para">
+<p class="p">As another example, let us suppose that we have been able to build a
+gadget (Fig. <a href="#Ch9-F3">9–3</a>) which applies a force proportional to
+the distance and directed oppositely—a spring. If we forget about
+gravity, which is of course balanced out by the initial stretch of the
+spring, and talk only about <em class="emph">excess</em> forces, we see that if we
+pull the mass down, the spring pulls up, while if we push it up the
+spring pulls down. This machine has been designed carefully so that
+the force is greater, the more we pull it up, in exact proportion to
+the displacement from the balanced condition, and the force upward is
+similarly proportional to how far we pull down. If we watch the
+dynamics of this machine, we see a rather beautiful motion—up, down,
+up, down, … The question is, will Newton’s equations correctly
+describe this motion? Let us see whether we can exactly calculate how
+it moves with this periodic oscillation, by applying Newton’s law (<a href="#mjx-eqn-EqI97">9.7</a>). In the present
+instance, the equation is
+\begin{equation}
+\label{Eq:I:9:11}
+-kx=m(dv_x/dt).
+\end{equation}
+Here we have a situation where the velocity in the $x$-direction
+changes at a rate proportional to $x$. Nothing will be gained by
+retaining numerous constants, so we shall imagine either that the
+scale of time has changed or that there is an accident in the units,
+so that we happen to have $k/m=1$. Thus we shall try to solve the
+equation
+\begin{equation}
+\label{Eq:I:9:12}
+dv_x/dt=-x.
+\end{equation}
+To proceed, we must know what $v_x$ is, but of course we know that the
+velocity is the rate of change of the position.</p>
+</div>
+</div>
+<div id="Ch9-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">9–5</span>Meaning of the dynamical equations</h3>
+<div id="Ch9-S5-p1" class="para">
+<p class="p">Now let us try to analyze just what Eq. (<a href="#mjx-eqn-EqI912">9.12</a>)
+means. Suppose that at a given time $t$ the object has a certain
+velocity $v_x$ and position $x$. What is the velocity and what is the
+position at a slightly later time $t+\epsilon$? If we can answer this
+question our problem is solved, for then we can start with the given
+condition and compute how it changes for the first instant, the next
+instant, the next instant, and so on, and in this way we gradually
+evolve the motion. To be specific, let us suppose that at the
+time $t=0$ we are given that $x=1$ and $v_x=0$. Why does the object move at
+all?  Because there is a <em class="emph">force</em> on it when it is at any position
+except $x=0$. If $x&gt;0$, that force is upward. Therefore the velocity
+which is zero starts to change, because of the law of motion. Once it
+starts to build up some velocity the object starts to move up, and so
+on. Now at any time $t$, if $\epsilon$ is very small, we may express
+the position at time $t+\epsilon$ in terms of the position at time $t$
+and the velocity at time $t$ to a very good approximation as
+\begin{equation}
+\label{Eq:I:9:13}
+x(t+\epsilon)=x(t)+\epsilon v_x(t).
+\end{equation}
+The smaller the $\epsilon$, the more accurate this expression is, but
+it is still usefully accurate even if $\epsilon$ is not vanishingly
+small. Now what about the velocity? In order to get the velocity
+later, the velocity at the time $t+\epsilon$, we need to know how the
+velocity changes, the <em class="emph">acceleration</em>. And how are we going to
+find the acceleration? That is where the law of dynamics comes in. The
+law of dynamics tells us what the acceleration is. It says the
+acceleration is $-x$.
+\begin{align}
+\label{Eq:I:9:14}
+v_x(t+\epsilon)&=v_x(t)+\epsilon a_x(t)\\[1ex]
+\label{Eq:I:9:15}
+&=v_x(t)-\epsilon x(t).
+\end{align}
+Equation (<a href="#mjx-eqn-EqI914">9.14</a>) is merely kinematics; it says that a
+velocity changes because of the presence of acceleration. But
+Eq. (<a href="#mjx-eqn-EqI915">9.15</a>) is <em class="emph">dynamics</em>, because it relates the
+acceleration to the force; it says that at this particular time for this
+particular problem, you can replace the acceleration by $-x(t)$.
+Therefore, if we know both the $x$ and $v$ at a given time, we know the
+acceleration, which tells us the new velocity, and we know the new
+position—this is how the machinery works. The velocity changes a
+little bit because of the force, and the position changes a little bit
+because of the velocity.</p>
+</div>
+</div>
+<div id="Ch9-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">9–6</span>Numerical solution of the equations</h3>
+<div id="Ch9-S6-p1" class="para">
+<p class="p">Now let us really solve the problem. Suppose that we take
+$\epsilon=0.100$ sec. After we do all the work if we find that this is
+not small enough we may have to go back and do it again with
+$\epsilon=0.010$ sec. Starting with our initial value $x(0)=1.00$,
+what is $x(0.1)$? It is the old position $x(0)$ plus the velocity
+(which is zero) times $0.10$ sec. Thus $x(0.1)$ is still $1.00$
+because it has not yet started to move. But the new velocity at
+$0.10$ sec will be the old velocity $v(0)=0$ plus $\epsilon$ times the
+acceleration. The acceleration is $-x(0)=-1.00$. Thus
+\begin{equation*}
+v(0.1) =0.00-0.10\times1.00=-0.10.
+\end{equation*}
+Now at $0.20$ sec
+\begin{align*}
+x(0.2) &=x(0.1)+\epsilon v(0.1)\\[1ex]
+&=1.00-0.10\times0.10=0.99
+\end{align*}
+and
+\begin{align*}
+v(0.2) &=v(0.1)+\epsilon a(0.1)\\[1ex]
+&=-0.10-0.10\times1.00=-0.20.
+\end{align*}
+And so, on and on and on, we can calculate the rest of the motion, and
+that is just what we shall do. However, for practical purposes there
+are some little tricks by which we can increase the accuracy. If we
+continued this calculation as we have started it, we would find the
+motion only rather crudely because $\epsilon=0.100$ sec is rather
+crude, and we would have to go to a very small interval, say
+$\epsilon=0.01$. Then to go through a reasonable total time interval
+would take a lot of cycles of computation. So we shall organize the
+work in a way that will increase the precision of our calculations,
+using the same coarse interval $\epsilon=0.10$ sec. This can be done
+if we make a subtle improvement in the technique of the analysis.</p>
+</div>
+
+<div id="Ch9-S6-p2" class="para">
+<p class="p">Notice that the new position is the old position plus the time
+interval $\epsilon$ times the velocity. But the velocity <em class="emph">when?</em>
+The velocity at the beginning of the time interval is one velocity and
+the velocity at the end of the time interval is another velocity. Our
+improvement is to use the velocity <em class="emph">halfway between</em>. If we know
+the speed now, but the speed is changing, then we are not going to get
+the right answer by going at the same speed as now. We should use some
+speed between the “now” speed and the “then” speed at the end of
+the interval. The same considerations also apply to the velocity: to
+compute the velocity changes, we should use the acceleration midway
+between the two times at which the velocity is to be found. Thus the
+equations that we shall actually use will be something like this: the
+position later is equal to the position before plus $\epsilon$ times
+the velocity <em class="emph">at the time in the middle of the
+interval</em>. Similarly, the velocity at this halfway point is the
+velocity at a time $\epsilon$ before (which is in the middle of the
+previous interval) plus $\epsilon$ times the acceleration at the
+time $t$. That is, we use the equations
+\begin{equation}
+\label{Eq:I:9:16}
+\begin{aligned}
+x(t+\epsilon)&=x(t)+\epsilon v(t+\epsilon/2),\\
+v(t+\epsilon/2)&=v(t-\epsilon/2)+\epsilon a(t),\\
+a(t)&=-x(t).
+\end{aligned}
+\end{equation}
+There remains only one slight problem: what is $v(\epsilon/2)$? At the
+start, we are given $v(0)$, not $v(-\epsilon/2)$. To get our
+calculation started, we shall use a special equation, namely,
+$v(\epsilon/2)=v(0)+(\epsilon/2)a(0)$.</p>
+</div>
+
+<div id="Ch9-T1" class="table">
+<div class="caption">
+<span class="tag">Table 9–1</span>
+</div>
+<table class="tabular">
+<tr class="tr">
+<td class="td" style="text-align:center;" colspan="9" align="center">Solution of $dv_x/dt=-x$</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:center;" colspan="9" align="center">Interval: $\epsilon=0.10$ sec</td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$t$</td>
+<td class="td r" style="text-align:center;" align="center">$x$</td>
+<td class="td r" style="text-align:center;" align="center">$v_x$</td>
+<td class="td" style="text-align:center;" align="center">$a_x$</td>
+</tr>
+<tr class="tr">
+<td class="td r t" style="text-align:center;" align="center">$0.0$</td>
+<td class="td r t" style="text-align:center;" align="center">$\phantom{-}1.000$</td>
+<td class="td r t" style="text-align:center;" align="center">$\phantom{-}0.000$</td>
+<td class="td t" style="text-align:center;" align="center">$-1.000$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.050$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.1$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.995$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.995$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.150$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.2$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.980$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.980$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.248$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.3$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.955$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.955$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.343$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.4$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.921$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.921$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.435$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.5$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.877$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.877$</td>
+</tr>
+<tr class="tr">
+<td class="td r t"></td>
+<td class="td r t"></td>
+<td class="td r t" style="text-align:center;" align="center">$-0.523$</td>
+<td class="td t"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.6$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.825$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.825$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.605$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.7$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.764$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.764$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.682$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.8$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.696$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.696$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.751$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.9$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.621$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.621$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.814$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.0$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.540$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.540$</td>
+</tr>
+<tr class="tr">
+<td class="td r t"></td>
+<td class="td r t"></td>
+<td class="td r t" style="text-align:center;" align="center">$-0.868$</td>
+<td class="td t"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.1$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.453$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.453$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.913$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.2$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.362$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.362$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.949$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.3$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.267$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.267$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.976$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.4$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.169$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.169$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.993$</td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.5$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.070$</td>
+<td class="td r"></td>
+<td class="td" style="text-align:center;" align="center">$-0.070$</td>
+</tr>
+<tr class="tr">
+<td class="td r t"></td>
+<td class="td r t"></td>
+<td class="td r t" style="text-align:center;" align="center">$-1.000$</td>
+<td class="td t"></td>
+</tr>
+<tr class="tr">
+<td class="td b r" style="text-align:center;" align="center">$1.6$</td>
+<td class="td b r" style="text-align:center;" align="center">$-0.030$</td>
+<td class="td b r"></td>
+<td class="td b" style="text-align:center;" align="center">$+0.030$</td>
+</tr>
+</tbody></table></span></p>
+</div>
+
+<div id="Ch9-S6-p3" class="para">
+<p class="p">Now we are ready to carry through our calculation. For convenience, we
+may arrange the work in the form of a table, with columns for the time,
+the position, the velocity, and the acceleration, and the in-between
+lines for the velocity, as shown in Table <a href="#Ch9-T1">9–1</a>. Such a table
+is, of course, just a convenient way of representing the numerical
+values obtained from the set of equations (<a href="#mjx-eqn-EqI916">9.16</a>), and in fact
+the equations themselves need never be written. We just fill in the
+various spaces in the table one by one. This table now gives us a very
+good idea of the motion: it starts from rest, first picks up a little
+upward (negative) velocity and it loses some of its distance. The
+acceleration is then a little bit less but it is still gaining speed.
+But as it goes on it gains speed more and more slowly, until as it
+passes $x=0$ at about $t=1.50$ sec we can confidently predict that it
+will keep going, but now it will be on the other side; the position $x$
+will become negative, the acceleration therefore positive. Thus the
+speed decreases. It is interesting to compare these numbers with the
+function $x=\cos t$, which is done in Fig. <a href="#Ch9-F4">9–4</a>. The
+agreement is within the three significant figure accuracy of our
+calculation! We shall see later that $x=\cos t$ is the exact
+mathematical solution of our equation of motion, but it is an impressive
+illustration of the power of numerical analysis that such an easy calculation should give such precise
+results.
+</p>
+</div>
+<div id="Ch9-F4" class="figure">
+<img src="img/FLP_I/f09-04/f09-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 9–4.</span>Graph of the motion of a mass on a spring.
+</div>
+</div>
+</div>
+<div id="Ch9-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">9–7</span>Planetary motions</h3>
+<div id="Ch9-S7-p1" class="para">
+<p class="p">The above analysis is very nice for the motion of an oscillating
+spring, but can we analyze the motion of a planet around the sun? Let
+us see whether we can arrive at an approximation to an ellipse for the
+orbit. We shall suppose that the sun is infinitely heavy, in the sense
+that we shall not include its motion. Suppose a planet starts at a
+certain place and is moving with a certain velocity; it goes around
+the sun in some curve, and we shall try to analyze, by Newton’s laws of
+motion and his law of gravitation, what the curve is. How? At a given
+moment it is at some position in space. If the radial distance from the
+sun to this position is called $r$, then we know that there is a force
+directed inward which, according to the law of gravity, is equal to a
+constant times the product of the sun’s mass and the planet’s mass
+divided by the square of the distance. To analyze this further we must
+find out what acceleration will be produced by this force. We shall need
+the <em class="emph">components</em> of the acceleration along two directions, which we
+call $x$ and $y$. Thus if we specify the position of the planet at a
+given moment by giving $x$ and $y$ (we shall suppose that $z$ is always
+zero because there is no force in the $z$-direction and, if there is no
+initial velocity $v_z$, there will be nothing to make $z$ other than
+zero), the force is directed along the line joining the planet to the
+sun, as shown in Fig. <a href="#Ch9-F5">9–5</a>.</p>
+</div>
+<div id="Ch9-F5" class="figure">
+<img src="img/FLP_I/f09-05/f09-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 9–5.</span>The force of gravity on a planet.
+</div>
+</div>
+<div id="Ch9-S7-p2" class="para">
+<p class="p">From this figure we see that the horizontal component of the force is
+related to the complete force in the same manner as the horizontal
+distance $x$ is to the complete hypotenuse $r$, because the two
+triangles are similar. Also, if $x$ is positive, $F_x$ is
+negative. That is, $F_x/\abs{F}=-x/r$, or
+$F_x=$ $-\abs{F}x/r=$ $-GMmx/r^3$. Now we use the dynamical law to find that
+this force component is equal to the mass of the planet times the rate
+of change of its velocity in the $x$-direction. Thus we find the
+following laws:
+\begin{equation}
+\label{Eq:I:9:17}
+\begin{aligned}
+m(dv_x/dt)&=-GMmx/r^3,\\
+m(dv_y/dt)&=-GMmy/r^3,\\
+r&=\sqrt{x^2+y^2}.
+\end{aligned}
+\end{equation}
+This, then, is the set of equations we must solve. Again, in order to
+simplify the numerical work, we shall suppose that the unit of time,
+or the mass of the sun, has been so adjusted (or luck is with us)
+that $GM\equiv1$. For our specific example we shall suppose that the
+initial position of the planet is at $x=0.500$ and $y=0.000$, and that
+the velocity is all in the, $y$-direction at the start, and is of
+magnitude $1.630$. Now how do we make the calculation? We again make a
+table with columns for the time, the $x$-position, the $x$-velocity
+$v_x$, and the $x$-acceleration $a_x$; then, separated by a double
+line, three columns for position, velocity, and acceleration in the
+$y$-direction. In order to get the accelerations we are going to need
+Eq. (<a href="#mjx-eqn-EqI917">9.17</a>); it tells us that the acceleration in the
+$x$-direction is $-x/r^3$, and the acceleration in the $y$-direction
+is $-y/r^3$, and that $r$ is the square root of $x^2+y^2$. Thus, given
+$x$ and $y$, we must do a little calculating on the side, taking the
+square root of the sum of the squares to find $r$ and then, to get
+ready to calculate the two accelerations, it is useful also to
+evaluate $1/r^3$. This work can be done rather easily by using a table
+of squares, cubes, and reciprocals: then we need only multiply $x$
+by $1/r^3$, which we do on a slide rule.</p>
+</div>
+<div id="Ch9-S7-p3" class="para">
+<p class="p">Our calculation thus proceeds by the following steps, using time
+intervals $\epsilon=0.100$: Initial values at $t=0$:
+\begin{alignat*}{2}
+x(0)&=0.500&\qquad\qquad y(0)&=\phantom{+}0.000\\[.5ex]
+v_x(0)&=0.000&\qquad\qquad v_y(0)&=+1.630
+\end{alignat*}
+From these we find:
+\begin{alignat*}{2}
+r(0)&=\phantom{-}0.500&\qquad 1/r^3(0)&=8.000\\[.5ex]
+a_x&=-4.000&\qquad a_y&=0.000
+\end{alignat*}
+Thus we may calculate the velocities $v_x(0.05)$ and $v_y(0.05)$:
+\begin{align*}
+v_x(0.05) &= 0.000 - 4.000 \times 0.050 = -0.200;\\[1ex]
+v_y(0.05) &= 1.630 + 0.000 \times 0.050 = \phantom{-}1.630.
+\end{align*}
+Now our main calculations begin:
+\begin{alignat*}{2}
+x(0.1)&=0.500-0.20 \times 0.1&&=\phantom{-}0.480\\[.5ex]
+y(0.1)&=0.0+1.63 \times 0.1 &&=\phantom{-}0.163\\[.5ex]
+r&=\sqrt{0.480^2+0.163^2}&&=\phantom{-}0.507\\[.5ex]
+1/r^3&=7.677 &&\\[.5ex]
+a_x(0.1)&=-0.480 \times 7.677 &&=-3.685\\[.5ex]
+a_y(0.1)&=-0.163 \times 7.677 &&=-1.250\\[.5ex]
+v_x(0.15)&=-0.200-3.685\times0.1 &&=-0.568\\[.5ex]
+v_y(0.15)&=1.630-1.250\times0.1 &&=\phantom{-}1.505\\[.5ex]
+x(0.2)&=0.480-0.568\times 0.1&&=\phantom{-}0.423\\[.5ex]
+y(0.2)&=0.163+1.505\times0.1&&=\phantom{-}0.313\\[.5ex]
+&\qquad\qquad\text{etc.}&&
+\end{alignat*}
+In this way we obtain the values given in Table <a href="#Ch9-T2">9–2</a>, and
+in $20$ steps or so we have chased the planet halfway around the sun!
+In Fig. <a href="#Ch9-F6">9–6</a> are plotted the $x$- and $y$-coordinates
+given in Table <a href="#Ch9-T2">9–2</a>. The dots represent the positions at
+the succession of times a tenth of a unit apart; we see that at the
+start the planet moves rapidly and at the end it moves slowly, and so
+the shape of the curve is determined. Thus we see that we <em class="emph">really
+do</em> know how to calculate the motion of planets!</p>
+</div>
+
+<div id="Ch9-T2" class="table">
+<div class="caption">
+<span class="tag">Table 9–2</span>
+</div>
+<table class="tabular">
+<tr class="tr">
+<td class="td" style="text-align:center;" colspan="9" align="center">Solution of $dv_x/dt=-x/r^3$, $dv_y/dt=-y/r^3$,
+$r=\sqrt{x^2+y^2}$.</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:center;" colspan="9" align="center">Interval: $\epsilon=0.100$</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:center;" colspan="9" align="center">
+<span class="text italic">Orbit</span> $v_y=1.63$ $v_x=0$ $x=0.5$ $y=0$ at $t=0$</td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$t$</td>
+<td class="td r" style="text-align:center;" align="center">$x$</td>
+<td class="td r" style="text-align:center;" align="center">$v_x$</td>
+<td class="td rr" style="text-align:center;" align="center">$a_x$</td>
+<td class="td r" style="text-align:center;" align="center">$y$</td>
+<td class="td r" style="text-align:center;" align="center">$v_y$</td>
+<td class="td rr" style="text-align:center;" align="center">$a_y$</td>
+<td class="td r" style="text-align:center;" align="center">$r$</td>
+<td class="td" style="text-align:center;" align="center">$1/r^3$</td>
+</tr>
+<tr class="tr">
+<td class="td r t" style="text-align:center;" align="center"></th>
+<td class="td t"></td>
+<td class="td t"></td>
+<td class="td t"></td>
+<td class="td t"></td>
+<td class="td t"></td>
+<td class="td t"></td>
+<td class="td t"></td>
+<td class="td t"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.0$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.500$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-4.000$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.000$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$\phantom{-}0.000$</td>
+<td class="td r" style="text-align:center;" align="center">$0.500$</td>
+<td class="td" style="text-align:center;" align="center">$8.000$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.200$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}1.630$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.1$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.480$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-3.685$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.163$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-1.251$</td>
+<td class="td r" style="text-align:center;" align="center">$0.507$</td>
+<td class="td" style="text-align:center;" align="center">$7.677$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.568$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}1.505$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.2$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.423$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-2.897$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.313$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-2.146$</td>
+<td class="td r" style="text-align:center;" align="center">$0.527$</td>
+<td class="td" style="text-align:center;" align="center">$6.847$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.858$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}1.290$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.3$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.337$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-1.958$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.443$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-2.569$</td>
+<td class="td r" style="text-align:center;" align="center">$0.556$</td>
+<td class="td" style="text-align:center;" align="center">$5.805$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-1.054$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}1.033$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.4$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.232$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-1.112$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.546$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-2.617$</td>
+<td class="td r" style="text-align:center;" align="center">$0.593$</td>
+<td class="td" style="text-align:center;" align="center">$4.794$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-1.165$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.772$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.5$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.115$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-0.454$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.623$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-2.449$</td>
+<td class="td r" style="text-align:center;" align="center">$0.634$</td>
+<td class="td" style="text-align:center;" align="center">$3.931$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-1.211$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.527$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.6$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.006$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.018$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.676$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-2.190$</td>
+<td class="td r" style="text-align:center;" align="center">$0.676$</td>
+<td class="td" style="text-align:center;" align="center">$3.241$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-1.209$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.308$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.7$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.127$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.342$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.706$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-1.911$</td>
+<td class="td r" style="text-align:center;" align="center">$0.718$</td>
+<td class="td" style="text-align:center;" align="center">$2.705$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-1.175$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.117$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.8$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.244$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.559$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.718$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-1.646$</td>
+<td class="td r" style="text-align:center;" align="center">$0.758$</td>
+<td class="td" style="text-align:center;" align="center">$2.292$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-1.119$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.048$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$0.9$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.356$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.702$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.713$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-1.408$</td>
+<td class="td r" style="text-align:center;" align="center">$0.797$</td>
+<td class="td" style="text-align:center;" align="center">$1.974$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-1.048$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.189$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.0$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.461$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.796$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.694$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-1.200$</td>
+<td class="td r" style="text-align:center;" align="center">$0.833$</td>
+<td class="td" style="text-align:center;" align="center">$1.728$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.969$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.309$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.1$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.558$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.856$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.664$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-1.019$</td>
+<td class="td r" style="text-align:center;" align="center">$0.867$</td>
+<td class="td" style="text-align:center;" align="center">$1.536$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.883$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.411$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.2$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.646$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.895$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.623$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-0.862$</td>
+<td class="td r" style="text-align:center;" align="center">$0.897$</td>
+<td class="td" style="text-align:center;" align="center">$1.385$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.794$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.497$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.3$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.725$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.919$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.573$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-0.726$</td>
+<td class="td r" style="text-align:center;" align="center">$0.924$</td>
+<td class="td" style="text-align:center;" align="center">$1.267$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.702$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.569$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.4$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.795$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.933$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.516$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-0.605$</td>
+<td class="td r" style="text-align:center;" align="center">$0.948$</td>
+<td class="td" style="text-align:center;" align="center">$1.174$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.608$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.630$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.5$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.856$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.942$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.453$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-0.498$</td>
+<td class="td r" style="text-align:center;" align="center">$0.969$</td>
+<td class="td" style="text-align:center;" align="center">$1.100$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.514$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.680$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.6$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.908$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.947$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.385$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-0.402$</td>
+<td class="td r" style="text-align:center;" align="center">$0.986$</td>
+<td class="td" style="text-align:center;" align="center">$1.043$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.420$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.720$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.7$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.950$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.950$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.313$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-0.313$</td>
+<td class="td r" style="text-align:center;" align="center">$1.000$</td>
+<td class="td" style="text-align:center;" align="center">$1.000$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.325$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.751$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.8$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.982$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.952$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.238$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-0.230$</td>
+<td class="td r" style="text-align:center;" align="center">$1.010$</td>
+<td class="td" style="text-align:center;" align="center">$0.969$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.229$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.774$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$1.9$</td>
+<td class="td r" style="text-align:center;" align="center">$-1.005$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.953$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.160$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-0.152$</td>
+<td class="td r" style="text-align:center;" align="center">$1.018$</td>
+<td class="td" style="text-align:center;" align="center">$0.949$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.134$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.790$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$2.0$</td>
+<td class="td r" style="text-align:center;" align="center">$-1.018$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.955$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.081$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-0.076$</td>
+<td class="td r" style="text-align:center;" align="center">$1.022$</td>
+<td class="td" style="text-align:center;" align="center">$0.938$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.038$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.797$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$2.1$</td>
+<td class="td r" style="text-align:center;" align="center">$-1.022$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.957$</td>
+<td class="td r" style="text-align:center;" align="center">$\phantom{-}0.002$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$-0.002$</td>
+<td class="td r" style="text-align:center;" align="center">$1.022$</td>
+<td class="td" style="text-align:center;" align="center">$0.936$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$+0.057$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.797$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$2.2$</td>
+<td class="td r" style="text-align:center;" align="center">$-1.017$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.959$</td>
+<td class="td r" style="text-align:center;" align="center">$-0.078$</td>
+<td class="td r"></td>
+<td class="td rr" style="text-align:center;" align="center">$+0.074$</td>
+<td class="td r" style="text-align:center;" align="center">$1.020$</td>
+<td class="td" style="text-align:center;" align="center">$0.944$</td>
+</tr>
+<tr class="tr">
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r" style="text-align:center;" align="center">$-0.790$</td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td r" style="text-align:center;" align="center">$2.3$</td>
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td r"></td>
+<td class="td rr"></td>
+<td class="td r"></td>
+<td class="td"></td>
+</tr>
+<tr class="tr">
+<td class="td t" colspan="9"></td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:left;" colspan="9" align="left">Crossed $x$-axis at $2.101$ sec, $\therefore$ period${}=4.20$ sec.</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:left;" colspan="9" align="left">$v_x=0$ at $2.086$ sec.</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:left;" colspan="9" align="left">Cross $x$ at $-1.022$, $\therefore$ semimajor
+axis${}=$ $\dfrac{1.022+0.500}{2}=$ $0.761$.</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:left;" colspan="9" align="left">$v_y=0.797$.</td>
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:center;" colspan="9" align="center">Predicted time $\pi(0.761)^{3/2}=$ $\pi(0.663)=$ $2.082$.</td>
+</tr>
+<tr class="tr">
+<td class="td b" colspan="9"></td>
+</tr>
+</table>
+</div>
+
+<div id="Ch9-F6" class="figure">
+<img src="img/FLP_I/f09-06/f09-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 9–6.</span>The calculated motion of a planet around the sun.
+</div>
+</div>
+<div id="Ch9-S7-p4" class="para">
+<p class="p">Now let us see how we can calculate the motion of Neptune, Jupiter,
+Uranus, or any other planet. If we have a great many planets, and let
+the sun move too, can we do the same thing? Of course we can. We
+calculate the force on a particular planet, let us say planet
+number $i$, which has a position $x_i,y_i,z_i$ ($i=1$ may represent the sun,
+$i=2$ Mercury, $i=3$ Venus, and so on). We must know the positions of
+all the planets. The force acting on one is due to all the other
+bodies which are located, let us say, at positions
+$x_j,y_j,z_j$. Therefore the equations are
+\begin{align}
+m_i\,\ddt{v_{ix}}{t}&=
+\sum_{j=1}^N-\frac{Gm_im_j(x_i-x_j)}{r_{ij}^3},\notag\\
+\label{Eq:I:9:18}
+m_i\,\ddt{v_{iy}}{t}&=
+\sum_{j=1}^N-\frac{Gm_im_j(
+y_i-
+y_j
+)}{r_{ij}^3},\\
+m_i\,\ddt{v_{iz}}{t}&=
+\sum_{j=1}^N-\frac{Gm_im_j(
+z_i-
+z_j
+)}{r_{ij}^3}.\notag
+\end{align}
+Further, we define $r_{ij}$ as the distance between the two planets
+$i$ and $j$; this is equal to
+\begin{equation}
+\label{Eq:I:9:19}
+r_{ij}=\sqrt{(x_i-x_j)^2+(y_i-y_j)^2+(z_i-z_j)^2}.
+\end{equation}
+Also, $\sum$ means a sum over all values of $j$—all other
+bodies—except, of course, for $j=i$. Thus all we have to do is to
+make more columns, <em class="emph">lots</em> more columns. We need nine columns for
+the motions of Jupiter, nine for the motions of Saturn, and so
+on. Then when we have all initial positions and velocities we can
+calculate all the accelerations from Eq. (<a href="#mjx-eqn-EqI918">9.18</a>) by first
+calculating all the distances, using Eq. (<a href="#mjx-eqn-EqI919">9.19</a>). How long
+will it take to do it?  If you do it at home, it will take a very long
+time! But in modern times we have machines which do arithmetic very
+rapidly; a very good computing machine may take $1$ microsecond, that
+is, a millionth of a second, to do an addition. To do a multiplication
+takes longer, say $10$ microseconds. It may be that in one cycle of
+calculation, depending on the problem, we may have
+$30$ multiplications, or something like that, so one cycle will take
+$300$ microseconds. That means that we can do $3000$ cycles of
+computation per second. In order to get an accuracy, of, say, one part
+in a billion, we would need $4\times10^5$ cycles to correspond to one
+revolution of a planet around the sun. That corresponds to a computation
+time of $130$ seconds or about two minutes. Thus it takes only two
+minutes to follow Jupiter around the sun, with all the perturbations of
+all the planets correct to one part in a billion, by this method! (It
+turns out that the error varies about as the square of the
+interval $\epsilon$. If we make the interval a thousand times smaller, it is a
+million times more accurate. So, let us make the interval
+$10{,}000$ times smaller.)</p>
+</div>
+<div id="Ch9-S7-p5" class="para">
+<p class="p">So, as we said, we began this chapter not knowing how to calculate even
+the motion of a mass on a spring. Now, armed with the tremendous power
+of Newton’s laws, we can not only calculate such simple motions but
+also, given only a machine to handle the arithmetic, even the
+tremendously complex motions of the planets, to as high a degree of
+precision as we wish!</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

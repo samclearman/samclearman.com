@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 14: The Magnetic Field in Various Situations</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "14." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch14" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">14</span>The Magnetic Field in Various Situations</h2>
+<div id="Ch14-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">14–1</span>The vector potential</h3>
+<div id="Ch14-S1-p1" class="para">
+<p class="p">In this chapter we continue our discussion of magnetic fields
+associated with steady currents—the subject of magnetostatics. The
+magnetic field is related to electric currents by our basic equations
+\begin{gather}
+\label{Eq:II:14:1}
+\FLPdiv{\FLPB}=0,\\[1ex]
+\label{Eq:II:14:2}
+c^2\FLPcurl{\FLPB}=\frac{\FLPj}{\epsO}.
+\end{gather}
+
+We want now to solve these equations mathematically in a
+<em class="emph">general</em> way, that is, without requiring any special symmetry or
+intuitive guessing. In electrostatics, we found that there was a
+straightforward procedure for finding the field when the positions of
+all electric charges are known: One simply works out the scalar
+potential $\phi$ by taking an integral over the charges—as in
+Eq. (<a href="II_04.html#mjx-eqn-EqII425">4.25</a>). Then if one wants the electric field, it is
+obtained from the derivatives of $\phi$. We will now show that there is
+a corresponding procedure for finding the magnetic field $\FLPB$ if we
+know the current density $\FLPj$ of all moving charges.</p>
+</div>
+<div id="Ch14-S1-p2" class="para">
+<p class="p">In electrostatics we saw that (because the curl of $\FLPE$ was always
+zero) it was possible to represent $\FLPE$ as the gradient of a scalar
+field $\phi$. Now the curl of $\FLPB$ is <em class="emph">not</em> always zero, so it
+is not possible, in general, to represent it as a gradient. However,
+the <em class="emph">divergence</em> of $\FLPB$ is always zero, and this means that
+we can always represent $\FLPB$ as the <em class="emph">curl</em> of another vector
+field. For, as we saw in Section <a href="II_02.html#Ch2-S8">2–8</a>, the divergence of
+a curl is always zero. Thus we can always relate $\FLPB$ to a field we
+will call $\FLPA$ by
+\begin{equation}
+\label{Eq:II:14:3}
+\FLPB=\FLPcurl{\FLPA}.
+\end{equation}
+
+Or, by writing out the components,
+\begin{equation}
+\label{Eq:II:14:4}
+\begin{alignedat}{4}
+&B_x&&=(\FLPcurl{\FLPA})_x&&=\ddp{A_z}{y}&&-\ddp{A_y}{z},\\[.75ex]
+&B_y&&=(\FLPcurl{\FLPA})_y&&=\ddp{A_x}{z}&&-\ddp{A_z}{x},\\[.75ex]
+&B_z&&=(\FLPcurl{\FLPA})_z&&=\ddp{A_y}{x}&&-\ddp{A_x}{y}.\\
+\end{alignedat}
+\end{equation}
+
+Writing $\FLPB=\FLPcurl{\FLPA}$ guarantees that Eq. (<a href="#mjx-eqn-EqII141">14.1</a>)
+is satisfied, since, necessarily,
+\begin{equation*}
+\FLPdiv{\FLPB}=\FLPdiv{(\FLPcurl{\FLPA})}=0.
+\end{equation*}
+
+The field $\FLPA$ is called the <em class="emph">vector potential</em>.</p>
+</div>
+<div id="Ch14-S1-p3" class="para">
+<p class="p">You will remember that the scalar potential $\phi$ was not completely
+specified by its definition. If we have found $\phi$ for some problem,
+we can always find another potential $\phi'$ that is equally good by
+adding a constant:
+\begin{equation*}
+\phi'=\phi+C.
+\end{equation*}
+
+The new potential $\phi'$ gives the same electric fields, since the
+gradient $\FLPgrad{C}$ is zero; $\phi'$ and $\phi$ represent the same
+physics.</p>
+</div>
+<div id="Ch14-S1-p4" class="para">
+<p class="p">Similarly, we can have different vector potentials $\FLPA$ which give
+the same magnetic fields. Again, because $\FLPB$ is obtained
+from $\FLPA$ by differentiation, adding a constant to $\FLPA$ doesn’t
+change anything physical. But there is even more latitude
+for $\FLPA$. We can add to $\FLPA$ any field which is the gradient of some
+scalar field, without changing the physics. We can show this as
+follows. Suppose we have an $\FLPA$ that gives correctly the magnetic
+field $\FLPB$ for some real situation, and ask in what circumstances
+some other new vector potential $\FLPA'$ will give the <em class="emph">same</em>
+field $\FLPB$ if substituted into (<a href="#mjx-eqn-EqII143">14.3</a>). Then $\FLPA$
+and $\FLPA'$ must have the same curl:
+\begin{equation*}
+\FLPB=\FLPcurl{\FLPA'}=\FLPcurl{\FLPA}.
+\end{equation*}
+
+Therefore
+\begin{equation*}
+\FLPcurl{\FLPA'}-\FLPcurl{\FLPA}=\FLPcurl{(\FLPA'-\FLPA)}=\FLPzero.
+\end{equation*}
+
+But if the curl of a vector is zero it must be the gradient of some
+scalar field, say $\psi$, so $\FLPA'-\FLPA=\FLPgrad{\psi}$. That means
+that if $\FLPA$ is a satisfactory vector potential for a problem then,
+for any $\psi$, at all,
+\begin{equation}
+\label{Eq:II:14:5}
+\FLPA'=\FLPA+\FLPgrad{\psi}
+\end{equation}
+
+will be an equally satisfactory vector potential, leading to the same
+field $\FLPB$.</p>
+</div>
+<div id="Ch14-S1-p5" class="para">
+<p class="p">It is usually convenient to take some of the “latitude” out
+of $\FLPA$ by arbitrarily placing some other condition on it (in much the
+same way that we found it convenient—often—to choose to make the
+potential $\phi$ zero at large distances). We can, for instance,
+restrict $\FLPA$ by choosing arbitrarily what the divergence
+of $\FLPA$ must be. We can always do that without affecting $\FLPB$. This
+is because although $\FLPA'$ and $\FLPA$ have the same curl, and give
+the same $\FLPB$, they do not need to have the same divergence. In
+fact, $\FLPdiv{\FLPA'}=\FLPdiv{\FLPA}+\nabla^2\psi$, and by a suitable
+choice of $\psi$ we can make $\FLPdiv{\FLPA'}$ anything we wish.</p>
+</div>
+<div id="Ch14-S1-p6" class="para">
+<p class="p">What should we choose for $\FLPdiv{\FLPA}$? The choice should be made
+to get the greatest mathematical convenience and will depend on the
+problem we are doing. For <em class="emph">magnetostatics</em>, we will make the
+simple choice
+\begin{equation}
+\label{Eq:II:14:6}
+\FLPdiv{\FLPA}=0.
+\end{equation}
+
+(Later, when we take up electrodynamics, we will change our choice.)
+Our complete definition<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a>
+of $\FLPA$ is then, for the moment, $\FLPcurl{\FLPA}=\FLPB$
+and $\FLPdiv{\FLPA}=0$.</p>
+</div>
+<div id="Ch14-S1-p7" class="para">
+<p class="p">To get some experience with the vector potential, let’s look first at
+what it is for a uniform magnetic field $\FLPB_0$. Taking our $z$-axis
+in the direction of $\FLPB_0$, we must have
+\begin{equation}
+\label{Eq:II:14:7}
+\begin{alignedat}{4}
+&B_x&&=\ddp{A_z}{y}&&-\ddp{A_y}{z}&&=0,\\[1ex]
+&B_y&&=\ddp{A_x}{z}&&-\ddp{A_z}{x}&&=0,\\[1ex]
+&B_z&&=\ddp{A_y}{x}&&-\ddp{A_x}{y}&&=B_0.\\
+\end{alignedat}
+\end{equation}
+
+By inspection, we see that one <em class="emph">possible</em> solution of these
+equations is
+\begin{equation*}
+A_y=xB_0,\quad A_x=0,\quad A_z=0.
+\end{equation*}
+
+Or we could equally well take
+\begin{equation*}
+A_x=-yB_0,\quad A_y=0,\quad A_z=0.
+\end{equation*}
+
+Still another solution is a linear combination of the two:
+\begin{equation}
+\label{Eq:II:14:8}
+A_x=-\tfrac{1}{2}yB_0,\quad A_y=\tfrac{1}{2}xB_0,\quad A_z=0.
+\end{equation}
+
+It is clear that for any particular field $\FLPB$, the vector
+potential $\FLPA$ is not unique; there are many possibilities.</p>
+</div>
+<div id="Ch14-S1-p8" class="para">
+<p class="p">The third solution, Eq. (<a href="#mjx-eqn-EqII148">14.8</a>), has some interesting
+properties. Since the $x$-component is proportional to $-y$ and the
+$y$-component is proportional to $+x$, $\FLPA$ must be at right angles
+to the vector from the $z$-axis, which we will call $\FLPr'$ (the
+“prime” is to remind us that it is <em class="emph">not</em> the vector
+displacement from the origin). Also, the magnitude of $\FLPA$ is
+proportional to $\sqrt{x^2+y^2}$ and, hence, to $r'$. So $\FLPA$ can
+be simply written (for our uniform field) as
+\begin{equation}
+\label{Eq:II:14:9}
+\FLPA=\tfrac{1}{2}\FLPB_0\times\FLPr'.
+\end{equation}
+
+The vector potential $\FLPA$ has the magnitude $B_0r'/2$ and rotates
+about the $z$-axis as shown in Fig. <a href="#Ch14-F1">14–1</a>. If, for
+example, the $\FLPB$ field is the axial field inside a solenoid, then
+the vector potential circulates in the same sense as do the currents
+of the solenoid.</p>
+</div>
+<div id="Ch14-F1" class="figure">
+<img src="img/FLP_II/f14-01/f14-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–1.</span>A uniform magnetic field $\FigB$ in the $z$-direction
+corresponds to a vector potential $\FigA$ that rotates about the
+$z$-axis, with the magnitude $A=Br'/2$ ($r'$ is the displacement
+from the $z$-axis).
+</div>
+</div>
+<div id="Ch14-S1-p9" class="para">
+<p class="p">The vector potential for a uniform field can be obtained in another
+way. The circulation of $\FLPA$ on any closed loop $\Gamma$ can be
+related to the surface integral of $\FLPcurl{\FLPA}$ by Stokes’
+theorem, Eq. (<a href="II_03.html#mjx-eqn-EqII338">3.38</a>):
+\begin{equation}
+\label{Eq:II:14:10}
+\oint_\Gamma\FLPA\cdot d\FLPs=
+\underset{\text{inside $\Gamma$}}{\int}
+(\FLPcurl{\FLPA})\cdot\FLPn\,da.
+\end{equation}
+
+But the integral on the right is equal to the flux of $\FLPB$ through
+the loop, so
+\begin{equation}
+\label{Eq:II:14:11}
+\oint_\Gamma\FLPA\cdot d\FLPs=
+\underset{\text{inside $\Gamma$}}{\int}
+\FLPB\cdot\FLPn\,da.
+\end{equation}
+
+So the circulation of $\FLPA$ around <em class="emph">any</em> loop is equal to the
+flux of $\FLPB$ through the loop. If we take a circular loop, of
+radius $r'$ in a plane perpendicular to a uniform field $\FLPB$, the
+flux is just
+\begin{equation*}
+\pi r'^2B.
+\end{equation*}
+
+If we choose our origin on an axis of symmetry, so that we can
+take $\FLPA$ as circumferential and a function only of $r'$, the
+circulation will be
+\begin{equation*}
+\oint\FLPA\cdot d\FLPs=2\pi r'A=\pi r'^2B.
+\end{equation*}
+
+We get, as before,
+\begin{equation*}
+A=\frac{Br'}{2}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch14-S1-p10" class="para">
+<p class="p">In the example we have just given, we have calculated the vector
+potential from the magnetic field, which is opposite to what one
+normally does. In complicated problems it is usually easier to solve
+for the vector potential, and then determine the magnetic field from
+it. We will now show how this can be done.</p>
+</div>
+</div>
+<div id="Ch14-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">14–2</span>The vector potential of known currents</h3>
+<div id="Ch14-S2-p1" class="para">
+<p class="p">Since $\FLPB$ is determined by currents, so also is $\FLPA$. We want
+now to find $\FLPA$ in terms of the currents. We start with our basic
+equation (<a href="#mjx-eqn-EqII142">14.2</a>):
+\begin{equation*}
+c^2\FLPcurl{\FLPB}=\frac{\FLPj}{\epsO},
+\end{equation*}
+
+which means, of course, that
+\begin{equation}
+\label{Eq:II:14:12}
+c^2\FLPcurl{(\FLPcurl{\FLPA})}=\frac{\FLPj}{\epsO}.
+\end{equation}
+
+This equation is for magnetostatics what the equation
+\begin{equation}
+\label{Eq:II:14:13}
+\FLPdiv{\FLPgrad{\phi}}=-\frac{\rho}{\epsO}
+\end{equation}
+
+was for electrostatics.</p>
+</div>
+<div id="Ch14-S2-p2" class="para">
+<p class="p">Our equation (<a href="#mjx-eqn-EqII1412">14.12</a>) for the vector potential looks even
+more like that for $\phi$ if we rewrite $\FLPcurl{(\FLPcurl{\FLPA})}$
+using the vector identity Eq. (<a href="II_02.html#mjx-eqn-EqII258">2.58</a>):
+\begin{equation}
+\label{Eq:II:14:14}
+\FLPcurl{(\FLPcurl{\FLPA})}=\FLPgrad{(\FLPdiv{\FLPA})}-\nabla^2\FLPA.
+\end{equation}
+
+Since we have chosen to make $\FLPdiv{\FLPA}=0$ (and now you see why),
+Eq. (<a href="#mjx-eqn-EqII1412">14.12</a>) becomes
+\begin{equation}
+\label{Eq:II:14:15}
+\nabla^2\FLPA=-\frac{\FLPj}{\epsO c^2}.
+\end{equation}
+
+This vector equation means, of course, three equations:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:14:16}
+\nabla^2A_x=-\frac{j_x}{\epsO c^2},\quad
+\nabla^2A_y=-\frac{j_y}{\epsO c^2},\quad
+\nabla^2A_z=-\frac{j_z}{\epsO c^2}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{equation}
+\begin{aligned}
+\nabla^2A_x&=-\frac{j_x}{\epsO c^2},\\[1ex]
+\nabla^2A_y&=-\frac{j_y}{\epsO c^2},\\[1ex]
+\nabla^2A_z&=-\frac{j_z}{\epsO c^2}.
+\end{aligned}
+\label{Eq:II:14:16}
+\end{equation}
+
+</span>
+
+
+And each of these equations is <em class="emph">mathematically identical</em> to
+\begin{equation}
+\label{Eq:II:14:17}
+\nabla^2\phi=-\frac{\rho}{\epsO}.
+\end{equation}
+
+All we have learned about solving for potentials when $\rho$ is known
+can be used for solving for each component of $\FLPA$ when $\FLPj$ is
+known!</p>
+</div>
+<div id="Ch14-S2-p3" class="para">
+<p class="p">We have seen in Chapter <a href="II_04.html">4</a> that a general solution for the
+electrostatic equation (<a href="#mjx-eqn-EqII1417">14.17</a>) is
+\begin{equation*}
+\phi(1)=\frac{1}{4\pi\epsO}\int\frac{\rho(2)\,dV_2}{r_{12}}.
+\end{equation*}
+
+So we know immediately that a general solution for $A_x$ is
+\begin{equation}
+\label{Eq:II:14:18}
+A_x(1)=\frac{1}{4\pi\epsO c^2}\int\frac{j_x(2)\,dV_2}{r_{12}},
+\end{equation}
+
+and similarly for $A_y$ and $A_z$. (Figure <a href="#Ch14-F2">14–2</a> will
+remind you of our conventions for $r_{12}$ and $dV_2$.) We can combine
+the three solutions in the vector form
+\begin{equation}
+\label{Eq:II:14:19}
+\FLPA(1)=\frac{1}{4\pi\epsO c^2}\int\frac{\FLPj(2)\,dV_2}{r_{12}},
+\end{equation}
+
+(You can verify if you wish, by direct differentiation of components,
+that this integral for $\FLPA$ satisfies $\FLPdiv{\FLPA}=0$ so long
+as $\FLPdiv{\FLPj}=0$, which, as we saw, must happen for steady
+currents.)</p>
+</div>
+<div id="Ch14-F2" class="figure">
+<img src="img/FLP_II/f14-02/f14-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–2.</span>The vector potential $\FigA$ at point $1$ is given by an
+integral over the current elements $\Figj\,dV$ at all points $2$.
+</div>
+</div>
+<div id="Ch14-S2-p4" class="para">
+<p class="p">We have, then, a general method for finding the magnetic field of
+steady currents. The principle is: the $x$-component of vector
+potential arising from a current density $\FLPj$ is the same as the
+electric potential $\phi$ that would be produced by a charge
+density $\rho$ equal to $j_x/c^2$—and similarly for the $y$- and
+$z$-components. (This principle works only with components in fixed
+directions. The “radial” component of $\FLPA$ does not come in the
+same way from the “radial” component of $\FLPj$, for example.) So
+from the vector current density $\FLPj$, we can find $\FLPA$ using
+Eq. (<a href="#mjx-eqn-EqII1419">14.19</a>)—that is, we find each component of $\FLPA$
+by solving three imaginary electrostatic problems for the charge
+distributions $\rho_1=j_x/c^2$, $\rho_2=j_y/c^2$,
+and $\rho_3=j_z/c^2$. Then we get $\FLPB$ by taking various derivatives
+of $\FLPA$ to obtain $\FLPcurl{\FLPA}$. It’s a little more complicated
+than electrostatics, but the same idea. We will now illustrate the
+theory by solving for the vector potential in a few special cases.</p>
+</div>
+</div>
+<div id="Ch14-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">14–3</span>A straight wire</h3>
+<div id="Ch14-S3-p1" class="para">
+<p class="p">For our first example, we will again find the field of a straight
+wire—which we solved in the last chapter by using
+Eq. (<a href="#mjx-eqn-EqII142">14.2</a>) and some arguments of symmetry. We take a long
+straight wire of radius $a$, carrying the steady current $I$. Unlike the
+charge on a conductor in the electrostatic case, a steady current in a
+wire is uniformly distributed throughout the cross section of the wire.
+If we choose our coordinates as shown in Fig. <a href="#Ch14-F3">14–3</a>, the
+current density vector $\FLPj$ has only a $z$-component. Its magnitude
+is
+\begin{equation}
+\label{Eq:II:14:20}
+j_z=\frac{I}{\pi a^2}
+\end{equation}
+
+inside the wire, and zero outside.</p>
+</div>
+<div id="Ch14-F3" class="figure">
+<img src="img/FLP_II/f14-03/f14-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–3.</span>A long cylindrical wire along the $z$-axis with a uniform
+current density $\Figj$.
+</div>
+</div>
+<div id="Ch14-S3-p2" class="para">
+<p class="p">Since $j_x$ and $j_y$ are both zero, we have immediately
+\begin{equation*}
+A_x=0,\qquad A_y=0.
+\end{equation*}
+
+To get $A_z$ we can use our solution for the electrostatic
+potential $\phi$ of a wire with a uniform charge density $\rho=j_z/c^2$. For
+points outside an infinite charged cylinder, the electrostatic
+potential is
+\begin{equation*}
+\phi=-\frac{\lambda}{2\pi\epsO}\ln r',
+\end{equation*}
+
+where $r'=\sqrt{x^2+y^2}$ and $\lambda$ is the charge per unit length,
+$\pi a^2\rho$. So $A_z$ must be
+\begin{equation*}
+A_z=-\frac{\pi a^2j_z}{2\pi\epsO c^2}\ln r'
+\end{equation*}
+
+for points outside a long wire carrying a uniform current. Since $\pi
+a^2j_z=I$, we can also write
+\begin{equation}
+\label{Eq:II:14:21}
+A_z=-\frac{I}{2\pi\epsO c^2}\ln r'
+\end{equation}
+</p>
+</div>
+<div id="Ch14-S3-p3" class="para">
+<p class="p">Now we can find $\FLPB$ from (<a href="#mjx-eqn-EqII144">14.4</a>). There are only two of
+the six derivatives that are not zero. We get
+
+\begin{alignat}{6}
+\label{Eq:II:14:22}
+&B_x&&=-&&\frac{I}{2\pi\epsO c^2}\ddp{}{y}&&\ln r'=
+-&&\frac{I}{2\pi\epsO c^2}\,\frac{y}{r'^2}&&,\\[1ex]
+\label{Eq:II:14:23}
+&B_y&&=&&\frac{I}{2\pi\epsO c^2}\vphantom{\ddp{}{y}}\ddp{}{x}&&\ln r'=
+&&\frac{I}{2\pi\epsO c^2}\,\frac{x}{r'^2}&&,\\[2pt]
+% ebook insert: \label{Eq:II:0:0}
+&B_z&&=&&0\vphantom{\ddp{}{y}}.\notag
+\end{alignat}
+
+
+We get the same result as before: $\FLPB$ circles around the wire, and
+has the magnitude
+\begin{equation}
+\label{Eq:II:14:24}
+B=\frac{1}{4\pi\epsO c^2}\,\frac{2I}{r'}.
+\end{equation}
+</p>
+</div>
+</div>
+<div id="Ch14-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">14–4</span>A long solenoid</h3>
+<div id="Ch14-S4-p1" class="para">
+<p class="p">Next, we consider again the infinitely long solenoid with a
+circumferential current on the surface of $nI$ per unit length. (We
+imagine there are $n$ turns of wire per unit length, carrying the
+current $I$, and we neglect the slight pitch of the winding.)</p>
+</div>
+<div id="Ch14-S4-p2" class="para">
+<p class="p">Just as we have defined a “surface charge density” $\sigma$, we
+define here a “surface current density” $\FLPJ$ equal to the current
+per unit length on the surface of the solenoid (which is, of course,
+just the average $\FLPj$ times the thickness of the thin winding). The
+magnitude of $\FLPJ$ is, here, $nI$. This surface current (see
+Fig. <a href="#Ch14-F4">14–4</a>) has the components:
+\begin{equation*}
+J_x=-J\sin\phi,\quad J_y=J\cos\phi,\quad J_z=0.
+\end{equation*}
+
+Now we must find $\FLPA$ for such a current distribution.</p>
+</div>
+<div id="Ch14-F4" class="figure">
+<img src="img/FLP_II/f14-04/f14-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–4.</span>A long solenoid with a surface current density $\FigJ$.
+</div>
+</div>
+<div id="Ch14-S4-p3" class="para">
+<p class="p">First, we wish to find $A_x$ for points outside the solenoid. The
+result is the same as the electrostatic potential outside a cylinder
+with a surface charge density
+\begin{equation*}
+\sigma=\sigma_0\sin\phi,
+\end{equation*}
+
+with $\sigma_0=-J/c^2$. We have not solved such a charge distribution,
+but we have done something similar. This charge distribution is
+equivalent to two <em class="emph">solid</em> cylinders of charge, one positive and
+one negative, with a slight relative displacement of their axes in the
+$y$-direction. The potential of such a pair of cylinders is
+proportional to the derivative with respect to $y$ of the potential of
+a single uniformly charged cylinder. We could work out the constant of
+proportionality, but let’s not worry about it for the moment.</p>
+</div>
+<div id="Ch14-S4-p4" class="para">
+<p class="p">The potential of a cylinder of charge is proportional to $\ln r'$; the
+potential of the pair is then
+\begin{equation}
+\phi\propto\ddp{\ln r'}{y}=\frac{y}{r'^2}.\notag
+\end{equation}
+
+So we know that
+\begin{equation}
+\label{Eq:II:14:25}
+A_x=-K\,\frac{y}{r'^2},
+\end{equation}
+
+where $K$ is some constant. Following the same argument, we would find
+\begin{equation}
+\label{Eq:II:14:26}
+A_y=K\,\frac{x}{r'^2}.
+\end{equation}
+
+Although we said before that there was no <em class="emph">magnetic</em> field
+outside a solenoid, we find now that there <em class="emph">is</em> an $\FLPA$-field
+which circulates around the $z$-axis, as in Fig. <a href="#Ch14-F4">14–4</a>. The
+question is: Is its curl zero?</p>
+</div>
+<div id="Ch14-S4-p5" class="para">
+<p class="p">Clearly, $B_x$ and $B_y$ are zero, and
+\begin{align*}
+B_z&=\ddp{}{x}\biggl(K\,\frac{x}{r'^2}\biggr)-
+\ddp{}{y}\biggl(-K\,\frac{y}{r'^2}\biggr)\\[1.5ex]
+&=K\biggl(
+\frac{1}{r'^2}-\frac{2x^2}{r'^4}+\frac{1}{r'^2}-\frac{2y^2}{r'^4}
+\biggr)=0.
+\end{align*}
+
+So the magnetic field outside a very long solenoid is indeed zero,
+even though the vector potential is not.</p>
+</div>
+<div id="Ch14-S4-p6" class="para">
+<p class="p">We can check our result against something else we know: The
+circulation of the vector potential around the solenoid should be
+equal to the flux of $\FLPB$ inside the coil (Eq. <a href="#mjx-eqn-EqII1411">14.11</a>).
+The circulation is $A\cdot2\pi r'$ or, since $A=K/r'$, the circulation
+is $2\pi K$. Notice that it is independent of $r'$. That is just as it
+should be if there is no $\FLPB$ outside, because the flux is just the
+magnitude of $\FLPB$ <em class="emph">inside</em> the solenoid times $\pi a^2$. It is
+the same for all circles of radius $r'&gt;a$. We have found in the last
+chapter that the field inside is $nI/\epsO c^2$, so we can determine the
+constant $K$:
+\begin{equation*}
+2\pi K=\pi a^2\,\frac{nI}{\epsO c^2},
+\end{equation*}
+
+or
+\begin{equation*}
+K=\frac{nIa^2}{2\epsO c^2}.
+\end{equation*}
+
+So the vector potential <em class="emph">outside</em> has the magnitude
+\begin{equation}
+\label{Eq:II:14:27}
+A=\frac{nIa^2}{2\epsO c^2}\,\frac{1}{r'},
+\end{equation}
+
+and is always perpendicular to the vector $\FLPr'$.</p>
+</div>
+<div id="Ch14-S4-p7" class="para">
+<p class="p">We have been thinking of a solenoidal coil of wire, but we would
+produce the same fields if we rotated a long cylinder with an
+electrostatic charge on the surface. If we have a thin cylindrical
+shell of radius $a$ with a surface charge $\sigma$, rotating the
+cylinder makes a surface current $J=\sigma v$, where $v=a\omega$ is
+the velocity of the surface charge. There will then be a magnetic
+field $B=\sigma a\omega/\epsO c^2$ inside the cylinder.</p>
+</div>
+<div id="Ch14-F5" class="figure">
+<img src="img/FLP_II/f14-05/f14-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–5.</span>A rotating charged cylinder produces a magnetic field
+inside. A short radial wire rotating with the cylinder has charges
+induced on its ends.
+</div>
+</div>
+<div id="Ch14-S4-p8" class="para">
+<p class="p">Now we can raise an interesting question. Suppose we put a short piece
+of wire $W$ perpendicular to the axis of the cylinder, extending from
+the axis out to the surface, and fastened to the cylinder so that it
+rotates with it, as in Fig. <a href="#Ch14-F5">14–5</a>. This wire is moving
+in a magnetic field, so the $\FLPv\times\FLPB$ forces will cause the
+ends of the wire to be charged (they will charge up until the
+$\FLPE$-field from the charges just balances the $\FLPv\times\FLPB$ force).
+If the cylinder has a positive charge, the end of the wire at
+the axis will have a negative charge. By measuring the charge on the
+end of the wire, we could measure the speed of rotation of the
+system. We would have an “angular-velocity meter”!</p>
+</div>
+<div id="Ch14-S4-p9" class="para">
+<p class="p">But are you wondering: “What if I put myself in the frame of
+reference of the rotating cylinder? Then there is just a charged
+cylinder at rest, and I know that the electrostatic equations say
+there will be <em class="emph">no</em> electric fields inside, so there will be no
+force pushing charges to the center. So something must be wrong.” But
+there is nothing wrong. There is no “relativity of rotation.” A
+rotating system is <em class="emph">not</em> an inertial frame, and the laws of
+physics are different. We must be sure to use equations of
+electromagnetism only with respect to inertial coordinate systems.</p>
+</div>
+<div id="Ch14-S4-p10" class="para">
+<p class="p">It would be nice if we could measure the absolute rotation of the
+earth with such a charged cylinder, but unfortunately the effect is
+much too small to observe even with the most delicate instruments now
+available.
+</p>
+</div>
+</div>
+<div id="Ch14-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">14–5</span>The field of a small loop; the magnetic dipole</h3>
+<div id="Ch14-S5-p1" class="para">
+<p class="p">Let’s use the vector-potential method to find the magnetic field of a
+small loop of current. As usual, by “small” we mean simply that we
+are interested in the fields only at distances large compared with the
+size of the loop. It will turn out that any small loop is a “magnetic
+dipole.” That is, it produces a <em class="emph">magnetic</em> field like the
+electric field from an electric dipole.</p>
+</div>
+<div id="Ch14-F6" class="figure">
+<img src="img/FLP_II/f14-06/f14-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–6.</span>A rectangular loop of wire with the current $I$. What is the magnetic
+field at $P$? ($R\gg a$ and $R\gg b$.)
+</div>
+</div>
+<div id="Ch14-S5-p2" class="para">
+<p class="p">We take first a rectangular loop, and choose our coordinates as shown in
+Fig. <a href="#Ch14-F6">14–6</a>. There are no currents in the $z$-direction,
+so $A_z$ is zero. There are currents in the $x$-direction on the two sides
+of length $a$. In each leg, the current density (and current) is
+uniform. So the solution for $A_x$ is just like the electrostatic
+potential from two charged rods (see Fig. <a href="#Ch14-F7">14–7</a>). Since the
+rods have opposite charges, their electric potential at large distances
+would be just the dipole potential (Section <a href="II_06.html#Ch6-S5">6–5</a>). At the
+point $P$ in Fig. <a href="#Ch14-F6">14–6</a>, the potential would be
+\begin{equation}
+\label{Eq:II:14:28}
+\phi=\frac{1}{4\pi\epsO}\,\frac{\FLPp\cdot\FLPe_R}{R^2},
+\end{equation}
+
+where $\FLPp$ is the dipole moment of the charge distribution. The
+dipole moment, in this case, is the total charge on one rod times the
+separation between them:
+\begin{equation}
+\label{Eq:II:14:29}
+p=\lambda ab.
+\end{equation}
+
+The dipole moment points in the negative $y$-direction, so the cosine
+of the angle between $\FLPR$ and $\FLPp$ is $-y/R$ (where $y$ is the
+coordinate of $P$). So we have
+\begin{equation*}
+\phi=-\frac{1}{4\pi\epsO}\,\frac{\lambda ab}{R^2}\,\frac{y}{R}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch14-F7" class="figure">
+<img src="img/FLP_II/f14-07/f14-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–7.</span>The distribution of $j_x$ in the current loop of
+Fig. <a href="#Ch14-F6">14–6</a>.
+</div>
+</div>
+<div id="Ch14-S5-p3" class="para">
+<p class="p">We get $A_x$ simply by replacing $\lambda$ by $I/c^2$:
+\begin{equation}
+\label{Eq:II:14:30}
+A_x=-\frac{Iab}{4\pi\epsO c^2}\,\frac{y}{R^3}.
+\end{equation}
+
+By the same reasoning,
+\begin{equation}
+\label{Eq:II:14:31}
+A_y=\frac{Iab}{4\pi\epsO c^2}\,\frac{x}{R^3}.
+\end{equation}
+
+Again, $A_y$ is proportional to $x$ and $A_x$ is proportional to $-y$,
+so the vector potential (at large distances) goes in circles around
+the $z$-axis, circulating in the same sense as $I$ in the loop, as
+shown in Fig. <a href="#Ch14-F8">14–8</a>.</p>
+</div>
+<div id="Ch14-F8" class="figure">
+<img src="img/FLP_II/f14-08/f14-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–8.</span>The vector potential of a small current loop at the origin
+(in the $xy$-plane); a magnetic dipole field.
+</div>
+</div>
+<div id="Ch14-S5-p4" class="para">
+<p class="p">The strength of $\FLPA$ is proportional to $Iab$, which is the current
+times the area of the loop. This product is called the <em class="emph">magnetic
+dipole moment</em> (or, often, just “magnetic moment”) of the
+loop. We represent it by $\mu$:
+\begin{equation}
+\label{Eq:II:14:32}
+\mu=Iab.
+\end{equation}
+
+The vector potential of a small plane loop of <em class="emph">any</em> shape (circle,
+triangle, etc.) is also given by Eqs. (<a href="#mjx-eqn-EqII1430">14.30</a>)
+and (<a href="#mjx-eqn-EqII1431">14.31</a>) provided we replace $Iab$ by
+\begin{equation}
+\label{Eq:II:14:33}
+\mu=I\cdot(\text{area of the loop}).
+\end{equation}
+
+We leave the proof of this to you.</p>
+</div>
+<div id="Ch14-S5-p5" class="para">
+<p class="p">We can put our equation in vector form if we define the direction of
+the vector $\FLPmu$ to be the normal to the plane of the loop, with a
+positive sense given by the right-hand rule (Fig. <a href="#Ch14-F8">14–8</a>).
+Then we can write
+\begin{equation}
+\label{Eq:II:14:34}
+\FLPA=\frac{1}{4\pi\epsO c^2}\,\frac{\FLPmu\times\FLPR}{R^3}=
+\frac{1}{4\pi\epsO c^2}\,\frac{\FLPmu\times\FLPe_R}{R^2}.
+\end{equation}
+</p>
+</div>
+<div id="Ch14-S5-p6" class="para">
+<p class="p">We have still to find $\FLPB$. Using (<a href="#mjx-eqn-EqII1433">14.33</a>)
+and (<a href="#mjx-eqn-EqII1434">14.34</a>), together with (<a href="#mjx-eqn-EqII144">14.4</a>), we get
+\begin{equation}
+\label{Eq:II:14:35}
+B_x=-\ddp{}{z}\,\frac{\mu}{4\pi\epsO c^2}\,\frac{x}{R^3}=
+\dotsm\frac{3xz}{R^5}
+\end{equation}
+
+(where by $\dotsm$ we mean $\mu/4\pi\epsO c^2$),
+\begin{equation}
+\label{Eq:II:14:36}
+\begin{aligned}
+B_y&=\ddp{}{z}\biggl(-\dotsm\frac{y}{R^3}\biggr)=\dotsm\frac{3yz}{R^5},\\[1ex]
+B_z&=\ddp{}{x}\biggl(\dotsm\frac{x}{R^3}\biggr)-
+\ddp{}{y}\biggl(-\dotsm\frac{y}{R^3}\biggr)\\[1ex]
+&=-\dotsm\biggl(\frac{1}{R^3}-\frac{3z^2}{R^5}\biggr).
+\end{aligned}
+\end{equation}
+</p>
+</div>
+<div id="Ch14-S5-p7" class="para">
+<p class="p">The components of the $\FLPB$-field behave exactly like those of the
+$\FLPE$-field for a dipole oriented along the $z$-axis. (See Eqs.
+(<a href="II_06.html#mjx-eqn-EqII614">6.14</a>) and (<a href="II_06.html#mjx-eqn-EqII615">6.15</a>); also Fig. <a href="II_06.html#Ch6-F4">6–4</a>.) That’s
+why we call the loop a magnetic dipole. The word “dipole” is slightly
+misleading when applied to a magnetic field because there are <em class="emph">no</em> magnetic
+“poles” that correspond to electric charges. The magnetic “dipole field” is
+not produced by two “charges,” but by an elementary current loop.
+</p>
+</div>
+<div id="Ch14-S5-p8" class="para">
+<p class="p">It is curious, though, that starting with completely different laws,
+$\FLPdiv{\FLPE}=\rho/\epsO$ and $\FLPcurl{\FLPB}=\FLPj/\epsO c^2$, we
+can end up with the same kind of a field. Why should that be? It is
+because the dipole fields appear only when we are far away from all
+charges or currents. So through most of the relevant space the
+equations for $\FLPE$ and $\FLPB$ are identical: both have zero
+divergence and zero curl. So they give the same solutions. However,
+the <em class="emph">sources</em> whose configuration we summarize by the dipole
+moments are physically quite different—in one case, it’s a
+circulating current; in the other, a pair of charges, one above and
+one below the plane of the loop for the corresponding field.</p>
+</div>
+</div>
+<div id="Ch14-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">14–6</span>The vector potential of a circuit</h3>
+<div id="Ch14-F9" class="figure">
+<img src="img/FLP_II/f14-09/f14-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–9.</span>For a fine wire $\Figj\,dV$ is the same as $I\,d\Figs$.
+</div>
+</div>
+<div id="Ch14-S6-p1" class="para">
+<p class="p">We are often interested in the magnetic fields produced by circuits of
+wire in which the diameter of the wire is very small compared with the
+dimensions of the whole system. In such cases, we can simplify the
+equations for the magnetic field. For a thin wire we can write our
+volume element as
+\begin{equation*}
+dV=S\,ds
+\end{equation*}
+
+where $S$ is the cross-sectional area of the wire and $ds$ is the
+element of distance along the wire. In fact, since the vector $d\FLPs$
+is in the same direction as $\FLPj$, as shown in Fig. <a href="#Ch14-F9">14–9</a>
+(and we can assume that $\FLPj$ is constant across any given cross
+section), we can write a vector equation:
+\begin{equation}
+\label{Eq:II:14:37}
+\FLPj\,dV=jS\,d\FLPs.
+\end{equation}
+
+But $jS$ is just what we call the current $I$ in a wire, so our
+integral for the vector potential (<a href="#mjx-eqn-EqII1419">14.19</a>) becomes
+\begin{equation}
+\label{Eq:II:14:38}
+\FLPA(1)=\frac{1}{4\pi\epsO c^2}\int\frac{I\,d\FLPs_2}{r_{12}}
+\end{equation}
+
+(see Fig. <a href="#Ch14-F10">14–10</a>). (We assume that $I$ is the same
+throughout the circuit. If there are several branches with different
+currents, we should, of course, use the appropriate $I$ for each
+branch.)</p>
+</div>
+<div id="Ch14-F10" class="figure">
+<img src="img/FLP_II/f14-10/f14-10_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 14–10.</span>The magnetic field of a wire can be obtained from an integral
+around the circuit.
+</div>
+</div>
+<div id="Ch14-S6-p2" class="para">
+<p class="p">Again, we can find the fields from (<a href="#mjx-eqn-EqII1438">14.38</a>) either by
+integrating directly or by solving the corresponding electrostatic
+problems.</p>
+</div>
+</div>
+<div id="Ch14-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">14–7</span>The law of Biot and Savart</h3>
+<div id="Ch14-S7-p1" class="para">
+<p class="p">In studying electrostatics we found that the electric field of a known
+charge distribution could be obtained directly with an integral,
+Eq. (<a href="II_04.html#mjx-eqn-EqII416">4.16</a>):
+\begin{equation*}
+\FLPE(1)=\frac{1}{4\pi\epsO}\int
+\frac{\rho(2)\FLPe_{12}\,dV_2}{r_{12}^2}.
+\end{equation*}
+
+As we have seen, it is usually more work to evaluate this
+integral—there are really three integrals, one for each
+component—than to do the integral for the potential and take its
+gradient.</p>
+</div>
+<div id="Ch14-S7-p2" class="para">
+<p class="p">There is a similar integral which relates the magnetic field to the
+currents. We already have an integral for $\FLPA$,
+Eq. (<a href="#mjx-eqn-EqII1419">14.19</a>); we can get an integral for $\FLPB$ by taking
+the curl of both sides:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:14:39}
+\FLPB(1)=\FLPcurl{\FLPA(1)}=
+\FLPcurl{\biggl[\frac{1}{4\pi\epsO c^2}\!\int\!
+\frac{\FLPj(2)\,dV_2}{r_{12}}\biggr]}\!.
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{align}
+\FLPB(1)&=\FLPcurl{\FLPA(1)}\notag\\
+\label{Eq:II:14:39}
+&=\FLPcurl{\biggl[\frac{1}{4\pi\epsO c^2}\!\int\!
+\frac{\FLPj(2)\,dV_2}{r_{12}}\biggr]}\!.
+\end{align}
+
+</span>
+Now we must be careful: The curl operator means taking the derivatives
+of $\FLPA(1)$, that is, it operates only on the
+coordinates $(x_1,y_1,z_1)$. We can move the $\FLPcurl{}$ operator inside the
+integral sign if we remember that it operates only on variables with
+the subscript $1$, which of course, appear only in
+\begin{equation}
+\label{Eq:II:14:40}
+r_{12}=[(x_1\!-\!x_2)^2\!+\!(y_1\!-\!y_2)^2\!+\!(z_1\!-\!z_2)^2]^{1/2}.
+\end{equation}
+
+We have, for the $x$-component of $\FLPB$,
+\begin{align}
+B_x&=\ddp{A_z}{y_1}-\ddp{A_y}{z_1}\notag\\[1.5ex]
+&=\frac{1}{4\pi\epsO c^2}\!\int\biggl[
+j_z\ddp{}{y_1}\biggl(\!\frac{1}{r_{12}}\!\biggr)\!-\!
+j_y\ddp{}{z_1}\biggl(\!\frac{1}{r_{12}}\!\biggr)
+\!\biggr]dV_2\notag\\[2ex]
+\label{Eq:II:14:41}
+&=-\frac{1}{4\pi\epsO c^2}\!\int\biggl[
+j_z\frac{y_1-y_2}{r_{12}^3}\!-\!j_y\frac{z_1-z_2}{r_{12}^3}
+\biggr]dV_2.
+\end{align}
+
+The quantity in brackets is just the negative of the $x$-component of
+\begin{equation*}
+\frac{\FLPj\times\FLPr_{12}}{r_{12}^3}=
+\frac{\FLPj\times\FLPe_{12}}{r_{12}^2}
+\end{equation*}
+
+Corresponding results will be found for the other components, so we have
+\begin{equation}
+\label{Eq:II:14:42}
+\FLPB(1)=\frac{1}{4\pi\epsO c^2}\int
+\frac{\FLPj(2)\times\FLPe_{12}}{r_{12}^2}\,dV_2.
+\end{equation}
+
+The integral gives $\FLPB$ directly in terms of the known
+currents. The geometry involved is the same as that shown in
+Fig. <a href="#Ch14-F2">14–2</a>.</p>
+</div>
+<div id="Ch14-S7-p3" class="para">
+<p class="p">If the currents exist only in circuits of small wires we can, as in
+the last section, immediately do the integral across the wire,
+replacing $\FLPj\,dV$ by $I\,d\FLPs$, where $d\FLPs$ is an element of
+length of the wire. Then, using the symbols in Fig. <a href="#Ch14-F10">14–10</a>,
+\begin{equation}
+\label{Eq:II:14:43}
+\FLPB(1)=-\frac{1}{4\pi\epsO c^2}\int
+\frac{I\FLPe_{12}\times d\FLPs_2}{r_{12}^2}.
+\end{equation}
+
+(The minus sign appears because we have reversed the order of the
+cross product.) This equation for $\FLPB$ is called the
+<em class="emph">Biot-Savart law</em>, after its
+discoverers. It gives a formula for obtaining directly the magnetic
+field produced by wires carrying currents.</p>
+</div>
+<div id="Ch14-S7-p4" class="para">
+<p class="p">You may wonder: “What is the advantage of the vector potential if we
+can find $\FLPB$ directly with a vector integral? After all, $\FLPA$
+also involves three integrals!” Because of the cross product, the
+integrals for $\FLPB$ are usually more complicated, as is evident from
+Eq. (<a href="#mjx-eqn-EqII1441">14.41</a>). Also, since the integrals for $\FLPA$ are
+like those of electrostatics, we may already know them. Finally, we
+will see that in more advanced theoretical matters (in relativity, in
+advanced formulations of the laws of mechanics, like the principle of
+least action to be discussed later, and in quantum mechanics) the
+vector potential plays an important role.</p>
+</div>
+</div>
+<ol id="footnotes"><li class="footnote">
+  <a name="footnote_1"></a>
+  Our definition still does not
+uniquely determine $\FLPA$. For a <em class="emph">unique</em> specification we would
+also have to say something about how the field $\FLPA$ behaves on some
+boundary, or at large distances. It is sometimes convenient, for
+example, to choose a field which goes to zero at large distances.
+  <a href="#footnote_source_1">↩</a>
+</li></ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

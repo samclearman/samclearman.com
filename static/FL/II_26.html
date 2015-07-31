@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 26: Lorentz Transformations of the Fields</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "26." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch26" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">26</span>Lorentz Transformations of the Fields</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Review:</i>
+		</td>
+		<td>
+		Chapter&nbsp;<a href="II_20.html">20</a>, Vol.&nbsp;II, <i>Solution of Maxwell’s Equations in Free Space</i>
+		</td>
+	</tr>
+</table>
+<div align="center">
+<table class="ref" style="border:3px solid black; width: 35%" cellspacing="5">
+	<tr>
+		<td class="center">
+		<font style="font-size:120%">In this chapter: $c = 1$</font>		
+		</td>
+	</tr>
+</table>
+</div>
+
+<div id="Ch26-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">26–1</span>The four-potential of a moving charge</h3>
+
+<div id="Ch26-F1" class="figure">
+<img src="img/FLP_II/f26-01/f26-01_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 26–1.</span>
+Finding the fields at&nbsp;$(x,y,z)$ due to a charge&nbsp;$q$ moving
+  along the $x$-axis with the constant speed&nbsp;$v$. The field “now” at
+  the point&nbsp;$(x,y,z)$ can be expressed in terms of the “present”
+  position&nbsp;$P$, as well as in terms of&nbsp;$P'$, the “retarded” position
+  (at&nbsp;$t'=t-r'/c$).
+</div>
+</div>
+
+<div id="Ch26-S1-p1" class="para">
+<p class="p">We saw in the last chapter that the
+potential&nbsp;$A_\mu=(\phi,\FLPA)$ is a four-vector. The time component is
+the scalar potential&nbsp;$\phi$, and the three space components are the
+vector potential&nbsp;$\FLPA$. We also worked out the potentials of a
+particle moving with uniform speed on a straight line by using the
+Lorentz transformation. (We had already found them by another method in
+Chapter&nbsp;<a href="II_21.html">21</a>.) For a point charge whose position at the
+time&nbsp;$t$ is&nbsp;$(vt,0,0)$, the potentials at the point&nbsp;$(x,y,z)$ are
+\begin{equation}
+\label{Eq:II:26:1}
+\begin{aligned}
+\phi&=\frac{1}{\overset{\phantom [}{4\pi\epsO\sqrt{1-v^2}}}\,
+\frac{q}{\biggl[
+\dfrac{(x-vt)^2}{1-v^2}+y^2+z^2
+\biggr]^{1/2}}\\[1.5ex]
+A_x&=\frac{1}{\overset{\phantom [}4\pi\epsO\sqrt{1-v^2}}\,
+\frac{qv}{\biggl[
+\dfrac{(x-vt)^2}{1-v^2}+y^2+z^2
+\biggr]^{1/2}}\\[1ex]
+A_y&=A_z=0.
+\end{aligned}
+\end{equation}
+</p>
+</div>
+
+<div id="Ch26-S1-p2" class="para">
+<p class="p">Equations&nbsp;(<a href="#mjx-eqn-EqII261">26.1</a>) give the potentials at $x$,&nbsp;$y$, and&nbsp;$z$ at
+the time&nbsp;$t$, for a charge whose “present” position (by which we mean
+the position <em class="emph">at the time</em>&nbsp;$t$) is at&nbsp;$x=vt$. Notice that the
+equations are in terms of $(x-vt)$,&nbsp;$y$, and&nbsp;$z$ which are the
+coordinates measured <em class="emph">from the current position</em>&nbsp;$P$ of the moving
+charge (see Fig.&nbsp;<a href="#Ch26-F1">26–1</a>). The actual influence we know really
+travels at the speed&nbsp;$c$, so it is the behavior of the charge back at
+the retarded position&nbsp;$P'$ that really counts.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> The point&nbsp;$P'$ is at&nbsp;$x=vt'$ (where $t'=t-r'/c$ is
+the retarded time). But we said that the charge was moving with uniform
+velocity in a straight line, so naturally the behavior at&nbsp;$P'$ and the
+current position are directly related. In fact, if we make the added
+assumption that the potentials depend only upon the position and the
+velocity at the retarded moment, we have in equations&nbsp;(<a href="#mjx-eqn-EqII261">26.1</a>)
+a <em class="emph">complete</em> formula for the potentials for a charge moving
+<em class="emph">any</em> way. It works this way. Suppose that you have a charge moving
+in some arbitrary fashion, say with the trajectory in
+Fig.&nbsp;<a href="#Ch26-F2">26–2</a>, and you are trying to find the potentials at the
+point&nbsp;$(x,y,z)$. First, you find the retarded position&nbsp;$P'$ and the
+velocity&nbsp;$v'$ at that point. Then you imagine that the charge would keep
+on moving with this velocity during the delay time&nbsp;$(t'-t)$, so that it
+would then appear at an imaginary position&nbsp;$P_{\text{proj}}$, which we
+can call the “projected position,” and would arrive there with the
+velocity&nbsp;$v'$. (Of course, it doesn’t do that; its real position at&nbsp;$t$
+is at&nbsp;$P$.) Then the potentials at&nbsp;$(x,y,z)$ are just what
+equations&nbsp;(<a href="#mjx-eqn-EqII261">26.1</a>) would give for the imaginary charge at the
+projected position&nbsp;$P_{\text{proj}}$. What we are saying is that since
+the potentials depend only on what the charge is doing at the
+<em class="emph">retarded</em> time, the potentials will be the same whether the charge
+continued moving at a constant velocity or whether it changed its
+velocity after&nbsp;$t'$—that is, after the potentials that were going to
+appear at&nbsp;$(x,y,z)$ at the time&nbsp;$t$ were already determined.
+</p>
+</div>
+
+<div id="Ch26-F2" class="figure">
+<img src="img/FLP_II/f26-02/f26-02_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 26–2.</span>
+A charge moves on an arbitrary trajectory. The potentials
+at&nbsp;$(x,y,z)$ at the time&nbsp;$t$ are determined by the position&nbsp;$P'$ and
+velocity&nbsp;$\Figv'$ at the retarded time&nbsp;$t'-r'/c$. They are conveniently
+expressed in terms of the coordinates from the “projected”
+position&nbsp;$P_{\text{proj}}$. (The actual position at&nbsp;$t$ is&nbsp;$P$.)
+</div>
+</div>
+
+<div id="Ch26-S1-p3" class="para">
+<p class="p">You know, of course, that the moment that we have the formula for the
+potentials from a charge moving in any manner whatsoever, we have the
+complete electrodynamics; we can get the potentials of any charge
+distribution by superposition. Therefore we can summarize all the
+phenomena of electrodynamics either by writing Maxwell’s
+equations or by the following series
+of remarks. (Remember them in case you are ever on a desert island. From
+them, all can be reconstructed. You will, of course, know the Lorentz
+transformation; you will never forget <em class="emph">that</em> on a desert island or
+anywhere else.)
+</p>
+</div>
+
+<div id="Ch26-S1-p4" class="para">
+<p class="p"><em class="emph">First</em>, $A_\mu$ is a four-vector. <em class="emph">Second</em>, the Coulomb
+potential for a stationary charge is&nbsp;$q/4\pi\epsO r$. <em class="emph">Third</em>,
+the potentials produced by a charge moving in any way depend only upon
+the velocity and position at the retarded time. With those three facts
+we have everything. From the fact that&nbsp;$A_\mu$ is a four-vector, we
+transform the Coulomb potential, which we know, and get the potentials
+for a constant velocity. Then, by the last statement that potentials
+depend only upon the past velocity at the retarded time, we can use
+the projected position game to find them. It is not a particularly
+useful way of doing things, but it is interesting to show that the
+laws of physics can be put in so many different ways.
+</p>
+</div>
+
+<div id="Ch26-S1-p5" class="para">
+<p class="p">It is sometimes said, by people who are careless, that all of
+electrodynamics can be deduced solely from the Lorentz transformation
+and Coulomb’s law. Of course, that is completely false. First, we have
+to suppose that there is a scalar potential and a vector potential
+that together make a four-vector. That tells us how the potentials
+transform. Then why is it that the effects at the retarded time are
+the only things that count? Better yet, why is it that the potentials
+depend only on the position and the velocity and not, for instance, on
+the acceleration? The <em class="emph">fields</em> $\FLPE$ and&nbsp;$\FLPB$ <em class="emph">do</em>
+depend on the acceleration. If you try to make the same kind of an
+argument with respect to them, you would say that they depend only
+upon the position and velocity at the retarded time. But then the
+fields from an accelerating charge would be the same as the fields
+from a charge at the projected position—which is false. The
+<em class="emph">fields</em> depend not only on the position and the velocity along
+the path but also on the acceleration. So there are several additional
+tacit assumptions in this great statement that everything can be
+deduced from the Lorentz transformation. (Whenever you see a sweeping
+statement that a tremendous amount can come from a very small number
+of assumptions, you always find that it is false. There are usually a
+large number of implied assumptions that are far from obvious if you
+think about them sufficiently carefully.)
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch26-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">26–2</span>The fields of a point charge with a constant velocity</h3>
+
+<div id="Ch26-S2-p1" class="para">
+<p class="p">Now that we have the potentials from a point charge moving at constant
+velocity, we ought to find the fields—for practical reasons. There
+are many cases where we have uniformly moving particles—for
+instance, cosmic rays going through a cloud chamber, or even
+slow-moving electrons in a wire. So let’s at least see what the fields
+actually do look like for any speed—even for speeds nearly that of
+light—assuming only that there is no acceleration. It is an
+interesting question.
+</p>
+</div>
+
+<div id="Ch26-S2-p2" class="para">
+<p class="p">We get the fields from the potentials by the usual rules:
+\begin{equation*}
+\FLPE=-\FLPgrad{\phi}-\ddp{\FLPA}{t},\quad
+\FLPB=\FLPcurl{\FLPA}.
+\end{equation*}
+First, for $E_z$
+\begin{equation*}
+E_z=-\ddp{\phi}{z}-\ddp{A_z}{t}.
+\end{equation*}
+But $A_z$ is zero; so differentiating $\phi$ in
+equations&nbsp;(<a href="#mjx-eqn-EqII261">26.1</a>), we get
+\begin{equation}
+\label{Eq:II:26:2}
+E_z\!=\!\frac{q}{\overset{\phantom [}4\pi\epsO\sqrt{1\!-\!v^2}}
+\frac{z}{\biggl[\!
+\dfrac{(x\!-\!vt)^2}{1\!-\!v^2}\!+\!y^2\!+\!z^2
+\!\biggr]^{3/2}}.
+\end{equation}
+Similarly, for $E_y$,
+\begin{equation}
+\label{Eq:II:26:3}
+E_y\!=\!\frac{q}{\overset{\phantom [}4\pi\epsO\sqrt{1\!-\!v^2}}
+\frac{y}{\biggl[\!
+\dfrac{(x\!-\!vt)^2}{1\!-\!v^2}\!+\!y^2\!+\!z^2
+\!\biggr]^{3/2}}.
+\end{equation}
+The $x$-component is a little more work. The derivative of&nbsp;$\phi$ is
+more complicated and&nbsp;$A_x$ is not zero. First,
+\begin{equation}
+\label{Eq:II:26:4}
+-\ddp{\phi}{x}\!=\!\frac{q}{\overset{\phantom [}4\pi\epsO\sqrt{1\!-\!v^2}}
+\frac{(x\!-\!vt)/(1\!-\!v^2)}{\biggl[\!
+\dfrac{(x\!-\!vt)^2}{1\!-\!v^2}\!+\!y^2\!+\!z^2
+\!\biggr]^{3/2}}.
+\end{equation}
+Then, differentiating&nbsp;$A_x$ with respect to&nbsp;$t$, we find
+\begin{equation}
+\label{Eq:II:26:5}
+-\ddp{A_x}{t}\!=\!\frac{q}{\overset{\phantom [}4\pi\epsO\sqrt{1\!-\!v^2}}
+\frac{-v^2(x\!-\!vt)/(1\!-\!v^2)}{\biggl[\!
+\dfrac{(x\!-\!vt)^2}{1\!-\!v^2}\!+\!y^2\!+\!z^2
+\!\biggr]^{3/2}}.
+\end{equation}
+And finally, taking the sum,
+\begin{equation}
+\label{Eq:II:26:6}
+E_x\!=\!\frac{q}{\overset{\phantom [}4\pi\epsO\sqrt{1\!-\!v^2}}
+\frac{x\!-\!vt}{\biggl[\!
+\dfrac{(x\!-\!vt)^2}{1\!-\!v^2}\!+\!y^2\!+\!z^2
+\!\biggr]^{3/2}}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch26-S2-p3" class="para">
+<p class="p">We’ll look at the physics of&nbsp;$\FLPE$ in a minute; let’s first
+find&nbsp;$\FLPB$. For the $z$-component,
+\begin{equation*}
+B_z=\ddp{A_y}{x}-\ddp{A_x}{y}.
+\end{equation*}
+Since $A_y$ is zero, we have just one derivative to get. Notice,
+however, that $A_x$ is just $v\phi$, and $\ddpl{}{y}$ of&nbsp;$v\phi$ is
+just $-vE_y$. So
+\begin{equation}
+\label{Eq:II:26:7}
+B_z=vE_y.
+\end{equation}
+Similarly,
+\begin{equation*}
+B_y=\ddp{A_x}{z}-\ddp{A_z}{x}=+v\,\ddp{\phi}{z},
+\end{equation*}
+and
+\begin{equation}
+\label{Eq:II:26:8}
+B_y=-vE_z.
+\end{equation}
+Finally, $B_x$ is zero, since $A_y$ and&nbsp;$A_z$ are both zero. We can
+write the magnetic field simply as
+\begin{equation}
+\label{Eq:II:26:9}
+\FLPB=\FLPv\times\FLPE.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch26-S2-p4" class="para">
+<p class="p">Now let’s see what the fields look like. We will try to draw a picture
+of the field at various positions around the present position of the
+charge. It is true that the influence of the charge comes, in a
+certain sense, from the retarded position; but because the motion is
+exactly specified, the retarded position is uniquely given in terms of
+the present position. For uniform velocities, it’s nicer to relate the
+fields to the current position, because the field components
+at&nbsp;$(x,y,z)$ depend only on $(x - vt)$,&nbsp;$y$, and&nbsp;$z$—which are the
+components of the displacement&nbsp;$\FLPr$ from the present position
+to&nbsp;$(x,y,z)$ (see Fig.&nbsp;<a href="#Ch26-F3">26–3</a>).
+</p>
+</div>
+
+<div id="Ch26-F3" class="figure">
+<img src="img/FLP_II/f26-03/f26-03_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 26–3.</span>
+For a charge moving with constant speed, the electric field
+  points radially from the “present” position of the charge.
+</div>
+</div>
+
+<div id="Ch26-S2-p5" class="para">
+<p class="p">Consider first a point with $z=0$. Then $\FLPE$ has only $x$- and
+$y$-components. From Eqs. (<a href="#mjx-eqn-EqII263">26.3</a>) and&nbsp;(<a href="#mjx-eqn-EqII266">26.6</a>), the
+ratio of these components is just equal to the ratio of the $x$- and
+$y$-components of the displacement. That means that $\FLPE$ is in <em class="emph">the same
+direction</em> as&nbsp;$\FLPr$, as shown in Fig.&nbsp;<a href="#Ch26-F3">26–3</a>. Since $E_z$ is also
+proportional to&nbsp;$z$, it is clear that this result holds in three dimensions. In
+short, the electric field is radial from the charge, and the field lines radiate
+directly out of the charge, just as they do for a stationary charge. Of course,
+the field isn’t exactly the same as for the stationary charge, because of all
+the extra factors of&nbsp;$(1-v^2)$. But we can show something rather interesting.
+The difference is just what you would get if you were to draw the Coulomb field
+with a peculiar set of coordinates in which the scale of&nbsp;$x$ was squashed up by
+the factor&nbsp;$\sqrt{1-v^2}$. If you do that, the field lines will be spread out
+ahead and behind the charge and will be squeezed together around the sides, as
+shown in Fig.&nbsp;<a href="#Ch26-F4">26–4</a>.
+</p>
+</div>
+
+<div id="Ch26-F4" class="figure">
+<img src="img/FLP_II/f26-04/f26-04_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 26–4.</span>
+The electric field of a charge moving with constant speed
+  $v=0.9c$, part&nbsp;(b), compared with the field of a charge at rest,
+  part&nbsp;(a).
+</div>
+</div>
+
+<div id="Ch26-S2-p6" class="para">
+<p class="p">If we relate the strength of&nbsp;$\FLPE$ to the density of the field lines
+in the conventional way, we see a stronger field at the sides and a
+weaker field ahead and behind, which is just what the equations
+say. First, if we look at the strength of the field at right angles to
+the line of motion, that is, for&nbsp;$(x-vt)=0$, the distance from the
+charge is&nbsp;$\sqrt{y^2+z^2}$. Here the total field strength
+is&nbsp;$\sqrt{E_y^2+E_z^2}$, which is
+\begin{equation}
+\label{Eq:II:26:10}
+E=\frac{q}{4\pi\epsO\sqrt{1-v^2}}\,
+\frac{1}{y^2+z^2}.
+\end{equation}
+The field is proportional to the inverse square of the distance—just
+like the Coulomb field except increased by the constant, extra
+factor&nbsp;$1/\sqrt{1-v^2}$, which is always greater than one. So at the
+<em class="emph">sides</em> of a moving charge, the electric field is stronger than
+you get from the Coulomb law. In fact, the field in the sidewise
+direction is bigger than the Coulomb potential by the ratio of the
+energy of the particle to its rest mass.
+</p>
+</div>
+
+<div id="Ch26-S2-p7" class="para">
+<p class="p">Ahead of the charge (and behind), $y$ and&nbsp;$z$ are zero and
+\begin{equation}
+\label{Eq:II:26:11}
+E=E_x=\frac{q(1-v^2)}{4\pi\epsO(x-vt)^2}.
+\end{equation}
+The field again varies as the inverse square of the distance from the
+charge but is now <em class="emph">reduced</em> by the factor&nbsp;$(1-v^2)$, in agreement
+with the picture of the field lines. If $v/c$ is small, $v^2/c^2$ is
+still smaller, and the effect of the $(1-v^2)$&nbsp;terms is very small; we
+get back to Coulomb’s law. But if a particle is moving very close to
+the speed of light, the field in the forward direction is enormously
+reduced, and the field in the sidewise direction is enormously
+increased.
+</p>
+</div>
+
+<div id="Ch26-S2-p8" class="para">
+<p class="p">Our results for the electric field of a charge can be put this way:
+Suppose you were to draw on a piece of paper the field lines for a
+charge at rest, and then set the picture to travelling with the
+speed&nbsp;$v$. Then, of course, the whole picture would be compressed by the
+Lorentz contraction; that is, the carbon granules on the paper would
+appear in different places. The miracle of it is that the picture you
+would see as the page flies by would still represent the field lines
+of the point charge. The contraction moves them closer together at the
+sides and spreads them out ahead and behind, just in the right way to
+give the correct line densities. We have emphasized before that field
+lines are not real but are only one way of representing the
+field. However, here they almost seem to be real. In this particular
+case, if you make the mistake of thinking that the field lines are
+somehow really there in space, and transform them, you get the correct
+field. That doesn’t, however, make the field lines any more real. All
+you need do to remind yourself that they aren’t real is to think about
+the electric fields produced by a charge together with a magnet; when
+the magnet moves, new electric fields are produced, and destroy the
+beautiful picture. So the neat idea of the contracting picture doesn’t
+work in general. It is, however, a handy way to remember what the
+fields from a fast-moving charge are like.
+</p>
+</div>
+
+<div id="Ch26-F5" class="figure">
+<img src="img/FLP_II/f26-05/f26-05_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 26–5.</span>
+The magnetic field near a moving charge is&nbsp;$\Figv\times\FigE$. [Compare
+with Fig.&nbsp;<a href="#Ch26-F4">26-4</a>.]
+</div>
+</div>
+
+<div id="Ch26-S2-p9" class="para">
+<p class="p">The magnetic field is&nbsp;$\FLPv\times\FLPE$ [from Eq.&nbsp;(<a href="#mjx-eqn-EqII269">26.9</a>)].
+If you take the velocity crossed into a radial $\FLPE$-field, you get
+a&nbsp;$\FLPB$ which circles around the line of motion, as shown in
+Fig.&nbsp;<a href="#Ch26-F5">26–5</a>. If we put back the&nbsp;$c$’s, you will see that it’s
+the same result we had for low-velocity charges. A good way to see where
+the&nbsp;$c$’s must go is to refer back to the force law,
+\begin{equation*}
+\FLPF=q(\FLPE+\FLPv\times\FLPB).
+\end{equation*}
+You see that a velocity times the magnetic field has the same dimensions
+as an electric field. So the right-hand side of Eq.&nbsp;(<a href="#mjx-eqn-EqII269">26.9</a>)
+must have a factor&nbsp;$1/c^2$:
+\begin{equation}
+\label{Eq:II:26:12}
+\FLPB=\frac{\FLPv\times\FLPE}{c^2}.
+\end{equation}
+For a slow-moving charge ($v\ll c$), we can take for $\FLPE$ the
+Coulomb field; then
+\begin{equation}
+\label{Eq:II:26:13}
+\FLPB=\frac{q}{4\pi\epsO c^2}\,
+\frac{\FLPv\times\FLPr}{r^3}.
+\end{equation}
+This formula corresponds exactly to equations for the magnetic field
+of a current that we found in Section&nbsp;<a href="II_14.html#Ch14-S7">14-7</a>.
+</p>
+</div>
+
+<div id="Ch26-S2-p10" class="para">
+<p class="p">We would like to point out, in passing, something interesting for you
+to think about. (We will come back to discuss it again later.) Imagine
+two protons with velocities at right angles, so that one will cross
+over the path of the other, but in front of it, so they don’t
+collide. At some instant, their relative positions will be as in
+Fig.&nbsp;<a href="#Ch26-F6">26–6</a>(a). We look at the force on&nbsp;$q_1$ due to&nbsp;$q_2$ and vice
+versa. On&nbsp;$q_2$ there is only the electric force from&nbsp;$q_1$, since
+$q_1$ makes no magnetic field along its line of motion. On&nbsp;$q_1$,
+however, there is again the electric force but, in addition, a
+magnetic force, since it is moving in a $\FLPB$-field made
+by&nbsp;$q_2$. The forces are as drawn in Fig.&nbsp;<a href="#Ch26-F6">26–6</a>(b). The electric
+forces
+on $q_1$ and&nbsp;$q_2$ are equal and opposite. However, there is a
+sidewise (magnetic) force on&nbsp;$q_1$ <em class="emph">and no sidewise force on</em>&nbsp;$q_2$.
+Does action not equal reaction?  We leave it for you to worry
+about.
+</p>
+</div>
+
+<div id="Ch26-F6" class="figure">
+<img src="img/FLP_II/f26-06/f26-06_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 26–6.</span>
+The forces between two moving charges are not always equal and
+opposite. It appears that “action” is not equal to “reaction.”
+</div>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch26-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">26–3</span>Relativistic transformation of the fields</h3>
+
+<div id="Ch26-S3-p1" class="para">
+<p class="p">In the last section we calculated the electric and magnetic fields
+from the transformed potentials. The fields are important, of course,
+in spite of the arguments given earlier that there is physical meaning
+and reality to the potentials. The fields, too, are real. It would be
+convenient for many purposes to have a way to compute the fields in a
+moving system if you already know the fields in some “rest”
+system. We have the transformation laws for $\phi$ and&nbsp;$\FLPA$,
+because $A_\mu$ is a four-vector. Now we would like to know the
+transformation laws of $\FLPE$ and&nbsp;$\FLPB$. Given $\FLPE$ and&nbsp;$\FLPB$
+in one frame, how do they look in another frame moving past? It is a
+convenient transformation to have. We could always work back through
+the potentials, but it is useful sometimes to be able to transform the
+fields directly. We will now see how that goes.
+</p>
+</div>
+
+<div id="Ch26-S3-p2" class="para">
+<p class="p">How can we find the transformation laws of the fields? We know the
+transformation laws of the $\phi$ and&nbsp;$\FLPA$, and we know how the
+fields are given in terms of $\phi$ and&nbsp;$\FLPA$—it should be easy to
+find the transformation for the $\FLPB$ and&nbsp;$\FLPE$. (You might think
+that with every vector there should be something to make it a
+four-vector, so with $\FLPE$ there’s got to be something else we can
+use for the fourth component. And also for&nbsp;$\FLPB$. But it’s not
+so. It’s quite different from what you would expect.)  To begin with,
+let’s take just a magnetic field&nbsp;$\FLPB$, which is, of course
+$\FLPcurl{\FLPA}$. Now we know that the vector potential with its
+$x$-, $y$-, and $z$-components is only a piece of something; there is
+also a $t$-component. Also we know that for derivatives
+like&nbsp;$\FLPnabla$, besides the $x$, $y$, $z$ parts, there is also a
+derivative with respect to&nbsp;$t$. So let’s try to figure out what
+happens if we replace a&nbsp;“$y$” by a&nbsp;“$t$”, or a&nbsp;“$z$” by
+a&nbsp;“$t$,” or something like that.
+</p>
+</div>
+
+<div id="Ch26-S3-p3" class="para">
+<p class="p">First, notice the form of the terms in&nbsp;$\FLPcurl{\FLPA}$ when we write
+out the components:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:26:14}
+B_x=\ddp{A_z}{y}-\ddp{A_y}{z},\quad
+B_y=\ddp{A_x}{z}-\ddp{A_z}{x},\quad
+B_z=\ddp{A_y}{x}-\ddp{A_x}{y}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+B_x&=\ddp{A_z}{y}-\ddp{A_y}{z},\\[1ex]
+B_y&=\ddp{A_x}{z}-\ddp{A_z}{x},\\[1ex]
+B_z&=\ddp{A_y}{x}-\ddp{A_x}{y}.
+\end{aligned}
+\label{Eq:II:26:14}
+\end{equation}
+
+</span>
+The $x$-component is equal to a couple of terms that involve only $y$-
+and $z$-components. Suppose we call this combination of derivatives
+and components a “$zy$-thing,” and give it a shorthand name,
+$F_{zy}$. We simply mean that
+\begin{equation}
+\label{Eq:II:26:15}
+F_{zy}\equiv\ddp{A_z}{y}-\ddp{A_y}{z}.
+\end{equation}
+Similarly, $B_y$ is equal to the same kind of “thing,” but this time
+it is an “$xz$-thing.” And $B_z$ is, of course, the corresponding
+“$yx$-thing.”  We have
+\begin{equation}
+\label{Eq:II:26:16}
+B_x=F_{zy},\quad
+B_y=F_{xz},\quad
+B_z=F_{yx}.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch26-S3-p4" class="para">
+<p class="p">Now what happens if we simply try to concoct also some “$t$”-type
+things like $F_{xt}$ and&nbsp;$F_{tz}$ (since nature should be nice and
+symmetric in $x$,&nbsp;$y$, $z$, and&nbsp;$t$)? For instance, what is $F_{tz}$?
+It is, of course,
+\begin{equation*}
+\ddp{A_t}{z}-\ddp{A_z}{t}.
+\end{equation*}
+But remember that $A_t=\phi$, so it is also
+\begin{equation*}
+\ddp{\phi}{z}-\ddp{A_z}{t}.
+\end{equation*}
+You’ve seen that before. It is the $z$-component of&nbsp;$\FLPE$. Well,
+almost—there is a sign wrong. But we forgot that in the
+four-dimensional gradient the $t$-derivative comes with the opposite
+sign from $x$,&nbsp;$y$, and&nbsp;$z$. So we should really have taken the more
+consistent extension of&nbsp;$F_{tz}$, as
+\begin{equation}
+\label{Eq:II:26:17}
+F_{tz}=\ddp{A_t}{z}+\ddp{A_z}{t}
+\end{equation}
+Then it is exactly equal to&nbsp;$-E_z$. Trying also $F_{tx}$ and&nbsp;$F_{ty}$,
+we find that the three possibilities give
+\begin{equation}
+\label{Eq:II:26:18}
+F_{tx}=-E_x,\quad
+F_{ty}=-E_y,\quad
+F_{tz}=-E_z.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch26-S3-p5" class="para">
+<p class="p">What happens if both subscripts are&nbsp;$t$? Or, for that matter, if both
+are&nbsp;$x$? We get things like
+\begin{equation*}
+F_{tt}=\ddp{A_t}{t}-\ddp{A_t}{t},
+\end{equation*}
+and
+\begin{equation*}
+F_{xx}=\ddp{A_x}{x}-\ddp{A_x}{x},
+\end{equation*}
+which give nothing but zero.
+</p>
+</div>
+
+<div id="Ch26-S3-p6" class="para">
+<p class="p">We have then six of these $F$-things. There are six more which you get
+by reversing the subscripts, but they give nothing really new, since
+\begin{equation*}
+F_{xy}=-F_{yx},
+\end{equation*}
+and so on. So, out of sixteen possible combinations of the four
+subscripts taken in pairs, we get only six different physical objects;
+<em class="emph">and they are the components of</em> $\FLPB$ and&nbsp;$\FLPE$.
+</p>
+</div>
+
+<div id="Ch26-S3-p7" class="para">
+<p class="p">To represent the general term of&nbsp;$F$, we will use the general
+subscripts $\mu$ and&nbsp;$\nu$, where each can stand for $0$,&nbsp;$1$, $2$,
+or&nbsp;$3$—meaning in our usual four-vector notation $t$,&nbsp;$x$, $y$,
+and&nbsp;$z$. Also, everything will be consistent with our four-vector notation
+if we define&nbsp;$F_{\mu\nu}$ by
+\begin{equation}
+\label{Eq:II:26:19}
+F_{\mu\nu}=\nabla\!_\mu A_\nu-\nabla\!_\nu A_\mu,
+\end{equation}
+remembering that
+$\fournabla=(\ddpl{}{t},-\ddpl{}{x},-\ddpl{}{y},-\ddpl{}{z})$ and that
+$A_\mu=(\phi,A_x,A_y,A_z)$.
+</p>
+</div>
+
+<div id="Ch26-S3-p8" class="para">
+<p class="p">What we have found is that there are six quantities that belong
+together in nature—that are different aspects of the same thing. The
+electric and magnetic fields which we have considered as separate
+vectors in our slow-moving world (where we don’t worry about the speed
+of light) are not vectors in four-space. They are parts of a new
+“thing.” Our physical “field” is really the six-component
+object&nbsp;$F_{\mu\nu}$. That is the way we must look at it for relativity. We
+summarize our results on&nbsp;$F_{\mu\nu}$ in Table&nbsp;<a href="#Ch26-T1">26–1</a>.
+</p>
+</div>
+
+<div id="Ch26-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 26–1</span>The components of&nbsp;$\boldsymbol{F}_{\boldsymbol{\mu}\boldsymbol{\nu}}$
+</div>
+<div align="center">
+<table class="framed" style="width: 25%">
+	<tr>
+		<td class="center" colspan="2">
+		\begin{align*}
+		F_{\mu\nu}&=-F_{\nu\mu}\\[1ex]
+		F_{\mu\mu}&=0
+		\end{align*}</td>
+	</tr>
+	<tr>
+		<td class="center">
+		\begin{align*}
+		F_{xy}&=-B_z\\[1ex] F_{yz}&=-B_x\\[1ex]
+		F_{zx}&=-B_y
+		\end{align*}</td>
+		<td class="center">
+		\begin{align*}
+		F_{xt}&=E_x\\[1ex]
+		F_{yt}&=E_y\\[1ex]
+		F_{zt}&=E_z
+		\end{align*}</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch26-S3-p9" class="para">
+<p class="p">You see that what we have done here is to generalize the cross
+product. We began with the curl operation, and the fact that the
+transformation properties of the curl are the same as the
+transformation properties of <em class="emph">two</em> vectors—the ordinary
+three-dimensional vector&nbsp;$\FLPA$ and the gradient operator which we
+know also behaves like a vector. Let’s look for a moment at an
+ordinary cross product in three dimensions, for example, the angular
+momentum of a particle. When an object is moving in a plane, the
+quantity&nbsp;$(xv_y-yv_x)$ is important. For motion in three dimensions,
+there are three such important quantities, which we call the angular
+momentum:
+<span class="eq-wide">
+\begin{equation*}
+L_{xy}=m(xv_y-yv_x),\quad
+L_{yz}=m(yv_z-zv_y),\quad
+L_{zx}=m(zv_x-xv_z).
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{equation*}
+\begin{aligned}
+L_{xy}&=m(xv_y-yv_x),\\[1ex]
+L_{yz}&=m(yv_z-zv_y),\\[1ex]
+L_{zx}&=m(zv_x-xv_z).
+\end{aligned}
+\end{equation*}
+</span>
+
+Then (although you may have forgotten by now) we discovered in
+Chapter&nbsp;<a href="I_20.html">20</a> of Vol.&nbsp;I the miracle that these three
+quantities could be identified with the components of a vector. In order
+to do so, we had to make an artificial rule with a right-hand
+convention. It was just luck. It was luck because&nbsp;$L_{ij}$ (with $i$
+and&nbsp;$j$ equal to $x$,&nbsp;$y$, or&nbsp;$z$) was an antisymmetric object:
+\begin{equation*}
+L_{ij}=-L_{ji},\quad
+L_{ii}=0.
+\end{equation*}
+Of the nine possible quantities, there are only three independent
+numbers. And it just happens that when you change coordinate systems
+these three objects transform in exactly the same way as the
+components of a vector.
+</p>
+</div>
+
+<div id="Ch26-S3-p10" class="para">
+<p class="p">The same thing lets us represent an element of surface as a vector. A
+surface element has two parts—say $dx$ and&nbsp;$dy$—which we can
+represent by the vector&nbsp;$d\FLPa$ normal to the surface. But we can’t
+do that in four dimensions. What is the “normal” to&nbsp;$dx\,dy$? Is it
+along&nbsp;$z$ or along&nbsp;$t$?
+</p>
+</div>
+
+<div id="Ch26-S3-p11" class="para">
+<p class="p">In short, for three dimensions it happens by luck that after you’ve
+taken a combination of two vectors like&nbsp;$L_{ij}$, you can represent it
+again by another vector because there are just three terms that happen
+to transform like the components of a vector. But in four dimensions
+that is evidently impossible, because there are six independent terms,
+and you can’t represent six things by four things.
+</p>
+</div>
+
+<div id="Ch26-S3-p12" class="para">
+<p class="p">Even in three dimensions it is possible to have combinations of
+vectors that can’t be represented by vectors. Suppose we take any two
+vectors $\FLPa=(a_x,a_y,a_z)$ and&nbsp;$\FLPb=(b_x,b_y,b_z)$, and make the
+various possible combinations of components, like $a_xb_x$, $a_xb_y$,
+etc. There would be nine possible quantities:
+\begin{alignat*}{3}
+&a_xb_x,&\quad&a_xb_y,&\quad&a_xb_z,\\
+&a_yb_x,&\quad&a_yb_y,&\quad&a_yb_z,\\
+&a_zb_x,&\quad&a_zb_y,&\quad&a_zb_z.
+\end{alignat*}
+We might call these quantities $T_{ij}$.
+</p>
+</div>
+
+<div id="Ch26-S3-p13" class="para">
+<p class="p">If we now go to a rotated coordinate system (say rotated about the
+$z$-axis), the components of $\FLPa$ and&nbsp;$\FLPb$ are changed. In the
+new system, $a_x$, for example, gets replaced by
+\begin{equation*}
+a_x'=a_x\cos\theta+a_y\sin\theta,
+\end{equation*}
+and $b_y$ gets replaced by
+\begin{equation*}
+b_y'=b_y\cos\theta-b_x\sin\theta.
+\end{equation*}
+And similarly for other components. The nine components of the product
+quantity&nbsp;$T_{ij}$ we have invented are all changed too, of course. For
+instance, $T_{xy}=a_xb_y$ gets changed to
+<span class="eq-wide">
+\begin{equation*}
+T_{xy}'=a_xb_y(\cos^2\theta)-a_xb_x(\cos\theta\sin\theta)
++a_yb_y(\sin\theta\cos\theta)-a_yb_x(\sin^2\theta),
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+T_{xy}'=\;&a_xb_y(\cos^2\theta)-a_xb_x(\cos\theta\sin\theta)\,+\\[.5ex]
+&a_yb_y(\sin\theta\cos\theta)-a_yb_x(\sin^2\theta),
+\end{align*}
+</span>
+or
+<span class="eq-wide">
+\begin{equation*}
+T_{xy}'=T_{xy}\cos^2\theta-T_{xx}\cos\theta\sin\theta
++T_{yy}\sin\theta\cos\theta-T_{yx}\sin^2\theta.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+T_{xy}'=\;&T_{xy}\cos^2\theta-T_{xx}\cos\theta\sin\theta\,+\\[.5ex]
+&T_{yy}\sin\theta\cos\theta-T_{yx}\sin^2\theta.
+\end{align*}
+</span>
+Each component of&nbsp;$T_{ij}'$ is a linear combination of the components
+of&nbsp;$T_{ij}$.
+</p>
+</div>
+
+<div id="Ch26-S3-p14" class="para">
+<p class="p">So we discover that it is not only possible to have a “vector
+product” like&nbsp;$\FLPa\times\FLPb$ which has three components that
+transform like a vector, but we can—artificially—also make another
+kind of “product” of two vectors&nbsp;$T_{ij}$ with <em class="emph">nine</em>
+components that transform under a rotation by a complicated set of
+rules that we could figure out. Such an object which has two indices
+to describe it, instead of one, is called a <em class="emph">tensor</em>. It is a
+tensor of the “second rank,” because you can play this game with
+three vectors too and get a tensor of the third rank—or with four,
+to get a tensor of the fourth rank, and so on. A tensor of the first
+rank is a vector.
+</p>
+</div>
+
+<div id="Ch26-S3-p15" class="para">
+<p class="p">The point of all this is that our electromagnetic
+quantity&nbsp;$F_{\mu\nu}$ is also a tensor of the second rank, because it has two
+indices in it. It is, however, a tensor in four dimensions. It
+transforms in a special way which we will work out in a moment—it is
+just the way a product of vectors transforms. For&nbsp;$F_{\mu\nu}$ it
+happens that if you change the indices around, $F_{\mu\nu}$ changes
+sign. That’s a special case—it is an <em class="emph">antisymmetric tensor</em>. So
+we say: the electric and magnetic fields are both part of an
+antisymmetric tensor of the second rank in four dimensions.
+</p>
+</div>
+
+<div id="Ch26-S3-p16" class="para">
+<p class="p">You’ve come a long way. Remember way back when we defined what a
+velocity meant? Now we are talking about “an antisymmetric tensor of
+the second rank in four dimensions.”
+</p>
+</div>
+
+<div id="Ch26-S3-p17" class="para">
+<p class="p">Now we have to find the law of the transformation of&nbsp;$F_{\mu\nu}$. It
+isn’t at all difficult to do; it’s just laborious—the brains
+involved are nil, but the work is not. What we want is the Lorentz
+transformation of&nbsp;$\nabla\!_\mu A_\nu-\nabla\!_\nu A_\mu$.
+Since&nbsp;$\fournabla$ is just a special case of a vector, we will work with the
+general antisymmetric vector combination, which we can call&nbsp;$G_{\mu\nu}$:
+\begin{equation}
+\label{Eq:II:26:20}
+G_{\mu\nu}=a_\mu b_\nu-a_\nu b_\mu.
+\end{equation}
+(For our purposes, $a_\mu$ will eventually be replaced by&nbsp;$\fournabla$
+and $b_\mu$ will be replaced by the potential&nbsp;$A_\mu$.) The components
+of $a_\mu$ and&nbsp;$b_\mu$ transform by the Lorentz formulas, which are
+\begin{equation}
+\label{Eq:II:26:21}
+\begin{alignedat}{2}
+a_t'&=\frac{a_t-va_x}{\sqrt{1-v^2}},&\quad
+b_t'&=\frac{b_t-vb_x}{\sqrt{1-v^2}},\\[1ex]
+a_x'&=\frac{a_x-va_t}{\sqrt{1-v^2}},&\quad
+b_x'&=\frac{b_x-vb_t}{\sqrt{1-v^2}},\\[1ex]
+a_y'&=a_y,&\quad
+b_y'&=b_y,\\[1ex]
+a_z'&=a_z,&\quad
+b_z'&=b_z.
+\end{alignedat}
+\end{equation}
+</p>
+</div>
+
+<div id="Ch26-S3-p18" class="para">
+<p class="p">Now let’s transform the components of&nbsp;$G_{\mu\nu}$. We start with&nbsp;$G_{tx}$:
+\begin{align*}
+G_{tx}'&=a_t'b_x'-a_x'b_t'\\[1ex]
+&=\biggl(\!\frac{a_t-va_x}{\sqrt{1-v^2}}\!\biggr)\!
+\biggl(\!\frac{b_x-vb_t}{\sqrt{1-v^2}}\!\biggr)\!-\!
+\biggl(\!\frac{a_x-va_t}{\sqrt{1-v^2}}\!\biggr)\!
+\biggl(\!\frac{b_t-vb_x}{\sqrt{1-v^2}}\!\biggr)\\[1ex]
+&=a_tb_x-a_xb_t.
+\end{align*}
+But that is just $G_{tx}$; so we have the simple result
+\begin{equation*}
+G_{tx}'=G_{tx}.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch26-S3-p19" class="para">
+<p class="p">We will do one more.
+<span class="eq-wide">
+\begin{equation*}
+G_{ty}'=\frac{a_t-va_x}{\sqrt{1-v^2}}\,b_y-
+a_y\,\frac{b_t-vb_x}{\sqrt{1-v^2}}=
+\frac{(a_tb_y-a_yb_t)-v(a_xb_y-a_yb_x)}{\sqrt{1-v^2}}.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{align*}
+G_{ty}'&=\frac{a_t-va_x}{\sqrt{1-v^2}}\,b_y-
+a_y\,\frac{b_t-vb_x}{\sqrt{1-v^2}}\\[1.5ex]
+&=\frac{(a_tb_y-a_yb_t)-v(a_xb_y-a_yb_x)}{\sqrt{1-v^2}}.
+\end{align*}
+</span>
+So we get that
+\begin{equation*}
+G_{ty}'=\frac{G_{ty}-vG_{xy}}{\sqrt{1-v^2}}.
+\end{equation*}
+And, of course, in the same way,
+\begin{equation*}
+G_{tz}'=\frac{G_{tz}-vG_{xz}}{\sqrt{1-v^2}}.
+\end{equation*}
+It is clear how the rest will go. Let’s make a table of all six terms;
+only now we may as well write them for&nbsp;$F_{\mu\nu}$:
+\begin{equation}
+\label{Eq:II:26:22}
+\begin{alignedat}{2}
+F_{tx}'&=F_{tx},&\quad
+F_{xy}'&=\frac{F_{xy}-vF_{ty}}{\sqrt{1-v^2}},\\[.75ex]
+F_{ty}'&=\frac{F_{ty}-vF_{xy}}{\sqrt{1-v^2}},&\quad
+F_{yz}'&=F_{yz},\\[1ex]
+F_{tz}'&=\frac{F_{tz}-vF_{xz}}{\sqrt{1-v^2}},&\quad
+F_{zx}'&=\frac{F_{zx}-vF_{zt}}{\sqrt{1-v^2}}.
+\end{alignedat}
+\end{equation}
+Of course, we still have $F_{\mu\nu}'=-F_{\nu\mu}'$
+and&nbsp;$F_{\mu\mu}'=0$.
+</p>
+</div>
+
+<div id="Ch26-S3-p20" class="para">
+<p class="p">So we have the transformation of the electric and magnetic fields. All
+we have to do is look at Table&nbsp;<a href="#Ch26-T1">26–1</a> to find out what our
+grand notation in terms of&nbsp;$F_{\mu\nu}$ means in terms of $\FLPE$
+and&nbsp;$\FLPB$. It’s just a matter of substitution. So that we can see how it
+looks in the ordinary symbols, we’ll rewrite our transformation of the
+field components in Table&nbsp;<a href="#Ch26-T2">26–2</a>.
+</p>
+</div>
+
+<div id="Ch26-T2" class="table" style="width: 100%">
+<div class="caption ltx_centering">
+<span class="tag">Table 26–2</span>The Lorentz transformation of the electric and magnetic fields (Note: $\boldsymbol{c}\boldsymbol{=}\boldsymbol{1}$)
+</div>
+<div align="center">
+<table class="framed" style="width: 55%">
+	<tr>
+		<td class="center">
+		\begin{align*}
+		E_x'&=E_x\\[2.5ex]
+		E_y'&=\dfrac{E_y-vB_z}{\sqrt{1-v^2}}\\[2.5ex]
+		E_z'&=\dfrac{E_z+vB_y}{\sqrt{1-v^2}}
+		\end{align*}
+		</td>
+
+		<td class="center">
+		\begin{align*}
+		B_x'&=B_x\\[2.5ex]
+		B_y'&=\dfrac{B_y+vE_z}{\sqrt{1-v^2}}\\[2.5ex]
+		B_z'&=\dfrac{B_z-vE_y}{\sqrt{1-v^2}}
+		\end{align*}
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch26-S3-p21" class="para">
+<p class="p">The equations in Table&nbsp;<a href="#Ch26-T2">26–2</a> tell us how $\FLPE$
+and&nbsp;$\FLPB$ change if we go from one inertial frame to another. If we
+know $\FLPE$ and&nbsp;$\FLPB$ in one system, we can find what they are in
+another that moves by with the speed&nbsp;$v$.
+</p>
+</div>
+
+<div id="Ch26-S3-p22" class="para">
+<p class="p">We can write these equations in a form that is easier to remember if
+we notice that since $v$&nbsp;is in the $x$-direction, all the terms
+with&nbsp;$v$ are components of the cross products $\FLPv\times\FLPE$
+and&nbsp;$\FLPv\times\FLPB$. So we can rewrite the transformations as shown in
+Table&nbsp;<a href="#Ch26-T3">26–3</a>.
+</p>
+</div>
+
+<div id="Ch26-T3" class="table" style="width: 100%">
+<div class="caption ltx_centering">
+<span class="tag">Table 26–3</span>An alternative form for the field transformations (Note:
+  $\boldsymbol{c}\boldsymbol{=}\boldsymbol{1}$)
+</div>
+<div align="center">
+<table class="framed" style="width: 55%">
+	<tr>
+		<td class="center">
+		\begin{align*}
+		E_x'&=E_x\\[2.5ex]
+		E_y'&=\dfrac{(\FLPE+\FLPv\times\FLPB)_y}{\sqrt{1-v^2}}\\[2.5ex]
+		E_z'&=\dfrac{(\FLPE+\FLPv\times\FLPB)_z}{\sqrt{1-v^2}}
+		\end{align*}
+		</td>
+
+		<td class="center">
+		\begin{align*}
+		B_x'&=B_x\\[2.5ex]
+		B_y'&=\dfrac{(\FLPB-\FLPv\times\FLPE)_y}{\sqrt{1-v^2}}\\[2.5ex]
+		B_z'&=\dfrac{(\FLPB-\FLPv\times\FLPE)_z}{\sqrt{1-v^2}}
+		\end{align*}
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch26-S3-p23" class="para">
+<p class="p">It is now easier to remember which components go where. In
+fact, the transformation can be written even more simply if we define
+the field components along&nbsp;$x$ as the “parallel” components
+$E_\parallel$ and&nbsp;$B_\parallel$ (because they are parallel to the
+relative velocity of $S$ and&nbsp;$S'$), and the total transverse
+components—the vector sums of the $y$- and $z$-components—as the
+“perpendicular” components $E_\perp$ and&nbsp;$B_\perp$. Then we get the
+equations in Table&nbsp;<a href="#Ch26-T4">26–4</a>. (We have also put back
+the&nbsp;$c$’s, so it will be more convenient when we want to refer back
+later.)
+</p>
+</div>
+
+<div id="Ch26-T4" class="table" style="width: 100%">
+<div class="caption ltx_centering">
+<span class="tag">Table 26–4</span>Still another form for the Lorentz transformation of $\FLPE$
+and $\FLPB$
+</div>
+<div align="center">
+<table class="framed" style="width: 55%">
+	<tr>
+		<td class="center">
+		\begin{align*}
+		E_\parallel'&=E_\parallel\\[3.5ex]
+		E_\perp'&=\dfrac{(\FLPE+\FLPv\times\FLPB)_\perp}{\sqrt{1-v^2/c^2}}
+		\end{align*}
+		</td>
+		<td class="center">
+		\begin{align*}
+		B_\parallel'&=B_\parallel\\[0.5ex]
+		B_\perp'&=\dfrac{\biggl(\FLPB-\dfrac{\FLPv\times\FLPE}{c^2}\biggr)_\perp}{\sqrt{1-v^2/c^2}}
+		\end{align*}
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch26-S3-p24" class="para">
+<p class="p">The field transformations give us another way of solving some problems
+we have done before—for instance, for finding the fields of a moving
+point charge.  We have worked out the fields before by differentiating
+the potentials. But we could now do it by transforming the Coulomb
+field. If we have a point charge at rest in the $S$-frame, then there is
+only the simple radial $\FLPE$-field. In the $S'$-frame we will see a
+point charge moving with the velocity $u$, if the $S'$-frame moves by
+the $S$-frame with the speed&nbsp;$v=-u$. We will let you show that the
+transformations of Tables <a href="#Ch26-T3">26–3</a> and&nbsp;<a href="#Ch26-T4">26–4</a> give
+the same electric and magnetic fields we got in
+Section&nbsp;<a href="II_26.html#Ch26-S2">26-2</a>.
+</p>
+</div>
+
+<div id="Ch26-F7" class="figure">
+<img src="img/FLP_II/f26-07/f26-07_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 26–7.</span>
+The coordinate frame&nbsp;$S'$ moving through a static electric
+field.
+</div>
+</div>
+
+<div id="Ch26-S3-p25" class="para">
+<p class="p">The transformation of Table&nbsp;<a href="#Ch26-T2">26–2</a> gives us an interesting
+and simple answer for what we see if we move past <em class="emph">any</em> system of
+fixed charges. For example, suppose we want to know the fields in
+<em class="emph">our</em> frame&nbsp;$S'$ if we are moving along between the plates of a
+condenser, as shown in Fig.&nbsp;<a href="#Ch26-F7">26–7</a>. (It is, of course, the same thing
+if we say that a charged condenser is moving past <em class="emph">us</em>.) What do
+we see?  The transformation is easy in this case because the
+$\FLPB$-field in the original system is zero. Suppose, first, that our
+motion is perpendicular to&nbsp;$\FLPE$; then we will see
+an&nbsp;$\FLPE'=\FLPE/\sqrt{1-v^2/c^2}$ which is still completely
+transverse. We will see, in addition, a magnetic
+field&nbsp;$\FLPB'=-\FLPv\times\FLPE'/c^2$. (The $\sqrt{1-v^2/c^2}$ doesn’t
+appear in our formula for&nbsp;$\FLPB'$ because we wrote it in terms
+of&nbsp;$\FLPE'$ rather than&nbsp;$\FLPE$; but it&#39;s the same thing.) So when we 
+move along perpendicular to a static electric field, we see an added transverse&nbsp;$\FLPB$. If our motion is not
+perpendicular to&nbsp;$\FLPE$, we break $\FLPE$ into $\FLPE_\parallel$
+and&nbsp;$\FLPE_\perp$. The parallel part is unchanged,
+$E_\parallel'=E_\parallel$, and the perpendicular component does as
+just described.
+</p>
+</div>
+
+<div id="Ch26-S3-p26" class="para">
+<p class="p">Let’s take the opposite case, and imagine we are moving through a pure
+static <em class="emph">magnetic</em> field. This time we would see an
+<em class="emph">electric</em> field&nbsp;$\FLPE'$ equal to&nbsp;$\FLPv\times\FLPB'$, and the
+magnetic field changed by the factor&nbsp;$1/\sqrt{1-v^2/c^2}$ (assuming it
+is transverse). So long as&nbsp;$v$ is much less than&nbsp;$c$, we can neglect
+the change in the magnetic field, and the main effect is that an
+electric field appears. As one example of this effect, consider this
+once famous problem of determining the speed of an airplane. It’s no
+longer famous, since radar can now be used to determine the air speed
+from ground reflections, but for many years it was very hard to find
+the speed of an airplane in bad weather. You could not see the ground
+and you didn’t know which way was up, and so on. Yet it was important
+to know how fast you were moving relative to the earth. How can this
+be done without seeing the earth? Many who knew the transformation
+formulas thought of the idea of using the fact that the airplane moves
+in the magnetic field of the earth. Suppose that an airplane is flying
+where there is a magnetic field more or less known. Let’s just take
+the simple case where the magnetic field is vertical. If we were
+flying through it with a horizontal velocity&nbsp;$\FLPv$, then, according to
+our formula, we should see an electric field which
+is&nbsp;$\FLPv\times\FLPB$, i.e., perpendicular to the line of motion. If we
+hang an insulated wire across the airplane, this electric field will
+induce charges on the ends of the wire. That is nothing new. From the
+point of view of someone on the ground, we are moving a wire through a
+field, and the&nbsp;$\FLPv\times\FLPB$ force causes charges to move to the
+ends of the wire. The transformation equations just say the same thing
+in a different way. (The fact that we can say the thing more than one
+way doesn’t mean that one way is better than another. We are getting
+so many different methods and tools that we can usually get the same
+result in $65$&nbsp;different ways!)
+</p>
+</div>
+
+<div id="Ch26-S3-p27" class="para">
+<p class="p">So to measure&nbsp;$v$, all we have to do is measure the voltage between
+the ends of the wire. We can’t do it with a voltmeter because the same
+fields will act on the wires in the voltmeter, but there are ways of
+measuring such fields. We talked about some of them when we discussed
+atmospheric electricity in Chapter&nbsp;<a href="II_09.html">9</a>. So it should be
+possible to measure the speed of the airplane.
+</p>
+</div>
+
+<div id="Ch26-S3-p28" class="para">
+<p class="p">This important problem was, however, never solved this way. The reason
+is that the electric field that is developed is of the order of
+millivolts per meter. It is possible to measure such fields, but the
+trouble is that these fields are, unfortunately, not any different
+from any other electric fields. The field that is produced by motion
+through the magnetic field can’t be distinguished from some electric
+field that was already in the air from another cause, say from
+electrostatic charges in the air, or on the clouds. We described in
+Chapter&nbsp;<a href="II_09.html">9</a> that there are, typically, electric fields
+above the surface of the earth with strengths of about $100$&nbsp;volts per
+meter. But they are quite irregular. So as the airplane flies through
+the air, it sees fluctuations of atmospheric electric fields which are
+enormous in comparison to the tiny fields produced by the
+$\FLPv\times\FLPB$&nbsp;term, and it turns out for practical reasons to be
+impossible to measure speeds of an airplane by its motion through the
+earth’s magnetic field.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch26-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">26–4</span>The equations of motion in relativistic notation<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a></h3>
+
+<div id="Ch26-S4-p1" class="para">
+<p class="p">It doesn’t do much good to find electric and magnetic fields from
+Maxwell’s equations unless we
+know what the fields do when we have them. You may remember that the
+fields are required to find the forces on charges, and that those forces
+determine the motion of the charge. So, of course, part of the theory of
+electrodynamics is the relation between the motion of charges and the
+forces.
+</p>
+</div>
+
+<div id="Ch26-S4-p2" class="para">
+<p class="p">For a single charge in the fields $\FLPE$ and&nbsp;$\FLPB$, the force is
+\begin{equation}
+\label{Eq:II:26:23}
+\FLPF=q(\FLPE+\FLPv\times\FLPB).
+\end{equation}
+This force is equal to the mass times the acceleration for low
+velocities, but the correct law for any velocity is that the force is
+equal to&nbsp;$d\FLPp/dt$. Writing $\FLPp=m_0\FLPv/\sqrt{1-v^2/c^2}$, we
+find that the relativistically correct equation of motion is
+\begin{equation}
+\label{Eq:II:26:24}
+\ddt{}{t}\biggl(\frac{m_0\FLPv}{\sqrt{1-v^2/c^2}}\biggr)=
+\FLPF=q(\FLPE+\FLPv\times\FLPB).
+\end{equation}
+</p>
+</div>
+
+<div id="Ch26-S4-p3" class="para">
+<p class="p">We would like now to discuss this equation from the point of view of
+relativity. Since we have put our Maxwell equations in relativistic form, it
+would be interesting to see what the equations of motion would look like
+in relativistic form. Let’s see whether we can rewrite the equation in a
+four-vector notation.
+</p>
+</div>
+
+<div id="Ch26-S4-p4" class="para">
+<p class="p">We know that the momentum is part of a four-vector&nbsp;$p_\mu$ whose time
+component is the energy&nbsp;$m_0c^2/\sqrt{1-v^2/c^2}$. So we might think to
+replace the left-hand side of Eq.&nbsp;(<a href="#mjx-eqn-EqII2624">26.24</a>)
+by&nbsp;$dp_\mu/dt$. Then we need only find a fourth component to go
+with&nbsp;$\FLPF$. This fourth component must equal the rate-of-change of the
+energy, or the rate of doing work, which is&nbsp;$\FLPF\cdot\FLPv$. We
+would then like to write the right-hand side of Eq.&nbsp;(<a href="#mjx-eqn-EqII2624">26.24</a>)
+as a four-vector like&nbsp;$(\FLPF\cdot\FLPv,F_x,F_y,F_z)$. But this does not
+make a four-vector.
+</p>
+</div>
+
+<div id="Ch26-S4-p5" class="para">
+<p class="p">The <em class="emph">time</em> derivative of a four-vector is no longer a
+four-vector, because the&nbsp;$d/dt$ requires the choice of some special
+frame for measuring&nbsp;$t$. We got into that trouble before when we tried
+to make&nbsp;$\FLPv$ into a four-vector. Our first guess was that the time
+component would be&nbsp;$cdt/dt=c$. But the quantities
+\begin{equation}
+\label{Eq:II:26:25}
+\biggl(c,\ddt{x}{t},\ddt{y}{t},\ddt{z}{t}\biggl)=(c,\FLPv)
+\end{equation}
+are <em class="emph">not</em> the components of a four-vector. We found that they
+could be made into one by multiplying each component
+by&nbsp;$1/\sqrt{1-v^2/c^2}$. The “four-velocity”&nbsp;$u_\mu$ is the four-vector
+\begin{equation}
+\label{Eq:II:26:26}
+u_\mu=\biggl(\frac{c}{\sqrt{1-v^2/c^2}},
+\frac{\FLPv}{\sqrt{1-v^2/c^2}}\biggr).
+\end{equation}
+So it appears that the trick is to multiply $d/dt$
+by&nbsp;$1/\sqrt{1-v^2/c^2}$, if we want the derivatives to make a
+four-vector.
+</p>
+</div>
+
+<div id="Ch26-S4-p6" class="para">
+<p class="p">Our second guess then is that
+\begin{equation}
+\label{Eq:II:26:27}
+\frac{1}{\sqrt{1-v^2/c^2}}\,\ddt{}{t}(p_\mu)
+\end{equation}
+should be a four-vector. But what is $\FLPv$? It is the velocity of
+the particle—not of a coordinate frame! Then the quantity&nbsp;$f_\mu$
+defined by
+\begin{equation}
+\label{Eq:II:26:28}
+f_\mu=\biggl(\frac{\FLPF\cdot\FLPv}{\sqrt{1-v^2/c^2}},
+\frac{\FLPF}{\sqrt{1-v^2/c^2}}\biggr)
+\end{equation}
+is the extension into four dimensions of a force—we can call it the
+“four-force.” It is indeed a four-vector, and its space components
+are not the components of&nbsp;$\FLPF$ but of&nbsp;$\FLPF/\sqrt{1-v^2/c^2}$.
+</p>
+</div>
+
+<div id="Ch26-S4-p7" class="para">
+<p class="p">The question is—why is&nbsp;$f_\mu$ a four-vector? It would be nice to
+get a little understanding of that $1/\sqrt{1-v^2/c^2}$&nbsp;factor. Since
+it has come up twice now, it is time to see why the&nbsp;$d/dt$ can always
+be fixed by the same factor. The answer is in the following: When we
+take the time derivative of some function&nbsp;$x$, we compute the
+increment&nbsp;$\Delta x$ in a small interval&nbsp;$\Delta t$ in the
+variable&nbsp;$t$. But in another frame, the interval&nbsp;$\Delta t$ might correspond to
+a change in both $t'$ and&nbsp;$x'$, so if we vary only&nbsp;$t'$, the change
+in&nbsp;$x$ will be different. We have to find a variable for our
+differentiation that is a measure of an “interval” in
+<em class="emph">space-time</em>, which will then be the same in all
+coordinate systems. When we take&nbsp;$\Delta x$ for that interval, it will
+be the same for all coordinate frames. When a particle “moves” in
+four-space, there are the changes $\Delta t$,&nbsp;$\Delta x$, $\Delta
+y$,&nbsp;$\Delta z$. Can we make an invariant interval out of them? Well,
+they are the components of the four-vector&nbsp;$x_\mu=(ct,x,y,z)$ so if we
+define a quantity&nbsp;$\Delta s$ by
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:26:29}
+(\Delta s)^2=\frac{1}{c^2}\,\Delta x_\mu\Delta x_\mu=\frac{1}{c^2}
+(c^2\Delta t^2-\Delta x^2-\Delta y^2-\Delta z^2)
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:II:26:29}
+(\Delta s)^2&=\frac{1}{c^2}\,\Delta x_\mu\Delta x_\mu\\[1ex]
+&=\frac{1}{c^2}(c^2\Delta t^2-\Delta x^2-\Delta y^2-\Delta z^2)\notag
+\end{align}
+</span>
+—which is a four-dimensional dot product—we then have a good
+four-scalar to use as a measure of a four-dimensional interval. From
+$\Delta s$—or its limit&nbsp;$ds$—we can define a parameter&nbsp;$s=\int
+ds$. And a derivative with respect to&nbsp;$s$, $d/ds$, is a nice
+four-dimensional operation, because it is invariant with respect to a
+Lorentz transformation.
+</p>
+</div>
+
+<div id="Ch26-S4-p8" class="para">
+<p class="p">It is easy to relate $ds$ to&nbsp;$dt$ for a moving particle. For a moving
+point particle,
+\begin{equation}
+\label{Eq:II:26:30}
+dx=v_x\,dt,\quad
+dy=v_y\,dt,\quad
+dz=v_z\,dt,
+\end{equation}
+and
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:26:31}
+ds=\sqrt{(dt^2/c^2)(c^2-v_x^2-v_y^2-v_z^2)}
+=dt\sqrt{1-v^2/c^2}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+ds&=\sqrt{(dt^2/c^2)(c^2-v_x^2-v_y^2-v_z^2)}\notag\\[1ex]
+\label{Eq:II:26:31}
+&=dt\sqrt{1-v^2/c^2}.
+\end{align}
+</span>
+</p>
+</div>
+
+<div id="Ch26-S4-p9" class="para">
+<p class="p">So the operator 
+\begin{equation*}
+\frac{1}{\sqrt{1-v^2/c^2}}\,\ddt{}{t}
+\end{equation*}
+is an <em class="emph">invariant operator</em>. If we operate on any four-vector with
+it, we get another four-vector. For instance, if we operate
+on&nbsp;$(ct,x,y,z)$, we get the four-velocity&nbsp;$u_\mu$:
+\begin{equation*}
+\ddt{x_\mu}{s}=u_\mu.
+\end{equation*}
+We see now why the factor&nbsp;$\sqrt{1-v^2/c^2}$ fixes things up.
+</p>
+</div>
+
+<div id="Ch26-S4-p10" class="para">
+<p class="p">The invariant variable&nbsp;$s$ is a useful physical quantity. It is called
+the “proper time” along the path of a particle, because&nbsp;$ds$ is
+always an interval of time in a frame that is moving with the particle
+at any particular instant. (Then, $\Delta x=$ $\Delta y=$ $\Delta z=$ $0$, and
+$\Delta s=\Delta t$.) If you can imagine some “clock” whose rate
+doesn’t depend on the acceleration, such a clock carried along with
+the particle would show the time&nbsp;$s$.
+</p>
+</div>
+
+<div id="Ch26-S4-p11" class="para">
+<p class="p">We can now go back and write Newton’s law (as corrected by
+Einstein)
+in the neat form
+\begin{equation}
+\label{Eq:II:26:32}
+\ddt{p_\mu}{s}=f_\mu,
+\end{equation}
+where $f_\mu$ is given in Eq.&nbsp;(<a href="#mjx-eqn-EqII2628">26.28</a>). Also, the
+momentum&nbsp;$p_\mu$ can be written as
+\begin{equation}
+\label{Eq:II:26:33}
+p_\mu=m_0u_\mu=m_0\,\ddt{x_\mu}{s},
+\end{equation}
+where the coordinates&nbsp;$x_\mu=(ct,x,y,z)$ now describe the trajectory
+of the particle. Finally, the four-dimensional notation gives us this
+very simple form of the equations of motion:
+\begin{equation}
+\label{Eq:II:26:34}
+f_\mu=m_0\,\frac{d^2x_\mu}{ds^2},
+\end{equation}
+which is reminiscent of&nbsp;$F=ma$. It is important to notice that
+Eq.&nbsp;(<a href="#mjx-eqn-EqII2634">26.34</a>) is <em class="emph">not</em> the same as&nbsp;$F=ma$, because the
+four-vector formula Eq.&nbsp;(<a href="#mjx-eqn-EqII2634">26.34</a>) has in it the relativistic
+mechanics which are different from Newton’s law for high velocities. It
+is unlike the case of Maxwell’s
+equations, where we were able to
+rewrite the equations in the relativistic form <em class="emph">without any change
+in the meaning at all</em>—but with just a change of notation.
+</p>
+</div>
+
+<div id="Ch26-S4-p12" class="para">
+<p class="p">Now let’s return to Eq.&nbsp;(<a href="#mjx-eqn-EqII2624">26.24</a>) and see how we can write
+the right-hand side in four-vector notation. The three
+components—when divided by&nbsp;$\sqrt{1-v^2/c^2}$—are the components
+of&nbsp;$f_\mu$, so
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:26:35}
+f_x=\frac{q(\FLPE+\FLPv\times\FLPB)_x}{\sqrt{1-v^2/c^2}}=
+q\biggl[
+\frac{E_x}{\sqrt{1-v^2/c^2}}+
+\frac{v_yB_z}{\sqrt{1-v^2/c^2}}-
+\frac{v_zB_y}{\sqrt{1-v^2/c^2}}
+\biggr].
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\label{Eq:II:26:35}
+f_x&=\frac{q(\FLPE+\FLPv\times\FLPB)_x}{\sqrt{1-v^2/c^2}}\\[1.1ex]
+&=q\biggl[
+\frac{E_x}{\sqrt{1-v^2/c^2}}\,+\notag\\[.5ex]
+&\phantom{=q\biggl[\;}\frac{v_yB_z}{\sqrt{1-v^2/c^2}}-
+\frac{v_zB_y}{\sqrt{1-v^2/c^2}}
+\biggr].\notag
+\end{align}
+</span>
+Now we must put all quantities in their relativistic notation. First,
+$c/\sqrt{1-v^2/c^2}$ and $v_y/\sqrt{1-v^2/c^2}$ and
+$v_z/\sqrt{1-v^2/c^2}$ are the $t$-,&nbsp;$y$-, and&nbsp;$z$-components of the
+four-velocity&nbsp;$u_\mu$. And the components of $\FLPE$ and&nbsp;$\FLPB$ are
+components of the second-rank tensor of the
+fields&nbsp;$F_{\mu\nu}$. Looking back in Table&nbsp;<a href="#Ch26-T1">26–1</a> for the
+components of&nbsp;$F_{\mu\nu}$ that correspond to $E_x$,&nbsp;$B_z$, and&nbsp;$B_y$,
+we get<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a>
+\begin{equation*}
+f_x=q(u_tF_{xt}-u_yF_{xy}-u_zF_{xz}),
+\end{equation*}
+which begins to look interesting. Every term has the subscript&nbsp;$x$,
+which is reasonable, since we’re finding an&nbsp;$x$-component. Then all
+the others appear in pairs: $tt$, $yy$, $zz$—except that the
+$xx$-term is missing. So we just stick it in, and write
+\begin{equation}
+\label{Eq:II:26:36}
+f_x=q(u_tF_{xt}-u_xF_{xx}-u_yF_{xy}-u_zF_{xz}).
+\end{equation}
+We haven’t changed anything because $F_{\mu\nu}$ is antisymmetric, and
+$F_{xx}$ is zero. The reason for wanting to put in the $xx$-term is so
+that we can write Eq.&nbsp;(<a href="#mjx-eqn-EqII2636">26.36</a>) in the short-hand form
+\begin{equation}
+\label{Eq:II:26:37}
+f_\mu=qu_\nu F_{\mu\nu}.
+\end{equation}
+This equation is the same as Eq.&nbsp;(<a href="#mjx-eqn-EqII2636">26.36</a>) if we make the
+<em class="emph">rule</em> that whenever any subscript occurs <em class="emph">twice</em> (as&nbsp;$\nu$
+does here), you automatically sum over terms in the same way as for
+the scalar product, <em class="emph">using the same convention for the signs</em>.
+</p>
+</div>
+
+<div id="Ch26-S4-p13" class="para">
+<p class="p">You can easily believe that&nbsp;(<a href="#mjx-eqn-EqII2637">26.37</a>) works equally well for
+$\mu=y$ or&nbsp;$\mu=z$, but what about&nbsp;$\mu=t$? Let’s see, for fun, what
+it says:
+\begin{equation*}
+f_t=q(u_tF_{tt}-u_xF_{tx}-u_yF_{ty}-u_zF_{tz}).
+\end{equation*}
+Now we have to translate back to $E$’s and&nbsp;$B$’s. We get
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:26:38}
+f_t=q\biggl(0+
+\frac{v_x}{\sqrt{1-v^2/c^2}}\,E_x+
+\frac{v_y}{\sqrt{1-v^2/c^2}}\,E_y+
+\frac{v_z}{\sqrt{1-v^2/c^2}}\,E_z
+\biggr),
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+f_t=q\biggl(0&+\frac{v_x}{\sqrt{1-v^2/c^2}}\,E_x\\[.5ex]
+&+\frac{v_y}{\sqrt{1-v^2/c^2}}\,E_y\\[.25ex]
+&+\frac{v_z}{\sqrt{1-v^2/c^2}}\,E_z\biggr),
+\end{aligned}
+\label{Eq:II:26:38}
+\end{equation}
+</span>
+or
+\begin{equation*}
+f_t=\frac{q\FLPv\cdot\FLPE}{\sqrt{1-v^2/c^2}}.
+\end{equation*}
+But from Eq.&nbsp;(<a href="#mjx-eqn-EqII2628">26.28</a>), $f_t$ is supposed to be
+\begin{equation*}
+\frac{\FLPF\cdot\FLPv}{\sqrt{1-v^2/c^2}}=
+\frac{q(\FLPE+\FLPv\times\FLPB)\cdot\FLPv}{\sqrt{1-v^2/c^2}}.
+\end{equation*}
+This is the same thing as Eq.&nbsp;(<a href="#mjx-eqn-EqII2638">26.38</a>), since
+$(\FLPv\times\FLPB)\cdot\FLPv$ is zero. So everything comes out all
+right.
+</p>
+</div>
+
+<div id="Ch26-S4-p14" class="para">
+<p class="p">Summarizing, our equation of motion can be written in the elegant form
+\begin{equation}
+\label{Eq:II:26:39}
+m_0\,\frac{d^2x_\mu}{ds^2}=f_\mu=qu_\nu F_{\mu\nu}.
+\end{equation}
+Although it is nice to see that the equations can be written that way,
+this form is not particularly useful. It’s usually more convenient to
+solve for particle motions by using the original
+equations&nbsp;(<a href="#mjx-eqn-EqII2624">26.24</a>), and that’s what we will usually do.
+</p>
+</div>
+
+</div> <!--end of last section -->
+
+<ol id="footnotes">
+<li class="footnote">
+	<a name="footnote_1"></a>
+	The primes used here to indicate the <em class="emph">retarded</em> positions and 
+	times should not be confused with the primes referring to a Lorentz-transformed frame 
+	in the preceding chapter.
+	<a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+	<a name="footnote_2"></a>
+	In this section we will put back all of the $c$’s.
+	<a href="#footnote_source_2">↩</a>
+</li>
+	<li class="footnote">
+	<a name="footnote_3"></a>
+	When we put the&nbsp;$c$’s back in Table&nbsp;<a href="#Ch26-T1">26–1</a>,
+	all components of&nbsp;$F_{\mu\nu}$, corresponding to components of&nbsp;$\FLPE$
+	are multiplied by&nbsp;$1/c$.
+	<a href="#footnote_source_3">↩</a>
+</li>
+</ol>
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>FLP Vol. II Table of Contents</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/javascript"> localStorage["FLP-toc-preference"] = "_toc"; </script>
+<script type="text/javascript">
+    function Goto(vol,chap,sec){
+        var volstrings =["I","II","III"];
+		var dest;
+		var chapstr = "0"+String(chap);
+		chapstr = chapstr.substr(chapstr.length-2);
+		dest = volstrings[vol-1] + "_" + chapstr + ".html"
+	    if(typeof(sec)!=='undefined') {
+	    	dest += "#Ch" + String(chap) + "-S" + String(sec);
+	    }
+		window.open(dest,'_parent');
+	}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main" align="center" style="margin-left: 1em;">
+<div class="table">
+<table border="0" cellpadding="10" cellspacing="0" width="1175">
+	<tr>
+		<td valign="top" colspan="3" style="vertical-align: top">
+		<p align="center" style="margin-top: 0; margin-bottom: 3px"><b>
+		<font face="Arial"  style="font-size:120%">The Feynman Lectures on Physics, Volume II</font></b></p>
+		<p align="center" style="margin-top: 0; margin-bottom: 5px">
+		<span style="font-variant: small-caps"><font face="Arial" >mainly electromagnetism and matter</font></span></p>
+		<p align="center" style="margin-top: 0; margin-bottom: 3px">
+		<font face="Arial">Feynman-Leighton-Sands</font><p align="center" style="margin-top: 0; margin-bottom: 3px;">
+		<i><font face="Arial"><a style="color:mediumblue" href="II_toc_sc.html">(single-column 
+		Table of Contents)</a></a></font></i></td>
+	</tr>
+	<tr>
+		<td valign="top" width="344" style="vertical-align: top">
+		<span LANG="EN">
+        <p style="margin-top: 0; margin-bottom: 5px"><b>
+        <font face="Arial"  style="font-size:80%">
+        <a href="javascript:Goto(2,89)">About the Authors</a></font></b></p>
+		<p style="margin-top: 0; margin-bottom: 5px"><b>
+		<font face="Arial"  style="font-size:80%"><a href="javascript:Goto(2,90)">Preface to the New 
+		Millennium Edition</a></font></b></p>
+		<p style="margin-top: 0; margin-bottom: 5px"><b>
+		<font face="Arial"  style="font-size:80%"><a href="javascript:Goto(2,91)">Feynman&#39;s Preface</a></font></b></p>
+		<p style="margin-top: 0; margin-bottom: 5px"><b>
+		<font face="Arial"  style="font-size:80%"><a href="javascript:Goto(2,92)">Foreword</a></font></b></p>
+		<p style="margin-top: 0; margin-bottom: 0; line-height:100% !important">&nbsp;</p>
+		<p style="margin-top: 0"><font face="Arial"  style="font-size:80%"><b>
+		<a href="javascript:Goto(2,1)">Chapter 1. Electromagnetism</a></b><br>
+		&emsp; <a href="javascript:Goto(2,1,1)">1-1 Electrical forces </a><br>
+		&emsp; <a href="javascript:Goto(2,1,2)">1-2 Electric and magnetic fields </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,1,3)">1-3 Characteristics of vector fields </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,1,4)">1-4 The laws of electromagnetism </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,1,5)">1-5 What are the fields? </a><br>
+		&emsp; <a href="javascript:Goto(2,1,6)">1-6 Electromagnetism in science and 
+		technology </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,2)">Chapter 2. Differential Calculus of Vector 
+		Fields</a></b><br>
+		&emsp; <a href="javascript:Goto(2,2,1)">2-1 Understanding physics </a><br>
+		&emsp; <a href="javascript:Goto(2,2,2)">2-2 Scalar and vector fields—<b><i>T</i></b> 
+		and <b><i>h</i></b> </a><br>
+		&emsp; <a href="javascript:Goto(2,2,3)">2-3 Derivatives of fields—the gradient
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,2,4)">2-4 The operator </a></font>
+		<a href="javascript:Goto(2,2,4)"><b><font  style="font-size:80%">∇</font></b></a><font face="Arial"  style="font-size:80%"><br>
+		&emsp; <a href="javascript:Goto(2,2,5)">2-5 Operations with </a></font>
+		<a href="javascript:Goto(2,2,5)"><b><font  style="font-size:80%">∇</font></b></a><font face="Arial"  style="font-size:80%"><br>
+		&emsp; <a href="javascript:Goto(2,2,6)">2-6 The differential equation of heat 
+		flow </a><br>
+		&emsp; <a href="javascript:Goto(2,2,7)">2-7 Second derivatives of vector 
+		fields&emsp;&nbsp; </a><br>
+		&emsp; <a href="javascript:Goto(2,2,8)">2-8 Pitfalls </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,3)">Chapter 3. Vector Integral Calculus</a></b><br>
+		&emsp; <a href="javascript:Goto(2,3,1)">3-1 Vector integrals; the line integral 
+		of </a></font><a href="javascript:Goto(2,3,1)"><b><font  style="font-size:80%">∇</font></b><font face="Arial"  style="font-size:80%"><i>ψ</i></font></a><font face="Arial"  style="font-size:80%"><br>
+		&emsp; <a href="javascript:Goto(2,3,2)">3-2 The flux of a vector field </a><br>
+		&emsp; <a href="javascript:Goto(2,3,3)">3-3 The flux from a cube; Gauss’ theorem
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,3,4)">3-4 Heat conduction; the diffusion 
+		equation </a><br>
+		&emsp; <a href="javascript:Goto(2,3,5)">3-5 The circulation of a vector field
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,3,6)">3-6 The circulation around a square; 
+		Stokes’ theorem </a><br>
+		&emsp; <a href="javascript:Goto(2,3,7)">3-7 Curl-free and divergence-free fields
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,3,8)">3-8 Summary </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,4)">Chapter 4. Electrostatics</a></b><br>
+		&emsp; <a href="javascript:Goto(2,4,1)">4-1 Statics </a><br>
+		&emsp; <a href="javascript:Goto(2,4,2)">4-2 Coulomb’s law; superposition </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,4,3)">4-3 Electric potential </a><br>
+		&emsp; <a href="javascript:Goto(2,4,4)">4-4 <i><b>E</b></i> = −</a></font><a href="javascript:Goto(4,4)"><b><font  style="font-size:80%">∇</font></b><font face="Arial"  style="font-size:80%"><i>φ</i></font></a><font face="Arial"  style="font-size:80%"><br>
+		&emsp; <a href="javascript:Goto(2,4,5)">4-5 The flux of <i><b>E</b></i> </a><br>
+		&emsp; <a href="javascript:Goto(2,4,6)">4-6 Gauss’ law; the divergence of <i><b>
+		E</b></i> </a><br>
+		&emsp; <a href="javascript:Goto(2,4,7)">4-7 Field of a sphere of charge </a><br>
+		&emsp; <a href="javascript:Goto(2,4,8)">4-8 Field lines; equipotential surfaces
+		</a><br>
+		<br>
+		<b><a href="javascript:Goto(2,5)">Chapter 5. Application of Gauss’ Law</a></b><br>
+		&emsp; <a href="javascript:Goto(2,5,1)">5-1 Electrostatics is Gauss’ law plus . 
+		. . </a><br>
+		&emsp; <a href="javascript:Goto(2,5,2)">5-2 Equilibrium in an electrostatic 
+		field </a><br>
+		&emsp; <a href="javascript:Goto(2,5,3)">5-3 Equilibrium with conductors </a><br>
+		&emsp; <a href="javascript:Goto(2,5,4)">5-4 Stability of atoms </a><br>
+		&emsp; <a href="javascript:Goto(2,5,5)">5-5 The field of a line charge </a><br>
+		&emsp; <a href="javascript:Goto(2,5,6)">5-6 A sheet of charge; two sheets </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,5,7)">5-7 A sphere of charge; a spherical 
+		shell </a><br>
+		&emsp; <a href="javascript:Goto(2,5,8)">5-8 Is the field of a point charge 
+		exactly 1/<i>r</i><span style="text-decoration: none"><sup>2</sup></span>?
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,5,9)">5-9 The fields of a conductor </a><br>
+		&emsp; <a href="javascript:Goto(2,5,10)">5-10 The field in a cavity of a 
+		conductor </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,6)">Chapter 6. The Electric Field in Various 
+		Circumstances</a></b><br>
+		&emsp; <a href="javascript:Goto(2,6,1)">6-1 Equations of the electrostatic 
+		potential </a><br>
+		&emsp; <a href="javascript:Goto(2,6,2)">6-2 The electric dipole </a><br>
+		&emsp; <a href="javascript:Goto(2,6,3)">6-3 Remarks on vector equations </a><br>
+		&emsp; <a href="javascript:Goto(2,6,4)">6-4 The dipole potential as a gradient
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,6,5)">6-5 The dipole approximation for an 
+		arbitrary distribution</a><br>
+		&emsp; <a href="javascript:Goto(2,6,6)">6-6 The fields of charged conductors </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,6,7)">6-7 The method of images </a><br>
+		&emsp; <a href="javascript:Goto(2,6,8)">6-8 A point charge near a conducting 
+		plane </a><br>
+		&emsp; <a href="javascript:Goto(2,6,9)">6-9 A point charge near a conducting 
+		sphere </a><br>
+		&emsp; <a href="javascript:Goto(2,6,10)">6-10 Condensers; parallel plates </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,6,11)">6-11 High-voltage breakdown </a><br>
+		&emsp; <a href="javascript:Goto(2,6,12)">6-12 The field-emission microscope </a>
+		<br>
+		<br>
+		<b><a href="javascript:Goto(2,7)">Chapter 7. The Electric Field in Various 
+		Circumstances (Continued)</a></b><br>
+		&emsp; <a href="javascript:Goto(2,7,1)">7-1 Methods for finding the 
+		electrostatic field </a><br>
+		&emsp; <a href="javascript:Goto(2,7,2)">7-2 Two-dimensional fields; functions of 
+		the complex variable </a><br>
+		&emsp; <a href="javascript:Goto(2,7,3)">7-3 Plasma oscillations </a><br>
+		&emsp; <a href="javascript:Goto(2,7,4)">7-4 Colloidal particles in an 
+		electrolyte </a><br>
+		&emsp; <a href="javascript:Goto(2,7,5)">7-5 The electrostatic field of a grid</a><br>
+		<br>
+		<b><a href="javascript:Goto(2,8)">Chapter 8. Electrostatic Energy</a></b><br>
+		&emsp; <a href="javascript:Goto(2,8,1)">8-1 The electrostatic energy of charges. 
+		A uniform sphere </a><br>
+		&emsp; <a href="javascript:Goto(2,8,2)">8-2 The energy of a condenser. Forces on 
+		charged conductors</a><br>
+		&emsp; <a href="javascript:Goto(2,8,3)">8-3 The electrostatic energy of an ionic 
+		crystal </a><br>
+		&emsp; <a href="javascript:Goto(2,8,4)">8-4 Electrostatic energy in nuclei </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,8,5)">8-5 Energy in the electrostatic field
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,8,6)">8-6 The energy of a point charge </a>
+		<br>
+		<br>
+		<b><a href="javascript:Goto(2,9)">Chapter 9. Electricity in the Atmosphere</a></b><br>
+		&emsp; <a href="javascript:Goto(2,9,1)">9-1 The electric potential gradient of 
+		the atmosphere </a><br>
+		&emsp; <a href="javascript:Goto(2,9,2)">9-2 Electric currents in the atmosphere
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,9,3)">9-3 Origin of the atmospheric currents
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,9,4)">9-4 Thunderstorms </a><br>
+		&emsp; <a href="javascript:Goto(2,9,5)">9-5 The mechanism of charge separation
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,9,6)">9-6 Lightning </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,10)">Chapter 10. Dielectrics</a></b><br>
+		&emsp; <a href="javascript:Goto(2,10,1)">10-1 The dielectric constant </a><br>
+		&emsp; <a href="javascript:Goto(2,10,2)">10-2 The polarization vector <b><i>P</i></b>
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,10,3)">10-3 Polarization charges </a><br>
+		&emsp; <a href="javascript:Goto(2,10,4)">10-4 The electrostatic equations with 
+		dielectrics </a><br>
+		&emsp; <a href="javascript:Goto(2,10,5)">10-5 Fields and forces with dielectrics
+		</a><br>
+		<br>
+		<b><a href="javascript:Goto(2,11)">Chapter 11. Inside Dielectrics</a></b><br>
+		&emsp; <a href="javascript:Goto(2,11,1)">11-1 Molecular dipoles </a><br>
+		&emsp; <a href="javascript:Goto(2,11,2)">11-2 Electronic polarization </a><br>
+		&emsp; <a href="javascript:Goto(2,11,3)">11-3 Polar molecules; orientation 
+		polarization </a><br>
+		&emsp; <a href="javascript:Goto(2,11,4)">11-4 Electric fields in cavities of a 
+		dielectric </a><br>
+		&emsp; <a href="javascript:Goto(2,11,5)">11-5 The dielectric constant of 
+		liquids; the Clausius-Mossotti equation </a><br>
+		&emsp; <a href="javascript:Goto(2,11,6)">11-6 Solid dielectrics </a><br>
+		&emsp; <a href="javascript:Goto(2,11,7)">11-7 Ferroelectricity; BaTiO<span style="text-decoration: none"><sub>3</sub></span>
+		</a><br>
+		<br>
+		<b><a href="javascript:Goto(2,12)">Chapter 12. Electrostatic Analogs</a></b><br>
+		&emsp; <a href="javascript:Goto(2,12,1)">12-1 The same equations have the same 
+		solutions </a><br>
+		&emsp; <a href="javascript:Goto(2,12,2)">12-2 The flow of heat; a point source 
+		near an infinite plane boundary </a><br>
+		&emsp; <a href="javascript:Goto(2,12,3)">12-3 The stretched membrane </a><br>
+		&emsp; <a href="javascript:Goto(2,12,4)">12-4 The diffusion of neutrons; a 
+		uniform spherical source in a homogeneous medium </a><br>
+		&emsp; <a href="javascript:Goto(2,12,5)">12-5 Irrotational fluid flow; the flow 
+		past a sphere </a><br>
+		&emsp; <a href="javascript:Goto(2,12,6)">12-6 Illumination; the uniform lighting 
+		of a plane </a><br>
+		&emsp; </font><a href="javascript:Goto(2,12,7)"><font face="Arial"  style="font-size:80%">12-7 
+		The “underlying unity” of nature </font></p>
+		<p style="margin-top: 0"></a><font face="Arial"  style="font-size:80%"><b>
+		<a href="javascript:Goto(2,13)">Chapter 13. Magnetostatics</a></b><br>
+		&emsp; <a href="javascript:Goto(2,13,1)">13-1 The magnetic field </a><br>
+		&emsp; <a href="javascript:Goto(2,13,2)">13-2 Electric current; the conservation 
+		of charge </a><br>
+		&emsp; <a href="javascript:Goto(2,13,3)">13-3 The magnetic force on a current
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,13,4)">13-4 The magnetic field of steady 
+		currents; Ampère’s law </a><br>
+		&emsp; <a href="javascript:Goto(2,13,5)">13-5 The magnetic field of a straight 
+		wire and of a solenoid; atomic currents </a><br>
+		&emsp; <a href="javascript:Goto(2,13,6)">13-6 The relativity of magnetic and 
+		electric fields </a><br>
+		&emsp; <a href="javascript:Goto(2,13,7)">13-7 The transformation of currents and 
+		charges </a><br>
+		&emsp; <a href="javascript:Goto(2,13,8)">13-8 Superposition; the right-hand rule
+		</a></font></p>
+		</span>
+		</td>
+		<td valign="top" width="385" style="vertical-align: top">
+		<span LANG="EN">
+		<p style="margin-top: 0"><font face="Arial"  style="font-size:80%"><b>
+		<a href="javascript:Goto(2,14)">Chapter 14. The Magnetic Field in Various 
+		Situations</a></b><br>
+		&emsp; <a href="javascript:Goto(2,14,1)">14-1 The vector potential </a><br>
+		&emsp; <a href="javascript:Goto(2,14,2)">14-2 The vector potential of known 
+		currents </a><br>
+		&emsp; <a href="javascript:Goto(2,14,3)">14-3 A straight wire </a><br>
+		&emsp; <a href="javascript:Goto(2,14,4)">14-4 A long solenoid </a><br>
+		&emsp; <a href="javascript:Goto(2,14,5)">14-5 The field of a small loop; the 
+		magnetic dipole </a><br>
+		&emsp; <a href="javascript:Goto(2,14,6)">14-6 The vector potential of a circuit
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,14,7)">14-7 The law of Biot and Savart </a>
+		<br>
+		<br>
+		<b>
+		<a href="javascript:Goto(2,15)">Chapter 15. The Vector Potential</a></b><br>
+		&emsp; <a href="javascript:Goto(2,15,1)">15-1 The forces on a current loop; 
+		energy of a dipole </a><br>
+		&emsp; <a href="javascript:Goto(2,15,2)">15-2 Mechanical and electrical energies
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,15,3)">15-3 The energy of steady currents </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,15,4)">15-4 <i><b>B</b></i> versus <i><b>A</b></i>
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,15,5)">15-5 The vector potential and quantum 
+		mechanics </a><br>
+		&emsp; <a href="javascript:Goto(2,15,6)">15-6 What is true for statics is false 
+		for dynamics </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,16)">Chapter 16. Induced Currents</a></b><br>
+		&emsp; <a href="javascript:Goto(2,16,1)">16-1 Motors and generators </a><br>
+		&emsp; <a href="javascript:Goto(2,16,2)">16-2 Transformers and inductances </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,16,3)">16-3 Forces on induced currents </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,16,4)">16-4 Electrical technology </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,17)">Chapter 17. The Laws of Induction</a></b><br>
+		&emsp; <a href="javascript:Goto(2,17,1)">17-1 The physics of induction </a><br>
+		&emsp; <a href="javascript:Goto(2,17,2)">17-2 Exceptions to the “flux rule” </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,17,3)">17-3 Particle acceleration by an 
+		induced electric field; the betatron </a><br>
+		&emsp; <a href="javascript:Goto(2,17,4)">17-4 A paradox </a><br>
+		&emsp; <a href="javascript:Goto(2,17,5)">17-5 Alternating-current generator </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,17,6)">17-6 Mutual inductance </a><br>
+		&emsp; <a href="javascript:Goto(2,17,7)">17-7 Self-inductance </a><br>
+		&emsp; <a href="javascript:Goto(2,17,8)">17-8 Inductance and magnetic energy </a>
+		<br>
+		<br>
+		<b><a href="javascript:Goto(2,18)">Chapter 18. The Maxwell Equations</a></b><br>
+		&emsp; <a href="javascript:Goto(2,18,1)">18-1 Maxwell’s equations </a><br>
+		&emsp; <a href="javascript:Goto(2,18,2)">18-2 How the new term works </a><br>
+		&emsp; <a href="javascript:Goto(2,18,3)">18-3 All of classical physics </a><br>
+		&emsp; <a href="javascript:Goto(2,18,4)">18-4 A travelling field </a><br>
+		&emsp; <a href="javascript:Goto(2,18,5)">18-5 The speed of light </a><br>
+		&emsp; <a href="javascript:Goto(2,18,6)">18-6 Solving Maxwell’s equations; the 
+		potentials and the wave equation </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,19)">Chapter 19. The Principle of Least Action</a></b><br>
+		&emsp; <a href="javascript:Goto(2,19,1)">19-1 A special lecture—almost verbatim
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,19,2)">19-2 A note added after the lecture </a>
+		<br>
+		<br>
+		<b><a href="javascript:Goto(2,20)">Chapter 20. Solutions of Maxwell’s Equations in 
+		Free Space</a></b><br>
+		&emsp; <a href="javascript:Goto(2,20,1)">20-1 Waves in free space; plane waves
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,20,2)">20-2 Three-dimensional waves </a><br>
+		&emsp; <a href="javascript:Goto(2,20,3)">20-3 Scientific imagination </a><br>
+		&emsp; <a href="javascript:Goto(2,20,4)">20-4 Spherical waves </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,21)">Chapter 21. Solutions of Maxwell’s Equations 
+		with Currents and Charges</a></b><br>
+		&emsp; <a href="javascript:Goto(2,21,1)">21-1 Light and electromagnetic waves
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,21,2)">21-2 Spherical waves from a point 
+		source </a><br>
+		&emsp; <a href="javascript:Goto(2,21,3)">21-3 The general solution of Maxwell’s 
+		equations </a><br>
+		&emsp; <a href="javascript:Goto(2,21,4)">21-4 The fields of an oscillating 
+		dipole </a><br>
+		&emsp; <a href="javascript:Goto(2,21,5)">21-5 The potentials of a moving charge; 
+		the general solution of Liénard and Wiechert </a><br>
+		&emsp; <a href="javascript:Goto(2,21,6)">21-6 The potentials for a charge moving 
+		with constant velocity; the Lorentz formula </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,22)">Chapter 22. AC Circuits</a></b><br>
+		&emsp; <a href="javascript:Goto(2,22,1)">22-1 Impedances </a><br>
+		&emsp; <a href="javascript:Goto(2,22,2)">22-2 Generators </a><br>
+		&emsp; <a href="javascript:Goto(2,22,3)">22-3 Networks of ideal elements; 
+		Kirchhoff’s rules </a><br>
+		&emsp; <a href="javascript:Goto(2,22,4)">22-4 Equivalent circuits </a><br>
+		&emsp; <a href="javascript:Goto(2,22,5)">22-5 Energy </a><br>
+		&emsp; <a href="javascript:Goto(2,22,6)">22-6 A ladder network </a><br>
+		&emsp; <a href="javascript:Goto(2,22,7)">22-7 Filters </a><br>
+		&emsp; <a href="javascript:Goto(2,22,8)">22-8 Other circuit elements </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,23)">Chapter 23. Cavity Resonators</a></b><br>
+		&emsp; <a href="javascript:Goto(2,23,1)">23-1 Real circuit elements </a><br>
+		&emsp; <a href="javascript:Goto(2,23,2)">23-2 A capacitor at high frequencies
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,23,3)">23-3 A resonant cavity </a><br>
+		&emsp; <a href="javascript:Goto(2,23,4)">23-4 Cavity modes </a><br>
+		&emsp; <a href="javascript:Goto(2,23,5)">23-5 Cavities and resonant circuits</a><br>
+		<br>
+		<b><a href="javascript:Goto(2,24)">Chapter 24. Waveguides</a></b><br>
+		&emsp; <a href="javascript:Goto(2,24,1)">24-1 The transmission line </a><br>
+		&emsp; <a href="javascript:Goto(2,24,2)">24-2 The rectangular waveguide </a><br>
+		&emsp; <a href="javascript:Goto(2,24,3)">24-3 The cutoff frequency </a><br>
+		&emsp; <a href="javascript:Goto(2,24,4)">24-4 The speed of the guided waves </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,24,5)">24-5 Observing guided waves </a><br>
+		&emsp; <a href="javascript:Goto(2,24,6)">24-6 Waveguide plumbing </a><br>
+		&emsp; <a href="javascript:Goto(2,24,7)">24-7 Waveguide modes </a><br>
+		&emsp; <a href="javascript:Goto(2,24,8)">24-8 Another way of looking at the 
+		guided waves </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,25)">Chapter 25. Electrodynamics in Relativistic 
+		Notation</a></b><br>
+		&emsp; <a href="javascript:Goto(2,25,1)">25-1 Four-vectors </a><br>
+		&emsp; <a href="javascript:Goto(2,25,2)">25-2 The scalar product </a><br>
+		&emsp; <a href="javascript:Goto(2,25,3)">25-3 The four-dimensional gradient </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,25,4)">25-4 Electrodynamics in 
+		four-dimensional notation </a><br>
+		&emsp; <a href="javascript:Goto(2,25,5)">25-5 The four-potential of a moving 
+		charge </a><br>
+		&emsp; <a href="javascript:Goto(2,25,6)">25-6 The invariance of the equations of 
+		electrodynamics </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,26)">Chapter 26. Lorentz Transformations of the 
+		Fields</a></b><br>
+		&emsp; <a href="javascript:Goto(2,26,1)">26-1 The four-potential of a moving 
+		charge </a><br>
+		&emsp; <a href="javascript:Goto(2,26,2)">26-2 The fields of a point charge with 
+		a constant velocity </a><br>
+		&emsp; <a href="javascript:Goto(2,26,3)">26-3 Relativistic transformation of the 
+		fields </a><br>
+		&emsp; <a href="javascript:Goto(2,26,4)">26-4 The equations of motion in 
+		relativistic notation </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,27)">Chapter 27. Field Energy and Field Momentum</a></b><br>
+		&emsp; <a href="javascript:Goto(2,27,1)">27-1 Local conservation </a><br>
+		&emsp; <a href="javascript:Goto(2,27,2)">27-2 Energy conservation and 
+		electromagnetism </a><br>
+		&emsp; <a href="javascript:Goto(2,27,3)">27-3 Energy density and energy flow in 
+		the electromagnetic field </a><br>
+		&emsp; <a href="javascript:Goto(2,27,4)">27-4 The ambiguity of the field energy
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,27,5)">27-5 Examples of energy flow </a><br>
+		&emsp; <a href="javascript:Goto(2,27,6)">27-6 Field momentum </a></font></p>
+		<p style="margin-top: 0"><font face="Arial"  style="font-size:80%"><b>
+		<a href="javascript:Goto(2,28)">Chapter 28. Electromagnetic Mass</a></b><br>
+		&emsp; <a href="javascript:Goto(2,28,1)">28-1 The field energy of a point charge
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,28,2)">28-2 The field momentum of a moving 
+		charge </a><br>
+		&emsp; <a href="javascript:Goto(2,28,3)">28-3 Electromagnetic mass </a><br>
+		&emsp; <a href="javascript:Goto(2,28,4)">28-4 The force of an electron on itself
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,28,5)">28-5 Attempts to modify the Maxwell 
+		theory </a><br>
+		&emsp; <a href="javascript:Goto(2,28,6)">28-6 The nuclear force field </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,29)">Chapter 29. The Motion of Charges in Electric 
+		and Magnetic Fields</a></b><br>
+		&emsp; <a href="javascript:Goto(2,29,1)">29-1 Motion in a uniform electric or 
+		magnetic field </a><br>
+		&emsp; <a href="javascript:Goto(2,29,2)">29-2 Momentum analysis </a><br>
+		&emsp; <a href="javascript:Goto(2,29,3)">29-3 An electrostatic lens </a><br>
+		&emsp; <a href="javascript:Goto(2,29,4)">29-4 A magnetic lens </a><br>
+		&emsp; <a href="javascript:Goto(2,29,5)">29-5 The electron microscope </a><br>
+		&emsp; <a href="javascript:Goto(2,29,6)">29-6 Accelerator guide fields </a><br>
+		&emsp; <a href="javascript:Goto(2,29,7)">29-7 Alternating-gradient focusing </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,29,8)">29-8 Motion in crossed electric and 
+		magnetic fields</a></font></p>
+		</span>
+		</td>
+		<td valign="top" width="338" style="vertical-align: top">
+		<p style="margin-top: 0"><font face="Arial"  style="font-size:80%"><b><a href="javascript:Goto(2,30)">Chapter 30. The 
+		Internal Geometry of Crystals</a></b><br>
+		&emsp; <a href="javascript:Goto(2,30,1)">30-1 The internal geometry of crystals
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,30,2)">30-2 Chemical bonds in crystals </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,30,3)">30-3 The growth of crystals </a><br>
+		&emsp; <a href="javascript:Goto(2,30,4)">30-4 Crystal lattices </a><br>
+		&emsp; <a href="javascript:Goto(2,30,5)">30-5 Symmetries in two dimensions </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,30,6)">30-6 Symmetries in three dimensions </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,30,7)">30-7 The strength of metals </a><br>
+		&emsp; <a href="javascript:Goto(2,30,8)">30-8 Dislocations and crystal growth
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,30,9)">30-9 The Bragg-Nye crystal model </a>
+		<br>
+		<br>
+		<b><a href="javascript:Goto(2,31)">Chapter 31. Tensors</a></b><br>
+		&emsp; <a href="javascript:Goto(2,31,1)">31-1 The tensor of polarizability </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,31,2)">31-2 Transforming the tensor components
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,31,3)">31-3 The energy ellipsoid </a><br>
+		&emsp; <a href="javascript:Goto(2,31,4)">31-4 Other tensors; the tensor of 
+		inertia </a><br>
+		&emsp; <a href="javascript:Goto(2,31,5)">31-5 The cross product </a><br>
+		&emsp; <a href="javascript:Goto(2,31,6)">31-6 The tensor of stress </a><br>
+		&emsp; <a href="javascript:Goto(2,31,7)">31-7 Tensors of higher rank </a><br>
+		&emsp; <a href="javascript:Goto(2,31,8)">31-8 The four-tensor of electromagnetic 
+		momentum </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,32)">Chapter 32. Refractive Index of Dense Materials</a></b><br>
+		&emsp; <a href="javascript:Goto(2,32,1)">32-1 Polarization of matter </a><br>
+		&emsp; <a href="javascript:Goto(2,32,2)">32-2 Maxwell’s equations in a 
+		dielectric </a><br>
+		&emsp; <a href="javascript:Goto(2,32,3)">32-3 Waves in a dielectric </a><br>
+		&emsp; <a href="javascript:Goto(2,32,4)">32-4 The complex index of refraction
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,32,5)">32-5 The index of a mixture </a><br>
+		&emsp; <a href="javascript:Goto(2,32,6)">32-6 Waves in metals </a><br>
+		&emsp; <a href="javascript:Goto(2,32,7)">32-7 Low-frequency and high-frequency 
+		approximations; the skin depth and the plasma frequency </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,33)">Chapter 33. Reflection from Surfaces</a></b><br>
+		&emsp; <a href="javascript:Goto(2,33,1)">33-1 Reflection and refraction of light
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,33,2)">33-2 Waves in dense materials </a><br>
+		&emsp; <a href="javascript:Goto(2,33,3)">33-3 The boundary conditions </a><br>
+		&emsp; <a href="javascript:Goto(2,33,4)">33-4 The reflected and transmitted 
+		waves </a><br>
+		&emsp; <a href="javascript:Goto(2,33,5)">33-5 Reflection from metals </a><br>
+		&emsp; <a href="javascript:Goto(2,33,6)">33-6 Total internal reflection </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,34)">Chapter 34. The Magnetism of Matter</a></b><br>
+		&emsp; <a href="javascript:Goto(2,34,1)">34-1 Diamagnetism and paramagnetism </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,34,2)">34-2 Magnetic moments and angular 
+		momentum </a><br>
+		&emsp; <a href="javascript:Goto(2,34,3)">34-3 The precession of atomic magnets
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,34,4)">34-4 Diamagnetism </a><br>
+		&emsp; <a href="javascript:Goto(2,34,5)">34-5 Larmor’s theorem </a><br>
+		&emsp; <a href="javascript:Goto(2,34,6)">34-6 Classical physics gives neither 
+		diamagnetism nor paramagnetism </a><br>
+		&emsp; <a href="javascript:Goto(2,34,7)">34-7 Angular momentum in quantum 
+		mechanics </a><br>
+		&emsp; <a href="javascript:Goto(2,34,8)">34-8 The magnetic energy of atoms </a>
+		<br>
+		<br>
+		<b><a href="javascript:Goto(2,35)">Chapter 35. Paramagnetism and Magnetic Resonance</a></b><br>
+		&emsp; <a href="javascript:Goto(2,35,1)">35-1 Quantized magnetic states </a><br>
+		&emsp; <a href="javascript:Goto(2,35,2)">35-2 The Stern-Gerlach experiment </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,35,3)">35-3 The Rabi molecular-beam method </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,35,4)">35-4 The paramagnetism of bulk 
+		materials </a><br>
+		&emsp; <a href="javascript:Goto(2,35,5)">35-5 Cooling by adiabatic 
+		demagnetization </a><br>
+		&emsp; <a href="javascript:Goto(2,35,6)">35-6 Nuclear magnetic resonance </a>
+		<br>
+		<br>
+		<b><a href="javascript:Goto(2,36)">Chapter 36. Ferromagnetism</a></b><br>
+		&emsp; <a href="javascript:Goto(2,36,1)">36-1 Magnetization currents </a><br>
+		&emsp; <a href="javascript:Goto(2,36,2)">36-2 The field <i><b>H</b></i> </a><br>
+		&emsp; <a href="javascript:Goto(2,36,3)">36-3 The magnetization curve </a><br>
+		&emsp; <a href="javascript:Goto(2,36,4)">36-4 Iron-core inductances </a><br>
+		&emsp; <a href="javascript:Goto(2,36,5)">36-5 Electromagnets </a><br>
+		&emsp; <a href="javascript:Goto(2,36,6)">36-6 Spontaneous magnetization </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,37)">Chapter 37. Magnetic Materials</a></b><br>
+		&emsp; <a href="javascript:Goto(2,37,1)">37-1 Understanding ferromagnetism </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,37,2)">37-2 Thermodynamic properties </a><br>
+		&emsp; <a href="javascript:Goto(2,37,3)">37-3 The hysteresis curve </a><br>
+		&emsp; <a href="javascript:Goto(2,37,4)">37-4 Ferromagnetic materials </a><br>
+		&emsp; <a href="javascript:Goto(2,37,5)">37-5 Extraordinary magnetic materials
+		</a><br>
+		<br>
+		<b><a href="javascript:Goto(2,38)">Chapter 38. Elasticity</a></b><br>
+		&emsp; <a href="javascript:Goto(2,38,1)">38-1 Hooke’s law </a><br>
+		&emsp; <a href="javascript:Goto(2,38,2)">38-2 Uniform strains </a><br>
+		&emsp; <a href="javascript:Goto(2,38,3)">38-3 The torsion bar; shear waves </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,38,4)">38-4 The bent beam </a><br>
+		&emsp; <a href="javascript:Goto(2,38,5)">38-5 Buckling </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,39)">Chapter 39. Elastic Materials</a></b><br>
+		&emsp; <a href="javascript:Goto(2,39,1)">39-1 The tensor of strain </a><br>
+		&emsp; <a href="javascript:Goto(2,39,2)">39-2 The tensor of elasticity </a><br>
+		&emsp; <a href="javascript:Goto(2,39,3)">39-3 The motions in an elastic body </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,39,4)">39-4 Nonelastic behavior </a><br>
+		&emsp; <a href="javascript:Goto(2,39,5)">39-5 Calculating the elastic constants
+		</a><br>
+		<br>
+		<b><a href="javascript:Goto(2,40)">Chapter 40. The Flow of Dry Water</a></b><br>
+		&emsp; <a href="javascript:Goto(2,40,1)">40-1 Hydrostatics </a><br>
+		&emsp; <a href="javascript:Goto(2,40,2)">40-2 The equations of motion </a><br>
+		&emsp; <a href="javascript:Goto(2,40,3)">40-3 Steady flow—Bernoulli’s theorem
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,40,4)">40-4 Circulation </a><br>
+		&emsp; <a href="javascript:Goto(2,40,5)">40-5 Vortex lines </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,41)">Chapter 41. The Flow of Wet Water</a></b><br>
+		&emsp; <a href="javascript:Goto(2,41,1)">41-1 Viscosity </a><br>
+		&emsp; <a href="javascript:Goto(2,41,2)">41-2 Viscous flow </a><br>
+		&emsp; <a href="javascript:Goto(2,41,3)">41-3 The Reynolds number </a><br>
+		&emsp; <a href="javascript:Goto(2,41,4)">41-4 Flow past a circular cylinder </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,41,5)">41-5 The limit of zero viscosity </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,41,6)">41-6 Couette flow </a><br>
+		<br>
+		<b><a href="javascript:Goto(2,42)">Chapter 42. Curved Space</a></b><br>
+		&emsp; <a href="javascript:Goto(2,42,1)">42-1 Curved spaces with two dimensions
+		</a><br>
+		&emsp; <a href="javascript:Goto(2,42,2)">42-2 Curvature in three-dimensional 
+		space </a><br>
+		&emsp; <a href="javascript:Goto(2,42,3)">42-3 Our space is curved </a><br>
+		&emsp; <a href="javascript:Goto(2,42,4)">42-4 Geometry in space-time </a><br>
+		&emsp; <a href="javascript:Goto(2,42,5)">42-5 Gravity and the principle of 
+		equivalence </a><br>
+		&emsp; <a href="javascript:Goto(2,42,6)">42-6 The speed of clocks in a 
+		gravitational field </a><br>
+		&emsp; <a href="javascript:Goto(2,42,7)">42-7 The curvature of space-time </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,42,8)">42-8 Motion in curved space-time </a>
+		<br>
+		&emsp; <a href="javascript:Goto(2,42,9)">42-9 Einstein’s theory of gravitation</a></p></td>
+	</tr>
+	<tr>
+		<td valign="top" colspan="3">
+		<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+		</td>
+		</tr>
+</table>
+</div>
+</div>
+</body>
+
+</html>

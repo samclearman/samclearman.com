@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. III Ch. 12: The Hyperfine Splitting in Hydrogen</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "12." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0],
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+
+<div id="Ch12" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">12</span>The Hyperfine Splitting in Hydrogen</h2>
+
+
+<div id="Ch12-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">12–1</span>Base states for a system with two spin one-half particles</h3>
+
+<div id="Ch12-S1-p1" class="para">
+<p class="p">In this chapter we take up the “hyperfine splitting” of hydrogen,
+because it is a physically interesting example of what we can already
+do with quantum mechanics. It’s an example with more than two states,
+and it will be illustrative of the methods of quantum mechanics as
+applied to slightly more complicated problems. It is enough more
+complicated that once you see how this one is handled you can get
+immediately the generalization to all kinds of problems.
+</p>
+</div>
+
+<div id="Ch12-S1-p2" class="para">
+<p class="p">As you know, the hydrogen atom consists of an electron sitting in the
+neighborhood of the proton, where it can exist in any one of a number
+of discrete energy states in each one of which the pattern of motion
+of the electron is different. The first excited state, for example,
+lies $3/4$ of a Rydberg, or about $10$ electron volts, above the
+ground state. But even the so-called ground state of hydrogen is not
+really a single, definite-energy state, because of the spins of the
+electron and the proton. These spins are responsible for the
+“hyperfine structure” in the energy levels, which splits all the
+energy levels into several nearly equal levels.
+</p>
+</div>
+
+<div id="Ch12-S1-p3" class="para">
+<p class="p">The electron can have its spin either “up” or “down” and, the
+proton can also have <em class="emph">its</em> spin either “up” or “down.” There
+are, therefore, <em class="emph">four</em> possible spin states for every dynamical
+condition of the atom. That is, when people say “the ground state”
+of hydrogen, they really mean the “four ground states,” and not just
+the very lowest state. The four spin states do not all have exactly
+the same energy; there are slight shifts from the energies we would
+expect with no spins. The shifts are, however, much, much smaller than
+the $10$ electron volts or so from the ground state to the next state above. As
+a consequence, each dynamical state has its energy split into a set of
+very close energy levels—the so-called <em class="emph">hyperfine splitting</em>.
+</p>
+</div>
+
+<div id="Ch12-S1-p4" class="para">
+<p class="p">The energy differences among the four spin states is what we want to
+calculate in this chapter. The hyperfine splitting is due to the
+interaction of the magnetic moments of the electron and proton, which
+gives a slightly different magnetic energy for each spin state. These
+energy shifts are only about ten-millionths of an electron
+volt—really very small compared with $10$ electron volts! It is because of
+this large gap that we can think about the ground state of hydrogen as
+a “four-state” system, without worrying about the fact that there
+are really many more states at higher energies. We are going to limit
+ourselves here to a study of the hyperfine structure of the ground
+state of the hydrogen atom.
+</p>
+</div>
+
+<div id="Ch12-S1-p5" class="para">
+<p class="p">For our purposes we are not interested in any of the details about the
+<em class="emph">positions</em> of the electron and proton because that has all been
+worked out by the atom so to speak—it has worked itself out by
+getting into the ground state. We need know only that we have an
+electron and proton in the neighborhood of each other with some
+definite spatial relationship. In addition, they can have various
+different relative orientations of their spins. It is only the effect
+of the spins that we want to look into.
+</p>
+</div>
+
+<div id="Ch12-S1-p6" class="para">
+<p class="p">The first question we have to answer is: What are the <em class="emph">base
+states</em> for the system? Now the question has been put
+incorrectly. There is no such thing as “<em class="emph">the</em>” base states,
+because, of course, the set of base states you may choose is not
+unique. New sets can always be made out of linear combinations of the
+old. There are always many choices for the base states, and among
+them, any choice is equally legitimate. So the question is not what is
+<em class="emph">the</em> base set, but what <em class="emph">could</em> a base set be? We can
+choose any one we wish for our own convenience. It is usually best to
+start with a base set which is <em class="emph">physically</em> the clearest. It may
+not be the solution to any problem, or may not have any <em class="emph">direct</em>
+importance, but it will generally make it easier to understand what is
+going on.
+</p>
+</div>
+
+<div id="Ch12-S1-p7" class="para">
+<p class="p">We choose the following four base states:
+\begin{align*}
+&\textit{State 1:}\;\small
+\text{The electron and proton are both spin “up.”}\\[3pt]
+&\textit{State 2:}\;\small
+\text{The electron is “up” and the proton is “down.”}\\[3pt]
+&\textit{State 3:}\;\small
+\text{The electron is “down” and the proton is “up.”}\\[3pt]
+&\textit{State 4:}\;\small
+\text{The electron and proton are both “down.”}
+\end{align*}
+We need a handy notation for these four states, so we’ll represent them this way:
+\begin{equation}
+\begin{aligned}
+&\textit{State 1:}\;\small
+\ket{++};\;\text{electron}\;\textit{up},\;\text{proton}\;\textit{up}\\
+&\textit{State 2:}\;\small
+\ket{+-};\;\text{electron}\;\textit{up},\;\text{proton}\;\textit{down}\\
+&\textit{State 3:}\;\small
+\ket{-+};\;\text{electron}\;\textit{down},\;\text{proton}\;\textit{up}\\
+&\textit{State 4:}\;\small
+\ket{--};\;\text{electron}\;\textit{down},\;\text{proton}\;\textit{down}
+\end{aligned}
+\label{Eq:III:12:1}
+\end{equation}
+You will have to remember that the <em class="emph">first</em> plus or minus sign
+refers to the electron and the <em class="emph">second</em>, to the proton. For handy
+reference, we’ve also summarized the notation in
+Fig. <a href="#Ch12-F1">12-1</a>. Sometimes it will also be convenient to call
+these states $\ket{\slOne}$, $\ket{\slTwo}$, $\ket{\slThree}$,
+and $\ket{\slFour}$.
+</p>
+</div>
+
+<div id="Ch12-F1" class="figure">
+<img src="img/FLP_III/f12-01/f12-01_tc_iPad_big.svgz">
+<div class="caption"><span class="tag">Fig. 12–1.</span>
+A set of base states for the ground state of the hydrogen atom.
+</div>
+</div>
+
+<div id="Ch12-S1-p8" class="para">
+<p class="p">You may say, “But the particles interact, and maybe these aren’t the
+right base states. It sounds as though you are considering the two
+particles independently.” Yes, indeed! The interaction raises the
+problem: what is the <em class="emph">Hamiltonian</em> for the system, but the
+interaction is not involved in the question of how to <em class="emph">describe</em>
+the system. What we choose for the base states has nothing to do with
+what happens next. It may be that the atom cannot ever <em class="emph">stay</em> in
+one of these base states, even if it is started that way. That’s
+another question. That’s the question: How do the amplitudes change
+with time in a particular (fixed) base? In choosing the base states,
+we are just choosing the “unit vectors” for our description.
+</p>
+</div>
+
+<div id="Ch12-S1-p9" class="para">
+<p class="p">While we’re on the subject, let’s look at the general problem of
+finding a set of base states when there is more than one particle. You
+know the base states for a single particle. An electron, for example,
+is completely described in real life—not in our simplified cases,
+but in real life—by giving the amplitudes to be in each of the
+following states:
+\begin{equation*}
+\ket{\text{electron “up” with momentum $\FLPp$}}
+\end{equation*}
+or
+\begin{equation*}
+\ket{\text{electron “down” with momentum $\FLPp$}}.
+\end{equation*}
+There are really two infinite sets of states, one state for each value
+of $\FLPp$. That is to say that an electron state $\ket{\psi}$ is
+completely described if you know all the amplitudes
+\begin{equation*}
+\braket{+,\FLPp}{\psi}\quad
+\text{and}\quad
+\braket{-,\FLPp}{\psi},
+\end{equation*}
+where the $+$ and $-$ represent the components of angular momentum
+along some axis—usually the $z$-axis—and $\FLPp$ is the vector
+momentum. There must, therefore, be two amplitudes for every possible
+momentum (a multi-infinite set of base states). That is all there is
+to describing a single particle.
+</p>
+</div>
+
+<div id="Ch12-S1-p10" class="para">
+<p class="p">When there is more than one particle, the base states can be written
+in a similar way. For instance, if there were an electron and a proton
+in a more complicated situation than we are considering, the base
+states could be of the following kind:
+\begin{align*}
+|\,&\text{electron spin “up” with momentum $\FLPp_1$},\\[.5ex]
+&\text{proton spin “down” with momentum $\FLPp_2$}\rangle.
+\end{align*}
+And so on for other spin combinations. If there are more than two
+particles—same idea. So you see that to write down the
+<em class="emph">possible</em> base states is really very easy. The only problem is,
+what is the Hamiltonian?
+</p>
+</div>
+
+<div id="Ch12-S1-p11" class="para">
+<p class="p">For our study of the ground state of hydrogen we don’t need to use the
+full sets of base states for the various momenta. We are specifying
+particular momentum states for the proton and electron when we say
+“the ground state.” The details of the configuration—the
+amplitudes for all the momentum base states—can be calculated, but
+that is another problem. Now we are concerned only with the effects of
+the spin, so we can take only the four base states
+of (<a href="#mjx-eqn-EqIII121">12.1</a>). Our next problem is: What is the Hamiltonian for
+this set of states?
+</p>
+</div>
+
+
+</div> <!-- end of section -->
+
+
+<div id="Ch12-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">12–2</span>The Hamiltonian for the ground state of hydrogen</h3>
+
+<div id="Ch12-S2-p1" class="para">
+<p class="p">We’ll tell you in a moment what it is. But first, we should remind you
+of one thing: <em class="emph">any</em> state can always be written as a linear
+combination of the base states. For any state $\ket{\psi}$ we can
+write
+\begin{align}
+\ket{\psi}=\phantom{+}&\ket{+\,+}\braket{+\,+}{\psi}\,+\,\ket{+\,-}\braket{+\,-}{\psi}\notag\\[.5ex]
+\label{Eq:III:12:2}
++\,&\ket{-\,+}\braket{-\,+}{\psi}\,+\,\ket{-\,-}\braket{-\,-}{\psi}.
+\end{align}
+
+Remember that the complete brackets are just complex numbers, so we
+can also write them in the usual fashion as $C_i$, where $i=1$, $2$,
+$3$, or $4$, and write Eq. (<a href="#mjx-eqn-EqIII122">12.2</a>) as
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:12:3}
+\ket{\psi}=\ket{+\,+}C_1+\ket{+\,-}C_2+\ket{-\,+}C_3+\ket{-\,-}C_4.
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{align}
+\ket{\psi}=\phantom{+}&\ket{+\,+}C_1+\ket{+\,-}C_2\notag\\[.5ex]
+\label{Eq:III:12:3}
++\,&\ket{-\,+}C_3+\ket{-\,-}C_4.
+\end{align}
+
+</span>
+By giving the four amplitudes $C_i$ we completely describe the spin
+state $\ket{\psi}$. If these four amplitudes change with time, as they
+will, the rate of change in time is given by the operator $\Hop$. The
+problem is to find the $\Hop$.
+</p>
+</div>
+
+<div id="Ch12-S2-p2" class="para">
+<p class="p">There is no general rule for writing down the Hamiltonian of an atomic
+system, and finding the right formula is much more of an art than
+finding a set of base states. We were able to tell you a general rule
+for writing a set of base states for any problem of a proton and an
+electron, but to describe the general Hamiltonian of such a
+combination is too hard at this level. Instead, we will lead you to a
+Hamiltonian by some heuristic argument—and you will have to accept
+it as the correct one because the results will agree with the test of
+experimental observation.
+</p>
+</div>
+
+<div id="Ch12-T1" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 12–1</span></div>
+<div align="center">
+<table class="framed" style="width: 200px">
+	<tr>
+		<td class="center">
+		\begin{align*}
+		\sigma_z&\ket{+}=+\ket{+}\\[.5ex]
+		\sigma_z&\ket{-}=-\ket{-}\\[.5ex]
+		\sigma_x&\ket{+}=+\ket{-}\\[.5ex]
+		\sigma_x&\ket{-}=+\ket{+}\\[.5ex]
+		\sigma_y&\ket{+}=+i\ket{-}\\[.5ex]
+		\sigma_y&\ket{-}=-i\ket{+}
+		\end{align*}
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch12-S2-p3" class="para">
+<p class="p">You will remember that in the last chapter we were able to describe
+the Hamiltonian of a single, spin one-half particle by using the sigma
+matrices—or the exactly equivalent sigma operators. The properties
+of the operators are summarized in Table <a href="#Ch12-T1">12-1</a>. These
+operators—which are just a convenient, shorthand way of keeping
+track of the matrix elements of the
+type $\bracket{+}{\sigma_z}{+}$—were useful for describing the behavior
+of a <em class="emph">single</em> particle of spin one-half. The question is: Can we
+find an analogous device to describe a system with two spins? The
+answer is yes, very simply, as follows. We invent a thing which we
+will call “sigma electron,” which we represent
+by the vector operator $\FLPsigmae$, and which has the $x$-, $y$-,
+and $z$-components, $\sigmae_x$, $\sigmae_y$, $\sigmae_z$. We now make
+the <em class="emph">convention</em> that when one of these things operates on any one
+of our four base states of the hydrogen atom, it acts only on the
+<em class="emph">electron</em> spin, and in exactly the same way as if the electron
+were all by itself. Example: What is $\sigmae_y\,\ket{-\,+}$? Since
+$\sigma_y$ on an electron “down” is $-i$ times the corresponding state
+with the electron “up”,
+\begin{equation*}
+\sigmae_y\,\ket{-\,+}=-i\,\ket{+\,+}.
+\end{equation*}
+(When $\sigmae_y$ acts on the combined state it flips over the
+electron, but does nothing to the proton and multiplies the result
+by $-i$.) Operating on the other states, $\sigmae_y$ would give
+\begin{align*}
+\sigmae_y\,\ket{+\,+}&=i\,\ket{-\,+},\\[1ex]
+\sigmae_y\,\ket{+\,-}&=i\,\ket{-\,-},\\[1ex]
+\sigmae_y\,\ket{-\,-}&=-i\,\ket{+\,-}.
+\end{align*}
+Just remember that the operators $\FLPsigmae$ work only on the
+<em class="emph">first</em> spin symbol—that is, on the <em class="emph">electron</em> spin.
+</p>
+</div>
+
+<div id="Ch12-S2-p4" class="para">
+<p class="p">Next we define the corresponding operator “sigma proton” for the proton spin. Its three components $\sigmap_x$,
+$\sigmap_y$, $\sigmap_z$ act in the same way as $\FLPsigmae$, only on
+the <em class="emph">proton</em> spin. For example, if we have $\sigmap_x$ acting on
+each of the four base states, we get—always using
+Table <a href="#Ch12-T1">12-1</a>—
+\begin{align*}
+\sigmap_x\,\ket{+\,+}&=\ket{+\,-},\\[1ex]
+\sigmap_x\,\ket{+\,-}&=\ket{+\,+},\\[1ex]
+\sigmap_x\,\ket{-\,+}&=\ket{-\,-},\\[1ex]
+\sigmap_x\,\ket{-\,-}&=\ket{-\,+}.
+\end{align*}
+As you can see, it’s not very hard.
+</p>
+</div>
+
+<div id="Ch12-S2-p5" class="para">
+<p class="p">Now in the most general case we could have more complex things. For
+instance, we could have products of the two operators
+like $\sigmae_y\sigmap_z$. When we have such a product we do first what the
+operator on the right says, and then do what the other one
+says.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> For
+example, we would have that
+<span class="eq-wide">
+\begin{equation*}
+\sigmae_x\sigmap_z\,\ket{+\,-}=
+\sigmae_x(\sigmap_z\,\ket{+\,-})=
+\sigmae_x(-\,\ket{+\,-})=
+-\sigmae_x\,\ket{+\,-}=
+-\ket{-\,-}.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{gather*}
+\sigmae_x\sigmap_z\,\ket{+\,-}=
+\sigmae_x(\sigmap_z\,\ket{+\,-})=\\[1ex]
+\sigmae_x(-\,\ket{+\,-})=
+-\sigmae_x\,\ket{+\,-}=
+-\ket{-\,-}.
+\end{gather*}
+</span>
+Note that these operators don’t do anything on pure numbers—we have
+used this fact when we wrote $\sigmae_x(-1)=(-1)\sigmae_x$. We say
+that the operators “commute” with pure numbers, or that a number
+“can be moved through” the operator. You can practice by showing
+that the product $\sigmae_x\sigmap_z$ gives the following results for
+the four states:
+\begin{align*}
+\sigmae_x\sigmap_z\,\ket{+\,+}&=+\,\ket{-\,+},\\[1ex]
+\sigmae_x\sigmap_z\,\ket{+\,-}&=-\,\ket{-\,-},\\[1ex]
+\sigmae_x\sigmap_z\,\ket{-\,+}&=+\,\ket{+\,+},\\[1ex]
+\sigmae_x\sigmap_z\,\ket{-\,-}&=-\,\ket{+\,-}.
+\end{align*}
+</p>
+</div>
+
+<div id="Ch12-S2-p6" class="para">
+<p class="p">If we take all the possible operators, using each kind of operator
+only once, there are sixteen possibilities. Yes,
+<em class="emph">sixteen</em>—provided we include also the “unit
+operator” $\hat{1}$. First, there are the three: $\sigmae_x$, $\sigmae_y$,
+$\sigmae_z$. Then the three $\sigmap_x$, $\sigmap_y$,
+$\sigmap_z$—that makes six. In addition, there are the nine possible
+products of the form $\sigmae_x\sigmap_y$ which makes a total
+of 15. And there’s the unit operator which just leaves any state
+unchanged. Sixteen in all.
+</p>
+</div>
+
+<div id="Ch12-S2-p7" class="para">
+<p class="p">Now note that for a four-state system, the Hamiltonian matrix has to
+be a four-by-four matrix of coefficients—it will have sixteen
+entries. It is easily demonstrated that any four-by-four matrix—and,
+therefore, the Hamiltonian matrix in particular—can be written as a
+linear combination of the sixteen double-spin matrices corresponding to
+the set of operators we have just made up. Therefore, for the
+interaction between a proton and an electron that involves only their
+spins, we can expect that the Hamiltonian operator can be written as a
+linear combination of the same $16$ operators. The only question is,
+how?
+</p>
+</div>
+
+<div id="Ch12-S2-p8" class="para">
+<p class="p">Well, first, we know that the interaction doesn’t depend on our choice
+of axes for a coordinate system. If there is no external
+disturbance—like a magnetic field—to determine a unique direction
+in space, the Hamiltonian can’t depend on our choice of the direction
+of the $x$-, $y$-, and $z$-axes. That means that the Hamiltonian can’t
+have a term like $\sigmae_x$ all by itself. It would be ridiculous,
+because then somebody with a different coordinate system would get
+different results.
+</p>
+</div>
+
+<div id="Ch12-S2-p9" class="para">
+<p class="p">The only possibilities are a term with the unit matrix, say a
+constant $a$ (times $\hat{1}$), and some combination of the sigmas that doesn’t
+depend on the coordinates—some “invariant” combination. The only
+<em class="emph">scalar</em> invariant combination of two vectors is the dot product,
+which for our $\sigma$’s is
+\begin{equation}
+\label{Eq:III:12:4}
+\FLPsigmae\cdot\FLPsigmap=
+\sigmae_x\sigmap_x+
+\sigmae_y\sigmap_y+
+\sigmae_z\sigmap_z.
+\end{equation}
+This operator is invariant with respect to any rotation of the
+coordinate system. So the only possibility for a Hamiltonian with the
+proper symmetry in space is a constant times the unit matrix plus a
+constant times this dot product, say,
+\begin{equation}
+\label{Eq:III:12:5}
+\Hop=E_0+A\,\FLPsigmae\cdot\FLPsigmap.
+\end{equation}
+That’s our Hamiltonian. It’s the only thing that it can be, by the
+symmetry of space, <em class="emph">so long as there is no external field</em>. The
+constant term doesn’t tell us much; it just depends on the level we
+choose to measure energies from. We may just as well take $E_0=0$. The
+second term tells us all we need to know to find the level splitting
+of the hydrogen.
+</p>
+</div>
+
+<div id="Ch12-S2-p10" class="para">
+<p class="p">If you want to, you can think of the Hamiltonian in a different
+way. If there are two magnets near each other with magnetic moments
+$\FLPmu_{\text{e}}$ and $\FLPmu_{\text{p}}$, the mutual energy will
+depend on $\FLPmu_{\text{e}}\cdot\FLPmu_{\text{p}}$—among other
+things. And, you remember, we found that the classical thing we
+call $\FLPmu_{\text{e}}$ appears in quantum mechanics
+as $\mu_{\text{e}}\FLPsigmae$. Similarly, what appears classically
+as $\FLPmu_{\text{p}}$ will usually turn out in quantum mechanics to
+be $\mu_{\text{p}}\FLPsigmap$ (where $\mu_{\text{p}}$ is the magnetic
+moment of the proton, which is about $1000$ times smaller
+than $\mu_{\text{e}}$, and has the opposite sign). So Eq. (<a href="#mjx-eqn-EqIII125">12.5</a>)
+says that the interaction energy is like the interaction between two
+magnets—only not quite, because the interaction of the two magnets
+depends on the radial distance between them. But Eq. (<a href="#mjx-eqn-EqIII125">12.5</a>)
+could be—and, in fact, <em class="emph">is</em>—some kind of an average
+interaction. The electron is moving all around inside the atom, and our
+Hamiltonian gives only the average interaction energy. All it says is
+that for a prescribed arrangement in space for the electron and proton
+there is an energy proportional to the cosine of the angle between the
+two magnetic moments, speaking classically. Such a classical qualitative
+picture may help you to understand where it comes from, but the
+important thing is that Eq. (<a href="#mjx-eqn-EqIII125">12.5</a>) is the correct quantum
+mechanical formula.
+</p>
+</div>
+
+<div id="Ch12-S2-p11" class="para">
+<p class="p">The order of magnitude of the classical interaction between two
+magnets would be the product of the two magnetic moments divided by
+the cube of the distance between them. The distance between the
+electron and the proton in the hydrogen atom is, speaking roughly, one
+half an atomic radius, or $0.5$ angstrom. It is, therefore, possible
+to make a crude estimate that the constant $A$ should be about equal
+to the product of the two magnetic moments $\mu_{\text{e}}$
+and $\mu_{\text{p}}$ divided by the cube of $1/2$ angstrom. Such an
+estimate gives a number in the right ball park. It turns out that $A$
+can be calculated accurately once you understand the complete quantum
+theory of the hydrogen atom—which we so far do not. It has, in fact,
+been calculated to an accuracy of about $30$ parts in one million. So,
+unlike the flip-flop constant $A$ of the ammonia molecule, which
+couldn’t be calculated at all well by a theory, our constant $A$ for
+the hydrogen <em class="emph">can</em> be calculated from a more detailed theory. But
+never mind, we will for our present purposes think of the $A$ as a
+number which could be determined by experiment, and analyze the
+physics of the situation.
+</p>
+</div>
+
+<div id="Ch12-S2-p12" class="para">
+<p class="p">Taking the Hamiltonian of Eq. (<a href="#mjx-eqn-EqIII125">12.5</a>), we can use it
+with the equation
+\begin{equation}
+\label{Eq:III:12:6}
+i\hbar\dot{C}_i=\sum_jH_{ij}C_j
+\end{equation}
+to find out what the spin interactions do to the energy levels. To do
+that, we need to work out the sixteen matrix
+elements $H_{ij}=\bracket{i}{H}{j}$ corresponding to each pair of the four base
+states in (<a href="#mjx-eqn-EqIII121">12.1</a>).
+</p>
+</div>
+
+<div id="Ch12-S2-p13" class="para">
+<p class="p">We begin by working out what $\Hop\,\ket{j}$ is for each of the four
+base states.  For example,
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:12:7}
+\Hop\,\ket{+\,+}=A\FLPsigmae\cdot\FLPsigmap\,\ket{+\,+}=
+A\{\sigmae_x\sigmap_x+
+\sigmae_y\sigmap_y+
+\sigmae_z\sigmap_z\}\,\ket{+\,+}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+
+\begin{align}
+\Hop\,\ket{+\,+}&=A\FLPsigmae\cdot\FLPsigmap\,\ket{+\,+}\notag\\[1ex]
+\label{Eq:III:12:7}
+&=A\{\sigmae_x\sigmap_x+\sigmae_y\sigmap_y+\sigmae_z\sigmap_z\}\,\ket{+\,+}.
+\end{align}
+
+</span>
+Using the method we described a little earlier—it’s easy if you have
+memorized Table <a href="#Ch12-T1">12-1</a>—we find what each pair
+of $\sigma$’s does on $\ket{+\,+}$. The answer is
+\begin{equation}
+\begin{aligned}
+\sigmae_x\sigmap_x\,\ket{+\,+}&=+\,\ket{-\,-},\\[1ex]
+\sigmae_y\sigmap_y\,\ket{+\,+}&=-\,\ket{-\,-},\\[1ex]
+\sigmae_z\sigmap_z\,\ket{+\,+}&=+\,\ket{+\,+}.
+\end{aligned}
+\label{Eq:III:12:8}
+\end{equation}
+So (<a href="#mjx-eqn-EqIII127">12.7</a>) becomes
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:12:9}
+\Hop\,\ket{+\,+}=A\{\ket{-\,-}-\ket{-\,-}+\ket{+\,+}\}=A\,\ket{+\,+}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\Hop\,\ket{+\,+}&=A\{\ket{-\,-}-\ket{-\,-}+\ket{+\,+}\}\notag\\[1ex]
+\label{Eq:III:12:9}
+&=A\,\ket{+\,+}.
+\end{align}
+</span>
+Since our four base states are all orthogonal, that gives us
+immediately that
+\begin{equation}
+\begin{aligned}
+\bracket{+\,+}{H}{+\,+}&=A\braket{+\,+}{+\,+}=A,\\[1ex]
+\bracket{+\,-}{H}{+\,+}&=A\braket{+\,-}{+\,+}=0,\\[1ex]
+\bracket{-\,+}{H}{+\,+}&=A\braket{-\,+}{+\,+}=0,\\[1ex]
+\bracket{-\,-}{H}{+\,+}&=A\braket{-\,-}{+\,+}=0.
+\end{aligned}
+\label{Eq:III:12:10}
+\end{equation}
+Remembering that $\bracket{j}{H}{i}=\bracket{i}{H}{j}\cconj$, we can
+already write down the differential equation for the amplitudes $C_1$:
+\begin{equation*}
+i\hbar\dot{C}_1=H_{11}C_1+H_{12}C_2+H_{13}C_3+H_{14}C_4
+\end{equation*}
+or
+\begin{equation}
+\label{Eq:III:12:11}
+i\hbar\dot{C}_1=AC_1.
+\end{equation}
+That’s all! We get only the one term.
+</p>
+</div>
+
+<div id="Ch12-T2" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 12–2</span>Spin operators for the hydrogen atom</div>
+<div align="center">
+<table class="framed" style="width: 200px">
+	<tr>
+		<td class="center">
+		\begin{align*}
+		\sigmae_x\sigmap_x&\ket{+\,+}=+\,\ket{-\,-}\\[.5ex]
+		\sigmae_x\sigmap_x&\ket{+\,-}=+\,\ket{-\,+}\\[.5ex]
+		\sigmae_x\sigmap_x&\ket{-\,+}=+\,\ket{+\,-}\\[.5ex]
+		\sigmae_x\sigmap_x&\ket{-\,-}=+\,\ket{+\,+}\\[2ex]
+		\sigmae_y\sigmap_y&\ket{+\,+}=-\,\ket{-\,-}\\[.5ex]
+		\sigmae_y\sigmap_y&\ket{+\,-}=+\,\ket{-\,+}\\[.5ex]
+		\sigmae_y\sigmap_y&\ket{-\,+}=+\,\ket{+\,-}\\[.5ex]
+		\sigmae_y\sigmap_y&\ket{-\,-}=-\,\ket{+\,+}\\[2ex]
+		\sigmae_z\sigmap_z&\ket{+\,+}=+\,\ket{+\,+}\\[.5ex]
+		\sigmae_z\sigmap_z&\ket{+\,-}=-\,\ket{+\,-}\\[.5ex]
+		\sigmae_z\sigmap_z&\ket{-\,+}=-\,\ket{-\,+}\\[.5ex]
+		\sigmae_z\sigmap_z&\ket{-\,-}=+\,\ket{-\,-}
+		\end{align*}
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+
+<div id="Ch12-S2-p14" class="para">
+<p class="p">Now to get the rest of the Hamiltonian equations we have to crank
+through the same procedure for $\Hop$ operating on the other
+states. First, we will let you practice by checking out all of the
+sigma products we have written down in Table <a href="#Ch12-T2">12-2</a>. Then
+we can use them to get:
+\begin{equation}
+\begin{aligned}
+\Hop\,\ket{+\,-}&=A\{2\,\ket{-\,+}-\ket{+\,-}\},\\[1ex]
+\Hop\,\ket{-\,+}&=A\{2\,\ket{+\,-}-\ket{-\,+}\},\\[1ex]
+\Hop\,\ket{-\,-}&=A\,\ket{-\,-}.
+\end{aligned}
+\label{Eq:III:12:12}
+\end{equation}
+Then, multiplying each one in turn on the left by all the other state
+vectors, we get the following Hamiltonian matrix, $H_{ij}$:
+\begin{equation}
+\label{Eq:III:12:13}
+H_{ij}=
+\kern -1.5ex \raise 30 pt {\scriptstyle i\downarrow \,\raise 7 pt \scriptstyle j\rightarrow}\kern -13pt % ebook remove
+% ebook insert: \raise{40pt}{\scriptstyle i\downarrow \,\raise{12pt}{\scriptstyle j\rightarrow}\kern -15pt}
+\begin{pmatrix}
+A &  0 &  0 & 0\\[1ex]
+0 & -A & 2A & 0\\[1ex]
+0 & 2A & -A & 0\\[1ex]
+0 &  0 &  0 & A
+\end{pmatrix}.
+\end{equation}
+It means, of course, nothing more than that our differential equations
+for the four amplitudes $C_i$ are
+\begin{equation}
+\begin{aligned}
+i\hbar\dot{C}_1&=AC_1,\\[1ex]
+i\hbar\dot{C}_2&=-AC_2+2AC_3,\\[1ex]
+i\hbar\dot{C}_3&=2AC_2-AC_3,\\[1ex]
+i\hbar\dot{C}_4&=AC_4.
+\end{aligned}
+\label{Eq:III:12:14}
+\end{equation}
+</p>
+</div>
+
+<div id="Ch12-S2-p15" class="para">
+<p class="p">Before solving these equations we can’t resist telling you about a
+clever rule due to Dirac—it will make you feel that you are really
+advanced—although we don’t need it for our work. We have—from the
+equations (<a href="#mjx-eqn-EqIII129">12.9</a>) and (<a href="#mjx-eqn-EqIII1212">12.12</a>)—that
+\begin{equation}
+\begin{aligned}
+\FLPsigmae\cdot\FLPsigmap\,\ket{+\,+}&=\ket{+\,+},\\[1ex]
+\FLPsigmae\cdot\FLPsigmap\,\ket{+\,-}&=2\,\ket{-\,+}-\ket{+\,-},\\[1ex]
+\FLPsigmae\cdot\FLPsigmap\,\ket{-\,+}&=2\,\ket{+\,-}-\ket{-\,+},\\[1ex]
+\FLPsigmae\cdot\FLPsigmap\,\ket{-\,-}&=\ket{-\,-}.
+\end{aligned}
+\label{Eq:III:12:15}
+\end{equation}
+
+Look, said Dirac, I can also write the first and last equations as
+\begin{align*}
+\FLPsigmae\cdot\FLPsigmap\,\ket{+\,+}&=2\,\ket{+\,+}-\ket{+\,+},\\[1ex]
+\FLPsigmae\cdot\FLPsigmap\,\ket{-\,-}&=2\,\ket{-\,-}-\ket{-\,-};
+\end{align*}
+then they are all quite similar. Now I invent a new operator, which I
+will call $P_{\text{spin exch}}$ and which I <em class="emph">define</em> to have the
+following properties:<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+\begin{align*}
+P_{\text{spin exch}}\,\ket{+\,+}&=\ket{+\,+},\\[1ex]
+P_{\text{spin exch}}\,\ket{+\,-}&=\ket{-\,+},\\[1ex]
+P_{\text{spin exch}}\,\ket{-\,+}&=\ket{+\,-},\\[1ex]
+P_{\text{spin exch}}\,\ket{-\,-}&=\ket{-\,-}.
+\end{align*}
+All the operator does is interchange the spin directions of the two
+particles. Then I can write the whole set of equations
+in (<a href="#mjx-eqn-EqIII1215">12.15</a>) as a simple operator equation:
+\begin{equation}
+\label{Eq:III:12:16}
+\FLPsigmae\cdot\FLPsigmap=2P_{\text{spin exch}}-1.
+\end{equation}
+</p>
+</div>
+
+<div id="Ch12-S2-p16" class="para">
+<p class="p">That’s the formula of Dirac. His “spin exchange operator” gives a
+handy rule for figuring out $\FLPsigmae\cdot\FLPsigmap$. (You see, you
+can do everything now. The gates are open.)
+</p>
+</div>
+
+
+</div> <!-- end of section -->
+
+
+<div id="Ch12-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">12–3</span>The energy levels</h3>
+
+<div id="Ch12-S3-p1" class="para">
+<p class="p">Now we are ready to work out the energy levels of the ground state of
+hydrogen by solving the Hamiltonian equations (<a href="#mjx-eqn-EqIII1214">12.14</a>). We
+want to find the energies of the stationary states. This means that we
+want to find those special states $\ket{\psi}$ for which each
+amplitude $C_i=\braket{i}{\psi}$ in the set belonging to $\ket{\psi}$
+has the same time dependence—namely, $e^{-i\omega t}$. Then the
+state will have the energy $E=\hbar\omega$. So we want a set for which
+\begin{equation}
+\label{Eq:III:12:17}
+C_i=a_ie^{-(i/\hbar)Et},
+\end{equation}
+where the four coefficients $a_i$ are independent of time. To see
+whether we can get such amplitudes, we substitute (<a href="#mjx-eqn-EqIII1217">12.17</a>)
+into Eq. (<a href="#mjx-eqn-EqIII1214">12.14</a>) and see what happens. Each
+$i\hbar\,dC/dt$ in Eq. (<a href="#mjx-eqn-EqIII1214">12.14</a>) turns into $EC$,
+and—after cancelling out the common exponential factor—each $C$
+becomes an $a$; we get
+\begin{equation}
+\begin{aligned}
+Ea_1&=Aa_1,\\[1ex]
+Ea_2&=-Aa_2+2Aa_3,\\[1ex]
+Ea_3&=2Aa_2-Aa_3,\\[1ex]
+Ea_4&=Aa_4,
+\end{aligned}
+\label{Eq:III:12:18}
+\end{equation}
+which we have to solve for $a_1$, $a_2$, $a_3$, and $a_4$. Isn’t it nice that
+the first equation is independent of the rest—that means we can see one
+solution right away. If we choose $E=A$,
+\begin{equation*}
+a_1=1,\quad a_2=a_3=a_4=0,
+\end{equation*}
+gives a solution. (Of course, taking all the $a$’s equal to zero also gives a
+solution, but that’s no state at all!) Let’s call our first solution the
+state $\ket{\slI}$:<a name="footnote_source_3" href="#footnote_3"><sup class="mark">3</sup></a>
+\begin{equation}
+\label{Eq:III:12:19}
+\ket{\slI}=\ket{\slOne}=\ket{+\,+}.
+\end{equation}
+Its energy is
+\begin{equation*}
+E_{\slI}=A.
+\end{equation*}
+</p>
+</div>
+
+<div id="Ch12-S3-p2" class="para">
+<p class="p">With that clue you can immediately see another solution from the last
+equation in (<a href="#mjx-eqn-EqIII1218">12.18</a>):
+\begin{align*}
+a_1&=a_2=a_3=0,\quad a_4=1,\\[5pt]
+E&=A.
+\end{align*}
+We’ll call that solution state $\ket{\slII}$:
+\begin{align}
+\label{Eq:III:12:20}
+\ket{\slII}&=\ket{\slFour}=\ket{-\,-},\\[5pt]
+E_{\slII}&=A.\notag
+\end{align}
+</p>
+</div>
+
+<div id="Ch12-S3-p3" class="para">
+<p class="p">Now it gets a little harder; the two equations left
+in (<a href="#mjx-eqn-EqIII1218">12.18</a>) are mixed up. But we’ve done it all before.
+Adding the two, we get
+\begin{equation}
+\label{Eq:III:12:21}
+E(a_2+a_3)=A(a_2+a_3).
+\end{equation}
+Subtracting, we have
+\begin{equation}
+\label{Eq:III:12:22}
+E(a_2-a_3)=-3A(a_2-a_3).
+\end{equation}
+By inspection—and remembering ammonia—we see that there are two
+solutions:
+\begin{alignat}{2}
+\notag a_2&=a_3,&\quad E&
+=A\\[-1ex] % ebook remove
+% ebook insert: =A\\
+\label{Eq:III:12:23}
+\kern{-6em}\text{and}\\ % ebook remove
+% ebook insert: \makebox[0em]{\kern{-10em}\text{and}}\\
+\notag a_2&=-a_3,&\quad E&=-3A.
+\end{alignat} 
+They are mixtures of $\ket{\slTwo}$ and $\ket{\slThree}$. Calling
+these states $\ket{\slIII}$ and $\ket{\slIV}$, and putting in a
+factor $1/\sqrt{2}$ to make the states properly normalized, we have
+<span class="eq-wide">
+\begin{equation}
+\begin{aligned}
+\ket{\slIII}&=\frac{1}{\sqrt{2}}\,(\ket{\slTwo}+\ket{\slThree})=
+\frac{1}{\sqrt{2}}\,(\ket{+\,-}+\ket{-\,+}),\\[1ex]
+E_{\slIII}&=A
+\end{aligned}
+\label{Eq:III:12:24}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+\ket{\slIII}&=\frac{1}{\sqrt{2}}\,(\ket{\slTwo}+\ket{\slThree})\\[1ex]
+&=\frac{1}{\sqrt{2}}\,(\ket{+\,-}+\ket{-\,+}),\\[1.5ex]
+E_{\slIII}&=A
+\end{aligned}
+\label{Eq:III:12:24}
+\end{equation}
+</span>
+and
+<span class="eq-wide">
+\begin{equation}
+\begin{aligned}
+\ket{\slIV}&=\frac{1}{\sqrt{2}}\,(\ket{\slTwo}-\ket{\slThree})=
+\frac{1}{\sqrt{2}}\,(\ket{+\,-}-\ket{-\,+}),\\[1ex]
+E_{\slIV}&=-3A.
+\end{aligned}
+\label{Eq:III:12:25}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{aligned}
+\ket{\slIV}&=\frac{1}{\sqrt{2}}\,(\ket{\slTwo}-\ket{\slThree})\notag\\[1ex]
+&=\frac{1}{\sqrt{2}}\,(\ket{+\,-}-\ket{-\,+}),\\[1.5ex]
+E_{\slIV}&=-3A.
+\end{aligned}
+\label{Eq:III:12:25}
+\end{equation}
+</span>
+We have found four stationary states and their energies. Notice,
+incidentally, that our four states are orthogonal, so they also can be
+used for base states if desired. Our problem is completely solved.
+</p>
+</div>
+
+
+<div id="Ch12-S3-p4" class="para">
+<p class="p">Three of the states have the energy $A$, and the last has the
+energy $-3A$. The average is zero—which means that when we took $E_0=0$ in
+Eq. (<a href="#mjx-eqn-EqIII125">12.5</a>), we were choosing to measure all the energies
+from the average energy. We can draw the energy-level diagram for the
+ground state of hydrogen as shown in Fig. <a href="#Ch12-F2">12-2</a>.
+</p>
+</div>
+
+<div id="Ch12-F2" class="figure">
+<img src="img/FLP_III/f12-02/f12-02_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 12–2.</span>
+Energy-level diagram for the ground state of atomic hydrogen.
+</div>
+</div>
+
+<div id="Ch12-S3-p5" class="para">
+<p class="p">Now the difference in energy between state $\ket{\slIV}$ and any one
+of the others is $4A$. An atom which happens to have gotten into
+state $\ket{\slI}$ could fall from there to state $\ket{\slIV}$ and emit
+light. Not optical light, because the energy is so tiny—it would
+emit a microwave quantum. Or, if we shine microwaves on hydrogen gas,
+we will find an absorption of energy as the atoms in
+state $\ket{\slIV}$ pick up energy and go into one of the upper states—but
+only at the frequency $\omega=4A/\hbar$. This frequency has been
+measured experimentally; the best result, obtained very
+recently,<a name="footnote_source_4" href="#footnote_4"><sup class="mark">4</sup></a> is
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:12:26}
+f=\omega/2\pi=(1{,}420{,}405{,}751.800\pm0.028)\text{ cycles per second}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{equation}
+\begin{gathered}
+f=\omega/2\pi=\\[.5ex]
+(1{,}420{,}405{,}751.800\pm0.028)\text{ cycles per second}.
+\end{gathered}
+\label{Eq:III:12:26}
+\end{equation}
+</span>
+The error is only two parts in $100$ billion! Probably no basic
+physical quantity is measured better than that—it’s one of the most
+remarkably accurate measurements in physics. The theorists were very
+happy that they could compute the energy to an accuracy of $3$ parts
+in $10^5$, but in the meantime it has been measured to $2$ parts
+in $10^{11}$—a million times more accurate than the theory. So the
+experimenters are way ahead of the theorists. In the theory of the
+ground state of the hydrogen atom <em class="emph">you</em> are as good as
+anybody. You, too, can just take your value of $A$ from
+experiment—that’s what everybody has to do in the end.
+</p>
+</div>
+
+<div id="Ch12-S3-p6" class="para">
+<p class="p">You have probably heard before about the “$21$-centimeter
+line” of hydrogen. That’s the
+wavelength of the $1420$ megacycle spectral line between the hyperfine
+states. Radiation of this wavelength is emitted or absorbed by the
+atomic hydrogen gas in the galaxies. So with radio telescopes tuned in
+to $21$-cm waves (or $1420$ megacycles approximately) we can observe the
+velocities and the location of concentrations of atomic hydrogen gas. By
+measuring the intensity, we can estimate the amount of hydrogen. By
+measuring the frequency shift due to the Doppler
+effect, we can find out about the motion
+of the gas in the galaxy. That is one of the big programs of radio
+astronomy. So now we are talking about something that’s very real—it
+is not an artificial problem.
+</p>
+</div>
+
+
+</div> <!-- end of section -->
+
+
+<div id="Ch12-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">12–4</span>The Zeeman splitting</h3>
+
+<div id="Ch12-S4-p1" class="para">
+<p class="p">Although we have finished the problem of finding the energy levels of
+the hydrogen ground state, we would like to study this interesting
+system some more. In order to say anything more about it—for
+instance, in order to calculate the rate at which the hydrogen atom
+absorbs or emits radio waves at $21$ centimeters—we have to know
+what happens when the atom is disturbed. We have to do as we did for
+the ammonia molecule—after we found the energy levels we went on and
+studied what happened when the molecule was in an electric field. We
+were then able to figure out the effects from the electric field in a
+radio wave. For the hydrogen atom, the electric field does nothing to
+the levels, except to move them all by some constant amount
+proportional to the square of the field—which is not of any interest
+because that won’t change the energy <em class="emph">differences</em>. It is now the
+<em class="emph">magnetic</em> field which is important. So the next step is to write
+the Hamiltonian for a more complicated situation in which the atom
+sits in an external magnetic field.
+</p>
+</div>
+
+<div id="Ch12-S4-p2" class="para">
+<p class="p">What, then, is the Hamiltonian? We’ll just tell you the answer,
+because we can’t give you any “proof” except to say that this is the
+way the atom works.
+</p>
+</div>
+
+<div id="Ch12-S4-p3" class="para">
+<p class="p">The Hamiltonian is
+\begin{equation}
+\label{Eq:III:12:27}
+\Hop=A(\FLPsigmae\cdot\FLPsigmap)-
+\mu_{\text{e}}\FLPsigmae\cdot\FLPB-
+\mu_{\text{p}}\FLPsigmap\cdot\FLPB.
+\end{equation}
+It now consists of three parts. The first
+term $A\FLPsigmae\cdot\FLPsigmap$ represents the magnetic interaction
+between the electron and the proton—it is the same one that would be
+there if there were no magnetic field. This is the term we have
+already had; and the influence of the magnetic field on the
+constant $A$ is negligible. The effect of the external magnetic field shows up
+in the last two terms. The second term,
+$-\mu_{\text{e}}\FLPsigmae\cdot\FLPB$, is the energy the electron
+would have in the magnetic field if it were there
+alone.<a name="footnote_source_5" href="#footnote_5"><sup class="mark">5</sup></a>
+In the same way, the last
+term $-\mu_{\text{p}}\FLPsigmap\cdot\FLPB$, would have been the energy of a
+proton alone. Classically, the energy of the two of them together
+would be the sum of the two, and that works also quantum
+mechanically. In a magnetic field, the energy of interaction due to
+the magnetic field is just the sum of the energy of interaction of the
+electron with the external field, and of the proton with the
+field—both expressed in terms of the sigma operators. In quantum
+mechanics these terms are not really the energies, but thinking of the
+classical formulas for the energy is a way of remembering the rules
+for writing down the Hamiltonian. Anyway, the correct Hamiltonian is
+Eq. (<a href="#mjx-eqn-EqIII1227">12.27</a>).
+</p>
+</div>
+
+<div id="Ch12-S4-p4" class="para">
+<p class="p">Now we have to go back to the beginning and do the problem all over
+again. Much of the work is, however, done—we need only to add the
+effects of the new terms. Let’s take a constant magnetic field $\FLPB$
+in the $z$-direction. Then we have to add to our Hamiltonian
+operator $\Hop$ the two new pieces—which we can call $\Hop'$:
+\begin{equation*}
+\Hop'=-(\mu_{\text{e}}\sigmae_z+\mu_{\text{p}}\sigmap_z)B.
+\end{equation*}
+Using Table <a href="#Ch12-T1">12-1</a>, we get right away that
+\begin{equation}
+\begin{aligned}
+\Hop'\,\ket{+\,+}&=-(\mu_{\text{e}}+\mu_{\text{p}})B\,\ket{+\,+},\\[.5ex]
+\Hop'\,\ket{+\,-}&=-(\mu_{\text{e}}-\mu_{\text{p}})B\,\ket{+\,-},\\[.5ex]
+\Hop'\,\ket{-\,+}&=-(-\mu_{\text{e}}+\mu_{\text{p}})B\,\ket{-\,+},\\[.5ex]
+\Hop'\,\ket{-\,-}&=(\mu_{\text{e}}+\mu_{\text{p}})B\,\ket{-\,-}.
+\end{aligned}
+\label{Eq:III:12:28}
+\end{equation}
+How very convenient! The $\Hop'$ operating on each state just gives a
+number times that state. The matrix $\bracket{i}{H'}{j}$ has,
+therefore, only <em class="emph">diagonal</em> elements—we can just add the
+coefficients in (<a href="#mjx-eqn-EqIII1228">12.28</a>) to the corresponding diagonal
+terms of (<a href="#mjx-eqn-EqIII1213">12.13</a>), and the Hamiltonian equations
+of (<a href="#mjx-eqn-EqIII1214">12.14</a>) become
+\begin{equation}
+\begin{aligned}
+i\hbar\,dC_1/dt&=
+\{A-(\mu_{\text{e}}+\mu_{\text{p}})B\}C_1,\\[1ex]
+i\hbar\,dC_2/dt&=
+-\{A+(\mu_{\text{e}}-\mu_{\text{p}})B\}C_2+2AC_3,\\[1ex]
+i\hbar\,dC_3/dt&=
+2AC_2-\{A-(\mu_{\text{e}}-\mu_{\text{p}})B\}C_3,\\[1ex]
+i\hbar\,dC_4/dt&=
+\{A+(\mu_{\text{e}}+\mu_{\text{p}})B\}C_4.
+\end{aligned}
+\label{Eq:III:12:29}
+\end{equation}
+</p>
+</div>
+
+<div id="Ch12-S4-p5" class="para">
+<p class="p">The form of the equations is not different—only the coefficients. So
+long as $B$ doesn’t vary with time, we can continue as we did
+before. Substituting $C_i=a_ie^{-(i/\hbar)Et}$, we get—as a
+modification of (<a href="#mjx-eqn-EqIII1218">12.18</a>)—
+\begin{equation}
+\begin{aligned}
+Ea_1&=\{A-(\mu_{\text{e}}+\mu_{\text{p}})B\}a_1,\\[1ex]
+Ea_2&=-\{A+(\mu_{\text{e}}-\mu_{\text{p}})B\}a_2+2Aa_3,\\[1ex]
+Ea_3&=2Aa_2-\{A-(\mu_{\text{e}}-\mu_{\text{p}})B\}a_3,\\[1ex]
+Ea_4&=\{A+(\mu_{\text{e}}+\mu_{\text{p}})B\}a_4.
+\end{aligned}
+\label{Eq:III:12:30}
+\end{equation}
+Fortunately, the first and fourth equations are still independent of
+the rest, so the same technique works again.
+</p>
+</div>
+
+<div id="Ch12-S4-p6" class="para">
+<p class="p">One solution is the state $\ket{\slI}$ for which $a_1=1$, $a_2=$ $a_3=$ $a_4=$ $0$, or
+\begin{align}
+\notag \ket{\slI}&=\ket{\slOne}=\ket{+\,+},\\
+\label{Eq:III:12:31}
+\kern{-6em}\text{with}\\ % ebook remove
+% ebook insert: \makebox[0em]{\kern{-10em}\text{with}}\\
+\notag E_{\slI}&=A-(\mu_{\text{e}}+\mu_{\text{p}})B.
+\end{align} 
+Another is
+\begin{align}
+\notag \ket{\slII}&=\ket{\slFour}=\ket{-\,-},\\
+\label{Eq:III:12:32}
+\kern{-6em}\text{with}\\ % ebook remove
+% ebook insert: \makebox[0em]{\kern{-10em}\text{with}}\\
+\notag E_{\slII}&=A+(\mu_{\text{e}}+\mu_{\text{p}})B.
+\end{align} 
+</p>
+</div>
+
+<div id="Ch12-S4-p7" class="para">
+<p class="p">A little more work is involved for the remaining two equations,
+because the coefficients of $a_2$ and $a_3$ are no longer equal. But
+they are just like the pair we had for the ammonia molecule. Looking
+back at Eq. (<a href="III_09.html#mjx-eqn-EqIII920">9.20</a>), we can make the following analogy
+(remembering that the labels $1$ and $2$ there correspond to $2$
+and $3$ here):
+\begin{equation}
+\begin{aligned}
+H_{11}&\to-A-(\mu_{\text{e}}-\mu_{\text{p}})B,\\[1ex]
+H_{12}&\to2A,\\[1ex]
+H_{21}&\to2A,\\[1ex]
+H_{22}&\to-A+(\mu_{\text{e}}-\mu_{\text{p}})B.
+\end{aligned}
+\label{Eq:III:12:33}
+\end{equation}
+The energies are then given by (<a href="III_09.html#mjx-eqn-EqIII925">9.25</a>), which was
+\begin{equation}
+\label{Eq:III:12:34}
+E=\!\frac{H_{11}\!+H_{22}}{2}\!\pm\!
+\sqrt{\frac{(H_{11}\!-H_{22})^2}{4}\!+\!H_{12}H_{21}}.
+\end{equation}
+Making the substitutions from (<a href="#mjx-eqn-EqIII1233">12.33</a>), the energy formula
+becomes
+\begin{equation*}
+E=-A\pm\sqrt{(\mu_{\text{e}}-\mu_{\text{p}})^2B^2+4A^2}.
+\end{equation*}
+
+Although in Chapter <a href="III_09.html">9</a> we used to call these energies
+$E_{\slI}$ and $E_{\slII}$, and we are in this problem calling them
+$E_{\slIII}$ and $E_{\slIV}$,
+\begin{equation}
+\begin{aligned}
+E_{\slIII}&=
+A\{-1+2\sqrt{1+(\mu_{\text{e}}-\mu_{\text{p}})^2B^2/4A^2}\},\\[1ex]
+E_{\slIV}&=
+-A\{1+2\sqrt{1+(\mu_{\text{e}}-\mu_{\text{p}})^2B^2/4A^2}\}.
+\end{aligned}
+\label{Eq:III:12:35}
+\end{equation}
+</p>
+</div>
+
+<div id="Ch12-S4-p8" class="para">
+<p class="p">So we have found the energies of the four stationary states of a
+hydrogen atom in a constant magnetic field. Let’s check our results by
+letting $B$ go to zero and seeing whether we get the same energies we
+had in the preceding section. You see that we do. For $B=0$, the
+energies $E_{\slI}$, $E_{\slII}$, and $E_{\slIII}$ go to $+A$, and
+$E_{\slIV}$ goes to $-3A$. Even our labeling of the states agrees with
+what we called them before. When we turn on the magnetic field though,
+all of the energies change in a different way. Let’s see how they go.
+</p>
+</div>
+
+
+<div id="Ch12-S4-p9" class="para">
+<p class="p">First, we have to remember that for the electron, $\mu_{\text{e}}$ is
+negative, and about $1000$ times larger than $\mu_{\text{p}}$—which
+is positive. So $\mu_{\text{e}}+\mu_{\text{p}}$
+and $\mu_{\text{e}}-\mu_{\text{p}}$ are both negative numbers, and nearly
+equal. Let’s call them $-\mu$ and $-\mu'$:
+\begin{equation}
+\label{Eq:III:12:36}
+\mu=-(\mu_{\text{e}}+\mu_{\text{p}}),\quad
+\mu'=-(\mu_{\text{e}}-\mu_{\text{p}}).
+\end{equation}
+(Both $\mu$ and $\mu'$ are positive numbers, nearly equal to magnitude
+of $\mu_{\text{e}}$—which is about one Bohr magneton.) Then
+our four energies are
+\begin{equation}
+\begin{aligned}
+E_{\slI}&=A+\mu B,\\[1.3ex]
+E_{\slII}&=A-\mu B,\\[1ex]
+E_{\slIII}&=A\{-1+2\sqrt{1+\mu'^2B^2/4A^2}\},\\[1ex]
+E_{\slIV}&=-A\{1+2\sqrt{1+\mu'^2B^2/4A^2}\}.
+\end{aligned}
+\label{Eq:III:12:37}
+\end{equation}
+The energy $E_{\slI}$ starts at $A$ and increases linearly
+with $B$—with the slope $\mu$. The energy $E_{\slII}$ also starts at $A$
+but <em class="emph">decreases</em> linearly with increasing $B$—its slope
+is $-\mu$. These two levels vary with $B$ as shown in
+Fig. <a href="#Ch12-F3">12-3</a>. We show also in the figure the energies
+$E_{\slIII}$ and $E_{\slIV}$. They have a different $B$-dependence. For
+small $B$, they depend quadratically on $B$, so they start out with
+horizontal slopes. Then they begin to curve, and for <em class="emph">large</em> $B$
+they approach straight lines with slopes $\pm\mu'$, which are nearly the
+same as the slopes of $E_{\slI}$ and $E_{\slII}$.
+</p>
+</div>
+
+<div id="Ch12-F3" class="figure">
+<img src="img/FLP_III/f12-03/f12-03_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 12–3.</span>
+The energy levels of the ground state of hydrogen in a magnetic field $\FigB$.
+</div>
+</div>
+
+<div id="Ch12-S4-p10" class="para">
+<p class="p">The shift of the energy levels of an atom due to a magnetic field is
+called the <em class="emph">Zeeman effect</em>. We say that the curves in
+Fig. <a href="#Ch12-F3">12-3</a> show the <em class="emph">Zeeman splitting</em> of the ground
+state of hydrogen. When there is no magnetic field, we get just one
+spectral line from the hyperfine structure of hydrogen. The transitions
+between state $\ket{\slIV}$ and any one of the others occurs with the
+absorption or emission of a photon whose frequency $1420$ megacycles is
+$1/h$ times the energy difference $4A$. When the atom is in a magnetic
+field $\FLPB$, however, there are many more lines. There can be
+transitions between any two of the four states. So if we have atoms in
+all four states, energy can be absorbed—or emitted—in any one of the
+six transitions shown by the vertical arrows in Fig. <a href="#Ch12-F4">12-4</a>.
+Many of these transitions can be observed by the Rabi molecular beam
+technique we described in Volume II, Section <a href="II_35.html#Ch35-S3">35-3</a>.
+</p>
+</div>
+
+<div id="Ch12-F4" class="figure">
+<img src="img/FLP_III/f12-04/f12-04_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 12–4.</span>
+Transitions between the levels of ground state energy levels of
+hydrogen in some particular magnetic field $\FigB$.
+</div>
+</div>
+
+<div id="Ch12-S4-p11" class="para">
+<p class="p">What makes the transitions go? The transitions will occur if you apply
+a small disturbing magnetic field that varies with time (in addition
+to the steady strong field $\FLPB$). It’s just as we saw for a varying
+electric field on the ammonia molecule. Only here, it is the magnetic
+field which couples with the magnetic moments and does the trick. But
+the theory follows through in the same way that we worked it out for
+the ammonia. The theory is the simplest if you take a perturbing
+magnetic field that rotates in the $xy$-plane—although any
+horizontal oscillating field will do. When you put in this perturbing
+field as an additional term in the Hamiltonian, you get solutions in
+which the amplitudes vary with time—as we found for the ammonia
+molecule. So you can calculate easily and accurately the probability
+of a transition from one state to another. And you find that it all
+agrees with experiment.
+</p>
+</div>
+
+
+</div> <!-- end of section -->
+
+
+<div id="Ch12-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">12–5</span>The states in a magnetic field</h3>
+
+<div id="Ch12-S5-p1" class="para">
+<p class="p">We would like now to discuss the shapes of the curves in
+Fig. <a href="#Ch12-F3">12-3</a>. In the first place, the energies for large
+fields are easy to understand, and rather interesting. For $B$ large
+enough (namely for $\mu B/A\gg1$) we can neglect the $1$ in the formulas
+of (<a href="#mjx-eqn-EqIII1237">12.37</a>). The four energies become
+\begin{equation}
+\begin{alignedat}{2}
+E_{\slI}\;&=A+\mu B,&\quad
+E_{\slII}\;&=A-\mu B,\\[1ex]
+E_{\slIII}\;&=-A+\mu'B,&\quad
+E_{\slIV}\;&=-A-\mu'B.
+\end{alignedat}
+\label{Eq:III:12:38}
+\end{equation}
+These are the equations of the four straight lines in
+Fig. <a href="#Ch12-F3">12-3</a>. We can understand these energies physically in
+the following way. The nature of the stationary states in a <em class="emph">zero</em>
+field is determined completely by the interaction of the two magnetic
+moments.  The mixtures of the base states $\ket{+\,-}$ and $\ket{-\,+}$
+in the stationary states $\ket{\slIII}$ and $\ket{\slIV}$ are due to
+this interaction. In <em class="emph">large external</em> fields, however, the proton
+and electron will be influenced hardly at all by the field of the other;
+each will act as if it were alone in the external field. Then—as we
+have seen many times—the electron spin will be either parallel to or
+opposite to the external magnetic field.
+</p>
+</div>
+
+<div id="Ch12-S5-p2" class="para">
+<p class="p">Suppose the electron spin is “up”—that is, along the field; its
+energy will be $-\mu_{\text{e}}B$. The proton can still be either
+way. If the proton spin is also “up,” its energy
+is $-\mu_{\text{p}}B$. The sum of the two
+is $-(\mu_{\text{e}}+\mu_{\text{p}})B=\mu B$. That is just what we find
+for $E_{\slI}$—which is fine, because we are describing the
+state $\ket{+\,+}=\ket{\slI}$. There is still the small additional term $A$
+(now $\mu B\gg A$) which represents the interaction energy of the
+proton and electron when their spins are parallel. (We originally
+took $A$ as positive because the theory we spoke of says it should be, and
+experimentally it is indeed so.) On the other hand, the proton can
+have its spin down. Then its energy in the external field goes
+to $+\mu_{\text{p}}B$, so it and the electron have the
+energy $-(\mu_{\text{e}}-\mu_{\text{p}})B=\mu'B$. And the interaction energy
+becomes $-A$. The sum is just the energy $E_{\slIII}$,
+in (<a href="#mjx-eqn-EqIII1238">12.38</a>). So the state $\ket{\slIII}$ must for large
+fields become the state $\ket{+\,-}$.
+</p>
+</div>
+
+<div id="Ch12-S5-p3" class="para">
+<p class="p">Suppose now the electron spin is “down.” Its energy in the external
+field is $\mu_{\text{e}}B$. If the proton is also “down,” the two
+together have the energy $(\mu_{\text{e}}+\mu_{\text{p}})B=-\mu B$,
+<em class="emph">plus</em> the interaction energy $A$—since their spins are
+parallel. That makes just the energy $E_{\slII}$ in (<a href="#mjx-eqn-EqIII1238">12.38</a>)
+and corresponds to the state $\ket{-\,-}=\ket{\slII}$—which is nice.
+Finally if the electron is “down” and the proton is “up,” we get the
+energy $(\mu_{\text{e}}-\mu_{\text{p}})B-A$ (<em class="emph">minus</em> $A$ for the
+interaction because the spins are opposite) which is just $E_{\slIV}$.
+And the state corresponds to $\ket{-\,+}$.
+</p>
+</div>
+
+<div id="Ch12-S5-p4" class="para">
+<p class="p">“But, wait a moment!”, you are probably saying, “The states
+$\ket{\slIII}$ and $\ket{\slIV}$ <em class="emph">are not</em> the states
+$\ket{+\,-}$ and $\ket{-\,+}$; they are <em class="emph">mixtures</em> of the two.”
+Well, only slightly. They are indeed mixtures for $B=0$, but we have
+not yet figured out what they are for large $B$. When we used the
+analogies of (<a href="#mjx-eqn-EqIII1233">12.33</a>) in our formulas of
+Chapter <a href="III_09.html">9</a> to get the energies of the stationary states,
+we could also have taken the amplitudes that go with them. They come
+from Eq. (<a href="III_09.html#mjx-eqn-EqIII924">9.24</a>), which is
+\begin{equation*}
+\frac{a_2}{a_3}=\frac{E-H_{22}}{H_{21}}.
+\end{equation*}
+The ratio $a_2/a_3$ is, of course, just $C_2/C_3$. Plugging in the
+analogous quantities from (<a href="#mjx-eqn-EqIII1233">12.33</a>), we get
+\begin{align}
+\frac{C_2}{C_3}&=
+\frac{E+A-(\mu_{\text{e}}-\mu_{\text{p}})B}{2A}\notag\\
+\kern{-6em}\text{or}\notag\\ % ebook remove
+% ebook insert: \makebox[0em]{\kern{-10em}\text{or}}\notag\\
+\label{Eq:III:12:39}
+\frac{C_2}{C_3}&=\frac{E+A+\mu'B}{2A},
+\end{align}}
+where for $E$ we are to use the appropriate energy—either
+$E_{\slIII}$ or $E_{\slIV}$. For instance, for state $\ket{\slIII}$
+we have
+\begin{equation}
+\label{Eq:III:12:40}
+\biggl(\frac{C_2}{C_3}\biggr)_{\slIII}\approx\frac{\mu'B}{A}.
+\end{equation}
+So for large $B$ the state $\ket{\slIII}$ has $C_2\gg C_3$; the state
+becomes almost completely the state $\ket{\slTwo}=\ket{+\,-}$. Similarly,
+if we put $E_{\slIV}$ into (<a href="#mjx-eqn-EqIII1239">12.39</a>) we get $(C_2/C_3)_{\slIV}\ll1$;
+for high fields state $\ket{\slIV}$ becomes just the
+state $\ket{\slThree}=\ket{-\,+}$. You see that the coefficients in the linear
+combinations of our base states which make up the stationary states
+depend on $B$. The state we call $\ket{\slIII}$ is a $50$-$50$ mixture
+of $\ket{+\,-}$ and $\ket{-\,+}$ at very low fields, but shifts
+completely over to $\ket{+\,-}$ at high fields. Similarly, the
+state $\ket{\slIV}$, which at low fields is also a $50$-$50$ mixture (with
+opposite signs) of $\ket{+\,-}$ and $\ket{-\,+}$, goes over into the
+state $\ket{-\,+}$ when the spins are uncoupled by a strong external
+field.
+</p>
+</div>
+
+<div id="Ch12-F5" class="figure">
+<img src="img/FLP_III/f12-05/f12-05_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 12–5.</span>
+The states of the hydrogen atom for small magnetic fields.
+</div>
+</div>
+
+<div id="Ch12-S5-p5" class="para">
+<p class="p">We would also like to call your attention particularly to what happens
+at <em class="emph">very low</em> magnetic fields. There is one energy—at $-3A$—which
+<em class="emph">does not change</em> when you turn on a small magnetic
+field. And there is another energy—at $+A$—which splits into three different energy levels 
+when you turn on a small magnetic field. For weak fields the energies vary with $B$ as shown 
+in Fig. <a href="#Ch12-F5">12–5</a>. Suppose that we have somehow selected a bunch 
+of hydrogen atoms which all have the energy $-3A$. If we put them through a Stern-Gerlach 
+experiment—with fields that are not too strong—we would find that they just go straight through. 
+(Since their energy doesn’t depend on $B$, there is—according to the principle of virtual 
+work—no force on them in a magnetic field gradient.) Suppose, on the other hand, we were to 
+select a bunch of atoms with the energy $+A$, and put them through a Stern-Gerlach apparatus, 
+say an $S$ apparatus. (Again the fields in the apparatus should not be so great that they disrupt 
+the insides of the atom, by which we mean a field small enough that the energies vary linearly 
+with $B$.) We would find <em class="emph">three beams</em>. The states $\ket{\slI}$ and 
+$\ket{\slII}$ get opposite forces—their energies vary linearly with $B$ with the slopes $\pm\mu$ 
+so the <em class="emph">forces</em> are like those on a dipole with $\mu_z=\mp\mu$; but the state 
+$\ket{\slIII}$ goes straight through. So we are right back in Chapter <a href="III_05.html">5</a>. 
+<em class="emph">A hydrogen atom with the energy $+A$ is a spin-one particle</em>. 
+This energy state is a “particle” for which $j=1$, and it can be described—with respect to
+some set of axes in space—in terms of the base states $\ket{+S}$, $\ket{\OS}$,
+and $\ket{-S}$ we used in Chapter <a href="III_05.html">5</a>. On the
+other hand, when a hydrogen atom has the energy $-3A$, it is a spin-zero
+particle. (Remember, what we are saying is only strictly true for
+infinitesimal magnetic fields.)  So we can group the states of hydrogen
+in zero magnetic field this way:
+\begin{alignat}{2}
+&
+\left.
+\begin{aligned}
+\ket{\slI}&=\ket{+\,+}\\[2pt]
+\ket{\slIII}&=\dfrac{\ket{+\,-}+\ket{-\,+}}{\sqrt{2}}\\[3pt]
+\ket{\slII}&=\ket{-\,-}\\
+\end{aligned}
+\right\}
+&&
+\;\text{spin $1$}\;
+\left\{
+\begin{array}{@{}l@{}}
+\ket{+S}\\[2pt]
+\vphantom{\dfrac{\ket{+\,-}+\ket{-\,+}}{\sqrt{2}}}\ket{\OS}\\[3pt]
+\ket{-S}\\
+\label{Eq:III:12:41}
+\end{array}
+\right.\\[1ex]
+&
+\left.
+% ebook insert: \phantom{0}
+\ket{\slIV}=\dfrac{\ket{+\,-}-\ket{-\,+}}{\sqrt{2}}
+\right.
+&&
+\;\text{spin $0$.}
+\label{Eq:III:12:42}
+\end{alignat}
+</p>
+</div>
+
+<div id="Ch12-S5-p6" class="para">
+<p class="p">We have said in Chapter <a href="II_35.html">35</a> of Volume II that
+for any particle its component of angular momentum along any axis can
+have only certain values always $\hbar$ apart. The $z$-component of
+angular momentum $J_z$ can be $j\hbar$, $(j-1)\hbar$, $(j-2)\hbar$, $\ldots$, $(-j)\hbar$,
+where $j$ is the spin of the particle (which can be
+an integer or half-integer). Although we neglected to say so at the
+time, people usually write
+\begin{equation}
+\label{Eq:III:12:43}
+J_z=m\hbar,
+\end{equation}
+where $m$ stands for one of the numbers $j$, $j-1$, $j-2$, $\ldots$, $-j$.
+You will, therefore, see people in books label the four ground states of
+hydrogen by the so-called <em class="emph">quantum numbers</em>
+$j$ and $m$ [often called the “total angular momentum quantum
+number” ($j$) and “magnetic quantum number” ($m$)]. Then, instead of
+our state symbols $\ket{\slI}$, $\ket{\slII}$, and so on, they will
+write a state as $\ket{j,m}$. So they would write our little table of
+states for zero field in (<a href="#mjx-eqn-EqIII1241">12.41</a>) and (<a href="#mjx-eqn-EqIII1242">12.42</a>)
+as shown in Table <a href="#Ch12-T3">12-3</a>. It’s not new physics, it’s all
+just a matter of notation.
+</p>
+</div>
+
+<div id="Ch12-T3" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 12-3</span>Zero field states of the hydrogen atom
+</div>
+<div align="center">
+<table border="1" style="width: 50%" height="10%">
+	<tr>
+		<td class="l t center">State $\ket{j,m}$</td>
+		<td class="l t center">$j$</td>
+		<td class="l t center">&nbsp;$m$</td>
+		<td class="l t r center">Our notation</td>
+	</tr>
+	<tr>
+		<td class="l tt center">$\ket{1,+1}$</td>
+		<td class="l tt center">$1$</td>
+		<td class="l tt center">$+1$</td>
+		<td class="l tt r center">$\phantom{\slII}\ket{\slI}=\ket{+S}$</td>
+	</tr>
+	<tr>
+		<td class="l center">$\ket{1,0}\phantom{+}$</td>
+		<td class="l center">$1$</td>
+		<td class="l center">$\phantom{+}0$</td>
+		<td class="l r center">$\ket{\slIII}=\ket{\OS}$</td>
+	</tr>
+	<tr>
+		<td class="l center">$\ket{1,-1}$</td>
+		<td class="l center">$1$</td>
+		<td class="l center">$-1$</td>
+		<td class="l r center">$\phantom{\slI}\ket{\slII}=\ket{-S}$</td>
+	</tr>
+	<tr>
+		<td class="b l center">$\ket{0,0}\phantom{+}$</td>
+		<td class="b l center">$0$</td>
+		<td class="b l center">$\phantom{+}0$</td>
+		<td class="b l r center">$\ket{\slIV}\phantom{{}=\ket{+S}}$</td>
+	</tr>
+</table>
+</div>
+</div>
+
+</div> <!-- end of section -->
+
+
+<div id="Ch12-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">12–6</span>The projection matrix for spin one<a name="footnote_source_6" href="#footnote_6"><sup class="mark">6</sup></a></h3>
+
+<div id="Ch12-S6-p1" class="para">
+<p class="p">We would like now to use our knowledge of the hydrogen atom to do
+something special. We discussed in Chapter <a href="III_05.html">5</a> that a
+particle of <em class="emph">spin one</em> which was in one of the base states ($+$, $0$,
+or $-$) with respect to a Stern-Gerlach apparatus of a particular
+orientation—say an $S$ apparatus—would have a certain amplitude to
+be in each of the three states with respect to a $T$ apparatus with a
+different orientation in space. There are nine such
+amplitudes $\braket{jT}{iS}$ which make up the projection matrix. In
+Section <a href="III_05.html#Ch5-S7">5–77</a> we gave without proof the terms of this
+matrix for various orientations of $T$ with respect to $S$. Now we will
+show you one way they can be derived.
+</p>
+</div>
+
+<div id="Ch12-S6-p2" class="para">
+<p class="p">In the hydrogen atom we have found a spin-one system which is made up
+of two spin one-half particles. We have already worked out in
+Chapter <a href="III_06.html">6</a> how to transform the spin one-half amplitudes.
+We can use this information to calculate the transformation for spin
+one. This is the way it works: We have a system—a hydrogen atom with
+the energy $+A$—which has spin one. Suppose we run it through a
+Stern-Gerlach filter $S$, so that we know it is in one of the base
+states with respect to $S$, say $\ket{+S}$. What is the amplitude that
+it will be in one of the base states, say $\ket{+T}$, with respect to
+the $T$ apparatus? If we call the coordinate system of the $S$ apparatus
+the $x,y,z$ system, the $\ket{+S}$ state is what we have been calling
+the state $\ket{+\,+}$. But suppose another guy took his $z$-axis along
+the axis of $T$. He will be referring his states to what we will call
+the $x',y',z'$ frame. His “up” and “down” states for the electron
+and proton would be different from ours. <em class="emph">His</em> “plus-plus”
+state—which we can write $\ket{+'\,+'}$, referring to the “prime”
+frame—is the $\ket{+T}$ state of the spin-one particle. What we want
+is $\braket{+T}{+S}$ which is just another way of writing the
+amplitude $\braket{+'\,+'}{+\,+}$.
+</p>
+</div>
+
+<div id="Ch12-S6-p3" class="para">
+<p class="p">We can find the amplitude $\braket{+'\,+'}{+\,+}$ in the following
+way. In <em class="emph">our</em> frame the <em class="emph">electron</em> in the $\ket{+\,+}$ state
+has its spin “up”. That means that it has some
+amplitude $\braket{+'}{+}_{\text{e}}$ of being “up” in <em class="emph">his</em> frame, and
+some amplitude $\braket{-'}{+}_{\text{e}}$ of being “down” in that
+frame. Similarly, the <em class="emph">proton</em> in the $\ket{+\,+}$ state has spin
+“up” in our frame and the amplitudes $\braket{+'}{+}_{\text{p}}$
+and $\braket{-'}{+}_{\text{p}}$ of having spin “up” or spin “down” in
+the “prime” frame. Since we are talking about two distinct
+particles, the amplitude that <em class="emph">both</em> particles will be “up”
+<em class="emph">together</em> in <em class="emph">his</em> frame is the product of the two
+amplitudes,
+\begin{equation}
+\label{Eq:III:12:44}
+\braket{+'\,+'}{+\,+}=
+\braket{+'}{+}_{\text{e}}\braket{+'}{+}_{\text{p}}.
+\end{equation}
+We have put the subscripts e and p on the amplitudes $\braket{+'}{+}$
+to make it clear what we were doing. But they are both just the
+transformation amplitudes for a spin one-half particle, so they are
+really identical numbers. They are, in fact, just the amplitude we
+have called $\braket{+T}{+S}$ in Chapter <a href="III_06.html">6</a>, and which
+we listed in the tables at the end of that chapter.
+</p>
+</div>
+
+<div id="Ch12-S6-p4" class="para">
+<p class="p">Now, however, we are about to get into trouble with notation. We have
+to be able to distinguish the amplitude $\braket{+T}{+S}$ for a
+<em class="emph">spin one-half</em> particle from what we have <em class="emph">also</em>
+called $\braket{+T}{+S}$ for a <em class="emph">spin-one</em> particle—yet they are
+completely different!  We hope it won’t be too confusing, but
+<em class="emph">for the moment</em> at least, we will have to use some different
+symbols for the spin one-half amplitudes. To help you keep things
+straight, we summarize the new notation in Table <a href="#Ch12-T4">12-4</a>. We
+will continue to use the notation $\ket{+S}$, $\ket{\OS}$,
+and $\ket{-S}$ for the states of a spin-one particle.
+</p>
+</div>
+
+<div id="Ch12-T4" class="table">
+<div class="caption ltx_centering">
+<span class="tag">Table 12-4</span>Spin one-half amplitudes
+</div>
+<div align="center">
+<table border="1" style="width: 25%" height="10%">
+	<tr>
+		<td class="l t center">This chapter</td>
+		<td class="t r center">Chapter <a href="III_06.html">6</a></td>
+	</tr>
+
+	<tr>
+		<td class="l tt center">$a=\braket{+'}{+}$</td>
+		<td class="tt r center">$\braket{+T}{+S}$</td>
+	</tr>
+	<tr>
+		<td class="l center">$b=\braket{-'}{+}$</td>
+		<td class="r center">$\braket{-T}{+S}$</td>
+	</tr>
+	<tr>
+		<td class="l center">$c=\braket{+'}{-}$</td>
+		<td class="r center">$\braket{+T}{-S}$</td>
+	</tr>
+	<tr>
+		<td class="l b center">$d=\braket{-'}{-}$</td>
+		<td class="b r center">$\braket{-T}{-S}$</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="Ch12-S6-p5" class="para">
+<p class="p">With our new notation, Eq. (<a href="#mjx-eqn-EqIII1244">12.44</a>) becomes simply
+\begin{equation*}
+\braket{+'\,+'}{+\,+}=a^2,
+\end{equation*}
+and this is just the spin-<em class="emph">one</em> amplitude $\braket{+T}{+S}$. Now,
+let’s suppose, for instance, that the other guy’s coordinate
+frame—that is, the $T$, or “primed,” apparatus—is just rotated
+with respect to <em class="emph">our</em> $z$-axis by the angle $\phi$; then from
+Table <a href="III_06.html#Ch6-T2">6-2</a>,
+\begin{equation*}
+a=\braket{+'}{+}=e^{i\phi/2}.
+\end{equation*}
+So from (<a href="#mjx-eqn-EqIII1244">12.44</a>) we have that the spin-one amplitude is
+\begin{equation}
+\label{Eq:III:12:45}
+\braket{+T}{+S}=\braket{+'\,+'}{+\,+}=
+(e^{i\phi/2})^2=e^{i\phi}.
+\end{equation}
+You can see how it goes.
+</p>
+</div>
+
+<div id="Ch12-S6-p6" class="para">
+<p class="p">Now we will work through the general case for all the states. If the
+proton and electron are both “up” in <em class="emph">our</em> frame—the
+$S$-frame—the amplitudes that it will be in <em class="emph">any one of the
+four</em> possible states in the other guy’s frame—the $T$-frame—are
+\begin{equation}
+\begin{aligned}
+\braket{+'\,+'}{+\,+}&=
+\braket{+'}{+}_{\text{e}}\braket{+'}{+}_{\text{p}}=
+a^2,\\[1ex]
+\braket{+'\,-'}{+\,+}&=
+\braket{+'}{+}_{\text{e}}\braket{-'}{+}_{\text{p}}=
+ab,\\[1ex]
+\braket{-'\,+'}{+\,+}&=
+\braket{-'}{+}_{\text{e}}\braket{+'}{+}_{\text{p}}=
+ba,\\[1ex]
+\braket{-'\,-'}{+\,+}&=
+\braket{-'}{+}_{\text{e}}\braket{-'}{+}_{\text{p}}=
+b^2.
+\end{aligned}
+\label{Eq:III:12:46}
+\end{equation}
+We can, then, write the state $\ket{+\,+}$ as the following linear
+combination:
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:12:47}
+\ket{+\,+}=a^2\,\ket{+'\,+'}+ab\,\{\ket{+'\,-'}+\ket{-'\,+'}\}+
+b^2\,\ket{-'\,-'}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{alignat}{3}
+\ket{+\,+}&=&\phantom{ab}&a^2&\,&\ket{+'\,+'}\notag\\[.5ex]
+&+&\,ab&\,\{&&\ket{+'\,-'}+\ket{-'\,+'}\;\}\notag\\[.5ex]
+\label{Eq:III:12:47}
+&+&&b^2&\,&\ket{-'\,-'}.
+\end{alignat}
+</span>
+Now we notice that $\ket{+'\,+'}$ is the state $\ket{+T}$, that
+$\{\ket{+'\,-'}+\ket{-'\,+'}\}$ is just $\sqrt{2}$ <em class="emph">times</em> the
+state $\ket{\OT}$—see (<a href="#mjx-eqn-EqIII1241">12.41</a>)—and that
+$\ket{-'\,-'}=\ket{-T}$. In other words, Eq. (<a href="#mjx-eqn-EqIII1247">12.47</a>)
+can be rewritten as
+\begin{equation}
+\label{Eq:III:12:48}
+\ket{+S}=a^2\,\ket{+T}+\sqrt{2}\,ab\,\ket{\OT}+b^2\,\ket{-T}.
+\end{equation}
+In a similar way you can easily show that
+\begin{equation}
+\label{Eq:III:12:49}
+\ket{-S}=c^2\,\ket{+T}+\sqrt{2}\,cd\,\ket{\OT}+d^2\,\ket{-T}.
+\end{equation}
+For $\ket{\OS}$ it’s a little more complicated, because
+\begin{equation*}
+\ket{\OS}=\frac{1}{\sqrt{2}}\,\{\ket{+\,-}+\ket{-\,+}\}.
+\end{equation*}
+But we can express each of the states $\ket{+\,-}$ and $\ket{-\,+}$ in
+terms of the “prime” states and take the sum. That is,
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:12:50}
+\ket{+\,-}=
+ac\,\ket{+'\,+'}+ad\,\ket{+'\,-'}+
+bc\,\ket{-'\,+'}+bd\,\ket{-'\,-'}
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{alignat}{2}
+\ket{+\,-}&&=ac\,&\ket{+'\,+'}+ad\,\ket{+'\,-'}\notag\\[.5ex]
+\label{Eq:III:12:50}
+&&+\,bc\,&\ket{-'\,+'}+bd\,\ket{-'\,-'}
+\end{alignat}
+</span>
+and
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:12:51}
+\ket{-\,+}=
+ac\,\ket{+'\,+'}+bc\,\ket{+'\,-'}+
+ad\,\ket{-'\,+'}+bd\,\ket{-'\,-'}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{alignat}{2}
+\ket{-\,+}&&=ac\,&\ket{+'\,+'}+bc\,\ket{+'\,-'}\notag\\[.5ex]
+\label{Eq:III:12:51}
+&&+\,ad\,&\ket{-'\,+'}+bd\,\ket{-'\,-'}.
+\end{alignat}
+</span>
+Taking $1/\sqrt{2}$ times the sum, we get
+<span class="eq-wide">
+\begin{equation*}
+\ket{\OS}=\frac{2}{\sqrt{2}}\,ac\,\ket{+'\,+'}+
+\frac{ad+bc}{\sqrt{2}}\,\{\ket{+'\,-'}+\ket{-'\,+'}\}+
+\frac{2}{\sqrt{2}}\,bd\,\ket{-'\,-'}.
+\end{equation*}
+</span>
+<span class="eq-narrow">
+\begin{alignat*}{3}
+\ket{\OS}&=&&\phantom{a}\frac{2}{\sqrt{2}}\,ac&\,&\ket{+'\,+'}\\[.75ex]
+&+&&\frac{ad+bc}{\sqrt{2}}&\{\,&\ket{+'\,-'}+\ket{-'\,+'}\,\}\\[.75ex]
+&+&&\phantom{a}\frac{2}{\sqrt{2}}\,bd&\,&\ket{-'\,-'}.
+\end{alignat*}
+</span>
+It follows that
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:III:12:52}
+\ket{\OS}=\sqrt{2}\,ac\,\ket{+T}+(ad+bc)\,\ket{\OT}+
+\sqrt{2}\,bd\,\ket{-T}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+\ket{\OS}&=\sqrt{2}ac\,\ket{+T}\notag\\[.5ex]
+&+(ad+bc)\,\ket{\OT}\notag\\[.5ex]
+\label{Eq:III:12:52}
+&+\sqrt{2}\,bd\,\ket{-T}.
+\end{align}
+</span>
+</p>
+</div>
+
+<div id="Ch12-S6-p7" class="para">
+<p class="p">We have now all of the amplitudes we wanted. The coefficients of Eqs.
+(<a href="#mjx-eqn-EqIII1248">12.48</a>), (<a href="#mjx-eqn-EqIII1249">12.49</a>), and (<a href="#mjx-eqn-EqIII1252">12.52</a>) are the
+matrix elements $\braket{jT}{iS}$. Let’s pull them all together:
+
+\begin{equation}
+\label{Eq:III:12:53}
+\braket{jT}{iS}=
+\kern -2.5ex \raise 23 pt {\scriptstyle jT\downarrow \,\raise 7 pt \scriptstyle iS\rightarrow}\kern -19pt % ebook remove
+% ebook insert: \kern -1.5ex \raise{40pt}{\scriptstyle jT\downarrow \,\raise{7pt}{\scriptstyle iS\rightarrow}}\kern -23pt
+\begin{pmatrix}
+a^2 & \sqrt{2}ac & c^2\\[1ex]
+\sqrt{2}ab & ad\!+\!bc & \sqrt{2}cd\\[1ex]
+b^2 & \sqrt{2}bd & d^2
+\end{pmatrix}
+\!\! % ebook remove
+.
+\end{equation}
+
+We have expressed the spin-one transformation in terms of the spin
+one-half amplitudes $a$, $b$, $c$, and $d$.
+</p>
+</div>
+
+<div id="Ch12-S6-p8" class="para">
+<p class="p">For instance, if the $T$-frame is rotated with respect to $S$ by the
+angle $\alpha$ about the $y$-axis—as in Fig. <a href="III_05.html#Ch5-F6">5-6</a>—the
+amplitudes in Table <a href="#Ch12-T4">12-4</a> are just the matrix elements
+of $R_y(\alpha)$ in Table <a href="III_06.html#Ch6-T2">6-2</a>.
+\begin{equation}
+\begin{alignedat}{2}
+a\;&=\cos\frac{\alpha}{2},&\quad
+b\;&=-\sin\frac{\alpha}{2},\\[1ex]
+c\;&=\sin\frac{\alpha}{2},&\quad
+d\;&=\cos\frac{\alpha}{2}.
+\end{alignedat}
+\label{Eq:III:12:54}
+\end{equation}
+Using these in (<a href="#mjx-eqn-EqIII1253">12.53</a>), we get the formulas
+of (<a href="III_05.html#mjx-eqn-EqIII538">5.38</a>), which we gave there without proof.
+</p>
+</div>
+
+<div id="Ch12-S6-p9" class="para">
+<p class="p">What ever happened to the state $\ket{\slIV}$?! Well, it is a
+spin-zero system, so it has only one state—it is the <em class="emph">same in
+all coordinate systems</em>. We can check that everything works out by
+taking the difference of Eq. (<a href="#mjx-eqn-EqIII1250">12.50</a>)
+and (<a href="#mjx-eqn-EqIII1251">12.51</a>); we get that
+\begin{equation*}
+\ket{+\,-}-\ket{-\,+}=(ad-bc)\{\ket{+'\,-'}-\ket{-'\,+'}\}.
+\end{equation*}
+But $(ad-bc)$ is the determinant of the spin one-half matrix, and so
+is equal to $1$. We get that
+\begin{equation*}
+\ket{\slIV'}=\ket{\slIV}
+\end{equation*}
+for any relative orientation of the two coordinate frames.
+</p>
+</div>
+
+
+</div> <!-- end of section -->
+
+
+<ol id="footnotes">
+
+	<li class="footnote">
+	  <a name="footnote_1"></a>
+For these <em class="emph">particular</em> operators, you will notice
+it turns out that the sequence of the operators doesn’t matter.
+	  <a href="#footnote_source_1">↩</a>
+	</li>
+	
+	<li class="footnote">
+	  <a name="footnote_2"></a>
+This operator is now called the “Pauli
+spin exchange operator.”
+	  <a href="#footnote_source_2">↩</a>
+	</li>
+	
+	<li class="footnote">
+	  <a name="footnote_3"></a>
+The state is
+really $\ket{\slI}e^{-(i/\hbar)E_{\slI}t}$; but, as usual we will identify the
+states by the constant vectors which are equal to the complete vectors
+at $t=0$.
+	  <a href="#footnote_source_3">↩</a>
+	</li>
+	
+	<li class="footnote">
+	  <a name="footnote_4"></a>
+Crampton, Kleppner, and Ramsey; <i>Physical Review Letters</i>, Vol. <b>11</b>, page 338 (1963).
+	  <a href="#footnote_source_4">↩</a>
+	</li>
+	
+	<li class="footnote">
+	  <a name="footnote_5"></a>
+Remember that classically $U=-\FLPmu\cdot\FLPB$, so
+the energy is lowest when the moment is along the field. For positive
+particles, the magnetic moment is parallel to the spin and for
+negative particles it is opposite. So in Eq. (<a href="#mjx-eqn-EqIII1227">12.27</a>),
+$\mu_{\text{p}}$ is a <em class="emph">positive</em> number, but $\mu_{\text{e}}$ is
+a <em class="emph">negative</em> number.
+	  <a href="#footnote_source_5">↩</a>
+	</li>
+	
+	<li class="footnote">
+	  <a name="footnote_6"></a>
+Those who chose to jump
+over Chapter <a href="III_06.html">6</a> should skip this section also.
+	  <a href="#footnote_source_6">↩</a>
+	</li>
+	
+</ol>
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="III_copyright.html">Copyright © 1965, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

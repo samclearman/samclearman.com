@@ -1,0 +1,1173 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 10: Dielectrics</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "10." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["0\\,S", 0], OT: ["0\\,T\\,", 0], OR: ["0\\,R", 0], OO: ["0\\,", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch10" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">10</span>Dielectrics</h2>
+<div id="Ch10-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">10–1</span>The dielectric constant</h3>
+<div id="Ch10-S1-p1" class="para">
+<p class="p">Here we begin to discuss another of the peculiar properties
+of matter under the influence of the electric field. In an earlier
+chapter we considered the behavior of <em class="emph">conductors</em>, in which the
+charges move freely in response to an electric field to such points that
+there is no field left inside a conductor. Now we will discuss
+<em class="emph">insulators</em>, materials which do not conduct
+electricity. One might at first believe that there should be no effect
+whatsoever. However, using a simple electroscope and a parallel-plate
+capacitor, Faraday discovered
+that this was not so. His experiments showed that the capacitance of
+such a capacitor is <em class="emph">increased</em> when an insulator is put between
+the plates. If the insulator completely fills the space between the
+plates, the capacitance is increased by a factor $\kappa$ which depends
+only on the nature of the insulating material. Insulating materials are
+also called <em class="emph">dielectrics</em>; the factor $\kappa$ is then a property
+of the dielectric, and is called the <em class="emph">dielectric constant</em>. The
+dielectric constant of a vacuum is, of course, unity.</p>
+</div>
+<div id="Ch10-S1-p2" class="para">
+<p class="p">Our problem now is to explain why there is any electrical effect if
+the insulators are indeed insulators and do not conduct
+electricity. We begin with the experimental fact that the capacitance
+is increased and try to reason out what might be going on. Consider a
+parallel-plate capacitor with some charges on the surfaces of the
+conductors, let us say negative charge on the top plate and positive
+charge on the bottom plate. Suppose that the spacing between the
+plates is $d$ and the area of each plate is $A$. As we have proved
+earlier, the capacitance is
+\begin{equation}
+\label{Eq:II:10:1}
+C=\frac{\epsO A}{d},
+\end{equation}
+
+and the charge and voltage on the capacitor are related by
+\begin{equation}
+\label{Eq:II:10:2}
+Q=CV.
+\end{equation}
+
+Now the experimental fact is that if we put a piece of insulating
+material like lucite or glass between the plates, we find that the
+capacitance is larger. That means, of course, that the voltage is
+lower for the same charge. But the voltage difference is the integral
+of the electric field across the capacitor; so we must conclude that
+inside the capacitor, the electric field is reduced even though the
+charges on the plates remain unchanged.
+</p>
+</div>
+<div id="Ch10-F1" class="figure">
+<img src="img/FLP_II/f10-01/f10-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–1.</span>A parallel-plate capacitor with a dielectric. The lines
+of $\FigE$ are shown.
+</div>
+</div>
+<div id="Ch10-S1-p3" class="para">
+<p class="p">Now how can that be? We have a law due to Gauss that tells us that the
+flux of the electric field is directly related to the enclosed
+charge. Consider the gaussian surface $S$ shown by broken lines in
+Fig. <a href="#Ch10-F1">10–1</a>. Since the electric field is reduced with the
+dielectric present, we conclude that the net charge inside the surface
+must be lower than it would be without the material. There is only one
+possible conclusion, and that is that there must be positive charges
+on the surface of the dielectric.  Since the field is reduced but is
+not zero, we would expect this positive charge to be smaller than the
+negative charge on the conductor. So the phenomena can be explained if
+we could understand in some way that when a dielectric material is
+placed in an electric field there is positive charge induced on one
+surface and negative charge induced on the other.</p>
+</div>
+<div id="Ch10-F2" class="figure">
+<img src="img/FLP_II/f10-02/f10-02_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–2.</span>If we put a conducting plate in the gap of a parallel-plate
+condenser, the induced charges reduce the field in the conductor to
+zero.
+</div>
+</div>
+<div id="Ch10-S1-p4" class="para">
+<p class="p">We would expect that to happen for a conductor. For example, suppose
+that we had a capacitor with a plate spacing $d$, and we put between
+the plates a neutral conductor whose thickness is $b$, as in
+Fig. <a href="#Ch10-F2">10–2</a>. The electric field induces a positive charge on
+the upper surface and a negative charge on the lower surface, so there
+is no field inside the conductor. The field in the rest of the space is
+the same as it was without the conductor, because it is the surface
+density of charge divided by $\epsO$; but the distance over which we
+have to integrate to get the voltage (the potential difference) is
+reduced. The voltage is
+\begin{equation*}
+V=\frac{\sigma}{\epsO}\,(d-b).
+\end{equation*}
+
+The resulting equation for the capacitance is like
+Eq. (<a href="#mjx-eqn-EqII101">10.1</a>), with $(d-b)$ substituted for $d$:
+\begin{equation}
+\label{Eq:II:10:3}
+C=\frac{\epsO A}{d[1-(b/d)]}.
+\end{equation}
+
+The capacitance is increased by a factor which depends upon $(b/d)$,
+the proportion of the volume which is occupied by the conductor.</p>
+</div>
+<div id="Ch10-F3" class="figure">
+<img src="img/FLP_II/f10-03/f10-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–3.</span>A model of a dielectric: small conducting spheres embedded in
+an idealized insulator.
+</div>
+</div>
+<div id="Ch10-S1-p5" class="para">
+<p class="p">This gives us an obvious model for what happens with
+dielectrics—that inside the material there are many little sheets of
+conducting material. The trouble with such a model is that it has a
+specific axis, the normal to the sheets, whereas most dielectrics have
+no such axis. However, this difficulty can be eliminated if we assume
+that all insulating materials contain small conducting spheres
+separated from each other by insulation, as shown in
+Fig. <a href="#Ch10-F3">10–3</a>. The phenomenon of the dielectric constant is
+explained by the effect of the charges which would be induced on each
+sphere. This is one of the earliest physical models of dielectrics used
+to explain the phenomenon that Faraday
+observed. More specifically, it
+was assumed that each of the atoms of a material was a perfect
+conductor, but insulated from the others. The dielectric
+constant $\kappa$ would depend on the proportion of space which was occupied by
+the conducting spheres. This is not, however, the model that is used
+today.</p>
+</div>
+</div>
+<div id="Ch10-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">10–2</span>The polarization vector $\FLPP$</h3>
+<div id="Ch10-S2-p1" class="para">
+<p class="p">If we follow the above analysis further, we discover that the idea of
+regions of perfect conductivity and insulation is not essential. Each
+of the small spheres acts like a dipole, the moment of which is
+induced by the external field. The only thing that is essential to the
+understanding of dielectrics is that there are many little dipoles
+induced in the material. Whether the dipoles are induced because there
+are tiny conducting spheres or for any other reason is irrelevant.</p>
+</div>
+<div id="Ch10-S2-p2" class="para">
+<p class="p">Why should a field induce a dipole moment in an atom if the atom is
+not a conducting sphere? This subject will be discussed in much
+greater detail in the next chapter, which will be about the inner
+workings of dielectric materials.  However, we give here one example
+to illustrate a possible mechanism. An atom has a positive charge on
+the nucleus, which is surrounded by negative electrons.  In an
+electric field, the nucleus will be attracted in one direction and the
+electrons in the other. The orbits or wave patterns of the electrons
+(or whatever picture is used in quantum mechanics) will be distorted
+to some extent, as shown in Fig. <a href="#Ch10-F4">10–4</a>; the center of
+gravity of the negative charge will be displaced and will no longer
+coincide with the positive charge of the nucleus. We have already
+discussed such distributions of charge. If we look from a distance,
+such a neutral configuration is equivalent, to a first approximation,
+to a little dipole.</p>
+</div>
+<div id="Ch10-F4" class="figure">
+<img class="first" src="img/FLP_II/f10-04/f10-04_tc_big_a.svgz"><img class="last" src="img/FLP_II/f10-04/f10-04_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 10–4.</span>An atom in an electric field has its distribution of
+electrons displaced with respect to the nucleus.
+</div>
+</div>
+<div id="Ch10-S2-p3" class="para">
+<p class="p">It seems reasonable that if the field is not too enormous, the amount
+of induced dipole moment will be proportional to the field. That is, a
+small field will displace the charges a little bit and a larger field
+will displace them further—and in proportion to the field—unless
+the displacement gets too large. For the remainder of this chapter, it
+will be supposed that the dipole moment is exactly proportional to the
+field.</p>
+</div>
+<div id="Ch10-S2-p4" class="para">
+<p class="p">We will now assume that in each atom there are charges $q$ separated
+by a distance $\FLPdelta$, so that $q\FLPdelta$ is the dipole moment
+per atom. (We use $\FLPdelta$ because we are already using $d$ for the
+plate separation.) If there are $N$ atoms per unit volume, there will
+be a <em class="emph">dipole moment per unit volume</em> equal to $Nq\FLPdelta$. This
+dipole moment per unit volume will be represented by a vector,
+$\FLPP$. Needless to say, it is in the direction of the individual
+dipole moments, i.e., in the direction of the charge
+separation $\FLPdelta$:
+\begin{equation}
+\label{Eq:II:10:4}
+\FLPP=Nq\FLPdelta.
+\end{equation}
+</p>
+</div>
+<div id="Ch10-S2-p5" class="para">
+<p class="p">In general, $\FLPP$ will vary from place to place in the
+dielectric. However, at any point in the material, $\FLPP$ is
+proportional to the electric field $\FLPE$. The constant of
+proportionality, which depends on the ease with which the electron are
+displaced, will depend on the kinds of atoms in the material.</p>
+</div>
+<div id="Ch10-S2-p6" class="para">
+<p class="p">What actually determines how this constant of proportionality behaves,
+how accurately it is constant for very large fields, and what is going
+on inside different materials, we will discuss at a later time. For
+the present, we will simply suppose that there exists a mechanism by
+which a dipole moment is induced which is proportional to the electric
+field.</p>
+</div>
+</div>
+<div id="Ch10-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">10–3</span>Polarization charges</h3>
+<div id="Ch10-S3-p1" class="para">
+<p class="p">Now let us see what this model gives for the theory of a condenser
+with a dielectric. First consider a sheet of material in which there
+is a certain dipole moment per unit volume. Will there be on the
+average any charge density produced by this?  Not if $\FLPP$ is
+uniform. If the positive and negative charges being displaced relative
+to each other have the same average density, the fact that they are
+displaced does not produce any net charge inside the volume. On the
+other hand, if $\FLPP$ were larger at one place and smaller at
+another, that would mean that more charge would be moved into some
+region than away from it; we would then expect to get a volume density
+of charge. For the parallel-plate condenser, we suppose that $\FLPP$
+is uniform, so we need to look only at what happens at the
+surfaces. At one surface the negative charges, the electrons, have
+effectively moved out a distance $\delta$; at the other surface they
+have moved in, leaving some positive charge effectively out a
+distance $\delta$. As shown in Fig. <a href="#Ch10-F5">10–5</a>, we will have a surface
+density of charge, which will be called the surface <em class="emph">polarization
+charge</em>.</p>
+</div>
+<div id="Ch10-F5" class="figure">
+<img src="img/FLP_II/f10-05/f10-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–5.</span>A dielectric slab in a uniform field. The positive charges
+displaced the distance $\delta$ with respect to the negatives.
+</div>
+</div>
+<div id="Ch10-S3-p2" class="para">
+<p class="p">This charge can be calculated as follows. If $A$ is the area of the
+plate, the number of electrons that appear at the surface is the
+product of $A$ and $N$, the number per unit volume, and the
+displacement $\delta$, which we assume here is perpendicular to the
+surface. The total charge is obtained by multiplying by the electronic
+charge $q_e$. To get the surface density of the polarization charge
+induced on the surface, we divide by $A$. The magnitude of the surface
+charge density is
+\begin{equation*}
+\sigma_{\text{pol}}=Nq_e\delta.
+\end{equation*}
+
+But this is just equal to the magnitude $P$ of the polarization
+vector $\FLPP$, Eq. (<a href="#mjx-eqn-EqII104">10.4</a>):
+\begin{equation}
+\label{Eq:II:10:5}
+\sigma_{\text{pol}}=P.
+\end{equation}
+
+The surface density of charge is equal to the polarization inside the
+material. The surface charge is, of course, positive on one surface
+and negative on the other.</p>
+</div>
+<div id="Ch10-S3-p3" class="para">
+<p class="p">Now let us assume that our slab is the dielectric of a parallel-plate
+capacitor. The <em class="emph">plates</em> of the capacitor also have a surface
+charge, which we will call $\sigma_{\text{free}}$, because they can
+move “freely” anywhere on the conductor. This is, of course, the
+charge that we put on when we charged the capacitor. It should be
+emphasized that $\sigma_{\text{pol}}$ exists only because
+of $\sigma_{\text{free}}$. If $\sigma_{\text{free}}$ is removed by
+discharging the capacitor, then $\sigma_{\text{pol}}$ will disappear,
+not by going out on the discharging wire, but by moving back into the
+material—by the relaxation of the polarization inside the material.</p>
+</div>
+<div id="Ch10-S3-p4" class="para">
+<p class="p">We can now apply Gauss’ law to the gaussian surface $S$ in
+Fig. <a href="#Ch10-F1">10–1</a>. The electric field $\FLPE$ in the dielectric is
+equal to the <em class="emph">total</em> surface charge density divided by $\epsO$. It
+is clear that $\sigma_{\text{pol}}$ and $\sigma_{\text{free}}$ have
+opposite signs, so
+\begin{equation}
+\label{Eq:II:10:6}
+E=\frac{\sigma_{\text{free}}-\sigma_{\text{pol}}}{\epsO}.
+\end{equation}
+</p>
+</div>
+<div id="Ch10-S3-p5" class="para">
+<p class="p">Note that the field $E_0$ between the metal plate and the surface of
+the dielectric is higher than the field $E$; it corresponds
+to $\sigma_{\text{free}}$ alone. But here we are concerned with the field
+inside the dielectric which, if the dielectric nearly fills the gap,
+is the field over nearly the whole volume. Using Eq. (<a href="#mjx-eqn-EqII105">10.5</a>),
+we can write
+\begin{equation}
+\label{Eq:II:10:7}
+E=\frac{\sigma_{\text{free}}-P}{\epsO}.
+\end{equation}
+
+This equation doesn’t tell us what the electric field is unless we
+know what $P$ is. Here, however, we are assuming that $P$ depends
+on $E$—in fact, that it is proportional to $E$. This proportionality is
+usually written as
+\begin{equation}
+\label{Eq:II:10:8}
+\FLPP=\chi\epsO\FLPE.
+\end{equation}
+
+The constant $\chi$ (Greek “khi”) is called the <em class="emph">electric
+susceptibility</em> of the dielectric.</p>
+</div>
+<div id="Ch10-S3-p6" class="para">
+<p class="p">Then Eq. (<a href="#mjx-eqn-EqII107">10.7</a>) becomes
+\begin{equation}
+\label{Eq:II:10:9}
+E=\frac{\sigma_{\text{free}}}{\epsO}\,\frac{1}{(1+\chi)},
+\end{equation}
+
+which gives us the factor $1/(1+\chi)$ by which the field is reduced.</p>
+</div>
+<div id="Ch10-S3-p7" class="para">
+<p class="p">The voltage between the plates is the integral of the electric
+field. Since the field is uniform, the integral is just the product
+of $E$ and the plate separation $d$. We have that
+\begin{equation*}
+V=Ed=\frac{\sigma_{\text{free}}d}{\epsO(1+\chi)}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch10-S3-p8" class="para">
+<p class="p">The total charge on the capacitor is $\sigma_{\text{free}}A$, so that
+the capacitance defined by (<a href="#mjx-eqn-EqII102">10.2</a>) becomes
+\begin{equation}
+\label{Eq:II:10:10}
+C=\frac{\epsO A(1+\chi)}{d}=\frac{\kappa\epsO A}{d}.
+\end{equation}
+</p>
+</div>
+<div id="Ch10-S3-p9" class="para">
+<p class="p">We have explained the observed facts. When a parallel-plate capacitor
+is filled with a dielectric, the capacitance is increased by the
+factor
+\begin{equation}
+\label{Eq:II:10:11}
+\kappa=1+\chi,
+\end{equation}
+
+which is a property of the material. Our explanation, of course, is
+not complete until we have explained—as we will do later—how the
+atomic polarization comes about.</p>
+</div>
+<div id="Ch10-S3-p10" class="para">
+<p class="p">Let’s now consider something a little bit more complicated—the
+situation in which the polarization $\FLPP$ is not everywhere the
+same. As mentioned earlier, if the polarization is not constant, we
+would expect in general to find a charge density in the volume,
+because more charge might come into one side of a small volume element
+than leaves it on the other. How can we find out how much charge is
+gained or lost from a small volume?</p>
+</div>
+<div id="Ch10-S3-p11" class="para">
+<p class="p">First let’s compute how much charge moves across any imaginary surface
+when the material is polarized. The amount of charge that goes across
+a surface is just $P$ times the surface area if the polarization is
+<em class="emph">normal</em> to the surface. Of course, if the polarization is
+<em class="emph">tangential</em> to the surface, no charge moves across it.</p>
+</div>
+<div id="Ch10-S3-p12" class="para">
+<p class="p">Following the same arguments we have already used, it is easy to see
+that the charge moved across any surface element is proportional to
+the <em class="emph">component</em> of $\FLPP$ <em class="emph">perpendicular</em> to the
+surface. Compare Fig. <a href="#Ch10-F6">10–6</a> with Fig. <a href="#Ch10-F5">10–5</a>. We
+see that Eq. (<a href="#mjx-eqn-EqII105">10.5</a>) should, in the general case, be written
+\begin{equation}
+\label{Eq:II:10:12}
+\sigma_{\text{pol}}=\FLPP\cdot\FLPn.
+\end{equation}
+</p>
+</div>
+<div id="Ch10-F6" class="figure">
+<img src="img/FLP_II/f10-06/f10-06_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–6.</span>The charge moved across an element of an imaginary surface in
+a dielectric is proportional to the component of $\FigP$ normal to
+the surface.
+</div>
+</div>
+<div id="Ch10-S3-p13" class="para">
+<p class="p">If we are thinking of an imagined surface element <em class="emph">inside</em> the
+dielectric, Eq. (<a href="#mjx-eqn-EqII1012">10.12</a>) gives the charge moved across
+the surface but doesn’t result in a net surface charge, because there
+are equal and opposite contributions from the dielectric on the two
+sides of the surface.</p>
+</div>
+<div id="Ch10-F7" class="figure">
+<img src="img/FLP_II/f10-07/f10-07_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–7.</span>A nonuniform polarization $\FigP$ can result in a net charge
+in the body of a dielectric.
+</div>
+</div>
+<div id="Ch10-S3-p14" class="para">
+<p class="p">The displacements of the charges can, however, result in a
+<em class="emph">volume</em> charge density. The total charge displaced <em class="emph">out</em> of
+any volume $V$ by the polarization is the integral of the outward
+normal component of $\FLPP$ over the surface $S$ that bounds the
+volume (see Fig. <a href="#Ch10-F7">10–7</a>). An equal excess charge of the
+opposite sign is left behind.  Denoting the net charge inside $V$
+by $\Delta Q_{\text{pol}}$ we write
+\begin{equation}
+\label{Eq:II:10:13}
+\Delta Q_{\text{pol}}=-\int_S\FLPP\cdot\FLPn\,da.
+\end{equation}
+
+We can attribute $\Delta Q_{\text{pol}}$ to a volume distribution of
+charge with the density $\rho_{\text{pol}}$, and so
+\begin{equation}
+\label{Eq:II:10:14}
+\Delta Q_{\text{pol}}=\int_V\rho_{\text{pol}}\,dV.
+\end{equation}
+
+Combining the two equations yields
+\begin{equation}
+\label{Eq:II:10:15}
+\int_V\rho_{\text{pol}}\,dV=-\int_S\FLPP\cdot\FLPn\,da.
+\end{equation}
+
+We have a kind of Gauss’ theorem that relates the charge density from
+polarized materials to the polarization vector $\FLPP$. We can see
+that it agrees with the result we got for the surface polarization
+charge or the dielectric in a parallel-plate capacitor. Using
+Eq. (<a href="#mjx-eqn-EqII1015">10.15</a>) with the gaussian surface of
+Fig. <a href="#Ch10-F1">10–1</a>, the surface integral gives $P\,\Delta A$, and
+the charge inside is $\sigma_{\text{pol}}\,\Delta A$, so we get again
+that $\sigma_{\text{pol}}=P$.</p>
+</div>
+<div id="Ch10-S3-p15" class="para">
+<p class="p">Just as we did for Gauss’ law of electrostatics, we can convert
+Eq. (<a href="#mjx-eqn-EqII1015">10.15</a>) to a differential form—using Gauss’
+mathematical theorem:
+\begin{equation}
+\int_S\FLPP\cdot\FLPn\,da=\int_V\FLPdiv{\FLPP}\,dV.\notag
+\end{equation}
+
+We get
+\begin{equation}
+\label{Eq:II:10:16}
+\rho_{\text{pol}}=-\FLPdiv{\FLPP}.
+\end{equation}
+
+If there is a nonuniform polarization, its divergence gives the net
+density of charge appearing in the material. We emphasize that this is
+a perfectly <em class="emph">real</em> charge density; we call it “polarization
+charge” only to remind ourselves how it got there.</p>
+</div>
+</div>
+<div id="Ch10-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">10–4</span>The electrostatic equations with dielectrics</h3>
+<div id="Ch10-S4-p1" class="para">
+<p class="p">Now let’s combine the above result with our theory of
+electrostatics. The fundamental equation is
+\begin{equation}
+\label{Eq:II:10:17}
+\FLPdiv{\FLPE}=\frac{\rho}{\epsO}.
+\end{equation}
+
+The $\rho$ here is the density of <em class="emph">all</em> electric charges. Since
+it is not easy to keep track of the polarization charges, it is
+convenient to separate $\rho$ into two parts. Again we
+call $\rho_{\text{pol}}$ the charges due to nonuniform polarizations, and
+call $\rho_{\text{free}}$ all the rest.  Usually $\rho_{\text{free}}$
+is the charge we put on conductors, or at known places in space.
+Equation (<a href="#mjx-eqn-EqII1017">10.17</a>) then becomes
+\begin{equation}
+\FLPdiv{\FLPE}=\frac{\rho_{\text{free}}+\rho_{\text{pol}}}{\epsO}=
+\frac{\rho_{\text{free}}-\FLPdiv{\FLPP}}{\epsO}\notag
+\end{equation}
+
+or
+\begin{equation}
+\label{Eq:II:10:18}
+\FLPdiv{\biggl(\FLPE+\frac{\FLPP}{\epsO}\biggr)}=
+\frac{\rho_{\text{free}}}{\epsO}.
+\end{equation}
+
+Of course, the equation for the curl of $\FLPE$ is unchanged:
+\begin{equation}
+\label{Eq:II:10:19}
+\FLPcurl{\FLPE}=\FLPzero.
+\end{equation}
+</p>
+</div>
+<div id="Ch10-S4-p2" class="para">
+<p class="p">Taking $\FLPP$ from Eq. (<a href="#mjx-eqn-EqII108">10.8</a>), we get the simpler
+equation
+\begin{equation}
+\label{Eq:II:10:20}
+\FLPdiv{[(1+\chi)\FLPE]}=\FLPdiv{(\kappa\FLPE)}=
+\frac{\rho_{\text{free}}}{\epsO}.
+\end{equation}
+
+These are the equations of electrostatics when there are
+dielectrics. They don’t, of course, say anything new, but they are in
+a form which is more convenient for computation in cases
+where $\rho_{\text{free}}$ is known and the polarization $\FLPP$ is
+proportional to $\FLPE$.</p>
+</div>
+<div id="Ch10-S4-p3" class="para">
+<p class="p">Notice that we have not taken the dielectric “constant,” $\kappa$,
+out of the divergence. That is because it may not be the same
+everywhere. If it has everywhere the same value, it can be factored
+out and the equations are just those of electrostatics with the charge
+density $\rho_{\text{free}}$ divided by $\kappa$. In the form we have
+given, the equations apply to the general case where different
+dielectrics may be in different places in the field. Then the
+equations may be quite difficult to solve.
+</p>
+</div>
+<div id="Ch10-S4-p4" class="para">
+<p class="p">There is a matter of some historical importance which should be
+mentioned here. In the early days of electricity, the atomic mechanism
+of polarization was not known and the existence of $\rho_{\text{pol}}$
+was not appreciated. The charge $\rho_{\text{free}}$ was considered to
+be the entire charge density. In order to write Maxwell’s
+equations in a simple form, a new
+vector $\FLPD$ was defined to be equal to a linear combination of
+$\FLPE$ and $\FLPP$:
+\begin{equation}
+\label{Eq:II:10:21}
+\FLPD=\epsO\FLPE+\FLPP.
+\end{equation}
+
+As a result, Eqs. (<a href="#mjx-eqn-EqII1018">10.18</a>) and (<a href="#mjx-eqn-EqII1019">10.19</a>) were
+written in an apparently very simple form:
+\begin{equation}
+\label{Eq:II:10:22}
+\FLPdiv{\FLPD}=\rho_{\text{free}},\quad\FLPcurl{\FLPE}=\FLPzero.
+\end{equation}
+
+Can one solve these? Only if a third equation is given for the
+relationship between $\FLPD$ and $\FLPE$. When Eq. (<a href="#mjx-eqn-EqII108">10.8</a>)
+holds, this relationship is
+\begin{equation}
+\label{Eq:II:10:23}
+\FLPD=\epsO(1+\chi)\FLPE=\kappa\epsO\FLPE.
+\end{equation}
+
+This equation was usually written
+\begin{equation}
+\label{Eq:II:10:24}
+\FLPD=\epsilon\FLPE,
+\end{equation}
+
+where $\epsilon$ is still another constant for describing the
+dielectric property of materials. It is called the “permittivity.”
+(Now you see why we have $\epsilon_0$ in our equations, it is the
+“permittivity of empty space.”) Evidently,
+\begin{equation}
+\label{Eq:II:10:25}
+\epsilon=\kappa\epsO=(1+\chi)\epsO.
+\end{equation}
+
+</p>
+</div>
+<div id="Ch10-S4-p5" class="para">
+<p class="p">Today we look upon these matters from another point of view, namely,
+that we have simpler equations in a vacuum, and if we exhibit in every
+case all the charges, whatever their origin, the equations are always
+correct. If we separate some of the charges away for convenience, or
+because we do not want to discuss what is going on in detail, then we
+can, if we wish, write our equations in any other form that may be
+convenient.</p>
+</div>
+<div id="Ch10-S4-p6" class="para">
+<p class="p">One more point should be emphasized. An equation like $\FLPD=\epsilon\FLPE$
+is an attempt to describe a property of
+matter. But matter is extremely complicated, and such an equation is
+in fact not correct. For instance, if $\FLPE$ gets too large,
+then $\FLPD$ is no longer proportional to $\FLPE$. For some substances, the
+proportionality breaks down even with relatively small fields. Also,
+the “constant” of proportionality may depend on how fast $\FLPE$
+changes with time. Therefore this kind of equation is a kind of
+approximation, like Hooke’s law.
+It cannot be a deep and fundamental
+equation.  On the other hand, our fundamental equations for $\FLPE$,
+(<a href="#mjx-eqn-EqII1017">10.17</a>) and (<a href="#mjx-eqn-EqII1019">10.19</a>), represent our deepest and
+most complete understanding of electrostatics.
+</p>
+</div>
+</div>
+<div id="Ch10-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">10–5</span>Fields and forces with dielectrics</h3>
+<div id="Ch10-S5-p1" class="para">
+<p class="p">We will now prove some rather general theorems for electrostatics in
+situations where dielectrics are present. We have seen that the
+capacitance of a parallel-plate capacitor is increased by a definite
+factor if it is filled with a dielectric. We can show that this is
+true for a capacitor of <em class="emph">any</em> shape, provided the entire region
+in the neighborhood of the two conductors is filled with a uniform
+linear dielectric.  Without the dielectric, the equations to be solved
+are
+\begin{equation*}
+\FLPdiv{\FLPE_0}=\frac{\rho_{\text{free}}}{\epsO}\quad
+\text{and}
+\quad
+\FLPcurl{\FLPE_0}=\FLPzero.
+\end{equation*}
+
+With the dielectric present, the first of these equations is modified;
+we have instead the equations
+\begin{equation}
+\label{Eq:II:10:26}
+\FLPdiv{(\kappa\FLPE)}=\frac{\rho_{\text{free}}}{\epsO}\quad
+\text{and}
+\quad
+\FLPcurl{\FLPE}=\FLPzero.
+\end{equation}
+
+Now since we are taking $\kappa$ to be everywhere the same, the last
+two equations can be written as
+\begin{equation}
+\label{Eq:II:10:27}
+\FLPdiv{(\kappa\FLPE)}=\frac{\rho_{\text{free}}}{\epsO}\quad
+\text{and}
+\quad
+\FLPcurl{(\kappa\FLPE)}=\FLPzero.
+\end{equation}
+</p>
+</div>
+<div id="Ch10-S5-p2" class="para">
+<p class="p">We therefore have the same equations for $\kappa\FLPE$ as
+for $\FLPE_0$, so they have the solution $\kappa\FLPE=\FLPE_0$. In other
+words, the field is everywhere smaller, by the factor $1/\kappa$, than
+in the case without the dielectric. Since the voltage difference is a
+line integral of the field, the voltage is reduced by this same
+factor. Since the charge on the electrodes of the capacitor has been
+taken the same in both cases, Eq. (<a href="#mjx-eqn-EqII102">10.2</a>) tells us that
+the capacitance, in the case of an everywhere uniform dielectric, is
+increased by the factor $\kappa$.</p>
+</div>
+<div id="Ch10-S5-p3" class="para">
+<p class="p">Let us now ask what the <em class="emph">force</em> would be between two charged
+conductors in a dielectric. We consider a liquid dielectric that is
+homogeneous everywhere. We have seen earlier that one way to obtain
+the force is to differentiate the energy with respect to the
+appropriate distance. If the conductors have equal and opposite
+charges, the energy $U=Q^2/2C$, where $C$ is their capacitance. Using
+the principle of virtual work, any component is given by a
+differentiation; for example,
+\begin{equation}
+\label{Eq:II:10:28}
+F_x=-\ddp{U}{x}=-\frac{Q^2}{2}\,\ddp{}{x}\biggl(\frac{1}{C}\biggr).
+\end{equation}
+
+Since the dielectric increases the capacity by a factor $\kappa$, all
+forces will be <em class="emph">reduced</em> by this same factor.</p>
+</div>
+<div id="Ch10-S5-p4" class="para">
+<p class="p">One point should be emphasized. What we have said is true only if the
+dielectric is a liquid. Any motion of conductors that are embedded in
+a solid dielectric changes the mechanical stress conditions of the
+dielectric and alters its electrical properties, as well as causing
+some mechanical energy change in the dielectric. Moving the conductors
+in a liquid does not change the liquid. The liquid moves to a new
+place but its electrical characteristics are not changed.</p>
+</div>
+<div id="Ch10-S5-p5" class="para">
+<p class="p">Many older books on electricity start with the “fundamental” law
+that the force between two charges is
+\begin{equation}
+\label{Eq:II:10:29}
+F=\frac{q_1q_2}{4\pi\epsO\kappa r^2},
+\end{equation}
+
+a point of view which is thoroughly unsatisfactory. For one thing, it
+is not true in general; it is true only for a world filled with a
+liquid. Secondly, it depends on the fact that $\kappa$ is a constant,
+which is only approximately true for most real materials. It is much
+better to start with Coulomb’s law for charges in a <em class="emph">vacuum</em>,
+which is always right (for stationary charges).</p>
+</div>
+<div id="Ch10-S5-p6" class="para">
+<p class="p">What does happen in a solid? This is a very difficult problem which
+has not been solved, because it is, in a sense, indeterminate. If you
+put charges inside a dielectric solid, there are many kinds of
+pressures and strains. You cannot deal with virtual work without
+including also the mechanical energy required to compress the solid,
+and it is a difficult matter, generally speaking, to make a unique
+distinction between the electrical forces and the mechanical forces
+due to the solid material itself. Fortunately, no one ever really
+needs to know the answer to the question proposed. He may sometimes
+want to know how much strain there is going to be in a solid, and that
+can be worked out. But it is much more complicated than the simple
+result we got for liquids.</p>
+</div>
+<div id="Ch10-S5-p7" class="para">
+<p class="p">A surprisingly complicated problem in the theory of dielectrics is the
+following: Why does a charged object pick up little pieces of
+dielectric? If you comb your hair on a dry day, the comb readily picks
+up small scraps of paper. If you thought casually about it, you
+probably assumed the comb had one charge on it and the paper had the
+opposite charge on it. But the paper is initially electrically
+neutral.  It hasn’t any net charge, but it is attracted anyway. It is
+true that sometimes the paper will come up to the comb and then fly
+away, repelled immediately after it touches the comb. The reason is,
+of course, that when the paper touches the comb, it picks up some
+negative charges and then the like charges repel. But that doesn’t
+answer the original question. Why did the paper come toward the comb
+in the first place?</p>
+</div>
+<div id="Ch10-S5-p8" class="para">
+<p class="p">The answer has to do with the polarization of a dielectric when it is
+placed in an electric field. There are polarization charges of both
+signs, which are attracted and repelled by the comb. There is a net
+attraction, however, because the field nearer the comb is stronger
+than the field farther away—the comb is not an infinite sheet. Its
+charge is localized. A neutral piece of paper will not be attracted to
+either plate inside the parallel plates of a capacitor. The variation
+of the field is an essential part of the attraction mechanism.</p>
+</div>
+<div id="Ch10-F8" class="figure">
+<img src="img/FLP_II/f10-08/f10-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–8.</span>A dielectric object in a nonuniform field feels a force
+toward regions of higher field strength.
+</div>
+</div>
+<div id="Ch10-S5-p9" class="para">
+<p class="p">As illustrated in Fig. <a href="#Ch10-F8">10–8</a>, a dielectric is always
+drawn from a region of weak field toward a region of stronger
+field. In fact, one can prove that for small objects the force is
+proportional to the gradient of the <em class="emph">square</em> of the electric
+field. Why does it depend on the square of the field? Because the
+induced polarization charges are proportional to the fields, and for
+given charges the forces are proportional to the field. However, as we
+have just indicated, there will be a <em class="emph">net</em> force only if the
+square of the field is changing from point to point. So the force is
+proportional to the gradient of the square of the field. The constant
+of proportionality involves, among other things, the dielectric
+constant of the object, and it also depends upon the size and shape of
+the object.</p>
+</div>
+<div id="Ch10-F9" class="figure">
+<img src="img/FLP_II/f10-09/f10-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 10–9.</span>The force on a dielectric sheet in a parallel-plate capacitor
+can be computed by applying the principle of energy conservation.
+</div>
+</div>
+<div id="Ch10-S5-p10" class="para">
+<p class="p">There is a related problem in which the force on a dielectric can be
+worked out quite accurately. If we have a parallel-plate capacitor
+with a dielectric slab only partially inserted, as shown in
+Fig. <a href="#Ch10-F9">10–9</a>, there will be a force driving the sheet in.  A
+detailed examination of the force is quite complicated; it is related to
+nonuniformities in the field near the edges of the dielectric and the
+plates. However, if we do not look at the details, but merely use the
+principle of conservation of energy, we can easily calculate the force.
+We can find the force from the formula we derived earlier.
+Equation (<a href="#mjx-eqn-EqII1028">10.28</a>) is equivalent to
+\begin{equation}
+\label{Eq:II:10:30}
+F_x=-\ddp{U}{x}=+\frac{V^2}{2}\,\ddp{C}{x}.
+\end{equation}
+
+We need only find out how the capacitance varies with the position of
+the dielectric slab.</p>
+</div>
+<div id="Ch10-S5-p11" class="para">
+<p class="p">Let’s suppose that the total length of the plates is $L$, that the
+width of the plates is $W$, that the plate separation and dielectric
+thickness are $d$, and that the distance to which the dielectric has
+been inserted is $x$. The capacitance is the ratio of the total free
+charge on the plates to the voltage between the plates. We have seen
+above that for a given voltage $V$ the surface charge density of free
+charge is $\kappa\epsO V/d$.  So the total charge on the plates is
+\begin{equation*}
+Q=\frac{\kappa\epsO V}{d}\,xW+\frac{\epsO V}{d}\,(L-x)W,
+\end{equation*}
+
+from which we get the capacitance:
+\begin{equation}
+\label{Eq:II:10:31}
+C=\frac{\epsO W}{d}\,(\kappa x+L-x).
+\end{equation}
+
+Using (<a href="#mjx-eqn-EqII1030">10.30</a>), we have
+\begin{equation}
+\label{Eq:II:10:32}
+F_x=\frac{V^2}{2}\,\frac{\epsO W}{d}\,(\kappa-1).
+\end{equation}
+
+Now this equation is not particularly useful for anything unless you
+happen to need to know the force in such circumstances. We only wished
+to show that the theory of energy can often be used to avoid enormous
+complications in determining the forces on dielectric materials—as
+there would be in the present case.</p>
+</div>
+<div id="Ch10-S5-p12" class="para">
+<p class="p">Our discussion of the theory of dielectrics has dealt only with
+electrical phenomena, accepting the fact that the material has a
+polarization which is proportional to the electric field. Why there is
+such a proportionality is perhaps of greater interest to physics. Once
+we understand the origin of the dielectric constants from an atomic
+point of view, we can use electrical measurements of the dielectric
+constants in varying circumstances to obtain detailed information
+about atomic or molecular structure. This aspect will be treated in
+part in the next chapter.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>

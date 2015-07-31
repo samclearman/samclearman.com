@@ -1,0 +1,1187 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. I Ch. 33: Polarization</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "33." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\text{\\textsl{1}}", 0], slTwo: ["\\text{\\textsl{2}}", 0], slThree: ["\\text{\\textsl{3}}", 0], slFour: ["\\text{\\textsl{4}}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Figvec: ["\\mathbf{#1}", 1], Fignabla: ["\\FLPnabla", 0], FigA: ["\\Figvec{A}", 0], FigB: ["\\Figvec{B}", 0], FigC: ["\\Figvec{C}", 0], FigF: ["\\Figvec{F}", 0], FigE: ["\\Figvec{E}", 0], FigH: ["\\Figvec{H}", 0], FigI: ["\\Figvec{I}", 0], FigJ: ["\\Figvec{J}", 0], FigL: ["\\Figvec{L}", 0], FigM: ["\\Figvec{M}", 0], FigN: ["\\Figvec{N}", 0], FigP: ["\\Figvec{P}", 0], FigR: ["\\Figvec{R}", 0], FigS: ["\\Figvec{S}", 0], Figa: ["\\Figvec{a}", 0], Figb: ["\\Figvec{b}", 0], Figc: ["\\Figvec{c}", 0], Figd: ["\\Figvec{d}", 0], Fige: ["\\Figvec{e}", 0], Figg: ["\\Figvec{g}", 0], Figh: ["\\Figvec{h}", 0], Figj: ["\\Figvec{j}", 0], Figk: ["\\Figvec{k}", 0], Fign: ["\\Figvec{n}", 0], Figp: ["\\Figvec{p}", 0], Figr: ["\\Figvec{r}", 0], Figs: ["\\Figvec{s}", 0], Figu: ["\\Figvec{u}", 0], Figv: ["\\Figvec{v}", 0], Figw: ["\\Figvec{w}", 0], FigOmega: ["\\pmb{\\Omega}", 0], Figmu: ["\\Figvec{\\mu}", 0], Figtau: ["\\Figvec{\\tau}", 0], Figomega: ["\\Figvec{\\omega}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div> <div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch33" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">33</span>Polarization</h2>
+<div id="Ch33-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">33–1</span>The electric vector of light</h3>
+<div id="Ch33-S1-p1" class="para">
+<p class="p">In this chapter we shall consider those phenomena which depend on the
+fact that the electric field that describes the light is a vector. In
+previous chapters we have not been concerned with the direction of
+oscillation of the electric field, except to note that the electric
+vector lies in a plane perpendicular to the direction of
+propagation. The particular direction in this plane has not concerned
+us. We now consider those phenomena whose central feature is the
+particular direction of oscillation of the electric field.</p>
+</div>
+<div id="Ch33-S1-p2" class="para">
+<p class="p">In ideally monochromatic light, the electric field must oscillate at a
+definite frequency, but since the $x$-component and the $y$-component
+can oscillate independently at a definite frequency, we must first
+consider the resultant effect produced by superposing two independent
+oscillations at right angles to each other. What kind of electric
+field is made up of an $x$-component and a $y$-component which
+oscillate at the same frequency? If one adds to an $x$-vibration a
+certain amount of $y$-vibration at the same phase, the result is a
+vibration in a new direction in the $xy$-plane. Figure <a href="#Ch33-F1">33–1</a>
+illustrates the superposition of different amplitudes for the
+$x$-vibration and the $y$-vibration. But the resultants shown in
+Fig. <a href="#Ch33-F1">33–1</a> are not the only possibilities; in all of these
+cases we have assumed that the $x$-vibration and the $y$-vibration are
+<em class="emph">in phase</em>, but it does not have to be that way. It could be that
+the $x$-vibration and the $y$-vibration are out of phase.</p>
+</div>
+<div id="Ch33-F1" class="figure">
+<img class="first" src="img/FLP_I/f33-01/f33-01_tc_iPad_big_a.svgz"><img class="middle" src="img/FLP_I/f33-01/f33-01_tc_iPad_big_b.svgz"><img class="middle" src="img/FLP_I/f33-01/f33-01_tc_iPad_big_c.svgz"><img class="middle" src="img/FLP_I/f33-01/f33-01_tc_iPad_big_d.svgz"><img class="middle" src="img/FLP_I/f33-01/f33-01_tc_iPad_big_e.svgz"><img class="last" src="img/FLP_I/f33-01/f33-01_tc_iPad_big_f.svgz"><div class="caption">
+<span class="tag">Fig. 33–1.</span>Superposition of $x$-vibrations and $y$-vibrations in phase.
+</div>
+</div>
+<div id="Ch33-S1-p3" class="para">
+<p class="p">When the $x$-vibration and the $y$-vibration are not in phase, the
+electric field vector moves around in an ellipse, and we can
+illustrate this in a familiar way. If we hang a ball from a support by
+a long string, so that it can swing freely in a horizontal plane, it
+will execute sinusoidal oscillations. If we imagine horizontal $x$-
+and $y$-coordinates with their origin at the rest position of the
+ball, the ball can swing in either the $x$- or $y$-direction with the
+same pendulum frequency. By selecting the proper initial displacement
+and initial velocity, we can set the ball in oscillation along either
+the $x$-axis or the $y$-axis, or along any straight line in the
+$xy$-plane. These motions of the ball are analogous to the
+oscillations of the electric field vector illustrated in
+Fig. <a href="#Ch33-F1">33–1</a>. In each instance, since the $x$-vibrations and
+the $y$-vibrations reach their maxima and minima at the same time, the
+$x$- and $y$-oscillations are in phase. But we know that the most
+general motion of the ball is motion in an ellipse, which corresponds to
+oscillations in which the $x$- and $y$-directions are <em class="emph">not</em> in the
+same phase. The superposition of $x$- and $y$-vibrations which are not
+in phase is illustrated in Fig. <a href="#Ch33-F2">33–2</a> for a variety of
+angles between the phase of the $x$-vibration and that of the
+$y$-vibration. The general result is that the electric vector moves
+around an ellipse. The motion in a straight line is a particular case
+corresponding to a phase difference of zero (or an integral multiple
+of $\pi$); motion in a circle corresponds to equal amplitudes with a phase
+difference of $90^\circ$ (or any odd integral multiple of $\pi/2$).</p>
+</div>
+<div id="Ch33-F2" class="figure">
+<img class="first" src="img/FLP_I/f33-02/f33-02_tc_iPad_big_a.svgz"><img class="middle" src="img/FLP_I/f33-02/f33-02_tc_iPad_big_b.svgz"><img class="middle" src="img/FLP_I/f33-02/f33-02_tc_iPad_big_c.svgz"><img class="middle" src="img/FLP_I/f33-02/f33-02_tc_iPad_big_d.svgz"><img class="middle" src="img/FLP_I/f33-02/f33-02_tc_iPad_big_e.svgz"><img class="middle" src="img/FLP_I/f33-02/f33-02_tc_iPad_big_f.svgz"><img class="middle" src="img/FLP_I/f33-02/f33-02_tc_iPad_big_g.svgz"><img class="middle" src="img/FLP_I/f33-02/f33-02_tc_iPad_big_h.svgz"><img class="last" src="img/FLP_I/f33-02/f33-02_tc_iPad_big_i.svgz"><div class="caption">
+<span class="tag">Fig. 33–2.</span>Superposition of $x$-vibrations and $y$-vibrations with equal
+amplitudes but various relative phases. The components $E_x$ and $E_y$
+are expressed in both real and complex notations.
+</div>
+</div>
+<div id="Ch33-S1-p4" class="para">
+<p class="p">In Fig. <a href="#Ch33-F2">33–2</a> we have labeled the electric field vectors
+in the $x$- and $y$-directions with complex numbers, which are a
+convenient representation in which to express the phase difference. Do
+not confuse the real and imaginary components of the complex electric
+vector in this notation with the $x$- and $y$-coordinates of the
+field. The $x$- and $y$-coordinates plotted in Fig. <a href="#Ch33-F1">33–1</a>
+and Fig. <a href="#Ch33-F2">33–2</a> are actual electric fields that we can
+measure. The real and imaginary components of a complex electric field
+vector are only a mathematical convenience and have no physical
+significance.</p>
+</div>
+<div id="Ch33-S1-p5" class="para">
+<p class="p">Now for some terminology. Light is <em class="emph">linearly polarized</em>
+(sometimes called plane polarized) when the electric field oscillates
+on a straight line; Fig. <a href="#Ch33-F1">33–1</a> illustrates linear
+polarization. When the end of the electric field vector travels in an
+ellipse, the light is <em class="emph">elliptically polarized</em>. When the end of
+the electric field vector travels around a circle, we have
+<em class="emph">circular polarization</em>. If the end of the
+electric vector, when we look at it as the light comes straight toward
+us, goes around in a counterclockwise direction, we call it right-hand
+circular polarization. Figure <a href="#Ch33-F2">33–2</a>(g) illustrates right-hand
+circular polarization, and Fig. <a href="#Ch33-F2">33–2</a>(c) shows left-hand
+circular polarization. In both cases the light is coming out of the
+paper. Our convention for labeling left-hand and right-hand circular
+polarization is consistent with that which is used today for all the
+other particles in physics which exhibit polarization (e.g., electrons).
+However, in some books on optics the opposite conventions are used, so
+one must be careful.</p>
+</div>
+<div id="Ch33-S1-p6" class="para">
+<p class="p">We have considered linearly, circularly, and elliptically polarized
+light, which covers everything except for the case of
+<em class="emph">unpolarized</em> light. Now how can the light be unpolarized when we
+know that it must vibrate in one or another of these ellipses? If the
+light is not absolutely monochromatic, or if the $x$- and $y$-phases
+are not kept perfectly together, so that the electric vector first
+vibrates in one direction, then in another, the polarization is
+constantly changing. Remember that one atom emits during
+$10^{-8}$ sec, and if one atom emits a certain polarization, and then another
+atom emits light with a different polarization, the polarizations will
+change every $10^{-8}$ sec. If the polarization changes more rapidly
+than we can detect it, then we call the light unpolarized, because all
+the effects of the polarization average out. None of the interference
+effects of polarization would show up with unpolarized light. But as
+we see from the definition, light is unpolarized only if we are unable
+to find out whether the light is polarized or not.</p>
+</div>
+</div>
+<div id="Ch33-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">33–2</span>Polarization of scattered light</h3>
+<div id="Ch33-S2-p1" class="para">
+<p class="p">The first example of the polarization effect that we have already
+discussed is the scattering of light. Consider a beam of light, for
+example from the sun, shining on the air. The electric field will
+produce oscillations of charges in the air, and motion of these
+charges will radiate light with its maximum intensity in a plane
+normal to the direction of vibration of the charges. The beam from the
+sun is unpolarized, so the direction of polarization changes
+constantly, and the direction of vibration of the charges in the air
+changes constantly. If we consider light scattered at $90^\circ$, the
+vibration of the charged particles radiates to the observer only when
+the vibration is perpendicular to the observer’s line of sight, and
+then light will be polarized along the direction of vibration. So
+scattering is an example of one means of producing polarization.</p>
+</div>
+</div>
+<div id="Ch33-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">33–3</span>Birefringence</h3>
+<div id="Ch33-S3-p1" class="para">
+<p class="p">Another interesting effect of polarization is the fact that there are
+substances for which the index of refraction is different for light
+linearly polarized in one direction and linearly polarized in
+another. Suppose that we had some material which consisted of long,
+nonspherical molecules, longer than they are wide, and suppose that
+these molecules were arranged in the substance with their long axes
+parallel. Then what happens when the oscillating electric field passes
+through this substance? Suppose that because of the structure of the
+molecule, the electrons in the substance respond more easily to
+oscillations in the direction parallel to the axes of the molecules
+than they would respond if the electric field tries to push them at
+right angles to the molecular axis. In this way we expect a different
+response for polarization in one direction than for polarization at
+right angles to that direction. Let us call the direction of the axes
+of the molecules the <em class="emph">optic axis</em>. When the
+polarization is in the direction of the optic axis the
+index of refraction is different than it would be if the direction of
+polarization were at right angles to it. Such a substance is called
+<em class="emph">birefringent</em>. It has two refrangibilities, i.e., two indexes of
+refraction, depending on the direction of the polarization inside the
+substance. What kind of a substance can be birefringent? In a
+birefringent substance there must be a certain amount of lining up, for
+one reason or another, of unsymmetrical molecules. Certainly a cubic
+crystal, which has the symmetry of a cube, cannot be birefringent. But
+long needlelike crystals undoubtedly contain molecules that are
+asymmetric, and one observes this effect very easily.
+</p>
+</div>
+<div id="Ch33-S3-p2" class="para">
+<p class="p">Let us see what effects we would expect if we were to shine polarized
+light through a plate of a birefringent substance. If the polarization
+is parallel to the optic axis, the light will go through with one
+velocity; if the polarization is perpendicular to the axis, the light
+is transmitted with a different velocity. An interesting situation
+arises when, say, light is linearly polarized at $45^\circ$ to the
+optic axis. Now the $45^\circ$ polarization, we have already noticed,
+can be represented as a superposition of the $x$- and the
+$y$-polarizations of equal amplitude and in phase, as shown in
+Fig. <a href="#Ch33-F2">33–2</a>(a). Since the $x$- and $y$-polarizations travel
+with different velocities, their phases change at a different rate as
+the light passes through the substance. So, although at the start the
+$x$- and $y$-vibrations are in phase, inside the material the phase
+difference between $x$- and $y$-vibrations is proportional to the depth
+in the substance. As the light proceeds through the material the
+polarization changes as shown in the series of diagrams in
+Fig. <a href="#Ch33-F2">33–2</a>. If the thickness of the plate is just right to
+introduce a $90^\circ$ phase shift between the $x$-
+and $y$-polarizations, as in Fig. <a href="#Ch33-F2">33–2</a>(c), the light will come
+out circularly polarized. Such a thickness is called a quarter-wave
+plate, because it introduces a quarter-cycle phase difference between
+the $x$- and the $y$-polarizations. If linearly polarized light is sent
+through two quarter-wave plates, it will come out plane-polarized again,
+but at right angles to the original direction, as we can see from
+Fig. <a href="#Ch33-F2">33–2</a>(e).</p>
+</div>
+<div id="Ch33-S3-p3" class="para">
+<p class="p">One can easily illustrate this phenomenon with a piece of
+cellophane. Cellophane is made of long, fibrous molecules, and is not
+isotropic, since the fibers lie preferentially in a certain
+direction. To demonstrate birefringence we need a beam of linearly
+polarized light, and we can obtain this conveniently by passing
+unpolarized light through a sheet of polaroid. Polaroid, which we will
+discuss later in more detail, has the useful property that it
+transmits light that is linearly polarized parallel to the axis of the
+polaroid with very little absorption, but light polarized in a
+direction perpendicular to the axis of the polaroid is strongly
+absorbed. When we pass unpolarized light through a sheet of polaroid,
+only that part of the unpolarized beam which is vibrating parallel to
+the axis of the polaroid gets through, so that the transmitted beam is
+linearly polarized. This same property of polaroid is also useful in
+detecting the direction of polarization of a linearly polarized beam,
+or in determining whether a beam is linearly polarized or not. One
+simply passes the beam of light through the polaroid sheet and rotates
+the polaroid in the plane normal to the beam. If the beam is linearly
+polarized, it will not be transmitted through the sheet when the axis
+of the polaroid is normal to the direction of polarization. The
+transmitted beam is only slightly attenuated when the axis of the
+polaroid sheet is rotated through $90^\circ$. If the transmitted
+intensity is independent of the orientation of the polaroid, the beam
+is not linearly polarized.</p>
+</div>
+<div id="Ch33-F3" class="figure">
+<img src="img/FLP_I/f33-03/f33-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–3.</span>An experimental demonstration of the birefringence of
+cellophane. The electric vectors in the light are indicated by the
+dotted lines. The pass axes of the polaroid sheets and optic axes of
+the cellophane are indicated by arrows. The incident beam is
+unpolarized.
+</div>
+</div>
+<div id="Ch33-S3-p4" class="para">
+<p class="p">To demonstrate the birefringence of cellophane, we use two sheets of
+polaroid, as shown in Fig. <a href="#Ch33-F3">33–3</a>. The first gives us a
+linearly polarized beam which we pass through the cellophane and then
+through the second polaroid sheet, which serves to detect any effect
+the cellophane may have had on the polarized light passing through
+it. If we first set the axes of the two polaroid sheets perpendicular
+to each other and remove the cellophane, no light will be transmitted
+through the second polaroid. If we now introduce the cellophane
+between the two polaroid sheets, and rotate the sheet about the beam
+axis, we observe that in general the cellophane makes it possible for
+some light to pass through the second polaroid. However, there are two
+orientations of the cellophane sheet, at right angles to each other,
+which permit no light to pass through the second polaroid. These
+orientations in which linearly polarized light is transmitted through
+the cellophane with no effect on the direction of polarization must be
+the directions parallel and perpendicular to the optic axis of the
+cellophane sheet.</p>
+</div>
+<div id="Ch33-S3-p5" class="para">
+<p class="p">We suppose that the light passes through the cellophane with two
+different velocities in these two different orientations, but it is
+transmitted without changing the direction of polarization. When the
+cellophane is turned halfway between these two orientations, as shown
+in Fig. <a href="#Ch33-F3">33–3</a>, we see that the light transmitted through
+the second polaroid is bright.</p>
+</div>
+<div id="Ch33-S3-p6" class="para">
+<p class="p">It just happens that ordinary cellophane used in commercial packaging
+is very close to a half-wave thickness for most of the colors in white
+light. Such a sheet will turn the axis of linearly polarized light
+through $90^\circ$ if the incident linearly polarized beam makes an
+angle of $45^\circ$ with the optic axis, so that the beam emerging
+from the cellophane is then vibrating in the right direction to pass
+through the second polaroid sheet.</p>
+</div>
+<div id="Ch33-S3-p7" class="para">
+<p class="p">If we use white light in our demonstration, the cellophane sheet will
+be of the proper half-wave thickness only for a particular component
+of the white light, and the transmitted beam will have the color of
+this component. The color transmitted depends on the thickness of the
+cellophane sheet, and we can vary the effective thickness of the
+cellophane by tilting it so that the light passes through the
+cellophane at an angle, consequently through a longer path in the
+cellophane. As the sheet is tilted the transmitted color changes. With
+cellophane of different thicknesses one can construct filters that
+will transmit different colors. These filters have the interesting
+property that they transmit one color when the two polaroid sheets
+have their axes perpendicular, and the complementary color when the
+axes of the two polaroid sheets are parallel.</p>
+</div>
+<div id="Ch33-S3-p8" class="para">
+<p class="p">Another interesting application of aligned molecules is quite
+practical. Certain plastics are composed of very long and complicated
+molecules all twisted together. When the plastic is solidified very
+carefully, the molecules are all twisted in a mass, so that there are
+as many aligned in one direction as another, and so the plastic is not
+particularly birefringent. Usually there are strains and stresses
+introduced when the material is solidified, so the material is not
+perfectly homogeneous. However, if we apply tension to a piece of this
+plastic material, it is as if we were pulling a whole tangle of
+strings, and there will be more strings preferentially aligned
+parallel to the tension than in any other direction. So when a stress
+is applied to certain plastics, they become birefringent, and one can
+see the effects of the birefringence by passing polarized light
+through the plastic. If we examine the transmitted light through a
+polaroid sheet, patterns of light and dark fringes will be observed
+(in color, if white light is used). The patterns move as stress is
+applied to the sample, and by counting the fringes and seeing where
+most of them are, one can determine what the stress is. Engineers use
+this phenomenon as a means of finding the stresses in odd-shaped
+pieces that are difficult to calculate.</p>
+</div>
+<div id="Ch33-S3-p9" class="para">
+<p class="p">Another interesting example of a way of obtaining birefringence is by
+means of a liquid substance. Consider a liquid composed of long
+asymmetric molecules which carry a plus or minus average charge near
+the ends of the molecule, so that the molecule is an electric
+dipole. In the collisions in the liquid the molecules will ordinarily
+be randomly oriented, with as many molecules pointed in one direction
+as in another. If we apply an electric field the molecules will tend
+to line up, and the moment they line up the liquid becomes
+birefringent. With two polaroid sheets and a transparent cell
+containing such a polar liquid, we can devise an arrangement with the
+property that light is transmitted only when the electric field is
+applied. So we have an electrical switch for light, which is called a
+<em class="emph">Kerr cell</em>. This effect, that an electric field
+can produce birefringence in certain liquids, is called the
+Kerr effect.
+</p>
+</div>
+</div>
+<div id="Ch33-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">33–4</span>Polarizers</h3>
+<div id="Ch33-S4-p1" class="para">
+<p class="p">So far we have considered substances in which the refractive index is
+different for light polarized in different directions. Of very
+practical value are those crystals and other substances in which not
+only the index, but also the coefficient of absorption, is different
+for light polarized in different directions. By the same arguments
+which supported the idea of birefringence, it is understandable that
+absorption can vary with the direction in which the charges are forced
+to vibrate in an anisotropic substance. Tourmaline is an old, famous
+example and polaroid is another. Polaroid consists of a thin layer of
+small crystals of herapathite (a salt of iodine and quinine), all
+aligned with their axes parallel. These crystals absorb light when the
+oscillations are in one direction, and they do not absorb appreciably
+when the oscillations are in the other direction.</p>
+</div>
+<div id="Ch33-S4-p2" class="para">
+<p class="p">Suppose that we send light into a polaroid sheet polarized linearly at
+an angle $\theta$ to the passing direction. What intensity will come
+through?  This incident light can be resolved into a component
+perpendicular to the pass direction which is proportional
+to $\sin\theta$, and a component along the pass direction which is
+proportional to $\cos\theta$. The amplitude which comes out of the
+polaroid is only the cosine $\theta$ part; the $\sin\theta$ component
+is absorbed. The amplitude which passes through the polaroid is
+smaller than the amplitude which entered, by a
+factor $\cos\theta$. The energy which passes through the polaroid, i.e., the
+intensity of the light, is proportional to the square
+of $\cos\theta$. $\operatorname{Cos}^2\theta$, then, is the intensity
+transmitted when the light enters polarized at an angle $\theta$ to
+the pass direction. The absorbed intensity, of course, is $\sin^2\theta$.</p>
+</div>
+<div id="Ch33-S4-p3" class="para">
+<p class="p">An interesting paradox is presented by the following situation. We
+know that it is not possible to send a beam of light through two
+polaroid sheets with their axes crossed at right angles. But if we
+place a third polaroid sheet <em class="emph">between</em> the first two, with its
+pass axis at $45^\circ$ to the crossed axes, some light is
+transmitted. We know that polaroid absorbs light, it does not create
+anything. Nevertheless, the addition of a third polaroid at $45^\circ$
+allows more light to get through. The analysis of this phenomenon is
+left as an exercise for the student.</p>
+</div>
+<div id="Ch33-S4-p4" class="para">
+<p class="p">One of the most interesting examples of polarization is not in
+complicated crystals or difficult substances, but in one of the simplest
+and most familiar of situations—the reflection of light from a
+surface. Believe it or not, when light is reflected from a glass surface
+it may be polarized, and the physical explanation of this is very
+simple. It was discovered empirically by
+Brewster
+that light reflected from a surface is completely
+polarized if the reflected beam and the beam refracted into the material
+form a right angle. The situation is illustrated in
+Fig. <a href="#Ch33-F4">33–4</a>. If the incident beam is polarized in the plane of
+incidence, there will be no reflection at all. Only if the incident beam
+is polarized normal to the plane of incidence will it be reflected. The
+reason is very easy to understand. In the reflecting material the light
+is polarized transversely, and we know that it is the motion of the
+charges in the material which generates the emergent beam, which we call
+the reflected beam. The source of this so-called reflected light is not
+simply that the incident beam is reflected; our deeper understanding of
+this phenomenon tells us that the incident beam drives an oscillation of
+the charges in the material, which in turn generates the reflected beam.
+From Fig. <a href="#Ch33-F4">33–4</a> it is clear that only oscillations normal
+to the paper can radiate in the direction of reflection, and
+consequently the reflected beam will be polarized normal to the plane of
+incidence. If the incident beam is polarized in the plane of incidence,
+there will be no reflected light.</p>
+</div>
+<div id="Ch33-F4" class="figure">
+<img src="img/FLP_I/f33-04/f33-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–4.</span>Reflection of linearly polarized light at Brewster’s
+angle. The polarization direction is indicated by dashed arrows;
+round dots indicate polarization normal to the paper.
+</div>
+</div>
+<div id="Ch33-S4-p5" class="para">
+<p class="p">This phenomenon is readily demonstrated by reflecting a linearly
+polarized beam from a flat piece of glass. If the glass is turned to
+present different angles of incidence to the polarized beam, sharp
+attenuation of the reflected intensity is observed when the angle of
+incidence passes through Brewster’s angle. This attenuation is observed only if the plane of polarization
+lies in the plane of incidence. If the plane of polarization is normal
+to the plane of incidence, the usual reflected intensity is observed at
+all angles.
+</p>
+</div>
+</div>
+<div id="Ch33-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">33–5</span>Optical activity</h3>
+<div id="Ch33-S5-p1" class="para">
+<p class="p">Another most remarkable effect of polarization is observed in
+materials composed of molecules which do not have reflection symmetry:
+molecules shaped something like a corkscrew, or like a gloved hand, or
+any shape which, if viewed through a mirror, would be reversed in the
+same way that a left-hand glove reflects as a right-hand
+glove. Suppose all of the molecules in the substance are the same,
+i.e., none is a mirror image of any other. Such a substance may show
+an interesting effect called optical activity, whereby as linearly
+polarized light passes through the substance, the direction of
+polarization rotates about the beam axis.</p>
+</div>
+<div id="Ch33-F5" class="figure">
+<img src="img/FLP_I/f33-05/f33-05_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–5.</span>A molecule with a shape that is not symmetric when reflected
+in a mirror. A beam of light, linearly polarized in the
+$y$-direction, falls on the molecule.
+</div>
+</div>
+<div id="Ch33-S5-p2" class="para">
+<p class="p">To understand the phenomenon of optical activity requires some
+calculation, but we can see qualitatively how the effect might come
+about, without actually carrying out the calculations. Consider an
+asymmetric molecule in the shape of a spiral, as shown in
+Fig. <a href="#Ch33-F5">33–5</a>. Molecules need not actually be shaped like a
+corkscrew in order to exhibit optical activity, but this is a simple
+shape which we shall take as a typical example of those that do not have
+reflection symmetry. When a light beam linearly polarized along the
+$y$-direction falls on this molecule, the electric field will drive
+charges up and down the helix, thereby generating a current in the
+$y$-direction and radiating an electric field $E_y$ polarized in the
+$y$-direction. However, if the electrons are constrained to move along
+the spiral, they must also move in the $x$-direction as they are driven
+up and down. When a current is flowing up the spiral, it is also flowing
+into the paper at $z = z_1$ and out of the paper at $z = z_1 + A$, if
+$A$ is the diameter of our molecular spiral. One might suppose that the
+current in the $x$-direction would produce no net radiation, since the
+currents are in opposite directions on opposite sides of the spiral.
+However, if we consider the $x$-components of the electric field
+arriving at $z = z_2$, we see that the field radiated by the current
+at $z = z_1 + A$ and the field radiated from $z = z_1$ arrive at $z_2$
+separated in time by the amount $A/c$, and thus separated in phase
+by $\pi + \omega A/c$. Since the phase difference is not exactly $\pi$, the
+two fields do not cancel exactly, and we are left with a small
+$x$-component in the electric field generated by the motion of the
+electrons in the molecule, whereas the driving electric field had only a
+$y$-component. This small $x$-component, added to the large
+$y$-component, produces a resultant field that is tilted slightly with
+respect to the $y$-axis, the original direction of polarization. As the
+light moves through the material, the direction of polarization rotates
+about the beam axis. By drawing a few examples and considering the
+currents that will be set in motion by an incident electric field, one
+can convince himself that the existence of optical activity and the sign
+of the rotation are independent of the orientation of the molecules.</p>
+</div>
+<div id="Ch33-S5-p3" class="para">
+<p class="p">Corn syrup is a common substance which possesses optical activity. The
+phenomenon is easily demonstrated with a polaroid sheet to produce a
+linearly polarized beam, a transmission cell containing corn syrup,
+and a second polaroid sheet to detect the rotation of the direction of
+polarization as the light passes through the corn syrup.</p>
+</div>
+</div>
+<div id="Ch33-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">33–6</span>The intensity of reflected light</h3>
+<div id="Ch33-S6-p1" class="para">
+<p class="p">Let us now consider quantitatively the reflection coefficient as a
+function of angle. Figure <a href="#Ch33-F6">33–6</a>(a) shows a beam of light
+striking a glass surface, where it is partly reflected and partly
+refracted into the glass. Let us suppose that the incident beam, of
+unit amplitude, is linearly polarized normal to the plane of the
+paper. We will call the amplitude of the reflected wave $b$, and the
+amplitude of the refracted wave $a$. The refracted and reflected waves
+will, of course, be linearly polarized, and the electric field vectors
+of the incident, reflected, and refracted waves are all parallel to
+each other. Figure <a href="#Ch33-F6">33–6</a>(b) shows the same situation, but
+now we suppose that the incident wave, of unit amplitude, is polarized
+in the plane of the paper. Now let us call the amplitude of the
+reflected and refracted wave $B$ and $A$, respectively.</p>
+</div>
+<div id="Ch33-F6" class="figure">
+<img class="first" src="img/FLP_I/f33-06/f33-06_tc_big_a.svgz"><img class="last" src="img/FLP_I/f33-06/f33-06_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 33–6.</span>An incident wave of unit amplitude is reflected and refracted
+at a glass surface. In (a) the incident wave is linearly polarized
+normal to the plane of the paper. In (b) the incident wave is linearly
+polarized in the direction shown by the dashed arrows.
+</div>
+</div>
+<div id="Ch33-S6-p2" class="para">
+<p class="p">We wish to calculate how strong the reflection is in the two situations
+illustrated in Fig. <a href="#Ch33-F6">33–6</a>(a) and <a href="#Ch33-F6">33–6</a>(b).
+We already know that when the angle between the reflected beam and
+refracted beam is a right angle, there will be no reflected wave in
+Fig. <a href="#Ch33-F6">33–6</a>(b), but let us see if we cannot get a quantitative
+answer—an exact formula for $B$ and $b$ as a function of the angle of
+incidence, $i$.</p>
+</div>
+<div id="Ch33-S6-p3" class="para">
+<p class="p">The principle that we must understand is as follows. The currents that
+are generated in the glass produce two waves. First, they produce the
+reflected wave. Moreover, we know that if there were no currents
+generated in the glass, the incident wave would continue straight into
+the glass. Remember that all the sources in the world make the net
+field. The source of the incident light beam produces a field of unit
+amplitude, which would move into the glass along the dotted line in the
+figure. This field is not observed, and therefore the currents
+generated in the glass must produce a field of amplitude $-1$, which
+moves along the dotted line. Using this fact, we will calculate the
+amplitude of the refracted waves, $a$ and $A$.</p>
+</div>
+<div id="Ch33-S6-p4" class="para">
+<p class="p">In Fig. <a href="#Ch33-F6">33–6</a>(a) we see that the field of amplitude $b$
+is radiated by the motion of charges inside the glass which are
+responding to a field $a$ inside the glass, and that therefore $b$ is
+proportional to $a$. We might suppose that since our two figures are
+exactly the same, except for the direction of polarization, the
+ratio $B/A$ would be the same as the ratio $b/a$. This is not quite true,
+however, because in Fig. <a href="#Ch33-F6">33–6</a>(b) the polarization
+directions are not all parallel to each other, as they are in
+Fig. <a href="#Ch33-F6">33–6</a>(a). It is only the component of $A$ which is
+perpendicular to $B$, $A \cos\,(i + r)$, which is effective in
+producing $B$. The correct expression for the proportionality is then
+\begin{equation}
+\label{Eq:I:33:1}
+\frac{b}{a}=\frac{B}{A \cos\,(i + r)}.
+\end{equation}</p>
+</div>
+<div id="Ch33-S6-p5" class="para">
+<p class="p">Now we use a trick. We know that in both (a) and (b) of
+Fig. <a href="#Ch33-F6">33–6</a> the electric field in the glass must produce
+oscillations of the charges, which generate a field of amplitude $-1$,
+polarized parallel to the incident beam, and moving in the direction of
+the dotted line. But we see from part (b) of the figure that only the
+component of $A$ that is normal to the dashed line has the right
+polarization to produce this field, whereas in Fig. <a href="#Ch33-F6">33–6</a>(a)
+the full amplitude $a$ is effective, since the polarization of wave $a$
+is parallel to the polarization of the wave of amplitude $-1$. Therefore
+we can write
+\begin{equation}
+\label{Eq:I:33:2}
+\frac{A \cos\,(i - r)}{a}=\frac{-1}{-1},
+\end{equation}
+since the two amplitudes on the left side of Eq. (<a href="#mjx-eqn-EqI332">33.2</a>)
+each produce the wave of amplitude $-1$.</p>
+</div>
+<div id="Ch33-S6-p6" class="para">
+<p class="p">Dividing Eq. (<a href="#mjx-eqn-EqI331">33.1</a>) by Eq. (<a href="#mjx-eqn-EqI332">33.2</a>), we obtain
+\begin{equation}
+\label{Eq:I:33:3}
+\frac{B}{b}=\frac{\cos\,(i+r)}{\cos\,(i-r)},
+\end{equation}
+a result which we can check against what we already know. If we set
+$(i + r) = 90^\circ$, Eq. (<a href="#mjx-eqn-EqI333">33.3</a>) gives $B = 0$, as
+Brewster says it should be, so our results so far are at least not
+obviously wrong.</p>
+</div>
+<div id="Ch33-S6-p7" class="para">
+<p class="p">We have assumed unit amplitudes for the incident waves, so that
+$\abs{B}^2/1^2$ is the reflection coefficient for waves polarized in
+the plane of incidence, and $\abs{b}^2/1^2$ is the reflection
+coefficient for waves polarized normal to the plane of incidence. The
+ratio of these two reflection coefficients is determined by
+Eq. (<a href="#mjx-eqn-EqI333">33.3</a>).</p>
+</div>
+<div id="Ch33-S6-p8" class="para">
+<p class="p">Now we perform a miracle, and compute not just the ratio, but each
+coefficient $\abs{B}^2$ and $\abs{b}^2$ individually! We know from the
+conservation of energy that the energy in the refracted wave must be
+equal to the incident energy minus the energy in the reflected wave,
+$1-\abs{B}^2$ in one case, $1-\abs{b}^2$ in the other. Furthermore,
+the energy which passes into the glass in Fig. <a href="#Ch33-F6">33–6</a>(b)
+is to the energy which passes into the glass in Fig. <a href="#Ch33-F6">33–6</a>(a)
+as the ratio of the squares of the refracted amplitudes,
+$\abs{A}^2/\abs{a}^2$. One might ask whether we really know how to
+compute the energy inside the glass, because, after all, there are
+energies of motion of the atoms in addition to the energy in the
+electric field. But it is obvious that all of the various contributions
+to the total energy will be proportional to the square of the amplitude
+of the electric field. Therefore we can write
+\begin{equation}
+\label{Eq:I:33:4}
+\frac{1-\abs{B}^2}{1-\abs{b}^2}=
+\frac{\abs{A}^2}{\abs{a}^2}.
+\end{equation}</p>
+</div>
+<div id="Ch33-S6-p9" class="para">
+<p class="p">We now substitute Eq. (<a href="#mjx-eqn-EqI332">33.2</a>) to eliminate $A/a$ from the
+expression above, and express $B$ in terms of $b$ by means of
+Eq. (<a href="#mjx-eqn-EqI333">33.3</a>):
+\begin{equation}
+\label{Eq:I:33:5}
+\frac{1-\abs{b}^2\,\dfrac{\cos^2\,(i+r)}{\cos^2\,(i-r)}}
+{1-\abs{b}^2}=\frac{1}{\cos^2\,(i-r)}.
+\end{equation}
+This equation contains only one unknown amplitude, $b$. Solving for
+$\abs{b}^2$, we obtain
+\begin{equation}
+\label{Eq:I:33:6}
+\abs{b}^2=\frac{\sin^2\,(i-r)}{\sin^2\,(i+r)}
+\end{equation}
+and, with the aid of (<a href="#mjx-eqn-EqI333">33.3</a>),
+\begin{equation}
+\label{Eq:I:33:7}
+\abs{B}^2=\frac{\tan^2\,(i-r)}{\tan^2\,(i+r)}.
+\end{equation}
+So we have found the reflection coefficient $\abs{b}^2$ for an
+incident wave polarized perpendicular to the plane of incidence, and
+also the reflection coefficient $\abs{B}^2$ for an incident wave
+polarized in the plane of incidence!</p>
+</div>
+<div id="Ch33-S6-p10" class="para">
+<p class="p">It is possible to go on with arguments of this nature and deduce that
+$b$ is real. To prove this, one must consider a case where light is
+coming from both sides of the glass surface at the same time, a
+situation not easy to arrange experimentally, but fun to analyze
+theoretically. If we analyze this general case, we can prove that $b$
+must be real, and therefore, in fact, that $b = \pm\sin\,(i -
+r)/\sin\,(i + r)$. It is even possible to determine the sign by
+considering the case of a very, very thin layer in which there is
+reflection from the front and from the back surfaces, and calculating
+how much light is reflected. We know how much light should be
+reflected by a thin layer, because we know how much current is
+generated, and we have even worked out the fields produced by such
+currents.</p>
+</div>
+<div id="Ch33-S6-p11" class="para">
+<p class="p">One can show by these arguments that
+\begin{equation}
+\label{Eq:I:33:8}
+b=-\frac{\sin\,(i-r)}{\sin\,(i+r)},\quad
+B=-\frac{\tan\,(i-r)}{\tan\,(i+r)}.
+\end{equation}
+These expressions for the reflection coefficients as a function of the
+angles of incidence and refraction are called
+Fresnel’s reflection formulas.</p>
+</div>
+<div id="Ch33-S6-p12" class="para">
+<p class="p">If we consider the limit as the angles $i$ and $r$ go to zero, we
+find, for the case of normal incidence, that $B^2\approx
+b^2\approx(i-r)^2/(i+r)^2$ for both polarizations, since the sines are
+practically equal to the angles, as are also the tangents. But we know
+that $\sin i/\sin r = n$, and when the angles are small, $i/r \approx
+n$. It is thus easy to show that the coefficient of reflection for
+normal incidence is
+\begin{equation*}
+B^2=b^2=\frac{(n-1)^2}{(n+1)^2}.
+\end{equation*}</p>
+</div>
+<div id="Ch33-S6-p13" class="para">
+<p class="p">It is interesting to find out how much light is reflected at normal
+incidence from the surface of water, for example. For water, $n$
+is $4/3$, so that the reflection coefficient is $(1/7)^2 \approx 2\%$. At
+normal incidence, only two percent of the light is reflected from the
+surface of water.</p>
+</div>
+</div>
+<div id="Ch33-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">33–7</span>Anomalous refraction</h3>
+<div id="Ch33-S7-p1" class="para">
+<p class="p">The last polarization effect we shall consider was actually one of the
+first to be discovered: anomalous refraction. Sailors visiting Iceland
+brought back to Europe crystals of Iceland spar (CaCO$_3$) which had
+the amusing property of making anything seen through the crystal
+appear doubled, i.e., as two images. This came to the attention of
+Huygens, and played an important
+role in the discovery of polarization. As is often the case, the
+phenomena which are discovered first are the hardest, ultimately, to
+explain. It is only after we understand a physical concept thoroughly
+that we can carefully select those phenomena which most clearly and
+simply demonstrate the concept.</p>
+</div>
+<div id="Ch33-F7" class="figure">
+<img class="first" src="img/FLP_I/f33-07/f33-07_tc_big_a.svgz"><img class="last" src="img/FLP_I/f33-07/f33-07_tc_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 33–7.</span>The upper diagram shows the path of the ordinary ray through
+a doubly refracting crystal. The extraordinary ray is shown in the
+lower diagram. The optic axis lies in the plane of the paper.
+</div>
+</div>
+<div id="Ch33-S7-p2" class="para">
+<p class="p">Anomalous refraction is a particular case of the same
+birefringence that we considered earlier. Anomalous
+refraction comes about when the optic axis, the long axis of our
+asymmetric molecules, is <em class="emph">not</em> parallel to the surface of the
+crystal. In Fig. <a href="#Ch33-F7">33–7</a> are drawn two pieces of birefringent
+material, with the optic axis as shown. In
+the upper figure, the incident beam falling on the material is linearly
+polarized in a direction perpendicular to the optic axis of the
+material. When this beam strikes the surface of the material, each point
+on the surface acts as a source of a wave which travels into the crystal
+with velocity $v_\perp$, the velocity of light in the crystal when the
+plane of polarization is normal to the optic axis. The
+wavefront is just the envelope or locus of all these
+little spherical waves, and this wavefront moves
+straight through the crystal and out the other side. This is just the
+ordinary behavior we would expect, and this ray is called the
+<em class="emph">ordinary ray</em>.</p>
+</div>
+<div id="Ch33-S7-p3" class="para">
+<p class="p">In the lower figure the linearly polarized light falling on the
+crystal has its direction of polarization turned through $90^\circ$,
+so that the optic axis lies in the plane of polarization. When we now
+consider the little waves originating at any point on the surface of
+the crystal, we see that they do not spread out as spherical
+waves. Light travelling along the optic axis travels with
+velocity $v_\perp$ because the polarization is perpendicular to the optic axis,
+whereas the light travelling perpendicular to the optic axis travels
+with velocity $v_\parallel$ because the polarization is parallel to
+the optic axis. In a birefringent material
+$v_\parallel\neq v_\perp$, and in the figure $v_\parallel &lt; v_\perp$. A
+more complete analysis will show that the waves spread out on the
+surface of an ellipsoid, with the optic axis as major axis of the
+ellipsoid. The envelope of all these elliptical waves is the
+wavefront which proceeds through the crystal in the
+direction shown. Again, at the back surface the beam will be deflected
+just as it was at the front surface, so that the light emerges parallel
+to the incident beam, but displaced from it. Clearly, this beam does not
+follow Snell’s law, but goes in an extraordinary direction. It is
+therefore called the <em class="emph">extraordinary ray</em>.</p>
+</div>
+<div id="Ch33-S7-p4" class="para">
+<p class="p">When an unpolarized beam strikes an anomalously refracting crystal, it
+is separated into an ordinary ray, which travels straight through in
+the normal manner, and an extraordinary ray which is displaced as it
+passes through the crystal. These two emergent rays are linearly
+polarized at right angles to each other. That this is true can be
+readily demonstrated with a sheet of polaroid to analyze the
+polarization of the emergent rays. We can also demonstrate that our
+interpretation of this phenomenon is correct by sending linearly
+polarized light into the crystal. By properly orienting the direction
+of polarization of the incident beam, we can make this light go
+straight through without splitting, or we can make it go through
+without splitting but with a displacement.</p>
+</div>
+<div id="Ch33-F8" class="figure">
+<img src="img/FLP_I/f33-08/f33-08_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–8.</span>Two oppositely rotating vectors of equal amplitude add to
+produce a vector in a fixed direction, but with an oscillating
+amplitude.
+</div>
+</div>
+<div id="Ch33-S7-p5" class="para">
+<p class="p">We have represented all the various polarization cases in Figs.
+<a href="#Ch33-F1">33–1</a> and <a href="#Ch33-F2">33–2</a> as superpositions of two special
+polarization cases, namely $x$ and $y$ in various amounts and phases.
+Other pairs could equally well have been used. Polarization along any
+two perpendicular axes $x'$, $y'$ inclined to $x$ and $y$ would serve as
+well [for example, any polarization can be made up of superpositions of
+cases (a) and (e) of Fig. <a href="#Ch33-F2">33–2</a>]. It is interesting, however,
+that this idea can be extended to other cases also. For example, any
+<em class="emph">linear</em> polarization can be made up by superposing suitable
+amounts at suitable phases of right and left <em class="emph">circular</em>
+polarizations [cases (c) and (g) of Fig. <a href="#Ch33-F2">33–2</a>], since two
+equal vectors rotating in opposite directions add to give a single
+vector oscillating in a straight line (Fig. <a href="#Ch33-F8">33–8</a>). If the
+phase of one is shifted relative to the other, the line is inclined.
+Thus all the pictures of Fig. <a href="#Ch33-F1">33–1</a> could be labeled “the
+superposition of equal amounts of right and left circularly polarized
+light at various relative phases.” As the left slips behind the right
+in phase, the direction of the linear polarization changes. Therefore
+optically active materials are, in a sense,
+birefringent. Their properties can be
+described by saying that they have different indexes for right- and
+left-hand circularly polarized light. Superposition of right and left
+circularly polarized light of different intensities produces
+elliptically polarized light.
+</p>
+</div>
+<div id="Ch33-F9" class="figure">
+<img src="img/FLP_I/f33-09/f33-09_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 33–9.</span>A charge moving in a circle in response to circularly
+polarized light.
+</div>
+</div>
+<div id="Ch33-S7-p6" class="para">
+<p class="p">Circularly polarized light has another interesting property—it carries
+<em class="emph">angular momentum</em> (about the direction of propagation). To illustrate this, suppose
+that such light falls on an atom represented by a harmonic oscillator
+that can be displaced equally well in any direction in the plane $xy$.
+Then the $x$-displacement of the electron will respond to the
+$E_x$ component of the field, while the $y$-component responds, equally,
+to the equal $E_y$ component of the field but $90^\circ$ behind in
+phase. That is, the responding electron goes around in a circle, with
+angular velocity $\omega$, in response to the rotating electric field of
+the light (Fig. <a href="#Ch33-F9">33–9</a>). Depending on the damping
+characteristics of the response of the oscillator, the direction of the
+displacement $\FLPa$ of the electron, and the direction of the
+force $q_e\FLPE$ on it need not be the same but they rotate around
+together. The $\FLPE$ may have a component at right angles to $\FLPa$,
+so work is done on the system and a torque $\tau$ is exerted. The work
+done per second is $\tau\omega$. Over a period of time $T$ the energy
+absorbed is $\tau\omega T$, while $\tau T$ is the angular momentum
+delivered to the matter absorbing the energy. We see therefore that
+<em class="emph">a beam of right circularly polarized light containing a total
+energy $\energy$ carries an angular momentum (with vector directed along
+the direction of propagation) $\energy/\omega$</em>. For when this beam is
+absorbed that angular momentum is delivered to the absorber. Left-hand
+circular light carries angular momentum of the opposite
+sign, $-\energy/\omega$.</p>
+</div>
+</div>
+</div>
+<footer>
+  <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+  </footer>
+</div>
+</div>
+
+</div>    
+  </body>
+</html>

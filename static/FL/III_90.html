@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">  
+<title>The Feynman Lectures on Physics: Preface to the New Millennium Edition</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+    <div class="content">
+      <div class="document">
+        <div id="Ch90" class="chapter">
+        
+        
+        <h2 style="line-height: 150%; margin-top: 0"><b><i>Preface to the New Millennium Edition</i></b></h2>
+        <div class="figure"><a target="_blank" href="http://www.wikipedia.org/wiki/Kip_Thorne"><span style=
+        "float: right; margin: 0 0 20px 15px"><img border="0" src="img/kipthorne1.jpg" width="272" ><center>Kip Thorne</center></span></a></div>
+		 
+         
+         <div id="Ch90-S1" class="section">
+
+        <div id="Ch90-S1-p1" class="para">
+		<p class="p">
+		Nearly fifty years have passed since Richard Feynman taught the introductory
+        physics course at Caltech that gave rise to these three volumes, <i>The Feynman
+        Lectures on Physics</i>. In those fifty years our understanding of the physical
+        world has changed greatly, but <i>The Feynman Lectures on Physics</i> has
+        endured. Feynman’s lectures are as powerful today as when first published, thanks
+        to Feynman’s unique physics insights and pedagogy. They have been studied
+        worldwide by novices and mature physicists alike; they have been translated into
+        at least a dozen languages with more than 1.5 millions copies printed in the
+        English language alone. Perhaps no other set of physics books has had such wide
+        impact, for so long.</p>
+        </div>        
+        <div id="Ch90-S1-p2" class="para">
+		<p class="p">
+        This <i>New Millennium Edition</i> ushers in a new era for <i>The Feynman
+        Lectures on Physics (FLP)</i>: the twenty-first century era of electronic
+        publishing. <i>FLP</i> has been converted to <i>eFLP</i>, with the text and
+        equations expressed in the LaTeX electronic typesetting language, and all figures
+        redone using modern drawing software.</p>
+        </div>        
+        <div id="Ch90-S1-p3" class="para">
+		<p class="p">
+        The consequences for the <i>print</i> version of this edition are <i>not</i>
+        startling; it looks almost the same as the original red books that physics
+        students have known and loved for decades. The main differences are an expanded
+        and improved index, the correction of 885 errata found by readers over the five
+        years since the first printing of the previous edition, and the ease of
+        correcting errata that future readers may find. To this I shall return
+        below.</p>
+        </div>        
+        <div id="Ch90-S1-p4" class="para">
+		<p class="p">
+        The <i>eBook Version</i> of this edition, and the <i>Enhanced Electronic
+        Version</i> are electronic innovations. By contrast with most eBook versions of
+        20th century technical books, whose equations, figures and sometimes even text
+        become pixellated when one tries to enlarge them, the LaTeX manuscript of the
+        <i>New Millennium Edition</i> makes it possible to create eBooks of the highest
+        quality, in which all features on the page (except photographs) can be enlarged
+        without bound and retain their precise shapes and sharpness. And the <i>Enhanced
+        Electronic Version</i>, with its audio and blackboard photos from Feynman’s
+        original lectures, and its links to other resources, is an innovation that would
+        have given Feynman great pleasure.</p>        
+		</div>
+		</div>
+		
+		<div id="Ch90-S2" class="section">
+        <h3 class="title section-title"><i><b><font style="font-size:135%">Memories of Feynman’s Lectures</font></b></i></h3>
+        
+        <div id="Ch90-S2-p1" class="para">
+		<p class="p">
+        These three volumes are a self-contained pedagogical treatise. They are also a
+        historical record of Feynman’s 1961–64 undergraduate physics lectures, a course
+        required of all Caltech freshmen and sophomores regardless of their majors.</p>
+        </div>        
+        <div id="Ch90-S2-p2" class="para">
+		<p class="p">
+        Readers may wonder, as I have, how Feynman’s lectures impacted the students who
+        attended them. Feynman, in his Preface to these volumes, offered a somewhat
+        negative view.&nbsp; “I don’t think I did very well by the students,” he wrote.
+        Matthew Sands, in his memoir in <i>Feynman’s Tips on Physics</i> expressed a far
+        more positive view. Out of curiosity, in spring 2005 I emailed or talked to a
+        quasi-random set of 17 students (out of about 150) from Feynman’s 1961–63
+        class—some who had great difficulty with the class, and some who mastered it
+        with ease; majors in biology, chemistry, engineering, geology, mathematics and
+        astronomy, as well as in physics.</p>
+        </div>        
+        <div id="Ch90-S2-p3" class="para">
+		<p class="p">
+        The intervening years might have glazed their memories with a euphoric tint, but
+        about 80 percent recall Feynman’s lectures as highlights of their college years.
+        “It was like going to church.” The lectures were “a transformational
+        experience,” “the experience of a lifetime, probably the most important thing I
+        got from Caltech.” “I was a biology major but Feynman’s lectures stand out as a
+        high point in my undergraduate experience … though I
+        must admit I couldn’t do the homework at the time and I hardly turned any of it
+        in.” “I was among the least promising of students in this course, and I never
+        missed a lecture. … I remember and can still feel
+        Feynman’s joy of discovery. … His lectures had an
+        … emotional impact that was probably lost in the
+        printed <i>Lectures</i>.”</p>
+        </div>        
+        <div id="Ch90-S2-p4" class="para">
+		<p class="p">
+        By contrast, several of the students have negative memories due largely to two
+        issues: (i) “You couldn’t learn to work the homework problems by attending the
+        lectures. Feynman was too slick—he knew tricks and what approximations could be
+        made, and had intuition based on experience and genius that a beginning student
+        does not possess.” Feynman and colleagues, aware of this flaw in the course,
+        addressed it in part with materials that have been incorporated into <i>Feynman’s
+        Tips on Physics:</i> three problem-solving lectures by Feynman, and a set of
+        exercises and answers assembled by Robert B. Leighton and Rochus Vogt. (ii) “The
+        insecurity of not knowing what was likely to be discussed in the next lecture,
+        the lack of a text book or reference with any connection to the lecture material,
+        and consequent inability for us to read ahead, were very frustrating. 
+        … &nbsp;I found the lectures exciting and understandable in the
+        hall, but they were Sanskrit outside [when I tried to reconstruct the details].”
+        This problem, of course, was solved by these three volumes, the printed version
+        of <i>The Feynman Lectures on Physics</i>. They became the textbook from which
+        Caltech students studied for many years thereafter, and they live on today as one
+        of Feynman’s greatest legacies.</p>
+		</div>
+		</div>
+		
+		<div id="Ch90-S3" class="section">
+        <h3 class="title section-title"><i><b><font style="font-size:135%">A History of Errata</font></b></i></h3>
+        
+        <div id="Ch90-S3-p1" class="para">
+		<p class="p">
+        <i>The Feynman Lectures on Physics</i> was produced very quickly by Feynman and
+        his co-authors, Robert B. Leighton and Matthew Sands, working from and expanding
+        on tape recordings and blackboard photos of Feynman’s course lectures<a name=
+        "footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> (both of
+        which are incorporated into the <i>Enhanced Electronic Version</i> of this <i>New
+        Millennium Edition</i>). Given the high speed at which Feynman, Leighton and
+        Sands worked, it was inevitable that many errors crept into the first edition.
+        Feynman accumulated long lists of claimed errata over the subsequent
+        years—errata found by students and faculty at Caltech and by readers around the
+        world. In the 1960s and early ’70s, Feynman made time in his intense life to
+        check most but not all of the claimed errata for Volumes I and II, and insert
+        corrections into subsequent printings. But Feynman’s sense of duty never rose
+        high enough above the excitement of discovering new things to make him deal with
+        the errata in Volume III.<a name="footnote_source_2" href=
+        "#footnote_2"><sup class="mark">2</sup></a> After his untimely death in 1988,
+        lists of errata for all three volumes were deposited in the Caltech Archives, and
+        there they lay forgotten.</p>
+        </div>        
+        <div id="Ch90-S3-p2" class="para">
+		<p class="p">
+        In 2002 Ralph Leighton (son of the late Robert Leighton and compatriot of
+        Feynman) informed me of the old errata and a new long list compiled by Ralph’s
+        friend Michael Gottlieb. Leighton proposed that Caltech produce a new edition of
+        <i>The Feynman Lectures</i> with all errata corrected, and publish it alongside a
+        new volume of auxiliary material, <i>Feynman’s Tips on Physics</i>, which he and
+        Gottlieb were preparing.</p>
+        </div>        
+        <div id="Ch90-S3-p3" class="para">
+		<p class="p">
+        Feynman was my hero and a close personal friend. When I saw the lists of errata
+        and the content of the proposed new volume, I quickly agreed to oversee this
+        project on behalf of Caltech (Feynman’s long-time academic home, to which he,
+        Leighton and Sands had entrusted all rights and responsibilities for <i>The
+        Feynman Lectures</i>). After a year and a half of meticulous work by Gottlieb,
+        and careful scrutiny by Dr. Michael Hartl (an outstanding Caltech postdoc who
+        vetted all errata plus the new volume), the 2005 <i>Definitive Edition of The
+        Feynman Lectures on Physics</i> was born, with about 200 errata corrected and
+        accompanied by <i>Feynman’s Tips on Physics</i> by Feynman, Gottlieb and
+        Leighton.</p>
+        </div>        
+        <div id="Ch90-S3-p4" class="para">
+		<p class="p">
+        I <i>thought</i> that edition was going to be “Definitive”. What I did not
+        anticipate was the enthusiastic response of readers around the world to an appeal
+        from Gottlieb to identify further errata, and submit them via a website that
+        Gottlieb created and continues to maintain, <i>The Feynman Lectures Website</i>,
+        <a href="http://www.feynmanlectures.info/">www.feynmanlectures.info</a>.&nbsp; In
+        the five years since then, 965 new errata have been submitted and survived the
+        meticulous scrutiny of Gottlieb, Hartl, and Nate Bode (an outstanding Caltech
+        physics graduate student, who succeeded Hartl as Caltech’s vetter of errata). Of
+        these, 965 vetted errata, 80 were corrected in the fourth printing of the
+        <i>Definitive Edition</i> (August 2006) and the remaining 885 are corrected in
+        the first printing of this <i>New Millennium Edition</i> (332 in volume I, 263 in
+        volume II, and 200 in volume III). For details of the errata, see <a href=
+        "http://www.feynmanlectures.info/">www.feynmanlectures.info</a>.</p>
+        </div>        
+        <div id="Ch90-S3-p5" class="para">
+		<p class="p">
+        Clearly, making <i>The Feynman Lectures on Physics</i> error-free has become a
+        world-wide community enterprise. On behalf of Caltech I thank the 50 readers who
+        have contributed since 2005 and the many more who may contribute over the coming
+        years. The names of all contributors are posted at <a href=
+        "http://www.feynmanlectures.info/flp_errata.html">www.feynmanlectures.info/flp_errata.html</a>.</p>
+        </div>        
+        <div id="Ch90-S3-p6" class="para">
+		<p class="p">
+        Almost all the errata have been of three types: (i) typographical errors in
+        prose; (ii) typographical and mathematical errors in equations, tables and
+        figures—sign errors, incorrect numbers (e.g., a 5 that should be a 4), and
+        missing subscripts, summation signs, parentheses and terms in equations; (iii)
+        incorrect cross references to chapters, tables and figures. These kinds of
+        errors, though not terribly serious to a mature physicist, can be frustrating and
+        confusing to Feynman’s primary audience: students.</p>
+        </div>        
+        <div id="Ch90-S3-p7" class="para">
+		<p class="p">
+        It is remarkable that among the 1165 errata corrected under my auspices, only
+        several do I regard as true errors in physics. An example is Volume II, page 5-9,
+        which now says “…no static distribution of charges
+        inside a closed <i>grounded</i> conductor can produce any [electric] fields
+        outside” (the word grounded was omitted in previous editions). This error was
+        pointed out to Feynman by a number of readers, including Beulah Elizabeth Cox, a
+        student at The College of William and Mary, who had relied on Feynman’s erroneous
+        passage in an exam. To Ms. Cox, Feynman wrote in 1975,<a name="footnote_source_3"
+        href="#footnote_3"><sup class="mark">3</sup></a>&nbsp; “Your instructor was right
+        not to give you any points, for your answer was wrong, as he demonstrated using
+        Gauss’s law. You should, in science, believe logic and arguments, carefully
+        drawn, and not authorities. You also read the book correctly and understood it. I
+        made a mistake, so the book is wrong. I probably was thinking of a grounded
+        conducting sphere, or else of the fact that moving the charges around in
+        different places inside does not affect things on the outside. I am not sure how
+        I did it, but I goofed. And you goofed, too, for believing me.”</p>
+		</div>
+		</div>
+		
+		<div id="Ch90-S4" class="section">
+        <h3 class="title section-title"><i><b><font style="font-size:135%">How this New Millennium Edition Came to Be</font></b></i></h3>
+        
+        <div id="Ch90-S4-p1" class="para">
+		<p class="p">
+        Between November 2005 and July 2006, 340 errata were submitted to <i>The Feynman
+        Lectures Website</i> <a href=
+        "http://www.feynmanlectures.info/">www.feynmanlectures.info</a>. Remarkably, the
+        bulk of these came from one person: Dr. Rudolf Pfeiffer, then a physics
+        postdoctoral fellow at the University of Vienna, Austria. The publisher, Addison
+        Wesley, fixed 80 errata, but balked at fixing more because of cost: the books
+        were being printed by a photo-offset process, working from photographic images of
+        the pages from the 1960s. Correcting an error involved re-typesetting the entire
+        page, and to ensure no new errors crept in, the page was re-typeset twice by two
+        different people, then compared and proofread by several other people—a very
+        costly process indeed, when hundreds of errata are involved.</p>
+        </div>        
+        <div id="Ch90-S4-p2" class="para">
+		<p class="p">
+        Gottlieb, Pfeiffer and Ralph Leighton were very unhappy about this, so they
+        formulated a plan aimed at facilitating the repair of all errata, and also aimed
+        at producing eBook and enhanced electronic versions of <i>The Feynman Lectures on
+        Physics</i>. They proposed their plan to me, as Caltech’s representative, in
+        2007. I was enthusiastic but cautious. After seeing further details, including a
+        one-chapter demonstration of the <i>Enhanced Electronic Version</i>, I
+        recommended that Caltech cooperate with Gottlieb, Pfeiffer and Leighton in the
+        execution of their plan. The plan was approved by three successive chairs of
+        Caltech’s Division of Physics, Mathematics and Astronomy—Tom Tombrello, Andrew
+        Lange, and Tom Soifer—and the complex legal and contractual details were worked
+        out by Caltech’s Intellectual Property Counsel, Adam Cochran. With the
+        publication of this <i>New Millennium Edition</i>, the plan has been executed
+        successfully, despite its complexity. Specifically:</p>
+        </div>        
+        <div id="Ch90-S4-p3" class="para">
+		<p class="p">
+        Pfeiffer and Gottlieb have converted into LaTeX all three volumes of <i>FLP</i>
+        (and also more than 1000 exercises from the Feynman course for incorporation into
+        <i>Feynman’s Tips on Physics</i>). The <i>FLP</i> figures were redrawn in modern
+        electronic form in India, under guidance of the <i>FLP</i> German translator,
+        Henning Heinze, for use in the German edition. Gottlieb and Pfeiffer traded
+        non-exclusive use of their LaTeX equations in the German edition (published by
+        Oldenbourg) for non-exclusive use of Heinze’s figures in this <i>New
+        Millennium</i> English edition. Pfeiffer and Gottlieb have meticulously checked
+        all the LaTeX text and equations and all the redrawn figures, and made
+        corrections as needed. Nate Bode and I, on behalf of Caltech, have done spot
+        checks of text, equations, and figures; and remarkably, we have found no errors.
+        Pfeiffer and Gottlieb are unbelievably meticulous and accurate. Gottlieb and
+        Pfeiffer arranged for John Sullivan at the Huntington Library to digitize the
+        photos of Feynman’s 1962–64 blackboards, and for George Blood Audio to digitize
+        the lecture tapes—with financial support and encouragement from Caltech
+        Professor Carver Mead, logistical support from Caltech Archivist Shelley Erwin,
+        and legal support from Cochran.</p>
+        </div>        
+        <div id="Ch90-S4-p4" class="para">
+		<p class="p">
+        The legal issues were serious: In the 1960s, Caltech licensed to Addison Wesley
+        rights to publish the print edition, and in the 1990s, rights to distribute the
+        audio of Feynman’s lectures and a variant of an electronic edition. In the 2000s,
+        through a sequence of acquisitions of those licenses, the print rights were
+        transferred to the Pearson publishing group, while rights to the audio and the
+        electronic version were transferred to the Perseus publishing group. Cochran,
+        with the aid of Ike Williams, an attorney who specializes in publishing,
+        succeeded in uniting all of these rights with Perseus (Basic Books), making
+        possible this <i>New Millennium Edition</i>.</p>
+        </div>       
+		</div>
+		
+		<div id="Ch90-S5" class="section">
+        <h3 class="title section-title"><i><b><font style="font-size:135%">Acknowledgments</font></b></i></h3>
+        
+        <div id="Ch90-S5-p1" class="para">
+		<p class="p">
+        On behalf of Caltech, I thank the many people who have made this <i>New
+        Millennium Edition</i> possible. Specifically, I thank the key people mentioned
+        above: Ralph Leighton, Michael Gottlieb, Tom Tombrello, Michael Hartl, Rudolf
+        Pfeiffer, Henning Heinze, Adam Cochran, Carver Mead, Nate Bode, Shelley
+        Erwin,&nbsp; Andrew Lange, Tom Soifer, Ike Williams, and the 50 people who
+        submitted errata (listed at <a href=
+        "http://www.feynmanlectures.info/">www.feynmanlectures.info</a>). And I also thank
+        Michelle Feynman (daughter of Richard Feynman) for her continuing support and
+        advice, Alan Rice for behind-the-scenes assistance and advice at Caltech, Stephan
+        Puchegger and Calvin Jackson for assistance and advice to Pfeiffer about
+        conversion of <i>FLP</i> to LaTeX, Michael Figl, Manfred Smolik, and Andreas
+        Stangl for discussions about corrections of errata; and the Staff of
+        Perseus/Basic Books, and (for previous editions) the staff of Addison
+        Wesley.</p>
+        </br>
+		<div class="signature">
+		Kip S. Thorne<br>
+        The Feynman Professor of Theoretical Physics, Emeritus<br>
+        California Institute of
+        Technology<span style="font-style:italic;padding-left:3em">October 2010</span><br>
+		<font style="font-size:80%">(Photograph by Jon Rou)</font></div>
+		</div>
+        </div>
+  
+      <ol id="footnotes">
+        <li class="footnote">
+          <a name="footnote_1"></a>For descriptions of the genesis of
+          Feynman’s lectures and of these volumes, see Feynman’s Preface and the
+          Forewords to each of the three volumes, and also Matt Sands’ Memoir in
+          <i>Feynman’s Tips on Physics</i>, and the <i>Special Preface to the
+          Commemorative Edition</i> of <i>FLP</i>, written in 1989 by David Goodstein and
+          Gerry Neugebauer, which also appears in the 2005 <i>Definitive Edition</i>.
+          <a href="#footnote_source_1">↩</a>
+        </li>
+
+        <li class="footnote">
+          <a name="footnote_2"></a>In 1975, he started checking errata
+          for Volume III but got distracted by other things and never finished the task,
+          so no corrections were made. <a href="#footnote_source_2">↩</a>
+        </li>
+
+        <li class="footnote">
+          <a name="footnote_3"></a>Pages 288–289 of <i>Perfectly
+          Reasonable Deviations from the Beaten Track, The Letters of Richard P.
+          Feynman</i>, ed. Michelle Feynman (Basic Books, New York, 2005). <a href=
+          "#footnote_source_3">↩</a>
+        </li>
+      </ol>
+  
+      	<footer>
+         <a href="I_copyright.html">Copyright © 1963, 2006, 2013 by the California Institute of Technology, <br>
+         Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+      </footer>
+
+      </div>
+    </div>
+   </div>
+   </div>
+</body>
+</html>

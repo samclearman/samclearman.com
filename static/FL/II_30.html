@@ -1,0 +1,1978 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 30: The Internal Geometry of Crystals</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "30." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch30" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">30</span>The Internal Geometry of Crystals</h2>
+
+<table class="ref">
+	<tr>
+		<td class="ref">
+		<i>Reference:</i>
+		</td>
+		<td>
+		C. Kittel, <i>Introduction to Solid State Physics,</i> John Wiley and Sons, Inc., New York, 2nd ed., 1956.
+		</td>
+	</tr>
+</table>
+
+<div id="Ch30-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">30–1</span>The internal geometry of crystals</h3>
+
+<div id="Ch30-S1-p1" class="para">
+<p class="p">We have finished the study of the basic laws of electricity and
+magnetism, and we are now going to study the electromagnetic
+properties of matter. We begin by describing solids—that is,
+crystals. When the atoms of matter are not moving around very much,
+they get stuck together and arrange themselves in a configuration with
+as low an energy as possible. If the atoms in a certain place have
+found a pattern which seems to be of low energy, then the atoms
+somewhere else will probably make the same arrangement. For these
+reasons, we have in a solid material a repetitive pattern of atoms.
+</p>
+</div>
+
+<div id="Ch30-S1-p2" class="para">
+<p class="p">In other words, the conditions in a crystal are this way: The
+environment of a particular atom in a crystal has a certain
+arrangement, and if you look at the same kind of an atom at another
+place farther along, you will find one whose surroundings are exactly
+the same. If you pick an atom farther along by the same distance, you
+will find the conditions exactly the same once more. The pattern is
+repeated over and over again—and, of course, in three dimensions.
+</p>
+</div>
+
+<div id="Ch30-F1" class="figure">
+<img class="first" src="img/FLP_II/f30-01/f30-01_tc_big_a.svgz"><img class="last" src="img/FLP_II/f30-01/f30-01_tc_big_b.svgz"><div class="caption"><span class="tag">Fig. 30–1.</span>
+A repeating pattern in two dimensions.
+</div>
+</div>
+
+<div id="Ch30-S1-p3" class="para">
+<p class="p">Imagine the problem of designing a wallpaper—or a cloth, or some
+geometric design for a plane area—in which you are supposed to have a
+design element which repeats and repeats and repeats, so that you can
+make the area as large as you want. This is the two-dimensional analog
+of a problem which a crystal solves in three dimensions. For example,
+Fig.&nbsp;<a href="#Ch30-F1">30–1</a>(a) shows a common kind of wallpaper design. There
+is a single element repeated in a pattern that can go on forever. The
+geometric characteristics of this wallpaper design, considering only its
+repetition properties and not worrying about the geometry of the flower
+itself or its artistic merit, are contained in
+Fig.&nbsp;<a href="#Ch30-F1">30–1</a>(b). If you start at any point, you can find the
+corresponding point by moving the distance&nbsp;$a$ along the direction of
+arrow&nbsp;$1$. You can also get to a <em class="emph">corresponding</em> point if you move
+the distance&nbsp;$b$ in the direction of the other arrow. There are, of
+course, many other directions. You can go, for example, from
+point&nbsp;$\alpha$ to point&nbsp;$\beta$ and reach a corresponding position, but
+such a step can be considered as a combination of a step along
+direction&nbsp;$1$, followed by a step along direction&nbsp;$2$. One of the basic
+properties
+of the pattern can be described by the two shortest steps to nearby
+equal positions. By “equal” positions we mean that if you were to
+stand in any one of them and look around you, you would see exactly the
+same thing as if you were to stand in another one. That’s the
+fundamental property of a crystal. The only difference is that a crystal
+is a three-dimensional arrangement instead of a two-dimensional
+arrangement; and naturally, instead of flowers, each element of the
+lattice is some kind of an arrangement of atoms—perhaps six hydrogen
+atoms and two carbon atoms—in some kind of pattern. The pattern of
+atoms in a crystal can be found out experimentally by x-ray
+diffraction. We
+have mentioned this method briefly before, and won’t say any more now
+except that the precise arrangement of the atoms in space has been
+worked out for most simple crystals and also for some fairly complex
+ones.
+</p>
+</div>
+
+<div id="Ch30-S1-p4" class="para">
+<p class="p">The internal pattern of a crystal shows up in several ways. First, the
+binding strength of the atoms in certain directions is usually
+stronger than in other directions. This means that there are certain
+planes through the crystal where it is more easily broken than
+others. They are called the <em class="emph">cleavage</em> planes. If you crack a crystal with a knife blade it will often split
+apart along such a plane. Second, the internal structure often appears
+at the surface because of the way the crystal was formed. Imagine a
+crystal being deposited out of a solution. There are the atoms floating
+around in the solution and finally settling down when they find a
+position of lowest energy. (It’s as if the wallpaper got made by flowers
+drifting around until one drifted accidentally into place and got stuck,
+and then the next, and the next so that the pattern gradually grows.)
+You can appreciate that there will be certain directions in which it
+will grow at a different speed than in other directions, thereby growing
+into some kind of geometrical shape. Because of such effects, the
+outside surfaces of many crystals show some of the character of the
+internal arrangement of the atoms.
+</p>
+</div>
+
+<div id="Ch30-S1-p5" class="para">
+<p class="p">For example, Fig.&nbsp;<a href="#Ch30-F2">30–2</a>(a) shows the shape of a typical
+quartz crystal whose internal pattern is hexagonal. If you look
+closely at such a crystal, you will notice that the outside does not
+make a very good hexagon because the sides are not all of equal
+length—they are, in fact, often very unequal. But in one respect it
+is a very good hexagon: the <em class="emph">angles</em> between the faces are
+exactly&nbsp;$120^\circ$. Clearly, the size of any particular face is an
+accident of the growth, but the <em class="emph">angles</em> are a representation of
+the internal geometry. So every crystal of quartz has a different
+shape, even though the angles between corresponding faces are always
+the same.
+</p>
+</div>
+
+<div id="Ch30-F2" class="figure">
+<img class="first" src="img/FLP_II/f30-02/f30-02_mg_a.jpg">
+<img class="middle" src="img/FLP_II/f30-02/f30-02_mg_b.jpg">
+<img class="last" src="img/FLP_II/f30-02/f30-02_mg_c.jpg">
+<div class="caption"><span class="tag">Fig. 30–2.</span>
+Natural crystals: (a)&nbsp;quartz, (b)&nbsp;sodium chloride, (c)&nbsp;mica.
+</div>
+</div>
+
+<div id="Ch30-S1-p6" class="para">
+<p class="p">The internal geometry of a crystal of sodium chloride is also evident
+from its external shape. Figure&nbsp;<a href="#Ch30-F2">30–2</a>(b) shows the shape
+of a typical grain of salt. Again the crystal is not a perfect cube,
+but the faces <em class="emph">are</em> exactly at right angles to one another.
+</p>
+</div>
+
+<div id="Ch30-S1-p7" class="para">
+<p class="p">A more complicated crystal is mica, which has the shape shown in
+Fig.&nbsp;<a href="#Ch30-F2">30–2</a>(c). It is a highly anisotropic crystal, as is
+easily seen from the fact that it is very tough if you try to pull it
+apart in one direction (horizontally in the figure), but very easy to
+split by pulling apart in the other direction (vertically). It has
+commonly been used to obtain very tough, thin sheets. Mica and quartz
+are two examples of natural minerals containing silica. A third
+example of a mineral with silica is asbestos, which has the
+interesting property that it is easily pulled apart in two directions
+but not in the third. It appears to be made of very strong,
+<em class="emph">linear</em> fibers.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch30-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">30–2</span>Chemical bonds in crystals</h3>
+
+<div id="Ch30-S2-p1" class="para">
+<p class="p">The mechanical properties of crystals clearly depend on the kind of
+chemical bindings between the atoms. The strikingly different strength
+of mica along different directions depends on the kinds of interatomic
+binding in the different directions. You have already learned in
+chemistry, no doubt, about the different kinds of chemical
+bonds. First, there are ionic bonds, as we have
+already discussed for sodium chloride. Roughly speaking, the sodium
+atoms have lost an electron and become positive ions; the chlorine atoms
+have gained an electron and become negative ions. The positive and
+negative ions are arranged in a three-dimensional checkerboard and are
+held together by electrical forces.
+</p>
+</div>
+
+<div id="Ch30-S2-p2" class="para">
+<p class="p">The covalent bond—in which electrons are shared
+between two atoms—is more common and is usually very strong. In a
+diamond, for example, the carbon atoms have covalent bonds in all four
+directions to the nearest neighbors, so the crystal is very hard indeed.
+There is also covalent bonding between silicon and oxygen in a quartz
+crystal, but there the bond is really only partially covalent. Because
+there is not complete sharing of the electrons, the atoms are partly
+charged, and the crystal is somewhat ionic. Nature is not as simple as
+we try to make it; there are really all possible gradations between
+covalent and ionic bonding.
+</p>
+</div>
+
+<div id="Ch30-S2-p3" class="para">
+<p class="p">A sugar crystal has still another kind of binding. In it there are large
+molecules in which the atoms are held strongly together by covalent
+bonds, so that the molecule is a tough structure. But since the strong
+bonds are completely satisfied, there are only relatively weak
+attractions between the separate, individual molecules. In such
+<em class="emph">molecular</em> crystals the molecules keep their
+individual identity, so to speak, and the internal arrangement might be
+as shown in Fig.&nbsp;<a href="#Ch30-F3">30–3</a>. Since the molecules are not held
+strongly to each other, the crystals are easy to break. They are quite
+different from something like diamond, which is really one giant
+molecule that cannot be broken anywhere without disrupting strong
+covalent bonds. Paraffin is another example of a molecular crystal.
+</p>
+</div>
+
+<div id="Ch30-F3" class="figure">
+<img src="img/FLP_II/f30-03/f30-03_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 30–3.</span>
+The lattice of a molecular crystal.
+</div>
+</div>
+
+<div id="Ch30-S2-p4" class="para">
+<p class="p">An extreme example of a molecular crystal occurs in a substance like
+solid argon. There is very little attraction between the atoms—each
+atom is a completely saturated monatomic molecule. But at very low
+temperatures, the thermal motion is very small, so the slight
+interatomic forces can cause the atoms to settle down into a regular
+array like a pile of closely packed spheres.
+</p>
+</div>
+
+<div id="Ch30-S2-p5" class="para">
+<p class="p">The metals form a completely different class of substances. The
+bonding is of an entirely different kind. In a metal the bonding is
+not between adjacent atoms but is a property of the whole crystal. The
+valence electrons are not attached to one atom or to a pair of atoms
+but are shared throughout the crystal. Each atom contributes an
+electron to a universal pool of electrons, and the atomic positive
+ions reside in the sea of negative electrons. The electron sea holds
+the ions together like some kind of glue.
+</p>
+</div>
+
+<div id="Ch30-S2-p6" class="para">
+<p class="p">In the metals, since there are no special bonds in any particular
+direction, there is no strong directionality in the binding. They are
+still crystalline, however, because the total energy is lowest when
+the atomic ions are arranged in some definite array—although the
+energy of the preferred arrangement is not usually much lower than
+other possible ones. To a first approximation, the atoms of many
+metals are like small spheres packed in as tightly as possible.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch30-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">30–3</span>The growth of crystals</h3>
+
+<div id="Ch30-S3-p1" class="para">
+<p class="p">Try to imagine the natural formation of crystals in the earth. In the
+earth’s surface there is a big mixture of all kinds of atoms. They are
+being continually churned about by volcanic action, by wind, and by
+water—continually being moved about and mixed. Yet, by some trick,
+silicon atoms gradually begin to find each other, and to find oxygen
+atoms, to make silica. One atom at a time is added to the others to
+build up a crystal—the mixture gets unmixed. And somewhere nearby,
+sodium and chlorine atoms are finding each other and building up a
+crystal of salt.
+</p>
+</div>
+
+<div id="Ch30-S3-p2" class="para">
+<p class="p">How does it happen that once a crystal is started, it permits only a
+particular kind of atom to join on? It happens because the whole
+system is working toward the lowest possible energy. A growing crystal
+will accept a new atom if it is going to make the energy as low as
+possible. But how does it <em class="emph">know</em> that a silicon—or an
+oxygen—atom at some particular spot is going to result in the lowest
+possible energy?  It does it by trial and error. In the liquid, all of
+the atoms are in perpetual motion. Each atom bounces against its
+neighbors about $10^{13}$&nbsp;times every second. If it hits against the
+right spot of growing crystal, it has a somewhat smaller chance of
+jumping off again if the energy is low. By continually testing over
+periods of millions of years at a rate of $10^{13}$&nbsp;tests per second,
+the atoms gradually build up at the places where they find their
+lowest energy. Eventually they grow into big crystals.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch30-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">30–4</span>Crystal lattices</h3>
+
+<div id="Ch30-S4-p1" class="para">
+<p class="p">The arrangement of the atoms in a crystal—the crystal
+<em class="emph">lattice</em>—can take on many geometric forms. We would like to
+describe first the simplest lattices, which are characteristic of most
+of the metals and of the solid form of the inert gases. They are the
+cubic lattices which can occur in two forms: the body-centered cubic,
+shown in Fig.&nbsp;<a href="#Ch30-F4">30–4</a>(a), and the face-centered cubic
+shown in Fig.&nbsp;<a href="#Ch30-F4">30–4</a>(b). The drawings show, of course,
+only one cube of the lattice; you are to imagine that the pattern is
+repeated indefinitely in three dimensions. Also, to make the drawing
+clearer, only the “centers” of the atoms are shown. In an actual
+crystal, the atoms are more like spheres in contact with each
+other. The dark and light spheres in the drawings may, in general,
+stand for different kinds of atoms or may be the same kind. For
+instance, iron has a body-centered cubic lattice at low temperatures,
+but a face-centered cubic lattice at higher temperatures. The physical
+properties are quite different in the two crystalline forms.
+</p>
+</div>
+
+<div id="Ch30-F4" class="figure">
+<img class="first" src="img/FLP_II/f30-04/f30-04_tc_big_a.svgz"><img class="last" src="img/FLP_II/f30-04/f30-04_tc_big_b.svgz"><div class="caption"><span class="tag">Fig. 30–4.</span>
+The unit cell of cubic crystals: (a)&nbsp;body-centered,
+(b)&nbsp;face-centered.
+</div>
+</div>
+
+<div id="Ch30-S4-p2" class="para">
+<p class="p">How do such forms come about? Imagine that you have the problem of
+packing spherical atoms together as tightly as possible. One way would
+be to start by making a layer in a “hexagonal close-packed array,”
+as shown in Fig.&nbsp;<a href="#Ch30-F5">30–5</a>(a). Then you could build up a
+second layer like the first, but displaced horizontally, as shown in
+Fig.&nbsp;<a href="#Ch30-F5">30–5</a>(b). Next, you can put on the third layer. But
+notice!  There are <em class="emph">two</em> distinct ways of placing the
+<em class="emph">third</em> layer. If you start the third layer by placing an atom
+at&nbsp;$A$ in Fig.&nbsp;<a href="#Ch30-F5">30–5</a>(b), each atom in the third layer is
+directly above an atom of the bottom layer. On the other hand, if you
+start the third layer by putting an atom at the position&nbsp;$B$, the
+atoms of the third layer will be centered at points exactly in the
+middle of a triangle formed by three atoms of the bottom layer. Any
+other starting place is equivalent to $A$ or&nbsp;$B$, so there are only
+two ways of placing the third layer.
+</p>
+</div>
+
+<div id="Ch30-F5" class="figure">
+<img class="first" src="img/FLP_II/f30-05/f30-05_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_II/f30-05/f30-05_tc_iPad_big_b.svgz"><div class="caption"><span class="tag">Fig. 30–5.</span>
+Building up a hexagonal close-packed lattice.
+</div>
+</div>
+
+<div id="Ch30-S4-p3" class="para">
+<p class="p">If the third layer has an atom at point&nbsp;$B$, the crystal lattice is a
+face-centered cubic—but seen at an angle. It seems funny that
+starting with hexagons you can end up with cubes. But notice that a
+cube looked at from a corner has a hexagonal outline. For instance,
+Fig.&nbsp;<a href="#Ch30-F6">30–6</a> could represent a plane hexagon or a cube
+seen in perspective!
+</p>
+</div>
+
+<div id="Ch30-F6" class="figure">
+<img src="img/FLP_II/f30-06/f30-06_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 30–6.</span>
+Is this a hexagon or a cube seen from one corner?
+</div>
+</div>
+
+<div id="Ch30-S4-p4" class="para">
+<p class="p">If a third layer is added to Fig.&nbsp;<a href="#Ch30-F5">30–5</a>(b) by starting
+with an atom at&nbsp;$A$, there is no cubical structure, and the lattice
+has instead only a hexagonal symmetry. It is clear that both
+possibilities we have described are equally close-packed.
+</p>
+</div>
+
+<div id="Ch30-S4-p5" class="para">
+<p class="p">Some metals—for example, copper and silver—choose the first
+alternative, the face-centered cubic. Others—for example, beryllium
+and magnesium—choose the other alternatives; they form hexagonal
+crystals. Clearly, which crystal lattice appears cannot depend only on
+the packing of little spheres, but must also be determined in part by
+other factors. In particular, it depends on the slight remaining
+angular dependence of the interatomic forces (or, in the case of the
+metals, on the energy of the electron pool). You will, no doubt, learn
+all about such things in your chemistry courses.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch30-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">30–5</span>Symmetries in two dimensions</h3>
+
+<div id="Ch30-S5-p1" class="para">
+<p class="p">We would now like to discuss some of the properties of crystals from
+the point of view of their internal symmetries. The main feature of a
+crystal is that if you start at one atom and move to a corresponding
+atom one lattice unit away, you are again in the same kind of an
+environment. That’s the fundamental proposition. But if you were an
+atom, there would be another kind of change that could take you again
+to the same environment—that is, another possible “symmetry.”
+Figure&nbsp;<a href="#Ch30-F7">30–7</a>(a) shows another possible “wallpaper-type” design
+(though one you have probably never seen). Suppose we compare the
+environments for points $A$ and&nbsp;$B$. You might, at first, think that
+they are the same—but not quite. Points $C$ and&nbsp;$D$ are equivalent
+to&nbsp;$A$, but the environment of&nbsp;$B$ is like that of&nbsp;$A$ only if the
+surroundings are reversed, as in a mirror reflection.
+</p>
+</div>
+
+<div id="Ch30-F7" class="figure">
+<img src="img/FLP_II/f30-07/f30-07_tc_iPad_big.svgz">
+<div class="caption"><span class="tag">Fig. 30–7.</span>
+A pattern of high symmetry.
+</div>
+</div>
+
+<div id="Ch30-S5-p2" class="para">
+<p class="p">There are other kinds of “equivalent” points in the pattern. For
+instance, the points $E$ and&nbsp;$F$ have the “same” environments except
+that one is rotated&nbsp;$90^\circ$ with respect to the other. The pattern
+is quite special. A rotation of&nbsp;$90^\circ$—or any multiple of
+it—about a vertex such as&nbsp;$A$ gives the same pattern all over
+again. A crystal with such a structure would have square corners on
+the outside, but inside it is more complicated than a simple cube.
+</p>
+</div>
+
+<div id="Ch30-S5-p3" class="para">
+<p class="p">Now that we have described some special examples, let’s try to figure
+out all the possible symmetries a crystal can have. First, we consider
+what happens in a plane. A <em class="emph">plane</em> lattice can
+be defined by the two so-called <em class="emph">primitive</em> vectors that go from
+one point of the lattice to the two <em class="emph">nearest</em> equivalent points.
+The two vectors $\FLPone$ and&nbsp;$\FLPtwo$ are the primitive vectors of the
+lattice of Fig.&nbsp;<a href="#Ch30-F1">30–1</a>. The two vectors $\FLPa$ and&nbsp;$\FLPb$
+of Fig.&nbsp;<a href="#Ch30-F7">30–7</a>(a) are the primitive vectors of the pattern
+there. We could, of course, equally well replace $\FLPa$ by&nbsp;$-\FLPa$, or
+$\FLPb$ by&nbsp;$-\FLPb$. Since $\FLPa$ and&nbsp;$\FLPb$ are equal in magnitude
+and at right angles, a rotation of&nbsp;$90^\circ$ turns $\FLPa$
+into&nbsp;$\FLPb$, and $\FLPb$ into&nbsp;$-\FLPa$, giving the same lattice once
+again.
+</p>
+</div>
+
+<div id="Ch30-S5-p4" class="para">
+<p class="p">We see that there are lattices which have a “four-sided”
+symmetry. And we have described earlier a close-packed array based on
+a hexagon which could have a six-sided symmetry. A rotation of the
+array of circles in Fig.&nbsp;<a href="#Ch30-F5">30–5</a>(a) by an angle
+of&nbsp;$60^\circ$ about the center of any circle brings the pattern back to
+itself.
+</p>
+</div>
+
+<div id="Ch30-S5-p5" class="para">
+<p class="p">What other kinds of rotational symmetry are there? Can we have, for
+example, a fivefold or an eightfold rotational symmetry? It is easy to
+see that they are impossible. <em class="emph">The only symmetry with more sides
+than four is a six-sided symmetry</em>. First, let’s show that more than
+sixfold symmetry is impossible. Suppose we try to imagine a lattice with
+two equal primitive vectors with an enclosed angle less than&nbsp;$60^\circ$,
+as in Fig.&nbsp;<a href="#Ch30-F8">30–8</a>(a). We are to suppose that points $B$
+and&nbsp;$C$ are equivalent to&nbsp;$A$, and that $\FLPa$ and&nbsp;$\FLPb$ are the two
+<em class="emph">shortest</em> vectors from&nbsp;$A$ to its equivalent neighbors. But that
+is clearly wrong, because the distance between $B$ and&nbsp;$C$ is shorter
+than from either one to&nbsp;$A$. There must be a neighbor at&nbsp;$D$ equivalent
+to&nbsp;$A$ which is closer than $B$ or&nbsp;$C$. We should have chosen&nbsp;$\FLPb'$
+as one of our primitive vectors. So the angle between the two primitive
+vectors must be&nbsp;$60^\circ$ or larger. Octagonal symmetry is not
+possible.
+</p>
+</div>
+
+<div id="Ch30-F8" class="figure">
+<img src="img/FLP_II/f30-08/f30-08_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 30–8.</span>
+(a)&nbsp;Rotational symmetries greater than sixfold are not
+possible. (b)&nbsp;Fivefold rotational symmetry is not possible.
+</div>
+</div>
+
+<div id="Ch30-S5-p6" class="para">
+<p class="p">What about fivefold symmetry? If we assume that the primitive vectors
+$\FLPa$ and&nbsp;$\FLPb$ have equal lengths and make an angle
+of&nbsp;$2\pi/5=72^\circ$, as in Fig.&nbsp;<a href="#Ch30-F8">30–8</a>(b), then there should also be
+an
+equivalent lattice point at&nbsp;$D$, at&nbsp;$72^\circ$ from&nbsp;$C$. But the
+vector&nbsp;$\FLPb'$ from $E$ to&nbsp;$D$ is then less than&nbsp;$\FLPb$, so&nbsp;$\FLPb$
+is not a primitive vector. There can be no fivefold symmetry. The only
+possibilities that do not get us into this kind of difficulty are
+$\theta=60^\circ$,&nbsp;$90^\circ$, or&nbsp;$120^\circ$. Zero or&nbsp;$180^\circ$ are
+also clearly possible. One way of stating our result is that the
+pattern can be left unchanged by a rotation of one full turn (no
+change at all), one-half of a turn, one-third, one-fourth, or
+one-sixth of a turn. And those are all the possible rotational
+symmetries in a plane—a total of five. If $\theta=2\pi/n$, we speak
+of an “$n$-fold”&nbsp;symmetry. We say that a pattern with $n$&nbsp;equal
+to&nbsp;$4$ or to&nbsp;$6$ has a “higher symmetry” than one with $n$&nbsp;equal to&nbsp;$1$
+or to&nbsp;$2$.
+</p>
+</div>
+
+<div id="Ch30-S5-p7" class="para">
+<p class="p">Returning to Fig.&nbsp;<a href="#Ch30-F7">30–7</a>(a), we see that the pattern has a fourfold
+rotational symmetry. We have drawn in Fig.&nbsp;<a href="#Ch30-F7">30–7</a>(b) another design
+which has the same symmetry properties as part (a). The little
+comma-like figures are asymmetric objects which serve to define the
+symmetry of the design inside of each square. Notice that the commas
+are reversed in alternate squares, so that the unit cell is larger
+than one of the small squares. If there were no commas, the pattern
+would still have fourfold symmetry, but the unit cell would be
+smaller. The patterns of Fig.&nbsp;<a href="#Ch30-F7">30–7</a> also have other symmetry
+properties. For instance, a reflection about any of the broken
+lines&nbsp;$R$&ndash;$R$ reproduces the same pattern.
+</p>
+</div>
+
+<div id="Ch30-S5-p8" class="para">
+<p class="p">The patterns of Fig.&nbsp;<a href="#Ch30-F7">30–7</a> have still another kind of symmetry. If
+the pattern is reflected about the line&nbsp;$Y$&ndash;$Y$ <em class="emph">and</em> shifted
+one square to the right (or left), we get back the original
+pattern. The line&nbsp;$Y$&ndash;$Y$ is called a “glide” line.
+</p>
+</div>
+
+<div id="Ch30-S5-p9" class="para">
+<p class="p">These are all the possible symmetries in two dimensions. There is one
+more spatial symmetry operation which is equivalent <em class="emph">in two
+dimensions</em> to a $180^\circ$&nbsp;rotation, but which is a quite distinct
+operation in three dimensions. It is <em class="emph">inversion</em>. By an inversion
+we mean that any point at the vector displacement&nbsp;$\FLPR$ from some
+origin [for instance, the point&nbsp;$A$ in Fig.&nbsp;<a href="#Ch30-F9">30–9</a>(b)] is moved to
+the point at&nbsp;$-\FLPR$.
+</p>
+</div>
+
+<div id="Ch30-F9" class="figure">
+<img class="first" src="img/FLP_II/f30-09/f30-09_tc_iPad_big_a.svgz"><img class="middle" src="img/FLP_II/f30-09/f30-09_tc_iPad_big_b.svgz"><img class="middle" src="img/FLP_II/f30-09/f30-09_tc_iPad_big_c.svgz"><img class="last" src="img/FLP_II/f30-09/f30-09_tc_iPad_big_d.svgz"><div class="caption"><span class="tag">Fig. 30–9.</span>
+Symmetry under inversion. Pattern&nbsp;(b) is unchanged if
+$\FigR\to-\FigR$, but pattern&nbsp;(a) is changed. In three dimensions
+pattern&nbsp;(d) <em class="emph">is</em> symmetric under an inversion but (c)&nbsp;is not.
+</div>
+</div>
+
+<div id="Ch30-S5-p10" class="para">
+<p class="p">An inversion of pattern&nbsp;(a) of Fig.&nbsp;<a href="#Ch30-F9">30–9</a> produces a new pattern,
+but an inversion of pattern&nbsp;(b) reproduces the same pattern. For a
+two-dimensional pattern (as you can see from the figure), an inversion
+of the pattern&nbsp;(b) through the point&nbsp;$A$ is equivalent to a rotation
+of&nbsp;$180^\circ$ about the same point. Suppose, however, we make the
+pattern in Fig.&nbsp;<a href="#Ch30-F9">30–9</a>(b) three dimensional by imagining that the
+little $6$’s and&nbsp;$9$’s each have an “arrow” <em class="emph">pointing out of
+the page</em>. After an inversion in three dimensions all the arrows will
+be reversed, so the pattern is <em class="emph">not</em> reproduced. If we indicate
+the heads and tails of the arrows by dots and crosses, respectively,
+we can make a <em class="emph">three-dimensional</em> pattern, as in Fig.&nbsp;<a href="#Ch30-F9">30–9</a>(c),
+which is <em class="emph">not</em> symmetric under an inversion, or we can make a
+pattern like the one shown in(d), which <em class="emph">does</em> have such a
+symmetry. Notice that it is <em class="emph">not</em> possible to imitate a
+three-dimensional inversion by any combination of rotations.
+</p>
+</div>
+
+<div id="Ch30-S5-p11" class="para">
+<p class="p">If we characterize the “symmetry” of a pattern—or lattice—by the
+kinds of symmetry operations we have been describing, it turns out that
+for two dimensions $17$&nbsp;distinct patterns are possible. We have drawn
+one pattern of the lowest possible symmetry in Fig.&nbsp;<a href="#Ch30-F1">30–1</a>,
+and one of high symmetry in Fig.&nbsp;<a href="#Ch30-F7">30–7</a>. We will leave you
+with the game of trying to figure out all of the $17$&nbsp;possible patterns.
+</p>
+</div>
+
+<div id="Ch30-S5-p12" class="para">
+<p class="p">It is peculiar how few of the $17$&nbsp;possible patterns are used in
+making wallpaper and fabrics. One always sees the same three or four
+basic patterns. Is this because of a lack of imagination of designers,
+or because many of the possible patterns are not pleasing to the eye?
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch30-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">30–6</span>Symmetries in three dimensions</h3>
+
+<div id="Ch30-S6-p1" class="para">
+<p class="p">So far we have talked only about patterns in two dimensions. What we are
+really interested in, however, are patterns of atoms in three
+dimensions. First, it is clear that a three-dimensional crystal will
+have <em class="emph">three</em> primitive vectors. If we then ask about the possible
+symmetry operations in three dimensions, we find that there are
+$230$&nbsp;different possible symmetries! For some purposes, these
+$230$&nbsp;types can be grouped into seven classes, which are drawn in
+Fig.&nbsp;<a href="#Ch30-F10">30–10</a>. The lattice with the least symmetry is called
+the <em class="emph">triclinic</em>. Its unit cell is a parallelepiped. The
+primitive vectors are of different lengths, and no two of the angles
+between them are equal. There is no possibility of any rotational or
+reflection symmetry. There are, however, still two possible
+symmetries—the unit cell is, or is not, changed by an inversion
+through the vertex. (By an inversion in three dimensions, we again mean
+that spatial displacements&nbsp;$\FLPR$ are replaced by&nbsp;$-\FLPR$—in other
+words, that $(x,y,z)$ goes into&nbsp;$(-x,-y,-z)$). So the triclinic lattice
+has only two possible symmetries, unless there is some special relation
+among the primitive vectors. For example, if all the vectors are equal
+and are separated by equal angles, one has the <em class="emph">trigonal</em>
+lattice
+shown in the figure. This figure can have an additional symmetry; it may
+be unchanged by a rotation about the long, body diagonal.
+</p>
+</div>
+
+<div id="Ch30-F10" class="figure">
+<img class="first" src="img/FLP_II/f30-10/f30-10_tc_iPad_big_a.svgz"><img class="middle" src="img/FLP_II/f30-10/f30-10_tc_iPad_big_b.svgz"><img class="middle" src="img/FLP_II/f30-10/f30-10_tc_iPad_big_c.svgz"><img class="middle" src="img/FLP_II/f30-10/f30-10_tc_iPad_big_d.svgz"><img class="middle" src="img/FLP_II/f30-10/f30-10_tc_iPad_big_e.svgz"><img class="middle" src="img/FLP_II/f30-10/f30-10_tc_iPad_big_f.svgz"><img class="last" src="img/FLP_II/f30-10/f30-10_tc_iPad_big_g.svgz"><div class="caption"><span class="tag">Fig. 30–10.</span>
+The seven classes of crystal lattices.
+</div>
+</div>
+
+<div id="Ch30-S6-p2" class="para">
+<p class="p">If one of the primitive vectors, say&nbsp;$\FLPc$, is at right angles to the
+other two, we get a <em class="emph">monoclinic</em> unit cell. A new
+symmetry is possible—a rotation by&nbsp;$180^\circ$ about&nbsp;$\FLPc$. The
+<em class="emph">hexagonal</em> cell is a special case in which the vectors $\FLPa$
+and&nbsp;$\FLPb$ are equal and the angle between them is&nbsp;$60^\circ$, so that
+a rotation of&nbsp;$60^\circ$, or&nbsp;$120^\circ$, or&nbsp;$180^\circ$ about the
+vector&nbsp;$\FLPc$ repeats the same lattice (for certain internal
+symmetries).
+</p>
+</div>
+
+<div id="Ch30-S6-p3" class="para">
+<p class="p">If all three primitive vectors are at right angles, but of different
+lengths, we get the <em class="emph">orthorhombic</em> cell. The figure is
+symmetric for rotations of&nbsp;$180^\circ$ about the three axes. Higher-order
+symmetries are possible with the <em class="emph">tetragonal</em> cell, which has all right
+angles and two equal primitive vectors. Finally, there is the
+<em class="emph">cubic</em> cell, which is the most symmetric of all.
+</p>
+</div>
+
+<div id="Ch30-S6-p4" class="para">
+<p class="p">The point of all this discussion about symmetries is that the internal
+symmetries of the crystals show up—sometimes in subtle ways—in the
+macroscopic physical properties of the crystal. For instance, a
+crystal will, in general, have a tensor electric polarizability. If we
+describe the tensor in terms of the ellipsoid of polarization, we
+should expect that some of the crystal symmetries should show up also
+in the ellipsoid. For example, a cubic crystal is symmetric with
+respect to a rotation of&nbsp;$90^\circ$ about any one of three orthogonal
+directions. Clearly, the only ellipsoid with this property is a
+sphere. <em class="emph">A cubic crystal must be an isotropic dielectric</em>.
+</p>
+</div>
+
+<div id="Ch30-S6-p5" class="para">
+<p class="p">On the other hand, a tetragonal crystal has a fourfold rotational
+symmetry. Its ellipsoid must have two of its principal axes equal, and
+the third must be parallel to the axis of the crystal. Similarly,
+since the orthorhombic crystal has twofold rotational symmetry about
+three orthogonal axes, its axes must coincide with the axes of the
+polarization ellipsoid. In a like manner, <em class="emph">one</em> of the axes of a
+monoclinic crystal must be parallel to <em class="emph">one</em> of the principal
+axes of the ellipsoid, though we can’t say anything about the other
+axes. Since a triclinic crystal has no rotational symmetry, the
+ellipsoid can have any orientation at all.
+</p>
+</div>
+
+<div id="Ch30-S6-p6" class="para">
+<p class="p">As you can see, we can make a big game of figuring out the possible
+symmetries and relating them to the possible physical tensors. We have
+considered only the polarization tensor, but things get more
+complicated for others—for instance, for the tensor of
+elasticity. There is a branch of mathematics called “group theory”
+that deals with such subjects, but usually you can figure out what you
+want with common sense.
+</p>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch30-S7" class="section">
+<h3 class="title section-title">
+<span class="tag">30–7</span>The strength of metals</h3>
+
+<div id="Ch30-S7-p1" class="para">
+<p class="p">We have said that metals usually have a simple cubic crystal
+structure; we want now to discuss their mechanical properties—which
+depend on this structure. Metals are, generally speaking, very
+“soft,” because it is easy to slide one layer of the crystal over
+the next. You may think: “That’s ridiculous; metals are strong.” Not
+so, a <em class="emph">single crystal</em> of a metal can be distorted very easily.
+</p>
+</div>
+
+<div id="Ch30-F11" class="figure">
+<img src="img/FLP_II/f30-11/f30-11_tc_iPad_big.svgz">
+<div class="caption"><span class="tag">Fig. 30–11.</span>
+Slippage of crystal planes.
+</div>
+</div>
+
+<div id="Ch30-S7-p2" class="para">
+<p class="p">Suppose we look at two layers of a crystal subjected to a shear force,
+as shown in the diagram of Fig.&nbsp;<a href="#Ch30-F11">30–11</a>(a). You might at first think
+the whole layer would resist motion until the force was big enough to
+push the whole layer “over the hump,” so that it shifted one notch
+to the left. Although slipping does occur along a plane, it doesn’t
+happen that way. (If it did, you would calculate that the metal is
+much stronger than it really is.) What happens is more like one atom
+going at a time; first the atom on the left makes its jump, then the
+next, and so on, as indicated in Fig.&nbsp;<a href="#Ch30-F11">30–11</a>(b). In effect it is the
+vacant space between two atoms that quickly travels to the right, with
+the net result that the whole second layer has moved over one atomic
+spacing. The slipping goes this way because it takes much less energy
+to lift one atom at a time over the hump than to lift a whole
+row. Once the force is enough to start the process, it goes the rest
+of the way very fast.
+</p>
+</div>
+
+<div id="Ch30-S7-p3" class="para">
+<p class="p">It turns out that in a real crystal, slipping will occur repeatedly at
+one plane, then will stop there and start at some other plane. The
+details of why it starts and stops are quite mysterious. It is, in
+fact, quite strange that successive regions of slip are often fairly
+evenly spaced. Figure&nbsp;<a href="#Ch30-F12">30–12</a> shows a photograph of a tiny thin
+copper
+crystal that has been stretched. You can see the various planes where
+slipping has occurred.
+</p>
+</div>
+
+<div id="Ch30-F12" class="figure">
+<img src="img/FLP_II/f30-12/f30-12_mg.jpg">
+<div class="caption"><span class="tag">Fig. 30–12.</span>
+A photograph of a small crystal of copper after stretching. [Courtesy
+of S.&nbsp;S. Brenner, Senior Scientist, United States Steel Research Center,
+Monroeville, Pa.]
+</div>
+</div>
+
+<div id="Ch30-S7-p4" class="para">
+<p class="p">The sudden slipping of individual crystal planes is quite apparent if
+you take a piece of tin wire that has large crystals in it and stretch
+it while holding it next to your ear. You can hear a rush of “ticks”
+as the planes snap to their new positions, one after the other.
+</p>
+</div>
+
+<div id="Ch30-S7-p5" class="para">
+<p class="p">The problem of having a “missing” atom in one row is somewhat more
+difficult than it might appear from Fig.&nbsp;<a href="#Ch30-F11">30–11</a>. When there
+are more layers, the situation must be something like that shown in
+Fig.&nbsp;<a href="#Ch30-F13">30–13</a>. Such an imperfection in a crystal is called a
+<em class="emph">dislocation</em>. It is presumed that such
+dislocations are either present when the crystal was formed or are
+generated at some notch or crack at the surface. Once they are produced,
+they can move relatively freely through the crystal. The gross
+distortions result from the motions of many of such dislocations.
+</p>
+</div>
+
+<div id="Ch30-F13" class="figure">
+<img src="img/FLP_II/f30-13/f30-13_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 30–13.</span>
+A dislocation in a crystal.
+</div>
+</div>
+
+<div id="Ch30-S7-p6" class="para">
+<p class="p">Dislocations can move freely—that is, they require little extra
+energy—so long as the rest of the crystal has a perfect lattice. But
+they may get “stuck” if they encounter some other kind of
+imperfection in the crystal. If it takes a lot of energy for them to
+pass the imperfection, they will be stopped. This is precisely the
+mechanism that gives strength to <em class="emph">imperfect</em> metal crystals. Pure
+iron crystals are quite soft, but a small concentration of impurity
+atoms may cause enough imperfections to effectively immobilize the
+dislocations. As you know, steel, which is primarily iron, is very
+hard. To make steel, a small amount of carbon is dissolved in the iron
+melt; if the melt is cooled rapidly, the carbon precipitates out in
+little grains, making many microscopic distortions in the lattice. The
+dislocations can no longer move about, and the metal is hard.
+</p>
+</div>
+
+<div id="Ch30-S7-p7" class="para">
+<p class="p">Pure copper is very soft, but can be “work-hardened.” This is done
+by hammering on it or bending it back and forth. In this case, many
+new dislocations of various kinds are made which interfere with one
+another, cutting down their mobility. Perhaps you’ve seen the trick of
+taking a bar of “dead soft” copper and gently bending it around
+someone’s wrist as a bracelet. In the process, it becomes
+work-hardened and cannot easily be unbent again! A work-hardened metal
+like copper can be made soft again by annealing at a high
+temperature. The thermal motion of the atoms “irons out” the
+dislocations and makes large single crystals again. We have, so far,
+described only the so-called <em class="emph">slip</em> dislocation. There are many other kinds,
+one of which is the <em class="emph">screw</em> dislocation shown in
+Fig.&nbsp;<a href="#Ch30-F14">30–14</a>. Such dislocations often play an important part
+in crystal growth.
+</p>
+</div>
+
+<div id="Ch30-F14" class="figure">
+<img src="img/FLP_II/f30-14/f30-14_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 30–14.</span>
+A screw dislocation. [From Charles Kittel, <i>Introduction
+to Solid State Physics</i>, John Wiley and Sons, Inc., New York, 2nd ed.,
+1956.]
+</div>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch30-S8" class="section">
+<h3 class="title section-title">
+<span class="tag">30–8</span>Dislocations and crystal growth</h3>
+
+<div id="Ch30-S8-p1" class="para">
+<p class="p">One of the great puzzles for a long time was how crystals can possibly
+grow. We have described how it is that each atom might, by repeated
+testing, determine whether it was better to be in the crystal or not.
+But that means that each atom must find a place of low energy. However,
+an atom put on a new surface is only bound by one or two bonds from
+below, and doesn’t have the same energy it would have if it were placed
+in a corner, where it would have atoms on three sides. Suppose we
+imagine a growing crystal as a stack of blocks, as shown in
+Fig.&nbsp;<a href="#Ch30-F15">30–15</a>. If we try a new block at, say, position&nbsp;$A$, it
+will have only one of the six neighbors it should ultimately get. With
+so many bonds lacking, its energy is not very low. It would be better
+off at position&nbsp;$B$, where it already has one-half of its quota of
+bonds. Crystals do indeed grow by attaching new atoms at places
+like&nbsp;$B$.
+</p>
+</div>
+
+<div id="Ch30-F15" class="figure">
+<img src="img/FLP_II/f30-15/f30-15_tc_big.svgz">
+<div class="caption"><span class="tag">Fig. 30–15.</span>
+Crystal growth.
+</div>
+</div>
+
+<div id="Ch30-S8-p2" class="para">
+<p class="p">What happens, though, when that line is finished? To start a new line,
+an atom must come to rest with only two sides attached, and that is
+again not very likely. Even if it did, what would happen when the
+layer was finished? How could a new layer get started? One answer is
+that the crystal prefers to grow at a dislocation, for instance around
+a screw dislocation like the one shown in Fig.&nbsp;<a href="#Ch30-F14">30–14</a>. As blocks are
+added to this crystal, there is always some place where there are three
+available bonds. The crystal prefers, therefore, to grow with a
+dislocation built in. Such a spiral pattern of growth is shown in
+Fig.&nbsp;<a href="#Ch30-F16">30–16</a>, which is a photograph of a single crystal of
+paraffin.
+</p>
+</div>
+
+<div id="Ch30-F16" class="figure">
+<img src="img/FLP_II/f30-16/f30-16_mg.jpg">
+<div class="caption"><span class="tag">Fig. 30–16.</span>
+A paraffin crystal which has grown around a screw dislocation.
+[From Charles Kittel, <i>Introduction to Solid State Physics</i>, John
+Wiley and Sons, Inc., New York, 2nd ed., 1956.]
+</div>
+</div>
+
+</div> <!--end of section -->
+
+<div id="Ch30-S9" class="section">
+<h3 class="title section-title">
+<span class="tag">30–9</span>The Bragg-Nye crystal model</h3>
+
+<div id="Ch30-S9-p1" class="para">
+<p class="p">We cannot, of course, see what goes on with the individual atoms in a crystal.
+Also, as you realize by now, there are many complicated phenomena that are not
+easy to treat quantitatively. Sir Lawrence Bragg and J.&nbsp;F. Nye
+have devised a scheme for making a model of a metallic crystal which
+shows in a striking way many of the phenomena that are believed to occur in a
+real metal. In the following pages we have reproduced their original article,
+which describes their method and shows some of the results they obtained with
+it. (The article is reprinted from the <i>Proceedings of the Royal Society
+of London,</i> Vol.&nbsp;190, September 1947, pp.&nbsp;474–481—with the permission of the
+authors and of the Royal Society.)
+</p>
+</div>
+
+<br><center><hr class="sep"></center><br>
+
+<div id="bragg-paper">
+<div id="bragg-header">
+<div style="font-size:larger;">A dynamical model of a crystal structure</div>
+<div class="text smallcaps" style="font-size:normal">By Sir&nbsp;Lawrence&nbsp;Bragg,&nbsp;F.R.S. and J.&nbsp;F.&nbsp;Nye</div>
+<div style="font-size: small">
+<div><i>Cavendish Laboratory, University of Cambridge</i></div>
+<div>(Received 9 January 1947—Read 19 June 1947)</div>
+<div>[Plates 8 to 21]</div>
+</div>
+</div>
+
+<div id="bragg-abstract">
+		The crystal structure of a metal is represented by an assemblage of bubbles, a 
+		millimetre or less in diameter, floating on the surface of a soap solution. The 
+		bubbles are blown from a fine pipette beneath the surface with a constant air 
+		pressure, and are remarkably uniform in size. They are held together by surface 
+		tension, either in single layer on the surface or in a three-dimensional mass. 
+		An assemblage may contain hundreds of thousands of bubbles and persists for an 
+		hour or more. The assemblages show structures which have been supposed to exist 
+		in metals, and simulate effects which have been observed, such as, grain 
+		boundaries, dislocations and other types of fault, slip, recrystallization, 
+		annealing, and strains due to ‘foreign’ atoms. 	
+</div>
+
+<div id="Ch30-S9-p3" class="para">
+<h4>1. The bubble model</h4>
+<p class="p">
+Models of crystal structure have been described from time to time in
+which the atoms are represented by small floating or suspended magnets, or by
+circular disks floating on a water surface and held together by the forces of
+capillary attraction. These models have certain disadvantages; for instance, in
+the case of floating objects in contact, frictional forces impede their free
+relative movement. A more serious disadvantage is that the number of components
+is limited, for a large number of components is required in order to approach
+the state of affairs in a real crystal. The present paper describes the
+behaviour of a model in which the atoms are represented by small bubbles from
+$2\Rdot0$ to&nbsp;$0\Rdot1$&nbsp;mm. in diameter floating on the
+surface of a soap solution. These small bubbles are sufficiently persistent for
+experiments lasting an hour or more, they slide past each other without
+friction, and they can be produced in large numbers. Some of the illustrations
+in this paper were taken from assemblages of bubbles numbering&nbsp;$100{,}000$ or
+more. The model most nearly represents the behaviour of a metal structure,
+because the bubbles are of one type only and are held together by a general
+capillary attraction, which represents the binding force of the free electrons
+in the metal. A brief description of the model has been given in the
+<i>Journal of Scientific Instruments</i> (Bragg 1942<i>b</i>).
+</p>
+</div>
+
+<div id="Ch30-F17" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_01.svgz">
+<div class="caption"><span class="tag">Figure 1.</span>&nbsp;&nbsp;
+Apparatus for producing rafts of bubbles.
+</div>
+</div>
+
+<div id="Ch30-S9-p4" class="para">
+<h4>2. Method of formation</h4>
+<p class="p">
+The bubbles are blown from a fine orifice, beneath the surface of a soap
+solution. We have had the best results with a solution the formula of which was
+given to us by Mr&nbsp;Green of the Royal Institution. $15\Rdot2$&nbsp;c.c.
+of oleic acid (pure redistilled) is well shaken in $50$&nbsp;c.c. of
+distilled water. This is mixed thoroughly with $73$&nbsp;c.c. of 10%
+solution of tri-ethanolamine and the mixture made up to $200$&nbsp;c.c. To this is
+added $164$&nbsp;c.c. of pure glycerine. It is left to stand and the clear
+liquid is drawn off from below. In some experiments this was diluted in three
+times its volume of water to reduce viscosity. The orifice of the jet is about
+$5$&nbsp;mm. below the surface. A constant air pressure of $50$
+to&nbsp;$200$&nbsp;cm. of water is supplied by means of two Winchester flasks.
+Normally the bubbles are remarkably uniform in size. Occasionally they issue in
+an irregular manner, but this can be corrected by a change of jet or of
+pressure. Unwanted bubbles can easily be destroyed by playing a small flame over
+the surface. Figure 1 shows the apparatus. We have found it of advantage to
+blacken the bottom of the vessel, because details of structure, such as grain
+boundaries and dislocations, then show up more clearly.
+</p>
+</div>
+
+<div id="Ch30-S9-p5" class="para">
+<p class="p">
+Figure&nbsp;2, plate&nbsp;8, shows a portion of a raft or two-dimensional crystal of
+bubbles. Its regularity can be judged by looking at the figure in a glancing
+direction. The size of the bubbles varies with the aperture, but does not appear
+to vary to any marked degree with the pressure or the depth of the orifice
+beneath the surface. The main effect of increasing the pressure is to increase
+the rate of issue of the bubbles. As an example, a thick-walled jet of
+$49$&nbsp;$\mu$ bore with a pressure of $100$&nbsp;cm. produced bubbles of
+$1\Rdot2$&nbsp;mm. in diameter. A thin-walled jet of $27$&nbsp;$\mu$
+diameter and a pressure of $180$&nbsp;cm. produced bubbles of
+$0\Rdot6$&nbsp;mm. diameter. It is convenient to refer to bubbles of
+$2\Rdot0$ to&nbsp;$1\Rdot0$&nbsp;mm. diameter as ‘large’ bubbles,
+those from $0\Rdot8$ to&nbsp;$0\Rdot6$&nbsp;mm. diameter as ‘medium’
+bubbles, and those from $0\Rdot3$ to&nbsp;$0\Rdot1$&nbsp;mm.
+diameter as ‘small’ bubbles, since their behaviour varies with their size.
+</p>
+</div>
+
+<div id="Ch30-F18" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_03.svgz">
+<div class="caption"><span class="tag">Figure 3.</span>&nbsp;&nbsp;
+Apparatus for producing bubbles of small size.
+</div>
+</div>
+
+<div id="Ch30-S9-p6" class="para">
+<p class="p">
+With this apparatus we have not found it possible to reduce the size of the jet
+and so produce bubbles of smaller diameter than $0\Rdot6$&nbsp;mm. As it was
+desired to experiment with very small bubbles, we had recourse to placing the
+soap solution in a rotating vessel and introducing a fine jet as nearly as
+possible parallel to a stream line. The bubbles are swept away as they form, and
+under steady conditions are reasonably uniform. They issue at a rate of one
+thousand or more per second, giving a high-pitched note. The soap solution
+mounts up in a steep wall around the perimeter of the vessel while it is
+rotating, but carries back most of the bubbles with it when rotation ceases.
+With this device, illustrated in figure&nbsp;3, bubbles down to
+$0\Rdot12$&nbsp;mm. in diameter can be obtained. As an example, an
+orifice $38$&nbsp;$\mu$ across in a thin-walled jet, with a pressure of
+$190$&nbsp;cm. of water, and a speed of the fluid of $180$&nbsp;cm./sec.
+past the orifice, produced bubbles of $0\Rdot14$&nbsp;mm. diameter. In
+this case a dish of diameter $9\Rdot5$&nbsp;cm. and speed of
+$6$&nbsp;rev./sec. was used. Figure&nbsp;4, plate&nbsp;8, is an enlarged picture of
+these ‘small’ bubbles and shows their degree of regularity; the pattern is not
+as perfect with a rotating as with a stationary vessel, the rows being seen to
+be slightly irregular when viewed in a glancing direction.
+</p>
+</div>
+
+<div id="Ch30-S9-p7" class="para">
+<p class="p">
+These two-dimensional crystals show structures which have been
+supposed to exist in metals, and simulate effects which have been
+observed, such as grain boundaries, dislocations and other types of
+fault, slip, recrystallization, annealing, and strains due to
+‘foreign’ atoms.
+</p>
+</div>
+
+<div id="Ch30-S9-p8" class="para">
+<h4>3. Grain boundaries</h4>
+<p class="p">
+Figures 5<i>a</i>,&nbsp;5<i>b</i> and&nbsp;5<i>c</i>, plates 9 and&nbsp;10, show typical
+grain boundaries for bubbles of $1\Rdot87$,&nbsp;$0\Rdot76$
+and&nbsp;$0\Rdot30$&nbsp;mm. diameter respectively. The width of the
+disturbed area at the boundary, where the bubbles have an irregular
+distribution, is in general greater the smaller the bubbles. In
+figure&nbsp;5<i>a</i>, which shows portions of several adjacent grains, bubbles at
+a boundary between two grains adhere definitely to one crystalline arrangement
+or the other. In figure&nbsp;5<i>c</i> there is a marked ‘Beilby layer’ between the
+two grains. The small bubbles, as will be seen, have a greater rigidity than the
+large ones, and this appears to give rise to more irregularity at the interface.
+</p>
+</div>
+
+<div id="Ch30-S9-p9" class="para">
+<p class="p">
+Separate grains show up distinctly when photographs of polycrystalline
+rafts such as figures 5<i>a</i> to&nbsp;5<i>c</i>, plates 9 and&nbsp;10, and
+figures 12<i>a</i> to&nbsp;12<i>e</i>, plates 14 to&nbsp;16, are viewed
+obliquely. With suitable lighting, the floating raft of bubbles itself
+when viewed obliquely resembles a polished and etched metal in a
+remarkable way.
+</p>
+</div>
+
+<div id="Ch30-S9-p10" class="para">
+<p class="p">
+It often happens that some ‘impurity atoms’, or bubbles which are
+markedly larger or smaller than the average, are found in a
+polycrystalline raft, and when this is so a large proportion of them
+are situated at the grain boundaries. It would be incorrect to say
+that the irregular bubbles make their way to the boundaries; it is a
+defect of the model that no diffusion of bubbles through the structure
+can take place, mutual adjustments of neighbours alone being
+possible. It appears that the boundaries tend to readjust themselves
+by the growth of one crystal at the expense of another till they pass
+through the irregular atoms.
+</p>
+</div>
+
+<div id="Ch30-S9-p11" class="para">
+<h4>4. Dislocations</h4>
+<p class="p">
+When a single crystal or polycrystalline raft is compressed, extended,
+or otherwise deformed it exhibits a behaviour very similar to that
+which has been pictured for metals subjected to strain. Up to a
+certain limit the model is within its elastic range. Beyond that point
+it yields by slip along one of the three equally inclined directions
+of closely packed rows. Slip takes place by the bubbles in one row
+moving forward over those in the next row by an amount equal to the
+distance between neighbours. It is very interesting to watch this
+process taking place. The movement is not simultaneous along the whole
+row but begins at one end with the appearance of a ‘dislocation’,
+where there is locally one more bubble in the rows on one side of the
+slip line as compared with those on the other. This dislocation then
+runs along the slip line from one side of the crystal to the other,
+the final result being a slip by one ‘inter-atomic’ distance. Such a
+process has been invoked by Orowan, by Polanyi and by Taylor to
+explain the small forces required to produce plastic gliding in metal
+structures. The theory put forward by Taylor (1934) to explain the
+mechanism of plastic deformation of crystals considers the mutual
+action and equilibrium of such dislocations. The bubbles afford a very
+striking picture of what has been supposed to take place in the
+metal. Sometimes the dislocations run along quite slowly, taking a
+matter of seconds to cross a crystal; stationary dislocations also are
+to be seen in crystals which are not homogeneously strained. They
+appear as short black lines, and can be seen in the series of
+photographs, figures 12<i>a</i> to&nbsp;12<i>e</i>, plates 14 to&nbsp;16. When
+a polycrystalline raft is compressed, these dark lines are seen to be
+dashing about in all directions across the crystals.
+</p>
+</div>
+
+<div id="Ch30-S9-p12" class="para">
+<p class="p">
+Figures 6<i>a</i>,&nbsp;6<i>b</i> and&nbsp;6<i>c</i>, plates 10 and&nbsp;11,
+show examples of dislocations. In figure&nbsp;6<i>a</i>, where the
+diameter of the bubbles is $1\Rdot9$&nbsp;mm., the dislocation is
+very local, extending over about six bubbles. In figure&nbsp;6<i>b</i>
+(diameter $0\Rdot76$&nbsp;mm.) it extends over twelve bubbles, and
+in figure&nbsp;6<i>c</i> (diameter $0\Rdot30$&nbsp;mm.) its influence
+can be traced for a length of about fifty bubbles. The greater
+rigidity of the small bubbles leads to longer dislocations. The study
+of any mass of bubbles shows, however, that there is not a standard
+length of dislocation for each size. The length depends upon the
+nature of the strain in the crystal. A boundary between two crystals
+with corresponding axes at approximately&nbsp;$30^\circ$ (the maximum angle
+which can occur) may be regarded as a series of dislocations in
+alternate rows, and in this case the dislocations are very short. As
+the angle between the neighbouring crystals decreases, the
+dislocations occur at wider intervals and at the same time become
+longer, till one finally has single dislocations in a large body of
+perfect structure as shown in figures 6<i>a</i>,&nbsp;6<i>b</i>
+and&nbsp;6<i>c</i>.
+</p>
+</div>
+
+<div id="Ch30-S9-p13" class="para">
+<p class="p">
+Figure&nbsp;7, plate&nbsp;11, shows three parallel dislocations. If we call them
+positive and negative (following Taylor) they are positive, negative,
+positive, reading from left to right. The strip between the last two
+has three bubbles in excess, as can be seen by looking along the rows
+in a horizontal direction. Figure&nbsp;8, plate&nbsp;12, shows a dislocation
+projecting from a grain boundary, an effect often observed.
+</p>
+</div>
+
+<div id="Ch30-S9-p14" class="para">
+<p class="p">
+Figure&nbsp;9, plate&nbsp;12, shows a place where two bubbles take the place of
+one. This may be regarded as a limiting case of positive and negative
+dislocations on neighbouring rows, with the compressive sides of the
+dislocations facing each other. The contrary case would lead to a hole
+in the structure, one bubble being missing at the point where the
+dislocations met.
+</p>
+</div>
+
+<div id="Ch30-S9-p15" class="para">
+<h4>5. Other types of fault</h4>
+<p class="p">
+Figure&nbsp;10, plate&nbsp;12, shows a narrow strip between two crystals of
+parallel orientation, the strip being crossed by a number of fault
+lines where the bubbles are not in close packing. It is in such places
+as these that recrystallization may be expected. The boundaries
+approach and the strip is absorbed into a wider area of perfect
+crystal.
+</p>
+</div>
+
+<div id="Ch30-S9-p16" class="para">
+<p class="p">
+Figures 11<i>a</i> to&nbsp;11<i>g</i>, plates 13 and&nbsp;14 are examples of
+arrangements which frequently appear in places where there is a local
+deficiency of bubbles. While a dislocation is seen as a dark stripe in
+a general view, these structures show up in the shape of the letter
+<font face="Arial">V</font> or as triangles. A typical <font face="Arial">V</font> structure is seen in
+figure&nbsp;11<i>a</i>. When the model is being distorted, a <font face="Arial">V</font>
+structure is formed by two dislocations meeting at an inclination
+of&nbsp;$60^\circ$; it is destroyed by the dislocations continuing along their
+paths. Figure&nbsp;11<i>b</i> shows a small triangle, which also embodies
+a dislocation, for it will be noticed that the rows below the fault
+have one more bubble than these below. If a mild amount of ‘thermal
+movement’ is imposed by gentle agitation of one side of the crystal,
+such faulty places disappear and a perfect structure is formed.
+</p>
+</div>
+
+<div id="Ch30-S9-p17" class="para">
+<p class="p">
+Here and there in the crystals there is a blank space where a bubble
+is missing, showing as a black dot in a general view. Examples occur
+in figure&nbsp;11<i>g</i>. Such a gap cannot be closed by a local
+readjustment, since filling the hole causes another to appear. Such
+holes both appear and disappear when the crystal is
+‘cold-worked’. These structures in the model suggest that similar
+local faults may exist in an actual metal. They may play a part in
+processes such as diffusion or the order-disorder change by reducing
+energy barriers in their neighbourhood, and act as nuclei for
+crystallization in an allotropic change.
+</p>
+</div>
+
+<div id="Ch30-S9-p18" class="para">
+<h4>6. Recrystallization and annealing</h4>
+<p class="p">
+Figures 12<i>a</i> to&nbsp;12<i>e</i>, plates 14 to&nbsp;16, show the same raft of
+bubbles at successive times. A raft covering the surface of the solution was
+given a vigorous stirring with a glass rake, and then left to adjust itself.
+Figure&nbsp;12<i>a</i> shows its aspect about $1$&nbsp;sec. after stirring has
+ceased. The raft is broken into a number of small ‘crystallites’; these are in a
+high state of non-homogeneous strain as is shown by the numerous dislocations
+and other faults. The following photograph (figure&nbsp;12<i>b</i>) shows the same
+raft $32$&nbsp;sec. later. The small grains have coalesced to form larger
+grains, and much of the strain has disappeared in the process. Recrystallization
+takes place right through the series, the last three photographs of which show
+the appearance of the raft $2$,&nbsp;$14$ and&nbsp;$25$&nbsp;min. after the initial
+stirring. It is not possible to follow the rearrangement for much longer times,
+because the bubbles shrink after long standing, apparently due to the diffusion
+of air through their walls, and they also become thin and tend to burst. No
+agitation was given to the model during this process. An ever slower process of
+rearrangement goes on, the movement of the bubbles in one part of the raft
+setting up strains which activate a rearrangement in a neighbouring part, and
+that in its turn still another.
+</p>
+</div>
+
+<div id="Ch30-S9-p19" class="para">
+<p class="p">
+A number of interesting points are to be seen in this series. Note the
+three small grains at the points indicated by the co-ordinates $AA$,
+$BB$, $CC$. $A$ persists, though changed in form, throughout the whole
+series. $B$ is still present after $14$&nbsp;min., but has disappeared in
+$25$&nbsp;min., leaving behind it four dislocations marking internal strain
+in the grain. Grain $C$ shrinks and finally disappears in
+figure&nbsp;12<i>d</i>, leaving a hole and a <font face="Arial">V</font> which has
+disappeared in figure&nbsp;12<i>e</i>. At the same time the ill-defined
+boundary in figure&nbsp;12<i>d</i> at $DD$ has become a definite one in
+figure&nbsp;12<i>e</i>. Note also the straightening out of the grain
+boundary in the neighbourhood of $EE$ in figures 12<i>b</i>
+to&nbsp;12<i>e</i>. Dislocations of various lengths can be seen, marking
+all stages between a slight warping of the structure and a definite
+boundary. Holes where bubbles are missing show up as black dots. Some of
+these holes are formed or filled up by movements of dislocations, but
+others represent places where a bubble has burst. Many examples of
+<font face="Arial">V</font>’s and some of triangles can be seen. Other interesting points
+will be apparent from a study of this series of photographs.
+</p>
+</div>
+
+<div id="Ch30-S9-p20" class="para">
+<p class="p">
+Figures 13<i>a</i>,&nbsp;13<i>b</i> and&nbsp;13<i>c</i>, plate&nbsp;17, show a portion of
+a raft $1$&nbsp;sec.,&nbsp;$4$&nbsp;sec. and&nbsp;$4$&nbsp;min. after the stirring
+process, and is interesting as showing two successive stages in the relaxation
+towards a more perfect arrangement. The changes show up well when one looks in a
+glancing direction across the page. The arrangement is very broken in
+figure&nbsp;13<i>a</i>. In figure&nbsp;13<i>b</i> the bubbles have grouped themselves
+in rows, but the curvature of these rows indicates a high degree of internal
+strain. In figure&nbsp;13<i>c</i> this strain has been relieved by the formation of
+a new boundary at $A$–$A$, the rows on either side now being straight. It would
+appear that the energy of this strained crystal is greater than that of the
+intercrystalline boundary. We are indebted to Messrs Kodak for the photographs
+of figure&nbsp;13, which were taken when the cinematograph film referred to below was
+produced.
+</p>
+</div>
+
+
+<div id="Ch30-S9-p21" class="para">
+<h4>7. Effect of impurity atom</h4>
+<p class="p">
+Figure&nbsp;14, plate&nbsp;18, shows the widespread effect of a bubble which is
+of the wrong size. If this figure is compared with the perfect rafts
+shown in figures 2 and&nbsp;4, plate&nbsp;8, it will be seen that three bubbles,
+one larger and two smaller than normal, disturb the regularity of the
+rows over the whole of the figure. As has been mentioned above,
+bubbles of the wrong size are generally found in the grain boundaries,
+where holes of irregular size occur which can accommodate them.
+</p>
+</div>
+
+<div id="Ch30-S9-p22" class="para">
+<h4>8. Mechanical properties of the two-dimensional model</h4>
+<p class="p">
+The mechanical properties of a two-dimensional perfect raft have been
+described in the paper referred to above (Bragg 1942<i>b</i>). The
+raft lies between two parallel springs dipping horizontally in the
+surface of the soap solution. The pitch of the springs is adjusted to
+fit the spacing of the rows of bubbles, which then adhere firmly to
+them. One spring can be translated parallel to itself by a micrometer
+screw, and the other is supported by two thin vertical glass
+fibres. The shearing stress can be measured by noting the deflexion of
+the glass fibres. When subjected to a shearing strain, the raft obeys
+Hooke’s law of elasticity up to the
+point where the elastic limit is
+reached. It then slips along some intermediate row by an amount equal
+to the width of one bubble. The elastic shear and slip can be repeated
+several times. The elastic limit is approximately reached when one
+side of the raft has been sheared by an amount equal to a bubble width
+past the other side. This feature supports the basic assumption made
+by one of us in the calculation of the elastic limit of a metal (Bragg
+1942<i>a</i>), in which it is supposed that each crystallite in a
+cold-worked metal only yields when the strain in it has reached such a
+value that energy is released by the slip.
+</p>
+</div>
+
+<div id="Ch30-S9-p23" class="para">
+<p class="p">
+A calculation has been made by M.&nbsp;M. Nicolson of the forces between the
+bubbles, and will be published shortly. It shows two interesting points. The
+curve for the variation of potential energy with distance between centres is
+very similar to those which have been plotted for atoms. It has a minimum for a
+distance between centres slightly less than a free bubble diameter, and rises
+sharply for smaller distances. Further, the rise is extremely sharp for bubbles
+of&nbsp;$0\Rdot1$&nbsp;mm. diameter but much less so for bubbles
+of&nbsp;$1$&nbsp;mm. diameter, thus confirming the impression given by the model
+that the small bubbles behave as if they were much more rigid than the large
+ones.
+</p>
+</div>
+
+<div id="Ch30-S9-p24" class="para">
+<h4>9. Three-dimensional assemblages</h4>
+<p class="p">
+If the bubbles are allowed to accumulate in multiple layers on the
+surface, they form a mass of three-dimensional ‘crystals’ with one of
+the arrangements of closest packing. Figure&nbsp;15, plate&nbsp;18, shows an
+oblique view of such a mass; its resemblance to a polished and etched
+metal surface is noticeable. In figure&nbsp;16, plate&nbsp;20, a similar mass is
+seen viewed normally. Parts of the structure are definitely in cubic
+closest packing, the outer surface being the $(111)$ face or $(100)$
+face. Figure&nbsp;17<i>a</i>, plate&nbsp;19, shows a $(111)$ face. The
+outlines of the three bubbles on which each upper bubble rests can be
+clearly seen, and the next layer of these bubbles is faintly visible
+in a position not beneath the uppermost layer, showing that the
+packing of the $(111)$ planes has the well-known cubic
+succession. Figure&nbsp;17<i>b</i>, plate&nbsp;19, shows a $(100)$ face with
+each bubble resting on four others. The cubic axes are of course
+inclined at $45^\circ$ to the close-packed rows of the surface
+layer. Figure&nbsp;17<i>c</i>, plate&nbsp;19, shows a twin in the cubic
+structure across the face $(111)$. The uppermost faces are $(111)$ and
+$(100)$, and they make a small angle with each other, though this is
+not apparent in the figure; it shows up in an oblique view.
+Figure&nbsp;17<i>d</i>, plate&nbsp;19, appears to show both the cubic and
+hexagonal succession of closely packed planes, but it is difficult to
+verify whether the left-hand side follows the true hexagonal
+close-packed structure because it is not certain that the assemblage had
+a depth of more than two layers at this point. Many instances of twins,
+and of intercrystalline boundaries, can be seen in figure&nbsp;16, plate&nbsp;20.
+</p>
+</div>
+
+<div id="Ch30-S9-p25" class="para">
+<p class="p">
+Figure&nbsp;18, plate&nbsp;21, shows several dislocations in a three-dimensional
+structure subjected to a bending strain.
+</p>
+</div>
+
+<div id="Ch30-S9-p26" class="para">
+<h4>10. Demonstration of the model</h4>
+<p class="p">
+With the co-operation of Messrs Kodak, a $16$&nbsp;mm. cinematograph film has
+been made of the movements of the dislocations and grain boundaries when single
+crystal and polycrystalline rafts are sheared, compressed, or extended.
+Moreover, if the soap solution is placed in a glass vessel with a flat bottom,
+the model lends itself to projection on a large scale by transmitted light.
+Since a certain depth is required for producing the bubbles, and the solution is
+rather opaque, it is desirable to make the projection through a glass block
+resting on the bottom of the vessel and just submerged beneath the surface.
+</p>
+</div>
+
+<div id="Ch30-S9-p27" class="para">
+<p class="p">
+In conclusion, we wish to express our thanks to Mr&nbsp;C.&nbsp;E. Harrold, of
+King’s College, Cambridge, who made for us some of the pipettes which were used
+to produce the bubbles.
+</p>
+</div>
+
+<div align="center">
+<table summary="" class="table" id="bragg-ref">
+	<tr>
+		<td class="center">
+		<span class="text smallcaps">References</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="left">
+		Bragg, W.&nbsp;L. 1942<i>a Nature</i>, <b>149</b>, 511.
+		</td>
+	</tr>
+	<tr>
+		<td class="left">
+		Bragg, W.&nbsp;L. 1942<i>b J. Sci. Instrum.</i>, <b>19</b>, 148. 
+		</td>
+	</tr>
+	<tr>
+		<td class="left">
+		Taylor, G.&nbsp;I. 1934 <i>Proc. Roy. Soc.</i> A, <b>145</b>, 362.
+		</td>
+	</tr>
+</table>
+</div>
+
+<div id="Ch30-F19" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_02.jpg">
+<div class="caption"><span class="tag">Figure 2.</span>&nbsp;&nbsp;
+Perfect crystalline raft of bubbles. Diameter $1\Rdot41$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F20" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_04.jpg">
+<div class="caption"><span class="tag">Figure 4.</span>&nbsp;&nbsp;
+Perfect crystalline raft of bubbles. Diameter $0\Rdot30$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F21" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_05a.jpg">
+<div class="caption"><span class="tag">Figure 5<i>a</i>.</span>&nbsp;&nbsp;
+Diameter $1\Rdot87$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F22" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_05b.jpg">
+<div class="caption"><span class="tag">Figure 5<i>b</i>.</span>&nbsp;&nbsp;
+Diameter $0\Rdot76$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F23" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_05c.jpg">
+<div class="caption"><span class="tag">Figure 5<i>c</i>.</span>&nbsp;&nbsp;
+A grain boundary. Diameter $0\Rdot30$&nbsp;mm.</div>
+</div>
+
+<div id="Ch30-F24" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_06a.jpg">
+<div class="caption"><span class="tag">Figure 6<i>a</i>.</span>&nbsp;&nbsp;
+A dislocation. Diameter $1\Rdot9$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F25" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_06b.jpg">
+<div class="caption"><span class="tag">Figure 6<i>b</i>.</span>&nbsp;&nbsp;
+Diameter $0\Rdot76$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F26" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_06c.jpg">
+<div class="caption"><span class="tag">Figure 6<i>c</i>.</span>&nbsp;&nbsp;
+Diameter $0\Rdot30$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F27" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_07.jpg">
+<div class="caption"><span class="tag">Figure 7.</span>&nbsp;&nbsp;
+Parallel dislocations. Diameter $0\Rdot76$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F28" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_08.jpg">
+<div class="caption"><span class="tag">Figure 8.</span>&nbsp;&nbsp;
+Dislocation projecting from a grain boundary. Diameter $0\Rdot30$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F29" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_09.jpg">
+<div class="caption"><span class="tag">Figure 9.</span>&nbsp;&nbsp;
+Dislocations in adjacent rows. Diameter $1\Rdot9$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F30" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_10.jpg">
+<div class="caption"><span class="tag">Figure 10.</span>&nbsp;&nbsp;
+Series of fault lines between two areas of parallel orientation. Diameter $0\Rdot30$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F31" class="figure-group">
+<div class="figure">
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_11a.jpg">
+			<div class="caption">Diameter $0\Rdot68$&nbsp;mm.<br/><span class="tag">a. </span></div>
+</div>
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_11b.jpg">
+			<div class="caption">Diameter $0\Rdot68$&nbsp;mm.<br/><span class="tag">b. </span></div>
+</div>
+</div>
+<div class="figure">
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_11c.jpg">
+			<div class="caption">Diameter $0\Rdot6$&nbsp;mm.<br/><span class="tag">c. </span></div>
+</div>
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_11d.jpg">
+			<div class="caption">Diameter $0\Rdot30$&nbsp;mm.<br/><span class="tag">d. </span></div>
+</div>
+</div>
+<div class="figure">
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_11e.jpg">
+			<div class="caption">Diameter $0\Rdot6$&nbsp;mm.<br/><span class="tag">e. </span></div>
+</div>
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_11f.jpg">
+			<div class="caption">Diameter $0\Rdot6$&nbsp;mm.<br/><span class="tag">f. </span></div>
+</div>
+</div>
+<div class="figure">
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_11g.jpg">
+			<div class="caption">Diameter $0\Rdot68$&nbsp;mm.<br/><span class="tag">g. </span></div>
+</div>
+
+</div>
+		<div class="caption"><span class="tag">Figure 11.</span>&nbsp;&nbsp;Types of fault.</div>
+</div>
+
+<div id="Ch30-F32" class="figure-group">
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_12a.jpg">
+			<div class="caption"><span class="tag">a.</span> Immediately after stirring.  </div>
+</div>
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_12b.jpg">
+			<div class="caption"><span class="tag">b.</span>  After $33$ sec.  </div>
+</div>
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_12c.jpg"> <div class="caption"><span class="tag">c.</span>  After $2$ min.  </div>
+</div>
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_12d.jpg">
+			<div class="caption"><span class="tag">d.</span>  After $14$ min.  </div>
+</div>
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_12e.jpg">
+			<div class="caption"><span class="tag">e.</span>  After $25$ min.  </div>
+</div>
+<div class="caption"> <span class="tag">Figure 12.</span> Recrystallization. Diameter $0\Rdot60$&nbsp;mm.  </div>
+</div>
+
+<div class="figure-group">
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_13a.jpg">
+			<div class="caption"><span class="tag">a.</span> &nbsp;After $1$ sec.  </div>
+</div>
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_13b.jpg">
+			<div class="caption"><span class="tag">b.</span>  After $4$ sec.  </div>
+</div>
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_13c.jpg">
+			<div class="caption"><span class="tag">c.</span>  After $4$ min.  </div>
+</div>
+<div class="caption"><span class="tag">Figure 13.</span >Two stages of recrystallization. Diameter $1\Rdot64$&nbsp;mm.</div>
+</div>
+
+<div id="Ch30-F34" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_14.jpg">
+<div class="caption"><span class="tag">Figure 14.</span>&nbsp;&nbsp;
+Effect of atoms of impurity. Diameter of uniform bubbles about $1\Rdot3$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F35" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_15.jpg">
+<div class="caption"><span class="tag">Figure 15.</span>&nbsp;&nbsp;
+Oblique view of three-dimensional raft.
+</div>
+</div>
+
+<div id="Ch30-F36" class="figure-group">
+<div class="figure">
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_17a.jpg">
+			<div class="caption"><span class="tag">a.</span>  $(111)$ face.</div>		
+</div>
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_17b.jpg">
+			<div class="caption"><span class="tag">b.</span>  $(100)$ face.</div>		
+</div>
+			<div class="caption">Face-centered cubic structure.</div>
+</div>
+<div class="figure">
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_17c.jpg">
+			<div class="caption"><span class="tag">c.</span>  Twin across $(111)$, cubic structure.</div>				
+</div>
+<div class="figure">
+			<img src="img/FLP_II/f30-plates/f30_plate_17d.jpg">
+			<div class="caption"><span class="tag">d.</span>  Possible example of hexagonal close-packing.</div>		
+</div>
+</div>
+		<div class="caption">Diameter $0\Rdot70$&nbsp;mm.<br><span class="tag">Figure 17</span></div>
+</div>
+
+<div id="Ch30-F37" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_16.jpg">
+<div class="caption"><span class="tag">Figure 16.</span>&nbsp;&nbsp;
+A three-dimensional raft viewed normally. Diameter $0\Rdot70$&nbsp;mm.
+</div>
+</div>
+
+<div id="Ch30-F38" class="figure">
+<img src="img/FLP_II/f30-plates/f30_plate_18.jpg">
+<div class="caption"><span class="tag">Figure 18.</span>&nbsp;&nbsp;
+Dislocations in three-dimensional structure. Diameter $0\Rdot70$&nbsp;mm.
+</div>
+</div>
+</div> <!--end #bragg-paper-->
+
+</div> <!--end of section -->
+
+</div> <!--end of chapter -->
+
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div> <!--end of document -->
+</div> <!--end of content -->
+</div> <!--end of main -->
+</body>
+</html>

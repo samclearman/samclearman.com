@@ -1,0 +1,1652 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="robots" content="noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>The Feynman Lectures on Physics Vol. II Ch. 18: The Maxwell Equations</title>
+<link href="css/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/polytexnic.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
+<link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function initBraces()
+    {
+        var brace_spans = $(".curly_brace");
+        brace_spans.each (function(){
+            var brace_span = $(this);
+            h = brace_span.parent().height();
+            brace_span.height(h);
+            brace_span.siblings('.v_centered').height(h);
+        });
+    }
+    $(document).ready(function() {
+        MathJax.Hub.Queue(function () {
+            initBraces();
+        })
+    });
+</script><link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
+<link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
+<script type="text/javascript">
+    function changeStyle(n)
+    {
+		try {
+			localStorage["FLP-style-preference"] = n;
+		}
+		catch(e)
+		{
+		}
+		try {
+			document.getElementById('medium-style').disabled=true;
+			document.getElementById('big-style').disabled=true;
+            
+            document.getElementById('smallA').color="Navy";
+            document.getElementById('mediumA').color="#9c0000";
+            document.getElementById('bigA').color="#9c0000";
+ 		}
+		catch(e)
+		{
+		}
+        switch(n)
+		{
+   			case 2:
+			   document.getElementById('medium-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="Navy";
+               document.getElementById('bigA').color="#9c0000";
+			   break;
+               
+			case 3:
+			   document.getElementById('big-style').disabled=false;
+               
+               document.getElementById('smallA').color="#9c0000";
+               document.getElementById('mediumA').color="#9c0000";
+               document.getElementById('bigA').color="Navy";
+			   break;
+		}
+    }
+    function changeStyleSafe(n)
+    {
+		if (typeof MathJax == 'undefined')
+        {
+			changeStyle(n)
+            initBraces();
+        }
+		else
+			MathJax.Hub.Queue(function () {
+				changeStyle(n);
+                initBraces();
+			})
+    }
+    function getReadyStyle() {
+		var n = 1;
+		try {
+			n = localStorage["FLP-style-preference"];
+		}
+		catch(e)
+		{
+		}
+        changeStyle(parseInt(n));
+    }
+    $(document).ready(function() {
+        getReadyStyle();
+     });
+    getReadyStyle();
+</script><script type="text/javascript">
+var Footnotes = {
+    footnotetimeout: false,
+    setup: function() {
+        var footnotelinks = $("sup.mark");
+
+        footnotelinks.unbind('mouseover',Footnotes.footnoteover);
+        footnotelinks.unbind('mouseout',Footnotes.footnoteoout);
+        
+        footnotelinks.bind('mouseover',Footnotes.footnoteover);
+        footnotelinks.bind('mouseout',Footnotes.footnoteoout);
+
+    },
+    footnoteover: function() {
+    
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').remove();
+        
+        var name = $(this).parent().attr('href').substr(1);
+        var position = $(this).offset();
+        
+        var div = $(document.createElement('div'));
+        div.attr('class','footnote');
+        
+        div.attr('id','footnotediv');
+        div.bind('mouseover',Footnotes.divover);
+        div.bind('mouseout',Footnotes.footnoteoout);
+ 
+        var el = $('a[name=' + name + ']').parent();
+        var elstr = String($(el).html());
+        var linkpos = elstr.lastIndexOf('<a');
+        
+        div.html(elstr.slice(0,linkpos-1));
+        div.css({
+            background:'#ffa',
+            position:'absolute',
+            opacity:0.9,
+            border:'3px solid #909890',
+            padding:'1px 3px 1px 5px'
+         });
+        $(document.body).append(div);
+
+        var left = position.left;
+        if(left + div.width() + 20  > $(window).width() + $(window).scrollLeft())
+            left = $(window).width() - (div.width() + 20) + $(window).scrollLeft();
+         var top = position.top+30;
+        if(top + div.height() + 10 > $(window).height() + $(window).scrollTop())
+            top = position.top - div.height() - 10;
+        div.css({
+            left:left,
+            top:top
+        });
+    },
+    footnoteoout: function() {
+        
+        Footnotes.footnotetimeout = setTimeout(function() {
+            $('#footnotediv').animate({
+                opacity: 0
+            }, 600, function() {
+                $('#footnotediv').remove();
+            });
+        },100);
+    },
+    divover: function() {
+        clearTimeout(Footnotes.footnotetimeout);
+        $('#footnotediv').stop();
+        $('#footnotediv').css({
+                opacity: 0.9
+        });
+    }
+}
+$(document).ready(function() {
+          Footnotes.setup();
+});
+</script><script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+        	inlineMath: [['$','$']],
+            preview: ["[math]"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        MathMenu: {  
+            showFontMenu: true
+        },
+        TeX: {
+          TagIndent: "0em",
+          extensions: ["AMSmath.js","AMSsymbols.js"],
+          equationNumbers: {
+            autoNumber: "AMS", formatNumber: function (n) { return "18." + n }
+          },
+          MultLineWidth: "72%",
+          Macros: {
+            FLPvec: ["\\boldsymbol{#1}", 1], FLPnabla: ["\\boldsymbol{\\nabla}", 0], fournabla: ["\\nabla\\!_\\mu", 0], FLPA: ["\\FLPvec{A}", 0], FLPB: ["\\FLPvec{B}", 0], FLPC: ["\\FLPvec{C}", 0], FLPD: ["\\FLPvec{D}", 0], FLPE: ["\\FLPvec{E}", 0], FLPF: ["\\FLPvec{F}", 0], FLPH: ["\\FLPvec{H}", 0], FLPI: ["\\FLPvec{I}", 0], FLPJ: ["\\FLPvec{J}", 0], FLPL: ["\\FLPvec{L}", 0], FLPM: ["\\FLPvec{M}", 0], FLPP: ["\\FLPvec{P}", 0], FLPR: ["\\FLPvec{R}", 0], FLPS: ["\\FLPvec{S}", 0], FLPa: ["\\FLPvec{a}", 0], FLPb: ["\\FLPvec{b}", 0], FLPc: ["\\FLPvec{c}", 0], FLPd: ["\\FLPvec{d}", 0], FLPe: ["\\FLPvec{e}", 0], FLPf: ["\\FLPvec{f}", 0], FLPg: ["\\FLPvec{g}", 0], FLPh: ["\\FLPvec{h}", 0], FLPi: ["\\FLPvec{i}", 0], FLPj: ["\\FLPvec{j}", 0], FLPk: ["\\FLPvec{k}", 0], FLPn: ["\\FLPvec{n}", 0], FLPp: ["\\FLPvec{p}", 0], FLPr: ["\\FLPvec{r}", 0], FLPs: ["\\FLPvec{s}", 0], FLPu: ["\\FLPvec{u}", 0], FLPv: ["\\FLPvec{v}", 0], FLPw: ["\\FLPvec{w}", 0], FLPx: ["\\FLPvec{x}", 0], FLPDelta: ["\\boldsymbol{\\Delta}", 0], FLPOmega: ["\\boldsymbol{\\Omega}", 0], FLPdelta: ["\\boldsymbol{\\delta}", 0], FLPmu: ["\\boldsymbol{\\mu}", 0], FLPtau: ["\\boldsymbol{\\tau}", 0], FLPomega: ["\\boldsymbol{\\omega}", 0], FLPsigma: ["\\boldsymbol{\\sigma}", 0], FLPzero: ["\\FLPvec{0}", 0], FLPzero: ["0", 0], FLPzeroi: ["\\boldsymbol{\\mathit{0}}", 0], FLPone: ["\\FLPvec{1}", 0], FLPtwo: ["\\FLPvec{2}", 0], FLPgrad: ["\\FLPnabla#1", 1], FLPdiv: ["\\FLPnabla\\cdot#1", 1], FLPcurl: ["\\FLPnabla\\times#1", 1], grad: ["\\mathrm{grad}\\ ", 0], ndiv: ["\\mathrm{div}\\ ", 0], curl: ["\\mathrm{curl}\\ ", 0], Det: ["\\mathrm{Det}\\ ", 0], FLPRe: ["\\mathrm{Re}\\ ", 0], prob: ["\\text{prob}\\,", 0], mom: ["\\text{mom}\\,", 0], op: ["\\hat{#1}", 1], Hop: ["\\op{H}", 0], Hcalop: ["\\op{\\mathcal{H}}", 0], sigmaop: ["\\op{\\sigma}", 0], FLPsigmaop: ["\\hat{\\FLPsigma}", 0], Aop: ["\\op{A}", 0], Acalop: ["\\op{\\mathcal{A}}", 0], Adotop: ["\\op{\\dot{A}}", 0], Bop: ["\\op{B}", 0], Dop: ["\\op{D}", 0], Jop: ["\\op{J}", 0], Lop: ["\\op{L}", 0], Lcalop: ["\\op{\\mathcal{L}}", 0], Pop: ["\\op{P}", 0], Pcalop: ["\\op{\\mathcal{P}}", 0], Pcalvecop: ["\\op{\\FLPvec{\\mathcal{P}}}", 0], Qop: ["\\op{Q}", 0], Rop: ["\\op{R}", 0], Uop: ["\\op{U}", 0], pop: ["\\op{p}", 0], pdotop: ["\\op{\\dot{p}}", 0], pvecop: ["\\op{\\FLPp}", 0], xop: ["\\op{x}", 0], xdotop: ["\\op{\\dot{x}}", 0], yop: ["\\op{y}", 0], zop: ["\\op{z}", 0], sigmae: ["\\sigma^{\\text{e}}", 0], FLPsigmae: ["\\FLPsigma^{\\text{e}}", 0], sigmap: ["\\sigma^{\\text{p}}", 0], FLPsigmap: ["\\FLPsigma^{\\text{p}}", 0], ddt: ["\\frac{d#1}{d#2}", 2], ddp: ["\\frac{\\partial{#1}}{\\partial{#2}}", 2], ddpl: ["\\partial{#1}/\\partial{#2}", 2], bra: ["\\langle{#1}\\,|", 1], ket: ["|\\,{#1}\\rangle", 1], braket: ["\\langle{#1}\\,|\\,{#2}\\rangle", 2], bracket: ["\\langle{#1}\\,|\\,{#2}\\,|\\,{#3}\\rangle", 3], cconj: ["^{\\displaystyle *}", 0], adj: ["^\\dag", 0], stared: ["^{\\displaystyle *}", 0], slOne: ["\\mathit{1}", 0], slTwo: ["\\mathit{2}", 0], slThree: ["\\mathit{3}", 0], slFour: ["\\mathit{4}", 0], slI: ["\\mathit{I}", 0], slII: ["\\mathit{II}", 0], slIII: ["\\mathit{III}", 0], slIV: ["\\mathit{IV}", 0], OS: ["\\makebox[\\OSTRlen]{0}S", 0], OT: ["\\makebox[\\OSTRlen]{0}T", 0], OR: ["\\makebox[\\OSTRlen]{0}R", 0], OO: ["\\makebox[\\OSTRlen]{0}", 0], tover: ["\\genfrac{}{}{0pt}{}{#1}{#2}", 2], tover: ["{}^{#1}_{#2}", 2], energy: ["\\mathcal{E}", 0], frakz: ["\\mathfrak{z}", 0], emf: ["\\mathcal{E}", 0], selfInd: ["\\mathcal{L}", 0], Lagrangian: ["\\mathcal{L}", 0], voltage: ["\\mathcal{V}", 0], mutualInd: ["\\mathfrak{M}", 0], bendingMom: ["\\mathfrak{M}", 0], ReynoldsR: ["\\mathcal{R}", 0], numModes: ["\\mathfrak{N}", 0], Efield: ["\\mathcal{E}", 0], Efieldvec: ["\\boldsymbol{\\mathcal{E}}", 0], intensity: ["\\mathfrak{I}", 0], Kzero: ["\\text{K}{}^0", 0], Kzerobar: ["\\overline{\\text{K}}{}^0", 0], bldn: ["\\mathbf{n}", 0], bldN: ["\\mathbf{N}", 0], bldm: ["\\mathbf{m}", 0], uL: ["\\underline{L}", 0], epsO: ["\\epsilon_0", 0], abs: ["\\lvert{#1}\\rvert", 1], avg: ["\\langle{#1}\\rangle", 1], av: ["\\langle{#1}\\rangle_{\\text{av}}", 1], expval: ["\\langle{#1}\\rangle", 1], Rdot: ["\\!\\cdot\\!", 0], Fignabla: ["\\FLPnabla", 0], FigA: ["\\FLPA", 0], FigB: ["\\FLPB", 0], FigC: ["\\FLPC", 0], FigF: ["\\FLPF", 0], FigE: ["\\FLPE", 0], FigH: ["\\FLPH", 0], FigI: ["\\FLPI", 0], FigJ: ["\\FLPJ", 0], FigL: ["\\FLPL", 0], FigM: ["\\FLPM", 0], FigN: ["\\FLPN", 0], FigP: ["\\FLPP", 0], FigR: ["\\FLPR", 0], FigS: ["\\FLPS", 0], Figa: ["\\FLPa", 0], Figb: ["\\FLPb", 0], Figc: ["\\FLPc", 0], Figd: ["\\FLPd", 0], Fige: ["\\FLPe", 0], Figg: ["\\FLPg", 0], Figh: ["\\FLPh", 0], Figj: ["\\FLPj", 0], Figk: ["\\FLPk", 0], Fign: ["\\FLPn", 0], Figp: ["\\FLPp", 0], Figr: ["\\FLPr", 0], Figs: ["\\FLPs", 0], Figu: ["\\FLPu", 0], Figv: ["\\FLPv", 0], Figw: ["\\FLPw", 0], FigOmega: ["\\FLPOmega", 0], Figmu: ["\\FLPmu", 0], Figtau: ["\\FLPtau", 0], Figomega: ["\\FLPomega", 0], lambdabar: ["\\mkern0.75mu \\unicode{0x203E} \\mkern -9.75mu \\lambda", 0], rightarrowding: ["\\unicode{0x279D}", 0]
+          }
+        }
+      });
+</script>
+<script type="text/x-mathjax-config">
+/* fixes web font loading bug in Chrome and Safari https://github.com/mathjax/MathJax/issues/845 */
+    if (MathJax.Hub.Browser.isChrome || MathJax.Hub.Browser.isSafari) {
+        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Config", function () {
+            MathJax.OutputJax["HTML-CSS"].FontFaceBug = true;
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Swap in PNGs for SVGs in IE for Windows XP.
+    if (!window.SVGSVGElement) {
+         s = $('div.main');
+         s.html(s.html().replace(/_big/g, '').replace(/\.svgz/g, '.png'));
+        }
+    // select narrower versions of wide equations if screen is narrower than 655px
+    if (window.matchMedia("(min-width: 655px)").matches)
+        $( ".eq-narrow" ).remove();
+    else
+        $( ".eq-wide" ).remove();
+    });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  if (window.location.hostname === "www.feynmanlectures.info")  
+  {
+	 ga('create', 'UA-43056719-1', 'feynmanlectures.info');
+	 ga('send', 'pageview');
+  }  
+  else if (window.location.hostname === "www.feynmanlectures.caltech.edu")  
+  {
+     ga('create', 'UA-43056719-2', 'caltech.edu');
+     ga('send', 'pageview');
+  }
+</script></head>
+<body>
+<script language="javascript">
+    function emailCurrentPage(){
+        window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
+    }
+    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
+       var lastChapter =[52,42,22]; //last chapter number of each volume
+       var volstrings =["I","II","III"];
+       var filepath = window.location.pathname;        
+       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
+	   var volname = filename.match(/I+/);               
+	   var vol = volname[0].length-1; //0-based volume index 
+       var chapname = filename.match(/\d+/);       
+ 	   var tocpref;
+       try { 
+ 	   		tocpref = localStorage["FLP-toc-preference"];
+ 	   }
+ 	   catch (e) { 
+ 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
+ 	   		//return;
+ 	   		tocpref = null;
+ 	   }
+ 	   if (tocpref == null) tocpref = "_toc";
+
+       if (chapname==null) {
+       	   if (offset==0) {             	   
+       	      if (window.location.hostname === "www.feynmanlectures.info") {
+       	           window.location.pathname = "flp.html";
+  			  }  
+			  else if (window.location.hostname === "www.feynmanlectures.caltech.edu") {
+       	           window.location.pathname = "index.html";
+			  }
+       	   }
+       	   else {
+       	   	  var v = ((vol + offset % 3) + 3) % 3;
+       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
+       	   }
+       }      
+       else {
+	       var chap = chapname[0];
+	       var n = Number(chap)+offset;   //new chapter number
+	 
+	       if (offset==0) {
+	              if (tocpref == null) tocpref = "_toc";
+	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
+	       }
+	       else {
+		       //Note: front matter chapter numbers go from 89 to 92
+		       if (n==93) n=1; else if (n==0) n=92;
+		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
+		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
+		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
+                   window.location.assign(filepath.replace(chap,newChap));
+
+		       }
+	       }
+       }
+    }
+</script>
+<div class="floating-menu">
+  <font size="4">
+	<table align="right">
+		<tr>
+			<td>
+			<a title="Last" href="javascript:openChapter(-1)">&#9668;</a>
+			</td>
+			<td>
+			<a title="Up" href="javascript:openChapter(0)">&#9650;</a>
+			</td>
+			<td>
+			<a title="Next" href="javascript:openChapter(+1)">&#9658;</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Find vendors of our publications" target="_blank" href="buy.html">Buy</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center" colspan="3">
+			<a title="Like this? See a problem? Let us know!" href="mailto:mg@feynmanlectures.info?subject=FLP-NM HTML Edition Comment"><font size="3">contact us</font></a>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align:baseline">
+			<a title="Tweet this!" target="_blank" href="http://twitter.com/home?status=Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.caltech.edu and http://www.feynmanlectures.info.">
+			<img border="0" src="img/twitter.png" width="16" style="float: right"></a></td>
+			<td style="text-align: center; vertical-align:baseline">
+			<a title="Share on Facebook." target="_blank" href="http://www.facebook.com/share.php?u=http://www.feynmanlectures.caltech.edu">
+			<img border="0" src="img/facebook.png" width="16"></a></td>
+			<td style="vertical-align:baseline">
+			<a title="Email this page." href="javascript:emailCurrentPage()">
+			<img border="0" src="img/email.png" width="16"style="float: left"></a></td>
+		</tr>
+		<tr>
+			<td style="text-align: right; vertical-align: baseline">
+			<a title="Small fonts" href="javascript:changeStyleSafe(1)">
+			<font size="4" id="smallA">A</font></a></td>
+			<td style="text-align: center; vertical-align: baseline">
+			<a title="Medium fonts" href="javascript:changeStyleSafe(2)">
+			<font size="5" id="mediumA">A</font></a></td>
+			<td style="text-align: left; vertical-align:baseline">
+			<a title="Big fonts" href="javascript:changeStyleSafe(3)">
+			<font size="6" id="bigA">A</font></a></td>
+		</tr>
+        <tr>
+			<td style="text-align: center" colspan="3">
+			<font size="3">
+			<a title="Find out more about The Feynman Lectures at feynmanlectures.info" target="_blank" href="http://www.feynmanlectures.info/">&nbsp;&nbsp;&nbsp;more&nbsp;info.</a></font>
+			</td>
+		</tr>
+	</table>
+  </font>
+</div><div class="main">
+<div class="content">
+<div class="document">
+<div id="Ch18" class="chapter">
+<h2 class="title chapter-title">
+<span class="tag">18</span>The Maxwell Equations</h2>
+<div id="Ch18-S1" class="section">
+<h3 class="title section-title">
+<span class="tag">18–1</span>Maxwell’s equations</h3>
+<div id="Ch18-S1-p1" class="para">
+<p class="p">In this chapter we come back to the complete set of the four
+Maxwell equations that we took as our starting point in
+Chapter <a href="II_01.html">1</a>. Until now, we have been studying Maxwell’s
+equations in bits and pieces; it is time to add one final piece, and to
+put them all together. We will then have the complete and correct story
+for electromagnetic fields that may be changing with time in any way.
+Anything said in this chapter that contradicts something said earlier is
+true and what was said earlier is false—because what was said earlier
+applied to such special situations as, for instance, steady currents or
+fixed charges. Although we have been very careful to point out the
+restrictions whenever we wrote an equation, it is easy to forget all of
+the qualifications and to learn too well the wrong equations. Now we are
+ready to give the whole truth, with no qualifications (or almost none).</p>
+</div>
+<div id="Ch18-S1-p2" class="para">
+<p class="p">The complete Maxwell equations are written in Table <a href="#Ch18-T1">18–1</a>,
+in words as well as in mathematical symbols. The fact that the words
+are equivalent to the equations should by this time be familiar—you
+should be able to translate back and forth from one form to the other.</p>
+</div>
+
+
+<!-- DONT THROW AWAY
+
+
+<div id="Ch18-T1" class="table">
+
+<div class="caption ltx_centering">
+
+<span class="tag">Table 18–1 Classical Physics</span>
+
+</div>
+
+<table class="tabular" style="max-width: 500px">
+
+<tr class="tr">
+
+<td class="td l t" style="text-align:justify;"></td>
+<td class="td t" style="text-align:justify;" colspan="2">Maxwell’s equations</td>
+
+<td class="td r t" style="text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;">I.</td>
+
+<td class="td" style="text-align:justify;">$\displaystyle\FLPdiv{\FLPE}=\frac{\rho}{\epsO}$</td>
+
+<td class="td r" style="text-align:justify;">
+$\displaystyle\begin{pmatrix}
+  \text{Flux of $\FLPE$}\\[-.75ex]
+  \text{through a}\\[-.75ex]
+  \text{closed surface}
+  \end{pmatrix}\!
+  =\frac{(\text{Charge inside})}{\epsO}$
+</td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;">II.</td>
+
+<td class="td" style="text-align:justify;">$\displaystyle\FLPcurl{\FLPE}=-\ddp{\FLPB}{t}$</td>
+
+<td class="td r" style="text-align:justify;">
+$\displaystyle\begin{pmatrix}
+  \text{Line integral of $\FLPE$}\\[-.75ex]
+  \text{around a loop}
+  \end{pmatrix}\!
+  =-\ddt{}{t}
+  \begin{pmatrix}
+  \text{Flux of $\FLPB$}\\
+   \text{through the loop}
+  \end{pmatrix}
+  $
+</td>
+
+</tr>
+
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;">III.</td>
+
+<td class="td" style="text-align:justify;">$\FLPdiv{\FLPB}=0$</td>
+
+<td class="td r" style="text-align:justify;">
+$\begin{pmatrix}\text{Flux of $\FLPB$}\\[-.75ex]
+  \text{through a}\\[-.75ex]
+  \text{closed surface}
+  \end{pmatrix}\!
+  =0$
+</td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;">IV.</td>
+
+<td class="td" style="text-align:justify;">
+$\displaystyle c^2\FLPcurl{\FLPB}=\frac{\FLPj}{\epsO}\!+\!\ddp{\FLPE}{t}\quad$
+</td>
+
+<td class="td r" style="text-align:justify;">
+$\displaystyle c^2\begin{pmatrix}
+     \text{Integral of $\FLPB$}\\[-.75ex]
+     \text{around a loop}
+     \end{pmatrix}\!
+     =\;\frac{\text{(Current through the loop})}{\epsO}$
+</td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;"></td>
+
+<td class="td" style="text-align:justify;"></td>
+
+<td class="td r" style="text-align:justify;">$\displaystyle\kern{7em}+\;\ddt{}{t}(\text{Flux of $\FLPE$ through the loop})$</td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;" rowspan="2"><img src="img/left_bracket.png" style="width:10pt;height:54pt;vertical-align:middle"></td>
+<td class="td" style="text-align:justify;" colspan="2">Conservation of charge</td>
+
+<td class="td r" style="text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:right;"></td>
+
+<td class="td" style="text-align:justify;">$\displaystyle\FLPdiv{\FLPj}=-\ddp{\rho}{t}$</td>
+
+<td class="td r" style="text-align:justify;">
+$\displaystyle\begin{pmatrix}
+              \text{Flux of current}\\[-.75ex]
+              \text{through a}\\[-.75ex]
+              \text{closed surface})
+              \end{pmatrix}\!
+              =-\ddt{}{t}(\text{Charge inside})$
+</td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;" colspan="2">Force law</td>
+
+<td class="td r" style="text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;"></td>
+
+<td class="td" style="text-align:justify;">$\FLPF=q(\FLPE+\FLPv\times\FLPB)$</td>
+
+<td class="td r" style="text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;" colspan="2">Law of motion</td>
+
+<td class="td r" style="text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;"></td>
+
+<td class="td" style="text-align:justify;">$\displaystyle\ddt{}{t}(\FLPp)=\FLPF,\quad\text{where}$</td>
+
+<td class="td r" style="text-align:justify;">
+$\displaystyle\FLPp=\frac{m\FLPv}{\sqrt{1-v^2/c^2}}\quad
+\begin{matrix}
+\text{Newton’s law, with}\\[-.75ex]
+\text{Einstein’s modification}
+\end{matrix}$
+</td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;" colspan="2">Gravitation</td>
+
+<td class="td r" style="text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+<td class="td l b" style="text-align:justify;"></td>
+<td class="td b" style="text-align:right;"></td>
+
+<td class="td b" style="text-align:justify;">$\displaystyle\FLPF=-G\,\frac{m_1m_2}{r^2}\,\FLPe_r$</td>
+
+<td class="td r b" style="text-align:justify;"></td>
+
+</tr>
+
+</table>
+
+-->
+
+<div id="Ch18-T1" class="table">
+
+<div class="caption ltx_centering">
+
+<span class="tag">Table 18–1 Classical Physics</span>
+
+</div>
+
+<table class="tabular" style="width: 500px">
+
+<tbody class="tbody">
+
+<tr class="tr">
+
+<td class="td l t" style="width:2%;text-align:justify;"></td>
+<td class="td t" style="width:2%;text-align:right;"></td>
+
+<td class="td t" style="width:36%;text-align:justify;"></td>
+
+<td class="td t r" style="width:60%;text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;" colspan="2">Maxwell’s equations</td>
+
+<td class="td r" style="text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;">I.</td>
+
+<td class="td" style="text-align:justify;">$\displaystyle\FLPdiv{\FLPE}=\frac{\rho}{\epsO}$</td>
+
+<td class="td r" style="text-align:justify;">$(\text{Flux of $\FLPE$ through a closed surface})=(\text{Charge inside})/\epsO$</td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;">II.</td>
+
+<td class="td" style="text-align:justify;">$\displaystyle\FLPcurl{\FLPE}=-\ddp{\FLPB}{t}$</td>
+
+<td class="td r" style="text-align:justify;">$\displaystyle(\text{Line integral of $\FLPE$ around a loop})=-\ddt{}{t}(\text{Flux of $\FLPB$ through the loop})$</td>
+
+</tr>
+
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;">III.</td>
+
+<td class="td" style="text-align:justify;">$\FLPdiv{\FLPB}=0$</td>
+
+<td class="td r" style="text-align:justify;">$(\text{Flux of $\FLPB$ through a closed surface})=0$</td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;">IV.</td>
+
+<td class="td" style="text-align:justify;">$\displaystyle c^2\FLPcurl{\FLPB}=\frac{\FLPj}{\epsO}+\ddp{\FLPE}{t}$</td>
+
+<td class="td r" style="text-align:justify;">$c^2(\text{Integral of $\FLPB$ around a loop})=(\text{Current through the loop})/\epsO$</td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;"></td>
+
+<td class="td" style="text-align:justify;"></td>
+
+<td class="td r" style="text-align:justify;">$\displaystyle\phantom{c^2(\text{Integral of $\FLPB$ around a loop})}+\ddt{}{t}(\text{Flux of $\FLPE$ through the loop})$</td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;" rowspan="2"><img src="img/left_bracket.png" style="width:10pt;height:54pt;vertical-align:middle"></td>
+<td class="td" style="text-align:justify;" colspan="2">Conservation of charge</td>
+
+<td class="td r" style="text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+<td class="td" style="text-align:right;"></td>
+
+<td class="td" style="text-align:justify;">$\displaystyle\FLPdiv{\FLPj}=-\ddp{\rho}{t}$</td>
+
+<td class="td r" style="text-align:justify;">$\displaystyle(\text{Flux of current through a closed surface})=-\ddt{}{t}(\text{Charge inside})$</td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;" colspan="2">Force law</td>
+
+<td class="td r" style="text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;"></td>
+
+<td class="td" style="text-align:justify;">$\FLPF=q(\FLPE+\FLPv\times\FLPB)$</td>
+
+<td class="td r" style="text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;" colspan="2">Law of motion</td>
+
+<td class="td r" style="text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:right;"></td>
+
+<td class="td" style="text-align:justify;">$\displaystyle\ddt{}{t}(\FLPp)=\FLPF,\quad\text{where}$</td>
+
+<td class="td r" style="text-align:justify;">$\displaystyle\FLPp=\frac{m\FLPv}{\sqrt{1-v^2/c^2}}\qquad(\text{Newton’s law, with Einstein’s modification})$</td>
+
+</tr>
+<tr class="tr">
+
+<td class="td l" style="text-align:justify;"></td>
+<td class="td" style="text-align:justify;" colspan="2">Gravitation</td>
+
+<td class="td r" style="text-align:justify;"></td>
+
+</tr>
+<tr class="tr">
+<td class="td l b" style="text-align:justify;"></td>
+<td class="td b" style="text-align:right;"></td>
+
+<td class="td b" style="text-align:justify;">$\displaystyle\FLPF=-G\,\frac{m_1m_2}{r^2}\,\FLPe_r$</td>
+
+<td class="td r b" style="text-align:justify;"></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+<div id="Ch18-S1-p3" class="para">
+<p class="p">The first equation—that the divergence of $\FLPE$ is the charge
+density over $\epsO$—is true in general. In dynamic as well as in
+static fields, Gauss’ law is always valid. The flux of $\FLPE$ through
+any closed surface is proportional to the charge inside. The third
+equation is the corresponding general law for magnetic fields. Since
+there are no magnetic charges, the flux of $\FLPB$ through any closed
+surface is always zero. The second equation, that the curl of $\FLPE$
+is $-\ddpl{\FLPB}{t}$, is Faraday’s law and was discussed in
+the last two chapters. It also is generally true. The last equation has
+something new. We have seen before only the part of it which holds for
+steady currents. In that case we said that the curl of $\FLPB$ is
+$\FLPj/\epsO c^2$, but the correct general equation has a new part that
+was discovered by Maxwell.
+</p>
+</div>
+<div id="Ch18-S1-p4" class="para">
+<p class="p">Until Maxwell’s work,
+the known laws of electricity and magnetism were
+those we have studied in Chapters <a href="II_03.html">3</a>
+through <a href="II_17.html">17</a>. In particular, the equation for the magnetic
+field of steady currents was known only as
+\begin{equation}
+\label{Eq:II:18:1}
+\FLPcurl{\FLPB}=\frac{\FLPj}{\epsO c^2}.
+\end{equation}
+
+Maxwell began by
+considering these known laws and expressing them as
+differential equations, as we have done here. (Although the
+$\FLPnabla$ notation was not yet invented, it is mainly due to
+Maxwell
+that the importance of the combinations of derivatives, which we today
+call the curl and the divergence, first became apparent.) He then
+noticed that there was something strange about Eq. (<a href="#mjx-eqn-EqII181">18.1</a>).
+If one takes the divergence of this equation, the left-hand side will be
+zero, because the divergence of a curl is always zero. So this equation
+requires that the divergence of $\FLPj$ also be zero. But if the
+divergence of $\FLPj$ is zero, then the total flux of current out of any
+closed surface is also zero.</p>
+</div>
+<div id="Ch18-S1-p5" class="para">
+<p class="p">The flux of current from a closed surface is the decrease of the
+charge inside the surface. This certainly cannot in general be zero
+because we know that the charges can be moved from one place to
+another. The equation
+\begin{equation}
+\label{Eq:II:18:2}
+\FLPdiv{\FLPj}=-\ddp{\rho}{t}
+\end{equation}
+
+has, in fact, been almost our definition of $\FLPj$. This equation
+expresses the very fundamental law that electric charge is
+conserved—any flow of charge must come from some supply.
+Maxwell
+appreciated this difficulty and proposed that it could be avoided by
+adding the term $\ddpl{\FLPE}{t}$ to the right-hand side of
+Eq. (<a href="#mjx-eqn-EqII181">18.1</a>); he then got the fourth equation in
+Table <a href="#Ch18-T1">18–1</a>:
+\begin{equation*}
+\text{IV.}\quad c^2\FLPcurl{\FLPB}=\frac{\FLPj}{\epsO}+\ddp{\FLPE}{t}.
+\end{equation*}
+</p>
+</div>
+<div id="Ch18-S1-p6" class="para">
+<p class="p">It was not yet customary in
+Maxwell’s time to think in terms of
+abstract fields. Maxwell
+discussed his ideas in terms of a model in
+which the vacuum was like an elastic solid. He also tried to explain
+the meaning of his new equation in terms of the mechanical
+model. There was much reluctance to accept his theory, first because
+of the model, and second because there was at first no experimental
+justification. Today, we understand better that what counts are the
+equations themselves and not the model used to get them. We may only
+question whether the equations are true or false. This is answered by
+doing experiments, and untold numbers of experiments have confirmed
+Maxwell’s equations. If we take away the scaffolding he used to build
+it, we find that Maxwell’s
+beautiful edifice stands on its own. He
+brought together all of the laws of electricity and magnetism and made
+one complete and beautiful theory.</p>
+</div>
+<div id="Ch18-S1-p7" class="para">
+<p class="p">Let us show that the extra term is just what is required to straighten
+out the difficulty Maxwell
+discovered. Taking the divergence of his
+equation (IV in Table <a href="#Ch18-T1">18–1</a>), we must have that the
+divergence of the right-hand side is zero:
+\begin{equation}
+\label{Eq:II:18:3}
+\FLPdiv{\frac{\FLPj}{\epsO}}+\FLPdiv{\ddp{\FLPE}{t}}=0.
+\end{equation}
+
+In the second term, the order of the derivatives with respect to
+coordinates and time can be reversed, so the equation can be rewritten
+as
+\begin{equation}
+\label{Eq:II:18:4}
+\FLPdiv{\FLPj}+\epsO\,\ddp{}{t}\,\FLPdiv{\FLPE}=0.
+\end{equation}
+
+But the first of Maxwell’s equations says that the divergence of $\FLPE$
+is $\rho/\epsO$. Inserting this equality in
+Eq. (<a href="#mjx-eqn-EqII184">18.4</a>), we get back Eq. (<a href="#mjx-eqn-EqII182">18.2</a>), which we
+know is true. Conversely, if we accept Maxwell’s equations—and we do
+because no one has ever found an experiment that disagrees with
+them—we must conclude that charge is always conserved.</p>
+</div>
+<div id="Ch18-S1-p8" class="para">
+<p class="p">The laws of physics have no answer to the question: “What happens if
+a charge is suddenly created at this point—what electromagnetic
+effects are produced?” No answer can be given because our equations
+say it doesn’t happen. If it <em class="emph">were</em> to happen, we would need new
+laws, but we cannot say what they would be. We have not had the chance
+to observe how a world without charge conservation behaves. According
+to our equations, if you suddenly place a charge at some point, you
+had to carry it there from somewhere else. In that case, we can say
+what would happen.</p>
+</div>
+<div id="Ch18-S1-p9" class="para">
+<p class="p">When we added a new term to the equation for the curl of $\FLPE$, we
+found that a whole new class of phenomena was described. We shall see
+that Maxwell’s
+little addition to the equation for $\FLPcurl{\FLPB}$
+also has far-reaching consequences. We can touch on only a few of them
+in this chapter.</p>
+</div>
+</div>
+<div id="Ch18-S2" class="section">
+<h3 class="title section-title">
+<span class="tag">18–2</span>How the new term works</h3>
+<div id="Ch18-S2-p1" class="para">
+<p class="p">As our first example we consider what happens with a spherically
+symmetric radial distribution of current. Suppose we imagine a little
+sphere with radioactive material on it. This radioactive material is
+squirting out some charged particles. (Or we could imagine a large
+block of jello with a small hole in the center into which some charge
+had been injected with a hypodermic needle and from which the charge
+is slowly leaking out.) In either case we would have a current that is
+everywhere radially outward. We will assume that it has the same
+magnitude in all directions.</p>
+</div>
+<div id="Ch18-S2-p2" class="para">
+<p class="p">Let the total charge inside any radius $r$ be $Q(r)$. If the radial
+current density at the same radius is $\FLPj(r)$, then
+Eq. (<a href="#mjx-eqn-EqII182">18.2</a>) requires that $Q$ decreases at the rate
+\begin{equation}
+\label{Eq:II:18:5}
+\ddp{Q(r)}{t}=-4\pi r^2j(r).
+\end{equation}
+</p>
+</div>
+<div id="Ch18-S2-p3" class="para">
+<p class="p">We now ask about the magnetic field produced by the currents in this
+situation. Suppose we draw some loop $\Gamma$ on a sphere of radius $r$,
+as shown in Fig. <a href="#Ch18-F1">18–1</a>. There is some current
+through this loop, so we might expect to find a magnetic field
+circulating in the direction shown.</p>
+</div>
+<div id="Ch18-F1" class="figure">
+<img src="img/FLP_II/f18-01/f18-01_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 18–1.</span>What is the magnetic field of a spherically symmetric
+current?
+</div>
+</div>
+<div id="Ch18-S2-p4" class="para">
+<p class="p">But we are already in difficulty. How can the $\FLPB$ have any
+particular direction on the sphere? A different choice of $\Gamma$
+would allow us to conclude that its direction is exactly opposite to
+that shown. So how <em class="emph">can</em> there be any circulation of $\FLPB$
+around the currents?</p>
+</div>
+<div id="Ch18-S2-p5" class="para">
+<p class="p">We are saved by Maxwell’s equation. The circulation of $\FLPB$ depends
+not only on the total <em class="emph">current</em> through $\Gamma$ but also on the
+rate of change with time of the <em class="emph">electric flux</em> through it. It
+must be that these two parts just cancel. Let’s see if that works out.
+</p>
+</div>
+<div id="Ch18-S2-p6" class="para">
+<p class="p">The electric field at the radius $r$ must be $Q(r)/4\pi\epsO r^2$—so
+long as the charge is symmetrically distributed, as we assume. It is
+radial, and its rate of change is then
+\begin{equation}
+\label{Eq:II:18:6}
+\ddp{E}{t}=\frac{1}{4\pi\epsO r^2}\,\ddp{Q}{t}.
+\end{equation}
+
+Comparing this with Eq. (<a href="#mjx-eqn-EqII185">18.5</a>), we see
+\begin{equation}
+\label{Eq:II:18:7}
+\ddp{E}{t}=-\frac{j}{\epsO}.
+\end{equation}
+
+In Eq. IV the two source terms cancel and the curl of $\FLPB$ is
+always zero. There is no magnetic field in our example.</p>
+</div>
+<div id="Ch18-S2-p7" class="para">
+<p class="p">As our second example, we consider the magnetic field of a wire used to
+charge a parallel-plate condenser (see Fig. <a href="#Ch18-F2">18–2</a>). If the
+charge $Q$ on the plates is changing with time (but not too fast), the
+current in the wires is equal to $dQ/dt$. We would expect that this
+current will produce a magnetic field that encircles the wire. Surely,
+the current close to the plate must produce the normal magnetic
+field—it cannot depend on where the current is going.</p>
+</div>
+<div id="Ch18-F2" class="figure">
+<img class="first" src="img/FLP_II/f18-02/f18-02_tc_iPad_big_a.svgz"><img class="last" src="img/FLP_II/f18-02/f18-02_tc_iPad_big_b.svgz"><div class="caption">
+<span class="tag">Fig. 18–2.</span>The magnetic field near a charging capacitor.
+</div>
+</div>
+<div id="Ch18-S2-p8" class="para">
+<p class="p">Suppose we take a loop $\Gamma_1$ which is a circle with radius $r$,
+as shown in part (a) of the figure. The line integral of the magnetic
+field should be equal to the current $I$ divided by $\epsO c^2$. We
+have
+\begin{equation}
+\label{Eq:II:18:8}
+2\pi rB=\frac{I}{\epsO c^2}.
+\end{equation}
+
+This is what we would get for a steady current, but it is also correct
+with Maxwell’s
+addition, because if we consider the plane surface $S$
+inside the circle, there are no electric fields on it (assuming the
+wire to be a very good conductor). The surface integral
+of $\ddpl{\FLPE}{t}$ is zero.</p>
+</div>
+<div id="Ch18-S2-p9" class="para">
+<p class="p">Suppose, however, that we now slowly move the curve $\Gamma$ downward.
+We get always the same result until we draw even with the plates of the
+condenser. Then the current $I$ goes to zero. Does the magnetic field
+disappear? That would be quite strange. Let’s see what Maxwell’s
+equation says for the curve $\Gamma_2$, which is a circle of radius $r$
+whose plane passes between the condenser plates
+[Fig. <a href="#Ch18-F2">18–2</a>(b)]. The line integral of $\FLPB$
+around $\Gamma_2$ is $2\pi rB$. This must equal the time derivative of the flux
+of $\FLPE$ through the plane circular surface $S_2$. This flux
+of $\FLPE$, we know from Gauss’ law, must be equal to $1/\epsO$ times the
+charge $Q$ on one of the condenser plates. We have
+\begin{equation}
+\label{Eq:II:18:9}
+c^2\,2\pi rB=\ddt{}{t}\biggl(\frac{Q}{\epsO}\biggr).
+\end{equation}
+</p>
+</div>
+<div id="Ch18-S2-p10" class="para">
+<p class="p">That is very convenient. It is the same result we found in
+Eq. (<a href="#mjx-eqn-EqII188">18.8</a>). Integrating over the changing electric field
+gives the same magnetic field as does integrating over the current in
+the wire. Of course, that is just what Maxwell’s equation says. It is
+easy to see that this must always be so by applying our same arguments
+to the two surfaces $S_1$ and $S_1'$ that are bounded by the same
+circle $\Gamma_1$ in Fig. <a href="#Ch18-F2">18–2</a>(b). Through $S_1$ there is the
+current $I$, but no electric flux. Through $S_1'$ there is no current,
+but an electric flux changing at the rate $I/\epsO$. The same $\FLPB$ is
+obtained if we use Eq. IV with either surface.</p>
+</div>
+<div id="Ch18-S2-p11" class="para">
+<p class="p">From our discussion so far of
+Maxwell’s new term, you may have the
+impression that it doesn’t add much—that it just fixes up the
+equations to agree with what we already expect. It is true that if we
+just consider Eq. IV <em class="emph">by itself</em>, nothing particularly new
+comes out. The words “<em class="emph">by itself</em>” are, however,
+all-important. Maxwell’s
+small change in Eq. IV, when <em class="emph">combined
+with the other</em> equations, does indeed produce much that is new and
+important. Before we take up these matters, however, we want to speak
+more about Table <a href="#Ch18-T1">18–1</a>.</p>
+</div>
+</div>
+<div id="Ch18-S3" class="section">
+<h3 class="title section-title">
+<span class="tag">18–3</span>All of classical physics</h3>
+<div id="Ch18-S3-p1" class="para">
+<p class="p">In Table <a href="#Ch18-T1">18–1</a> we have all that was known of fundamental
+<em class="emph">classical</em> physics, that is, the physics that was known by
+1905. Here it all is, in one table. With these equations we can
+understand the complete realm of classical physics.</p>
+</div>
+<div id="Ch18-S3-p2" class="para">
+<p class="p">First we have the Maxwell equations—written in both the expanded
+form and the short mathematical form. Then there is the conservation
+of charge, which is even written in parentheses, because the moment we
+have the complete Maxwell equations, we can deduce from them the
+conservation of charge. So the table is even a little redundant. Next,
+we have written the force law, because having all the electric and
+magnetic fields doesn’t tell us anything until we know what they do to
+charges. Knowing $\FLPE$ and $\FLPB$, however, we can find the force
+on an object with the charge $q$ moving with velocity $\FLPv$.
+Finally, having the force doesn’t tell us anything until we
+know what happens when a force pushes on something; we need the law of
+motion, which is that the force is equal to the rate of change of the
+momentum. (Remember?  We had that in Volume I.) We even include
+relativity effects by writing the momentum as $\FLPp=m_0\FLPv/\sqrt{1-v^2/c^2}$.</p>
+</div>
+<div id="Ch18-S3-p3" class="para">
+<p class="p">If we really want to be complete, we should add one more
+law—Newton’s law of gravitation—so we put that at the end.</p>
+</div>
+<div id="Ch18-S3-p4" class="para">
+<p class="p">Therefore in one small table we have all the fundamental laws of
+classical physics—even with room to write them out in words and with
+some redundancy. This is a great moment. We have climbed a great
+peak. We are on the top of K2—we are nearly ready for Mount
+Everest, which is quantum mechanics. We have climbed the peak of a
+“Great Divide,” and now we can go down the other side.</p>
+</div>
+<div id="Ch18-S3-p5" class="para">
+<p class="p">We have mainly been trying to learn how to understand the
+equations. Now that we have the whole thing put together, we are going
+to study what the equations mean—what new things they say that we
+haven’t already seen. We’ve been working hard to get up to this
+point. It has been a great effort, but now we are going to have nice
+coasting downhill as we see all the consequences of our
+accomplishment.</p>
+</div>
+</div>
+<div id="Ch18-S4" class="section">
+<h3 class="title section-title">
+<span class="tag">18–4</span>A travelling field</h3>
+<div id="Ch18-S4-p1" class="para">
+<p class="p">Now for the new consequences. They come from putting together all of
+Maxwell’s equations. First, let’s see what would happen in a
+circumstance which we pick to be particularly simple. By assuming that
+all the quantities vary only in one coordinate, we will have a
+one-dimensional problem. The situation is shown in
+Fig. <a href="#Ch18-F3">18–3</a>. We have a sheet of charge located on the
+$yz$-plane. The sheet is first at rest, then instantaneously given a
+velocity $u$ in the $y$-direction, and kept moving with this constant
+velocity. You might worry about having such an “infinite”
+acceleration, but it doesn’t really matter; just imagine that the
+velocity is brought to $u$ very quickly. So we have suddenly a surface
+current $J$ ($J$ is the current per unit width in the $z$-direction). To
+keep the problem simple, we suppose that there is also a stationary
+sheet of charge of opposite sign superposed on the $yz$-plane, so that
+there are no electrostatic effects. Also, although in the figure we show
+only what is happening in a finite region, we imagine that the sheet
+extends to infinity in $\pm y$ and $\pm z$. In other words, we have a
+situation where there is no current, and then suddenly there is a
+uniform sheet of current. What will happen?</p>
+</div>
+<div id="Ch18-F3" class="figure">
+<img src="img/FLP_II/f18-03/f18-03_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 18–3.</span>An infinite sheet of charge is suddenly set into motion
+parallel to itself. There are magnetic and electric fields that
+propagate out from the sheet at a constant speed.
+</div>
+</div>
+<div id="Ch18-S4-p2" class="para">
+<p class="p">Well, when there is a sheet of current in the plus $y$-direction,
+there is, as we know, a magnetic field generated which will be in the
+minus $z$-direction for $x&gt;0$ and in the opposite direction for
+$x&lt;0$. We could find the magnitude of $\FLPB$ by using the fact that
+the line integral of the magnetic field will be equal to the current
+over $\epsO c^2$. We would get that $B=J/2\epsO c^2$ (since the
+current $I$ in a strip of width $w$ is $Jw$ and the line integral
+of $\FLPB$ is $2Bw$).</p>
+</div>
+<div id="Ch18-S4-p3" class="para">
+<p class="p">This gives us the field next to the sheet—for small $x$—but since
+we are imagining an infinite sheet, we would expect the same argument
+to give the magnetic field farther out for larger values of $x$.
+However, that would mean that the moment we turn on the current,
+the magnetic field is suddenly changed from zero to a finite value
+everywhere. But wait!  If the magnetic field is suddenly changed, it
+will produce tremendous electrical effects. (If it changes in
+<em class="emph">any</em> way, there are electrical effects.) So because we moved the
+sheet of charge, we make a changing magnetic field, and therefore
+electric fields must be generated. If there are electric fields
+generated, they had to start from zero and change to something
+else. There will be some $\ddpl{\FLPE}{t}$ that will make a
+contribution, together with the current $J$, to the production of the
+magnetic field. So through the various equations there is a big
+intermixing, and we have to try to solve for all the fields at once.</p>
+</div>
+<div id="Ch18-S4-p4" class="para">
+<p class="p">By looking at the Maxwell equations alone, it is not easy to see
+directly how to get the solution. So we will first show you what the
+answer is and then verify that it does indeed satisfy the
+equations. The answer is the following: The field $\FLPB$ that we
+computed is, in fact, generated right next to the current sheet (for
+small $x$). It must be so, because if we make a tiny loop around the
+sheet, there is no room for any electric flux to go through it. But
+the field $\FLPB$ out farther—for larger $x$—is, at first,
+zero. It stays zero for awhile, and then suddenly turns on. In short,
+we turn on the current and the magnetic field immediately next to it
+turns on to a constant value $\FLPB$; then the turning on of $\FLPB$
+spreads out from the source region. After a certain time, there is a
+uniform magnetic field everywhere out to some value $x$, and then zero
+beyond. Because of the symmetry, it spreads in both the plus and minus
+$x$-directions.</p>
+</div>
+<div id="Ch18-F4" class="figure">
+<img src="img/FLP_II/f18-04/f18-04_tc_big.svgz"><div class="caption">
+<span class="tag">Fig. 18–4.</span>(a) The magnitude of $\FigB$ (or $\FigE$) as a function of $x$
+at time $t$ after the charge sheet is set in motion. (b) The fields for
+a charge sheet set in motion, toward negative $y$ at $t=T$. (c) The sum
+of (a) and (b).
+</div>
+</div>
+<div id="Ch18-S4-p5" class="para">
+<p class="p">The $\FLPE$-field does the same thing. Before $t=0$ (when we turn on
+the current), the field is zero everywhere. Then after the time $t$,
+both $\FLPE$ and $\FLPB$ are uniform out to the distance $x=vt$, and
+zero beyond. The fields make their way forward like a tidal wave, with
+a front moving at a uniform velocity which turns out to be $c$, but
+for a while we will just call it $v$. A graph of the magnitude of
+$\FLPE$ or $\FLPB$ versus $x$, as they appear at the time $t$, is
+shown in Fig. <a href="#Ch18-F4">18–4</a>(a). Looking again at
+Fig. <a href="#Ch18-F3">18–3</a>, at the time $t$, the region between $x=\pm vt$
+is “filled” with the fields, but they have not yet reached beyond. We
+emphasize again that we are assuming that the current sheet and,
+therefore the fields $\FLPE$ and $\FLPB$, extend infinitely far in both
+the $y$- and $z$-directions. (We cannot draw an infinite sheet, so we
+have shown only what happens in a finite area.)</p>
+</div>
+<div id="Ch18-F5" class="figure">
+<img src="img/FLP_II/f18-05/f18-05_tc_iPad_big.svgz"><div class="caption">
+<span class="tag">Fig. 18–5.</span>Top view of Fig. <a href="#Ch18-F3">18–3</a>.
+</div>
+</div>
+<div id="Ch18-S4-p6" class="para">
+<p class="p">We want now to analyze quantitatively what is happening. To do that,
+we want to look at two cross-sectional views, a top view looking down
+along the $y$-axis, as shown in Fig. <a href="#Ch18-F5">18–5</a>, and a side
+view looking back along the $z$-axis, as shown in
+Fig. <a href="#Ch18-F6">18–6</a>. Suppose we start with the side view. We see the
+charged sheet moving up; the magnetic field points into the page
+for $+x$, and out of the page for $-x$, and the electric field is downward
+everywhere—out to $x=\pm vt$.</p>
+</div>
+<div id="Ch18-F6" class="figure">
+<img src="img/FLP_II/f18-06/f18-06_tc_iPad_big.svgz"><div class="caption">
+<span class="tag">Fig. 18–6.</span>Side view of Fig. <a href="#Ch18-F3">18–3</a>.
+</div>
+</div>
+<div id="Ch18-S4-p7" class="para">
+<p class="p">Let’s see if these fields are consistent with Maxwell’s
+equations. Let’s first draw one of those loops that we use to
+calculate a line integral, say the rectangle $\Gamma_2$ shown in
+Fig. <a href="#Ch18-F6">18–6</a>. You notice that one side of the rectangle is
+in the region where there are fields, but one side is in the region
+the fields have still not reached. There is some magnetic flux through
+this loop. If it is changing, there should be an emf around it. If the
+wavefront is moving, we will have a changing magnetic flux, because
+the area in which $\FLPB$ exists is progressively increasing at the
+velocity $v$. The flux inside $\Gamma_2$ is $B$ times the part of the
+area inside $\Gamma_2$ which has a magnetic field. The rate of change
+of the flux, since the magnitude of $\FLPB$ is constant, is the
+magnitude times the rate of change of the area. The rate of change of
+the area is easy. If the width of the rectangle $\Gamma_2$ is $L$, the
+area in which $\FLPB$ exists changes by $Lv\,\Delta t$ in the
+time $\Delta t$. (See Fig. <a href="#Ch18-F6">18–6</a>.) The rate of change of flux
+is then $BLv$. According to Faraday’s law, this should equal minus the
+line integral of $\FLPE$ around $\Gamma_2$, which is just $EL$. We
+have the equation
+\begin{equation}
+\label{Eq:II:18:10}
+E=vB.
+\end{equation}
+
+So if the ratio of $E$ to $B$ is $v$, the fields we have assumed will
+satisfy Faraday’s equation.</p>
+</div>
+<div id="Ch18-S4-p8" class="para">
+<p class="p">But that is not the only equation; we have the other equation relating
+$\FLPE$ and $\FLPB$:
+\begin{equation}
+\label{Eq:II:18:11}
+c^2\FLPcurl{\FLPB}=\frac{\FLPj}{\epsO}+\ddp{\FLPE}{t}.
+\end{equation}
+
+To apply this equation, we look at the top view in
+Fig. <a href="#Ch18-F5">18–5</a>. We have seen that this equation will give us the
+value of $B$ next to the current sheet. Also, for any loop drawn outside
+the sheet but behind the wavefront, there is no curl of $\FLPB$ nor
+any $\FLPj$ or changing $\FLPE$, so the equation is correct there. Now let’s
+look at what happens for the curve $\Gamma_1$ that intersects the
+wavefront, as shown in Fig. <a href="#Ch18-F5">18–5</a>. Here there are no
+currents, so Eq. (<a href="#mjx-eqn-EqII1811">18.11</a>) can be written—in integral
+form—as
+\begin{equation}
+\label{Eq:II:18:12}
+c^2\oint_{\Gamma_1}\FLPB\cdot d\FLPs=\ddt{}{t}\!\!
+\underset{\text{inside $\Gamma_1$}}{\int}
+\!\FLPE\cdot\FLPn\,da.
+\end{equation}
+
+The line integral of $\FLPB$ is just $B$ times $L$. The rate of change
+of the flux of $\FLPE$ is due only to the advancing wavefront. The
+area inside $\Gamma_1$, where $\FLPE$ is not zero, is increasing at
+the rate $vL$. The right-hand side of Eq. (<a href="#mjx-eqn-EqII1812">18.12</a>) is
+then $vLE$. That equation becomes
+\begin{equation}
+\label{Eq:II:18:13}
+c^2B=Ev.
+\end{equation}
+</p>
+</div>
+<div id="Ch18-S4-p9" class="para">
+<p class="p">We have a solution in which we have a constant $\FLPB$ and a constant $\FLPE$
+behind the front, both at right angles to the direction in which the front is
+moving and at right angles to each other. Maxwell’s equations specify the ratio
+of $E$ to $B$. From Eqs. (<a href="#mjx-eqn-EqII1810">18.10</a>) and (<a href="#mjx-eqn-EqII1813">18.13</a>),
+\begin{equation*}
+E=vB,\quad\text{and}\quad E=\frac{c^2}{v}\,B.
+\end{equation*}
+
+But one moment! We have found <em class="emph">two different</em> conditions on the
+ratio $E/B$. Can such a field as we describe really exist? There is,
+of course, only one velocity $v$ for which both of these equations can
+hold, namely $v=c$. The wavefront must travel with the
+velocity $c$. We have an example in which the electrical influence from a
+current propagates at a certain finite velocity $c$.</p>
+</div>
+<div id="Ch18-S4-p10" class="para">
+<p class="p">Now let’s ask what happens if we suddenly stop the motion of the
+charged sheet after it has been on for a short time $T$. We can see
+what will happen by the principle of superposition. We had a current
+that was zero and then was suddenly turned on. We know the solution
+for that case. Now we are going to add another set of fields. We take
+another charged sheet and suddenly start it moving, in the opposite
+direction with the same speed, only at the time $T$ after we started
+the first current. The total current of the two added together is
+first zero, then on for a time $T$, then off again—because the two
+currents cancel. We have a square “pulse” of current.
+</p>
+</div>
+<div id="Ch18-S4-p11" class="para">
+<p class="p">The new negative current produces the same fields as the positive one,
+only with all the signs reversed and, of course, delayed in time
+by $T$. A wavefront again travels out at the velocity $c$. At the
+time $t$ it has reached the distance $x=\pm c(t-T)$, as shown in
+Fig. <a href="#Ch18-F4">18–4</a>(b). So we have two “blocks” of field marching
+out at the speed $c$, as in parts (a) and (b) of Fig. <a href="#Ch18-F4">18–4</a>.
+The combined fields are as shown in part (c) of the figure. The fields
+are zero for $x&gt;ct$, they are constant (with the values we found above)
+between $x=c(t-T)$ and $x=ct$, and again zero for $x&lt;c(t - T)$.</p>
+</div>
+<div id="Ch18-S4-p12" class="para">
+<p class="p">In short, we have a little piece of field—a block of
+thickness $cT$—which has left the current sheet and is travelling through
+space all by itself. The fields have “taken off”; they are
+propagating freely through space, no longer connected in any way with
+the source. The caterpillar has turned into a butterfly!</p>
+</div>
+<div id="Ch18-S4-p13" class="para">
+<p class="p">How can this bundle of electric and magnetic fields maintain itself? The
+answer is: by the combined effects of the Faraday law,
+$\FLPcurl{\FLPE}=-\ddpl{\FLPB}{t}$, and the new term of
+Maxwell,
+$c^2\FLPcurl{\FLPB}=\ddpl{\FLPE}{t}$. They cannot help maintaining
+themselves. Suppose the magnetic field were to disappear. There would be
+a changing magnetic field which would produce an electric field. If this
+electric field tries to go away, the changing electric field would
+create a magnetic field back again. So by a perpetual interplay—by the
+swishing back and forth from one field to the other—they must go on
+forever. It is impossible for them to disappear.<a name="footnote_source_1" href="#footnote_1"><sup class="mark">1</sup></a> They maintain
+themselves in a kind of a dance—one making the other, the second
+making the first—propagating onward through space.</p>
+</div>
+</div>
+<div id="Ch18-S5" class="section">
+<h3 class="title section-title">
+<span class="tag">18–5</span>The speed of light</h3>
+<div id="Ch18-S5-p1" class="para">
+<p class="p">We have a wave which leaves the material source and goes outward at
+the velocity $c$, which is the speed of light. But let’s go back a
+moment. From a historical point of view, it wasn’t known that the
+coefficient $c$ in Maxwell’s equations was also the speed of light
+propagation. There was just a constant in the equations. We have
+called it $c$ from the beginning, because we knew what it would turn
+out to be. We didn’t think it would be sensible to make you learn the
+formulas with a different constant and then go back to substitute $c$
+wherever it belonged. From the point of view of electricity and
+magnetism, however, we just start out with two constants, $\epsO$
+and $c^2$, that appear in the equations of electrostatics and
+magnetostatics:
+\begin{equation}
+\label{Eq:II:18:14}
+\FLPdiv{\FLPE} =\frac{\rho}{\epsO}
+\end{equation}
+
+and
+\begin{equation}
+\label{Eq:II:18:15}
+\FLPcurl{\FLPB} =\frac{\FLPj}{\epsO c^2}.
+\end{equation}
+
+If we take any <em class="emph">arbitrary</em> definition of a unit of charge, we can
+determine experimentally the constant $\epsO$ required in
+Eq. (<a href="#mjx-eqn-EqII1814">18.14</a>)—say by measuring the force between two unit
+charges at rest, using Coulomb’s law. We must also determine
+experimentally the constant $\epsO c^2$ that appears in
+Eq. (<a href="#mjx-eqn-EqII1815">18.15</a>), which we can do, say, by measuring the force
+between two unit currents. (A unit current means one unit of charge per
+second.) The ratio of these two experimental constants is $c^2$—just
+another “electromagnetic constant.”</p>
+</div>
+<div id="Ch18-S5-p2" class="para">
+<p class="p">Notice now that this constant $c^2$ is the same no matter what we
+choose for our unit of charge. If we put twice as much
+“charge”—say twice as many proton charges—in our “unit” of
+charge, $\epsO$ would need to be one-fourth as large. When we pass two
+of these “unit” currents through two wires, there will be twice as
+much “charge” per second in each wire, so the force between two
+wires is four times larger. The constant $\epsO c^2$ must be reduced
+by one-fourth. But the ratio $\epsO c^2/\epsO$ is unchanged.</p>
+</div>
+<div id="Ch18-S5-p3" class="para">
+<p class="p">So just by experiments with charges and currents we find a
+number $c^2$ which turns out to be the square of the velocity of propagation
+of electromagnetic influences. From static measurements—by measuring
+the forces between two unit charges and between two unit currents—we
+find that $c=3.00\times10^8$ meters/sec. When
+Maxwell first made this
+calculation with his equations, he said that bundles of electric and
+magnetic fields should be propagated at this speed. He also remarked
+on the mysterious coincidence that this was the same as the speed of
+light. “We can scarcely avoid the inference,” said
+Maxwell, “that
+light consists in the transverse undulations of the same medium which
+is the cause of electric and magnetic phenomena.”</p>
+</div>
+<div id="Ch18-S5-p4" class="para">
+<p class="p">Maxwell had made one of the
+great unifications of physics. Before his
+time, there was light, and there was electricity and magnetism. The
+latter two had been unified by the experimental work of
+Faraday, Oersted, and Ampère. Then, all of a
+sudden, light was no longer “something else,” but was only electricity
+and magnetism in this new form—little pieces of electric and magnetic
+fields which propagate through space on their own.</p>
+</div>
+<div id="Ch18-S5-p5" class="para">
+<p class="p">We have called your attention to some characteristics of this special
+solution, which turn out to be true, however, for <em class="emph">any</em>
+electromagnetic wave: that the magnetic field is perpendicular to the
+direction of motion of the wavefront; that the electric field is
+likewise perpendicular to the direction of motion of the wavefront;
+and that the two vectors $\FLPE$ and $\FLPB$ are perpendicular to each
+other. Furthermore, the magnitude of the electric field $E$ is equal
+to $c$ times the magnitude of the magnetic field $B$. These three
+facts—that the two fields are transverse to the direction of
+propagation, that $\FLPB$ is perpendicular to $\FLPE$, and that
+$E=cB$—are generally true for any electromagnetic wave. Our special
+case is a good one—it shows all the main features of electromagnetic
+waves.</p>
+</div>
+</div>
+<div id="Ch18-S6" class="section">
+<h3 class="title section-title">
+<span class="tag">18–6</span>Solving Maxwell’s equations; the potentials and the wave equation</h3>
+<div id="Ch18-S6-p1" class="para">
+<p class="p">Now we would like to do something mathematical; we want to write
+Maxwell’s equations in a simpler form. You may consider that we are
+complicating them, but if you will be patient a little bit, they will
+suddenly come out simpler. Although by this time you are thoroughly
+used to each of the Maxwell equations, there are many pieces that must
+all be put together. That’s what we want to do.</p>
+</div>
+<div id="Ch18-S6-p2" class="para">
+<p class="p">We begin with $\FLPdiv{\FLPB}=0$—the simplest of the equations. We
+know that it implies that $\FLPB$ is the curl of something. So, if we
+write
+\begin{equation}
+\label{Eq:II:18:16}
+\FLPB=\FLPcurl{\FLPA},
+\end{equation}
+
+we have already solved one of Maxwell’s equations. (Incidentally, you
+appreciate that it remains true that another vector $\FLPA'$ would be
+just as good if $\FLPA'=\FLPA+\FLPgrad{\psi}$—where $\psi$ is any
+scalar field—because the curl of $\FLPgrad{\psi}$ is zero,
+and $\FLPB$ is still the same. We have talked about that before.)</p>
+</div>
+<div id="Ch18-S6-p3" class="para">
+<p class="p">We take next the Faraday law, $\FLPcurl{\FLPE}=-\ddpl{\FLPB}{t}$,
+because it doesn’t involve any currents or charges. If we write
+$\FLPB$ as $\FLPcurl{\FLPA}$ and differentiate with respect to $t$, we
+can write Faraday’s law in the form
+\begin{equation*}
+\FLPcurl{\FLPE}=-\ddp{}{t}\,\FLPcurl{\FLPA}.
+\end{equation*}
+
+Since we can differentiate either with respect to time or to space
+first, we can also write this equation as
+\begin{equation}
+\label{Eq:II:18:17}
+\FLPcurl{\biggl(\FLPE+\ddp{\FLPA}{t}\biggr)}=\FLPzero.
+\end{equation}
+
+We see that $\FLPE+\ddpl{\FLPA}{t}$ is a vector whose curl is equal to
+zero. Therefore that vector is the gradient of something. When we
+worked on electrostatics, we had $\FLPcurl{\FLPE}=\FLPzero$, and then
+we decided that $\FLPE$ itself was the gradient of something. We took
+it to be the gradient of $-\phi$ (the minus for technical
+convenience). We do the same thing for $\FLPE+\ddpl{\FLPA}{t}$; we set
+\begin{equation}
+\label{Eq:II:18:18}
+\FLPE+\ddp{\FLPA}{t}=-\FLPgrad{\phi}.
+\end{equation}
+
+We use the same symbol $\phi$ so that, in the electrostatic case where
+nothing changes with time and the $\ddpl{\FLPA}{t}$ term disappears,
+$\FLPE$ will be our old $-\FLPgrad{\phi}$. So Faraday’s equation can
+be put in the form
+\begin{equation}
+\label{Eq:II:18:19}
+\FLPE=-\FLPgrad{\phi}-\ddp{\FLPA}{t}.
+\end{equation}
+
+</p>
+</div>
+<div id="Ch18-S6-p4" class="para">
+<p class="p">We have solved two of Maxwell’s equations already, and we have found
+that to describe the electromagnetic fields $\FLPE$ and $\FLPB$, we
+need four potential functions: a scalar potential $\phi$ and a vector
+potential $\FLPA$, which is, of course, three functions.</p>
+</div>
+<div id="Ch18-S6-p5" class="para">
+<p class="p">Now that $\FLPA$ determines part of $\FLPE$, as well as $\FLPB$, what
+happens when we change $\FLPA$ to $\FLPA'=\FLPA+\FLPgrad{\psi}$? In
+general, $\FLPE$ would change if we didn’t take some special
+precaution. We can, however, still allow $\FLPA$ to be changed in this
+way without affecting the fields $\FLPE$ and $\FLPB$—that is,
+without changing the physics—if we always change $\FLPA$ and $\phi$
+<em class="emph">together</em> by the rules
+\begin{equation}
+\label{Eq:II:18:20}
+\FLPA'=\FLPA+\FLPgrad{\psi},\quad
+\phi'=\phi-\ddp{\psi}{t}.
+\end{equation}
+
+Then neither $\FLPB$ nor $\FLPE$, obtained from Eq. (<a href="#mjx-eqn-EqII1819">18.19</a>),
+is changed.</p>
+</div>
+<div id="Ch18-S6-p6" class="para">
+<p class="p">Previously, we chose to make $\FLPdiv{\FLPA}=0$, to make the equations
+of statics somewhat simpler. We are not going to do that now; we are
+going to make a different choice. But we’ll wait a bit before saying
+what the choice is, because later it will be clear <em class="emph">why</em> the
+choice is made.</p>
+</div>
+<div id="Ch18-S6-p7" class="para">
+<p class="p">Now we return to the two remaining Maxwell equations which will give us
+relations between the potentials and the sources $\rho$ and $\FLPj$. Once we can
+determine $\FLPA$ and $\phi$ from the currents and charges, we can always get
+$\FLPE$ and $\FLPB$ from Eqs. (<a href="#mjx-eqn-EqII1816">18.16</a>)
+and (<a href="#mjx-eqn-EqII1819">18.19</a>), so we will have another form of Maxwell’s equations.</p>
+</div>
+<div id="Ch18-S6-p8" class="para">
+<p class="p">We begin by substituting Eq. (<a href="#mjx-eqn-EqII1819">18.19</a>) into
+$\FLPdiv{\FLPE}=\rho/\epsO$; we get
+\begin{equation*}
+\FLPdiv{\biggl(-\FLPgrad{\phi}-\ddp{\FLPA}{t}\biggr)}=\frac{\rho}{\epsO},
+\end{equation*}
+
+which we can write also as
+\begin{equation}
+\label{Eq:II:18:21}
+-\nabla^2\phi-\ddp{}{t}\,\FLPdiv{\FLPA}=\frac{\rho}{\epsO}.
+\end{equation}
+
+This is one equation relating $\phi$ and $\FLPA$ to the sources.</p>
+</div>
+<div id="Ch18-S6-p9" class="para">
+<p class="p">Our final equation will be the most complicated. We start by rewriting
+the fourth Maxwell equation as
+\begin{equation*}
+c^2\FLPcurl{\FLPB}-\ddp{\FLPE}{t}=\frac{\FLPj}{\epsO},
+\end{equation*}
+
+and then substitute for $\FLPB$ and $\FLPE$ in terms of the potentials, using
+Eqs. (<a href="#mjx-eqn-EqII1816">18.16</a>) and (<a href="#mjx-eqn-EqII1819">18.19</a>):
+\begin{equation*}
+c^2\FLPcurl{(\FLPcurl{\FLPA})}-\ddp{}{t}\,
+\biggl(-\FLPgrad{\phi}-\ddp{\FLPA}{t}\biggr)=
+\frac{\FLPj}{\epsO}.
+\end{equation*}
+
+The first term can be rewritten using the algebraic identity:
+$\FLPcurl{(\FLPcurl{\FLPA})}=$ $\FLPgrad{(\FLPdiv{\FLPA})}-\nabla^2\FLPA$;
+we get
+<span class="eq-wide">
+\begin{equation}
+\label{Eq:II:18:22}
+-c^2\nabla^2\FLPA+c^2\FLPgrad{(\FLPdiv{\FLPA})}+
+\ddp{}{t}\,\FLPgrad{\phi}+\frac{\partial^2\FLPA}{\partial t^2}=
+\frac{\FLPj}{\epsO}.
+\end{equation}
+</span>
+<span class="eq-narrow">
+\begin{align}
+-c^2\nabla^2\FLPA&+c^2\FLPgrad{(\FLPdiv{\FLPA})}\notag\\[.5ex]
+\label{Eq:II:18:22}
+&+\ddp{}{t}\,\FLPgrad{\phi}+\frac{\partial^2\FLPA}{\partial t^2}=
+\frac{\FLPj}{\epsO}.
+\end{align}
+</span>
+
+
+It’s not very simple!</p>
+</div>
+<div id="Ch18-S6-p10" class="para">
+<p class="p">Fortunately, we can now make use of our freedom to choose arbitrarily
+the divergence of $\FLPA$. What we are going to do is to use our
+choice to fix things so that the equations for $\FLPA$ and for $\phi$
+are separated but have the same form. We can do this by
+taking<a name="footnote_source_2" href="#footnote_2"><sup class="mark">2</sup></a>
+\begin{equation}
+\label{Eq:II:18:23}
+\FLPdiv{\FLPA}=-\frac{1}{c^2}\,\ddp{\phi}{t}.
+\end{equation}
+
+When we do that, the two middle terms in $\FLPA$ and $\phi$ in
+Eq. (<a href="#mjx-eqn-EqII1822">18.22</a>) cancel, and that equation becomes much simpler:
+\begin{equation}
+\label{Eq:II:18:24}
+\nabla^2\FLPA-\frac{1}{c^2}\,\frac{\partial^2\FLPA}{\partial t^2}=
+-\frac{\FLPj}{\epsO c^2}.
+\end{equation}
+
+And our equation for $\phi$—Eq. (<a href="#mjx-eqn-EqII1821">18.21</a>)—takes on the
+same form:
+\begin{equation}
+\label{Eq:II:18:25}
+\nabla^2\phi-\frac{1}{c^2}\,\frac{\partial^2\phi}{\partial t^2}=
+-\frac{\rho}{\epsO}.
+\end{equation}
+</p>
+</div>
+<div id="Ch18-S6-p11" class="para">
+<p class="p">What a beautiful set of equations! They are beautiful, first, because
+they are nicely separated—with the charge density, goes $\phi$; with
+the current, goes $\FLPA$. Furthermore, although the left side looks a
+little funny—a Laplacian together with a $\partial^2/\partial t^2$—when we
+unfold it we see
+\begin{equation}
+\label{Eq:II:18:26}
+\frac{\partial^2\phi}{\partial x^2}+
+\frac{\partial^2\phi}{\partial y^2}+
+\frac{\partial^2\phi}{\partial z^2}-
+\frac{1}{c^2}\,\frac{\partial^2\phi}{\partial t^2}=
+-\frac{\rho}{\epsO}.
+\end{equation}
+
+It has a nice symmetry in $x$, $y$, $z$, $t$—the $-1/c^2$ is
+necessary because, of course, time and space <em class="emph">are</em> different;
+they have different units.</p>
+</div>
+<div id="Ch18-S6-p12" class="para">
+<p class="p">Maxwell’s equations have led us to a new kind of equation for the
+potentials $\phi$ and $\FLPA$ but to the same mathematical form for
+all four functions $\phi$, $A_x$, $A_y$, and $A_z$. Once we learn how
+to solve these equations, we can get $\FLPB$ and $\FLPE$ from
+$\FLPcurl{\FLPA}$ and $-\FLPgrad{\phi}-\ddpl{\FLPA}{t}$. We have
+another form of the electromagnetic laws exactly equivalent to
+Maxwell’s equations, and in many situations they are much simpler to
+handle.</p>
+</div>
+<div id="Ch18-S6-p13" class="para">
+<p class="p">We have, in fact, already solved an equation much like
+Eq. (<a href="#mjx-eqn-EqII1826">18.26</a>). When we studied sound in
+Chapter <a href="I_47.html">47</a> of Vol. I, we had an equation of the form
+\begin{equation*}
+\frac{\partial^2\phi}{\partial x^2}=
+\frac{1}{c^2}\,\frac{\partial^2\phi}{\partial t^2},
+\end{equation*}
+
+and we saw that it described the propagation of waves in the
+$x$-direction at the speed $c$. Equation (<a href="#mjx-eqn-EqII1826">18.26</a>) is the
+corresponding wave equation for three dimensions. So in regions where
+there are no longer any charges and currents, the solution of these
+equations is <em class="emph">not</em> that $\phi$ and $\FLPA$ are zero. (Although
+that is indeed one possible solution.)  There are solutions in which
+there is some set of $\phi$ and $\FLPA$ which are changing in time but
+always moving out at the speed $c$. The fields travel onward through
+free space, as in our example at the beginning of the chapter.</p>
+</div>
+<div id="Ch18-S6-p14" class="para">
+<p class="p">With Maxwell’s
+new term in Eq. IV, we have been able to write the
+field equations in terms of $\FLPA$ and $\phi$ in a form that is
+simple and that makes immediately apparent that there are
+electromagnetic waves. For many practical purposes, it will still be
+convenient to use the original equations in terms of $\FLPE$
+and $\FLPB$. But they are on the other side of the mountain we have
+already climbed. Now we are ready to cross over to the other side of
+the peak. Things will look different—we are ready for some new and
+beautiful views.</p>
+</div>
+</div>
+<ol id="footnotes">
+<li class="footnote">
+  <a name="footnote_1"></a>
+  Well, not
+quite. They can be “absorbed” if they get to a region where there are
+charges. By which we mean that other fields can be produced somewhere
+which superpose on these fields and “cancel” them by destructive
+interference (see Chapter <a href="I_31.html">31</a>, Vol. I).
+  <a href="#footnote_source_1">↩</a>
+</li>
+<li class="footnote">
+  <a name="footnote_2"></a>
+  Choosing the $\FLPdiv{\FLPA}$ is called “choosing a
+gauge.” Changing $\FLPA$ by adding $\FLPgrad{\psi}$, is called a
+“gauge transformation.” Equation (<a href="#mjx-eqn-EqII1823">18.23</a>) is called “the
+Lorenz gauge.”
+  <a href="#footnote_source_2">↩</a>
+</li>
+</ol>
+</div>
+<footer>
+  <a href="II_copyright.html">Copyright © 1964, 2006, 2013 by the California Institute of Technology, <br>
+  Michael A. Gottlieb, and Rudolf Pfeiffer</a>
+</footer>
+</div>
+</div>
+
+</div>
+    
+  </body>
+</html>
