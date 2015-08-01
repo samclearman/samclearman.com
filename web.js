@@ -8,9 +8,12 @@ app.use(logfmt.requestLogger());
 function setHeaders(res,pth,stat) {
     console.log(pth)
     if (path.extname(pth) == ".svgz") {
-        console.log("setting gzip encoding")
         res.setHeader("Content-Encoding", "gzip");
     }
+    if (path.extname(pth) == ".manifest") {
+        res.setHeader("Content-Type", "text/cache-manifest");
+    }
+    
 }
 
 app.use("/", express.static('static', {
