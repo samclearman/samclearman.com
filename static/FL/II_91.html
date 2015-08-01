@@ -11,6 +11,8 @@
 <link href="css/core.css" media="screen" rel="stylesheet" type="text/css">
 <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css">
 <script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/location.js"></script>
+
 <link href="css/big.css" id="big-style" media="screen" rel="alternate stylesheet" type="text/css" title="Big">
 <link href="css/medium.css" id="medium-style" media="screen" rel="alternate stylesheet" type="text/css" title="Medium">
 <script type="text/javascript">
@@ -159,54 +161,6 @@ $(document).ready(function() {
   <script language="javascript">
     function emailCurrentPage(){
         window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to view at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu. I'm reading this chapter right now: "+escape(window.location.href)+".";
-    }
-    function openChapter(offset){   //offest is expected to be +1 or -1, or 0 to go to the TOC
-       var lastChapter =[52,42,22]; //last chapter number of each volume
-       var volstrings =["I","II","III"];
-       var filepath = window.location.pathname;        
-       var filename = filepath.substr(filepath.lastIndexOf("/")+1); 
-	   var volname = filename.match(/I+/);               
-	   var vol = volname[0].length-1; //0-based volume index 
-       var chapname = filename.match(/\d+/);       
- 	   var tocpref;
-       try { 
- 	   		tocpref = localStorage["FLP-toc-preference"];
- 	   }
- 	   catch (e) { 
- 	   		//alert("Oops! Your browser has localStorage disabled. (If you're using Firefox try enabling cookies.)");
- 	   		//return;
- 	   		tocpref = null;
- 	   }
- 	   if (tocpref == null) tocpref = "_toc";
-
-       if (chapname==null) {
-       	   if (offset==0) {
-       	       window.location.pathname = filepath.replace(filename, "index.html")
-       	   }
-       	   else {
-       	   	  var v = ((vol + offset % 3) + 3) % 3;
-       	   	  window.location.pathname = filepath.replace(filename, volstrings[v] + tocpref + ".html");           
-       	   }
-       }      
-       else {
-	       var chap = chapname[0];
-	       var n = Number(chap)+offset;   //new chapter number
-	 
-	       if (offset==0) {
-	              if (tocpref == null) tocpref = "_toc";
-	       		  window.location.pathname = filepath.replace(filename,volname + tocpref + ".html");
-	       }
-	       else {
-		       //Note: front matter chapter numbers go from 89 to 92
-		       if (n==93) n=1; else if (n==0) n=92;
-		       if ((n>=1 && n<=lastChapter[vol]) || (n>=89 && n<=92)) {
-		           var newChap = "0"+String(n);  //pad left with "0" in case n is a single-digit number
-		           newChap = newChap.substr(newChap.length-2); //all chapter numbers have exactly 2 digits
-                   window.location.assign(filepath.replace(chap,newChap));
-
-		       }
-	       }
-       }
     }
 </script>
 <div class="floating-menu">
