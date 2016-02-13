@@ -12,17 +12,68 @@
   <meta charset="UTF-8" />
 
   <title>The Feynman Lectures on Physics</title>
-  <link href="../css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
   <script src="js/location.js"></script>
   <script language="javascript">
     function emailThisPage(){
         window.location.href="mailto:?subject="+document.title+"&body="+"Check out the HTML edition of The Feynman Lectures on Physics, free for all to read online at http://www.feynmanlectures.info and http://www.feynmanlectures.caltech.edu."
     }
   </script>
+  <style type="text/css">
+  #progress {
+      position: absolute;
+      width: 200px;
+      right: 10px;
+      top: 10px;
+  }
+  #progress h2 {
+      font-size: 12pt;
+  }
+  #progressbarouter {
+      width: 200px;
+      height: 20px;
+      border: 2px solid blue;
+      padding: 0;
+  }
+  #progressbarinner {
+      width: 0px;
+      height: 20px;
+      border: 0;
+      margin: 0;
+      background-color: blue;
+  }
+  </style>
+<script language="javascript">
+  
+  var totalWidth = 200;
+  function complete() {
+      document.getElementById("progressbarinner").style.width = totalWidth + "px";
+      document.getElementById("progressbartext").textContent = "Cached";
+  }
+  window.applicationCache.addEventListener("noupdate", function(e) {
+      complete();
+  });
+  window.applicationCache.addEventListener("cached", function(e) {
+      complete();
+  });
+  window.applicationCache.addEventListener("updateReady", function(e) {
+      complete();
+      window.location.reload();
+  });
+  window.applicationCache.addEventListener("progress", function(e) {
+      var completion =  e.loaded / e.total;
+      document.getElementById("progressbarinner").style.width = (totalWidth * completion )+ "px";
+      document.getElementById("progressbartext").textContent = "Caching content...";
+  });
 
+</script>
  </head>
 
 <body leftmargin="50" rightmargin="50" topmargin="10">
+    <div id="progress">
+        <h2 id="progressbartext">Caching content...</h2>
+        <div id="progressbarouter"><div id="progressbarinner"></div></div>
+    </div>
   <h1 align="center"><font face="Garamond"><a href="http://www.caltech.edu"><img border="0" src=
   "img/caltechseal_orange_7in_primary-rgb.PNG" width="244" /></a></font></h1>
 

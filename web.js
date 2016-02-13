@@ -20,9 +20,9 @@ app.use("/", express.static('static', {
     "setHeaders": setHeaders,
 }));
 
-// app.get('/', function(req, res) {
-//   res.send('Hello World!');
-// });
+app.get('/books', function(req, res) {
+  res.redirect('http://159.203.85.77:5000');
+});
 
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {

@@ -81,3 +81,21 @@ function Goto(vol,chap,sec){
     localStorage["FLP-location"] = dest;
 	window.open(dest,'_parent');
 }
+
+function currentLocationId($) {
+    var id = null;
+    $(".para, .figure").sort(function (a,b){
+        return a.offsetTop < b.offsetTop ? -1 : 1;
+    }).each(function(i, elem){
+        if (elem.offsetTop  + elem.offsetHeight > window.scrollY) {
+            id = elem.id;
+            return false;
+        }
+    });
+    return id;
+}
+
+function storeLocation($) {
+    localStorage["FLP-location"] = window.location.pathname;
+    localStorage["FLP-location-id"] = currentLocationId($);
+}
