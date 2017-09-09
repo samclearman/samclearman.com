@@ -37,6 +37,19 @@ var HIGHLIGHT_COLORS = [
 
 var BLOCKED = false;
 
+var SERVER = false;
+if (((new URL(document.location)).searchParams).get('server') == "true") {
+    SERVER = true
+}
+
+var FB_MOVES_LIST = firebase.database().ref('moves_list');
+var FB_GRID = firebase.database().ref('grid');
+var FB_TETROMINOS = firebase.database().ref('tetromoinos_list');
+if (SERVER) {
+    FB_MOVES_LIST.remove();
+    FB_GRID.remove();
+    FB_TETROMINOS.remove();
+}
 
 function addPts(p,q) {
     return({x: p.x + q.x, y: p.y + q.y});
@@ -70,7 +83,10 @@ function game() {
     
     
     tetromino.generate = function(color) {
-        shape = eval(JSON.stringify(SHAPES[Math.floor(SHAPES.length * Math.random())]));
+	if (!SERVER) {
+	    return
+	}
+        var shape = eval(JSON.stringify(SHAPES[Math.floor(SHAPES.length * Math.random())]));
         if (color == "black") {
             var y = -1 * BLOCK_SIZE;
             var v = {x: 0, y: BLOCK_SIZE};
@@ -79,12 +95,18 @@ function game() {
             var y = GRID_H * BLOCK_SIZE;
             var v = {x: 0, y: (-1 * BLOCK_SIZE)};
         }
-        entities.push(new tetromino(shape,5*BLOCK_SIZE,y,v,color));
-        
+        entities.push(new tetromino({
+	    shape: shape,
+	    width: 5*BLOCK_SIZE,
+	    x: Math.floor(GRID_W/2) * BLOCK_SIZE,
+	    y: y,
+	    velocity: v,
+	    color: color
+	}));
     }
     
     highlight.row = function(row) {
-        rgb = HIGHLIGHT_COLORS[Math.floor(HIGHLIGHT_COLORS.length * Math.random())];
+        var rgb = HIGHLIGHT_COLORS[Math.floor(HIGHLIGHT_COLORS.length * Math.random())];
         entities.push(new highlight(0, row * BLOCK_SIZE, BLOCK_SIZE, GRID_W * BLOCK_SIZE, rgb, .5));
     };
     
@@ -93,10 +115,23 @@ function game() {
         var g = new grid(board);
         tetromino.prototype.grid = function() { return g; };
         entities.push(g);
+	FB_TETROMINOS.remove();
         tetromino.generate("black");
         tetromino.generate("white");
     }
-    setup();
+
+    function init() {
+	var board = new scoreboard(0);
+	var g = new grid(board);
+	tetromino.prototype.grid = function() { return g; };
+	entities.push(g);
+	FB_TETROMINOS.on('child_added', function(fb_tet) {
+	    entities.push(new tetromino(fb_tet.val(), fb_tet.ref));
+	});
+    }
+    
+    SERVER ? setup() : init();
+	
     
     function update(delta) {
         
@@ -197,9 +232,21 @@ function grid(scoreboard) {
                   [0,0,0,0,0,0,0,0,0,0,0],
                   [0,0,0,0,0,0,0,0,0,0,0],
                   [0,0,0,0,0,0,0,0,0,0,0]];
+    if (SERVER) {FB_GRID.child('state').set(this.state);}
+    that = this;
+    FB_GRID.child('state').on("value",function(s) {
+        that.state = s.val();
+    });
 }
 
 grid.prototype.update = function(delta) {}
+
+grid.prototype.set = function(row,col,color) {
+    if (!SERVER) {
+	return
+    }
+    FB_GRID.child('state/' + row + '/' + col).set(color);
+}
 
 grid.prototype.drawOn = function(layers) {
     for(var row=0; row < this.state.length; row++) {
@@ -215,7 +262,7 @@ grid.prototype.drawOn = function(layers) {
 }
 
 grid.prototype.checkCollisions = function(piece, checkpoints) {
-    var pieceType = piece.color == "black" ? 0 : 1;
+    var pieceType = piece._state['color'] == "black" ? 0 : 1;
     checkpoints = checkpoints ||["NW","NE","SW","SE"]
     for (var i = 0; i < piece.blocks.length; i++) {
         for (corner of checkpoints) {
@@ -237,13 +284,18 @@ grid.prototype.checkCollisions = function(piece, checkpoints) {
 
 grid.prototype.freeze = function(piece) {
     this.scoreboard.add(BLOCK_SCORE);
+       
     var pieceType = piece.color == "black" ? 0 : 1;
     var testRows = [];
     for (var i = 0; i < piece.blocks.length; i++) {
         row = Math.floor(piece.blocks[i].center().y / BLOCK_SIZE);
         col = Math.floor(piece.blocks[i].center().x / BLOCK_SIZE);
-        if (row < 0 || row > GRID_H - 1) {RUNNING = false; console.log("game over");}
-        this.state[row][col] = pieceType;
+        if (row < 0 || row > GRID_H - 1) {
+	    RUNNING = false;
+	    console.log("game over");
+	    return;
+	}
+        this.set(row, col, pieceType);
         testRows.push(row);
     }
     
@@ -253,28 +305,29 @@ grid.prototype.freeze = function(piece) {
     if (pieceType == 0) { testRows = testRows.reverse(); }
     
     // Check for complete rows:
+    var state = this.state;
     var hoffset = 0;
     for (var i = 0; i < testRows.length; i++) {
         var row = testRows[i];
-        if (this.state[row].every(function(cell,i,ary){return(cell == pieceType)})) {
-            this.state.splice(row,1);
+        if (state[row].every(function(cell,i,ary){return(cell == pieceType)})) {
+            state.splice(row,1);
             highlight.row(row + hoffset);
             this.scoreboard.multiplier *= LINE_MULTIPLE;
             SPEED += LINE_BOOST;
             if (pieceType == 0) {
                 hoffset -= 1;
                 testRows = testRows.map(function(row,i,ary){return(row + 1)});
-                this.state.splice(0,0,[1,1,1,1,1,1,1,1,1,1,1]);
+                state.splice(0,0,[1,1,1,1,1,1,1,1,1,1,1]);
             }
             if (pieceType == 1) {
                 hoffset += 1;
                 testRows = testRows.map(function(row,i,ary){return(row - 1)});
-                this.state.push([0,0,0,0,0,0,0,0,0,0,0]);
+                state.push([0,0,0,0,0,0,0,0,0,0,0]);
             }
             
         }
     }
-    
+    FB_GRID.child('state').set(state);
 };
 
 grid.prototype.destroy = function() {this.destroyed = true;};
@@ -333,28 +386,78 @@ block.prototype.destroy = function() { this.destroyed = true; };
 *                           *
 ****************************/
 
-function tetromino(shape, x, y, velocity, color) {
-    this.x = x || 0;
-    this.y = y || 0;
+
+function tetromino(state, ref) {
+    this._state = Object.assign({
+	x: 0,
+	y: 0,
+	color: "black",
+	shape: [[-1,0],[0,0],[0,1],[1,0]],
+	velocity: {x: 0, y: 0},
+    }, state);
+    this._stateRef = ref || FB_TETROMINOS.push(this._state);
+    
     this.width = BLOCK_SIZE;
     this.height = BLOCK_SIZE;
-    this.color = color || "black";
-    this.velocity = velocity || {x: 0, y: 0};
-    this.shape = shape || [[-1,0],[0,0],[0,1],[1,0]];
     this.blocks = [];
     this.turbo = 1;
-    for(var i=0; i < this.shape.length; i++) {
-        blk = new block(this.x + (this.shape[i][0] * BLOCK_SIZE) , this.y + (this.shape[i][1] * BLOCK_SIZE) ,color)
+    for(var i=0; i < this._state['shape'].length; i++) {
+        blk = new block(this._state['x'] + (this._state['shape'][i][0] * BLOCK_SIZE) , this._state['y'] + (this._state['shape'][i][1] * BLOCK_SIZE), this._state['color'])
         this.blocks.push(blk)
     }
-    
+
+    // All of these handlers have to be stored on the object so that they can be cleaned up on destroy
     var that = this;
     this.keyDownListener = function(e) { e.preventDefault(); that.handleKeyDown(e);};
     this.keyUpListener = function(e) { e.preventDefault(); that.handleKeyUp(e,that);};
     window.addEventListener("keyup", this.keyUpListener);
     window.addEventListener("keydown", this.keyDownListener);
     
+    this.fbMoveListener = function(d) { that.handleFbMove(d.val()); };
+    FB_MOVES_LIST.on("child_added", this.fbMoveListener)
+
+    this.fbStateCallback = function(s) {
+	if (s.val() === null) {
+	    that.destroy();
+	    return;
+	}
+        that._state = s.val();
+    }
+    this._stateRef.on("value", this.fbStateCallback);
+    
 }
+
+Object.defineProperty(tetromino.prototype, 'x', {
+    get: function() { return this._state['x']; },
+    set: function(x) {
+	this._state['x'] = x;
+	if (SERVER) {
+	    this._stateRef.set(this._state);
+	}
+    }
+});
+
+Object.defineProperty(tetromino.prototype, 'y', {
+    get: function() { return this._state['y']; },
+    set: function(y) {
+	this._state['y'] = y;
+	if (SERVER) {
+	    this._stateRef.set(this._state);
+	}
+    }
+});
+
+Object.defineProperty(tetromino.prototype, 'color', {
+    get: function() { return this._state['color']; }
+});
+
+Object.defineProperty(tetromino.prototype, 'shape', {
+    get: function() { return this._state['shape']; }
+});
+
+Object.defineProperty(tetromino.prototype, 'velocity', {
+    get: function() { return this._state['velocity']; }
+});		      		      
 
 tetromino.prototype.positionBlocks = function() {
     for(var i=0; i < this.blocks.length; i++) {
@@ -395,7 +498,7 @@ tetromino.prototype.drawOn = function(layers) {
 tetromino.prototype.handleKeyDown = function(e) {
     switch(e.keyCode) {
     case CONTROLS[this.color]["turbo"]:
-        this.turbo = TURBO_MULTIPLIER;
+	FB_MOVES_LIST.push({color: this.color, move: "turbo_on"});
         break;
     }
     
@@ -404,19 +507,39 @@ tetromino.prototype.handleKeyDown = function(e) {
 tetromino.prototype.handleKeyUp = function(e) {
     switch(e.keyCode) {
     case CONTROLS[this.color]["rotate"]:
-        this.rotate("L");
+        FB_MOVES_LIST.push({color: this.color, move: "rotate"});
         break;
     case CONTROLS[this.color]["left"]:
-        this.shift("L");
+        FB_MOVES_LIST.push({color: this.color, move: "left"});
         break;
     case CONTROLS[this.color]["right"]:
-        this.shift("R");
+        FB_MOVES_LIST.push({color: this.color, move: "right"});
         break;
     case CONTROLS[this.color]["turbo"]:
+        FB_MOVES_LIST.push({color: this.color, move: "turbo_off"});
+        break;
+    } 
+};
+
+tetromino.prototype.handleFbMove = function(move) {
+    if (move.color != this.color) { return; }
+    switch(move.move) {
+    case "rotate":
+        this.rotate("L");
+        break;
+    case "left":
+        this.shift("L");
+        break;
+    case "right":
+        this.shift("R");
+        break;
+    case "turbo_on":
+        this.turbo = TURBO_MULTIPLIER;
+	break;
+    case "turbo_off":
         this.turbo = 1;
         break;
-    }
-    
+    } 
 };
 
 tetromino.prototype.shift = function(dir) {
@@ -479,6 +602,10 @@ tetromino.prototype.rotate = function(M) {
 
 tetromino.prototype.destroy = function() {
     this.destroyed = true;
+    if (SERVER) {
+	this._stateRef.off("value", this.fbStateCallback);
+	this._stateRef.remove();
+    }
     window.removeEventListener("keyup", this.keyUpListener);
     window.removeEventListener("keydown", this.keyDownListener);
 }

@@ -1,7 +1,6 @@
 <html>
 <head>
     <title>REMEMBER THAT I AM EXIST</title>
-    <script src="game.js"></script>
     <style type="text/css">
         @font-face {
             font-family: Wireframe;
@@ -115,8 +114,25 @@
         <label for="high_score">Best</label>
         <output id="high_score">&infin;</output>
         <button id="reset_button" name="reset">New Game</button>
+	<ouput id="fb_test">firebaseeee</output>
     </div>
     
     <canvas id="game" width="220" height="680"></canvas>
 </body>
+<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD_jPrtfw6F6JmMxJxpnHJx43epldCWEr8",
+    authDomain: "etris-ab596.firebaseapp.com",
+    databaseURL: "https://etris-ab596.firebaseio.com",
+    storageBucket: "etris-ab596.appspot.com",
+    messagingSenderId: "996840504095"
+  };
+  firebase.initializeApp(config);
+  var output = document.getElementById('fb_test');
+  var dbRef = firebase.database().ref().child('text');
+  dbRef.on('value', snap => output.innerText = snap.val());
+</script>
+<script src="game.js"></script>
 </html>
