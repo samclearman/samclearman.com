@@ -353,9 +353,12 @@ const update = function (ctx, points, lastUpdate) {
     const delaun = delaunay(torus);
     const vornoi = dual(delaun);
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
-    render(ctx, delaun, 'red');
-    render(ctx, vornoi, 'blue');
-    debugger;
+    if (DELAUNAY) {
+        render(ctx, delaun, 'red');
+    }
+    if (VORNOI) {
+        render(ctx, vornoi, 'blue');
+    }
     lastUpdate = thisUpdate;
     window.setTimeout(() => update(ctx, points, lastUpdate), Math.max((1 / 60) - delta, 0) * 1000);
 };
@@ -368,6 +371,17 @@ ctx.strokeStyle = 'blue';
 const N = 40;
 let WIDTH = 300;
 let HEIGHT = 300;
+let DELAUNAY, VORNOI;
+const params = new URLSearchParams(location.search);
+if (params.has("delaunay")) {
+    DELAUNAY = true;
+}
+if (params.has("vornoi")) {
+    VORNOI = true;
+}
+if (!(DELAUNAY || VORNOI)) {
+    VORNOI = true;
+}
 const resizer = function () {
     WIDTH = canvas.scrollWidth;
     HEIGHT = canvas.scrollHeight;
