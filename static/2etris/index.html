@@ -1,7 +1,6 @@
-<html>
+<chohtml>
 <head>
     <title>REMEMBER THAT I AM EXIST</title>
-    <script src="game.js"></script>
     <style type="text/css">
         @font-face {
             font-family: Wireframe;
@@ -30,16 +29,45 @@
             animation: pulse 160s infinite alternate;            
         }
         body{ margin: 0; padding: 0;}
-        canvas {
+
+        
+        #game {
             position: absolute;
             left: 0;
             right: 0;
             top: 0;
             bottom: 0;
-            width: 220px;
-            height: 680px;
+            width: 200px;
+            height: 400px;
             margin: auto;
         }
+
+        /* #game { */
+        /*     display: none; */
+        /* } */
+        
+        #pregame {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 1;
+            font-size: 20px;
+        }
+
+        #pregame>* {
+            margin: 20px;
+        }
+
+        #pregame input {
+        }
+        
         #controls {
             position: absolute;
             left: 550px;
@@ -91,6 +119,24 @@
             margin:0; padding: 0;
             margin-top: -20px;
         }
+        h2 {
+            width: 200px;
+            left: 50%;
+            text-align: center;
+            font-family: Helvetica, sans-serif;
+            padding: 5px;
+            border: 3px solid;
+            background: linear-gradient(45deg, rgb(255,0,0),  rgb(255,255,0),  rgb(0,255,0),  rgb(0,255,255),  rgb(10,0,255),  rgb(255,0,255));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-image: linear-gradient(45deg, rgb(255,0,0),  rgb(255,255,0),  rgb(0,255,0),  rgb(0,255,255),  rgb(0,0,255),  rgb(255,0,255)) 30;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         #l1 { color: rgb(255,0,0); }
         #l2 { color: rgb(255,255,0); }
         #l3 { color: rgb(0,255,0); }
@@ -99,24 +145,42 @@
         #l6 { color: rgb(255,0,255); }
     </style>
 </head>
-<body onload="game();">
+<body>
     
     <div id="sidebar">
        <h1><span id="l1">2</span><span id="l2">e</span><span id="l3">t</span><span id="l4">r</span><span id="l5">i</span><span id="l6">s</span></h1>
         <p>For one or two players.  <em>Two players recommended!</em></p>
-         <p>Points are scored for placing pieces.  Completing lines increases your score multiplier.</p>
+         <p>Points are scored for making lines.  As the game speeds up, your score multiplier increases.</p>
         <p class="silly">(To play head to head, simply ignore the score and try to cause the other player to lose.)</p>
-        <p>Control white pieces with the <span class="white">q,</span> <span class="white">w,</span> <span class="white">e,</span> and <span class="white">s</span> keys.  Control the black pieces with the <span class="black">&uarr;,</span> <span class="black">&darr;,</span> <span class="black">&larr;,</span> and <span class="black">&rarr;</span> keys.</p>
+        <p>Control your pieces with the arrow keys.</p>
     </div>
     
     <div id="controls">
         <label for="score">Score</label>
         <output id="score">1337</output>
-        <label for="high_score">Best</label>
-        <output id="high_score">&infin;</output>
-        <button id="reset_button" name="reset">New Game</button>
+        <label for="lines">Lines</label>
+        <output id="lines">0</output>
+        <!-- <button id="reset_button" name="reset">New Game</button> -->
     </div>
-    
-    <canvas id="game" width="220" height="680"></canvas>
+
+    <div id="pregame">
+      <h2>Choose any color you like!</h2>
+      <div class="button-container" id="black-container">
+      <label for="black">Black</label>
+      <input type="radio" name="color" id="black-button">
+      </div>
+      <div class="button-container" id="white-container">
+      <label for="white">White</label>
+      <input type="radio" name="color" id="white-button">
+      </div>
+    </div>
+    <canvas id="game" width="200" height="400"></canvas>
 </body>
+
+<script>
+  var DEBUG_EVENTS = true;
+  var DEBUG_SESSION = true;
+</script>
+
+<script src="main.js"></script>
 </html>
